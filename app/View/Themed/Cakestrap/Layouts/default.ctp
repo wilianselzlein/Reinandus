@@ -57,7 +57,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><?php echo __('Sistema Pós Graduação')?></a>
+                <a class="navbar-brand" href="/"><?php echo __('Sistema Pós Graduação')?></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
