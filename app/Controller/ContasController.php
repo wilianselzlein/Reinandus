@@ -7,7 +7,7 @@ App::uses('AppController', 'Controller');
  * @property PaginatorComponent $Paginator
  * @property SessionComponent $Session
  */
-class ContaController extends AppController {
+class ContasController extends AppController {
    public $uses = array('Contum');
 /**
  * Components

@@ -7,7 +7,7 @@ App::uses('AppController', 'Controller');
  * @property PaginatorComponent $Paginator
  * @property SessionComponent $Session
  */
-class FormapgtosController extends AppController {
+class FormasPagamentosController extends AppController {
    public $uses = array('Formapgto');
 /**
  * Components

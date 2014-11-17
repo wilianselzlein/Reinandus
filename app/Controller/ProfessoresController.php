@@ -7,7 +7,7 @@ App::uses('AppController', 'Controller');
  * @property PaginatorComponent $Paginator
  * @property SessionComponent $Session
  */
-class ProfessorsController extends AppController {
+class ProfessoresController extends AppController {
    public $uses = array('Professor');
 /**
  * Components
