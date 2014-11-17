@@ -1,6 +1,6 @@
 	 <div class="panel panel-default ">
         <div class="panel-heading">
-            <h2><?php echo __('Contum'); ?>                <small><?php echo __('View'); ?></small>
+            <h2><?php echo __('Conta'); ?>                <small><?php echo __('View'); ?></small>
 
                 <div class="btn-group pull-right">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">

@@ -5,15 +5,16 @@
     <div class="panel panel-default">
 
 <div class="panel-heading">
-            <h3>Programa                    <small><?php echo __('Add') ?></small>
+            <h3><?php echo __('Programa'); ?>                    <small><?php echo __('Add') ?></small>
 
 
                 <div class="btn-group pull-right">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        Actions <span class="caret"></span>
+                        <?php echo __('Actions');?> <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                     				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List') .' '.__('Programas'), array('action' => 'index'),array('escape'=>false)); ?></li>
+                              <li class="divider"></li>
 				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Permissaos'), array('controller' => 'permissaos', 'action' => 'index'),array('escape'=>false)); ?> </li>
 				<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Permissao'), array('controller' => 'permissaos', 'action' => 'add'),array('escape'=>false)); ?> </li>
                     </ul>

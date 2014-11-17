@@ -5,12 +5,12 @@
     <div class="panel panel-default">
 
 <div class="panel-heading">
-            <h3>Parametro                    <small><?php echo __('Add') ?></small>
+            <h3><?php echo __('Parametro'); ?>                    <small><?php echo __('Add') ?></small>
 
 
                 <div class="btn-group pull-right">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        Actions <span class="caret"></span>
+                        <?php echo __('Actions');?> <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                     				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List') .' '.__('Parametros'), array('action' => 'index'),array('escape'=>false)); ?></li>
