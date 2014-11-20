@@ -108,7 +108,7 @@ if (!empty($filePresent)):
 	<li><a href="http://www.cafepress.com/cakefoundation"><?php echo __d('cake', 'CakeSchwag'); ?> </a>
 	<ul><li><?php echo __d('cake', 'Get your own CakePHP gear - Doughnate to Cake'); ?></li></ul></li>
 	<li><a href="http://www.cakephp.org"><?php echo __d('cake', 'CakePHP'); ?> </a>
-	<ul><li><?php echo __d('cake', 'The Rapid Development Framework'); ?></li></ul></li>
+	<ul><li><?php echo __d('cake', 'Reinandus'); ?></li></ul></li>
 	<li><a href="http://manual.cakephp.org"><?php echo __d('cake', 'CakePHP Manual'); ?> </a>
 	<ul><li><?php echo __d('cake', 'Your Rapid Development Cookbook'); ?></li></ul></li>
 	<li><a href="http://api.cakephp.org"><?php echo __d('cake', 'CakePHP API'); ?> </a>

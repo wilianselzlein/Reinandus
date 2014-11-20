@@ -139,7 +139,7 @@
 		<div id="container">
 			<div id="header">
 			<div id="version">PHPUnit: <?php echo class_exists('PHPUnit_Runner_Version') ? PHPUnit_Runner_Version::id() : 'n/a'; ?></div>
-				<h1>CakePHP: the rapid development php framework</h1>
+				<h1>Reinandus</h1>
 			</div>
 			<div id="content">
 			<h2>CakePHP Test Suite <?php echo Configure::version(); ?></h2>
