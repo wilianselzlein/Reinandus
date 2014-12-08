@@ -4,13 +4,13 @@
 
     <div class="panel panel-default">
 
-	<div class="panel-heading"><h3><span class="fa fa-list-alt"></span> <?php echo __('Cidades'); ?>                <div class="btn-group pull-right">
+	<div class="panel-heading"><h3><span class="fa fa-list-alt"></span> <?php echo __('Grupos'); ?>                <div class="btn-group pull-right">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <?php echo __('Actions');?><span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li>   
-					<?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Cidade'), 
+					<?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Grupo'), 
 							array('action' => 'add'), array('class' => '', 'escape'=>false)); ?>				</li>
 				<li class="divider"></li>				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Estados'), array('controller' => 'estados', 'action' => 'index'), array('class' => '','escape'=>false)); ?></li> 
 				<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Estado'), array('controller' => 'estados', 'action' => 'add'), array('class' => '','escape'=>false)); ?></li> 
@@ -35,25 +35,19 @@
                 <thead>
                     <tr class="active">
 							<th><?php echo $this->Paginator->sort('id'); ?></th>
-							<th><?php echo $this->Paginator->sort('estado_id'); ?></th>
 							<th><?php echo $this->Paginator->sort('nome'); ?></th>
-							<th><?php echo $this->Paginator->sort('cep'); ?></th>
 							<th class="actions text-center"><?php echo __('Actions'); ?></th>
 						</tr>
 					</thead>
 					<tbody>
-<?php foreach ($cidades as $cidade): ?>
+<?php foreach ($grupos as $grupo): ?>
 	<tr>
-		<td><?php echo h($cidade['Cidade']['id']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($cidade['Estado']['nome'], array('controller' => 'estados', 'action' => 'view', $cidade['Estado']['id'])); ?>
-		</td>
-		<td><?php echo h($cidade['Cidade']['nome']); ?>&nbsp;</td>
-		<td><?php echo h($cidade['Cidade']['cep']); ?>&nbsp;</td>
+		<td><?php echo h($grupo['Grupo']['id']); ?>&nbsp;</td>
+		<td><?php echo h($grupo['Grupo']['nome']); ?>&nbsp;</td>
 		<td class="actions text-center">
-			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $cidade['Cidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $cidade['Cidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $cidade['Cidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $cidade['Cidade']['id'])); ?>
+			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $grupo['Grupo']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
+			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $grupo['Grupo']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
+			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $grupo['Grupo']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $grupo['Grupo']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

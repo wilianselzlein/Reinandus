@@ -51,12 +51,27 @@
 				); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
+						<?php echo $this->Form->input('agencia_dig', 
+				array('class' => 'form-control', 'label'=>array('text' => 'Digito', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+				); ?>
+					</div><!-- .form-group -->
+					<div class="form-group">
 						<?php echo $this->Form->input('conta', 
 				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 				); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
+						<?php echo $this->Form->input('conta_dig', 
+				array('class' => 'form-control', 'label'=>array('text' => 'Digito', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+				); ?>
+					</div><!-- .form-group -->
+					<div class="form-group">
 						<?php echo $this->Form->input('contato', 
+				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+				); ?>
+					</div><!-- .form-group -->
+					<div class="form-group">
+						<?php echo $this->Form->input('email', 
 				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 				); ?>
 					</div><!-- .form-group -->
@@ -67,11 +82,6 @@
 					</div><!-- .form-group -->
 					<div class="form-group">
 						<?php echo $this->Form->input('fax', 
-				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
-				); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-						<?php echo $this->Form->input('email', 
 				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 				); ?>
 					</div><!-- .form-group -->
@@ -92,17 +102,7 @@
 					</div><!-- .form-group -->
 					<div class="form-group">
 						<?php echo $this->Form->input('cedente_dig', 
-				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
-				); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-						<?php echo $this->Form->input('agencia_dig', 
-				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
-				); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-						<?php echo $this->Form->input('conta_dig', 
-				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+				array('class' => 'form-control', 'label'=>array('text' => 'Digito', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 				); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">

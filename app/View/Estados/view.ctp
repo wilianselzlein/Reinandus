@@ -73,10 +73,9 @@
 						<table class="table table-hover table-condensed">
 							<thead>
 								<tr class="active">
-											<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Estado Id'); ?></th>
+		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Nome'); ?></th>
-		<th><?php echo __('Sigla'); ?></th>
+		<th><?php echo __('Cep'); ?></th>
 									<th class="actions text-center"><?php echo __('Actions'); ?></th>
 								</tr>
 							</thead>
@@ -86,9 +85,8 @@
 										foreach ($estado['Cidade'] as $cidade): ?>
 		<tr>
 			<td><?php echo $cidade['id']; ?></td>
-			<td><?php echo $cidade['estado_id']; ?></td>
 			<td><?php echo $cidade['nome']; ?></td>
-			<td><?php echo $cidade['sigla']; ?></td>
+			<td><?php echo $cidade['cep']; ?></td>
 			<td class="actions text-center">
 				<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'cidades', 'action' => 'view', $cidade['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
 				<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('controller' => 'cidades', 'action' => 'edit', $cidade['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>

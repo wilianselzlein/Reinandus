@@ -1,0 +1,386 @@
+﻿msgid  "New"
+msgstr "Adicionar"
+
+msgid  "Add"
+msgstr "Adicionar"
+
+msgid  "View"
+msgstr "Visualizar"
+
+msgid  "Edit"
+msgstr "Alterar"
+
+msgid  "Delete"
+msgstr "Excluir"
+
+msgid  "List"
+msgstr "Listar"
+
+msgid  "Submit"
+msgstr "Salvar"
+
+msgid  "Role"
+msgstr "Cargo"
+
+msgid  "Roles"
+msgstr "Cargos"
+
+msgid  "Alias"
+msgstr "Sigla"
+
+msgid  "Created"
+msgstr "Criado em"
+
+msgid  "Modified"
+msgstr "Modificado em"
+
+msgid  "Previous"
+msgstr "Anterior"
+
+msgid  "Next"
+msgstr "Próximo"
+
+msgid  "Subgrupo"
+msgstr "Prioridade"
+
+msgid  "Subgrupos"
+msgstr "Prioridades"
+
+msgid  "Login"
+msgstr "Acessar"
+
+msgid  "Username"
+msgstr "Usuário"
+
+msgid  "Password"
+msgstr "Senha"
+
+msgid "Welcome"
+msgstr "Bem-vindo(a)"
+
+msgid "You're logged in."
+msgstr "Você está logado no sistema."
+
+msgid "Actions"
+msgstr "Ações"
+
+msgid "Users"
+msgstr "Usuários"
+
+msgid "Logout"
+msgstr "Sair"
+
+msgid "Murals"
+msgstr "Murais"
+
+msgid "Historico"
+msgstr "Histórico"
+
+msgid "Historicos"
+msgstr "Históricos"
+
+msgid "Descricao"
+msgstr "Descrição"
+
+msgid "User"
+msgstr "Usuário"
+
+msgid "The record has been saved"
+msgstr "O registro foi salvo"
+
+msgid "The record could not be saved. Please, try again."
+msgstr "O registro não pôde ser salvo. Por favor, tente novamente."
+
+msgid "The record could not be found."
+msgstr "O registro não pôde ser encontrado."
+
+msgid "Record deleted"
+msgstr "Registro excluído"
+
+msgid "The record was not deleted"
+msgstr "O registro não foi excluído."
+
+msgid "Invalid username or password, try again"
+msgstr "Usuário ou senha inválida, tente novamente"
+
+msgid "You must be logged in to view this page."
+msgstr "Você deve estar conectado para acessar o sistema."
+
+msgid "Please enter your username and password"
+msgstr "Por favor digite seus dados de acesso"
+
+msgid "Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}"
+msgstr "Página {:page} de {:pages}, exibindo {:current} registros de um total de {:count}, iniciando no registro {:start}, terminando no {:end}"
+
+msgid "From"
+msgstr "Enviado por"
+
+msgid "MessageFrom"
+msgstr "De"
+
+msgid "MessageTo"
+msgstr "Para"
+
+msgid "me"
+msgstr "mim"
+
+msgid "Descricao"
+msgstr "Descrição"
+
+msgid "Situacao"
+msgstr "Situação"
+
+msgid "Situacaos"
+msgstr "Situações"
+
+msgid "Datainicial"
+msgstr "Data Inicial"
+
+msgid "Datafinal"
+msgstr "Data Final"
+
+msgid "User Id"
+msgstr "Usuário"
+
+msgid "Chamado Id"
+msgstr "Chamado"
+
+msgid "Checklist Id"
+msgstr "Checklist"
+
+msgid "Razaosocial"
+msgstr "Razão Social"
+
+msgid "Cpfcnpj"
+msgstr "CPF/CNPJ"
+
+msgid "Dtvenda"
+msgstr "Data Venda"
+
+msgid "Endereco"
+msgstr "Endereço"
+
+msgid "Numero"
+msgstr "Número"
+
+msgid "Ie"
+msgstr "IE"
+
+msgid "Dtinstalacao"
+msgstr "Data Instal."
+
+msgid "Cep"
+msgstr "CEP"
+
+msgid "Valorvenda"
+msgstr "Valor Venda"
+
+msgid "Obs"
+msgstr "Observações"
+
+msgid "Tipo Id"
+msgstr "Tipo"
+
+msgid "Cliente Id"
+msgstr "Cliente"
+
+msgid "Problema Id"
+msgstr "Problema"
+
+msgid "Situacao Id"
+msgstr "Situação"
+
+msgid "Servico"
+msgstr "Serviço"
+
+msgid "Servicos"
+msgstr "Serviços"
+
+msgid "Uf"
+msgstr "UF"
+
+msgid "Cidade Id"
+msgstr "Cidade"
+
+msgid "Subgrupo Id"
+msgstr "Prioridade"
+
+msgid "Unidade Id"
+msgstr "Unidade"
+
+msgid "Are you sure you want to delete # %s?"
+msgstr "Você deseja excluir # %s?"
+
+msgid "Sistema Id"
+msgstr "Sistema"
+
+msgid "Previsaoexecucao"
+msgstr "Previsão de Execução"
+
+msgid "Left"
+msgstr "Esquerda"
+
+msgid "Right"
+msgstr "Direita"
+
+msgid "Lft"
+msgstr "Esquerda"
+
+msgid "Rght"
+msgstr "Direita"
+
+msgid "Foreign_key"
+msgstr "Relacionamento"
+
+msgid "Parent_id"
+msgstr "Pai"
+
+msgid "Parent"
+msgstr "Pai"
+
+msgid "Model"
+msgstr "Modelo"
+
+msgid "aro"
+msgstr "Aro"
+
+msgid "create"
+msgstr "Adicionar"
+
+msgid "read"
+msgstr "Visualizar"
+
+msgid "update"
+msgstr "Editar"
+
+msgid "delete"
+msgstr "Deletar"
+
+msgid "Sons"
+msgstr "Filhos"
+
+msgid "Son"
+msgstr "Filho"
+
+msgid "son"
+msgstr "filho"
+
+msgid "Aco"
+msgstr "Ações"
+
+msgid "Acos"
+msgstr "Ações"
+
+msgid "Aro"
+msgstr "Grupos"
+
+msgid "Aros"
+msgstr "Grupos"
+
+msgid "ArosAcos"
+msgstr "Permissões"
+
+msgid "Emailsup"
+msgstr "Email Superior"
+
+msgid "Emailalt"
+msgstr "Email Alternativo"
+
+msgid "__PERMISSAO"
+msgstr "Você não tem permissão para acessar esse local."
+
+msgid "Parametro"
+msgstr "Parâmetro"
+
+msgid "Parametros"
+msgstr "Parâmetros"
+
+msgid "Modulos"
+msgstr "Módulos"
+
+msgid "Modulo"
+msgstr "Módulo"
+
+msgid "Relatorio"
+msgstr "Relatório"
+
+msgid "Relatorios"
+msgstr "Relatórios"
+
+msgid "RelatorioFiltro"
+msgstr "Filtro de Relatório"
+
+msgid "RelatorioFiltros"
+msgstr "Filtros de Relatório"
+
+msgid "Relatorio Dataset"
+msgstr "Conjunto de Dados"
+
+msgid "RelatorioDataset"
+msgstr "Conjunto de Dados"
+
+msgid "RelatorioDatasets"
+msgstr "Conjuntos de Dados"
+
+msgid "relatorio_dataset_id"
+msgstr "Conjunto de Dados"
+
+msgid "campo"
+msgstr "Campo"
+
+msgid "campo_alias"
+msgstr "Campo Alias"
+
+msgid "tipo_filtro"
+msgstr "Tipo Filtro"
+
+msgid "Related"
+msgstr "Relacionados(as)"
+
+msgid "Configuracoes"
+msgstr "Configurações"
+
+msgid "Contas"
+msgstr "Contas Bancarias"
+
+msgid "Contum"
+msgstr "Conta Bancaria"
+
+msgid "Formapgtos"
+msgstr "Formas de Pagamento"
+
+msgid "Formapgto"
+msgstr "Forma de Pagamento"
+
+msgid "FormasPagamentos"
+msgstr "Formas de Pagamento"
+
+msgid "FormaPagamento"
+msgstr "Forma de Pagamento"
+
+msgid "Cnpjcpf"
+msgstr "CNPJ/CPF"
+
+msgid "IE"
+msgstr "Inscrição Estadual"
+
+msgid "IM"
+msgstr "Inscrição Municipal"
+
+msgid "Juntacomercial"
+msgstr "Junta Comercial"
+
+msgid "Fundacao"
+msgstr "Fundação"
+
+msgid "Ramo"
+msgstr "Ramo Principal"
+
+msgid "Secundario"
+msgstr "Ramo Secundário"
+
+msgid "Orgao"
+msgstr "Orgão"
+
+msgid "Orgaonum"
+msgstr "Número"

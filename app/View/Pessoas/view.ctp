@@ -103,6 +103,11 @@
 			<?php echo h($pessoa['Pessoa']['site']); ?>
 			&nbsp;
 		</td>
+</tr><tr>		<td><strong><?php echo __('Pessoa'); ?></strong></td>
+		<td>
+			<?php echo h($pessoa['Pessoa']['pessoa']); ?>
+			&nbsp;
+		</td>
 </tr><tr>		<td><strong><?php echo __('Cnpjcpf'); ?></strong></td>
 		<td>
 			<?php echo h($pessoa['Pessoa']['cnpjcpf']); ?>
@@ -128,12 +133,12 @@
 			<?php echo h($pessoa['Pessoa']['contato']); ?>
 			&nbsp;
 		</td>
-</tr><tr>		<td><strong><?php echo __('Ie'); ?></strong></td>
+</tr><tr>		<td><strong><?php echo __('IE'); ?></strong></td>
 		<td>
 			<?php echo h($pessoa['Pessoa']['ie']); ?>
 			&nbsp;
 		</td>
-</tr><tr>		<td><strong><?php echo __('Im'); ?></strong></td>
+</tr><tr>		<td><strong><?php echo __('IM'); ?></strong></td>
 		<td>
 			<?php echo h($pessoa['Pessoa']['im']); ?>
 			&nbsp;
@@ -146,11 +151,6 @@
 </tr><tr>		<td><strong><?php echo __('Orgaonum'); ?></strong></td>
 		<td>
 			<?php echo h($pessoa['Pessoa']['orgaonum']); ?>
-			&nbsp;
-		</td>
-</tr><tr>		<td><strong><?php echo __('Pessoa'); ?></strong></td>
-		<td>
-			<?php echo h($pessoa['Pessoa']['pessoa']); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Ramo'); ?></strong></td>

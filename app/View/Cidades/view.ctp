@@ -48,9 +48,9 @@
 			<?php echo h($cidade['Cidade']['nome']); ?>
 			&nbsp;
 		</td>
-</tr><tr>		<td><strong><?php echo __('Sigla'); ?></strong></td>
+</tr><tr>		<td><strong><?php echo __('Cep'); ?></strong></td>
 		<td>
-			<?php echo h($cidade['Cidade']['sigla']); ?>
+			<?php echo h($cidade['Cidade']['cep']); ?>
 			&nbsp;
 		</td>
 </tr>					</tbody>

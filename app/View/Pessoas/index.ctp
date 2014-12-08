@@ -43,27 +43,7 @@
 							<th><?php echo $this->Paginator->sort('cidade_id'); ?></th>
 							<th><?php echo $this->Paginator->sort('cep'); ?></th>
 							<th><?php echo $this->Paginator->sort('fone'); ?></th>
-							<th><?php echo $this->Paginator->sort('fax'); ?></th>
-							<th><?php echo $this->Paginator->sort('celular'); ?></th>
 							<th><?php echo $this->Paginator->sort('email'); ?></th>
-							<th><?php echo $this->Paginator->sort('emailalt'); ?></th>
-							<th><?php echo $this->Paginator->sort('site'); ?></th>
-							<th><?php echo $this->Paginator->sort('cnpjcpf'); ?></th>
-							<th><?php echo $this->Paginator->sort('resumo'); ?></th>
-							<th><?php echo $this->Paginator->sort('obs'); ?></th>
-							<th><?php echo $this->Paginator->sort('empresa'); ?></th>
-							<th><?php echo $this->Paginator->sort('contato'); ?></th>
-							<th><?php echo $this->Paginator->sort('ie'); ?></th>
-							<th><?php echo $this->Paginator->sort('im'); ?></th>
-							<th><?php echo $this->Paginator->sort('orgao'); ?></th>
-							<th><?php echo $this->Paginator->sort('orgaonum'); ?></th>
-							<th><?php echo $this->Paginator->sort('pessoa'); ?></th>
-							<th><?php echo $this->Paginator->sort('ramo'); ?></th>
-							<th><?php echo $this->Paginator->sort('secundario'); ?></th>
-							<th><?php echo $this->Paginator->sort('fundacao'); ?></th>
-							<th><?php echo $this->Paginator->sort('juntacomercial'); ?></th>
-							<th><?php echo $this->Paginator->sort('created'); ?></th>
-							<th><?php echo $this->Paginator->sort('modified'); ?></th>
 							<th class="actions text-center"><?php echo __('Actions'); ?></th>
 						</tr>
 					</thead>
@@ -81,27 +61,7 @@
 		</td>
 		<td><?php echo h($pessoa['Pessoa']['cep']); ?>&nbsp;</td>
 		<td><?php echo h($pessoa['Pessoa']['fone']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['fax']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['celular']); ?>&nbsp;</td>
 		<td><?php echo h($pessoa['Pessoa']['email']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['emailalt']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['site']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['cnpjcpf']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['resumo']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['obs']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['empresa']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['contato']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['ie']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['im']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['orgao']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['orgaonum']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['pessoa']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['ramo']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['secundario']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['fundacao']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['juntacomercial']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['created']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['modified']); ?>&nbsp;</td>
 		<td class="actions text-center">
 			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $pessoa['Pessoa']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
 			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $pessoa['Pessoa']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>

@@ -76,22 +76,8 @@
 		<th><?php echo __('Conta'); ?></th>
 		<th><?php echo __('Contato'); ?></th>
 		<th><?php echo __('Fone'); ?></th>
-		<th><?php echo __('Fax'); ?></th>
 		<th><?php echo __('Email'); ?></th>
-		<th><?php echo __('Celular'); ?></th>
-		<th><?php echo __('Nome No Banco'); ?></th>
-		<th><?php echo __('Cedente'); ?></th>
-		<th><?php echo __('Cedente Dig'); ?></th>
-		<th><?php echo __('Agencia Dig'); ?></th>
-		<th><?php echo __('Conta Dig'); ?></th>
-		<th><?php echo __('Carteira'); ?></th>
-		<th><?php echo __('Dia Emissao'); ?></th>
-		<th><?php echo __('Dia Multa'); ?></th>
-		<th><?php echo __('Dia Desconto'); ?></th>
-		<th><?php echo __('Aceite'); ?></th>
-		<th><?php echo __('Mensagem'); ?></th>
-		<th><?php echo __('Formapgto Id'); ?></th>
-									<th class="actions text-center"><?php echo __('Actions'); ?></th>
+							<th class="actions text-center"><?php echo __('Actions'); ?></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -101,29 +87,15 @@
 		<tr>
 			<td><?php echo $contum['id']; ?></td>
 			<td><?php echo $contum['banco']; ?></td>
-			<td><?php echo $contum['agencia']; ?></td>
-			<td><?php echo $contum['conta']; ?></td>
+			<td><?php echo $contum['agencia'] . '-' . $contum['agencia_dig']; ?></td>
+			<td><?php echo $contum['conta'] . '-' . $contum['conta_dig']; ?></td>
 			<td><?php echo $contum['contato']; ?></td>
 			<td><?php echo $contum['fone']; ?></td>
-			<td><?php echo $contum['fax']; ?></td>
 			<td><?php echo $contum['email']; ?></td>
-			<td><?php echo $contum['celular']; ?></td>
-			<td><?php echo $contum['nome_no_banco']; ?></td>
-			<td><?php echo $contum['cedente']; ?></td>
-			<td><?php echo $contum['cedente_dig']; ?></td>
-			<td><?php echo $contum['agencia_dig']; ?></td>
-			<td><?php echo $contum['conta_dig']; ?></td>
-			<td><?php echo $contum['carteira']; ?></td>
-			<td><?php echo $contum['dia_emissao']; ?></td>
-			<td><?php echo $contum['dia_multa']; ?></td>
-			<td><?php echo $contum['dia_desconto']; ?></td>
-			<td><?php echo $contum['aceite']; ?></td>
-			<td><?php echo $contum['mensagem']; ?></td>
-			<td><?php echo $contum['formapgto_id']; ?></td>
 			<td class="actions text-center">
-				<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'conta', 'action' => 'view', $contum['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-				<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('controller' => 'conta', 'action' => 'edit', $contum['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-				<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'conta', 'action' => 'delete', $contum['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $contum['id'])); ?>
+				<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'contas', 'action' => 'view', $contum['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
+				<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('controller' => 'contas', 'action' => 'edit', $contum['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
+				<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'contas', 'action' => 'delete', $contum['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $contum['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -156,7 +128,7 @@
 						<table class="table table-hover table-condensed">
 							<thead>
 								<tr class="active">
-											<th><?php echo __('Id'); ?></th>
+		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Numero'); ?></th>
 		<th><?php echo __('Vencimento'); ?></th>
 		<th><?php echo __('Conta Id'); ?></th>

@@ -112,6 +112,11 @@
 				); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
+						<?php echo $this->Form->input('pessoa', 
+				array('class' => 'form-control', 'options' => array('F' => 'Fisica', 'J' => 'Juridica'), 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+				); ?>
+					</div><!-- .form-group -->
+					<div class="form-group">
 						<?php echo $this->Form->input('cnpjcpf', 
 				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 				); ?>
@@ -138,12 +143,12 @@
 					</div><!-- .form-group -->
 					<div class="form-group">
 						<?php echo $this->Form->input('ie', 
-				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+				array('class' => 'form-control', 'label'=>array('text' => 'Inscriçao Estadual', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 				); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
 						<?php echo $this->Form->input('im', 
-				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+				array('class' => 'form-control', 'label'=>array('text' => 'Inscriçao Municipal', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 				); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
@@ -153,11 +158,6 @@
 					</div><!-- .form-group -->
 					<div class="form-group">
 						<?php echo $this->Form->input('orgaonum', 
-				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
-				); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-						<?php echo $this->Form->input('pessoa', 
 				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 				); ?>
 					</div><!-- .form-group -->
@@ -173,7 +173,7 @@
 					</div><!-- .form-group -->
 					<div class="form-group">
 						<?php echo $this->Form->input('fundacao', 
-				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+				array('class' => 'form-control', 'type' => 'text', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 				); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">

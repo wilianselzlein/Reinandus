@@ -34,20 +34,6 @@
 							<th><?php echo $this->Paginator->sort('conta'); ?></th>
 							<th><?php echo $this->Paginator->sort('contato'); ?></th>
 							<th><?php echo $this->Paginator->sort('fone'); ?></th>
-							<th><?php echo $this->Paginator->sort('fax'); ?></th>
-							<th><?php echo $this->Paginator->sort('email'); ?></th>
-							<th><?php echo $this->Paginator->sort('celular'); ?></th>
-							<th><?php echo $this->Paginator->sort('nome_no_banco'); ?></th>
-							<th><?php echo $this->Paginator->sort('cedente'); ?></th>
-							<th><?php echo $this->Paginator->sort('cedente_dig'); ?></th>
-							<th><?php echo $this->Paginator->sort('agencia_dig'); ?></th>
-							<th><?php echo $this->Paginator->sort('conta_dig'); ?></th>
-							<th><?php echo $this->Paginator->sort('carteira'); ?></th>
-							<th><?php echo $this->Paginator->sort('dia_emissao'); ?></th>
-							<th><?php echo $this->Paginator->sort('dia_multa'); ?></th>
-							<th><?php echo $this->Paginator->sort('dia_desconto'); ?></th>
-							<th><?php echo $this->Paginator->sort('aceite'); ?></th>
-							<th><?php echo $this->Paginator->sort('mensagem'); ?></th>
 							<th><?php echo $this->Paginator->sort('formapgto_id'); ?></th>
 							<th class="actions text-center"><?php echo __('Actions'); ?></th>
 						</tr>
@@ -57,26 +43,12 @@
 	<tr>
 		<td><?php echo h($contum['Contum']['id']); ?>&nbsp;</td>
 		<td><?php echo h($contum['Contum']['banco']); ?>&nbsp;</td>
-		<td><?php echo h($contum['Contum']['agencia']); ?>&nbsp;</td>
-		<td><?php echo h($contum['Contum']['conta']); ?>&nbsp;</td>
+		<td><?php echo h($contum['Contum']['agencia'] . '-' . $contum['Contum']['agencia_dig']); ?>&nbsp;</td>
+		<td><?php echo h($contum['Contum']['conta'] . '-' . $contum['Contum']['conta_dig']); ?>&nbsp;</td>
 		<td><?php echo h($contum['Contum']['contato']); ?>&nbsp;</td>
 		<td><?php echo h($contum['Contum']['fone']); ?>&nbsp;</td>
-		<td><?php echo h($contum['Contum']['fax']); ?>&nbsp;</td>
-		<td><?php echo h($contum['Contum']['email']); ?>&nbsp;</td>
-		<td><?php echo h($contum['Contum']['celular']); ?>&nbsp;</td>
-		<td><?php echo h($contum['Contum']['nome_no_banco']); ?>&nbsp;</td>
-		<td><?php echo h($contum['Contum']['cedente']); ?>&nbsp;</td>
-		<td><?php echo h($contum['Contum']['cedente_dig']); ?>&nbsp;</td>
-		<td><?php echo h($contum['Contum']['agencia_dig']); ?>&nbsp;</td>
-		<td><?php echo h($contum['Contum']['conta_dig']); ?>&nbsp;</td>
-		<td><?php echo h($contum['Contum']['carteira']); ?>&nbsp;</td>
-		<td><?php echo h($contum['Contum']['dia_emissao']); ?>&nbsp;</td>
-		<td><?php echo h($contum['Contum']['dia_multa']); ?>&nbsp;</td>
-		<td><?php echo h($contum['Contum']['dia_desconto']); ?>&nbsp;</td>
-		<td><?php echo h($contum['Contum']['aceite']); ?>&nbsp;</td>
-		<td><?php echo h($contum['Contum']['mensagem']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($contum['Formapgto']['nome'], array('controller' => 'formapgtos', 'action' => 'view', $contum['Formapgto']['id'])); ?>
+			<?php echo $this->Html->link($contum['Formapgto']['nome'], array('controller' => 'FormasPagamentos', 'action' => 'view', $contum['Formapgto']['id'])); ?>
 		</td>
 		<td class="actions text-center">
 			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $contum['Contum']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>

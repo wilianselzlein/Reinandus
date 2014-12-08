@@ -84,7 +84,7 @@
  * Application wide charset encoding
  */
 	Configure::write('App.encoding', 'UTF-8');
-
+    Configure::write('Config.language', 'pt-BR');
 /**
  * To configure CakePHP *not* to use mod_rewrite and to
  * use CakePHP pretty URLs, remove these .htaccess
@@ -276,7 +276,7 @@
  * once instead of passing it each time in function calls.
  */
 	//Configure::write('Config.timezone', 'Europe/Paris');
-
+  setlocale(LC_TIME, 'pt-BR');
 /**
  * Cache Engine Configuration
  * Default settings provided below

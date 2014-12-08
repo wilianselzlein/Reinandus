@@ -39,17 +39,22 @@
 		</td>
 </tr><tr>		<td><strong><?php echo __('Agencia'); ?></strong></td>
 		<td>
-			<?php echo h($contum['Contum']['agencia']); ?>
+			<?php echo h($contum['Contum']['agencia'] . '-' . $contum['Contum']['agencia_dig']); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Conta'); ?></strong></td>
 		<td>
-			<?php echo h($contum['Contum']['conta']); ?>
+			<?php echo h($contum['Contum']['conta'] . '-' . $contum['Contum']['conta_dig']); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Contato'); ?></strong></td>
 		<td>
 			<?php echo h($contum['Contum']['contato']); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<td><strong><?php echo __('Email'); ?></strong></td>
+		<td>
+			<?php echo h($contum['Contum']['email']); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Fone'); ?></strong></td>
@@ -60,11 +65,6 @@
 </tr><tr>		<td><strong><?php echo __('Fax'); ?></strong></td>
 		<td>
 			<?php echo h($contum['Contum']['fax']); ?>
-			&nbsp;
-		</td>
-</tr><tr>		<td><strong><?php echo __('Email'); ?></strong></td>
-		<td>
-			<?php echo h($contum['Contum']['email']); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Celular'); ?></strong></td>
@@ -79,22 +79,7 @@
 		</td>
 </tr><tr>		<td><strong><?php echo __('Cedente'); ?></strong></td>
 		<td>
-			<?php echo h($contum['Contum']['cedente']); ?>
-			&nbsp;
-		</td>
-</tr><tr>		<td><strong><?php echo __('Cedente Dig'); ?></strong></td>
-		<td>
-			<?php echo h($contum['Contum']['cedente_dig']); ?>
-			&nbsp;
-		</td>
-</tr><tr>		<td><strong><?php echo __('Agencia Dig'); ?></strong></td>
-		<td>
-			<?php echo h($contum['Contum']['agencia_dig']); ?>
-			&nbsp;
-		</td>
-</tr><tr>		<td><strong><?php echo __('Conta Dig'); ?></strong></td>
-		<td>
-			<?php echo h($contum['Contum']['conta_dig']); ?>
+			<?php echo h($contum['Contum']['cedente'] . '-' . $contum['Contum']['cedente_dig']); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Carteira'); ?></strong></td>
@@ -129,7 +114,7 @@
 		</td>
 </tr><tr>		<td><strong><?php echo __('Formapgto'); ?></strong></td>
 		<td>
-			<?php echo $this->Html->link($contum['Formapgto']['nome'], array('controller' => 'formapgtos', 'action' => 'view', $contum['Formapgto']['id']), array('class' => '')); ?>
+			<?php echo $this->Html->link($contum['Formapgto']['nome'], array('controller' => 'FormasPagamentos', 'action' => 'view', $contum['Formapgto']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
 </tr>					</tbody>
