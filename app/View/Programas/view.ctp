@@ -37,10 +37,9 @@
 			<?php echo h($programa['Programa']['nome']); ?>
 			&nbsp;
 		</td>
-</tr><tr>		<td><strong><?php echo __('Is Cadastro'); ?></strong></td>
+</tr><tr>		<td><strong><?php echo __('Cadastro'); ?></strong></td>
 		<td>
-			<?php echo h($programa['Programa']['is_cadastro']); ?>
-			&nbsp;
+			<i class="<?php echo ($programa['Programa']['is_cadastro'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;
 		</td>
 </tr>					</tbody>
 				</table><!-- /.table table-striped table-bordered -->
@@ -56,7 +55,7 @@
                             <?php echo __('Actions'); ?> <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                                <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Permissao'), array('controller' => 'permissaos', 'action' => 'add'), array('class' => '', 'escape' => false)); ?>                                </li>
+                                <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Permissao'), array('controller' => 'permissoes', 'action' => 'add'), array('class' => '', 'escape' => false)); ?>                                </li>
                             </ul>       
                     </div>
                 </h3>
@@ -69,8 +68,6 @@
 							<thead>
 								<tr class="active">
 											<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('User Id'); ?></th>
-		<th><?php echo __('Programa Id'); ?></th>
 		<th><?php echo __('Index'); ?></th>
 		<th><?php echo __('View'); ?></th>
 		<th><?php echo __('Edit'); ?></th>
@@ -84,16 +81,14 @@
 										foreach ($programa['Permissao'] as $permissao): ?>
 		<tr>
 			<td><?php echo $permissao['id']; ?></td>
-			<td><?php echo $permissao['user_id']; ?></td>
-			<td><?php echo $permissao['programa_id']; ?></td>
-			<td><?php echo $permissao['index']; ?></td>
-			<td><?php echo $permissao['view']; ?></td>
-			<td><?php echo $permissao['edit']; ?></td>
-			<td><?php echo $permissao['add']; ?></td>
+			<td><i class="<?php echo ($permissao['index'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
+			<td><i class="<?php echo ($permissao['view'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
+			<td><i class="<?php echo ($permissao['edit'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
+			<td><i class="<?php echo ($permissao['add'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
 			<td class="actions text-center">
-				<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'permissaos', 'action' => 'view', $permissao['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-				<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('controller' => 'permissaos', 'action' => 'edit', $permissao['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-				<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'permissaos', 'action' => 'delete', $permissao['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $permissao['id'])); ?>
+				<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'permissoes', 'action' => 'view', $permissao['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
+				<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('controller' => 'permissoes', 'action' => 'edit', $permissao['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
+				<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'permissoes', 'action' => 'delete', $permissao['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $permissao['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>

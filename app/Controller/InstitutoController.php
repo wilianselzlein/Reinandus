@@ -1,13 +1,14 @@
+
 <?php
 App::uses('AppController', 'Controller');
 /**
- * Institutos Controller
+ * Instituto Controller
  *
  * @property Instituto $Instituto
  * @property PaginatorComponent $Paginator
  * @property SessionComponent $Session
  */
-class InstitutosController extends AppController {
+class InstitutoController extends AppController {
 
 /**
  * Components

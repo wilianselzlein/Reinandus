@@ -7,7 +7,7 @@ App::uses('AppController', 'Controller');
  * @property PaginatorComponent $Paginator
  * @property SessionComponent $Session
  */
-class PermissaoesController extends AppController {
+class PermissoesController extends AppController {
    public $uses = array('Permissao');
 /**
  * Components
@@ -23,7 +23,7 @@ class PermissaoesController extends AppController {
  */
 	public function index() {
 		$this->Permissao->recursive = 0;
-		$this->set('permissaos', $this->paginate());
+		$this->set('permissoes', $this->paginate());
 	}
 
 /**

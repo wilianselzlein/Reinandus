@@ -384,3 +384,27 @@ msgstr "Orgão"
 
 msgid "Orgaonum"
 msgstr "Número"
+
+msgid "Permissaos"
+msgstr "Permissões"
+
+msgid "Permissoes"
+msgstr "Permissões"
+
+msgid "Permissao"
+msgstr "Permissão"
+
+msgid "Referencia"
+msgstr "Referência"
+
+msgid "Cabecalho"
+msgstr "Cabeçalho"
+
+msgid "Rodape"
+msgstr "Rodapé"
+
+msgid "Cabecalhos"
+msgstr "Cabeçalhos"
+
+msgid "Datahora"
+msgstr "Data/Hora"

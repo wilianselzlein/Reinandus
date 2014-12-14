@@ -57,7 +57,7 @@ $cakeDescription = __d('cake_dev', 'Reinandus');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/projetos/sistema/reinandus/"><?php echo __('Sistema Pós-Graduação')?></a>
+                <a class="navbar-brand" href="/reinandus/"><?php echo __('Sistema Pós-Graduação')?></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -196,8 +196,6 @@ $cakeDescription = __d('cake_dev', 'Reinandus');
 <li><?php echo $this->Html->link(__('Formas de Pagamento'),array('controller'=>'FormasPagamentos','action'=>''));?></li>
 <li><?php echo $this->Html->link(__('Grupos'),array('controller'=>'Grupos','action'=>''));?></li>
 
-
-
                         </ul>
                     </li>
                     <li>
@@ -227,33 +225,13 @@ $cakeDescription = __d('cake_dev', 'Reinandus');
         <li>
 <a href="javascript:;" data-toggle="collapse" data-target="#rel"><i class="fa fa-fw fa-arrows-v"></i><?php echo __('Relatorios');?><i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="rel" class="collapse">
-                    <li>
-<a href="javascript:;" data-toggle="collapse" data-target="#relcad"><i class="fa fa-fw fa-arrows-v"></i><?php echo __('Cadastros');?><i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="relcad" class="collapse">
 <li><?php echo $this->Html->link(__('Alunos'),array('controller'=>'Relatorios','action'=>''));?></li>
 <li><?php echo $this->Html->link(__('Cursos'),array('controller'=>'Relatorios',''=>''));?></li>
-                        </ul>
-                    </li>
-                    <li>
-<a href="javascript:;" data-toggle="collapse" data-target="#relsec"><i class="fa fa-fw fa-arrows-v"></i><?php echo __('Secretaria');?><i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="relsec" class="collapse">
 <li><?php echo $this->Html->link(__('Declaracoes'),array('controller'=>'Relatorios',''=>''));?></li>
 <li><?php echo $this->Html->link(__('Gerenciamento de Alunos'),array('controller'=>'Relatorios',''=>''));?></li>
-                        </ul>
-                    </li>
-                    <li>
-<a href="javascript:;" data-toggle="collapse" data-target="#relfin"><i class="fa fa-fw fa-arrows-v"></i><?php echo __('Financeiro');?><i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="relfin" class="collapse">
 <li><?php echo $this->Html->link(__('Mensalidades'),array('controller'=>'Relatorios','action'=>''));?></li>
 <li><?php echo $this->Html->link(__('Contas a Pagar'),array('controller'=>'Relatorios',''=>''));?></li>
-                        </ul>
-                    </li>
-                    <li>
-<a href="javascript:;" data-toggle="collapse" data-target="#relcon"><i class="fa fa-fw fa-arrows-v"></i><?php echo __('Controladoria');?><i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="relcon" class="collapse">
 <li><?php echo $this->Html->link(__('Gerencial'),array('controller'=>'Relatorios','action'=>''));?></li>
-                        </ul>
-                    </li>
             </ul>
         </li>
                     <li>
@@ -262,7 +240,7 @@ $cakeDescription = __d('cake_dev', 'Reinandus');
 <li><?php echo $this->Html->link(__('Parametros'),array('controller'=>'Parametros','action'=>''));?></li>
 <li><?php echo $this->Html->link(__('Usuarios'),array('controller'=>'Users',''=>''));?></li>
 <li><?php echo $this->Html->link(__('Acessos de Alunos'),array('controller'=>'Acessos','action'=>''));?></li>
-<li><?php echo $this->Html->link(__('Permissoes de Usuarios'),array('controller'=>'Permissaos','action'=>''));?></li>
+<li><?php echo $this->Html->link(__('Permissoes de Usuarios'),array('controller'=>'Permissoes','action'=>''));?></li>
 <li><?php echo $this->Html->link(__('Cabecalhos'),array('controller'=>'Cabecalhos',''=>''));?></li>
 <li><?php echo $this->Html->link(__('Enumerados'),array('controller'=>'Enumerados','action'=>''));?></li>
 <li><?php echo $this->Html->link(__('Estados'),array('controller'=>'Estados','action'=>''));?></li>

@@ -4,7 +4,8 @@
 
     <div class="panel panel-default">
 
-	<div class="panel-heading"><h3><span class="fa fa-list-alt"></span> <?php echo __('Permissoes'); ?>                <div class="btn-group pull-right">
+	<div class="panel-heading"><h3><span class="fa fa-list-alt"></span> <?php echo __('Permissoes'); ?>                
+			<div class="btn-group pull-right">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <?php echo __('Actions');?><span class="caret"></span>
                     </button>
@@ -41,7 +42,7 @@
 						</tr>
 					</thead>
 					<tbody>
-<?php foreach ($permissaos as $permissao): ?>
+<?php foreach ($permissoes as $permissao): ?>
 	<tr>
 		<td><?php echo h($permissao['Permissao']['id']); ?>&nbsp;</td>
 		<td>
@@ -50,10 +51,10 @@
 		<td>
 			<?php echo $this->Html->link($permissao['Programa']['nome'], array('controller' => 'programas', 'action' => 'view', $permissao['Programa']['id'])); ?>
 		</td>
-		<td><?php echo h($permissao['Permissao']['index']); ?>&nbsp;</td>
-		<td><?php echo h($permissao['Permissao']['view']); ?>&nbsp;</td>
-		<td><?php echo h($permissao['Permissao']['edit']); ?>&nbsp;</td>
-		<td><?php echo h($permissao['Permissao']['add']); ?>&nbsp;</td>
+		<td><i class="<?php echo ($permissao['Permissao']['index'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
+		<td><i class="<?php echo ($permissao['Permissao']['view'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
+		<td><i class="<?php echo ($permissao['Permissao']['edit'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>		
+		<td><i class="<?php echo ($permissao['Permissao']['add'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>		
 		<td class="actions text-center">
 			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $permissao['Permissao']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
 			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $permissao['Permissao']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>

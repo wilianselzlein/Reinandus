@@ -45,10 +45,9 @@
 			<?php echo h($enumerado['Enumerado']['valor']); ?>
 			&nbsp;
 		</td>
-</tr><tr>		<td><strong><?php echo __('Is Ativo'); ?></strong></td>
+</tr><tr>		<td><strong><?php echo __('Ativo'); ?></strong></td>
 		<td>
-			<?php echo h($enumerado['Enumerado']['is_ativo']); ?>
-			&nbsp;
+			<i class="<?php echo ($enumerado['Enumerado']['is_ativo'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;
 		</td>
 </tr>					</tbody>
 				</table><!-- /.table table-striped table-bordered -->

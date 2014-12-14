@@ -30,7 +30,7 @@
 							<th><?php echo $this->Paginator->sort('nome'); ?></th>
 							<th><?php echo $this->Paginator->sort('referencia'); ?></th>
 							<th><?php echo $this->Paginator->sort('valor'); ?></th>
-							<th><?php echo $this->Paginator->sort('is_ativo'); ?></th>
+							<th><?php echo $this->Paginator->sort('is_ativo', 'Ativo'); ?></th>
 							<th class="actions text-center"><?php echo __('Actions'); ?></th>
 						</tr>
 					</thead>
@@ -41,7 +41,7 @@
 		<td><?php echo h($enumerado['Enumerado']['nome']); ?>&nbsp;</td>
 		<td><?php echo h($enumerado['Enumerado']['referencia']); ?>&nbsp;</td>
 		<td><?php echo h($enumerado['Enumerado']['valor']); ?>&nbsp;</td>
-		<td><?php echo h($enumerado['Enumerado']['is_ativo']); ?>&nbsp;</td>
+		<td><i class="<?php echo ($enumerado['Enumerado']['is_ativo'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
 		<td class="actions text-center">
 			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $enumerado['Enumerado']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
 			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $enumerado['Enumerado']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>

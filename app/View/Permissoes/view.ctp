@@ -46,23 +46,19 @@
 		</td>
 </tr><tr>		<td><strong><?php echo __('Index'); ?></strong></td>
 		<td>
-			<?php echo h($permissao['Permissao']['index']); ?>
-			&nbsp;
+			<i class="<?php echo ($permissao['Permissao']['index'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('View'); ?></strong></td>
 		<td>
-			<?php echo h($permissao['Permissao']['view']); ?>
-			&nbsp;
+			<i class="<?php echo ($permissao['Permissao']['view'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Edit'); ?></strong></td>
 		<td>
-			<?php echo h($permissao['Permissao']['edit']); ?>
-			&nbsp;
+			<i class="<?php echo ($permissao['Permissao']['edit'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Add'); ?></strong></td>
 		<td>
-			<?php echo h($permissao['Permissao']['add']); ?>
-			&nbsp;
+			<i class="<?php echo ($permissao['Permissao']['add'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;
 		</td>
 </tr>					</tbody>
 				</table><!-- /.table table-striped table-bordered -->

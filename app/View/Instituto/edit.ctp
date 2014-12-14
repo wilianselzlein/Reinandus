@@ -5,8 +5,7 @@
     <div class="panel panel-default">
 
 <div class="panel-heading">
-            <h3><?php echo __('Cidade'); ?>
-                <small><?php echo __('Add') ?></small>
+            <h3><?php echo __('Instituto'); ?>                    <small><?php echo __('Edit') ?></small>
 
 
                 <div class="btn-group pull-right">
@@ -14,9 +13,8 @@
                         <?php echo __('Actions');?> <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                    				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List') .' '.__('Cidades'), array('action' => 'index'),array('escape'=>false)); ?></li>
-				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Estados'), array('controller' => 'estados', 'action' => 'index'),array('escape'=>false)); ?> </li>
-				<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Estado'), array('controller' => 'estados', 'action' => 'add'),array('escape'=>false)); ?> </li>
+                    				<li><?php echo $this->Form->postLink('<i class="fa fa-times"></i>'.' '.__('Delete'), array('action' => 'delete', $this->Form->value('Instituto.id')), array('escape'=>false), __('Are you sure you want to delete # %s?', $this->Form->value('Instituto.id'))); ?></li>
+				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List') .' '.__('Institutos'), array('action' => 'index'),array('escape'=>false)); ?></li>
 				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Alunos'), array('controller' => 'alunos', 'action' => 'index'),array('escape'=>false)); ?> </li>
 				<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Aluno'), array('controller' => 'alunos', 'action' => 'add'),array('escape'=>false)); ?> </li>
 				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Pessoas'), array('controller' => 'pessoas', 'action' => 'index'),array('escape'=>false)); ?> </li>
@@ -35,24 +33,29 @@
 
 		
 
-		<div class="cidades form">
+		<div class="institutos form">
 		
-			<?php echo $this->Form->create('Cidade', array('role' => 'form', 'class'=>'form-horizontal')); ?>
+			<?php echo $this->Form->create('Instituto', array('role' => 'form', 'class'=>'form-horizontal')); ?>
 
 				<fieldset>
 
 					<div class="form-group">
-						<?php echo $this->Form->input('estado_id', 
+						<?php echo $this->Form->input('id', 
 				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 				); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
-						<?php echo $this->Form->input('nome', 
+						<?php echo $this->Form->input('empresa_id', 
 				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 				); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
-						<?php echo $this->Form->input('cep', 
+						<?php echo $this->Form->input('diretor_id', 
+				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+				); ?>
+					</div><!-- .form-group -->
+					<div class="form-group">
+						<?php echo $this->Form->input('tipo_id', 
 				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 				); ?>
 					</div><!-- .form-group -->

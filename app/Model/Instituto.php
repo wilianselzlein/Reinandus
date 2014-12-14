@@ -33,21 +33,21 @@ class Instituto extends AppModel {
  */
 	public $belongsTo = array(
 		'Empresa' => array(
-			'className' => 'Empresa',
+			'className' => 'Pessoa',
 			'foreignKey' => 'empresa_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
 		'Diretor' => array(
-			'className' => 'Diretor',
+			'className' => 'Pessoa',
 			'foreignKey' => 'diretor_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
 		'Tipo' => array(
-			'className' => 'Tipo',
+			'className' => 'Enumerado',
 			'foreignKey' => 'tipo_id',
 			'conditions' => '',
 			'fields' => '',

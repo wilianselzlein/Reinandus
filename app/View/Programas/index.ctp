@@ -30,7 +30,7 @@
                     <tr class="active">
 							<th><?php echo $this->Paginator->sort('id'); ?></th>
 							<th><?php echo $this->Paginator->sort('nome'); ?></th>
-							<th><?php echo $this->Paginator->sort('is_cadastro'); ?></th>
+							<th><?php echo $this->Paginator->sort('is_cadastro', 'Cadastro'); ?></th>
 							<th class="actions text-center"><?php echo __('Actions'); ?></th>
 						</tr>
 					</thead>
@@ -39,7 +39,7 @@
 	<tr>
 		<td><?php echo h($programa['Programa']['id']); ?>&nbsp;</td>
 		<td><?php echo h($programa['Programa']['nome']); ?>&nbsp;</td>
-		<td><?php echo h($programa['Programa']['is_cadastro']); ?>&nbsp;</td>
+		<td><i class="<?php echo ($programa['Programa']['is_cadastro'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
 		<td class="actions text-center">
 			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $programa['Programa']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
 			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $programa['Programa']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
