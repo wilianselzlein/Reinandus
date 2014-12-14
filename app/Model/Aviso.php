@@ -40,7 +40,7 @@ class Aviso extends AppModel {
 			'order' => ''
 		),
 		'Tipo' => array(
-			'className' => 'Tipo',
+			'className' => 'Enumerado',
 			'foreignKey' => 'tipo_id',
 			'conditions' => '',
 			'fields' => '',
@@ -56,7 +56,7 @@ class Aviso extends AppModel {
 	public $hasAndBelongsToMany = array(
 		'Curso' => array(
 			'className' => 'Curso',
-			'joinTable' => 'aviso_curso',
+			'joinTable' => 'aviso_cursos',
 			'foreignKey' => 'aviso_id',
 			'associationForeignKey' => 'curso_id',
 			'unique' => 'keepExisting',

@@ -5,7 +5,8 @@
     <div class="panel panel-default">
 
 <div class="panel-heading">
-            <h3><?php echo __('Detalhe'); ?>                    <small><?php echo __('Edit') ?></small>
+            <h3><?php echo __('Aviso'); ?>                    
+            <small><?php echo __('Edit') ?></small>
 
 
                 <div class="btn-group pull-right">
@@ -13,12 +14,16 @@
                         <?php echo __('Actions');?> <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                    				<li><?php echo $this->Form->postLink('<i class="fa fa-times"></i>'.' '.__('Delete'), array('action' => 'delete', $this->Form->value('Detalhe.id')), array('escape'=>false), __('Are you sure you want to delete # %s?', $this->Form->value('Detalhe.id'))); ?></li>
-				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List') .' '.__('Detalhes'), array('action' => 'index'),array('escape'=>false)); ?></li>
+                    				<li><?php echo $this->Form->postLink('<i class="fa fa-times"></i>'.' '.__('Delete'), array('action' => 'delete', $this->Form->value('Aviso.id')), array('escape'=>false), __('Are you sure you want to delete # %s?', $this->Form->value('Aviso.id'))); ?></li>
+				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List') .' '.__('Avisos'), array('action' => 'index'),array('escape'=>false)); ?></li>
+				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Cursos'), array('controller' => 'cursos', 'action' => 'index'),array('escape'=>false)); ?> </li>
+				<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Curso'), array('controller' => 'cursos', 'action' => 'add'),array('escape'=>false)); ?> </li>
 				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Alunos'), array('controller' => 'alunos', 'action' => 'index'),array('escape'=>false)); ?> </li>
 				<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Aluno'), array('controller' => 'alunos', 'action' => 'add'),array('escape'=>false)); ?> </li>
 				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Pessoas'), array('controller' => 'pessoas', 'action' => 'index'),array('escape'=>false)); ?> </li>
 				<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Pessoa'), array('controller' => 'pessoas', 'action' => 'add'),array('escape'=>false)); ?> </li>
+				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Professors'), array('controller' => 'professors', 'action' => 'index'),array('escape'=>false)); ?> </li>
+				<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Professor'), array('controller' => 'professors', 'action' => 'add'),array('escape'=>false)); ?> </li>
                     </ul>
                 </div>
             </h3>
@@ -31,9 +36,9 @@
 
 		
 
-		<div class="detalhes form">
+		<div class="avisos form">
 		
-			<?php echo $this->Form->create('Detalhe', array('role' => 'form', 'class'=>'form-horizontal')); ?>
+			<?php echo $this->Form->create('Aviso', array('role' => 'form', 'class'=>'form-horizontal')); ?>
 
 				<fieldset>
 
@@ -43,37 +48,27 @@
 				); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
-						<?php echo $this->Form->input('pessoa_id', 
+						<?php echo $this->Form->input('data', 
+				array('type' => 'text', 'class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+				); ?>
+					</div><!-- .form-group -->
+					<div class="form-group">
+						<?php echo $this->Form->input('user_id', 
 				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 				); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
-						<?php echo $this->Form->input('aluno_id', 
+						<?php echo $this->Form->input('arquivo', 
 				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 				); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
-						<?php echo $this->Form->input('foto', 
+						<?php echo $this->Form->input('mensagem', 
 				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 				); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
-						<?php echo $this->Form->input('ocorrencias', 
-				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
-				); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-						<?php echo $this->Form->input('hist_escolar', 
-				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
-				); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-						<?php echo $this->Form->input('neg_financeira', 
-				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
-				); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-						<?php echo $this->Form->input('egresso', 
+						<?php echo $this->Form->input('tipo_id', 
 				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 				); ?>
 					</div><!-- .form-group -->

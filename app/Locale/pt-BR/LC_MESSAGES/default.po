@@ -408,3 +408,21 @@ msgstr "Cabeçalhos"
 
 msgid "Datahora"
 msgstr "Data/Hora"
+
+msgid "Pessoa"
+msgstr "Empresa/Pessoa"
+
+msgid "Pessoas"
+msgstr "Empresas/Pessoas"
+
+msgid "Funcao"
+msgstr "Função"
+
+msgid "Ocorrencias"
+msgstr "Ocorrências"
+
+msgid "Neg Financeira"
+msgstr "Negociação Financeira"
+
+msgid "Hist Escolar"
+msgstr "Histórico Escolar"

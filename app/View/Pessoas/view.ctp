@@ -308,13 +308,11 @@
 							<thead>
 								<tr class="active">
 											<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Aluno Id'); ?></th>
 		<th><?php echo __('Foto'); ?></th>
 		<th><?php echo __('Ocorrencias'); ?></th>
 		<th><?php echo __('Hist Escolar'); ?></th>
 		<th><?php echo __('Neg Financeira'); ?></th>
 		<th><?php echo __('Egresso'); ?></th>
-		<th><?php echo __('Pessoa Id'); ?></th>
 									<th class="actions text-center"><?php echo __('Actions'); ?></th>
 								</tr>
 							</thead>
@@ -324,13 +322,11 @@
 										foreach ($pessoa['Detalhe'] as $detalhe): ?>
 		<tr>
 			<td><?php echo $detalhe['id']; ?></td>
-			<td><?php echo $detalhe['aluno_id']; ?></td>
 			<td><?php echo $detalhe['foto']; ?></td>
 			<td><?php echo $detalhe['ocorrencias']; ?></td>
 			<td><?php echo $detalhe['hist_escolar']; ?></td>
 			<td><?php echo $detalhe['neg_financeira']; ?></td>
 			<td><?php echo $detalhe['egresso']; ?></td>
-			<td><?php echo $detalhe['pessoa_id']; ?></td>
 			<td class="actions text-center">
 				<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'detalhes', 'action' => 'view', $detalhe['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
 				<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('controller' => 'detalhes', 'action' => 'edit', $detalhe['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
@@ -369,11 +365,9 @@
 								<tr class="active">
 											<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Username'); ?></th>
-		<th><?php echo __('Password'); ?></th>
-		<th><?php echo __('Pessoa Id'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
-		<th><?php echo __('Role Id'); ?></th>
+		<th><?php echo __('Funcao'); ?></th>
 									<th class="actions text-center"><?php echo __('Actions'); ?></th>
 								</tr>
 							</thead>
@@ -384,8 +378,6 @@
 		<tr>
 			<td><?php echo $user['id']; ?></td>
 			<td><?php echo $user['username']; ?></td>
-			<td><?php echo $user['password']; ?></td>
-			<td><?php echo $user['pessoa_id']; ?></td>
 			<td><?php echo $user['created']; ?></td>
 			<td><?php echo $user['modified']; ?></td>
 			<td><?php echo $user['role_id']; ?></td>

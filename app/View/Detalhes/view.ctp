@@ -34,6 +34,11 @@
 			<?php echo h($detalhe['Detalhe']['id']); ?>
 			&nbsp;
 		</td>
+</tr><tr>		<td><strong><?php echo __('Pessoa'); ?></strong></td>
+		<td>
+			<?php echo $this->Html->link($detalhe['Pessoa']['razaosocial'], array('controller' => 'pessoas', 'action' => 'view', $detalhe['Pessoa']['id']), array('class' => '')); ?>
+			&nbsp;
+		</td>
 </tr><tr>		<td><strong><?php echo __('Aluno'); ?></strong></td>
 		<td>
 			<?php echo $this->Html->link($detalhe['Aluno']['nome'], array('controller' => 'alunos', 'action' => 'view', $detalhe['Aluno']['id']), array('class' => '')); ?>
@@ -62,11 +67,6 @@
 </tr><tr>		<td><strong><?php echo __('Egresso'); ?></strong></td>
 		<td>
 			<?php echo h($detalhe['Detalhe']['egresso']); ?>
-			&nbsp;
-		</td>
-</tr><tr>		<td><strong><?php echo __('Pessoa'); ?></strong></td>
-		<td>
-			<?php echo $this->Html->link($detalhe['Pessoa']['razaosocial'], array('controller' => 'pessoas', 'action' => 'view', $detalhe['Pessoa']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
 </tr>					</tbody>

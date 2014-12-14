@@ -3,8 +3,7 @@
 
 
     <div class="panel panel-default">
-
-	<div class="panel-heading"><h3><span class="fa fa-list-alt"></span> <?php echo __('Parametros'); ?>                 <div class="btn-group pull-right">
+	<div class="panel-heading"><h3><span class="fa fa-cog"></span> <?php echo __('Parametros'); ?>                 <div class="btn-group pull-right">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <?php echo __('Actions');?><span class="caret"></span>
                     </button>
