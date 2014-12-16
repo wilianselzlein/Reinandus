@@ -37,7 +37,7 @@ class AvisosController extends AppController {
 		if (!$this->Aviso->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('conditions' => array('Aviso.' . $this->Aviso->primaryKey => $id));
+		$options = array('recursive' => 2, 'conditions' => array('Aviso.' . $this->Aviso->primaryKey => $id));
 		$this->set('aviso', $this->Aviso->find('first', $options));
 	}
 
@@ -87,8 +87,7 @@ class AvisosController extends AppController {
 		}
 		$users = $this->Aviso->User->find('list');
 		$tipos = $this->Aviso->Tipo->find('list');
-		$cursos = $this->Aviso->Curso->find('list');
-		$this->set(compact('users', 'tipos', 'cursos'));
+                $this->set(compact('users', 'tipos'));
 	}
 
 /**

@@ -426,3 +426,6 @@ msgstr "Negociação Financeira"
 
 msgid "Hist Escolar"
 msgstr "Histórico Escolar"
+
+msgid "Professors"
+msgstr "Professores"
