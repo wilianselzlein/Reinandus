@@ -39,7 +39,7 @@ class UsuariosController extends AppController {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-		$this->set('user', $this->User->find('first', $options));
+		$this->set('usuario', $this->User->find('first', $options));
 	}
 
 /**

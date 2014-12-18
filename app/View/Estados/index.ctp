@@ -1,7 +1,3 @@
-
-
-
-
     <div class="panel panel-default">
 
 	<div class="panel-heading"><h3><span class="fa fa-map-marker"></span> <?php echo __('Estados'); ?>                <div class="btn-group pull-right">
