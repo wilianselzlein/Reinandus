@@ -64,14 +64,14 @@ class Curso extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		),
+		)/*,
 		'Periodo' => array(
 			'className' => 'Periodo',
 			'foreignKey' => 'periodo_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
+		)*/
 	);
 
 /**

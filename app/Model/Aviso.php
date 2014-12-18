@@ -49,23 +49,37 @@ class Aviso extends AppModel {
 	);
 
 /**
- * hasMany associations
+ * hasAndBelongsToMany associations
  *
  * @var array
  */
-	public $hasMany = array(
-		'AvisoCurso' => array(
-			'className' => 'AvisoCurso',
+
+	public $hasAndBelongsToMany = array(
+		'Curso' => array(
+			'className' => 'Curso',
+			'joinTable' => 'aviso_cursos',
 			'foreignKey' => 'aviso_id',
-			'dependent' => false,
+			'associationForeignKey' => 'curso_id',
+			'unique' => 'keepExisting',
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
-			'exclusive' => '',
 			'finderQuery' => '',
-			'counterQuery' => ''
+		),
+		'Grupo' => array(
+			'className' => 'Grupo',
+			'joinTable' => 'aviso_cursos',
+			'foreignKey' => 'aviso_id',
+			'associationForeignKey' => 'grupo_id',
+			'unique' => 'keepExisting',
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
 		)
 	);
 }
