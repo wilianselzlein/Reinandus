@@ -33,11 +33,13 @@ $cakeDescription = __d('cake_dev', 'Reinandus');
 
 			echo $this->Html->css('bootstrap');
 			echo $this->Html->css('sb-admin');
+         echo $this->Html->css('bootstrap-dialog');
 
 			echo $this->fetch('css');
 			
 			echo $this->Html->script('libs/jquery-1.10.2.min');
 			echo $this->Html->script('libs/bootstrap.min');
+         echo $this->Html->script('bootstrap-dialog');
 			
 			echo $this->fetch('script');
 		?>

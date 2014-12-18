@@ -16,6 +16,7 @@ class UsuariosController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 
+
 /**
  * index method
  *
@@ -23,7 +24,7 @@ class UsuariosController extends AppController {
  */
 	public function index() {
 		$this->User->recursive = 0;
-		$this->set('users', $this->paginate());
+		$this->set('usuarios', $this->paginate());
 	}
 
 /**
@@ -49,12 +50,16 @@ class UsuariosController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->User->create();
-			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
-			}
+         if($this->request->data['User']['password']==$this->request->data['User']['re-password']){
+            if ($this->User->save($this->request->data)) {
+               $this->Session->setFlash(__('The record has been saved'), 'flash/success');
+               $this->redirect(array('action' => 'index'));
+            } else {
+               $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
+            }
+         }else{
+            $this->Session->setFlash(__('Password mismatched.'), 'flash/error');
+         }
 		}
 		$pessoas = $this->User->Pessoa->find('list');
 		$roles = $this->User->Role->find('list');
@@ -112,4 +117,28 @@ class UsuariosController extends AppController {
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
 		$this->redirect(array('action' => 'index'));
 	}
+   
+   
+    public function login() {
+    	$this->layout = 'login';
+        // Verifica o tipo de requisição, se for POST(form submit) tenta logar.
+      if($this->request->is('post')) {           
+         
+          if ($this->Auth->login()) {
+              return $this->redirect($this->Auth->redirect());
+          } else {
+              $this->Session->setFlash(__('Invalid username or password, try again'), 'flash/error');
+          }
+      }
+    }
+
+    public function logout() {
+        $this->redirect($this->Auth->logout());
+    }
+   
+   public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->allow('add', 'logout');
+    }
+
 }

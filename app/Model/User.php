@@ -40,14 +40,14 @@ class User extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)/*,
+		),
 		'Role' => array(
 			'className' => 'Role',
 			'foreignKey' => 'role_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)*/
+		)
 	);
 
 /**
@@ -96,5 +96,12 @@ class User extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+   
+   public function beforeSave($options = array()) {
+        if (isset($this->data[$this->alias]['password'])) {
+            $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
+        }
+        return true;
+    }
 
 }
