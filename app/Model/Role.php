@@ -16,14 +16,14 @@ class Role extends AppModel {
  *
  * @var mixed False or table name
  */
-	public $useTable = 'user';
+	public $useTable = 'role';
 
 /**
  * Display field
  *
  * @var string
  */
-	public $displayField = 'username';
+	public $displayField = 'nome';
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

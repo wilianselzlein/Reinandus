@@ -2,13 +2,13 @@
 <div class="panel panel-default">
    <div class="panel-heading">
       <h3>
-         <span class="fa fa-users"></span> <?php echo __('Usuarios'); ?>                
+         <span class="fa fa-users"></span> <?php echo __('Users'); ?>                
          <div class="btn-group pull-right">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                <?php echo __('Actions');?><span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '.__('Usuario'),        array('action' => 'add'),                                      array('escape'=>false)); ?></li>
+               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '.__('User'),        array('action' => 'add'),                                      array('escape'=>false)); ?></li>
                <li class="divider"></li>
                <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '   .__('List') .' '.__('Roles'),          array('controller' => 'roles',         'action' => 'index'),   array('escape'=>false)); ?>   </li>
                <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '.__('Role'),           array('controller' => 'roles',         'action' => 'add'),     array('escape'=>false)); ?>   </li>
