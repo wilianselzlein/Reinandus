@@ -5,7 +5,7 @@
     <div class="panel panel-default">
 
 <div class="panel-heading">
-            <h3><?php echo __('Grupo'); ?>                    <small><?php echo __('Add') ?></small>
+            <h3><?php echo __('Role'); ?>                    <small><?php echo __('Add') ?></small>
 
 
                 <div class="btn-group pull-right">
@@ -13,7 +13,7 @@
                         <?php echo __('Actions');?> <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                    				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List') .' '.__('Grupos'), array('action' => 'index'),array('escape'=>false)); ?></li>
+                    				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List') .' '.__('Roles'), array('action' => 'index'),array('escape'=>false)); ?></li>
 				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Estados'), array('controller' => 'estados', 'action' => 'index'),array('escape'=>false)); ?> </li>
 				<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Estado'), array('controller' => 'estados', 'action' => 'add'),array('escape'=>false)); ?> </li>
 				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Alunos'), array('controller' => 'alunos', 'action' => 'index'),array('escape'=>false)); ?> </li>
@@ -34,13 +34,17 @@
 
 		
 
-		<div class="grupos form">
+		<div class="roles form">
 		
-			<?php echo $this->Form->create('User', array('role' => 'form', 'class'=>'form-horizontal')); ?>
+			<?php echo $this->Form->create('Role', array('role' => 'form', 'class'=>'form-horizontal')); ?>
 
 				<fieldset>
 
-					
+					<div class="form-group">
+						<?php echo $this->Form->input('id', 
+				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+				); ?>
+					</div><!-- .form-group -->					
 					<div class="form-group">
 						<?php echo $this->Form->input('nome', 
 				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')

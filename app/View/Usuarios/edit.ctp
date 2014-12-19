@@ -5,14 +5,14 @@
     <div class="panel panel-default">
 
 <div class="panel-heading">
-            <h3><?php echo __('Usuario'); ?>                    
+            <h3><?php echo __('Users'); ?>                    
                <small><?php echo __('Edit') ?></small>
                 <div class="btn-group pull-right">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <?php echo __('Actions');?> <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '   .__('List') .' '.__('Usuarios'),       array('action' => 'index'),                                    array('escape'=>false)); ?>   </li>
+                        <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '   .__('List') .' '.__('Users'),       array('action' => 'index'),                                    array('escape'=>false)); ?>   </li>
                         <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '   .__('List') .' '.__('Roles'),          array('controller' => 'roles',         'action' => 'index'),   array('escape'=>false)); ?>   </li>
                         <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '.__('Role'),           array('controller' => 'roles',         'action' => 'add'),     array('escape'=>false)); ?>   </li>
                         <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '   .__('List') .' '.__('Permissoes'),     array('controller' => 'permissoes',    'action' => 'index'),   array('escape'=>false)); ?>   </li>

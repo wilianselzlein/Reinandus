@@ -1,7 +1,7 @@
 <div class="panel panel-default ">
    <div class="panel-heading">
       <h2>
-         <?php echo __('Usuario'); ?>&nbsp;<small><?php echo __('View'); ?></small>
+         <?php echo __('User'); ?>&nbsp;<small><?php echo __('View'); ?></small>
          <div class="btn-group pull-right">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                <?php echo __('Actions');?><span class="caret"></span>
