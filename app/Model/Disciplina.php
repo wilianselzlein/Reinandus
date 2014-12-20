@@ -8,7 +8,7 @@ App::uses('AppModel', 'Model');
  * @property Professor $Professor
  */
 class Disciplina extends AppModel {
-
+   var $actsAs = array('NumberFormat');
 /**
  * Use table
  *

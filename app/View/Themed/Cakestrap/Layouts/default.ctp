@@ -44,6 +44,7 @@ $cakeDescription = __d('cake_dev', 'Reinandus');
          echo $this->Html->script('libs/bootstrap-dialog');
          echo $this->Html->script('libs/bootstrap-datepicker');
          echo $this->Html->script('libs/locales/bootstrap-datepicker.pt-BR');
+         echo $this->Html->script('libs/jquery.mask');
 			
 			echo $this->fetch('script');
 		?>
@@ -190,6 +191,7 @@ $cakeDescription = __d('cake_dev', 'Reinandus');
 		</div><!-- /#main-container -->		
       <script>$(document).ready(function(){ $('[data-toggle=tooltip]').tooltip()});</script>
       <?php echo $this->Html->script('cfg-datepicker');?>
+      <?php echo $this->Html->script('cfg-currency');?>
 	</body>
 
 </html>
