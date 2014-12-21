@@ -88,28 +88,28 @@ class Aluno extends AppModel {
  */
 	public $belongsTo = array(
 		'Naturalidade' => array(
-			'className' => 'Naturalidade',
+			'className' => 'Cidade',
 			'foreignKey' => 'naturalidade_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
 		'Situacao' => array(
-			'className' => 'Situacao',
+			'className' => 'Enumerado',
 			'foreignKey' => 'situacao_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
 		'EstadoCivil' => array(
-			'className' => 'EstadoCivil',
+			'className' => 'Enumerado',
 			'foreignKey' => 'estado_civil_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
 		'Indicacao' => array(
-			'className' => 'Indicacao',
+			'className' => 'Enumerado',
 			'foreignKey' => 'indicacao_id',
 			'conditions' => '',
 			'fields' => '',
@@ -137,7 +137,7 @@ class Aluno extends AppModel {
 			'order' => ''
 		),
 		'Responsavel' => array(
-			'className' => 'Responsavel',
+			'className' => 'Pessoa',
 			'foreignKey' => 'responsavel_id',
 			'conditions' => '',
 			'fields' => '',
@@ -188,7 +188,7 @@ class Aluno extends AppModel {
 	public $hasAndBelongsToMany = array(
 		'Disciplina' => array(
 			'className' => 'Disciplina',
-			'joinTable' => 'aluno_disciplina',
+			'joinTable' => 'aluno_disciplinas',
 			'foreignKey' => 'aluno_id',
 			'associationForeignKey' => 'disciplina_id',
 			'unique' => 'keepExisting',

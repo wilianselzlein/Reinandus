@@ -61,7 +61,7 @@ class Disciplina extends AppModel {
 	public $hasAndBelongsToMany = array(
 		'Aluno' => array(
 			'className' => 'Aluno',
-			'joinTable' => 'aluno_disciplina',
+			'joinTable' => 'aluno_disciplinas',
 			'foreignKey' => 'disciplina_id',
 			'associationForeignKey' => 'aluno_id',
 			'unique' => 'keepExisting',
@@ -74,7 +74,7 @@ class Disciplina extends AppModel {
 		),
 		'Curso' => array(
 			'className' => 'Curso',
-			'joinTable' => 'curso_disciplina',
+			'joinTable' => 'curso_disciplinas',
 			'foreignKey' => 'disciplina_id',
 			'associationForeignKey' => 'curso_id',
 			'unique' => 'keepExisting',

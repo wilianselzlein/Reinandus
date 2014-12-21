@@ -92,6 +92,19 @@ class Curso extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
+		),
+		'CursoDisciplina' => array(
+			'className' => 'CursoDisciplina',
+			'foreignKey' => 'curso_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
 		)
 	);
 
@@ -114,10 +127,10 @@ class Curso extends AppModel {
 			'limit' => '',
 			'offset' => '',
 			'finderQuery' => '',
-		),
+		)/*,
 		'Disciplina' => array(
-			'className' => 'Disciplina',
-			'joinTable' => 'curso_disciplina',
+			'className' => 'CursoDisciplina',
+			'joinTable' => 'curso_disciplinas',
 			'foreignKey' => 'curso_id',
 			'associationForeignKey' => 'disciplina_id',
 			'unique' => 'keepExisting',
@@ -127,7 +140,7 @@ class Curso extends AppModel {
 			'limit' => '',
 			'offset' => '',
 			'finderQuery' => '',
-		)
+		)*/
 	);
 
 }

@@ -459,3 +459,6 @@ msgstr "Início"
 
 msgid "Periodo"
 msgstr "Período"
+
+msgid "Resumotitulacao"
+msgstr "Resumo Titulação"

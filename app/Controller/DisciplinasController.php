@@ -37,7 +37,7 @@ class DisciplinasController extends AppController {
 		if (!$this->Disciplina->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('conditions' => array('Disciplina.' . $this->Disciplina->primaryKey => $id));
+		$options = array('recursive' => 2, 'conditions' => array('Disciplina.' . $this->Disciplina->primaryKey => $id));
 		$this->set('disciplina', $this->Disciplina->find('first', $options));
 	}
 
