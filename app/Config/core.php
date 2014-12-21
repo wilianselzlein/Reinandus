@@ -277,6 +277,7 @@
  */
 	//Configure::write('Config.timezone', 'Europe/Paris');
   setlocale(LC_TIME, 'pt-BR');
+  setlocale(LC_NUMERIC, 'pt-BR');
 /**
  * Cache Engine Configuration
  * Default settings provided below
@@ -384,3 +385,7 @@ Cache::config('_cake_model_', array(
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
 ));
+
+// called as CakeNumber
+App::uses('CakeNumber', 'Utility');
+CakeNumber::addFormat('BRL', array('before' => 'R$', 'thousands' => '.', 'decimals' => ','));

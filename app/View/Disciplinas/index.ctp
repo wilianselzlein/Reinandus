@@ -43,7 +43,7 @@
 	<tr>
 		<td><?php echo h($disciplina['Disciplina']['id']); ?>&nbsp;</td>
 		<td><?php echo h($disciplina['Disciplina']['nome']); ?>&nbsp;</td>
-		<td><?php echo h($disciplina['Disciplina']['valor']); ?>&nbsp;</td>
+		<td><?php echo $this->Number->currency($disciplina['Disciplina']['valor'],'BRL'); ?>&nbsp;</td>
 		<td class="actions text-center">
 			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $disciplina['Disciplina']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
 			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $disciplina['Disciplina']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>

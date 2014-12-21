@@ -34,13 +34,17 @@ $cakeDescription = __d('cake_dev', 'Reinandus');
 			echo $this->Html->css('bootstrap');
 			echo $this->Html->css('sb-admin');
          echo $this->Html->css('bootstrap-dialog');
+         echo $this->Html->css('datepicker3');
          echo $this->Html->css('font-awesome.min');
 
 			echo $this->fetch('css');
 			
 			echo $this->Html->script('libs/jquery-1.10.2.min');
 			echo $this->Html->script('libs/bootstrap.min');
-         echo $this->Html->script('bootstrap-dialog');
+         echo $this->Html->script('libs/bootstrap-dialog');
+         echo $this->Html->script('libs/bootstrap-datepicker');
+         echo $this->Html->script('libs/locales/bootstrap-datepicker.pt-BR');
+         echo $this->Html->script('libs/jquery.mask');
 			
 			echo $this->fetch('script');
 		?>
@@ -186,6 +190,8 @@ $cakeDescription = __d('cake_dev', 'Reinandus');
 			
 		</div><!-- /#main-container -->		
       <script>$(document).ready(function(){ $('[data-toggle=tooltip]').tooltip()});</script>
+      <?php echo $this->Html->script('cfg-datepicker');?>
+      <?php echo $this->Html->script('cfg-currency');?>
 	</body>
 
 </html>
