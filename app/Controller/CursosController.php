@@ -60,10 +60,9 @@ class CursosController extends AppController {
 		$pessoas = $this->Curso->Pessoa->find('list');
 		$grupos = $this->Curso->Grupo->find('list');
 		$tipos = $this->Curso->Tipo->find('list');
-		//$periodos = $this->Curso->Periodo->find('list');
-		$avisos = $this->Curso->Aviso->find('list');
+		$periodos = $this->Curso->Periodo->find('list');
 		$disciplinas = $this->Curso->Disciplina->find('list');
-		$this->set(compact('professors', 'pessoas', 'grupos', 'tipos', 'avisos', 'disciplinas'));
+		$this->set(compact('professors', 'pessoas', 'grupos', 'tipos', 'disciplinas'));
 	}
 
 /**
@@ -93,10 +92,8 @@ class CursosController extends AppController {
 		$pessoas = $this->Curso->Pessoa->find('list');
 		$grupos = $this->Curso->Grupo->find('list');
 		$tipos = $this->Curso->Tipo->find('list');
-		//$periodos = $this->Curso->Periodo->find('list');
-		$avisos = $this->Curso->Aviso->find('list');
-		$disciplinas = $this->Curso->Disciplina->find('list');
-		$this->set(compact('professors', 'pessoas', 'grupos', 'tipos', 'avisos', 'disciplinas'));
+		$periodos = $this->Curso->Periodo->find('list');
+		$this->set(compact('professors', 'pessoas', 'grupos', 'tipos', 'periodos'));
 	}
 
 /**

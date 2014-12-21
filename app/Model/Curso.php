@@ -59,19 +59,19 @@ class Curso extends AppModel {
 			'order' => ''
 		),
 		'Tipo' => array(
-			'className' => 'Tipo',
+			'className' => 'Enumerado',
 			'foreignKey' => 'tipo_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)/*,
+		),
 		'Periodo' => array(
-			'className' => 'Periodo',
+			'className' => 'Enumerado',
 			'foreignKey' => 'periodo_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)*/
+		)
 	);
 
 /**
@@ -104,7 +104,7 @@ class Curso extends AppModel {
 	public $hasAndBelongsToMany = array(
 		'Aviso' => array(
 			'className' => 'Aviso',
-			'joinTable' => 'aviso_curso',
+			'joinTable' => 'aviso_cursos',
 			'foreignKey' => 'curso_id',
 			'associationForeignKey' => 'aviso_id',
 			'unique' => 'keepExisting',

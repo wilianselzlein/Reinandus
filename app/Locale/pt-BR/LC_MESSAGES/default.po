@@ -429,3 +429,33 @@ msgstr "Histórico Escolar"
 
 msgid "Professors"
 msgstr "Professores"
+
+msgid "Turma"
+msgstr "Ano Turma"
+
+msgid "Num Turma"
+msgstr "Turma"
+
+msgid "Carga"
+msgstr "Carga Horária"
+
+msgid "Percentual"
+msgstr "% Desconto"
+
+msgid "Sistema Aval"
+msgstr "Sistema de Avaliação"
+
+msgid "Criterios Aval"
+msgstr "Criterios de Avaliação"
+
+msgid "Calendario"
+msgstr "Calendário"
+
+msgid "Liquido"
+msgstr "Liquído"
+
+msgid "Inicio"
+msgstr "Início"
+
+msgid "Periodo"
+msgstr "Período"
