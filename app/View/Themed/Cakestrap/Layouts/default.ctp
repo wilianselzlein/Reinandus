@@ -17,6 +17,9 @@
  */
 
 $cakeDescription = __d('cake_dev', 'Reinandus');
+$components = array('Paginator', 'Session');
+$usuario_logado = $this->Session->read('Auth.User');
+
 ?>
 <?php echo $this->Html->docType('html5'); ?> 
 <html>
@@ -28,24 +31,19 @@ $cakeDescription = __d('cake_dev', 'Reinandus');
 		</title>
 		<?php
 			echo $this->Html->meta('icon');
-			
 			echo $this->fetch('meta');
-
 			echo $this->Html->css('bootstrap');
 			echo $this->Html->css('sb-admin');
-         echo $this->Html->css('bootstrap-dialog');
-         echo $this->Html->css('datepicker3');
-         echo $this->Html->css('font-awesome.min');
-
+            echo $this->Html->css('bootstrap-dialog');
+            echo $this->Html->css('datepicker3');
+            echo $this->Html->css('font-awesome.min');
 			echo $this->fetch('css');
-			
 			echo $this->Html->script('libs/jquery-1.10.2.min');
 			echo $this->Html->script('libs/bootstrap.min');
-         echo $this->Html->script('libs/bootstrap-dialog');
-         echo $this->Html->script('libs/bootstrap-datepicker');
-         echo $this->Html->script('libs/locales/bootstrap-datepicker.pt-BR');
-         echo $this->Html->script('libs/jquery.mask');
-			
+            echo $this->Html->script('libs/bootstrap-dialog');
+            echo $this->Html->script('libs/bootstrap-datepicker');
+            echo $this->Html->script('libs/locales/bootstrap-datepicker.pt-BR');
+            echo $this->Html->script('libs/jquery.mask');
 			echo $this->fetch('script');
 		?>
 	</head>
@@ -64,13 +62,12 @@ $cakeDescription = __d('cake_dev', 'Reinandus');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/reinandus/"><?php echo __('Sistema Pós-Graduação')?></a>
+                <?php echo $this->Html->Link('Sistema Pós-Graduação', array('controller' => 'Pages', 'action' => 'display'), arraY('class' => 'navbar-brand')); ?>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                   <!--
                     <ul class="dropdown-menu message-dropdown">
                         <li class="message-preview">
                             <a href="#">
@@ -121,12 +118,11 @@ $cakeDescription = __d('cake_dev', 'Reinandus');
                             <a href="#">Read All New Messages</a>
                         </li>
                     </ul>
-                   -->
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown">
-           <!--             <li>
+                        <li>
                             <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
                         </li>
                         <li>
@@ -143,15 +139,18 @@ $cakeDescription = __d('cake_dev', 'Reinandus');
                         </li>
                         <li>
                             <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>-->
+                        </li>
                         <li class="divider"></li>
                         <li>
                             <a href="#">View All</a>
                         </li>
                     </ul>
                 </li>
-                <!--<li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 
+                    <?php echo $usuario_logado['username']; ?>
+                    <b class="caret"></b>
+                    </a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -164,10 +163,11 @@ $cakeDescription = __d('cake_dev', 'Reinandus');
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <?php echo $this->Html->link('<i class="fa fa-fw fa-power-off"></i>'.' '.__('Logout'), 
+                            array('controller' => 'usuarios', 'action' => 'logout'), array('class' => '', 'escape'=>false)); ?>
                         </li>
                     </ul>
-                </li>-->
+                </li
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">

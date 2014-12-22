@@ -37,13 +37,6 @@ class AvisoCurso extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'Grupo' => array(
-			'className' => 'Grupo',
-			'foreignKey' => 'grupo_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
 		'Aviso' => array(
 			'className' => 'Aviso',
 			'foreignKey' => 'aviso_id',

@@ -9,6 +9,8 @@ App::uses('AppController', 'Controller');
  */
 class AvisosController extends AppController {
 
+    public $uses = array('Aviso', 'AvisoCurso');
+
 /**
  * Components
  *
@@ -116,4 +118,29 @@ class AvisosController extends AppController {
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
 		$this->redirect(array('action' => 'index'));
 	}
+
+/**
+ * curso method
+ *
+ * @return void
+ */
+	public function curso($id = null) {
+		$this->layout = false;
+		$options = array('conditions' => array('AvisoCurso.aviso_id' => $id));
+		$this->set('aviso_id', $id);
+		$this->set('curso', $this->AvisoCurso->find('all', $options));
+
+	}
+
+/**
+ * grupo method
+ *
+ * @return void
+ */
+	public function grupo() {
+		$this->layout = false;
+		$options = array('conditions' => array('AvisoGrupo.aviso_id' => $id));
+		$this->set('grupo', $this->AvisoGrupo->find('all', $options));
+	}
+
 }
