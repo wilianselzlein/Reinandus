@@ -70,7 +70,7 @@ class Aviso extends AppModel {
 		),
 		'Grupo' => array(
 			'className' => 'Grupo',
-			'joinTable' => 'aviso_cursos',
+			'joinTable' => 'aviso_grupos',
 			'foreignKey' => 'aviso_id',
 			'associationForeignKey' => 'grupo_id',
 			'unique' => 'keepExisting',

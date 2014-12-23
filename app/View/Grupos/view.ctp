@@ -154,9 +154,9 @@
 			<td><?php echo $curso['fim']; ?></td>
 			<td><?php echo $curso['sigla']; ?></td>
 			<td class="actions text-center">
-				<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'pessoas', 'action' => 'view', $pessoa['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-				<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('controller' => 'pessoas', 'action' => 'edit', $pessoa['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-				<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'pessoas', 'action' => 'delete', $pessoa['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $pessoa['id'])); ?>
+				<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'cursos', 'action' => 'view', $curso['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
+				<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('controller' => 'cursos', 'action' => 'edit', $curso['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
+				<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'cursos', 'action' => 'delete', $curso['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $curso['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>

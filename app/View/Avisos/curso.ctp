@@ -6,7 +6,11 @@
     width: 98%;">
 	<tr  class="active">
 		<th width="7%"><?php echo 'Id'; ?></th>
-		<th><?php echo 'Curso';  ?></th>
+		<th>
+			<?php echo 'Curso'; if (empty($curso)) { ?>
+			  	&nbsp; <span class="label label-danger">Nenhum curso para esse aviso.</span>
+			<?php } ?>
+		</th>
 		<th width="7%">			
 			<?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>', array('controller' => 'aviso_cursos', 'action' => 'add', $aviso_id), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Add') . __('Curso'), 'data-toggle'=>'tooltip')); ?>
 		</th>

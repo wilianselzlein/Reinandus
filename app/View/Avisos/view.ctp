@@ -98,14 +98,12 @@
 										$i = 0;
 										foreach ($aviso['Curso'] as $avisocurso): ?>
 		<tr>
-			<td><?php echo $avisocurso['id']; ?></td>
+			<td><?php echo $avisocurso['AvisoCurso']['id']; ?></td>
 			<td><?php echo $this->Html->link($avisocurso['nome'], array('controller' => 'cursos', 'action' => 'view', $avisocurso['AvisoCurso']['curso_id']), array('class' => '')); ?>
 			&nbsp;
 			</td>
 			<td class="actions text-center">
-				<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'cursos', 'action' => 'view', $avisocurso['AvisoCurso']['curso_id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-				<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('controller' => 'cursos', 'action' => 'edit', $avisocurso['AvisoCurso']['curso_id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-				<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'avisocursos', 'action' => 'delete', $avisocurso['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $avisocurso['id'])); ?>
+				<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'aviso_cursos', 'action' => 'delete', $avisocurso['AvisoCurso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $avisocurso['AvisoCurso']	['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -146,14 +144,12 @@
 										$i = 0;
 										foreach ($aviso['Grupo'] as $avisogrupo): ?>
 		<tr>
-			<td><?php echo $avisogrupo['id']; ?></td>
-			<td><?php echo $this->Html->link($avisogrupo['nome'], array('controller' => 'cursos', 'action' => 'view', $avisogrupo['AvisoCurso']['grupo_id']), array('class' => '')); ?>
+			<td><?php echo $avisogrupo['AvisoGrupo']['id']; ?></td>
+			<td><?php echo $this->Html->link($avisogrupo['nome'], array('controller' => 'grupos', 'action' => 'view', $avisogrupo['AvisoGrupo']['grupo_id']), array('class' => '')); ?>
 			&nbsp;
 			</td>
 			<td class="actions text-center">
-				<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'grupos', 'action' => 'view', $avisogrupo['AvisoCurso']['grupo_id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-				<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('controller' => 'grupos', 'action' => 'edit', $avisogrupo['AvisoCurso']['grupo_id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-				<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'avisocursos', 'action' => 'delete', $avisogrupo['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $avisogrupo['id'])); ?>
+				<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'avisogrupos', 'action' => 'delete', $avisogrupo['AvisoGrupo']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $avisogrupo['AvisoGrupo']['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>

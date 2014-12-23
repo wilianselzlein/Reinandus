@@ -55,22 +55,37 @@
 	    	echo $this->Ajax->link('<i class="fa fa-graduation-cap"></i>', 
 	    			array('controller' => 'Avisos', 
 	    				'action' => 'curso', $aviso['Aviso']['id']), 
-		    		array('id' => 'curso' . $aviso['Aviso']['id'], 
-		    			'update' => 'func' . $aviso['Aviso']['id'], 
+		    		array('id' => 'cursojx' . $aviso['Aviso']['id'], 
+		    			'update' => 'cursotd' . $aviso['Aviso']['id'], 
 		    			'indicator' => 'loading',
 		    			'class' => 'btn btn-default btn-xs','escape'=>false, 
 		    			'title'=>__('Mostrar Cursos'), 'data-toggle'=>'tooltip',
 		    			'complete' => 
-		    				'document.getElementById("esconder' . $aviso['Aviso']['id'] . '").style.display= ""; 
-		    				document.getElementById("curso' . $aviso['Aviso']['id'] . '").style.display= "none"; 
-		    				'
-		    			)
+		    				'document.getElementById("cursobt' . $aviso['Aviso']['id'] . '").style.display= ""; 
+		    				 document.getElementById("cursojx' . $aviso['Aviso']['id'] . '").style.display= "none";'
+	    				)
 	    		);
-	    	//'position' => 'prepend'
-			//
 			?>
-			<a href="#"  id="esconder<?php echo h($aviso['Aviso']['id']);?>" 
-				onclick="showHide(<?php echo h($aviso['Aviso']['id']);?>)" class="btn btn-default btn-xs" title="" data-toggle="tooltip" data-original-title="Esconder Cursos" style="display: none"><i class="fa fa-eye-slash"></i></a>
+			<a href="#"  id="cursobt<?php echo h($aviso['Aviso']['id']);?>" 
+				onclick="ShowHide('curso', <?php echo h($aviso['Aviso']['id']);?>)" class="btn btn-default btn-xs" title="" data-toggle="tooltip" data-original-title="Esconder Cursos" style="display: none"><i class="fa fa-eye-slash"></i></a>
+
+			<?php 
+	    	echo $this->Ajax->link('<i class="fa fa-group"></i>', 
+	    			array('controller' => 'Avisos', 
+	    				'action' => 'grupo', $aviso['Aviso']['id']), 
+		    		array('id' => 'grupojx' . $aviso['Aviso']['id'], 
+		    			'update' => 'grupotd' . $aviso['Aviso']['id'], 
+		    			'indicator' => 'loading',
+		    			'class' => 'btn btn-default btn-xs','escape'=>false, 
+		    			'title'=>__('Mostrar Grupos'), 'data-toggle'=>'tooltip',
+		    			'complete' => 
+		    				'document.getElementById("grupobt' . $aviso['Aviso']['id'] . '").style.display= ""; 
+		    				 document.getElementById("grupojx' . $aviso['Aviso']['id'] . '").style.display= "none";'
+	    				)
+	    		);
+			?>
+			<a href="#"  id="grupobt<?php echo h($aviso['Aviso']['id']);?>" 
+				onclick="ShowHide('grupo', <?php echo h($aviso['Aviso']['id']);?>)" class="btn btn-default btn-xs" title="" data-toggle="tooltip" data-original-title="Esconder Grupos" style="display: none"><i class="fa fa-eye-slash"></i></a>
 
 			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $aviso['Aviso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
 			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $aviso['Aviso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
@@ -78,8 +93,10 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan="7" id="func<?php echo h($aviso['Aviso']['id']);?>" style="padding: 0px;">
-		</td>
+		<td colspan="7" id="cursotd<?php echo h($aviso['Aviso']['id']);?>" style="padding: 0px;"></td>
+	</tr>
+	<tr>
+		<td colspan="7" id="grupotd<?php echo h($aviso['Aviso']['id']);?>" style="padding: 0px;"></td>
 	</tr>
 <?php endforeach; ?>
 					</tbody>
@@ -110,14 +127,14 @@
 </div>
 
 <script language="Javascript" type="text/javascript">
-function showHide (ID) {
-	if (document.getElementById('func' + ID).style.display == "none") {
-		document.getElementById('func' + ID).style.display= "";
+function ShowHide (OPTION, ID) {
+	if (document.getElementById(OPTION + 'td' + ID).style.display == "none") {
+		document.getElementById(OPTION + 'td' + ID).style.display= "";
 	}
 	else {
-		document.getElementById('func' + ID).innerHTML= "";
-		document.getElementById('curso' + ID).style.display= "";
-		document.getElementById('esconder' + ID).style.display= "none";
+		document.getElementById(OPTION + 'td' + ID).innerHTML= "";
+		document.getElementById(OPTION + 'jx' + ID).style.display= "";
+		document.getElementById(OPTION + 'bt' + ID).style.display= "none";
 	}
 }
 </script>

@@ -9,7 +9,7 @@ App::uses('AppController', 'Controller');
  */
 class AvisosController extends AppController {
 
-    public $uses = array('Aviso', 'AvisoCurso');
+    public $uses = array('Aviso', 'AvisoCurso', 'AvisoGrupo');
 
 /**
  * Components
@@ -124,7 +124,7 @@ class AvisosController extends AppController {
  *
  * @return void
  */
-	public function curso($id = null) {
+	public function curso($id) {
 		$this->layout = false;
 		$options = array('conditions' => array('AvisoCurso.aviso_id' => $id));
 		$this->set('aviso_id', $id);
@@ -137,9 +137,10 @@ class AvisosController extends AppController {
  *
  * @return void
  */
-	public function grupo() {
+	public function grupo($id) {
 		$this->layout = false;
 		$options = array('conditions' => array('AvisoGrupo.aviso_id' => $id));
+		$this->set('aviso_id', $id);
 		$this->set('grupo', $this->AvisoGrupo->find('all', $options));
 	}
 
