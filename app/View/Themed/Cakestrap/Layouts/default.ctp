@@ -192,6 +192,7 @@ $usuario_logado = $this->Session->read('Auth.User');
       <script>$(document).ready(function(){ $('[data-toggle=tooltip]').tooltip()});</script>
       <?php echo $this->Html->script('cfg-datepicker');?>
       <?php echo $this->Html->script('cfg-currency');?>
+      <?php echo $this->Html->script('cfg-percentage');?>
 	</body>
 
 </html>
