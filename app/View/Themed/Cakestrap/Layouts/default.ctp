@@ -196,6 +196,7 @@ echo $this->fetch('script');
          <?php echo $this->Html->script('cfg-cep');?>
          <?php echo $this->Html->script('cfg-cpf');?>
          <?php echo $this->Html->script('cfg-cnpj');?>
+         <?php echo $this->Html->script('cfg-dddphone');?>
          </body>
 
       </html>
