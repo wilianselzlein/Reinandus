@@ -51,58 +51,20 @@
 		<td><?php echo h($aviso['Aviso']['mensagem']); ?>&nbsp;</td>
 		<td><?php echo h($aviso['Tipo']['nome']); ?>&nbsp;</td>
 		<td class="actions text-center">
-			<?php 
-	    	echo $this->Ajax->link('<i class="fa fa-graduation-cap"></i>', 
-	    			array('controller' => 'Avisos', 
-	    				'action' => 'curso', $aviso['Aviso']['id']), 
-		    		array('id' => 'cursojx' . $aviso['Aviso']['id'], 
-		    			'update' => 'cursotd' . $aviso['Aviso']['id'], 
-		    			'indicator' => 'loading',
-		    			'class' => 'btn btn-default btn-xs','escape'=>false, 
-		    			'title'=>__('Mostrar Cursos'), 'data-toggle'=>'tooltip',
-		    			'complete' => 
-		    				'document.getElementById("cursobt' . $aviso['Aviso']['id'] . '").style.display= ""; 
-		    				 document.getElementById("cursojx' . $aviso['Aviso']['id'] . '").style.display= "none";'
-	    				)
-	    		);
-			?>
-			<a href="#"  id="cursobt<?php echo h($aviso['Aviso']['id']);?>" 
-				onclick="ShowHide('curso', <?php echo h($aviso['Aviso']['id']);?>)" class="btn btn-default btn-xs" title="" data-toggle="tooltip" data-original-title="Esconder Cursos" style="display: none"><i class="fa fa-eye-slash"></i></a>
-
-			<?php 
-	    	echo $this->Ajax->link('<i class="fa fa-group"></i>', 
-	    			array('controller' => 'Avisos', 
-	    				'action' => 'grupo', $aviso['Aviso']['id']), 
-		    		array('id' => 'grupojx' . $aviso['Aviso']['id'], 
-		    			'update' => 'grupotd' . $aviso['Aviso']['id'], 
-		    			'indicator' => 'loading',
-		    			'class' => 'btn btn-default btn-xs','escape'=>false, 
-		    			'title'=>__('Mostrar Grupos'), 'data-toggle'=>'tooltip',
-		    			'complete' => 
-		    				'document.getElementById("grupobt' . $aviso['Aviso']['id'] . '").style.display= ""; 
-		    				 document.getElementById("grupojx' . $aviso['Aviso']['id'] . '").style.display= "none";'
-	    				)
-	    		);
-			?>
-			<a href="#"  id="grupobt<?php echo h($aviso['Aviso']['id']);?>" 
-				onclick="ShowHide('grupo', <?php echo h($aviso['Aviso']['id']);?>)" class="btn btn-default btn-xs" title="" data-toggle="tooltip" data-original-title="Esconder Grupos" style="display: none"><i class="fa fa-eye-slash"></i></a>
+			<?php echo $this->element('BotaoAjax', array("controller" => "Avisos", "nome" => "curso", "id" => h($aviso['Aviso']['id']), "icone" => "graduation-cap")); ?>
+			<?php echo $this->element('BotaoAjax', array("controller" => "Avisos", "nome" => "grupo", "id" => h($aviso['Aviso']['id']), "icone" => "group")); ?>
 
 			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $aviso['Aviso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
 			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $aviso['Aviso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
 			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $aviso['Aviso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $aviso['Aviso']['id'])); ?>
 		</td>
 	</tr>
-	<tr>
-		<td colspan="7" id="cursotd<?php echo h($aviso['Aviso']['id']);?>" style="padding: 0px;"></td>
-	</tr>
-	<tr>
-		<td colspan="7" id="grupotd<?php echo h($aviso['Aviso']['id']);?>" style="padding: 0px;"></td>
-	</tr>
+	<?php echo $this->element('LinhaTabelaParaAjax', array("nome" => "curso", "id" => h($aviso['Aviso']['id']), "colspan" => 7)); ?>
+	<?php echo $this->element('LinhaTabelaParaAjax', array("nome" => "grupo", "id" => h($aviso['Aviso']['id']), "colspan" => 7)); ?>
 <?php endforeach; ?>
 					</tbody>
 				</table>
-				<?php echo $this->Html->image('load.gif', array('id' => 'loading', 'style'=> 'display:none')); ?>
-
+				<?php echo $this->element('BarraDeProgresso'); ?>
 			</div><!-- /.table-responsive -->
 
 </div>
@@ -126,15 +88,4 @@
 	
 </div>
 
-<script language="Javascript" type="text/javascript">
-function ShowHide (OPTION, ID) {
-	if (document.getElementById(OPTION + 'td' + ID).style.display == "none") {
-		document.getElementById(OPTION + 'td' + ID).style.display= "";
-	}
-	else {
-		document.getElementById(OPTION + 'td' + ID).innerHTML= "";
-		document.getElementById(OPTION + 'jx' + ID).style.display= "";
-		document.getElementById(OPTION + 'bt' + ID).style.display= "none";
-	}
-}
-</script>
+<?php echo $this->element('ShowHide'); ?>

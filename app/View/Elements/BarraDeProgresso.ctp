@@ -1,0 +1,1 @@
+<?php echo $this->Html->image('load.gif', array('id' => 'loading', 'style'=> 'display:none')); ?>

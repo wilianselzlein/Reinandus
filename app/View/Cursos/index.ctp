@@ -59,14 +59,19 @@
 			<?php echo $this->Html->link($curso['Pessoa']['razaosocial'], array('controller' => 'pessoas', 'action' => 'view', $curso['Pessoa']['id'])); ?>
 		</td>
 		<td class="actions text-center">
+			<?php echo $this->element('BotaoAjax', array("controller" => "Cursos", "nome" => "disciplina", "id" => h($curso['Curso']['id']), "icone" => "puzzle-piece")); ?>
+
 			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $curso['Curso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
 			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $curso['Curso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
 			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $curso['Curso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $curso['Curso']['id'])); ?>
 		</td>
 	</tr>
+	<?php echo $this->element('LinhaTabelaParaAjax', array("nome" => "disciplina", "id" => h($curso['Curso']['id']), "colspan" => 8)); ?>
 <?php endforeach; ?>
 					</tbody>
 				</table>
+				<?php echo $this->element('BarraDeProgresso'); ?>
+
 			</div><!-- /.table-responsive -->
 
 </div>
@@ -89,3 +94,5 @@
 			</div>
 	
 </div>
+
+<?php echo $this->element('ShowHide'); ?>

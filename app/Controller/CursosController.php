@@ -9,6 +9,8 @@ App::uses('AppController', 'Controller');
  */
 class CursosController extends AppController {
 
+    public $uses = array('Curso', 'CursoDisciplina');
+
 /**
  * Components
  *
@@ -118,4 +120,19 @@ class CursosController extends AppController {
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
 		$this->redirect(array('action' => 'index'));
 	}
+
+
+/**
+ * disciplina method
+ *
+ * @return void
+ */
+	public function disciplina($id) {
+		$this->layout = false;
+		$options = array('conditions' => array('CursoDisciplina.curso_id' => $id));
+		$this->set('curso_id', $id);
+		$this->set('disciplina', $this->CursoDisciplina->find('all', $options));
+
+	}
+
 }
