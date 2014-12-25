@@ -462,3 +462,18 @@ msgstr "Período"
 
 msgid "Resumotitulacao"
 msgstr "Resumo Titulação"
+
+msgid "Titulacao"
+msgstr "Titulação"
+
+msgid "Vinculo"
+msgstr "Vínculo"
+
+msgid "Formacao"
+msgstr "Formação"
+
+msgid "Dadosfin"
+msgstr "Dados Financeiro"
+
+msgid "Notafiscal"
+msgstr "Nota Fiscal"

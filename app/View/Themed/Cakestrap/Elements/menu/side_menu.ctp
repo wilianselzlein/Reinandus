@@ -3,7 +3,7 @@
       <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i><?php echo __('Cadastros');?><i class="fa fa-fw fa-caret-down"></i></a>
       <ul id="demo" class="collapse">
          <li><?php echo $this->Html->link(__('Alunos'),                       array('controller'=>'Alunos','action'=>''));?></li>
-         <li><?php echo $this->Html->link(__('Professores'),                  array('controller'=>'Professors','action'=>''));?></li>
+         <li><?php echo $this->Html->link(__('Professores'),                  array('controller'=>'Professores','action'=>''));?></li>
          <li><?php echo $this->Html->link(__('Cursos'),                       array('controller'=>'Cursos','action'=>''));?></li>
          <li><?php echo $this->Html->link(__('Disciplinas'),                  array('controller'=>'Disciplinas','action'=>''));?></li>
          <li><?php echo $this->Html->link(__('Empresas/Pessoas'),             array('controller'=>'Pessoas','action'=>''));?></li>

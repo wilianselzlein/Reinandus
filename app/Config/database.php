@@ -67,13 +67,23 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
+		'host' => 'localhost',
+		'login' => 'root',
+		'password' => '',
+		'database' => 'reinandus',
+		'prefix' => '',
+		//'encoding' => 'utf8',
+	);
+	/*public $default = array(
+		'datasource' => 'Database/Mysql',
+		'persistent' => false,
 		'host' => 'mysql04-farm56.kinghost.net',
 		'login' => 'pedroescobar15',
 		'password' => 'reinandus',
 		'database' => 'pedroescobar15',
 		'prefix' => '',
 		//'encoding' => 'utf8',
-	);
+	);*/
 
 	public $test = array(
 		'datasource' => 'Database/Mysql',

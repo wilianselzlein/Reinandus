@@ -23,7 +23,7 @@ class ProfessoresController extends AppController {
  */
 	public function index() {
 		$this->Professor->recursive = 0;
-		$this->set('professors', $this->paginate());
+		$this->set('professores', $this->paginate());
 	}
 
 /**
@@ -37,7 +37,7 @@ class ProfessoresController extends AppController {
 		if (!$this->Professor->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('conditions' => array('Professor.' . $this->Professor->primaryKey => $id));
+		$options = array('recursive' => 2, 'conditions' => array('Professor.' . $this->Professor->primaryKey => $id));
 		$this->set('professor', $this->Professor->find('first', $options));
 	}
 
