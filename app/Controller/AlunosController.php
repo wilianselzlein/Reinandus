@@ -61,9 +61,11 @@ class AlunosController extends AppController {
 		$cursos = $this->Aluno->Curso->find('list');
 		$professors = $this->Aluno->Professor->find('list');
 		$cidades = $this->Aluno->Cidade->find('list');
+		$naturalidades = $this->Aluno->Cidade->find('list');
 		$responsavels = $this->Aluno->Responsavel->find('list');
 		$disciplinas = $this->Aluno->Disciplina->find('list');
-		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professors', 'cidades', 'responsavels', 'disciplinas'));
+		$situacaos = $this->Aluno->Situacao->find('list');
+		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professors', 'cidades', 'naturalidades', 'responsavels', 'disciplinas', 'situacaos'));
 	}
 
 /**
@@ -94,9 +96,11 @@ class AlunosController extends AppController {
 		$cursos = $this->Aluno->Curso->find('list');
 		$professors = $this->Aluno->Professor->find('list');
 		$cidades = $this->Aluno->Cidade->find('list');
+		$naturalidades = $this->Aluno->Cidade->find('list');
 		$responsavels = $this->Aluno->Responsavel->find('list');
 		$disciplinas = $this->Aluno->Disciplina->find('list');
-		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professors', 'cidades', 'responsavels', 'disciplinas'));
+		$situacaos = $this->Aluno->Situacao->find('list');
+		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professors', 'cidades', 'naturalidades', 'responsavels', 'disciplinas', 'situacaos'));
 	}
 
 /**

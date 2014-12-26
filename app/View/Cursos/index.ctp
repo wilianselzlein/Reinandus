@@ -19,51 +19,50 @@
          </ul>
       </div>
       </h3></div>
-
-
-
-
    <div class="panel-body">
+         <div class="table-responsive">
+             <table class="table table-bordered table-hover table-condensed" >
+                <thead>
+                    <tr class="active">
+                     <th><?php echo $this->Paginator->sort('id'); ?></th>
+                     <th><?php echo $this->Paginator->sort('sigla'); ?></th>
+                     <th><?php echo $this->Paginator->sort('nome'); ?></th>
+                     <th><?php echo $this->Paginator->sort('turma'); ?></th>
+                     <th><?php echo $this->Paginator->sort('carga', 'Carga Horaria'); ?></th>
+                     <th><?php echo $this->Paginator->sort('professor_id', 'Coordenador'); ?></th>
+                     <th><?php echo $this->Paginator->sort('pessoa_id', 'Secretaria'); ?></th>
+                     <th class="actions text-center"><?php echo __('Actions'); ?></th>
+                  </tr>
+               </thead>
+               <tbody>
+<?php foreach ($cursos as $curso): ?>
+   <tr>
+      <td><?php echo h($curso['Curso']['id']); ?>&nbsp;</td>
+      <td><?php echo h($curso['Curso']['sigla']); ?>&nbsp;</td>
+      <td><?php echo h($curso['Curso']['nome']); ?>&nbsp;</td>
+      <td><?php echo h($curso['Curso']['turma']); ?>&nbsp;</td>
+      <td><?php echo h($curso['Curso']['carga']); ?>&nbsp;</td>
+      <td>
+         <?php echo $this->Html->link($curso['Professor']['nome'], array('controller' => 'professors', 'action' => 'view', $curso['Professor']['id'])); ?>
+      </td>
+      <td>
+         <?php echo $this->Html->link($curso['Pessoa']['razaosocial'], array('controller' => 'pessoas', 'action' => 'view', $curso['Pessoa']['id'])); ?>
+      </td>
+      <td class="actions text-center">
+         <?php echo $this->element('BotaoAjax', array("controller" => "Cursos", "nome" => "disciplina", "id" => h($curso['Curso']['id']), "icone" => "puzzle-piece")); ?>
 
+         <?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $curso['Curso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
+         <?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $curso['Curso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
+         <?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $curso['Curso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $curso['Curso']['id'])); ?>
+      </td>
+   </tr>
+   <?php echo $this->element('LinhaTabelaParaAjax', array("nome" => "disciplina", "id" => h($curso['Curso']['id']), "colspan" => 8)); ?>
+<?php endforeach; ?>
+               </tbody>
+            </table>
+            <?php echo $this->element('BarraDeProgresso'); ?>
 
-      <div class="table-responsive">
-         <table class="table table-bordered table-hover table-condensed" >
-            <thead>
-               <tr class="active">
-                  <th><?php echo $this->Paginator->sort('id'); ?></th>
-                  <th><?php echo $this->Paginator->sort('sigla'); ?></th>
-                  <th><?php echo $this->Paginator->sort('nome'); ?></th>
-                  <th><?php echo $this->Paginator->sort('turma'); ?></th>
-                  <th><?php echo $this->Paginator->sort('carga', 'Carga Horaria'); ?></th>
-                  <th><?php echo $this->Paginator->sort('professor_id', 'Coordenador'); ?></th>
-                  <th><?php echo $this->Paginator->sort('pessoa_id', 'Secretaria'); ?></th>
-                  <th class="actions text-center"><?php echo __('Actions'); ?></th>
-               </tr>
-            </thead>
-            <tbody>
-               <?php foreach ($cursos as $curso): ?>
-               <tr>
-                  <td><?php echo h($curso['Curso']['id']); ?>&nbsp;</td>
-                  <td><?php echo h($curso['Curso']['sigla']); ?>&nbsp;</td>
-                  <td><?php echo h($curso['Curso']['nome']); ?>&nbsp;</td>
-                  <td><?php echo h($curso['Curso']['turma']); ?>&nbsp;</td>
-                  <td><?php echo h($curso['Curso']['carga']); ?>&nbsp;</td>
-                  <td>
-                     <?php echo $this->Html->link($curso['Professor']['nome'], array('controller' => 'professors', 'action' => 'view', $curso['Professor']['id'])); ?>
-                  </td>
-                  <td>
-                     <?php echo $this->Html->link($curso['Pessoa']['razaosocial'], array('controller' => 'pessoas', 'action' => 'view', $curso['Pessoa']['id'])); ?>
-                  </td>
-                  <td class="actions text-center">
-                     <?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $curso['Curso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-                     <?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $curso['Curso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-                     <?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $curso['Curso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $curso['Curso']['id'])); ?>
-                  </td>
-               </tr>
-               <?php endforeach; ?>
-            </tbody>
-         </table>
-      </div><!-- /.table-responsive -->
+         </div><!-- /.table-responsive -->
 
    </div>
    <div class="panel-footer">
@@ -74,51 +73,6 @@ echo $this->Paginator->counter(array(
 ));
          ?>
          </small></p>
-
-			
-			<div class="table-responsive">
-				 <table class="table table-bordered table-hover table-condensed" >
-                <thead>
-                    <tr class="active">
-							<th><?php echo $this->Paginator->sort('id'); ?></th>
-							<th><?php echo $this->Paginator->sort('sigla'); ?></th>
-							<th><?php echo $this->Paginator->sort('nome'); ?></th>
-							<th><?php echo $this->Paginator->sort('turma'); ?></th>
-							<th><?php echo $this->Paginator->sort('carga', 'Carga Horaria'); ?></th>
-							<th><?php echo $this->Paginator->sort('professor_id', 'Coordenador'); ?></th>
-							<th><?php echo $this->Paginator->sort('pessoa_id', 'Secretaria'); ?></th>
-							<th class="actions text-center"><?php echo __('Actions'); ?></th>
-						</tr>
-					</thead>
-					<tbody>
-<?php foreach ($cursos as $curso): ?>
-	<tr>
-		<td><?php echo h($curso['Curso']['id']); ?>&nbsp;</td>
-		<td><?php echo h($curso['Curso']['sigla']); ?>&nbsp;</td>
-		<td><?php echo h($curso['Curso']['nome']); ?>&nbsp;</td>
-		<td><?php echo h($curso['Curso']['turma']); ?>&nbsp;</td>
-		<td><?php echo h($curso['Curso']['carga']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($curso['Professor']['nome'], array('controller' => 'professors', 'action' => 'view', $curso['Professor']['id'])); ?>
-		</td>
-		<td>
-			<?php echo $this->Html->link($curso['Pessoa']['razaosocial'], array('controller' => 'pessoas', 'action' => 'view', $curso['Pessoa']['id'])); ?>
-		</td>
-		<td class="actions text-center">
-			<?php echo $this->element('BotaoAjax', array("controller" => "Cursos", "nome" => "disciplina", "id" => h($curso['Curso']['id']), "icone" => "puzzle-piece")); ?>
-
-			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $curso['Curso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $curso['Curso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $curso['Curso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $curso['Curso']['id'])); ?>
-		</td>
-	</tr>
-	<?php echo $this->element('LinhaTabelaParaAjax', array("nome" => "disciplina", "id" => h($curso['Curso']['id']), "colspan" => 8)); ?>
-<?php endforeach; ?>
-					</tbody>
-				</table>
-				<?php echo $this->element('BarraDeProgresso'); ?>
-
-			</div><!-- /.table-responsive -->
 
 </div>
 

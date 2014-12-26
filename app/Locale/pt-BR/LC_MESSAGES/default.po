@@ -477,3 +477,21 @@ msgstr "Dados Financeiro"
 
 msgid "Notafiscal"
 msgstr "Nota Fiscal"
+
+msgid "Reponsavel"
+msgstr "Responsável"
+
+msgid "Orgao Expedidor"
+msgstr "Orgão Expedidor"
+
+msgid "Data Expedicao"
+msgstr "Data Expedição"
+
+msgid "Bloqueado Data"
+msgstr "Bloqueado Dia"
+
+msgid "Indicacao"
+msgstr "Indicação"
+
+msgid "Responsavel"
+msgstr "Responsável"
