@@ -26,8 +26,8 @@
    <li>
       <a href="javascript:;" data-toggle="collapse" data-target="#fin"><i class="fa fa-fw fa-arrows-v"></i><?php echo __('Financeiro');?><i class="fa fa-fw fa-caret-down"></i></a>
       <ul id="fin" class="collapse">
-         <li><?php echo $this->Html->link(__('Mensalidades'),                 array('controller'=>'Avisos','action'=>'index'));?></li>
-         <li><?php echo $this->Html->link(__('Contas a Pagar'),               array('controller'=>'Contratos','action'=>'index'));?></li>
+         <li><?php echo $this->Html->link(__('Mensalidades'),                 array('controller'=>'Mensalidades','action'=>'index'));?></li>
+         <li><?php echo $this->Html->link(__('Contas a Pagar'),               array('controller'=>'Pagar','action'=>'index'));?></li>
          <li><?php echo $this->Html->link(__('Gerar Mensalidades'),           array('controller'=>'Contratos','action'=>'index'));?></li>
       </ul>
    </li>
@@ -54,7 +54,7 @@
       <a href="javascript:;" data-toggle="collapse" data-target="#cfg"><i class="fa fa-fw fa-arrows-v"></i><?php echo __('Configuracoes');?><i class="fa fa-fw fa-caret-down"></i></a>
       <ul id="cfg" class="collapse">
          <li><?php echo $this->Html->link(__('Parametros'),                   array('controller'=>'Parametros','action'=>'index'));?></li>
-         <li><?php echo $this->Html->link(__('Usuarios'),                     array('controller'=>'usuarios', 'action' => 'index'));?></li>
+         <li><?php echo $this->Html->link(__('Usuarios'),                     array('controller'=>'Usuarios', 'action' => 'index'));?></li>
          <li><?php echo $this->Html->link(__('Acessos de Alunos'),            array('controller'=>'Acessos','action'=>'index'));?></li>
          <li><?php echo $this->Html->link(__('Permissoes de Usuarios'),       array('controller'=>'Permissoes','action'=>'index'));?></li>
          <li><?php echo $this->Html->link(__('Cabecalhos'),                   array('controller'=>'Cabecalhos','action'=>'index'));?></li>

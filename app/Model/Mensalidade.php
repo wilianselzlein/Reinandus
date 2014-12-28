@@ -33,7 +33,7 @@ class Mensalidade extends AppModel {
  */
 	public $belongsTo = array(
 		'Conta' => array(
-			'className' => 'Conta',
+			'className' => 'Contum',
 			'foreignKey' => 'conta_id',
 			'conditions' => '',
 			'fields' => '',

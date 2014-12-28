@@ -176,28 +176,32 @@ class Aluno extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
-	);
-
-
-/**
- * hasAndBelongsToMany associations
- *
- * @var array
- */
-	public $hasAndBelongsToMany = array(
-		'Disciplina' => array(
-			'className' => 'Disciplina',
-			'joinTable' => 'aluno_disciplinas',
+		),
+		'AlunoDisciplina' => array(
+			'className' => 'AlunoDisciplina',
 			'foreignKey' => 'aluno_id',
-			'associationForeignKey' => 'disciplina_id',
-			'unique' => 'keepExisting',
+			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
+			'exclusive' => '',
 			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Mensalidade' => array(
+			'className' => 'Mensalidade',
+			'foreignKey' => 'aluno_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
 		)
 	);
 

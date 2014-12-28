@@ -37,7 +37,7 @@ class AlunosController extends AppController {
 		if (!$this->Aluno->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('conditions' => array('Aluno.' . $this->Aluno->primaryKey => $id));
+		$options = array('recursive' => 2, 'conditions' => array('Aluno.' . $this->Aluno->primaryKey => $id));
 		$this->set('aluno', $this->Aluno->find('first', $options));
 	}
 
@@ -63,7 +63,7 @@ class AlunosController extends AppController {
 		$cidades = $this->Aluno->Cidade->find('list');
 		$naturalidades = $this->Aluno->Cidade->find('list');
 		$responsavels = $this->Aluno->Responsavel->find('list');
-		$disciplinas = $this->Aluno->Disciplina->find('list');
+		$disciplinas = $this->Aluno->AlunoDisciplina->find('list');
 		$situacaos = $this->Aluno->Situacao->find('list');
 		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professors', 'cidades', 'naturalidades', 'responsavels', 'disciplinas', 'situacaos'));
 	}
@@ -98,7 +98,7 @@ class AlunosController extends AppController {
 		$cidades = $this->Aluno->Cidade->find('list');
 		$naturalidades = $this->Aluno->Cidade->find('list');
 		$responsavels = $this->Aluno->Responsavel->find('list');
-		$disciplinas = $this->Aluno->Disciplina->find('list');
+		$disciplinas = $this->Aluno->AlunoDisciplina->find('list');
 		$situacaos = $this->Aluno->Situacao->find('list');
 		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professors', 'cidades', 'naturalidades', 'responsavels', 'disciplinas', 'situacaos'));
 	}
