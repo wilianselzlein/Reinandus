@@ -37,7 +37,7 @@ class PessoasController extends AppController {
 		if (!$this->Pessoa->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('conditions' => array('Pessoa.' . $this->Pessoa->primaryKey => $id));
+		$options = array('recursive' => 2, 'conditions' => array('Pessoa.' . $this->Pessoa->primaryKey => $id));
 		$this->set('pessoa', $this->Pessoa->find('first', $options));
 	}
 

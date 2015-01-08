@@ -1,8 +1,4 @@
-
-
-
-
-    <div class="panel panel-default">
+<div class="panel panel-default">
 
 	<div class="panel-heading"><h3><span class="fa fa-male"></span> <?php echo __('Alunos'); ?>                <div class="btn-group pull-right">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -23,12 +19,8 @@
 			</ul>
                 </div>
             </h3></div>
-	
-
-
 
 <div class="panel-body">
-
 			
 			<div class="table-responsive">
 				 <table class="table table-bordered table-hover table-condensed" >
@@ -65,14 +57,19 @@
 		<td><?php echo h($aluno['Aluno']['celular']); ?>&nbsp;</td>
 		<td><?php echo h($aluno['Aluno']['email']); ?>&nbsp;</td>
 		<td class="actions text-center">
+			<?php echo $this->element('BotaoAjax', array("controller" => "Alunos", "nome" => "mensalidade", "id" => h($aluno['Aluno']['id']), "icone" => "money")); ?>
+			<?php echo $this->element('BotaoAjax', array("controller" => "Alunos", "nome" => "disciplina", "id" => h($aluno['Aluno']['id']), "icone" => "puzzle-piece")); ?>
 			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $aluno['Aluno']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
 			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $aluno['Aluno']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
 			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $aluno['Aluno']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $aluno['Aluno']['id'])); ?>
 		</td>
 	</tr>
+	<?php echo $this->element('LinhaTabelaParaAjax', array("nome" => "mensalidade", "id" => h($aluno['Aluno']['id']), "colspan" => 11)); ?>
+	<?php echo $this->element('LinhaTabelaParaAjax', array("nome" => "disciplina", "id" => h($aluno['Aluno']['id']), "colspan" => 11)); ?>
 <?php endforeach; ?>
 					</tbody>
 				</table>
+				<?php echo $this->element('BarraDeProgresso'); ?>
 			</div><!-- /.table-responsive -->
 
 </div>
@@ -95,3 +92,4 @@
 			</div>
 	
 </div>
+<?php echo $this->element('ShowHide'); ?>

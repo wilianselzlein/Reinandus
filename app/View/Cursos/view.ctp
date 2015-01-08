@@ -204,10 +204,11 @@ foreach ($curso['Aluno'] as $aluno): ?>
                   <td><?php echo $aluno['id']; ?></td>
                   <td><?php echo $aluno['is_ativo']; ?></td>
                   <td><?php echo $aluno['nome']; ?></td>
-                  <td><?php echo $aluno['Situacao']['nome']; ?></td>
+                  <td><?php if (isset($aluno['Situacao']['nome']))
+                  echo $aluno['Situacao']['nome']; ?></td>
                   <td><?php echo $this->Html->link($aluno['Cidade']['nome'], array('controller' => 'cidades', 'action' => 'view', $aluno['Cidade']['id']), array('class' => '')); ?>
                      &nbsp;</td>
-                  <td><?php echo $aluno['tel_celular']; ?></td>
+                  <td><?php echo $aluno['celular']; ?></td>
                   <td><?php echo $aluno['email']; ?></td>
                   <td><?php echo $aluno['curso_inicio']; ?></td>
                   <td><?php echo $aluno['curso_fim']; ?></td>

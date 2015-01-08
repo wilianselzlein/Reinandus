@@ -126,4 +126,30 @@ class AlunosController extends AppController {
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
 		$this->redirect(array('action' => 'index'));
 	}
+
+/**
+ * mensalidade method
+ *
+ * @return void
+ */
+	public function mensalidade($id) {
+		$this->layout = false;
+		$options = array('conditions' => array('Mensalidade.aluno_id' => $id));
+		$this->set('aluno_id', $id);
+		$this->set('mensalidade', $this->Aluno->Mensalidade->find('all', $options));
+
+	}
+
+/**
+ * disciplina method
+ *
+ * @return void
+ */
+	public function disciplina($id) {
+		$this->layout = false;
+		$options = array('conditions' => array('AlunoDisciplina.aluno_id' => $id));
+		$this->set('aluno_id', $id);
+		$this->set('disciplina', $this->Aluno->AlunoDisciplina->find('all', $options));
+
+	}
 }

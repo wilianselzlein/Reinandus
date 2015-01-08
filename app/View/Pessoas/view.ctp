@@ -209,68 +209,29 @@
 						<table class="table table-hover table-condensed">
 							<thead>
 								<tr class="active">
-											<th><?php echo __('Id'); ?></th>
+		<th><?php echo __('Id'); ?></th>
+		<th><?php echo __('Sigla'); ?></th>
 		<th><?php echo __('Nome'); ?></th>
-		<th><?php echo __('Professor Id'); ?></th>
 		<th><?php echo __('Turma'); ?></th>
 		<th><?php echo __('Carga'); ?></th>
-		<th><?php echo __('Valor'); ?></th>
-		<th><?php echo __('Percentual'); ?></th>
-		<th><?php echo __('Desconto'); ?></th>
-		<th><?php echo __('Liquido'); ?></th>
-		<th><?php echo __('Dia Vencimento'); ?></th>
-		<th><?php echo __('Inicio'); ?></th>
-		<th><?php echo __('Fim'); ?></th>
-		<th><?php echo __('Sistema Aval'); ?></th>
-		<th><?php echo __('Criterios Aval'); ?></th>
-		<th><?php echo __('Pessoa Id'); ?></th>
-		<th><?php echo __('Sigla'); ?></th>
-		<th><?php echo __('Site'); ?></th>
-		<th><?php echo __('Monografia'); ?></th>
-		<th><?php echo __('Aviso'); ?></th>
-		<th><?php echo __('Calendario'); ?></th>
-		<th><?php echo __('Horario'); ?></th>
-		<th><?php echo __('Num Turma'); ?></th>
-		<th><?php echo __('Grupo Id'); ?></th>
-		<th><?php echo __('Tipo Id'); ?></th>
-		<th><?php echo __('Periodo Id'); ?></th>
-		<th><?php echo __('Created'); ?></th>
-		<th><?php echo __('Modified'); ?></th>
-									<th class="actions text-center"><?php echo __('Actions'); ?></th>
+		<th><?php echo __('Coordenador'); ?></th>
+		<th><?php echo __('Secretária'); ?></th>
+		<th class="actions text-center"><?php echo __('Actions'); ?></th>
 								</tr>
 							</thead>
 							<tbody>
 									<?php
-										$i = 0;
 										foreach ($pessoa['Curso'] as $curso): ?>
 		<tr>
 			<td><?php echo $curso['id']; ?></td>
+			<td><?php echo $curso['sigla']; ?></td>
 			<td><?php echo $curso['nome']; ?></td>
-			<td><?php echo $curso['professor_id']; ?></td>
 			<td><?php echo $curso['turma']; ?></td>
 			<td><?php echo $curso['carga']; ?></td>
-			<td><?php echo $curso['valor']; ?></td>
-			<td><?php echo $curso['percentual']; ?></td>
-			<td><?php echo $curso['desconto']; ?></td>
-			<td><?php echo $curso['liquido']; ?></td>
-			<td><?php echo $curso['dia_vencimento']; ?></td>
-			<td><?php echo $curso['inicio']; ?></td>
-			<td><?php echo $curso['fim']; ?></td>
-			<td><?php echo $curso['sistema_aval']; ?></td>
-			<td><?php echo $curso['criterios_aval']; ?></td>
-			<td><?php echo $curso['pessoa_id']; ?></td>
-			<td><?php echo $curso['sigla']; ?></td>
-			<td><?php echo $curso['site']; ?></td>
-			<td><?php echo $curso['monografia']; ?></td>
-			<td><?php echo $curso['aviso']; ?></td>
-			<td><?php echo $curso['calendario']; ?></td>
-			<td><?php echo $curso['horario']; ?></td>
-			<td><?php echo $curso['num_turma']; ?></td>
-			<td><?php echo $curso['grupo_id']; ?></td>
-			<td><?php echo $curso['tipo_id']; ?></td>
-			<td><?php echo $curso['periodo_id']; ?></td>
-			<td><?php echo $curso['created']; ?></td>
-			<td><?php echo $curso['modified']; ?></td>
+			<td><?php echo $this->Html->link($curso['Professor']['nome'], array('controller' => 'professores', 'action' => 'view', $curso['Professor']['id']), array('class' => '')); ?>
+                     &nbsp;</td>
+			<td><?php echo $this->Html->link($curso['Pessoa']['fantasia'], array('controller' => 'pessoas', 'action' => 'view', $curso['Pessoa']['id']), array('class' => '')); ?>
+                     &nbsp;</td>
 			<td class="actions text-center">
 				<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'cursos', 'action' => 'view', $curso['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
 				<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('controller' => 'cursos', 'action' => 'edit', $curso['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
@@ -380,7 +341,8 @@
 			<td><?php echo $user['username']; ?></td>
 			<td><?php echo $user['created']; ?></td>
 			<td><?php echo $user['modified']; ?></td>
-			<td><?php echo $user['role_id']; ?></td>
+			<td><?php echo $this->Html->link($user['Role']['nome'], array('controller' => 'roles', 'action' => 'view', $user['Role']['id']), array('class' => '')); ?>
+                     &nbsp;</td>
 			<td class="actions text-center">
 				<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'users', 'action' => 'view', $user['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
 				<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('controller' => 'users', 'action' => 'edit', $user['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
