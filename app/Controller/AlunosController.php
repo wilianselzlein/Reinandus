@@ -46,7 +46,7 @@ class AlunosController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add() {      
 		if ($this->request->is('post')) {
 			$this->Aluno->create();
 			if ($this->Aluno->save($this->request->data)) {

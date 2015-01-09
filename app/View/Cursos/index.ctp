@@ -75,5 +75,4 @@ echo $this->Paginator->counter(array(
          </small></p>
 
 </div>
-
 <?php echo $this->element('ShowHide'); ?>
