@@ -1,15 +1,15 @@
 <?php
 App::uses('AppController', 'Controller');
 /**
- * Avisos Controller
+ * Alunos Controller
  *
- * @property Aviso $Aviso
+ * @property Aluno $Aluno
  * @property PaginatorComponent $Paginator
  * @property SessionComponent $Session
  */
-class AvisoCursosController extends AppController {
+class AlunoDisciplinasController extends AppController {
 
-    public $uses = array('Aviso', 'AvisoCurso');
+    public $uses = array('Aluno', 'AlunoDisciplina');
 
 /**
  * Components
@@ -24,19 +24,19 @@ class AvisoCursosController extends AppController {
  *
  * @return void
  */
-	public function add($aviso_id = null, $layout = 'default') {
+	public function add($aluno_id = null, $layout = 'default') {
       $this->layout = $layout;
       if ($this->request->is('post')) {
-			$this->AvisoCurso->create();
-			$this->request->data['AvisoCurso']['aviso_id'] = $aviso_id;
-			if ($this->AvisoCurso->save($this->request->data)) {
+			$this->AlunoDisciplina->create();
+			$this->request->data['AlunoDisciplina']['aluno_id'] = $aluno_id;
+			if ($this->AlunoDisciplina->save($this->request->data)) {
 				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
-				$this->redirect(array('controller' => 'avisos', 'action' => 'index'));
+				$this->redirect(array('controller' => 'alunos', 'action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$cursos = $this->AvisoCurso->Curso->find('list');
+		$cursos = $this->AlunoDisciplina->Curso->find('list');
 		$this->set(compact('cursos'));
 	}
 
@@ -52,16 +52,16 @@ class AvisoCursosController extends AppController {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}
-		$this->AvisoCurso->id = $id;
-		if (!$this->AvisoCurso->exists()) {
+		$this->AlunoDisciplina->id = $id;
+		if (!$this->AlunoDisciplina->exists()) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		if ($this->AvisoCurso->delete()) {
+		if ($this->AlunoDisciplina->delete()) {
 			$this->Session->setFlash(__('Record deleted'), 'flash/success');
-			$this->redirect(array('controller' => 'avisos','action' => 'index'));
+			$this->redirect(array('controller' => 'alunos','action' => 'index'));
 		}
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
-		$this->redirect(array('controller' => 'avisos', 'action' => 'index'));
+		$this->redirect(array('controller' => 'alunos', 'action' => 'index'));
 	}
 
 }

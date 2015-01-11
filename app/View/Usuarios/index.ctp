@@ -47,8 +47,12 @@
                <tr>
                   <td><?php echo h($usuario['User']['id']); ?>&nbsp;</td>
                   <td><?php echo h($usuario['User']['username']); ?>&nbsp;</td>
-                  <td><?php echo h($usuario['User']['pessoa_id']); ?>&nbsp;</td>
-                  <td><?php echo h($usuario['User']['role_id']); ?>&nbsp;</td>
+                  <td>
+                     <?php echo $this->Html->link($usuario['Pessoa']['fantasia'], array('controller' => 'pessoas', 'action' => 'view', $usuario['Pessoa']['id'])); ?>
+                  </td>
+                  <td>
+                     <?php echo $this->Html->link($usuario['Role']['nome'], array('controller' => 'roles', 'action' => 'view', $usuario['Role']['id'])); ?>
+                  </td> 
                   <td><?php echo h($usuario['User']['created']); ?>&nbsp;</td>
                   <td><?php echo h($usuario['User']['modified']); ?>&nbsp;</td>
                   <td class="actions text-center">

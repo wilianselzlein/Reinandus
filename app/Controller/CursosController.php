@@ -48,8 +48,7 @@ class CursosController extends AppController {
  *
  * @return void
  */
-	public function add($layout = "default") {
-      $this->layout = $layout;      
+	public function add() {
 		if ($this->request->is('post')) {
 			$this->Curso->create();
 			if ($this->Curso->save($this->request->data)) {

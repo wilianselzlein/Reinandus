@@ -24,7 +24,8 @@ class AvisoGruposController extends AppController {
  *
  * @return void
  */
-	public function add($aviso_id = null) {
+	public function add($aviso_id = null, $layout = 'default') {
+		$this->layout = $layout;
 		if ($this->request->is('post')) {
 			$this->AvisoGrupo->create();
 			$this->request->data['AvisoGrupo']['aviso_id'] = $aviso_id;

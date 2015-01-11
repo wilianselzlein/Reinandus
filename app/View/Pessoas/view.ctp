@@ -228,7 +228,7 @@
 			<td><?php echo $curso['nome']; ?></td>
 			<td><?php echo $curso['turma']; ?></td>
 			<td><?php echo $curso['carga']; ?></td>
-			<td><?php echo $this->Html->link($curso['Professor']['nome'], array('controller' => 'professores', 'action' => 'view', $curso['Professor']['id']), array('class' => '')); ?>
+			<td><?php if (isset($curso['Professor']['nome'])) echo  $this->Html->link($curso['Professor']['nome'], array('controller' => 'professores', 'action' => 'view', $curso['Professor']['id']), array('class' => '')); ?>
                      &nbsp;</td>
 			<td><?php echo $this->Html->link($curso['Pessoa']['fantasia'], array('controller' => 'pessoas', 'action' => 'view', $curso['Pessoa']['id']), array('class' => '')); ?>
                      &nbsp;</td>
