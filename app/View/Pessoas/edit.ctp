@@ -1,7 +1,3 @@
-
-
-
-
 <div class="panel panel-default">
 
    <div class="panel-heading">
@@ -13,14 +9,17 @@
                <?php echo __('Actions');?> <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-               <li><?php echo $this->Form->postLink('<i class="fa fa-times"></i>'.' '.__('Delete'), array('action' => 'delete', $this->Form->value('Pessoa.id')), array('escape'=>false), __('Are you sure you want to delete # %s?', $this->Form->value('Pessoa.id'))); ?></li>
                <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List') .' '.__('Pessoas'), array('action' => 'index'),array('escape'=>false)); ?></li>
+               <li class="divider"></li>
                <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Cidades'), array('controller' => 'cidades', 'action' => 'index'),array('escape'=>false)); ?> </li>
                <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Cidade'), array('controller' => 'cidades', 'action' => 'add'),array('escape'=>false)); ?> </li>
+               <li class="divider"></li>
                <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Cursos'), array('controller' => 'cursos', 'action' => 'index'),array('escape'=>false)); ?> </li>
                <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Curso'), array('controller' => 'cursos', 'action' => 'add'),array('escape'=>false)); ?> </li>
+               <li class="divider"></li>
                <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Detalhes'), array('controller' => 'detalhes', 'action' => 'index'),array('escape'=>false)); ?> </li>
                <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Detalhe'), array('controller' => 'detalhes', 'action' => 'add'),array('escape'=>false)); ?> </li>
+               <li class="divider"></li>
                <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Users'), array('controller' => 'users', 'action' => 'index'),array('escape'=>false)); ?> </li>
                <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('User'), array('controller' => 'users', 'action' => 'add'),array('escape'=>false)); ?> </li>
             </ul>
@@ -37,16 +36,21 @@
 
       <div class="pessoas form">
 
-         <?php echo $this->Form->create('Pessoa', array('role' => 'form', 'class'=>'form-horizontal')); ?>
+         <?php echo $this->Form->create('Pessoa', array('role' => 'form', 'class'=>'form-horizontal'));
+               $hidden = "";
+
+               if($this->request->data['Pessoa']['pessoa'] == 'F'){
+                  $hidden = "hidden";
+               }
+         ?>
 
          <fieldset>
-
             <div class="form-group">
-               <?php echo $this->Form->input('id', 
-                                             array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+               <?php echo $this->Form->input('pessoa', 
+                                             array('class' => 'form-control', 'disabled'=>'true','options' => array('F' => 'Fisica', 'J' => 'Juridica'), 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
+            <div class="form-group pessoa-juridica <?php echo $hidden;?>">
                <?php echo $this->Form->input('fantasia', 
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
@@ -111,11 +115,7 @@
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
-               <?php echo $this->Form->input('pessoa', 
-                                             array('class' => 'form-control', 'options' => array('F' => 'Fisica', 'J' => 'Juridica'), 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
-                                            ); ?>
-            </div><!-- .form-group -->
+
             <div class="form-group">
                <?php echo $this->Form->input('cnpjcpf', 
                                              array('class' => 'form-control cpf', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
@@ -136,49 +136,49 @@
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
+            <div class="form-group pessoa-juridica <?php echo $hidden;?>">
                <?php echo $this->Form->input('contato', 
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
+            <div class="form-group pessoa-juridica <?php echo $hidden;?>">
                <?php echo $this->Form->input('ie', 
                                              array('class' => 'form-control', 'label'=>array('text' => 'Inscriçao Estadual', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
+            <div class="form-group pessoa-juridica <?php echo $hidden;?>">
                <?php echo $this->Form->input('im', 
                                              array('class' => 'form-control', 'label'=>array('text' => 'Inscriçao Municipal', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
+            <div class="form-group pessoa-juridica <?php echo $hidden;?>">
                <?php echo $this->Form->input('orgao', 
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
+            <div class="form-group pessoa-juridica <?php echo $hidden;?>">
                <?php echo $this->Form->input('orgaonum', 
-                                             array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+                                             array('class' => 'form-control', 'label'=>array('text' => 'Numero', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
+            <div class="form-group pessoa-juridica <?php echo $hidden;?>">
                <?php echo $this->Form->input('ramo', 
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
+            <div class="form-group pessoa-juridica <?php echo $hidden;?>">
                <?php echo $this->Form->input('secundario', 
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('fundacao', 
-                                             array('class' => 'form-control', 'type' => 'text', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+                                             array('class' => 'form-control datepicker-start', 'type' => 'text', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
+            <div class="form-group pessoa-juridica <?php echo $hidden;?>">
                <?php echo $this->Form->input('juntacomercial', 
-                                             array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+                                             array('class' => 'form-control', 'label'=>array('text' => 'Junta Comercial', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
 
@@ -198,11 +198,13 @@
       if($(this).val()=='F'){
          $('#PessoaCnpjcpf').removeClass('cnpj');   
          $('#PessoaCnpjcpf').addClass('cpf');
+         $('.pessoa-juridica').addClass('hidden');
       }else{
          $('#PessoaCnpjcpf').removeClass('cpf');   
          $('#PessoaCnpjcpf').addClass('cnpj');
+         $('.pessoa-juridica').removeClass('hidden');
       }
+      
       
    });
 </script>
-

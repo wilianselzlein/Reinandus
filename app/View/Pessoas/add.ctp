@@ -39,8 +39,12 @@
          <?php echo $this->Form->create('Pessoa', array('role' => 'form', 'class'=>'form-horizontal')); ?>
 
          <fieldset>
-
             <div class="form-group">
+               <?php echo $this->Form->input('pessoa', 
+                                             array('class' => 'form-control', 'options' => array('F' => 'Fisica', 'J' => 'Juridica'), 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+                                            ); ?>
+            </div><!-- .form-group -->
+            <div class="form-group pessoa-juridica hidden">
                <?php echo $this->Form->input('fantasia', 
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
@@ -105,11 +109,7 @@
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
-               <?php echo $this->Form->input('pessoa', 
-                                             array('class' => 'form-control', 'options' => array('F' => 'Fisica', 'J' => 'Juridica'), 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
-                                            ); ?>
-            </div><!-- .form-group -->
+
             <div class="form-group">
                <?php echo $this->Form->input('cnpjcpf', 
                                              array('class' => 'form-control cpf', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
@@ -130,37 +130,37 @@
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
+            <div class="form-group pessoa-juridica hidden">
                <?php echo $this->Form->input('contato', 
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
+            <div class="form-group pessoa-juridica hidden">
                <?php echo $this->Form->input('ie', 
                                              array('class' => 'form-control', 'label'=>array('text' => 'Inscriçao Estadual', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
+            <div class="form-group pessoa-juridica hidden">
                <?php echo $this->Form->input('im', 
                                              array('class' => 'form-control', 'label'=>array('text' => 'Inscriçao Municipal', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
+            <div class="form-group pessoa-juridica hidden">
                <?php echo $this->Form->input('orgao', 
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
+            <div class="form-group pessoa-juridica hidden">
                <?php echo $this->Form->input('orgaonum', 
                                              array('class' => 'form-control', 'label'=>array('text' => 'Numero', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
+            <div class="form-group pessoa-juridica hidden">
                <?php echo $this->Form->input('ramo', 
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
+            <div class="form-group pessoa-juridica hidden">
                <?php echo $this->Form->input('secundario', 
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
@@ -170,7 +170,7 @@
                                              array('class' => 'form-control datepicker-start', 'type' => 'text', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
+            <div class="form-group pessoa-juridica hidden">
                <?php echo $this->Form->input('juntacomercial', 
                                              array('class' => 'form-control', 'label'=>array('text' => 'Junta Comercial', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
@@ -192,9 +192,11 @@
       if($(this).val()=='F'){
          $('#PessoaCnpjcpf').removeClass('cnpj');   
          $('#PessoaCnpjcpf').addClass('cpf');
+         $('.pessoa-juridica').addClass('hidden');
       }else{
          $('#PessoaCnpjcpf').removeClass('cpf');   
          $('#PessoaCnpjcpf').addClass('cnpj');
+         $('.pessoa-juridica').removeClass('hidden');
       }
       
    });
