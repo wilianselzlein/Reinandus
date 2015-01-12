@@ -30,10 +30,7 @@
 							<th><?php echo $this->Paginator->sort('nome'); ?></th>
 							<th><?php echo $this->Paginator->sort('curso_id'); ?></th>
 							<th><?php echo $this->Paginator->sort('endereco'); ?></th>
-							<th><?php echo $this->Paginator->sort('numero'); ?></th>
-							<th><?php echo $this->Paginator->sort('bairro'); ?></th>
 							<th><?php echo $this->Paginator->sort('cidade_id'); ?></th>
-							<th><?php echo $this->Paginator->sort('cep'); ?></th>
 							<th><?php echo $this->Paginator->sort('celular'); ?></th>
 							<th><?php echo $this->Paginator->sort('email'); ?></th>
 							<th class="actions text-center"><?php echo __('Actions'); ?></th>
@@ -47,13 +44,15 @@
 		<td>
 			<?php echo $this->Html->link($aluno['Curso']['nome'], array('controller' => 'cursos', 'action' => 'view', $aluno['Curso']['id'])); ?>
 		</td>
-		<td><?php echo h($aluno['Aluno']['endereco']); ?>&nbsp;</td>
-		<td><?php echo h($aluno['Aluno']['numero']); ?>&nbsp;</td>
-		<td><?php echo h($aluno['Aluno']['bairro']); ?>&nbsp;</td>
+		<td>
+			<?php echo h($aluno['Aluno']['endereco']); ?>&nbsp;
+			<?php echo h($aluno['Aluno']['numero']); ?>&nbsp;
+			<?php echo h($aluno['Aluno']['bairro']); ?>&nbsp;
+			<?php echo h($aluno['Aluno']['cep']); ?>&nbsp;
+		</td>
 		<td>
 			<?php echo $this->Html->link($aluno['Cidade']['nome'], array('controller' => 'cidades', 'action' => 'view', $aluno['Cidade']['id'])); ?>
 		</td>
-		<td><?php echo h($aluno['Aluno']['cep']); ?>&nbsp;</td>
 		<td><?php echo h($aluno['Aluno']['celular']); ?>&nbsp;</td>
 		<td><?php echo h($aluno['Aluno']['email']); ?>&nbsp;</td>
 		<td class="actions text-center">
@@ -92,4 +91,5 @@
 			</div>
 	
 </div>
+<?php echo $this->element('Modal'); ?>
 <?php echo $this->element('ShowHide'); ?>

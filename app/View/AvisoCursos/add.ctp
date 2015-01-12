@@ -1,8 +1,4 @@
-
-
-
-
-    <div class="panel panel-default">
+<div class="panel panel-default">
 
 <div class="panel-heading">
             <h3><?php echo __('Curso'); ?>

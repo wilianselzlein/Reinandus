@@ -14,25 +14,13 @@
                <li class="divider"></li>		
                <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '   .__('List') .' '.__('Roles'),          array('controller' => 'roles',         'action' => 'index'),   array('escape'=>false)); ?>   </li>
                <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '.__('Role'),           array('controller' => 'roles',         'action' => 'add'),     array('escape'=>false)); ?>   </li>
-               <!--<li><php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '   .__('List') .' '.__('Permissoes'),     array('controller' => 'permissoes',    'action' => 'index'),   array('escape'=>false)); ?>   </li>-->
-               <!--<li><php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '.__('Permissao'),      array('controller' => 'permissoes',    'action' => 'add'),     array('escape'=>false)); ?>   </li>-->
                <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '   .__('List') .' '.__('Pessoas'),        array('controller' => 'pessoas',       'action' => 'index'),   array('escape'=>false)); ?>   </li>
                <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '.__('Pessoa'),         array('controller' => 'pessoas',       'action' => 'add'),     array('escape'=>false)); ?>   </li>
-               <!--<li><php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '   .__('List') .' '.__('Mensalidades'),   array('controller' => 'mensalidades',  'action' => 'index'),   array('escape'=>false)); ?>   </li>-->
-               <!--<li><php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '.__('Mensalidade'),    array('controller' => 'mensalidades',  'action' => 'add'),     array('escape'=>false)); ?>   </li>-->
-               <!--<li><php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '   .__('List') .' '.__('Avisos'),         array('controller' => 'avisos',        'action' => 'index'),   array('escape'=>false)); ?>   </li>-->
-               <!--<li><php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '.__('Aviso'),          array('controller' => 'avisos',        'action' => 'add'),     array('escape'=>false)); ?>   </li>-->
-
             </ul>
          </div>
-
       </h2>
    </div>
-
-
-
    <div class="usuarios view pandel-body">
-
       <div class="table-responsive">
          <table class="table table-hover table-condensed">
             <tbody>
@@ -71,7 +59,6 @@
       </div><!-- /.table-responsive -->
 
    </div><!-- /.view -->
-
    
    <div class="panel-footer">
       <h3><?php echo __('Permissoes').' ' ?> 
@@ -94,14 +81,25 @@
          <table class="table table-hover table-condensed">
             <thead>
                <tr class="active">
-                  <th><?php echo __('Id'); ?></th>                  
+                  <th><?php echo __('Id'); ?></th> 
+                  <th><?php echo __('Programa'); ?></th>
+                  <th><?php echo __('Index'); ?></th> 
+                  <th><?php echo __('View'); ?></th> 
+                  <th><?php echo __('Edit'); ?></th> 
+                  <th><?php echo __('Add'); ?></th> 
                   <th class="actions text-center"><?php echo __('Actions'); ?></th>
                </tr>
             </thead>
             <tbody>
                <?php $i = 0; foreach ($usuario['Permissao'] as $permissao): ?>
                <tr>
-                  <td><?php echo $permissao['id']; ?></td>                  
+                  <td><?php echo $permissao['id']; ?></td>
+                  <td><?php echo $this->Html->link($permissao['Programa']['nome'], array('controller' => 'programas', 'action' => 'view', $permissao['Programa']['id']), array('class' => '')); ?>
+                     &nbsp;</td>
+                  <td><i class="<?php echo ($permissao['index'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
+                  <td><i class="<?php echo ($permissao['view'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
+                  <td><i class="<?php echo ($permissao['edit'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
+                  <td><i class="<?php echo ($permissao['add'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
                   <td class="actions text-center">
                      <?php echo $this->Html->link(    '<i class="fa fa-eye"></i>',     array('controller' => 'permissoes', 'action' => 'view',   $permissao['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'),     'data-toggle'=>'tooltip')); ?>
                      <?php echo $this->Html->link(    '<i class="fa fa-pencil"></i>',  array('controller' => 'permissoes', 'action' => 'edit',   $permissao['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'),     'data-toggle'=>'tooltip')); ?>
@@ -138,14 +136,25 @@
          <table class="table table-hover table-condensed">
             <thead>
                <tr class="active">
-                  <th><?php echo __('Id'); ?></th>                  
+                  <th><?php echo __('Id'); ?></th>
+                  <th><?php echo __('Numero'); ?></th>
+                  <th><?php echo __('Vencimento'); ?></th>
+                  <th><?php echo __('Liquido'); ?></th>
+                  <th><?php echo __('Pagamento'); ?></th>
+                  <th><?php echo __('Forma'); ?></th>
                   <th class="actions text-center"><?php echo __('Actions'); ?></th>
                </tr>
             </thead>
             <tbody>
                <?php $i = 0; foreach ($usuario['Mensalidade'] as $mensalidade): ?>
                <tr>
-                  <td><?php echo $mensalidade['id']; ?></td>                  
+                  <td><?php echo $mensalidade['id']; ?></td>
+                  <td><?php echo $mensalidade['numero']; ?></td>
+                  <td><?php echo $mensalidade['vencimento']; ?></td>
+                  <td><?php echo $mensalidade['liquido']; ?></td>
+                  <td><?php echo $mensalidade['pagamento']; ?></td>
+                  <td><?php echo $this->Html->link($mensalidade['Formapgto']['nome'], array('controller' => 'formaspagamentos', 'action' => 'view', $mensalidade['Formapgto']['id']), array('class' => '')); ?>
+                     &nbsp;</td>
                   <td class="actions text-center">
                      <?php echo $this->Html->link(    '<i class="fa fa-eye"></i>',     array('controller' => 'mensalidades', 'action' => 'view',   $mensalidade['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'),     'data-toggle'=>'tooltip')); ?>
                      <?php echo $this->Html->link(    '<i class="fa fa-pencil"></i>',  array('controller' => 'mensalidades', 'action' => 'edit',   $mensalidade['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'),     'data-toggle'=>'tooltip')); ?>
@@ -182,14 +191,20 @@
          <table class="table table-hover table-condensed">
             <thead>
                <tr class="active">
-                  <th><?php echo __('Id'); ?></th>                  
+                  <th><?php echo __('Id'); ?></th>
+                  <th><?php echo __('Data'); ?></th>  
+                  <th><?php echo __('Arquivo'); ?></th>  
+                  <th><?php echo __('Tipo'); ?></th>  
                   <th class="actions text-center"><?php echo __('Actions'); ?></th>
                </tr>
             </thead>
             <tbody>
                <?php $i = 0; foreach ($usuario['Aviso'] as $aviso): ?>
                <tr>
-                  <td><?php echo $aviso['id']; ?></td>                  
+                  <td><?php echo $aviso['id']; ?></td>
+                  <td><?php echo $aviso['data']; ?></td>
+                  <td><?php echo $aviso['arquivo']; ?></td>
+                  <td><?php echo $aviso['Tipo']['nome']; ?></td>
                   <td class="actions text-center">
                      <?php echo $this->Html->link(    '<i class="fa fa-eye"></i>',     array('controller' => 'avisos', 'action' => 'view',   $aviso['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'),     'data-toggle'=>'tooltip')); ?>
                      <?php echo $this->Html->link(    '<i class="fa fa-pencil"></i>',  array('controller' => 'avisos', 'action' => 'edit',   $aviso['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'),     'data-toggle'=>'tooltip')); ?>

@@ -38,7 +38,7 @@ class UsuariosController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+		$options = array('recursive' => 2, 'conditions' => array('User.' . $this->User->primaryKey => $id));
 		$this->set('usuario', $this->User->find('first', $options));
 	}
 

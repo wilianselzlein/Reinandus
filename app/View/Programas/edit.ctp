@@ -21,13 +21,8 @@
                 </div>
             </h3>
         </div>
-
-
-
 	
 	<div class="panel-body">
-
-		
 
 		<div class="programas form">
 		
@@ -46,15 +41,12 @@
 				); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
-						<?php    echo $this->Form->label(__('is_cadastro'), null, array('text' => 'Cadastro', 'class'=>'col-sm-2 control-label')); 
-                           echo $this->Form->input('is_cadastro', 
-                                                array('type' => 'checkbox', 'class' => 'form-control  checkbox2',                                              
-                                                      'before'=>'<div class="col-sm-10">', 
-                                                      'after'=>'</div>',
-                                                      'div'=>false, 
-                                                      'label'=>false, 
-                                                      'checked'=>true)); 
-                  ?>
+						<?php echo $this->Form->label(__('is_cadastro'), null, array('text' => 'Cadastro', 'class'=>'col-sm-2 control-label')); 
+							echo $this->Form->input('is_cadastro', 
+								array('type' => 'checkbox', 'class' => 'form-control  checkbox2',
+								'before'=>'<div class="col-sm-10">', 
+								'after'=>'</div>', 'div'=>false, 'label'=>false, 'checked'=>true)); 
+						?>
 					</div><!-- .form-group -->
 
 					<?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>

@@ -17,24 +17,26 @@
 		<th> HA </th>
 		<th> Data </th>
 		<th width="7%">			
-			<?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>', array('controller' => 'disciplinas', 'action' => 'add', $aluno_id), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Add') . __('Disciplina'), 'data-toggle'=>'tooltip')); ?>
+		<?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>', array('controller' => 'aluno_disciplinas', 'action' => 'add', $aluno_id, 'modal'), array('class' => 'btn btn-default btn-xs','escape'=>false, 'data-toggle'=>'modal', 'data-target'=>'#modal-dialog', 'title'=>__('Add') . __('Disciplina'))); ?>
+			<?php echo $this->Html->link('<i class="fa fa-graduation-cap"></i>', array('controller' => 'aluno_disciplinas', 'action' => 'adddocurso', $aluno_id), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Add Disciplinas do Curso'), 'data-toggle'=>'tooltip')); ?>
 		</th>
 	</tr>
-	<?php foreach($disciplina AS $Disciplina): ?>
+	<?php foreach($disciplina AS $AlunoDisciplina): ?>
 	<tr>
-		<td><?php echo h($Disciplina['Disciplina']['id']); ?>&nbsp;</td>
+		<td><?php echo h($AlunoDisciplina['Disciplina']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($Disciplina['Disciplina']['nome'], array('controller' => 'disciplinas', 'action' => 'view', $Disciplina['Disciplina']['id'])); ?>
+			<?php echo $this->Html->link($AlunoDisciplina['Disciplina']['nome'], array('controller' => 'disciplinas', 'action' => 'view', $AlunoDisciplina['Disciplina']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($Disciplina['Professor']['nome'], array('controller' => 'professors', 'action' => 'view', $Disciplina['Professor']['id'])); ?>
+			<?php echo $this->Html->link($AlunoDisciplina['Professor']['nome'], array('controller' => 'professors', 'action' => 'view', $AlunoDisciplina['Professor']['id'])); ?>
 		</td>
-		<td><?php echo h($Disciplina['AlunoDisciplina']['frequencia']); ?>&nbsp;</td>
-		<td><?php echo h($Disciplina['AlunoDisciplina']['nota']); ?>&nbsp;</td>
-		<td><?php echo h($Disciplina['AlunoDisciplina']['ha']); ?>&nbsp;</td>
-		<td><?php echo h($Disciplina['AlunoDisciplina']['data']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'aviso_cursos', 'action' => 'delete', $Disciplina['AlunoDisciplina']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $Disciplina['AlunoDisciplina']['id'])); ?>
+		<td><?php echo h($AlunoDisciplina['AlunoDisciplina']['frequencia']); ?>&nbsp;</td>
+		<td><?php echo h($AlunoDisciplina['AlunoDisciplina']['nota']); ?>&nbsp;</td>
+		<td><?php echo h($AlunoDisciplina['AlunoDisciplina']['horas_aula']); ?>&nbsp;</td>
+		<td><?php echo h($AlunoDisciplina['AlunoDisciplina']['data']); ?>&nbsp;</td>
+		<td width="10%">
+			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('controller' => 'aluno_disciplinas', 'action' => 'edit', $AlunoDisciplina['AlunoDisciplina']['id'], 'modal'), array('class' => 'btn btn-default btn-xs','escape'=>false, 'data-toggle'=>'modal', 'data-target'=>'#modal-dialog', 'title'=>__('Edit'))); ?>
+			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'aluno_disciplinas', 'action' => 'delete', $AlunoDisciplina['AlunoDisciplina']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $AlunoDisciplina['AlunoDisciplina']['id'])); ?>
 		</td>
 	</tr>
 	<?php endforeach; ?>

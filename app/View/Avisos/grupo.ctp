@@ -12,7 +12,7 @@
 			<?php } ?>
 		</th>
 		<th width="7%">			
-			<?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>', array('controller' => 'aviso_grupos', 'action' => 'add', $aviso_id), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Add') . __('Grupo'), 'data-toggle'=>'tooltip')); ?>
+			<?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>', array('controller' => 'aviso_grupos', 'action' => 'add', $aviso_id, 'modal'), array('class' => 'btn btn-default btn-xs','escape'=>false, 'data-toggle'=>'modal', 'data-target'=>'#modal-dialog', 'title'=>__('Add') . __('Grupo'))); ?>
 		</th>
 	</tr>
 	<?php foreach($grupo AS $Grupo): ?>

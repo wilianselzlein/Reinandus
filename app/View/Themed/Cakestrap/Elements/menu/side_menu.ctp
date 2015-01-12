@@ -20,7 +20,7 @@
          <li><?php echo $this->Html->link(__('Avisos, Materiais e Noticias'), array('controller'=>'Avisos','action'=>'index'));?></li>
          <li><?php echo $this->Html->link(__('Contrato Alunos'),              array('controller'=>'Contratos','action'=>'index'));?></li>
          <li><?php echo $this->Html->link(__('Contrato Professores'),         array('controller'=>'Contratos','action'=>'index'));?></li>
-         <li><?php echo $this->Html->link(__('Notas e Frequencias'),          array('controller'=>'NotasFreq','action'=>'index'));?></li>
+         <li><?php echo $this->Html->link(__('Notas e Frequencias'),          array('controller'=>'Notas','action'=>'index'));?></li>
       </ul>
    </li>
    <li>
@@ -34,7 +34,7 @@
    <li>
       <a href="javascript:;" data-toggle="collapse" data-target="#con"><i class="fa fa-fw fa-arrows-v"></i><?php echo __('Controladoria');?><i class="fa fa-fw fa-caret-down"></i></a>
       <ul id="con" class="collapse">
-         <li><?php echo $this->Html->link(__('Plano de Contas'),              array('controller'=>'PlanoDeContas','action'=>'index'));?></li>
+         <li><?php echo $this->Html->link(__('Plano de Contas'),              array('controller'=>'PlanoContas','action'=>'index'));?></li>
          <li><?php echo $this->Html->link(__('Lancamentos'),                  array('controller'=>'Lancamentos','action'=>'index'));?></li>
       </ul>
    </li>

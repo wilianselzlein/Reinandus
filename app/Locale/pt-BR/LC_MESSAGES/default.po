@@ -496,8 +496,9 @@ msgstr "Indicação"
 msgid "Responsavel"
 msgstr "Responsável"
 
-msgid "Disciplina"
-msgstr "Disciplína"
-
 msgid "Frequencia"
 msgstr "Frequência"
+
+msgid "is_cadastro"
+msgstr "Cadastro"
+
