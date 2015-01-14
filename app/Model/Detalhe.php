@@ -22,9 +22,6 @@ class Detalhe extends AppModel {
  */
 	public $displayField = 'aluno_id';
 
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
 /**
  * belongsTo associations
  *
@@ -37,13 +34,13 @@ class Detalhe extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		),
+		)/*,
 		'Pessoa' => array(
 			'className' => 'Pessoa',
 			'foreignKey' => 'pessoa_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
+		)*/
 	);
 }

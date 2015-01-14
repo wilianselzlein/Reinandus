@@ -37,7 +37,6 @@
 							<th><?php echo $this->Paginator->sort('hist_escolar'); ?></th>
 							<th><?php echo $this->Paginator->sort('neg_financeira'); ?></th>
 							<th><?php echo $this->Paginator->sort('egresso'); ?></th>
-							<th><?php echo $this->Paginator->sort('pessoa_id'); ?></th>
 							<th class="actions text-center"><?php echo __('Actions'); ?></th>
 						</tr>
 					</thead>
@@ -53,9 +52,6 @@
 		<td><?php echo h($detalhe['Detalhe']['hist_escolar']); ?>&nbsp;</td>
 		<td><?php echo h($detalhe['Detalhe']['neg_financeira']); ?>&nbsp;</td>
 		<td><?php echo h($detalhe['Detalhe']['egresso']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($detalhe['Pessoa']['razaosocial'], array('controller' => 'pessoas', 'action' => 'view', $detalhe['Pessoa']['id'])); ?>
-		</td>
 		<td class="actions text-center">
 			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $detalhe['Detalhe']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
 			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $detalhe['Detalhe']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>

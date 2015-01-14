@@ -168,7 +168,7 @@ else
                      &nbsp;</td>
                   <td><?php echo $disciplina['frequencia']; ?></td>
                   <td><?php echo $disciplina['nota']; ?></td>
-                  <td><?php echo $disciplina['ha']; ?></td>
+                  <td><?php echo $disciplina['horas_aula']; ?></td>
                   <td><?php echo $disciplina['data']; ?></td>
                   <td class="actions text-center">
                      <?php echo $this->Html->link('<i class="fa fa-pencil"></i>',  array('controller' => 'alunodisciplinas', 'action' => 'edit',   $disciplina['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'),     'data-toggle'=>'tooltip')); ?>
@@ -280,6 +280,22 @@ else
 	<div class="panel-footer">
 	      <h3><?php echo __('Detalhes').' ' ?> 
 	         <small><?php echo __('do aluno') ?></small>
+          <div class="btn-group pull-right">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+               <?php echo __('Actions'); ?> <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+               <?php if (empty($aluno['Detalhe'])): ?>
+               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '.__('Detalhe'), array('controller' => 'detalhes', 'action' => 'add', $aluno['Aluno']['id']), array('escape'=>false)); ?>   </li>
+               <?php endif; ?>
+               <?php if (!empty($aluno['Detalhe'])): ?>
+               <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '   .__('Edit') .' '.__('Detalhe'), array('controller' => 'detalhes', 'action' => 'edit', $aluno['Detalhe'][0]['id']), array('escape'=>false)); ?>   </li>
+               <li>
+                 <?php echo $this->Form->postLink('<i class="fa fa-times"></i>'. ' ' .__('Delete') .' '.__('Detalhe'), array('controller' => 'detalhes', 'action' => 'delete', $aluno['Detalhe'][0]['id'], $aluno['Aluno']['id']), array('style' => 'margin: 10px;', 'class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $aluno['Detalhe'][0]['id'])); ?>
+                </li>
+              <?php endif; ?>
+            </ul>       
+         </div>
 	      </h3>
 	</div>   
 	<div class="panel-body">

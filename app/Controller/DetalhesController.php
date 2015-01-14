@@ -46,19 +46,19 @@ class DetalhesController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($id = null) {
 		if ($this->request->is('post')) {
 			$this->Detalhe->create();
 			if ($this->Detalhe->save($this->request->data)) {
 				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $this->Detalhe->getLastInsertID()));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
 		$alunos = $this->Detalhe->Aluno->find('list');
-		$pessoas = $this->Detalhe->Pessoa->find('list');
-		$this->set(compact('alunos', 'pessoas'));
+		$aluno_id = $id;
+		$this->set(compact('alunos', 'pessoas', 'aluno_id'));
 	}
 
 /**
@@ -76,7 +76,7 @@ class DetalhesController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Detalhe->save($this->request->data)) {
 				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $id));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
@@ -85,7 +85,6 @@ class DetalhesController extends AppController {
 			$this->request->data = $this->Detalhe->find('first', $options);
 		}
 		$alunos = $this->Detalhe->Aluno->find('list');
-		$pessoas = $this->Detalhe->Pessoa->find('list');
 		$this->set(compact('alunos', 'pessoas'));
 	}
 
@@ -97,7 +96,7 @@ class DetalhesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+	public function delete($id = null, $aluno_id = null) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}
@@ -107,9 +106,9 @@ class DetalhesController extends AppController {
 		}
 		if ($this->Detalhe->delete()) {
 			$this->Session->setFlash(__('Record deleted'), 'flash/success');
-			$this->redirect(array('action' => 'index'));
+			$this->redirect(array('controller' => 'alunos', 'action' => 'view', $aluno_id));
 		}
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
-		$this->redirect(array('action' => 'index'));
+		$this->redirect(array('controller' => 'alunos', 'action' => 'view', $aluno_id));
 	}
 }
