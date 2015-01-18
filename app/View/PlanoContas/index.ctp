@@ -1,15 +1,14 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-	<h3><span class="fa fa-book "></span> <?php echo __('Histórico Padrão'); ?>
+		<h3><span class="fa fa-sitemap"></span> <?php echo __('PlanoContas'); ?>
 			<div class="btn-group pull-right">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 					<?php echo __('Actions');?><span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu" role="menu">
 					<li>   
-						<?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('HistoricoPadrao'), 
-								array('action' => 'add'), array('class' => '', 'escape'=>false)); ?>
-					</li>
+						<?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('PlanoConta'), 
+								array('action' => 'add'), array('class' => '', 'escape'=>false)); ?>				</li>
 				</ul>
 			</div>
     	</h3>
@@ -21,19 +20,25 @@
 	            <thead>
                     <tr class="active">
 						<th><?php echo $this->Paginator->sort('id'); ?></th>
-						<th><?php echo $this->Paginator->sort('nome'); ?></th>
+						<th><?php echo $this->Paginator->sort('reduzido'); ?></th>
+						<th><?php echo $this->Paginator->sort('analitico'); ?></th>
+						<th><?php echo $this->Paginator->sort('descricao'); ?></th>
+						<th><?php echo $this->Paginator->sort('nivel'); ?></th>
 						<th class="actions text-center"><?php echo __('Actions'); ?></th>
 					</tr>
 				</thead>
 				<tbody>
-<?php foreach ($histspadrao as $histpadrao): ?>
+<?php foreach ($planocontas as $planoconta): ?>
 	<tr>
-		<td><?php echo h($histpadrao['HistoricoPadrao']['id']); ?>&nbsp;</td>
-		<td><?php echo h($histpadrao['HistoricoPadrao']['nome']); ?>&nbsp;</td>
+		<td><?php echo h($planoconta['PlanoConta']['id']); ?>&nbsp;</td>
+		<td><?php echo h($planoconta['PlanoConta']['reduzido']); ?>&nbsp;</td>
+		<td><?php echo h($planoconta['PlanoConta']['analitico']); ?>&nbsp;</td>
+		<td><?php echo h($planoconta['PlanoConta']['descricao']); ?>&nbsp;</td>
+		<td><?php echo h($planoconta['PlanoConta']['nivel']); ?>&nbsp;</td>
 		<td class="actions text-center">
-			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $histpadrao['HistoricoPadrao']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $histpadrao['HistoricoPadrao']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $histpadrao['HistoricoPadrao']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $histpadrao['HistoricoPadrao']['id'])); ?>
+			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $planoconta['PlanoConta']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
+			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $planoconta['PlanoConta']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
+			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $planoconta['PlanoConta']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $planoconta['PlanoConta']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
