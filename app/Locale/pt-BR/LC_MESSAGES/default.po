@@ -502,3 +502,24 @@ msgstr "Frequência"
 msgid "is_cadastro"
 msgstr "Cadastro"
 
+msgid "HistoricosPadrao"
+msgstr "Históricos Padrão"
+
+msgid "HistoricoPadraos"
+msgstr "Históricos Padrão"
+
+msgid "HistoricoPadrao"
+msgstr "Histórico Padrão"
+
+msgid "HistoricosPadrao"
+msgstr "Históricos Padrão"
+
+msgid "LctoContabils"
+msgstr "Lançamentos Contábeis"
+
+msgid "LctoContabil"
+msgstr "Lançamento Contábil"
+
+msgid "lctocontabil"
+msgstr "Lançamento Contábil"
+
