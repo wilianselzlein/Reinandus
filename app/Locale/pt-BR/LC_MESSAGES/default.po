@@ -502,8 +502,32 @@ msgstr "Frequência"
 msgid "is_cadastro"
 msgstr "Cadastro"
 
+<<<<<<< HEAD
 msgid "VALIDATE_NUMERIC"
 msgstr "O valor informado deve ser um número."
 
 msgid "VALIDATE_BLANK"
 msgstr "O campo deve ser preenchido."
+=======
+msgid "HistoricosPadrao"
+msgstr "Históricos Padrão"
+
+msgid "HistoricoPadraos"
+msgstr "Históricos Padrão"
+
+msgid "HistoricoPadrao"
+msgstr "Histórico Padrão"
+
+msgid "HistoricosPadrao"
+msgstr "Históricos Padrão"
+
+msgid "LctoContabils"
+msgstr "Lançamentos Contábeis"
+
+msgid "LctoContabil"
+msgstr "Lançamento Contábil"
+
+msgid "lctocontabil"
+msgstr "Lançamento Contábil"
+
+>>>>>>> 0f118df5ca2147313085110015eef66e524ab577

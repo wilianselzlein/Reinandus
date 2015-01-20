@@ -34,6 +34,7 @@
    <li>
       <a href="javascript:;" data-toggle="collapse" data-target="#con"><i class="fa fa-fw fa-arrows-v"></i><?php echo __('Controladoria');?><i class="fa fa-fw fa-caret-down"></i></a>
       <ul id="con" class="collapse">
+         <li><?php echo $this->Html->link(__('Histórico Padrão'),              array('controller'=>'HistoricoPadrao','action'=>'index'));?></li>
          <li><?php echo $this->Html->link(__('Plano de Contas'),              array('controller'=>'PlanoContas','action'=>'index'));?></li>
          <li><?php echo $this->Html->link(__('Lancamentos'),                  array('controller'=>'Lancamentos','action'=>'index'));?></li>
       </ul>
