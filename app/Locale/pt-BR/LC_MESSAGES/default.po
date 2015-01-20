@@ -502,3 +502,8 @@ msgstr "Frequência"
 msgid "is_cadastro"
 msgstr "Cadastro"
 
+msgid "VALIDATE_NUMERIC"
+msgstr "O valor informado deve ser um número."
+
+msgid "VALIDATE_BLANK"
+msgstr "O campo deve ser preenchido."

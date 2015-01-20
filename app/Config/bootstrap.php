@@ -68,15 +68,15 @@ Cache::config('default', array('engine' => 'File'));
  * CakePlugin::loadAll(); // Loads all plugins at once
  * CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
  *
- */
-
+ */   
+   CakePlugin::load('Bs3Helpers', array('bootstrap' => true));
 /**
  * You can attach event listeners to the request lifecycle as Dispatcher Filter. By default CakePHP bundles two filters:
  *
  * - AssetDispatcher filter will serve your asset files (css, images, js, etc) from your themes and plugins
  * - CacheDispatcher filter will read the Cache.check configure variable and try to serve cached content generated from controllers
  *
- * Feel free to remove or add filters as you see fit for your application. A few examples:
+ * Feel free to remove or add filrs as you see fit for your application. A few examples:
  *
  * Configure::write('Dispatcher.filters', array(
  *		'MyCacheFilter', //  will use MyCacheFilter class from the Routing/Filter package in your app.

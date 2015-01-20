@@ -33,6 +33,8 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
    public $theme = "Cakestrap";
    
+   public $helpers = array('Form' => array('className' => 'Bs3Helpers.Bs3Form'));
+   
    public $components = array(
         'Session',
         'Auth' => array(
