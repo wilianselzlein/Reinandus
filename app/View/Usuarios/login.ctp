@@ -70,13 +70,13 @@ body {
 
         <div class="input-group input-group">
             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-            <?php echo $this->Form->input('username', array('class' => 'form-control non-rounded', 'placeholder'=>"Usuário", "label"=>false));?>            
+            <?php echo $this->Form->input('username', array('class' => 'form-control non-rounded', 'placeholder'=>"Usuário", "label"=>false,  'div' => array('class' => 'control-group')));?>            
         </div>
 
         <br>
         <div class="input-group input-group">
             <span class="input-group-addon"><i class="fa fa-key"></i></span>
-            <?php echo $this->Form->input('password', array('class' => 'form-control non-rounded', 'placeholder'=>"Senha", "label"=>false));?>
+            <?php echo $this->Form->input('password', array('class' => 'form-control non-rounded', 'placeholder'=>"Senha", "label"=>false,  'div' => array('class' => 'control-group')));?>
         </div>
         <br>
 <?php echo $this->Form->submit(__('Acessar'), array('class' => 'btn btn-lg btn-default btn-block non-rounded'));?>    

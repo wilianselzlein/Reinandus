@@ -30,7 +30,13 @@ class AlunoDisciplinasController extends AppController {
 			$this->AlunoDisciplina->create();
 			$this->request->data['AlunoDisciplina']['aluno_id'] = $aluno_id;
 			if ($this->AlunoDisciplina->save($this->request->data)) {
-				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+               "link_text" => __('GO_TO'),
+               "link_url" => array(                  
+                  "action" => "view",
+                  $this->AlunoDisciplina->id
+               )
+            ));
 				$this->redirect(array('controller' => 'alunos', 'action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
@@ -56,7 +62,13 @@ class AlunoDisciplinasController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->AlunoDisciplina->save($this->request->data)) {
-				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+               "link_text" => __('GO_TO'),
+               "link_url" => array(                  
+                  "action" => "view",
+                  $this->AlunoDisciplina->id
+               )
+            ));
 				$this->redirect(array('controller' => 'alunos', 'action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');

@@ -50,7 +50,13 @@ class ProfessoresController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Professor->create();
 			if ($this->Professor->save($this->request->data)) {
-				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+               "link_text" => __('GO_TO'),
+               "link_url" => array(                  
+                  "action" => "view",
+                  $this->Professor->id
+               )
+            ));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
@@ -75,7 +81,13 @@ class ProfessoresController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Professor->save($this->request->data)) {
-				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+               "link_text" => __('GO_TO'),
+               "link_url" => array(                  
+                  "action" => "view",
+                  $this->Professor->id
+               )
+            ));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');

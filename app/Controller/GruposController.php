@@ -50,10 +50,17 @@ class GruposController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Grupo->create();
 			if ($this->Grupo->save($this->request->data)) {
-				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+               "link_text" => __('GO_TO'),
+               "link_url" => array(                  
+                  "action" => "view",
+                  $this->Grupo->id
+               )
+            ));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
+            debug($this->request->data);
 			}
 		}
 	}
@@ -68,11 +75,18 @@ class GruposController extends AppController {
 	public function edit($id = null) {
         $this->Grupo->id = $id;
 		if (!$this->Grupo->exists($id)) {
-			throw new NotFoundException(__('The record could not be found.?>'));
+			throw new NotFoundException(__('The record could not be found.'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Grupo->save($this->request->data)) {
-				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+            $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+               "link_text" => __('GO_TO'),
+               "link_url" => array(                  
+                  "action" => "view",
+                  $this->Grupo->id
+               )
+            ));
+            
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');

@@ -52,7 +52,13 @@ class AvisosController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Aviso->create();
 			if ($this->Aviso->save($this->request->data)) {
-				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+               "link_text" => __('GO_TO'),
+               "link_url" => array(                  
+                  "action" => "view",
+                  $this->Aviso->id
+               )
+            ));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
@@ -79,7 +85,13 @@ class AvisosController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Aviso->save($this->request->data)) {
-				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+               "link_text" => __('GO_TO'),
+               "link_url" => array(                  
+                  "action" => "view",
+                  $this->Aviso->id
+               )
+            ));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
