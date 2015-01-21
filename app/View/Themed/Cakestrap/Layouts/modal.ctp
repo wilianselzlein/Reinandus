@@ -17,5 +17,12 @@
       $('.modal-content [role="form"]')[0].reset();
    });
 
-   $(document).ready(function(){ $('[data-toggle=tooltip]').tooltip()});
+   $(document).ready(function(){ $('[data-toggle=tooltip]').tooltip()});   
 </script>
+<?php echo $this->Html->script('cfg-datepicker');?>
+<?php echo $this->Html->script('cfg-currency');?>
+<?php echo $this->Html->script('cfg-percentage');?>
+<?php echo $this->Html->script('cfg-cep');?>
+<?php echo $this->Html->script('cfg-cpf');?>
+<?php echo $this->Html->script('cfg-cnpj');?>
+<?php echo $this->Html->script('cfg-dddphone');?>
