@@ -36,7 +36,8 @@
       <ul id="con" class="collapse">
          <li><?php echo $this->Html->link(__('Histórico Padrão'),              array('controller'=>'HistoricoPadrao','action'=>'index'));?></li>
          <li><?php echo $this->Html->link(__('Plano de Contas'),              array('controller'=>'PlanoContas','action'=>'index'));?></li>
-         <li><?php echo $this->Html->link(__('Lancamentos'),                  array('controller'=>'Lancamentos','action'=>'index'));?></li>
+         <li><?php echo $this->Html->link(__('Lançamentos'),                  array('controller'=>'LancamentoContabil','action'=>'index'));?></li>
+
       </ul>
    </li>
    <li>
