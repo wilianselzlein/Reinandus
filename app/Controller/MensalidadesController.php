@@ -22,9 +22,8 @@ class MensalidadesController extends AppController {
  * @return void
  */
 	public function index() {
-		//$this->Mensalidade->recursive = 0;
-		//$this->set('mensalidades', $this->paginate());
-		$this->redirect(array('controller' => 'relatorios', 'action' => 'index'));
+		$this->Mensalidade->recursive = 0;
+		$this->set('mensalidades', $this->paginate());
 	}
 
 /**
