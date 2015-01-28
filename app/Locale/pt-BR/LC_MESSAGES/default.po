@@ -531,3 +531,24 @@ msgstr "O valor informado deve ser um número."
 
 msgid "GO_TO"
 msgstr "Ir para &raquo;"
+
+msgid "PlanoContas"
+msgstr "Plano de Contas"
+
+msgid "PlanoConta"
+msgstr "Plano de Conta"
+
+msgid "Analitico"
+msgstr "Analítico"
+
+msgid "Debito"
+msgstr "Débito"
+
+msgid "Credito"
+msgstr "Crédito"
+
+msgid "LancamentoContabil"
+msgstr "Lançamento Contábil"
+
+msgid "LancamentosContabils"
+msgstr "Lançamentos Contábeis"
