@@ -1,8 +1,4 @@
-
-
-
-
-    <div class="panel panel-default">
+<div class="panel panel-default">
 
 	<div class="panel-heading"><h3><span class="fa fa-puzzle-piece"></span> <?php echo __('Disciplinas'); ?>                <div class="btn-group pull-right">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -21,12 +17,8 @@
 			</ul>
                 </div>
             </h3></div>
-	
-
-
 
 <div class="panel-body">
-
 			
 			<div class="table-responsive">
 				 <table class="table table-bordered table-hover table-condensed" >
@@ -44,17 +36,12 @@
 		<td><?php echo h($disciplina['Disciplina']['id']); ?>&nbsp;</td>
 		<td><?php echo h($disciplina['Disciplina']['nome']); ?>&nbsp;</td>
 		<td><?php echo $this->Number->currency($disciplina['Disciplina']['valor'],'BRL'); ?>&nbsp;</td>
-		<td class="actions text-center">
-			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $disciplina['Disciplina']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $disciplina['Disciplina']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $disciplina['Disciplina']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $disciplina['Disciplina']['id'])); ?>
-		</td>
+<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $disciplina, 'model' => 'Disciplina')); ?>
 	</tr>
 <?php endforeach; ?>
 					</tbody>
 				</table>
 			</div><!-- /.table-responsive -->
-
 </div>
 			<div class="panel-footer">
 			<p><small>

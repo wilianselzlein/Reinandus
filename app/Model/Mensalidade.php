@@ -51,6 +51,13 @@ class Mensalidade extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Aluno' => array(
+			'className' => 'Aluno',
+			'foreignKey' => 'aluno_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 }

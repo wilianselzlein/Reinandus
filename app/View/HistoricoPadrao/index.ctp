@@ -30,11 +30,7 @@
 	<tr>
 		<td><?php echo h($histpadrao['HistoricoPadrao']['id']); ?>&nbsp;</td>
 		<td><?php echo h($histpadrao['HistoricoPadrao']['nome']); ?>&nbsp;</td>
-		<td class="actions text-center">
-			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $histpadrao['HistoricoPadrao']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $histpadrao['HistoricoPadrao']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $histpadrao['HistoricoPadrao']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $histpadrao['HistoricoPadrao']['id'])); ?>
-		</td>
+		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $histpadrao, 'model' => 'HistoricoPadrao')); ?>
 	</tr>
 <?php endforeach; ?>
 				</tbody>

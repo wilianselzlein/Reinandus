@@ -61,7 +61,7 @@ class CidadesController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
-		}
+		
 		$estados = $this->Cidade->Estado->find('list');
 		$this->set(compact('estados'));
 	}

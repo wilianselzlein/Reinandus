@@ -35,11 +35,7 @@
 		<td><?php echo h($planoconta['PlanoConta']['analitico']); ?>&nbsp;</td>
 		<td><?php echo h($planoconta['PlanoConta']['descricao']); ?>&nbsp;</td>
 		<td><?php echo h($planoconta['PlanoConta']['nivel']); ?>&nbsp;</td>
-		<td class="actions text-center">
-			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $planoconta['PlanoConta']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $planoconta['PlanoConta']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $planoconta['PlanoConta']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $planoconta['PlanoConta']['id'])); ?>
-		</td>
+		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $planoconta, 'model' => 'PlanoConta')); ?>
 	</tr>
 <?php endforeach; ?>
 				</tbody>

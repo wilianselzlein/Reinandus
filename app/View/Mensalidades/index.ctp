@@ -30,7 +30,7 @@
 							<th><?php echo $this->Paginator->sort('liquido'); ?></th>
 							<th><?php echo $this->Paginator->sort('pagamento'); ?></th>
 							<th><?php echo $this->Paginator->sort('formapgto_id'); ?></th>
-							<th class="actions text-center"><?php echo __('Actions'); ?></th>
+							<th class="actions text-center" colspan="2"><?php echo __('Actions'); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -47,11 +47,8 @@
 		<td class="actions text-center">
 
 			<?php echo $this->Html->link('<i class="fa fa-credit-card"></i>', array('action' => 'baixar', $mensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Baixar'), 'data-toggle'=>'tooltip')); ?>
-
-			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $mensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $mensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $mensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $mensalidade['Mensalidade']['id'])); ?>
 		</td>
+		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $mensalidade, 'model' => 'Mensalidade')); ?>
 	</tr>
 <?php endforeach; ?>
 					</tbody>

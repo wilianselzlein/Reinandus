@@ -1,8 +1,4 @@
-
-
-
-
-    <div class="panel panel-default">
+<div class="panel panel-default">
 
 	<div class="panel-heading"><h3><span class="fa fa-unlock"></span> <?php echo __('Permissoes'); ?>                
 			<div class="btn-group pull-right">
@@ -20,13 +16,9 @@
 			</ul>
                 </div>
             </h3></div>
-	
-
-
 
 <div class="panel-body">
 
-			
 			<div class="table-responsive">
 				 <table class="table table-bordered table-hover table-condensed" >
                 <thead>
@@ -55,11 +47,7 @@
 		<td><i class="<?php echo ($permissao['Permissao']['view'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
 		<td><i class="<?php echo ($permissao['Permissao']['edit'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>		
 		<td><i class="<?php echo ($permissao['Permissao']['add'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>		
-		<td class="actions text-center">
-			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $permissao['Permissao']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $permissao['Permissao']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $permissao['Permissao']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $permissao['Permissao']['id'])); ?>
-		</td>
+		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $permissao, 'model' => 'Permissao')); ?>
 	</tr>
 <?php endforeach; ?>
 					</tbody>

@@ -50,11 +50,8 @@
 		</td>
 		<td><?php echo h($cidade['Cidade']['nome']); ?>&nbsp;</td>
 		<td><?php echo h($cidade['Cidade']['cep']); ?>&nbsp;</td>
-		<td class="actions text-center">
-			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $cidade['Cidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $cidade['Cidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $cidade['Cidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $cidade['Cidade']['id'])); ?>
-		</td>
+
+		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $cidade, 'model' => 'Cidade')); ?>
 	</tr>
 <?php endforeach; ?>
 					</tbody>

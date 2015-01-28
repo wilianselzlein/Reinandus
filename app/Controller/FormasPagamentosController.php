@@ -37,7 +37,7 @@ class FormasPagamentosController extends AppController {
 		if (!$this->Formapgto->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('conditions' => array('Formapgto.' . $this->Formapgto->primaryKey => $id));
+		$options = array('recursive' => 2, 'conditions' => array('Formapgto.' . $this->Formapgto->primaryKey => $id));
 		$this->set('formapgto', $this->Formapgto->find('first', $options));
 	}
 

@@ -1,8 +1,4 @@
-
-
-
-
-    <div class="panel panel-default">
+<div class="panel panel-default">
 
 	<div class="panel-heading"><h3><span class="fa fa-building"></span> <?php echo __('Instituto'); ?>
 	                <div class="btn-group pull-right">
@@ -24,13 +20,9 @@
 			</ul>
                 </div>
             </h3></div>
-	
-
-
 
 <div class="panel-body">
 
-			
 			<div class="table-responsive">
 				 <table class="table table-bordered table-hover table-condensed" >
                 <thead>
@@ -53,11 +45,7 @@
 			<?php echo $this->Html->link($instituto['Diretor']['fantasia'], array('controller' => 'pessoas', 'action' => 'view', $instituto['Diretor']['id'])); ?>
 		</td>
 		<td><?php echo h($instituto['Tipo']['nome']); ?>&nbsp;</td>
-		<td class="actions text-center">
-			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $instituto['Instituto']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $instituto['Instituto']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $instituto['Instituto']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $instituto['Instituto']['id'])); ?>
-		</td>
+		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $instituto, 'model' => 'Instituto')); ?>
 	</tr>
 <?php endforeach; ?>
 					</tbody>

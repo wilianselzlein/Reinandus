@@ -128,50 +128,25 @@
 						<table class="table table-hover table-condensed">
 							<thead>
 								<tr class="active">
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Numero'); ?></th>
-		<th><?php echo __('Vencimento'); ?></th>
-		<th><?php echo __('Conta Id'); ?></th>
-		<th><?php echo __('Valor'); ?></th>
-		<th><?php echo __('Desconto'); ?></th>
-		<th><?php echo __('Acrescimo'); ?></th>
-		<th><?php echo __('Liquido'); ?></th>
-		<th><?php echo __('Pago'); ?></th>
-		<th><?php echo __('Pagamento'); ?></th>
-		<th><?php echo __('Obs'); ?></th>
-		<th><?php echo __('Formapgto Id'); ?></th>
-		<th><?php echo __('User Id'); ?></th>
-		<th><?php echo __('Bolsa'); ?></th>
-		<th><?php echo __('Documento'); ?></th>
-		<th><?php echo __('Renegociacao'); ?></th>
-		<th><?php echo __('Created'); ?></th>
-		<th><?php echo __('Modified'); ?></th>
+                  <th><?php echo __('Id'); ?></th>
+                  <th><?php echo __('Número'); ?></th>
+                  <th><?php echo __('Vencimento'); ?></th>
+                  <th><?php echo __('Líquido'); ?></th>
+                  <th><?php echo __('Pagamento'); ?></th>
+                  <th><?php echo __('Aluno'); ?></th>
 									<th class="actions text-center"><?php echo __('Actions'); ?></th>
 								</tr>
 							</thead>
 							<tbody>
-									<?php
-										$i = 0;
-										foreach ($formapgto['Mensalidade'] as $mensalidade): ?>
+									<?php foreach ($formapgto['Mensalidade'] as $mensalidade): ?> 
 		<tr>
-			<td><?php echo $mensalidade['id']; ?></td>
-			<td><?php echo $mensalidade['numero']; ?></td>
-			<td><?php echo $mensalidade['vencimento']; ?></td>
-			<td><?php echo $mensalidade['conta_id']; ?></td>
-			<td><?php echo $mensalidade['valor']; ?></td>
-			<td><?php echo $mensalidade['desconto']; ?></td>
-			<td><?php echo $mensalidade['acrescimo']; ?></td>
-			<td><?php echo $mensalidade['liquido']; ?></td>
-			<td><?php echo $mensalidade['pago']; ?></td>
-			<td><?php echo $mensalidade['pagamento']; ?></td>
-			<td><?php echo $mensalidade['obs']; ?></td>
-			<td><?php echo $mensalidade['formapgto_id']; ?></td>
-			<td><?php echo $mensalidade['user_id']; ?></td>
-			<td><?php echo $mensalidade['bolsa']; ?></td>
-			<td><?php echo $mensalidade['documento']; ?></td>
-			<td><?php echo $mensalidade['renegociacao']; ?></td>
-			<td><?php echo $mensalidade['created']; ?></td>
-			<td><?php echo $mensalidade['modified']; ?></td>
+                  <td><?php echo $mensalidade['id']; ?></td>
+                  <td><?php echo $mensalidade['numero']; ?></td>
+                  <td><?php echo $mensalidade['vencimento']; ?></td>
+                  <td><?php echo $mensalidade['liquido']; ?></td>
+                  <td><?php echo $mensalidade['pagamento']; ?></td>
+                  <td><?php echo $this->Html->link($mensalidade['Aluno']['nome'], array('controller' => 'alunos', 'action' => 'view', $mensalidade['Aluno']['id']), array('class' => '')); ?>
+                     &nbsp;</td>
 			<td class="actions text-center">
 				<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'mensalidades', 'action' => 'view', $mensalidade['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
 				<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('controller' => 'mensalidades', 'action' => 'edit', $mensalidade['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>

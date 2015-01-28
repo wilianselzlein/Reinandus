@@ -222,7 +222,7 @@ else
                   <td><?php echo $mensalidade['vencimento']; ?></td>
                   <td><?php echo $mensalidade['liquido']; ?></td>
                   <td><?php echo $mensalidade['pagamento']; ?></td>
-                  <td><?php echo $this->Html->link($mensalidade['Formapgto']['nome'], array('controller' => 'disciplinas', 'action' => 'view', $mensalidade['Formapgto']['id']), array('class' => '')); ?>
+                  <td><?php echo $this->Html->link($mensalidade['Formapgto']['nome'], array('controller' => 'formaspagamentos', 'action' => 'view', $mensalidade['Formapgto']['id']), array('class' => '')); ?>
                      &nbsp;</td>
                   <td class="actions text-center">
       				<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'mensalidades', 'action' => 'view', $mensalidade['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>

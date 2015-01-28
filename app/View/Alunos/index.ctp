@@ -33,7 +33,7 @@
 							<th><?php echo $this->Paginator->sort('cidade_id'); ?></th>
 							<th><?php echo $this->Paginator->sort('celular'); ?></th>
 							<th><?php echo $this->Paginator->sort('email'); ?></th>
-							<th class="actions text-center"><?php echo __('Actions'); ?></th>
+							<th class="actions text-center" colspan="2"><?php echo __('Actions'); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -58,10 +58,8 @@
 		<td class="actions text-center">
 			<?php echo $this->element('BotaoAjax', array("controller" => "Alunos", "nome" => "mensalidade", "id" => h($aluno['Aluno']['id']), "icone" => "money")); ?>
 			<?php echo $this->element('BotaoAjax', array("controller" => "Alunos", "nome" => "disciplina", "id" => h($aluno['Aluno']['id']), "icone" => "puzzle-piece")); ?>
-			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $aluno['Aluno']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $aluno['Aluno']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $aluno['Aluno']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $aluno['Aluno']['id'])); ?>
 		</td>
+		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $aluno, 'model' => 'Aluno')); ?>
 	</tr>
 	<?php echo $this->element('LinhaTabelaParaAjax', array("nome" => "mensalidade", "id" => h($aluno['Aluno']['id']), "colspan" => 11)); ?>
 	<?php echo $this->element('LinhaTabelaParaAjax', array("nome" => "disciplina", "id" => h($aluno['Aluno']['id']), "colspan" => 11)); ?>

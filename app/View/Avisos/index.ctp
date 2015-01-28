@@ -36,7 +36,7 @@
 							<th><?php echo $this->Paginator->sort('arquivo'); ?></th>
 							<th><?php echo $this->Paginator->sort('mensagem'); ?></th>
 							<th><?php echo $this->Paginator->sort('tipo_id'); ?></th>
-							<th class="actions text-center"><?php echo __('Actions'); ?></th>
+							<th class="actions text-center" colspan="2"><?php echo __('Actions'); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -53,14 +53,11 @@
 		<td class="actions text-center">
 			<?php echo $this->element('BotaoAjax', array("controller" => "Avisos", "nome" => "curso", "id" => h($aviso['Aviso']['id']), "icone" => "graduation-cap")); ?>
 			<?php echo $this->element('BotaoAjax', array("controller" => "Avisos", "nome" => "grupo", "id" => h($aviso['Aviso']['id']), "icone" => "group")); ?>
-
-			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $aviso['Aviso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $aviso['Aviso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $aviso['Aviso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $aviso['Aviso']['id'])); ?>
 		</td>
+	<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $aviso, 'model' => 'Aviso')); ?>
 	</tr>
-	<?php echo $this->element('LinhaTabelaParaAjax', array("nome" => "curso", "id" => h($aviso['Aviso']['id']), "colspan" => 7)); ?>
-	<?php echo $this->element('LinhaTabelaParaAjax', array("nome" => "grupo", "id" => h($aviso['Aviso']['id']), "colspan" => 7)); ?>
+	<?php echo $this->element('LinhaTabelaParaAjax', array("nome" => "curso", "id" => h($aviso['Aviso']['id']), "colspan" => 8)); ?>
+	<?php echo $this->element('LinhaTabelaParaAjax', array("nome" => "grupo", "id" => h($aviso['Aviso']['id']), "colspan" => 8)); ?>
 <?php endforeach; ?>
 					</tbody>
 				</table>

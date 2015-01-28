@@ -1,8 +1,4 @@
-
-
-
-
-    <div class="panel panel-default">
+<div class="panel panel-default">
 
 	<div class="panel-heading"><h3><span class="fa fa-print"></span> <?php echo __('Cabecalhos'); ?>                <div class="btn-group pull-right">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -16,11 +12,7 @@
                 </div>
             </h3></div>
 	
-
-
-
 <div class="panel-body">
-
 			
 			<div class="table-responsive">
 				 <table class="table table-bordered table-hover table-condensed" >
@@ -42,11 +34,7 @@
 		<td><?php echo h($cabecalho['Cabecalho']['cabecalho']); ?>&nbsp;</td>
 		<td><?php echo h($cabecalho['Cabecalho']['rodape']); ?>&nbsp;</td>
 		<td><?php echo h($cabecalho['Cabecalho']['figura']); ?>&nbsp;</td>
-		<td class="actions text-center">
-			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $cabecalho['Cabecalho']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $cabecalho['Cabecalho']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $cabecalho['Cabecalho']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $cabecalho['Cabecalho']['id'])); ?>
-		</td>
+		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $cabecalho, 'model' => 'Cabecalho')); ?>
 	</tr>
 <?php endforeach; ?>
 					</tbody>

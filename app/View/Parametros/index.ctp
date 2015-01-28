@@ -1,8 +1,4 @@
-
-
-
-
-    <div class="panel panel-default">
+<div class="panel panel-default">
 	<div class="panel-heading"><h3><span class="fa fa-cog"></span> <?php echo __('Parametros'); ?>                 <div class="btn-group pull-right">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <?php echo __('Actions');?><span class="caret"></span>
@@ -14,12 +10,8 @@
 			</ul>
                 </div>
             </h3></div>
-	
-
-
 
 <div class="panel-body">
-
 			
 			<div class="table-responsive">
 				 <table class="table table-bordered table-hover table-condensed" >
@@ -37,11 +29,7 @@
 		<td><?php echo h($parametro['Parametro']['id']); ?>&nbsp;</td>
 		<td><?php echo h($parametro['Parametro']['nome']); ?>&nbsp;</td>
 		<td><?php echo h($parametro['Parametro']['valor']); ?>&nbsp;</td>
-		<td class="actions text-center">
-			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $parametro['Parametro']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $parametro['Parametro']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $parametro['Parametro']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $parametro['Parametro']['id'])); ?>
-		</td>
+		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $parametro, 'model' => 'Parametro')); ?>
 	</tr>
 <?php endforeach; ?>
 					</tbody>

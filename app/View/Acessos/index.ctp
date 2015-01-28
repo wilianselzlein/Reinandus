@@ -38,11 +38,7 @@
                      <?php echo $this->Html->link($acesso['Aluno']['nome'], array('controller' => 'alunos', 'action' => 'view', $acesso['Aluno']['id'])); ?>
                   </td>
                   <td><?php echo h($acesso['Acesso']['datahora']); ?>&nbsp;</td>
-                  <td class="actions text-center">
-                     <?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $acesso['Acesso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-                     <?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $acesso['Acesso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-                     <?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $acesso['Acesso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $acesso['Acesso']['id'])); ?>
-                  </td>
+                  <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $acesso, 'model' => 'Acesso')); ?>
                </tr>
                <?php endforeach; ?>
             </tbody>

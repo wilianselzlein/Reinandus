@@ -42,11 +42,7 @@
              &nbsp;</td>
 
 		<td><?php echo $this->Number->currency($lancamentocontabil['LancamentoContabil']['valor'],'BRL');?>&nbsp;</td>
-		<td class="actions text-center">
-			<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('action' => 'view', $lancamentocontabil['LancamentoContabil']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('action' => 'edit', $lancamentocontabil['LancamentoContabil']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('action' => 'delete', $lancamentocontabil['LancamentoContabil']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $lancamentocontabil['LancamentoContabil']['id'])); ?>
-		</td>
+		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $lancamentocontabil, 'model' => 'LancamentoContabil')); ?>
 	</tr>
 <?php endforeach; ?>
 				</tbody>
