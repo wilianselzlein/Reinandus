@@ -1,8 +1,4 @@
-
-
-
-
-    <div class="panel panel-default">
+<div class="panel panel-default">
 
 	<div class="panel-heading"><h3><span class="fa fa-map-marker"></span> <?php echo __('Cidades'); ?>                <div class="btn-group pull-right">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -23,13 +19,9 @@
 			</ul>
                 </div>
             </h3></div>
-	
-
-
 
 <div class="panel-body">
 
-			
 			<div class="table-responsive">
 				 <table class="table table-bordered table-hover table-condensed" >
                 <thead>
@@ -59,22 +51,5 @@
 			</div><!-- /.table-responsive -->
 
 </div>
-			<div class="panel-footer">
-			<p><small>
-				<?php
-					echo $this->Paginator->counter(array(
-					'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-					));
-				?>
-			</small></p>
-
-			 <ul class="pagination  pagination-sm">
-				<?php
-					echo $this->Paginator->prev('<i class="fa fa-backward"></i>'.' '. __('Previous'), array('tag' => 'li','escape' => false), null, array('class' => 'disabled', 'tag' => 'li', 'disabledTag' => 'a','escape'=>false));
-					echo $this->Paginator->numbers(array('separator' => '', 'currentTag' => 'a', 'tag' => 'li', 'currentClass' => 'disabled'));
-					echo $this->Paginator->next(__('Next') .' '.'<i class="fa fa-forward"></i>', array('tag' => 'li','escape'=>false), null, array('class' => 'disabled', 'tag' => 'li', 'disabledTag' => 'a','escape'=>false));
-				?>
-			</ul><!-- /.pagination -->
-			</div>
-	
+<?php echo $this->element('Paginator'); ?>	
 </div>

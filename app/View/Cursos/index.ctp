@@ -62,14 +62,5 @@
          </div><!-- /.table-responsive -->
 
    </div>
-   <div class="panel-footer">
-      <p><small>
-         <?php
-echo $this->Paginator->counter(array(
-   'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-));
-         ?>
-         </small></p>
-
-</div>
+<?php echo $this->element('Paginator'); ?>
 <?php echo $this->element('ShowHide'); ?>
