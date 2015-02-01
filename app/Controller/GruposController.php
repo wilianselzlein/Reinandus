@@ -37,7 +37,7 @@ class GruposController extends AppController {
 		if (!$this->Grupo->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('conditions' => array('Grupo.' . $this->Grupo->primaryKey => $id));
+		$options = array('recursive' => 2, 'conditions' => array('Grupo.' . $this->Grupo->primaryKey => $id));
 		$this->set('grupo', $this->Grupo->find('first', $options));
 	}
 
