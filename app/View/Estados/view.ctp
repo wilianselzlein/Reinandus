@@ -1,27 +1,9 @@
 	 <div class="panel panel-default ">
         <div class="panel-heading">
             <h2><?php echo __('Estado'); ?>                <small><?php echo __('View'); ?></small>
-
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <?php echo __('Actions');?><span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">		
-								<li><?php echo $this->Html->link('<i class="fa fa-pencil"></i>'.' '.__('Edit').' '.__('Estado'), array('action' => 'edit', $estado['Estado']['id']), array('class' => '','escape'=>false)); ?> </li>
-		<li><?php echo $this->Form->postLink(__('<i class="fa fa-times"></i>'.' '.'Delete').' '.__('Estado'), array('action' => 'delete', $estado['Estado']['id']), array('class' => '','escape'=>false), __('Are you sure you want to delete # %s?', $estado['Estado']['id'])); ?> </li>
-		<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Estados'), array('action' => 'index'), array('class' => '','escape'=>false)); ?> </li>
-		<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Estado'), array('action' => 'add'), array('class' => '','escape'=>false)); ?> </li>
-		<li class="divider"></li>		<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Cidades'), array('controller' => 'cidades', 'action' => 'index'), array('class' => '','escape'=>false)); ?> </li>
-		<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Cidade'), array('controller' => 'cidades', 'action' => 'add'), array('class' => '','escape'=>false)); ?> </li>
-				
-					</ul>
-                </div>
-
+<?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action'], $this->params['pass'][0]); ?>
             </h2>
-        </div>
-	
-	
-		
+        </div>		
 		<div class="estados view pandel-body">
 			
 			<div class="table-responsive">

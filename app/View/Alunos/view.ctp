@@ -9,7 +9,7 @@ else
 ?>
              <?php echo __('Aluno'); ?>
             <small><?php echo __('View'); ?></small>
-              <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>
+              <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action'], $this->params['pass'][0]); ?>
             </h2>
         </div>
 

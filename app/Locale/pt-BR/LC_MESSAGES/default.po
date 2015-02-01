@@ -552,3 +552,21 @@ msgstr "Lançamento Contábil"
 
 msgid "LancamentosContabils"
 msgstr "Lançamentos Contábeis"
+
+msgid "Professore"
+msgstr "Professor"
+
+msgid "FormasPagamento"
+msgstr "Forma de Pagamento"
+
+msgid "Conta Bancaria"
+msgstr "Conta Bancária"
+
+msgid "Usuario"
+msgstr "Usuário"
+
+msgid "Permisso"
+msgstr "Permissão"
+
+msgid "Permissos"
+msgstr "Permissões"

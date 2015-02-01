@@ -1,32 +1,9 @@
 <div class="panel panel-default ">
    <div class="panel-heading">
       <h2><?php echo __('Pessoa'); ?>                <small><?php echo __('View'); ?></small>
-
-         <div class="btn-group pull-right">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-               <?php echo __('Actions');?><span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">		
-               <li><?php echo $this->Html->link('<i class="fa fa-pencil"></i>'.' '.__('Edit').' '.__('Pessoa'), array('action' => 'edit', $pessoa['Pessoa']['id']), array('class' => '','escape'=>false)); ?> </li>
-               <li><?php echo $this->Form->postLink(__('<i class="fa fa-times"></i>'.' '.'Delete').' '.__('Pessoa'), array('action' => 'delete', $pessoa['Pessoa']['id']), array('class' => '','escape'=>false), __('Are you sure you want to delete # %s?', $pessoa['Pessoa']['id'])); ?> </li>
-               <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Pessoas'), array('action' => 'index'), array('class' => '','escape'=>false)); ?> </li>
-               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Pessoa'), array('action' => 'add'), array('class' => '','escape'=>false)); ?> </li>
-               <li class="divider"></li>		<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Cidades'), array('controller' => 'cidades', 'action' => 'index'), array('class' => '','escape'=>false)); ?> </li>
-               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Cidade'), array('controller' => 'cidades', 'action' => 'add'), array('class' => '','escape'=>false)); ?> </li>
-               <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Cursos'), array('controller' => 'cursos', 'action' => 'index'), array('class' => '','escape'=>false)); ?> </li>
-               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Curso'), array('controller' => 'cursos', 'action' => 'add'), array('class' => '','escape'=>false)); ?> </li>
-               <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Detalhes'), array('controller' => 'detalhes', 'action' => 'index'), array('class' => '','escape'=>false)); ?> </li>
-               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Detalhe'), array('controller' => 'detalhes', 'action' => 'add'), array('class' => '','escape'=>false)); ?> </li>
-               <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Users'), array('controller' => 'users', 'action' => 'index'), array('class' => '','escape'=>false)); ?> </li>
-               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('User'), array('controller' => 'users', 'action' => 'add'), array('class' => '','escape'=>false)); ?> </li>
-
-            </ul>
-         </div>
-
+<?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action'], $this->params['pass'][0]); ?>
       </h2>
    </div>
-
-
 
    <div class="pessoas view pandel-body">
       <?php echo $this->Form->create('Pessoa', array('role' => 'form', 'class'=>'form-horizontal'));
@@ -394,8 +371,5 @@ foreach ($pessoa['User'] as $user): ?>
 
 
    </div><!-- /.related -->
-
-
-
 
 </div><!-- /#page-container .row-fluid -->

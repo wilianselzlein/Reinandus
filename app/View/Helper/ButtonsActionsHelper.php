@@ -19,7 +19,23 @@ class ButtonsActionsHelper extends AppHelper {
 		$return = Inflector::camelize(Inflector::humanize(Inflector::pluralize($model)));
 		if (! strcasecmp($return, 'Professors')) 
 			$return = 'Professores';
+		if (! strcasecmp($return, 'LancamentoContabils')) 
+			$return = 'LancamentoContabil';
+		if (! strcasecmp($return, 'Permissaos')) 
+			$return = 'Permissoes';
 		return $return;
+	}
+
+	function ControllerNotInListIgnoreds($controller) {
+		return (strcasecmp($controller, 'Enumerados')) 
+			&& (strcasecmp($controller, 'Acessos'))
+			&& (strcasecmp($controller, 'AlunoDisciplinas'))
+			&& (strcasecmp($controller, 'CursoDisciplinas'))
+			&& (strcasecmp($controller, 'AvisoCurso'));
+	}
+
+	function TestDuplicate($string, $controller) {
+		return strpos($string, $controller) > 0;
 	}
 
 	function MakeButtonsByAction($action, $model, $id = null) {
@@ -50,21 +66,21 @@ class ButtonsActionsHelper extends AppHelper {
 
 			$controller = $this->GetControllerByModel($className['className']);
 
-			$return .= $this->AddDivider() . 
-				'<li>' .
+			if (($this->ControllerNotInListIgnoreds($controller)) && (! $this->TestDuplicate($return, $controller))) 
+				$return .= $this->AddDivider() . 
+					'<li>' .
 	$this->Html->link(
 		'<i class="fa fa-list-alt"></i>'.' '. __('List').' '.__($controller), 
 		array('controller' => $controller, 'action' => 'index'), 
 		array('class' => '','escape'=>false)
 	) .
-				'</li>' .
-				'<li>' .
+					'</li>' . '<li>' .
 	$this->Html->link(
 		'<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__($className['className']), 
 		array('controller' => $controller, 'action' => 'add'), 
 		array('class' => '','escape'=>false)
 	) .
-				'</li>';
+					'</li>';
 		endforeach;
 
 		return $return;
@@ -84,6 +100,7 @@ class ButtonsActionsHelper extends AppHelper {
 		$this->MakeButtonsByAction($action, $model, $id) .
 		$this->MakeButtonsByArray($class->belongsTo) .
 		$this->MakeButtonsByArray($class->hasMany) .
+		$this->MakeButtonsByArray($class->hasAndBelongsToMany) .
 	'</ul>' .
 '</div>';
 

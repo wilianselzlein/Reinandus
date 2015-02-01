@@ -1,26 +1,7 @@
 	 <div class="panel panel-default ">
         <div class="panel-heading">
             <h2><?php echo __('Disciplina'); ?>                <small><?php echo __('View'); ?></small>
-
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <?php echo __('Actions');?><span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">		
-								<li><?php echo $this->Html->link('<i class="fa fa-pencil"></i>'.' '.__('Edit').' '.__('Disciplina'), array('action' => 'edit', $disciplina['Disciplina']['id']), array('class' => '','escape'=>false)); ?> </li>
-		<li><?php echo $this->Form->postLink(__('<i class="fa fa-times"></i>'.' '.'Delete').' '.__('Disciplina'), array('action' => 'delete', $disciplina['Disciplina']['id']), array('class' => '','escape'=>false), __('Are you sure you want to delete # %s?', $disciplina['Disciplina']['id'])); ?> </li>
-		<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Disciplinas'), array('action' => 'index'), array('class' => '','escape'=>false)); ?> </li>
-		<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Disciplina'), array('action' => 'add'), array('class' => '','escape'=>false)); ?> </li>
-		<li class="divider"></li>		<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Alunos'), array('controller' => 'alunos', 'action' => 'index'), array('class' => '','escape'=>false)); ?> </li>
-		<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Aluno'), array('controller' => 'alunos', 'action' => 'add'), array('class' => '','escape'=>false)); ?> </li>
-		<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Cursos'), array('controller' => 'cursos', 'action' => 'index'), array('class' => '','escape'=>false)); ?> </li>
-		<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Curso'), array('controller' => 'cursos', 'action' => 'add'), array('class' => '','escape'=>false)); ?> </li>
-		<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Professors'), array('controller' => 'professors', 'action' => 'index'), array('class' => '','escape'=>false)); ?> </li>
-		<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Professor'), array('controller' => 'professors', 'action' => 'add'), array('class' => '','escape'=>false)); ?> </li>
-				
-					</ul>
-                </div>
-
+<?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action'], $this->params['pass'][0]); ?>
             </h2>
         </div>
 	
@@ -98,7 +79,7 @@
 			&nbsp;</td>
 			<td><?php echo $this->Html->link($aluno['Cidade']['nome'], array('controller' => 'cidades', 'action' => 'view', $aluno['Cidade']['id']), array('class' => '')); ?>
 			&nbsp;</td>
-			<td><?php echo $aluno['tel_celular']; ?></td>
+			<td><?php echo $aluno['celular']; ?></td>
 			<td><?php echo $aluno['email']; ?></td>
 			<td><?php echo $aluno['curso_inicio']; ?></td>
 			<td><?php echo $aluno['curso_fim']; ?></td>

@@ -1,26 +1,9 @@
 	 <div class="panel panel-default ">
         <div class="panel-heading">
             <h2><?php echo __('Conta'); ?>                <small><?php echo __('View'); ?></small>
-
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <?php echo __('Actions');?><span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">		
-								<li><?php echo $this->Html->link('<i class="fa fa-pencil"></i>'.' '.__('Edit').' '.__('Contum'), array('action' => 'edit', $contum['Contum']['id']), array('class' => '','escape'=>false)); ?> </li>
-		<li><?php echo $this->Form->postLink(__('<i class="fa fa-times"></i>'.' '.'Delete').' '.__('Contum'), array('action' => 'delete', $contum['Contum']['id']), array('class' => '','escape'=>false), __('Are you sure you want to delete # %s?', $contum['Contum']['id'])); ?> </li>
-		<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Conta'), array('action' => 'index'), array('class' => '','escape'=>false)); ?> </li>
-		<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Contum'), array('action' => 'add'), array('class' => '','escape'=>false)); ?> </li>
-		<li class="divider"></li>		<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Formapgtos'), array('controller' => 'formapgtos', 'action' => 'index'), array('class' => '','escape'=>false)); ?> </li>
-		<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Formapgto'), array('controller' => 'formapgtos', 'action' => 'add'), array('class' => '','escape'=>false)); ?> </li>
-				
-					</ul>
-                </div>
-
+<?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action'], $this->params['pass'][0]); ?>
             </h2>
-        </div>
-	
-	
+        </div>	
 		
 		<div class="conta view pandel-body">
 			
