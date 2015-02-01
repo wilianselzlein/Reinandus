@@ -1,15 +1,7 @@
 <div class="panel panel-default">
 
-	<div class="panel-heading"><h3><span class="fa fa-list-ol"></span> <?php echo __('Enumerados'); ?>                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <?php echo __('Actions');?><span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li>   
-					<?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Enumerado'), 
-							array('action' => 'add'), array('class' => '', 'escape'=>false)); ?>				</li>
-			</ul>
-                </div>
+	<div class="panel-heading"><h3><span class="fa fa-list-ol"></span> <?php echo __('Enumerados'); ?> 
+<?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>
             </h3></div>
 <div class="panel-body">
 			<div class="table-responsive">

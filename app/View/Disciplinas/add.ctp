@@ -1,35 +1,10 @@
-    <div class="panel panel-default">
+<div class="panel panel-default">
 
 <div class="panel-heading">
             <h3><?php echo __('Disciplina'); ?>                    <small><?php echo __('Add') ?></small>
-
-
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <?php echo __('Actions');?> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                    				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List') .' '.__('Disciplinas'), array('action' => 'index'),array('escape'=>false)); ?></li>
-                              <li class="divider"></li>
-				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Alunos'), array('controller' => 'alunos', 'action' => 'index'),array('escape'=>false)); ?> </li>
-				<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Aluno'), array('controller' => 'alunos', 'action' => 'add'),array('escape'=>false)); ?> </li>
-            <li class="divider"></li>
-				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Cursos'), array('controller' => 'cursos', 'action' => 'index'),array('escape'=>false)); ?> </li>
-				<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Curso'), array('controller' => 'cursos', 'action' => 'add'),array('escape'=>false)); ?> </li>
-            <li class="divider"></li>
-				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Professors'), array('controller' => 'professors', 'action' => 'index'),array('escape'=>false)); ?> </li>
-				<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Professor'), array('controller' => 'professors', 'action' => 'add'),array('escape'=>false)); ?> </li>
-                    </ul>
-                </div>
-            </h3>
-        </div>
-
-
-
+<?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>
 	
 	<div class="panel-body">
-
-		
 
 		<div class="disciplinas form">
 		

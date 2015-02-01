@@ -1,31 +1,12 @@
-
-
-
-
-    <div class="panel panel-default">
+<div class="panel panel-default">
 
 <div class="panel-heading">
             <h3><?php echo __('Parametro'); ?>                     <small><?php echo __('Edit') ?></small>
-
-
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <?php echo __('Actions');?> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                    				<li><?php echo $this->Form->postLink('<i class="fa fa-times"></i>'.' '.__('Delete'), array('action' => 'delete', $this->Form->value('Parametro.id')), array('escape'=>false), __('Are you sure you want to delete # %s?', $this->Form->value('Parametro.id'))); ?></li>
-				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List') .' '.__('Parametros'), array('action' => 'index'),array('escape'=>false)); ?></li>
-                    </ul>
-                </div>
+<?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>
             </h3>
         </div>
-
-
-
 	
 	<div class="panel-body">
-
-		
 
 		<div class="parametros form">
 		

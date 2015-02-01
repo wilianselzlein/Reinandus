@@ -3,34 +3,11 @@
    <div class="panel-heading">
       <h3><?php echo __('Aviso'); ?>                    
          <small><?php echo __('Edit') ?></small>
-
-
-         <div class="btn-group pull-right">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-               <?php echo __('Actions');?> <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-               <li><?php echo $this->Form->postLink('<i class="fa fa-times"></i>'.' '.__('Delete'), array('action' => 'delete', $this->Form->value('Aviso.id')), array('escape'=>false), __('Are you sure you want to delete # %s?', $this->Form->value('Aviso.id'))); ?></li>
-               <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List') .' '.__('Avisos'), array('action' => 'index'),array('escape'=>false)); ?></li>
-               <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Cursos'), array('controller' => 'cursos', 'action' => 'index'),array('escape'=>false)); ?> </li>
-               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Curso'), array('controller' => 'cursos', 'action' => 'add'),array('escape'=>false)); ?> </li>
-               <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Alunos'), array('controller' => 'alunos', 'action' => 'index'),array('escape'=>false)); ?> </li>
-               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Aluno'), array('controller' => 'alunos', 'action' => 'add'),array('escape'=>false)); ?> </li>
-               <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Pessoas'), array('controller' => 'pessoas', 'action' => 'index'),array('escape'=>false)); ?> </li>
-               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Pessoa'), array('controller' => 'pessoas', 'action' => 'add'),array('escape'=>false)); ?> </li>
-               <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Professors'), array('controller' => 'professors', 'action' => 'index'),array('escape'=>false)); ?> </li>
-               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Professor'), array('controller' => 'professors', 'action' => 'add'),array('escape'=>false)); ?> </li>
-            </ul>
-         </div>
+<?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>
       </h3>
    </div>
 
-
-
-
    <div class="panel-body">
-
-
 
       <div class="avisos form">
 

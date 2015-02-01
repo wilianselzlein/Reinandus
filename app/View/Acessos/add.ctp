@@ -1,33 +1,13 @@
-
-
-
-
-    <div class="panel panel-default">
+<div class="panel panel-default">
 
 <div class="panel-heading">
-            <h3><?php echo __('Acesso');?>                    <small><?php echo __('Add') ?></small>
-
-
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <?php echo __('Actions');?> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                    				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List') .' '.__('Acessos'), array('action' => 'index'),array('escape'=>false)); ?></li>
-                              <li class="divider"></li>
-				<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Alunos'), array('controller' => 'alunos', 'action' => 'index'),array('escape'=>false)); ?> </li>
-				<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Aluno'), array('controller' => 'alunos', 'action' => 'add'),array('escape'=>false)); ?> </li>
-                    </ul>
-                </div>
+            <h3><?php echo __('Acesso');?>                    
+            	<small><?php echo __('Add') ?></small>
+				<?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>
             </h3>
         </div>
 
-
-
-	
 	<div class="panel-body">
-
-		
 
 		<div class="acessos form">
 		

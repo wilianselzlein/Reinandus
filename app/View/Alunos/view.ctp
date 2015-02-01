@@ -7,21 +7,9 @@ if ($aluno['Aluno']['sexo'] == 'M')
 else
 	echo '<i class="fa fa-female"></i>';
 ?>
-             <?php echo __('Aluno'); ?>                <small><?php echo __('View'); ?></small>
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <?php echo __('Actions');?><span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">		
-								<li><?php echo $this->Html->link('<i class="fa fa-pencil"></i>'.' '.__('Edit').' '.__('Aluno'), array('action' => 'edit', $aluno['Aluno']['id']), array('class' => '','escape'=>false)); ?> </li>
-		<li><?php echo $this->Form->postLink(__('<i class="fa fa-times"></i>'.' '.'Delete').' '.__('Aluno'), array('action' => 'delete', $aluno['Aluno']['id']), array('class' => '','escape'=>false), __('Are you sure you want to delete # %s?', $aluno['Aluno']['id'])); ?> </li>
-		<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Alunos'), array('action' => 'index'), array('class' => '','escape'=>false)); ?> </li>
-		<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Aluno'), array('action' => 'add'), array('class' => '','escape'=>false)); ?> </li>
-		<li class="divider"></li>		<li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List').' '.__('Cursos'), array('controller' => 'cursos', 'action' => 'index'), array('class' => '','escape'=>false)); ?> </li>
-		<li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Curso'), array('controller' => 'cursos', 'action' => 'add'), array('class' => '','escape'=>false)); ?> </li>
-				
-					</ul>
-                </div>
+             <?php echo __('Aluno'); ?>
+            <small><?php echo __('View'); ?></small>
+              <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>
             </h2>
         </div>
 
