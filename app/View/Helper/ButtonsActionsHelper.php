@@ -17,12 +17,12 @@ class ButtonsActionsHelper extends AppHelper {
 
 	function GetControllerByModel($model) {
 		$return = Inflector::camelize(Inflector::humanize(Inflector::pluralize($model)));
-		if (! strcasecmp($return, 'Professors')) 
-			$return = 'Professores';
-		if (! strcasecmp($return, 'LancamentoContabils')) 
-			$return = 'LancamentoContabil';
-		if (! strcasecmp($return, 'Permissaos')) 
-			$return = 'Permissoes';
+		//if (! strcasecmp($return, 'Professors')) 
+		//	$return = 'Professores';
+		//if (! strcasecmp($return, 'LancamentoContabils')) 
+		//	$return = 'LancamentoContabil';
+		//if (! strcasecmp($return, 'Permissaos')) 
+		//	$return = 'Permissoes';
 		return $return;
 	}
 

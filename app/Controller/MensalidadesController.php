@@ -62,10 +62,11 @@ class MensalidadesController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$contas = $this->Mensalidade->Contum->find('list');
+		$contas = $this->Mensalidade->Conta->find('list');
+		$alunos = $this->Mensalidade->Aluno->find('list');
 		$formapgtos = $this->Mensalidade->Formapgto->find('list');
 		$users = $this->Mensalidade->User->find('list');
-		$this->set(compact('contas', 'formapgtos', 'users'));
+		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
 	}
 
 /**
@@ -97,10 +98,11 @@ class MensalidadesController extends AppController {
 			$options = array('conditions' => array('Mensalidade.' . $this->Mensalidade->primaryKey => $id));
 			$this->request->data = $this->Mensalidade->find('first', $options);
 		}
-		$contas = $this->Mensalidade->Contum->find('list');
+		$contas = $this->Mensalidade->Conta->find('list');
+		$alunos = $this->Mensalidade->Aluno->find('list');
 		$formapgtos = $this->Mensalidade->Formapgto->find('list');
 		$users = $this->Mensalidade->User->find('list');
-		$this->set(compact('contas', 'formapgtos', 'users'));
+		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
 	}
 
 /**
