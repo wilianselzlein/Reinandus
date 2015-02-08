@@ -28,7 +28,7 @@
       <ul id="fin" class="collapse">
          <li><?php echo $this->Html->link(__('Mensalidades'),                 array('controller'=>'Mensalidades','action'=>'index'));?></li>
          <li><?php echo $this->Html->link(__('Contas a Pagar'),               array('controller'=>'Pagar','action'=>'index'));?></li>
-         <li><?php echo $this->Html->link(__('Gerar Mensalidades'),           array('controller'=>'Contratos','action'=>'index'));?></li>
+         <li><?php echo $this->Html->link(__('Gerar Mensalidades'),           array('controller'=>'Mensalidades','action'=>'gerar'));?></li>
       </ul>
    </li>
    <li>
