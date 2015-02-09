@@ -23,6 +23,35 @@ class Contrato extends AppModel {
  */
 //	public $displayField = 'numero';
 
+/**
+ * Validation rules
+ *
+ * @var array
+ */
+	public $validate = array(
+		'horas_aula' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				'message' => 'VALIDADE_NUMERIC',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'valor_aula' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				'message' => 'VALIDADE_NUMERIC',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+	);
+
+
 //The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
@@ -55,6 +84,20 @@ class Contrato extends AppModel {
 		'Aluno' => array(
 			'className' => 'Aluno',
 			'foreignKey' => 'aluno_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Professor' => array(
+			'className' => 'Professor',
+			'foreignKey' => 'professor_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Disciplina' => array(
+			'className' => 'Disciplina',
+			'foreignKey' => 'disciplina_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

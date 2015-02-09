@@ -22,27 +22,27 @@ class ContratosController extends AppController {
  * @return void
  */
 	public function aluno() {
-        if ($this->request->is('post') || $this->request->is('put')) {
-        	/*$data = $this->request->data;
-        	$data = $data['Mensalidade'];
-        	
-    		$numero = 1;
-        	$quantidade = (float)$data['quantidade'];
-        	while ($numero <= $quantidade) {
-        		$mensalidade = $data;
-    			$mensalidade['numero'] = $numero;
+    if ($this->request->is('post') || $this->request->is('put')) {
+        /*$data = $this->request->data;
+        $data = $data['Mensalidade'];
 
-                $this->Mensalidade->create();
-                $this->Mensalidade->save($mensalidade);
-                $numero++;
-        	}
-			$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
-               "link_text" => __('GO_TO'),
-               "link_url" => array(                  
-                  "action" => "view",
-                  $this->Acesso->id
-               )));
-			$this->redirect(array('action' => 'index'));*/
+        $numero = 1;
+        $quantidade = (float)$data['quantidade'];
+        while ($numero <= $quantidade) {
+          $mensalidade = $data;
+          $mensalidade['numero'] = $numero;
+
+          $this->Mensalidade->create();
+          $this->Mensalidade->save($mensalidade);
+          $numero++;
+        }
+        $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+          "link_text" => __('GO_TO'),
+          "link_url" => array(                  
+          "action" => "view",
+          $this->Acesso->id
+        )));
+        $this->redirect(array('action' => 'index'));*/
 			$this->Session->setFlash(__('Contrato gerado.'), 'flash/success');
 		}
 		$contas = $this->Contrato->Conta->find('list');
@@ -58,7 +58,32 @@ class ContratosController extends AppController {
  * @return void
  */
 	public function professor() {
-		$this->redirect(array('controller' => 'relatorios', 'action' => 'index'));
+    if ($this->request->is('post') || $this->request->is('put')) {
+        /*$data = $this->request->data;
+        $data = $data['Mensalidade'];
+
+        $numero = 1;
+        $quantidade = (float)$data['quantidade'];
+        while ($numero <= $quantidade) {
+          $mensalidade = $data;
+          $mensalidade['numero'] = $numero;
+
+          $this->Mensalidade->create();
+          $this->Mensalidade->save($mensalidade);
+          $numero++;
+        }
+        $this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+          "link_text" => __('GO_TO'),
+          "link_url" => array(                  
+          "action" => "view",
+          $this->Acesso->id
+        )));
+        $this->redirect(array('action' => 'index'));*/
+      $this->Session->setFlash(__('Contrato gerado.'), 'flash/success');
+    }
+    $professores = $this->Contrato->Professor->find('list');
+    $disciplinas = $this->Contrato->Disciplina->find('list');
+    $this->set(compact('professores', 'disciplinas'));
 	}
 
 }
