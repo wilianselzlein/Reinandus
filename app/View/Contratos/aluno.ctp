@@ -1,13 +1,13 @@
 <div class="panel panel-default">
    <div class="panel-heading">
-      <h3><?php echo __('Mensalidade'); ?>
+      <h3><?php echo __('Contrato'); ?>
          <small><?php echo __('Gerar') ?></small>
-         <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], 'add'); ?>
+         <?php echo $this->ButtonsActions->MakeButtons('Mensalidades', 'add'); ?>
       </h3>
    </div>
    <div class="panel-body">
       <div class="Mensalidades form">
-         <?php echo $this->Form->create('Mensalidade', array('role' => 'form', 'class'=>'form-horizontal')); ?>
+         <?php echo $this->Form->create('Contrato', array('role' => 'form', 'class'=>'form-horizontal')); ?>
          <fieldset>
 <?php echo $this->element('FormContrato'); ?>
             <?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>

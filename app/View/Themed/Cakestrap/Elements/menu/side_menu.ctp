@@ -18,8 +18,8 @@
       <a href="javascript:;" data-toggle="collapse" data-target="#sec"><i class="fa fa-fw fa-arrows-v"></i><?php echo __('Secretaria');?><i class="fa fa-fw fa-caret-down"></i></a>
       <ul id="sec" class="collapse">
          <li><?php echo $this->Html->link(__('Avisos, Materiais e Noticias'), array('controller'=>'Avisos','action'=>'index'));?></li>
-         <li><?php echo $this->Html->link(__('Contrato Alunos'),              array('controller'=>'Contratos','action'=>'index'));?></li>
-         <li><?php echo $this->Html->link(__('Contrato Professores'),         array('controller'=>'Contratos','action'=>'index'));?></li>
+         <li><?php echo $this->Html->link(__('Contrato Alunos'),              array('controller'=>'Contratos','action'=>'aluno'));?></li>
+         <li><?php echo $this->Html->link(__('Contrato Professores'),         array('controller'=>'Contratos','action'=>'professor'));?></li>
          <li><?php echo $this->Html->link(__('Notas e Frequencias'),          array('controller'=>'Notas','action'=>'index'));?></li>
       </ul>
    </li>
