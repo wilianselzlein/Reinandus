@@ -1,12 +1,12 @@
 <?php 
-class DateformatBehavior extends ModelBehavior {
+class DateFormatBehavior extends ModelBehavior {
    //Our  format
    var $dateFormat = 'd/m/Y';
    //datebase Format
    var $databaseFormat = 'Y-m-d';
 
-   function setup(&$model) {
-      $this->model = $model;
+   public function setup(Model $Model, $config = array()) {      
+      $this->Model = $Model;
    }
 
    function _changeDateFormat($date = null,$dateFormat){        
@@ -25,7 +25,7 @@ class DateformatBehavior extends ModelBehavior {
          if(is_array($value)){
             $queryDataConditions[$key] = $this->_changeDate($value,$dateFormat);
          } else {
-            $columns = $this->model->getColumnTypes();
+            $columns = $this->Model->getColumnTypes();
             //sacamos las columnas que no queremos
             foreach($columns as $column => $type){
                if(($type != 'date') && ($type != 'datetime')) unset($columns[$column]);
@@ -53,18 +53,19 @@ class DateformatBehavior extends ModelBehavior {
       return $queryDataConditions;
    }
 
-   function beforeFind($model, $queryData){
+   function beforeFind(Model $Model, $queryData){
       $queryData['conditions'] = $this->_changeDate($queryData['conditions'] , $this->databaseFormat);
       return $queryData;
    }
 
-   function afterFind(&$model, $results){
+   public function afterFind(Model $Model, $results, $primary = false) {
       $results = $this->_changeDate($results, $this->dateFormat);
       return $results;
    }
 
-   function beforeSave($model) {
-      $model->data = $this->_changeDate($model->data, $this->databaseFormat);
+   public function beforeSave(Model $Model, $options = array()) {
+      $Model->data = $this->_changeDate($model->data, $this->databaseFormat);
       return true;
    }
+
 }
