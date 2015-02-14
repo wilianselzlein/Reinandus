@@ -31,7 +31,7 @@
                <?php foreach ($array['Aviso'] as $aviso): ?>
                <tr>
                   <td><?php echo $aviso['id']; ?></td>
-                  <td><?php echo $aviso['data']; ?></td>
+                  <td><?php echo date('d/m/Y', strtotime($aviso['data'])); ?></td>
                   <td><?php echo $this->Html->link($aviso['User']['username'], array('controller' => 'users', 'action' => 'view', $aviso['User']['id']), array('class' => '')); ?>
                      &nbsp;</td>
                   <td><?php echo $aviso['arquivo']; ?></td>

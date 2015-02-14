@@ -37,14 +37,14 @@ class AlunoDisciplinasController extends AppController {
                   $this->AlunoDisciplina->id
                )
             ));
-				$this->redirect(array('controller' => 'alunos', 'action' => 'index'));
+				$this->redirect(array('controller' => 'alunos', 'action' => 'view', $aluno_id));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
 		$disciplinas = $this->AlunoDisciplina->Disciplina->find('list');
-		$professors = $this->AlunoDisciplina->Professor->find('list');
-		$this->set(compact('disciplinas', 'professors'));
+		$professores = $this->AlunoDisciplina->Professor->find('list');
+		$this->set(compact('disciplinas', 'professores', 'aluno_id'));
 	}
 
 /**
@@ -61,6 +61,8 @@ class AlunoDisciplinasController extends AppController {
 			throw new NotFoundException(__('The record could not be found.?>'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
+			$aluno_id = $this->request->data;
+			$aluno_id = $aluno_id['AlunoDisciplina']['aluno_id'];
 			if ($this->AlunoDisciplina->save($this->request->data)) {
 				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                "link_text" => __('GO_TO'),
@@ -69,7 +71,7 @@ class AlunoDisciplinasController extends AppController {
                   $this->AlunoDisciplina->id
                )
             ));
-				$this->redirect(array('controller' => 'alunos', 'action' => 'index'));
+				$this->redirect(array('controller' => 'alunos', 'action' => 'view', $aluno_id));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
@@ -77,9 +79,9 @@ class AlunoDisciplinasController extends AppController {
 			$options = array('conditions' => array('AlunoDisciplina.' . $this->AlunoDisciplina->primaryKey => $id));
 			$this->request->data = $this->AlunoDisciplina->find('first', $options);
 		}
-		$professors = $this->AlunoDisciplina->Professor->find('list');
+		$professores = $this->AlunoDisciplina->Professor->find('list');
 		$disciplinas = $this->AlunoDisciplina->Disciplina->find('list');
-		$this->set(compact('professors', 'disciplinas'));
+		$this->set(compact('professores', 'disciplinas'));
 	}
 
 /**

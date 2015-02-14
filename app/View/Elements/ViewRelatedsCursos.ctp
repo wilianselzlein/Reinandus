@@ -6,7 +6,8 @@
                             <?php echo __('Actions'); ?> <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                                <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Curso'), array('controller' => 'cursos', 'action' => 'add'), array('class' => '', 'escape' => false)); ?>                                </li>
+                                <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Curso'), array('controller' => 'cursos', 'action' => 'add'), array('class' => '', 'escape' => false)); ?>
+                                </li>
                             </ul>       
                     </div>
                 </h3>
@@ -24,9 +25,7 @@
 		<th><?php echo __('Coordenador'); ?></th>
 		<th><?php echo __('Turma'); ?></th>
 		<th><?php echo __('Carga'); ?></th>
-		<th><?php echo __('Inicio'); ?></th>
-		<th><?php echo __('Fim'); ?></th>
-		<th><?php echo __('Secretaria'); ?></th>
+		<th><?php echo __('Secretária'); ?></th>
 		<th><?php echo __('Num Turma'); ?></th>
 		<th><?php echo __('Periodo'); ?></th>
 							<th class="actions text-center"><?php echo __('Actions'); ?></th>
@@ -42,8 +41,6 @@
 			&nbsp;</td>
 			<td><?php echo $curso['turma']; ?></td>
 			<td><?php echo $curso['carga']; ?></td>
-			<td><?php echo $curso['inicio']; ?></td>
-			<td><?php echo $curso['fim']; ?></td>
 			<td><?php echo $this->Html->link($curso['Pessoa']['fantasia'], array('controller' => 'pessoas', 'action' => 'view', $curso['Pessoa']['id']), array('class' => '')); ?>
 			&nbsp;</td>
 			<td><?php echo $curso['num_turma']; ?></td>

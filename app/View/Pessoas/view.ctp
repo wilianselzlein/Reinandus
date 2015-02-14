@@ -8,8 +8,7 @@
    <div class="pessoas view pandel-body">
       <?php echo $this->Form->create('Pessoa', array('role' => 'form', 'class'=>'form-horizontal'));
 $hidden = "";
-
-if($this->request->data['Pessoa']['pessoa'] == 'F'){
+if($pessoa['Pessoa']['pessoa'] == 'F'){
    $hidden = "hidden";
 }
       ?>
@@ -173,9 +172,9 @@ if($this->request->data['Pessoa']['pessoa'] == 'F'){
                      &nbsp;
                   </td>
                </tr>
-               <tr class=" <?php echo $hidden;?>">		<td><strong><?php echo __('Fundacao'); ?></strong></td>
+               <tr class=" <?php echo $hidden;?>">	<td><strong><?php echo __('Fundacao'); ?></strong></td>
                   <td>
-                     <?php echo h($pessoa['Pessoa']['fundacao']); ?>
+                     <?php echo date('d/m/Y', strtotime($pessoa['Pessoa']['fundacao'])); ?>
                      &nbsp;
                   </td>
                </tr>

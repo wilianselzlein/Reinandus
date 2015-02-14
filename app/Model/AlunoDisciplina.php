@@ -23,6 +23,43 @@ class AlunoDisciplina extends AppModel {
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
+/**
+ * Validation rules
+ *
+ * @var array
+ */
+	public $validate = array(
+		'frequencia' => array(
+			'numeric' => array(
+				'rule' => array('ValorEntre', 'frequencia', 100),
+				'message' => 'VALIDATE_BETWEEN_0_100',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'nota' => array(
+			'numeric' => array(
+				'rule' => array('ValorEntre', 'nota', 10),
+				'message' => 'VALIDATE_BETWEEN_0_10',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'horas_aula' => array(
+			'numeric' => array(
+				'rule' => array('ValorEntre', 'horas_aula', 100),
+				'message' => 'VALIDATE_BETWEEN_0_100',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+	);
 
 /**
  * belongsTo associations

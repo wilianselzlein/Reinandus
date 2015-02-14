@@ -452,7 +452,7 @@ msgid "Calendario"
 msgstr "Calendário"
 
 msgid "Liquido"
-msgstr "Liquído"
+msgstr "Líquido"
 
 msgid "Inicio"
 msgstr "Início"
@@ -528,6 +528,18 @@ msgstr "O campo deve deve ser preenchido."
 
 msgid "VALIDATE_NUMERIC"
 msgstr "O valor informado deve ser um número."
+
+msgid "VALIDATE_DATE"
+msgstr "O valor informado deve ser uma data válida."
+
+msgid "VALIDATE_BETWEEN_0_100"
+msgstr "Valor entre 0 e 100."
+
+msgid "VALIDATE_BETWEEN_0_10"
+msgstr "Valor entre 0 e 10."
+
+msgid "VALIDADE_EMAIL"
+msgstr "Informe um email válido."
 
 msgid "GO_TO"
 msgstr "Ir para &raquo;"

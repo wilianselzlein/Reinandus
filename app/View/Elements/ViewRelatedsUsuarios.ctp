@@ -34,8 +34,8 @@
 			<td><?php echo $this->Html->link($user['Pessoa']['razaosocial'], array('controller' => 'pessoas', 'action' => 'view', $user['Pessoa']['id']), array('class' => '')); ?>
 			&nbsp;
 			</td>
-			<td><?php echo $user['created']; ?></td>
-			<td><?php echo $user['modified']; ?></td>
+			<td><?php echo date('d/m/Y', strtotime($user['created'])); ?></td>
+			<td><?php echo date('d/m/Y', strtotime($user['modified'])); ?></td>
 			<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $user, 'model' => '', 'controller' => 'usuarios')); ?>
 		</tr>
 	<?php endforeach; ?>

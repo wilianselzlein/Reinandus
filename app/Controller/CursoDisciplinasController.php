@@ -36,8 +36,8 @@ class CursoDisciplinasController extends AppController {
 			}
 		}
 		$disciplinas = $this->CursoDisciplina->Disciplina->find('list');
-		$professors = $this->CursoDisciplina->Professor->find('list');
-		$this->set(compact('disciplinas', 'professors'));
+		$professores = $this->CursoDisciplina->Professor->find('list');
+		$this->set(compact('disciplinas', 'professores'));
 	}
 
 /**

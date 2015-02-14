@@ -56,7 +56,7 @@
 								array('class'=>'col-sm-1 control-label', 'style' => 'width: 250px;')); 
 						   echo $this->Form->input('entregou_diploma', 
 						            array('type' => 'checkbox', 'class' => 'form-control checkbox2',
-						                  'before'=>'<div class="col-sm-3" align="center" style="width: 50px;"', 
+						                  'before'=>'<div class="col-sm-3" align="center" style="width: 50px;">', 
 						                  'after'=>'</div>', 'div'=>false, 'label'=>false, 'checked'=>true)); ?>
 						<?php echo $this->Form->label(__('emitir_carteirinha'), null, 
 								array('text' => 'Emitir Carteira', 'class'=>'col-sm-1 control-label', 'style' => 'width: 250px;')); 
@@ -70,7 +70,7 @@
 								array('class'=>'col-sm-1 control-label', 'style' => 'width: 250px;')); 
 						   echo $this->Form->input('entregou_cpf', 
 						            array('type' => 'checkbox', 'class' => 'form-control checkbox2',
-						                  'before'=>'<div class="col-sm-3" align="center" style="width: 50px;"', 
+						                  'before'=>'<div class="col-sm-3" align="center" style="width: 50px;">', 
 						                  'after'=>'</div>', 'div'=>false, 'label'=>false, 'checked'=>true)); ?>
 						<?php echo $this->Form->label(__('entregou_rg'), null, 
 								array('class'=>'col-sm-1 control-label', 'style' => 'width: 250px;')); 

@@ -37,7 +37,7 @@ class CidadesController extends AppController {
 		if (!$this->Cidade->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('conditions' => array('Cidade.' . $this->Cidade->primaryKey => $id));
+		$options = array('recursive' => 2, 'conditions' => array('Cidade.' . $this->Cidade->primaryKey => $id));
 		$this->set('cidade', $this->Cidade->find('first', $options));
 	}
 
@@ -49,6 +49,7 @@ class CidadesController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Cidade->create();
+			if ($this->Cidade->save($this->request->data)) {
 			$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                "link_text" => __('GO_TO'),
                "link_url" => array(                  
@@ -56,12 +57,11 @@ class CidadesController extends AppController {
                   $this->Cidade->id
                )
             ));
-				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
-		
+		}
 		$estados = $this->Cidade->Estado->find('list');
 		$this->set(compact('estados'));
 	}

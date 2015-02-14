@@ -2,7 +2,7 @@
 
 <div class="panel-heading">
             <h3><?php echo __('Disciplina'); ?>
-                <small><?php echo __('Add') ?></small>
+                <small><?php echo __('Edit') ?></small>
 				<?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>
             </h3>
         </div>
@@ -17,6 +17,10 @@
 		            <div class="form-group">
 		               <?php echo $this->Form->input('id', 
 		                     array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+		            </div><!-- .form-group -->
+		            <div class="form-group">
+		               <?php echo $this->Form->hidden('aluno_id', 
+		                     array('type' => 'text', 'class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
 		            </div><!-- .form-group -->
 					<div class="form-group">
 						<?php echo $this->Form->input('disciplina_id', 

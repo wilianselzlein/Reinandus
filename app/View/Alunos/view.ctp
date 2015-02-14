@@ -124,7 +124,7 @@ else
             </button>
             <ul class="dropdown-menu" role="menu">
                <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '   .__('List') .' '.__('Disciplinas'), array('controller' => 'disciplinas', 'action' => 'index'),   array('escape'=>false)); ?>   </li>
-               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '.__('Disciplina'), array('controller' => 'alunodisciplinas', 'action' => 'add'),     array('escape'=>false)); ?>   </li>
+               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '.__('Disciplina'), array('controller' => 'alunodisciplinas', 'action' => 'add', $aluno['Aluno']['id']),     array('escape'=>false)); ?>   </li>
             </ul>       
          </div>
       </h3>

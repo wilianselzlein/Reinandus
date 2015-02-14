@@ -41,7 +41,8 @@
 			<td><?php echo $pessoa['endereco']; ?></td>
 			<td><?php echo $pessoa['numero']; ?></td>
 			<td><?php echo $pessoa['bairro']; ?></td>
-			<td><?php echo $pessoa['cidade_id']; ?></td>
+			<td><?php echo $this->Html->link($pessoa['Cidade']['nome'], array('controller' => 'cidades', 'action' => 'view', $pessoa['Cidade']['id']), array('class' => '')); ?>
+			&nbsp;</td>
 			<td><?php echo $pessoa['cep']; ?></td>
 			<td><?php echo $pessoa['fone']; ?></td>
 			<td><?php echo $pessoa['email']; ?></td>

@@ -32,9 +32,9 @@
 		<tr>
                   <td><?php echo $mensalidade['id']; ?></td>
                   <td><?php echo $mensalidade['numero']; ?></td>
-                  <td><?php echo $mensalidade['vencimento']; ?></td>
+                  <td><?php echo date('d/m/Y', strtotime($mensalidade['vencimento'])); ?></td>
                   <td><?php echo $mensalidade['liquido']; ?></td>
-                  <td><?php echo $mensalidade['pagamento']; ?></td>
+                  <td><?php echo date('d/m/Y', strtotime($mensalidade['pagamento'])); ?></td>
                   <td><?php echo $this->Html->link($mensalidade['Aluno']['nome'], array('controller' => 'alunos', 'action' => 'view', $mensalidade['Aluno']['id']), array('class' => '')); ?>
                      &nbsp;</td>
 			<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $mensalidade, 'model' => '', 'controller' => 'mensalidades')); ?>

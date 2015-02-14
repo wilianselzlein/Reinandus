@@ -4,9 +4,6 @@
 <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action'], $this->params['pass'][0]); ?>
             </h2>
         </div>
-	
-	
-		
 		<div class="disciplinas view pandel-body">
 			
 			<div class="table-responsive">
@@ -24,7 +21,7 @@
 		</td>
 </tr><tr>		<td><strong><?php echo __('Valor'); ?></strong></td>
 		<td>
-			<?php echo h($disciplina['Disciplina']['valor']); ?>
+			<?php echo $this->Number->currency($disciplina['Disciplina']['valor'], 'BRL'); ?>
 			&nbsp;
 		</td>
 </tr>					</tbody>

@@ -19,12 +19,11 @@
             <thead>
                <tr class="active">
                   <th><?php echo __('Id'); ?></th>
-                  <th><?php echo __('Ativo'); ?></th>
                   <th><?php echo __('Nome'); ?></th>
                   <th><?php echo __('Situacao Id'); ?></th>
                   <th><?php echo __('Tel Celular'); ?></th>
                   <th><?php echo __('Email'); ?></th>
-                  <th><?php echo __('Curso Inicio'); ?></th>
+                  <th><?php echo __('Curso Início'); ?></th>
                   <th><?php echo __('Curso Fim'); ?></th>
                   <th class="actions text-center"><?php echo __('Actions'); ?></th>
                </tr>
@@ -33,7 +32,6 @@
                <?php foreach ($array['Aluno'] as $aluno): ?>
                <tr>
                   <td><?php echo $aluno['id']; ?></td>
-                  <td><?php echo $aluno['is_ativo']; ?></td>
                   <td><?php echo $aluno['nome']; ?></td>
                   <td><?php if (isset($aluno['Situacao']['nome']))
                   echo $aluno['Situacao']['nome']; ?></td>
@@ -41,8 +39,8 @@
                      &nbsp;</td> */ ?>
                   <td><?php echo $aluno['celular']; ?></td>
                   <td><?php echo $aluno['email']; ?></td>
-                  <td><?php echo $aluno['curso_inicio']; ?></td>
-                  <td><?php echo $aluno['curso_fim']; ?></td>
+                  <td><?php echo date('d/m/Y', strtotime($aluno['curso_inicio'])); ?></td>
+                  <td><?php echo date('d/m/Y', strtotime($aluno['curso_fim'])); ?></td>
                   <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $aluno, 'model' => '', 'controller' => 'alunos')); ?>
                </tr>
                <?php endforeach; ?>

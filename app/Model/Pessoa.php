@@ -74,7 +74,7 @@ class Pessoa extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'User' => array(
+		'Usuario' => array(
 			'className' => 'User',
 			'foreignKey' => 'pessoa_id',
 			'dependent' => false,

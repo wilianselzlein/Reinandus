@@ -13,10 +13,7 @@
 							<th><?php echo $this->Paginator->sort('id'); ?></th>
 							<th><?php echo $this->Paginator->sort('nome'); ?></th>
 							<th><?php echo $this->Paginator->sort('endereco'); ?></th>
-							<th><?php echo $this->Paginator->sort('numero'); ?></th>
-							<th><?php echo $this->Paginator->sort('bairro'); ?></th>
 							<th><?php echo $this->Paginator->sort('cidade_id'); ?></th>
-							<th><?php echo $this->Paginator->sort('cep'); ?></th>
 							<th><?php echo $this->Paginator->sort('fone'); ?></th>
 							<th><?php echo $this->Paginator->sort('email'); ?></th>
 							<th class="actions text-center"><?php echo __('Actions'); ?></th>
@@ -27,13 +24,14 @@
 	<tr>
 		<td><?php echo h($professor['Professor']['id']); ?>&nbsp;</td>
 		<td><?php echo h($professor['Professor']['nome']); ?>&nbsp;</td>
-		<td><?php echo h($professor['Professor']['endereco']); ?>&nbsp;</td>
-		<td><?php echo h($professor['Professor']['numero']); ?>&nbsp;</td>
-		<td><?php echo h($professor['Professor']['bairro']); ?>&nbsp;</td>
+		<td><?php echo 
+						h($professor['Professor']['endereco']) . ' ' . 
+						h($professor['Professor']['numero']) . ' ' . 
+						h($professor['Professor']['bairro']) . ' ' .
+						 h($professor['Professor']['cep']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($professor['Cidade']['nome'], array('controller' => 'cidades', 'action' => 'view', $professor['Cidade']['id'])); ?>
 		</td>
-		<td><?php echo h($professor['Professor']['cep']); ?>&nbsp;</td>
 		<td><?php echo h($professor['Professor']['fone']); ?>&nbsp;</td>
 		<td><?php echo h($professor['Professor']['email']); ?>&nbsp;</td>
 		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $professor, 'model' => 'Professor')); ?>

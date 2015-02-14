@@ -77,10 +77,10 @@ class Aluno extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'data_nascimento' => array(
-			'numeric' => array(
-				'rule' => array('date'),
-				'message' => 'VALIDATE_DATE',
+		'email' => array(
+			'email' => array(
+				'rule' => array('email'),
+				'message' => 'VALIDADE_EMAIL',
 				'allowEmpty' => true,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule

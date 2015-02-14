@@ -13,10 +13,7 @@
 							<th><?php echo $this->Paginator->sort('fantasia'); ?></th>
 							<th><?php echo $this->Paginator->sort('razaosocial'); ?></th>
 							<th><?php echo $this->Paginator->sort('endereco'); ?></th>
-							<th><?php echo $this->Paginator->sort('numero'); ?></th>
-							<th><?php echo $this->Paginator->sort('bairro'); ?></th>
 							<th><?php echo $this->Paginator->sort('cidade_id'); ?></th>
-							<th><?php echo $this->Paginator->sort('cep'); ?></th>
 							<th><?php echo $this->Paginator->sort('fone'); ?></th>
 							<th><?php echo $this->Paginator->sort('email'); ?></th>
 							<th class="actions text-center"><?php echo __('Actions'); ?></th>
@@ -28,13 +25,13 @@
 		<td><?php echo h($pessoa['Pessoa']['id']); ?>&nbsp;</td>
 		<td><?php echo h($pessoa['Pessoa']['fantasia']); ?>&nbsp;</td>
 		<td><?php echo h($pessoa['Pessoa']['razaosocial']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['endereco']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['numero']); ?>&nbsp;</td>
-		<td><?php echo h($pessoa['Pessoa']['bairro']); ?>&nbsp;</td>
+		<td><?php echo h($pessoa['Pessoa']['endereco']) . ' ' . 
+						h($pessoa['Pessoa']['numero']) . ' ' .
+						h($pessoa['Pessoa']['bairro']) . ' ' . 
+						h($pessoa['Pessoa']['cep']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($pessoa['Cidade']['nome'], array('controller' => 'cidades', 'action' => 'view', $pessoa['Cidade']['id'])); ?>
 		</td>
-		<td><?php echo h($pessoa['Pessoa']['cep']); ?>&nbsp;</td>
 		<td><?php echo h($pessoa['Pessoa']['fone']); ?>&nbsp;</td>
 		<td><?php echo h($pessoa['Pessoa']['email']); ?>&nbsp;</td>
 		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $pessoa, 'model' => 'Pessoa')); ?>
