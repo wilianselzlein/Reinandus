@@ -9,7 +9,7 @@ App::uses('AppController', 'Controller');
  */
 class AlunoDisciplinasController extends AppController {
 
-    public $uses = array('Aluno', 'AlunoDisciplina');
+    public $uses = array('Aluno', 'AlunoDisciplina', 'Curso');
 
 /**
  * Components
@@ -106,6 +106,29 @@ class AlunoDisciplinasController extends AppController {
 		}
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
 		$this->redirect(array('controller' => 'alunos', 'action' => 'index'));
+	}
+
+/**
+ * add method
+ *
+ * @return void
+ */
+	public function adddocurso($aluno_id) {
+	  $curso = $this->Aluno->findById($aluno_id);
+	  $curso = $curso['Aluno']['curso_id'];
+
+	  $disciplinas = $this->Curso->CursoDisciplina->find('all', array(
+	  	'fields' => array('CursoDisciplina.disciplina_id', 'CursoDisciplina.professor_id', 'CursoDisciplina.horas_aula')
+		));
+
+		foreach ($disciplinas as $disciplina):
+			$aluno = $disciplina['CursoDisciplina'];
+			$aluno['aluno_id'] = $aluno_id;
+			$this->AlunoDisciplina->create();
+			$this->AlunoDisciplina->save($aluno); //debug($aluno);
+        endforeach;
+	    $this->Session->setFlash(__('Disciplinas adicionadas'), 'flash/success');
+		$this->redirect(array('controller' => 'alunos', 'action' => 'view', $aluno_id));
 	}
 
 }
