@@ -27,7 +27,7 @@
 		<td>
 			<?php echo $this->Html->link($aviso['User']['username'], array('controller' => 'users', 'action' => 'view', $aviso['User']['id'])); ?>
 		</td>
-		<td><?php echo h($aviso['Aviso']['arquivo']); ?>&nbsp;</td>
+        <td><a href="/reinandus/arqs/<?php echo basename($aviso['Aviso']['caminho']); ?>"><?php echo h($aviso['Aviso']['arquivo']); ?></a>&nbsp;</td>
 		<td><?php echo h($aviso['Aviso']['mensagem']); ?>&nbsp;</td>
 		<td><?php echo h($aviso['Tipo']['nome']); ?>&nbsp;</td>
 		<td class="actions text-center">

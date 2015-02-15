@@ -120,8 +120,14 @@ class AvisosController extends AppController {
 			throw new MethodNotAllowedException();
 		}
 		$this->Aviso->id = $id;
+
 		if (!$this->Aviso->exists()) {
 			throw new NotFoundException(__('The record could not be found.'));
+		}
+		$arquivo = $this->Aviso->findById($id);
+		$arquivo = $arquivo['Aviso']['caminho'];		
+		if (is_file($arquivo)) {
+			unlink($arquivo);
 		}
 		if ($this->Aviso->delete()) {
 			$this->Session->setFlash(__('Record deleted'), 'flash/success');

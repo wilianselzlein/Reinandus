@@ -26,11 +26,6 @@
 			<?php echo $this->Html->link($aviso['User']['username'], array('controller' => 'users', 'action' => 'view', $aviso['User']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
-</tr><tr>		<td><strong><?php echo __('Arquivo'); ?></strong></td>
-		<td>
-			<?php echo h($aviso['Aviso']['arquivo']); ?>
-			&nbsp;
-		</td>
 </tr><tr>		<td><strong><?php echo __('Mensagem'); ?></strong></td>
 		<td>
 			<?php echo h($aviso['Aviso']['mensagem']); ?>
@@ -39,6 +34,26 @@
 </tr><tr>		<td><strong><?php echo __('Tipo'); ?></strong></td>
 		<td>
 			<?php echo h($aviso['Tipo']['nome']); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<td><strong><?php echo __('Arquivo'); ?></strong></td>
+		<td>
+			<a href="/reinandus/arqs/<?php echo basename($aviso['Aviso']['caminho']); ?>"><?php echo h($aviso['Aviso']['arquivo']); ?></a>
+			&nbsp;
+		</td>
+</tr><tr>		<td><strong><?php echo __('Caminho'); ?></strong></td>
+		<td>
+			<?php echo h($aviso['Aviso']['caminho']); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<td><strong><?php echo __('Tipo'); ?></strong></td>
+		<td>
+			<?php echo h($aviso['Aviso']['tipo']); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<td><strong><?php echo __('Tamanho'); ?></strong></td>
+		<td>
+			<?php echo h(round($aviso['Aviso']['tamanho'] / 1024 / 1024, 2)) . ' mb'; ?>
 			&nbsp;
 		</td>
 </tr>					</tbody>

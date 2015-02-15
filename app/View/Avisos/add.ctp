@@ -11,7 +11,7 @@
 
       <div class="avisos form">
 
-         <?php echo $this->Form->create('Aviso', array('role' => 'form', 'class'=>'form-horizontal')); ?>
+         <?php echo $this->Form->create('Aviso', array('role' => 'form', 'class'=>'form-horizontal', 'type' => 'file')); ?>
 
          <fieldset>
 
@@ -26,17 +26,17 @@
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('arquivo', 
-                                             array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
-                                            ); ?>
-            </div><!-- .form-group -->
-            <div class="form-group">
                <?php echo $this->Form->input('mensagem', 
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('tipo_id', 
+                                             array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+                                            ); ?>
+            </div><!-- .form-group -->
+            <div class="form-group">
+               <?php echo $this->Form->file('arq', 
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
