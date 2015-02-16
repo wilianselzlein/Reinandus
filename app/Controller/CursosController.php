@@ -64,12 +64,12 @@ class CursosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$professors = $this->Curso->Professor->find('list');
+		$professores = $this->Curso->Professor->find('list');
 		$pessoas = $this->Curso->Pessoa->find('list');
 		$grupos = $this->Curso->Grupo->find('list');
 		$tipos = $this->Curso->Tipo->find('list');
 		$periodos = $this->Curso->Periodo->find('list');
-		$this->set(compact('professors', 'pessoas', 'grupos', 'tipos', 'periodos'));
+		$this->set(compact('professores', 'pessoas', 'grupos', 'tipos', 'periodos'));
 	}
 
 /**
@@ -101,12 +101,12 @@ class CursosController extends AppController {
 			$options = array('conditions' => array('Curso.' . $this->Curso->primaryKey => $id));
 			$this->request->data = $this->Curso->find('first', $options);
 		}
-		$professors = $this->Curso->Professor->find('list');
+		$professores = $this->Curso->Professor->find('list');
 		$pessoas = $this->Curso->Pessoa->find('list');
 		$grupos = $this->Curso->Grupo->find('list');
 		$tipos = $this->Curso->Tipo->find('list');
 		$periodos = $this->Curso->Periodo->find('list');
-		$this->set(compact('professors', 'pessoas', 'grupos', 'tipos', 'periodos'));
+		$this->set(compact('professores', 'pessoas', 'grupos', 'tipos', 'periodos'));
 	}
 
 /**

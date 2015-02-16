@@ -15,6 +15,44 @@ class Contum extends AppModel {
 	public $displayField = 'conta';
 
 
+/**
+ * Validation rules
+ *
+ * @var array
+ */
+	public $validate = array(
+		'banco' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'VALIDATE_BLANK',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'agencia' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'VALIDATE_BLANK',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'conta' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'VALIDATE_BLANK',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		)
+	);
+
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**

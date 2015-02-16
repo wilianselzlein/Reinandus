@@ -25,7 +25,7 @@ class Role extends AppModel {
  */
 	public $displayField = 'nome';
 
-public $validate = array(		
+	public $validate = array(
 		'nome' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
