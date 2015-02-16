@@ -1,58 +1,58 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Aviso Model
+ * Mensalidade Model
  *
- * @property Curso $Curso
+ * @property Conta $Conta
+ * @property Formapgto $Formapgto
+ * @property User $User
  */
-class AlunoDisciplina extends AppModel {
+class Nota extends AppModel {
 
 /**
  * Use table
  *
  * @var mixed False or table name
  */
-	public $useTable = 'aluno_disciplinas';
+	public $useTable = false;
 
 /**
  * Display field
  *
  * @var string
  */
-	public $displayField = 'id';
+//	public $displayField = 'numero';
 
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
 /**
  * Validation rules
  *
  * @var array
  */
 	public $validate = array(
-		'frequencia' => array(
+		'curso_id' => array(
 			'numeric' => array(
-				'rule' => array('ValorEntre', 'frequencia', 100),
-				'message' => 'VALIDATE_BETWEEN_0_100',
+				'rule' => array('numeric'),
+				'message' => 'VALIDADE_NUMERIC',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'nota' => array(
+		'disciplina_id' => array(
 			'numeric' => array(
-				'rule' => array('ValorEntre', 'nota', 10),
-				'message' => 'VALIDATE_BETWEEN_0_10',
+				'rule' => array('numeric'),
+				'message' => 'VALIDADE_NUMERIC',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'horas_aula' => array(
+		'professor_id' => array(
 			'numeric' => array(
-				'rule' => array('ValorEntre', 'horas_aula', 100),
-				'message' => 'VALIDATE_BETWEEN_0_100',
+				'rule' => array('numeric'),
+				'message' => 'VALIDADE_NUMERIC',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -61,12 +61,22 @@ class AlunoDisciplina extends AppModel {
 		),
 	);
 
+
+//The Associations below have been created with all possible keys, those that are not needed can be removed
+
 /**
  * belongsTo associations
  *
  * @var array
  */
 	public $belongsTo = array(
+		'Curso' => array(
+			'className' => 'Curso',
+			'foreignKey' => 'curso_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 		'Aluno' => array(
 			'className' => 'Aluno',
 			'foreignKey' => 'aluno_id',
@@ -74,9 +84,9 @@ class AlunoDisciplina extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'Disciplina' => array(
-			'className' => 'Disciplina',
-			'foreignKey' => 'disciplina_id',
+		'AlunoDisciplina' => array(
+			'className' => 'AlunoDisciplina',
+			'foreignKey' => '',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -87,7 +97,13 @@ class AlunoDisciplina extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Disciplina' => array(
+			'className' => 'Disciplina',
+			'foreignKey' => 'disciplina_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
-
 }

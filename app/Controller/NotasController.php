@@ -22,7 +22,52 @@ class NotasController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->redirect(array('controller' => 'relatorios', 'action' => 'index'));
+		$cursos = $this->Nota->Curso->find('list');
+		$disciplinas = $this->Nota->Disciplina->find('list');
+		$professores = $this->Nota->Professor->find('list');
+		$this->set(compact('cursos', 'disciplinas', 'professores'));
+	}
+
+/**
+ * lancar method
+ *
+ * @return void
+ */
+	public function lancar() {
+		$data = $this->request->data;
+		$data = $data['Nota'];
+		$professor = $data['professor_id'];
+		$cursos = $data['Curso'];
+		$disciplinas = $data['Disciplina'];
+
+		$notas = $this->Nota->AlunoDisciplina->find('all', array('recursive' => 0, 'conditions' =>
+			array(
+				'AlunoDisciplina.professor_id' => $professor, 
+				'Aluno.curso_id' => $cursos,
+				'AlunoDisciplina.disciplina_id' => $disciplinas)
+		));
+		$this->set(compact('notas'));
+	}
+
+/**
+ * gravar method
+ *
+ * @return void
+ */
+	public function gravar() {
+		if ($this->request->is('post') || $this->request->is('put')) {
+
+			$data = $this->request->data;
+			foreach ($data as $item) {
+				
+				$this->Nota->AlunoDisciplina->create();
+				$this->Nota->AlunoDisciplina->save($item['AlunoDisciplina']);
+
+				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+			}
+		} 
+		$this->redirect(array('action' => 'index'));
 	}
 
 }
+
