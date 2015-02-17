@@ -67,6 +67,16 @@ echo $this->fetch('script');
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-male"></i> <b class="caret"></b></a>
+                  <ul class="dropdown-menu message-dropdown">
+<?php echo $this->UltimosAlunosCadastrados->GerarLista(); ?>
+                     <li class="message-footer">
+               <?php echo $this->Html->link('<i class="fa fa-fw fa-male"></i>'.' Ir para '.__('Alunos'), 
+                    array('controller' => 'alunos', 'action' => 'index'), array('class' => '', 'escape'=>false)); ?>
+                     </li>
+                  </ul>
+               </li>
+               <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
                   <ul class="dropdown-menu message-dropdown">
                      <li class="message-preview">
@@ -153,7 +163,8 @@ echo $this->fetch('script');
                   </a>
                   <ul class="dropdown-menu">
                      <li>
-                        <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+               <?php echo $this->Html->link('<i class="fa fa-fw fa-user"></i>'.' '.__('Perfil'), 
+                    array('controller' => 'pessoas', 'action' => 'view', $usuario_logado['pessoa_id']), array('class' => '', 'escape'=>false)); ?>
                      </li>
                      <li>
                         <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
@@ -163,8 +174,8 @@ echo $this->fetch('script');
                      </li>
                      <li class="divider"></li>
                      <li>
-                        <?php echo $this->Html->link('<i class="fa fa-fw fa-power-off"></i>'.' '.__('Logout'), 
-                                                     array('controller' => 'usuarios', 'action' => 'logout'), array('class' => '', 'escape'=>false)); ?>
+               <?php echo $this->Html->link('<i class="fa fa-fw fa-power-off"></i>'.' '.__('Logout'), 
+                    array('controller' => 'usuarios', 'action' => 'logout'), array('class' => '', 'escape'=>false)); ?>
                      </li>
                   </ul>
                </li
