@@ -38,7 +38,7 @@ class EnumeradosController extends AppController {
 		if (!$this->Enumerado->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('conditions' => array('Enumerado.' . $this->Enumerado->primaryKey => $id));
+		$options = array('recursive' => 2, 'conditions' => array('Enumerado.' . $this->Enumerado->primaryKey => $id));
 		$this->set('enumerado', $this->Enumerado->find('first', $options));
 	}
 

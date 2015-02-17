@@ -29,7 +29,9 @@
 		</td>
         <td><a href="/reinandus/arqs/<?php echo basename($aviso['Aviso']['caminho']); ?>"><?php echo h($aviso['Aviso']['arquivo']); ?></a>&nbsp;</td>
 		<td><?php echo h($aviso['Aviso']['mensagem']); ?>&nbsp;</td>
-		<td><?php echo h($aviso['Tipo']['nome']); ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($aviso['Tipo']['nome'], array('controller' => 'enumerados', 'action' => 'view', $aviso['Tipo']['id'])); ?>
+		</td>
 		<td class="actions text-center">
 			<?php echo $this->element('BotaoAjax', array("controller" => "Avisos", "nome" => "curso", "id" => h($aviso['Aviso']['id']), "icone" => "graduation-cap")); ?>
 			<?php echo $this->element('BotaoAjax', array("controller" => "Avisos", "nome" => "grupo", "id" => h($aviso['Aviso']['id']), "icone" => "group")); ?>

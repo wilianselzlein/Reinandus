@@ -105,17 +105,16 @@
                   <?php echo $this->Html->link($curso['Grupo']['nome'], array('controller' => 'grupod', 'action' => 'view', $curso['Grupo']['id']), array('class' => '')); ?>
                   &nbsp;
                </td>
-               </tr><tr>		<td><strong><?php echo __('Tipo'); ?></strong></td>
-               <td>
-                  <?php echo h($curso['Tipo']['nome']); ?>
-                  &nbsp;
-               </td>
-               </tr><tr>		<td><strong><?php echo __('Periodo'); ?></strong></td>
-               <td>
-                  <?php echo h($curso['Periodo']['nome']); ?>
-                  &nbsp;
-               </td>
-               </tr><tr>		<td><strong><?php echo __('Site'); ?></strong></td>
+               </tr>
+   <tr>
+      <td><strong><?php echo __('Tipo'); ?></strong></td>
+      <td><?php echo $this->Html->link($curso['Tipo']['nome'], array('controller' => 'enumerados', 'action' => 'view', $curso['Tipo']['id']), array('class' => '')); ?>&nbsp;</td>
+   </tr>
+   <tr>
+      <td><strong><?php echo __('Periodo'); ?></strong></td>
+      <td><?php echo $this->Html->link($curso['Periodo']['nome'], array('controller' => 'enumerados', 'action' => 'view', $curso['Periodo']['id']), array('class' => '')); ?>&nbsp;</td>
+   </tr>
+               <tr>		<td><strong><?php echo __('Site'); ?></strong></td>
                <td>
                   <?php echo h($curso['Curso']['site']); ?>
                   &nbsp;

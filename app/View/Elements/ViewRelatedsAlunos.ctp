@@ -34,7 +34,7 @@
                   <td><?php echo $aluno['id']; ?></td>
                   <td><?php echo $aluno['nome']; ?></td>
                   <td><?php if (isset($aluno['Situacao']['nome']))
-                  echo $aluno['Situacao']['nome']; ?></td>
+                   echo $this->Html->link($aluno['Situacao']['nome'], array('controller' => 'enumerados', 'action' => 'view', $aluno['Situacao']['id']), array('class' => '')); ?></td>
                   <?php /* <td><?php echo $this->Html->link($aluno['Cidade']['nome'], array('controller' => 'cidades', 'action' => 'view', $aluno['Cidade']['id']), array('class' => '')); ?>
                      &nbsp;</td> */ ?>
                   <td><?php echo $aluno['celular']; ?></td>

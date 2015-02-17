@@ -26,7 +26,10 @@ else
 		<td><?php echo $this->Html->link($aluno['Responsavel']['fantasia'], array('controller' => 'pessoas', 'action' => 'view', $aluno['Responsavel']['id']), array('class' => '')); ?>&nbsp;</td>
 	</tr>
 	<?php echo $this->element('LinhaView', array('alias' => 'Sexo', 'valor' => h($aluno['Aluno']['sexo']))); ?>
-	<?php echo $this->element('LinhaView', array('alias' => 'Situacao', 'valor' => h($aluno['Situacao']['nome']))); ?>
+	<tr>
+		<td><strong><?php echo __('Situacao'); ?></strong></td>
+		<td><?php echo $this->Html->link($aluno['Situacao']['nome'], array('controller' => 'enumerados', 'action' => 'view', $aluno['Situacao']['id']), array('class' => '')); ?>&nbsp;</td>
+	</tr>
 	<?php echo $this->element('LinhaView', array('alias' => 'Formacao', 'valor' => h($aluno['Aluno']['formacao']))); ?>
 	<tr>
 		<td><strong><?php echo __('Naturalidade'); ?></strong></td>
@@ -34,7 +37,10 @@ else
 	</tr>
 	<?php echo $this->element('LinhaView', array('alias' => 'Nacionalidade', 'valor' => h($aluno['Aluno']['nacionalidade']))); ?>
 	<?php echo $this->element('LinhaView', array('alias' => 'Nascimento', 'valor' => h($aluno['Aluno']['data_nascimento']))); ?>
-	<?php echo $this->element('LinhaView', array('alias' => 'Estado Civil', 'valor' => h($aluno['EstadoCivil']['nome']))); ?>
+	<tr>
+		<td><strong><?php echo __('Estado Civil'); ?></strong></td>
+		<td><?php echo $this->Html->link($aluno['EstadoCivil']['nome'], array('controller' => 'enumerados', 'action' => 'view', $aluno['EstadoCivil']['id']), array('class' => '')); ?>&nbsp;</td>
+	</tr>
 	<tr>
 		<td><strong><?php echo __('RG'); ?></strong></td>
 		<td><?php echo $aluno['Aluno']['identidade']; ?>&nbsp;<?php echo $aluno['Aluno']['orgao_expedidor']; ?>&nbsp;<?php echo $aluno['Aluno']['data_expedicao']; ?></td>
@@ -87,7 +93,10 @@ else
 <div id="dados" >
 				<table class="table table-hover table-condensed">
 					<tbody>
-	<?php echo $this->element('LinhaView', array('alias' => 'Indicação', 'valor' => h($aluno['Indicacao']['nome']))); ?>
+	<tr>
+		<td><strong><?php echo __('Indicação'); ?></strong></td>
+		<td><?php echo $this->Html->link($aluno['Indicacao']['nome'], array('controller' => 'enumerados', 'action' => 'view', $aluno['Indicacao']['id']), array('class' => '')); ?>&nbsp;</td>
+	</tr>
 	<?php echo $this->element('LinhaView', array('alias' => 'Valor', 'valor' => h($aluno['Aluno']['indicacao_valor']))); ?>
 	<?php echo $this->element('LinhaView', array('alias' => 'Nome', 'valor' => h($aluno['Aluno']['indicacao_nome']))); ?>
 	<?php echo $this->element('LinhaView', array('alias' => 'Entregou Diploma', 'valor' => h($aluno['Aluno']['entregou_diploma']))); ?>

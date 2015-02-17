@@ -67,4 +67,56 @@ class Enumerado extends AppModel {
 			),
 		),
 	);
+
+
+/**
+ * hasMany associations
+ *
+ * @var array
+ */
+	public $hasMany = array(
+		'Aluno' => array(
+			'className' => 'Aluno',
+			'foreignKey' => 'situacao_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Aluno' => array(
+			'className' => 'Aluno',
+			'foreignKey' => 'estado_civil_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Aluno' => array(
+			'className' => 'Aluno',
+			'foreignKey' => 'indicacao_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Curso' => array(
+			'className' => 'Curso',
+			'foreignKey' => 'tipo_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Curso' => array(
+			'className' => 'Curso',
+			'foreignKey' => 'periodo_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Aviso' => array(
+			'className' => 'Aviso',
+			'foreignKey' => 'tipo_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
+
 }
