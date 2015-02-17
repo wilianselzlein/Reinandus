@@ -1,6 +1,3 @@
-<?php
-//debug($this->params);
-?>
 <div class="panel panel-default">
 
 	<div class="panel-heading">

@@ -67,8 +67,8 @@ class CursosController extends AppController {
 		$professores = $this->Curso->Professor->find('list');
 		$pessoas = $this->Curso->Pessoa->find('list');
 		$grupos = $this->Curso->Grupo->find('list');
-		$tipos = $this->Curso->Tipo->find('list');
-		$periodos = $this->Curso->Periodo->find('list');
+		$tipos = $this->Curso->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_id', 'Tipo.nome' => 'curso')));
+		$periodos = $this->Curso->Periodo->find('list', array('conditions' => array('Periodo.referencia' => 'periodo_id')));
 		$this->set(compact('professores', 'pessoas', 'grupos', 'tipos', 'periodos'));
 	}
 
@@ -104,8 +104,8 @@ class CursosController extends AppController {
 		$professores = $this->Curso->Professor->find('list');
 		$pessoas = $this->Curso->Pessoa->find('list');
 		$grupos = $this->Curso->Grupo->find('list');
-		$tipos = $this->Curso->Tipo->find('list');
-		$periodos = $this->Curso->Periodo->find('list');
+		$tipos = $this->Curso->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_id', 'Tipo.nome' => 'curso')));
+		$periodos = $this->Curso->Periodo->find('list', array('conditions' => array('Periodo.referencia' => 'periodo_id')));
 		$this->set(compact('professores', 'pessoas', 'grupos', 'tipos', 'periodos'));
 	}
 

@@ -125,7 +125,7 @@ class AlunoDisciplinasController extends AppController {
 			$aluno = $disciplina['CursoDisciplina'];
 			$aluno['aluno_id'] = $aluno_id;
 			$this->AlunoDisciplina->create();
-			$this->AlunoDisciplina->save($aluno); //debug($aluno);
+			$this->AlunoDisciplina->save($aluno);
         endforeach;
 	    $this->Session->setFlash(__('Disciplinas adicionadas'), 'flash/success');
 		$this->redirect(array('controller' => 'alunos', 'action' => 'view', $aluno_id));

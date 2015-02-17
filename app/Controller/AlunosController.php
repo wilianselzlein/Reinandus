@@ -62,15 +62,17 @@ class AlunosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$estadoCivils = $this->Aluno->EstadoCivil->find('list');
-		$indicacaos = $this->Aluno->Indicacao->find('list');
+		$estadoCivils = $this->Aluno->EstadoCivil->find('list', array('conditions' => array('EstadoCivil.referencia' => 'estado_civil_id')));
+		$indicacaos = $this->Aluno->Indicacao->find('list', array('conditions' => array('Indicacao.referencia' => 'indicacao_id')));
+		$situacaos = $this->Aluno->Situacao->find('list', array('conditions' => array('Situacao.referencia' => 'situacao_id')));
+
 		$cursos = $this->Aluno->Curso->find('list');
 		$professores = $this->Aluno->Professor->find('list');
 		$cidades = $this->Aluno->Cidade->find('list');
 		$naturalidades = $this->Aluno->Cidade->find('list');
 		$responsavels = $this->Aluno->Responsavel->find('list');
 		$disciplinas = $this->Aluno->AlunoDisciplina->find('list');
-		$situacaos = $this->Aluno->Situacao->find('list');
+
 		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professores', 'cidades', 'naturalidades', 'responsavels', 'disciplinas', 'situacaos'));
 	}
 
@@ -103,15 +105,17 @@ class AlunosController extends AppController {
 			$options = array('conditions' => array('Aluno.' . $this->Aluno->primaryKey => $id));
 			$this->request->data = $this->Aluno->find('first', $options);
 		}
-		$estadoCivils = $this->Aluno->EstadoCivil->find('list');
-		$indicacaos = $this->Aluno->Indicacao->find('list');
+		$estadoCivils = $this->Aluno->EstadoCivil->find('list', array('conditions' => array('EstadoCivil.referencia' => 'estado_civil_id')));
+		$indicacaos = $this->Aluno->Indicacao->find('list', array('conditions' => array('Indicacao.referencia' => 'indicacao_id')));
+		$situacaos = $this->Aluno->Situacao->find('list', array('conditions' => array('Situacao.referencia' => 'situacao_id')));
+
 		$cursos = $this->Aluno->Curso->find('list');
 		$professores = $this->Aluno->Professor->find('list');
 		$cidades = $this->Aluno->Cidade->find('list');
 		$naturalidades = $this->Aluno->Cidade->find('list');
 		$responsavels = $this->Aluno->Responsavel->find('list');
 		$disciplinas = $this->Aluno->AlunoDisciplina->find('list');
-		$situacaos = $this->Aluno->Situacao->find('list');
+		
 		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professores', 'cidades', 'naturalidades', 'responsavels', 'disciplinas', 'situacaos'));
 	}
 

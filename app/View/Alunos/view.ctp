@@ -28,7 +28,7 @@ else
 	<?php echo $this->element('LinhaView', array('alias' => 'Sexo', 'valor' => h($aluno['Aluno']['sexo']))); ?>
 	<tr>
 		<td><strong><?php echo __('Situacao'); ?></strong></td>
-		<td><?php echo $this->Html->link($aluno['Situacao']['nome'], array('controller' => 'enumerados', 'action' => 'view', $aluno['Situacao']['id']), array('class' => '')); ?>&nbsp;</td>
+		<td><?php echo $this->Html->link($aluno['Situacao']['valor'], array('controller' => 'enumerados', 'action' => 'view', $aluno['Situacao']['id']), array('class' => '')); ?>&nbsp;</td>
 	</tr>
 	<?php echo $this->element('LinhaView', array('alias' => 'Formacao', 'valor' => h($aluno['Aluno']['formacao']))); ?>
 	<tr>
@@ -39,7 +39,7 @@ else
 	<?php echo $this->element('LinhaView', array('alias' => 'Nascimento', 'valor' => h($aluno['Aluno']['data_nascimento']))); ?>
 	<tr>
 		<td><strong><?php echo __('Estado Civil'); ?></strong></td>
-		<td><?php echo $this->Html->link($aluno['EstadoCivil']['nome'], array('controller' => 'enumerados', 'action' => 'view', $aluno['EstadoCivil']['id']), array('class' => '')); ?>&nbsp;</td>
+		<td><?php echo $this->Html->link($aluno['EstadoCivil']['valor'], array('controller' => 'enumerados', 'action' => 'view', $aluno['EstadoCivil']['id']), array('class' => '')); ?>&nbsp;</td>
 	</tr>
 	<tr>
 		<td><strong><?php echo __('RG'); ?></strong></td>
@@ -95,7 +95,7 @@ else
 					<tbody>
 	<tr>
 		<td><strong><?php echo __('Indicação'); ?></strong></td>
-		<td><?php echo $this->Html->link($aluno['Indicacao']['nome'], array('controller' => 'enumerados', 'action' => 'view', $aluno['Indicacao']['id']), array('class' => '')); ?>&nbsp;</td>
+		<td><?php echo $this->Html->link($aluno['Indicacao']['valor'], array('controller' => 'enumerados', 'action' => 'view', $aluno['Indicacao']['id']), array('class' => '')); ?>&nbsp;</td>
 	</tr>
 	<?php echo $this->element('LinhaView', array('alias' => 'Valor', 'valor' => h($aluno['Aluno']['indicacao_valor']))); ?>
 	<?php echo $this->element('LinhaView', array('alias' => 'Nome', 'valor' => h($aluno['Aluno']['indicacao_nome']))); ?>

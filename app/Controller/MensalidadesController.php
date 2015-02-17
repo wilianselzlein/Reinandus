@@ -82,7 +82,6 @@ class MensalidadesController extends AppController {
 			throw new NotFoundException(__('The record could not be found.?>'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
-			debug($this->request->data); die;
 			if ($this->Mensalidade->save($this->request->data)) {
 				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                "link_text" => __('GO_TO'),

@@ -155,7 +155,7 @@ class EnumeradosController extends AppController {
  	$this->AdicionarEnumeradoSeNaoExistir(16, 'aluno', 'indicacao_id', 'Site');
  	$this->AdicionarEnumeradoSeNaoExistir(17, 'aluno', 'indicacao_id', 'Facebook');
  	$this->AdicionarEnumeradoSeNaoExistir(18, 'aluno', 'indicacao_id', 'Amigo(a)');
- 	$this->AdicionarEnumeradoSeNaoExistir(19, 'aluno', 'indicacao_id', 'Folder/Planfeto');
+ 	$this->AdicionarEnumeradoSeNaoExistir(19, 'aluno', 'indicacao_id', 'Folder/Panfleto');
  	$this->AdicionarEnumeradoSeNaoExistir(20, 'aviso', 'tipo_id', 'Aviso');
  	$this->AdicionarEnumeradoSeNaoExistir(21, 'aviso', 'tipo_id', 'Material');
  	$this->AdicionarEnumeradoSeNaoExistir(22, 'aviso', 'tipo_id', 'Notícia');

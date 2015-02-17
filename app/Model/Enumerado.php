@@ -18,7 +18,7 @@ class Enumerado extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'nome';
+	public $displayField = 'valor';
 
 /**
  * Validation rules

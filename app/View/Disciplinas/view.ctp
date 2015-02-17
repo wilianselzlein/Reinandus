@@ -30,7 +30,7 @@
 			
 		</div><!-- /.view -->
 
-   <?php debug($disciplina); die; echo $this->element('ViewRelatedsAlunos', array('array' => $disciplina)); ?>
+   <?php echo $this->element('ViewRelatedsAlunos', array('array' => $disciplina)); ?>
    <?php echo $this->element('ViewRelatedsCursos', array('array' => $disciplina)); ?>
    <?php echo $this->element('ViewRelatedsProfessores', array('array' => $disciplina)); ?>
 

@@ -34,7 +34,7 @@
 </tr>
 	<tr>
 		<td><strong><?php echo __('Tipo'); ?></strong></td>
-		<td><?php echo $this->Html->link($aviso['Tipo']['nome'], array('controller' => 'enumerados', 'action' => 'view', $aviso['Tipo']['id']), array('class' => '')); ?>&nbsp;</td>
+		<td><?php echo $this->Html->link($aviso['Tipo']['valor'], array('controller' => 'enumerados', 'action' => 'view', $aviso['Tipo']['id']), array('class' => '')); ?>&nbsp;</td>
 	</tr>
 <tr>		<td><strong><?php echo __('Arquivo'); ?></strong></td>
 		<td>

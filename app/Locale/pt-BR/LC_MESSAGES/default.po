@@ -582,3 +582,21 @@ msgstr "Permissão"
 
 msgid "Permissos"
 msgstr "Permissões"
+
+msgid "Num_turma"
+msgstr "Num Turma"
+
+msgid "dia_vencimento"
+msgstr "Dia Vencimento"
+
+msgid "inicio"
+msgstr "Início"
+
+msgid "fim"
+msgstr "Fim"
+
+msgid "sistema_aval"
+msgstr "Sistema de Avaliação"
+
+msgid "criterios_aval"
+msgstr "Critérios de Avaliação"

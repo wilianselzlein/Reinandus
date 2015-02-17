@@ -65,7 +65,7 @@ class AvisosController extends AppController {
 			}
 		}
 		$users = $this->Aviso->User->find('list');
-		$tipos = $this->Aviso->Tipo->find('list');
+		$tipos = $this->Aviso->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_id', 'Tipo.nome' => 'aviso')));
 		$cursos = $this->Aviso->Curso->find('list');
 		$grupos = $this->Aviso->Grupo->find('list');
 		$this->set(compact('users', 'tipos', 'cursos', 'grupos'));
@@ -101,7 +101,7 @@ class AvisosController extends AppController {
 			$this->request->data = $this->Aviso->find('first', $options);
 		}
 		$users = $this->Aviso->User->find('list');
-		$tipos = $this->Aviso->Tipo->find('list');
+		$tipos = $this->Aviso->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_id', 'Tipo.nome' => 'aviso')));
 		$cursos = $this->Aviso->Curso->find('list');
 		$grupos = $this->Aviso->Grupo->find('list');
 		$this->set(compact('users', 'tipos', 'cursos', 'grupos'));
