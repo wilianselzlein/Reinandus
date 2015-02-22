@@ -227,3 +227,8 @@ ul.alert-dropdown {
 width: 34px;
 height: 34px;
 }
+
+.input-group > div[class^="col-sm-"]
+   {
+      padding-left: 0px;
+   }

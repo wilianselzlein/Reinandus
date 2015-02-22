@@ -1,3 +1,4 @@
+
 <div class="panel panel-default">
 
    <div class="panel-heading">
@@ -100,11 +101,13 @@
             </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('bolsa', 
-                                             array('class' => 'form-control currency', 'type'=>'text','label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-5"><div class="input-group"><span class="input-group-addon">%</span>', 'after'=>'</div></div>')
+                                             array('class' => 'form-control currency', 'type'=>'text','label'=>array('class'=>'col-sm-2 control-label'), 'div' => array('class' => 'control-group'),
+                                                  'between'=>'<div class="col-sm-5"><div class="input-group"><span class="input-group-addon">%</span>', 'after'=>'</div></div>')
                                             ); ?>
                <?php echo $this->Form->input('desconto', 
-                                             array('class' => 'form-control currency', 'type'=>'text','label'=>array('style' => 'padding-left: 0px;', 'class'=>'col-sm-1 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-4"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div>')
+                                             array('class' => 'form-control currency', 'type'=>'text','label'=>array('style' => 'padding-left: 0px;', 'class'=>'col-sm-1 control-label'), 'div' => array('class' => 'control-group'), 'between'=>'<div class="col-sm-4"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div>')
                                             ); ?>
+               
             </div><!-- .form-group -->
 			<?php echo $this->element('AbasCadAlunos'); ?> 
             <?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
