@@ -10,3 +10,11 @@ $(document).ready(function(){
          $('.datepicker-start').datepicker(datepickerOptions);
          $('.datepicker-end').datepicker(datepickerOptions);
 });
+
+$(function() {   
+   var handler = function() {
+      $(this).datepicker(datepickerOptions);
+   }
+   $('#dynamic-content').on('focus', '.datepicker-start', handler);
+   $('#dynamic-content').on('focus', '.datepicker-end', handler);
+});
