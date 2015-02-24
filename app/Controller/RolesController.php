@@ -118,4 +118,60 @@ class RolesController extends AppController {
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
 		$this->redirect(array('action' => 'index'));
 	}
+
+
+
+/**
+ * atualizar method
+ *
+ * @return void
+ */
+	public function atualizar() {
+		$this->AdicionarRolesSeNecessario();
+		$this->redirect(array('action' => 'index'));
+	}
+
+/**
+ * AdicionarRolesSeNecessario method
+ *
+ * @return void
+ */
+ function AdicionarRolesSeNecessario() {
+ 	$this->AdicionarRoleSeNaoExistir(1, 'Root');
+ 	$this->AdicionarRoleSeNaoExistir(2, 'Coordenador');
+ 	$this->AdicionarRoleSeNaoExistir(3, 'Financeiro');
+ 	$this->AdicionarRoleSeNaoExistir(4, 'Secretaria');
+ 	$this->AdicionarRoleSeNaoExistir(5, 'Professor');
+ 	$this->AdicionarRoleSeNaoExistir(6, 'Aluno');
+ 	
+	$this->Session->setFlash(__('Os cargos foram atualizados.'), 'flash/success');
+ }
+
+
+/**
+ * AdicionarRoleSeNaoExistir method
+ * @param int $id
+ * @param string $nome
+ * @return void
+ */
+ 	function AdicionarRoleSeNaoExistir($id, $nome) {
+        
+        $cadastro=[];
+        $cadastro['Role']['id'] = $id;
+        $cadastro['Role']['nome'] = $nome;
+		
+		$this->Role->create();
+		$this->Role->save($cadastro);
+		
+		if (! $this->Role->save($cadastro)) {
+				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), "flash/linked/error", array(
+               "link_text" => __('GO_TO'),
+               "link_url" => array(                  
+                  "action" => "view",
+                  $this->Role->id
+           		)
+        	));
+			$this->redirect(array('action' => 'index'));
+		}
+ 	}
 }
