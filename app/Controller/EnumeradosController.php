@@ -160,14 +160,15 @@ class EnumeradosController extends AppController {
  	$this->AdicionarEnumeradoSeNaoExistir(21, 'aviso', 'tipo_id', 'Material');
  	$this->AdicionarEnumeradoSeNaoExistir(22, 'aviso', 'tipo_id', 'Notícia');
  	$this->AdicionarEnumeradoSeNaoExistir(23, 'aviso', 'tipo_id', 'Vaga');
- 	$this->AdicionarEnumeradoSeNaoExistir(24, 'curso', 'tipo_id', 'Pós');
- 	$this->AdicionarEnumeradoSeNaoExistir(25, 'curso', 'tipo_id', 'Extensão');
-	$this->AdicionarEnumeradoSeNaoExistir(26, 'curso', 'periodo_id', 'Manhã');
-	$this->AdicionarEnumeradoSeNaoExistir(27, 'curso', 'periodo_id', 'Tarde');
-	$this->AdicionarEnumeradoSeNaoExistir(28, 'curso', 'periodo_id', 'Vespertino');
-	$this->AdicionarEnumeradoSeNaoExistir(29, 'curso', 'periodo_id', 'Noite');
-	$this->AdicionarEnumeradoSeNaoExistir(30, 'instituto', 'tipo_id', 'Instituto');
-	$this->AdicionarEnumeradoSeNaoExistir(31, 'instituto', 'tipo_id', 'Instituição');
+ 	$this->AdicionarEnumeradoSeNaoExistir(24, 'aviso', 'tipo_id', 'Interno');
+ 	$this->AdicionarEnumeradoSeNaoExistir(25, 'curso', 'tipo_id', 'Pós');
+ 	$this->AdicionarEnumeradoSeNaoExistir(26, 'curso', 'tipo_id', 'Extensão');
+	$this->AdicionarEnumeradoSeNaoExistir(27, 'curso', 'periodo_id', 'Manhã');
+	$this->AdicionarEnumeradoSeNaoExistir(28, 'curso', 'periodo_id', 'Tarde');
+	$this->AdicionarEnumeradoSeNaoExistir(29, 'curso', 'periodo_id', 'Vespertino');
+	$this->AdicionarEnumeradoSeNaoExistir(30, 'curso', 'periodo_id', 'Noite');
+	$this->AdicionarEnumeradoSeNaoExistir(31, 'instituto', 'tipo_id', 'Instituto');
+	$this->AdicionarEnumeradoSeNaoExistir(32, 'instituto', 'tipo_id', 'Instituição');
 
 	$this->Session->setFlash(__('Os enumerados foram atualizados.'), 'flash/success');
  }

@@ -167,10 +167,12 @@ echo $this->fetch('script');
                     array('controller' => 'pessoas', 'action' => 'view', $usuario_logado['pessoa_id']), array('class' => '', 'escape'=>false)); ?>
                      </li>
                      <li>
-                        <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+               <?php echo $this->Html->link('<i class="fa fa-fw fa-envelope"></i>'.' '.__('Inbox'), 
+                    array('controller' => 'avisos', 'action' => 'index', $usuario_logado['id']), array('class' => '', 'escape'=>false)); ?>
                      </li>
                      <li>
-                        <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+               <?php echo $this->Html->link('<i class="fa fa-fw fa-gear"></i>'.' '.__('Configurações'), 
+                    array('controller' => 'usuarios', 'action' => 'view', $usuario_logado['id']), array('class' => '', 'escape'=>false)); ?>
                      </li>
                      <li class="divider"></li>
                      <li>
