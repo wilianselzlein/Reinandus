@@ -23,7 +23,7 @@ class UltimosAlunosCadastradosHelper extends AppHelper {
 			      '<div class="media-body">' .
 			         '<h5 class="media-heading"><strong>' . $alunos[$i]['Aluno']['nome'] . '</strong>' .
 			         '</h5>' .
-			         '<p class="small text-muted"><i class="fa fa-clock-o"></i>' . $alunos[$i]['Aluno']['created'] . '</p>' .
+			         '<p class="small text-muted"><i class="fa fa-clock-o"></i> ' . $alunos[$i]['Aluno']['created'] . '</p>' .
 			         '<p>' . $alunos[$i]['Curso']['nome'] . '<br>' . $alunos[$i]['Cidade']['nome'] . '</p>' .
 			      '</div>' .
 				'</div>';
