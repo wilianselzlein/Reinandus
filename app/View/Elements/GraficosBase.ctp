@@ -5,17 +5,17 @@
   <div class="panel-body">  
 	<div class="panel panel-default">
 	  <div class="panel-heading">
-	    <h3 class="panel-title">Alunos</h3>
+	     <h3 class="panel-title">Alunos</h3>
 	  </div>
 	  <div class="panel-body">
 	    <?php echo $this->element('GraficoAlunoSituacao');?>
-	    <div id="GraficoAlunoSituacao" style="float: left; height: 200px; width: 29%;"></div>
+	    <div id="GraficoAlunoSituacao" class="grafico grafico30"></div>
 	    <?php echo $this->element('GraficoAlunoCidade');?>
-	    <div id="GraficoAlunoCidade" style="float: left; height: 200px;width: 69%;"></div>
+	    <div id="GraficoAlunoCidade" class="grafico grafico70"></div>
 	    <?php echo $this->element('GraficoAlunoTotal');?>
-	    <div id="GraficoAlunoTotal" style="float: left; height: 200px; width: 29%;"></div> 
+	    <div id="GraficoAlunoTotal" class="grafico grafico30"></div> 
 	    <?php echo $this->element('GraficoAlunoPorAno');?>
-	    <div id="GraficoAlunoPorAno" style="float: left; height: 200px; width: 69%;"></div> 
+	    <div id="GraficoAlunoPorAno" class="grafico grafico70"></div> 
 	  </div>
 	</div>
 
@@ -25,9 +25,9 @@
 	  </div>
 	  <div class="panel-body">
 	    <?php echo $this->element('GraficoCursoAlunos');?>
-	    <div id="GraficoCursoAlunos" style="float: left; height: 200px; width: 49%;"></div>
+	    <div id="GraficoCursoAlunos" class="grafico grafico50"></div>
 	    <?php echo $this->element('GraficoCursoRentavel');?>
-	    <div id="GraficoCursoRentavel" style="float: left; height: 200px;width: 49%;"></div>
+	    <div id="GraficoCursoRentavel" class="grafico grafico50"></div>
 	  </div>
 	</div>
 
@@ -37,11 +37,11 @@
 	  </div>
 	  <div class="panel-body">
 	    <?php echo $this->element('GraficoMensAbertaPagaMensal');?>
-	    <div id="GraficoMensAbertaPagaMensal" style="float: left; height: 200px; width: 33%;"></div>
+	    <div id="GraficoMensAbertaPagaMensal" class="grafico grafico33"></div>
 	    <?php echo $this->element('GraficoMensAbertaPagaSemestral');?>
-	    <div id="GraficoMensAbertaPagaSemestral" style="float: left; height: 200px;width: 33%;"></div>
+	    <div id="GraficoMensAbertaPagaSemestral" class="grafico grafico33"></div>
 	    <?php echo $this->element('GraficoMensAbertaPagaAnual');?>
-	    <div id="GraficoMensAbertaPagaAnual" style="float: left; height: 200px; width: 33%;"></div> 
+	    <div id="GraficoMensAbertaPagaAnual" class="grafico grafico33"></div> 
 	  </div>
 	</div>
 
@@ -51,11 +51,11 @@
 	  </div>
 	  <div class="panel-body">
 	    <?php echo $this->element('GraficoPagarAbertaPagaMensal');?>
-	    <div id="GraficoPagarAbertaPagaMensal" style="float: left; height: 200px; width: 33%;"></div>
+	    <div id="GraficoPagarAbertaPagaMensal" class="grafico grafico33"></div>
 	    <?php echo $this->element('GraficoPagarAbertaPagaSemestral');?>
-	    <div id="GraficoPagarAbertaPagaSemestral" style="float: left; height: 200px;width: 33%;"></div>
+	    <div id="GraficoPagarAbertaPagaSemestral" class="grafico grafico33"></div>
 	    <?php echo $this->element('GraficoPagarAbertaPagaAnual');?>
-	    <div id="GraficoPagarAbertaPagaAnual" style="float: left; height: 200px; width: 33%;"></div> 
+	    <div id="GraficoPagarAbertaPagaAnual" class="grafico grafico33"></div> 
 	  </div>
 	</div>
 
@@ -65,13 +65,13 @@
 	  </div>
 	  <div class="panel-body">
 	    <?php echo $this->element('GraficoComparativoRecebPagarMes');?>
-	    <div id="GraficoComparativoRecebPagarMes" style="float: left; height: 200px; width: 49%;"></div>
+	    <div id="GraficoComparativoRecebPagarMes" class="grafico grafico50"></div>
 	    <?php echo $this->element('GraficoComparativoRecebPagarAno');?>
-	    <div id="GraficoComparativoRecebPagarAno" style="float: left; height: 200px;width: 49%;"></div>
+	    <div id="GraficoComparativoRecebPagarAno" class="grafico grafico50"></div>
 	    <?php echo $this->element('GraficoComparativoRecDespMes');?>
-	    <div id="GraficoComparativoRecDespMes" style="float: left; height: 200px; width: 49%;"></div>
+	    <div id="GraficoComparativoRecDespMes" class="grafico grafico50"></div>
 	    <?php echo $this->element('GraficoComparativoRecDespAno');?>
-	    <div id="GraficoComparativoRecDespAno" style="float: left; height: 200px;width: 49%;"></div>
+	    <div id="GraficoComparativoRecDespAno" class="grafico grafico50"></div>
 	  </div>
 	</div>
 

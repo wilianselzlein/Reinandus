@@ -5,7 +5,7 @@ $(function () {
             type: 'column'
         },
         title: {
-            text: 'Efficiency Optimization by Branch'
+            text: 'Financeiro Anual'
         },
         xAxis: {
             categories: [

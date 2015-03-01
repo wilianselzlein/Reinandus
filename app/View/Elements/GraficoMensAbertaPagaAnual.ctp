@@ -5,7 +5,7 @@ $(function () {
             type: 'column'
         },
         title: {
-            text: 'Mensal'
+            text: 'Anual'
         },
         xAxis: {
             categories: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D']
