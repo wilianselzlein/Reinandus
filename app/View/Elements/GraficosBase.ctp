@@ -9,11 +9,13 @@
 	  </div>
 	  <div class="panel-body">
 	    <?php echo $this->element('GraficoAlunoSituacao');?>
-	    <div id="GraficoAlunoSituacao" style="float: left; height: 200px; width: 33%;"></div>
+	    <div id="GraficoAlunoSituacao" style="float: left; height: 200px; width: 29%;"></div>
 	    <?php echo $this->element('GraficoAlunoCidade');?>
-	    <div id="GraficoAlunoCidade" style="float: left; height: 200px;width: 33%;"></div>
+	    <div id="GraficoAlunoCidade" style="float: left; height: 200px;width: 69%;"></div>
 	    <?php echo $this->element('GraficoAlunoTotal');?>
-	    <div id="GraficoAlunoTotal" style="float: left; height: 200px; width: 33%;"></div> 
+	    <div id="GraficoAlunoTotal" style="float: left; height: 200px; width: 29%;"></div> 
+	    <?php echo $this->element('GraficoAlunoPorAno');?>
+	    <div id="GraficoAlunoPorAno" style="float: left; height: 200px; width: 69%;"></div> 
 	  </div>
 	</div>
 
@@ -57,10 +59,21 @@
 	  </div>
 	</div>
 
-<!-- 
-painel princial (alunos POR ANO, receber e pagar no mes, receita x despesas) 
-verificar permissoes de acesso
--->
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Comparativos</h3>
+	  </div>
+	  <div class="panel-body">
+	    <?php echo $this->element('GraficoComparativoRecebPagarMes');?>
+	    <div id="GraficoComparativoRecebPagarMes" style="float: left; height: 200px; width: 49%;"></div>
+	    <?php echo $this->element('GraficoComparativoRecebPagarAno');?>
+	    <div id="GraficoComparativoRecebPagarAno" style="float: left; height: 200px;width: 49%;"></div>
+	    <?php echo $this->element('GraficoComparativoRecDespMes');?>
+	    <div id="GraficoComparativoRecDespMes" style="float: left; height: 200px; width: 49%;"></div>
+	    <?php echo $this->element('GraficoComparativoRecDespAno');?>
+	    <div id="GraficoComparativoRecDespAno" style="float: left; height: 200px;width: 49%;"></div>
+	  </div>
+	</div>
 
   </div>
 
