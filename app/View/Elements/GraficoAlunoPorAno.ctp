@@ -21,6 +21,9 @@ $(function () {
                 enableMouseTracking: false
             }
         },
+        credits: {
+            enabled: false
+        },
         series: [{
             name: 'Total',
             data: [100, 150, 200, 250, 300]
