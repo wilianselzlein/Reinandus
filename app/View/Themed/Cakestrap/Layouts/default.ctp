@@ -71,7 +71,7 @@ echo $this->fetch('script');
                   <ul class="dropdown-menu message-dropdown">
 <?php echo $this->UltimosAlunosCadastrados->GerarLista(); ?>
                      <li class="message-footer">
-               <?php echo $this->Html->link('<i class="fa fa-fw fa-male"></i>'.' Ir para '.__('Alunos'), 
+<?php echo $this->Html->link('<i class="fa fa-fw fa-male"></i>'.' Ir para '.__('Alunos'), 
                     array('controller' => 'alunos', 'action' => 'index'), array('class' => '', 'escape'=>false)); ?>
                      </li>
                   </ul>
@@ -79,54 +79,10 @@ echo $this->fetch('script');
                <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
                   <ul class="dropdown-menu message-dropdown">
-                     <li class="message-preview">
-                        <a href="#">
-                           <div class="media">
-                              <span class="pull-left">
-                                 <img class="media-object" src="http://placehold.it/50x50" alt="">
-                              </span>
-                              <div class="media-body">
-                                 <h5 class="media-heading"><strong>John Smith</strong>
-                                 </h5>
-                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                 <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                              </div>
-                           </div>
-                        </a>
-                     </li>
-                     <li class="message-preview">
-                        <a href="#">
-                           <div class="media">
-                              <span class="pull-left">
-                                 <img class="media-object" src="http://placehold.it/50x50" alt="">
-                              </span>
-                              <div class="media-body">
-                                 <h5 class="media-heading"><strong>John Smith</strong>
-                                 </h5>
-                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                 <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                              </div>
-                           </div>
-                        </a>
-                     </li>
-                     <li class="message-preview">
-                        <a href="#">
-                           <div class="media">
-                              <span class="pull-left">
-                                 <img class="media-object" src="http://placehold.it/50x50" alt="">
-                              </span>
-                              <div class="media-body">
-                                 <h5 class="media-heading"><strong>John Smith</strong>
-                                 </h5>
-                                 <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                 <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                              </div>
-                           </div>
-                        </a>
-                     </li>
+<?php echo $this->UltimosAvisosDoUsuario->GerarLista($usuario_logado['id']); ?>
                      <li class="message-footer">
-                        <a href="#">Read All New Messages</a>
-                     </li>
+<?php echo $this->Html->link('<i class="fa fa-fw fa-comment"></i>'.' Ir para '.__('Avisos'), 
+                    array('controller' => 'avisos', 'action' => 'index'), array('class' => '', 'escape'=>false)); ?>
                   </ul>
                </li>
                <li class="dropdown">
@@ -167,10 +123,12 @@ echo $this->fetch('script');
                     array('controller' => 'pessoas', 'action' => 'view', $usuario_logado['pessoa_id']), array('class' => '', 'escape'=>false)); ?>
                      </li>
                      <li>
-                        <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+               <?php echo $this->Html->link('<i class="fa fa-fw fa-envelope"></i>'.' '.__('Inbox'), 
+                    array('controller' => 'avisos', 'action' => 'index', $usuario_logado['id']), array('class' => '', 'escape'=>false)); ?>
                      </li>
                      <li>
-                        <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+               <?php echo $this->Html->link('<i class="fa fa-fw fa-gear"></i>'.' '.__('Configurações'), 
+                    array('controller' => 'usuarios', 'action' => 'view', $usuario_logado['id']), array('class' => '', 'escape'=>false)); ?>
                      </li>
                      <li class="divider"></li>
                      <li>

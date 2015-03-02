@@ -23,8 +23,13 @@ class AvisosController extends AppController {
  *
  * @return void
  */
-	public function index() {
+	public function index($user_id = null) {
 		$this->Aviso->recursive = 0;
+		if ($user_id != null)
+			$this->Paginator->settings = array(
+				'conditions' => array('Aviso.user_id ' => $user_id),
+				'order' => array('Aviso.data' => 'desc')
+			);
 		$this->set('avisos', $this->paginate());
 	}
 
