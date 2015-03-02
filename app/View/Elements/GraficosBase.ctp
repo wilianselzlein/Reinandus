@@ -1,4 +1,3 @@
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
 <div class="panel panel-default">
 
@@ -78,8 +77,7 @@
   </div>
 
 </div>
-
-<script src="/reinandus/js/highcharts/highcharts.js"></script>
-<script src="/reinandus/js/highcharts/highcharts-3d.js"></script>
-<script src="/reinandus/js/highcharts/modules/exporting.js"></script>
-<script src="/reinandus/js/highcharts/highcharts-more.js"></script>
+<?php echo $this->Html->script('highcharts/highcharts');?>
+<?php echo $this->Html->script('highcharts/highcharts-3d');?>
+<?php echo $this->Html->script('highcharts/modules/exporting');?>
+<?php echo $this->Html->script('highcharts/highcharts-more');?>
