@@ -37,7 +37,7 @@
 					   	<?php echo $this->Form->input('indicacao_id', 	
 					         array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-6">', 'after'=>'</div>')); ?>
           				<?php echo $this->Form->input('indicacao_valor', 
-                                             array('class' => 'form-control currency', 'type'=>'text','label'=>array('text' => 'Valor', 'class'=>'col-sm-1 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-3"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div>')
+                                             array('class' => 'form-control currency', 'type'=>'text','label'=>array('text' => 'Valor', 'class'=>'col-sm-1 control-label'), 'div'=>false,'wrap'=>false, 'between'=>'<div class="col-sm-3"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div></div>')
                                             ); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">

@@ -15,15 +15,15 @@
 </div><!-- .form-group -->
 <div class="form-group">
 <?php echo $this->Form->input('valor', 
-     array('class' => 'form-control currency', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-4"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div>')); ?>
+     array('class' => 'form-control currency', 'label'=>array('class'=>'col-sm-2 control-label'),'div'=>false, 'wrap'=>false, 'between'=>'<div class="col-sm-4"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div></div>')); ?>
 <?php echo $this->Form->input('desconto', 
-     array('class' => 'form-control', 'label'=>array('class'=>'col-sm-1 control-label', 'style' => 'padding-left: 0px;'), 'div'=>false, 'between'=>'<div class="col-sm-4"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div>')); ?>
+     array('class' => 'form-control', 'label'=>array('class'=>'col-sm-1 control-label', 'style' => 'padding-left: 0px;'), 'div'=>false,'wrap'=>false, 'between'=>'<div class="col-sm-4"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div></div>')); ?>
 </div><!-- .form-group -->
 <div class="form-group">
 <?php echo $this->Form->input('bolsa', 
-     array('class' => 'form-control currency', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-4"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div>')); ?>
+     array('class' => 'form-control currency', 'label'=>array('class'=>'col-sm-2 control-label'),'div'=>false, 'wrap'=>false, 'between'=>'<div class="col-sm-4"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div></div>')); ?>
 <?php echo $this->Form->input('liquido', 
-     array('class' => 'form-control', 'label'=>array('class'=>'col-sm-1 control-label', 'style' => 'padding-left: 0px;'), 'div'=>false, 'between'=>'<div class="col-sm-4"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div>')); ?>
+     array('class' => 'form-control', 'label'=>array('class'=>'col-sm-1 control-label', 'style' => 'padding-left: 0px;'), 'div'=>false,'wrap'=>false, 'between'=>'<div class="col-sm-4"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div></div>')); ?>
 </div><!-- .form-group -->
 <div class="form-group">
 <?php echo $this->Form->input('quantidade', 
