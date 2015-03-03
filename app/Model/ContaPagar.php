@@ -30,7 +30,7 @@ class ContaPagar extends AppModel {
  */
 
 	public $validate = array(
-		'numero' => array(
+		'documento' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				'message' => 'VALIDATE_BLANK',

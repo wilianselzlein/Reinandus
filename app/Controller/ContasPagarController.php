@@ -1,13 +1,20 @@
 <?php
 App::uses('AppController', 'Controller');
 /**
- * Pagars Controller
+ * ContasPagar Controller
  *
- * @property Pagar $Pagar
+ * @property ContaPagar ContaPagar
  * @property PaginatorComponent $Paginator
  * @property SessionComponent $Session
  */
-class ContaPagarController extends AppController {
+class ContasPagarController extends AppController {
+
+/**
+ * Uses
+ *
+ * @var array
+ */
+    public $uses = array('ContaPagar');
 
 /**
  * Components
@@ -132,4 +139,44 @@ class ContaPagarController extends AppController {
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
 		$this->redirect(array('action' => 'index'));
 	}
+
+
+/**
+ * baixar method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function baixar($id = null) {
+        $this->ContaPagar->id = $id;
+		if (!$this->ContaPagar->exists($id)) {
+			throw new NotFoundException(__('The record could not be found.?>'));
+		}
+		if ($this->request->is('post') || $this->request->is('put')) {
+			if ($this->ContaPagar->save($this->request->data)) {
+				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
+               "link_text" => __('GO_TO'),
+               "link_url" => array(                  
+                  "action" => "view",
+                  $this->ContaPagar->id
+               )
+            ));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
+			}
+		} else {
+			$options = array('conditions' => array('ContaPagar.' . $this->ContaPagar->primaryKey => $id));
+			$this->request->data = $this->ContaPagar->find('first', $options);
+		}
+		$contas = $this->ContaPagar->Conta->find('list');
+		$pessoas = $this->ContaPagar->Pessoa->find('list');
+		$formapgtos = $this->ContaPagar->Formapgto->find('list');
+		$users = $this->ContaPagar->User->find('list');
+		$situacaos = $this->ContaPagar->Situacao->find('list');
+		$tipos = $this->ContaPagar->Tipo->find('list');
+		$this->set(compact('contas', 'pessoas', 'formapgtos', 'users', 'situacaos', 'tipos'));
+	}
+
 }

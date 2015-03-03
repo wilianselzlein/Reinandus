@@ -166,7 +166,7 @@ class MensalidadesController extends AppController {
 	}
 
 /**
- * baixar method
+ * gerar method
  *
  * @throws NotFoundException
  * @return void

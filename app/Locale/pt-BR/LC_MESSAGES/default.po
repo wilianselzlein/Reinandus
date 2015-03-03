@@ -600,3 +600,15 @@ msgstr "Sistema de Avaliação"
 
 msgid "criterios_aval"
 msgstr "Critérios de Avaliação"
+
+msgid "ContasPagar"
+msgstr "Contas a Pagar"
+
+msgid "Contaspagar"
+msgstr "Contas a Pagar"
+
+msgid "Contapagar"
+msgstr "Conta a Pagar"
+
+msgid "ContaPagar"
+msgstr "Conta a Pagar"
