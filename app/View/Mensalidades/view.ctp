@@ -11,62 +11,23 @@
 			<div class="table-responsive">
 				<table class="table table-hover table-condensed">
 					<tbody>
-						<tr>		<td><strong><?php echo __('Id'); ?></strong></td>
-		<td>
-			<?php echo h($mensalidade['Mensalidade']['id']); ?>
-			&nbsp;
-		</td>
-</tr><tr>		<td><strong><?php echo __('Aluno'); ?></strong></td>
+<?php echo $this->element('LinhaView', array('alias' => 'Id', 'valor' => h($mensalidade['Mensalidade']['id']))); ?>
+<tr>		<td><strong><?php echo __('Aluno'); ?></strong></td>
 		<td>
 			<?php echo $this->Html->link($mensalidade['Aluno']['nome'], array('controller' => 'alunos', 'action' => 'view', $mensalidade['Aluno']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
-</tr><tr>		<td><strong><?php echo __('Numero'); ?></strong></td>
-		<td>
-			<?php echo h($mensalidade['Mensalidade']['numero']); ?>
-			&nbsp;
-		</td>
-</tr><tr>		<td><strong><?php echo __('Vencimento'); ?></strong></td>
-		<td>
-			<?php echo h($mensalidade['Mensalidade']['vencimento']); ?>
-			&nbsp;
-		</td>
-</tr><tr>		<td><strong><?php echo __('Valor'); ?></strong></td>
-		<td>
-			<?php echo $this->Number->currency($mensalidade['Mensalidade']['valor'],'BRL'); ?>
-			&nbsp;
-		</td>
-</tr><tr>		<td><strong><?php echo __('Desconto'); ?></strong></td>
-		<td>
-			<?php echo $this->Number->currency($mensalidade['Mensalidade']['desconto'],'BRL'); ?>
-			&nbsp;
-		</td>
-</tr><tr>		<td><strong><?php echo __('Acrescimo'); ?></strong></td>
-		<td>
-			<?php echo $this->Number->currency($mensalidade['Mensalidade']['acrescimo'],'BRL'); ?>
-			&nbsp;
-		</td>
-</tr><tr>		<td><strong><?php echo __('Liquido'); ?></strong></td>
-		<td>
-			<?php echo $this->Number->currency($mensalidade['Mensalidade']['liquido'],'BRL'); ?>
-			&nbsp;
-		</td>
-</tr><tr>		<td><strong><?php echo __('Valor Pago'); ?></strong></td>
-		<td>
-			<?php echo $this->Number->currency($mensalidade['Mensalidade']['pago'],'BRL'); ?>
-			&nbsp;
-		</td>
-</tr><tr>		<td><strong><?php echo __('Pagamento'); ?></strong></td>
-		<td>
-			<?php echo h($mensalidade['Mensalidade']['pagamento']); ?>
-			&nbsp;
-		</td>
-</tr><tr>		<td><strong><?php echo __('Bolsa'); ?></strong></td>
-		<td>
-			<?php echo $this->Number->currency($mensalidade['Mensalidade']['bolsa'],'BRL'); ?>
-			&nbsp;
-		</td>
-</tr><tr>		<td><strong><?php echo __('Renegociado'); ?></strong></td>
+</tr>
+<?php echo $this->element('LinhaView', array('alias' => 'Numero', 'valor' => h($mensalidade['Mensalidade']['numero']))); ?>
+<?php echo $this->element('LinhaView', array('alias' => 'Vencimento', 'valor' => h($mensalidade['Mensalidade']['vencimento']))); ?>
+<?php echo $this->element('LinhaView', array('alias' => 'Valor', 'valor' => $this->Number->currency($mensalidade['Mensalidade']['valor'],'BRL'))); ?>
+<?php echo $this->element('LinhaView', array('alias' => 'Desconto', 'valor' => $this->Number->currency($mensalidade['Mensalidade']['desconto'],'BRL'))); ?>
+<?php echo $this->element('LinhaView', array('alias' => 'Acréscimo', 'valor' => $this->Number->currency($mensalidade['Mensalidade']['desconto'],'BRL'))); ?>
+<?php echo $this->element('LinhaView', array('alias' => 'Líquido', 'valor' => $this->Number->currency($mensalidade['Mensalidade']['liquido'],'BRL'))); ?>
+<?php echo $this->element('LinhaView', array('alias' => 'Valor Pago', 'valor' => $this->Number->currency($mensalidade['Mensalidade']['pago'],'BRL'))); ?>
+<?php echo $this->element('LinhaView', array('alias' => 'Pago', 'valor' => $this->Number->currency($mensalidade['Mensalidade']['pagamento'],'BRL'))); ?>
+<?php echo $this->element('LinhaView', array('alias' => 'Bolsa', 'valor' => $this->Number->currency($mensalidade['Mensalidade']['bolsa'],'BRL'))); ?>
+<tr>		<td><strong><?php echo __('Renegociado'); ?></strong></td>
 		<td>
 			<i class="<?php echo ($mensalidade['Mensalidade']['renegociacao'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i>
 			&nbsp;
@@ -86,17 +47,9 @@
 			<?php echo $this->Html->link($mensalidade['User']['username'], array('controller' => 'usuarios', 'action' => 'view', $mensalidade['User']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
-</tr><tr>		<td><strong><?php echo __('Documento'); ?></strong></td>
-		<td>
-			<?php echo h($mensalidade['Mensalidade']['documento']); ?>
-			&nbsp;
-		</td>
-</tr><tr>		<td><strong><?php echo __('Observação'); ?></strong></td>
-		<td>
-			<?php echo h($mensalidade['Mensalidade']['obs']); ?>
-			&nbsp;
-		</td>
 </tr>
+<?php echo $this->element('LinhaView', array('alias' => 'Documento', 'valor' => h($mensalidade['Mensalidade']['documento']))); ?>
+<?php echo $this->element('LinhaView', array('alias' => 'Observação', 'valor' => h($mensalidade['Mensalidade']['obs']))); ?>
 					</tbody>
 				</table><!-- /.table table-striped table-bordered -->
 			</div><!-- /.table-responsive -->
