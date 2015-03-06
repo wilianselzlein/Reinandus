@@ -169,6 +169,16 @@ class EnumeradosController extends AppController {
 	$this->AdicionarEnumeradoSeNaoExistir(30, 'curso', 'periodo_id', 'Noite');
 	$this->AdicionarEnumeradoSeNaoExistir(31, 'instituto', 'tipo_id', 'Instituto');
 	$this->AdicionarEnumeradoSeNaoExistir(32, 'instituto', 'tipo_id', 'Instituição');
+	$this->AdicionarEnumeradoSeNaoExistir(33, 'contapagar', 'tipo_id', 'Boleto');
+	$this->AdicionarEnumeradoSeNaoExistir(34, 'contapagar', 'tipo_id', 'Conta Consumo');
+	$this->AdicionarEnumeradoSeNaoExistir(35, 'contapagar', 'tipo_id', 'Fatura');
+	$this->AdicionarEnumeradoSeNaoExistir(36, 'contapagar', 'tipo_id', 'Folha Pagamento');
+	$this->AdicionarEnumeradoSeNaoExistir(37, 'contapagar', 'tipo_id', 'Nota Fiscal');
+	$this->AdicionarEnumeradoSeNaoExistir(38, 'contapagar', 'tipo_id', 'Outros');
+	$this->AdicionarEnumeradoSeNaoExistir(39, 'contapagar', 'tipo_id', 'Recibos');
+	$this->AdicionarEnumeradoSeNaoExistir(40, 'contapagar', 'situacao_id', 'Aberto');
+	$this->AdicionarEnumeradoSeNaoExistir(41, 'contapagar', 'situacao_id', 'Fechado');
+	$this->AdicionarEnumeradoSeNaoExistir(42, 'contapagar', 'situacao_id', 'Parcial');
 
 	$this->Session->setFlash(__('Os enumerados foram atualizados.'), 'flash/success');
  }

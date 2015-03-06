@@ -612,3 +612,18 @@ msgstr "Conta a Pagar"
 
 msgid "ContaPagar"
 msgstr "Conta a Pagar"
+
+msgid "Observacao"
+msgstr "Observação"
+
+msgid "Emissao"
+msgstr "Emissão"
+
+msgid "Serie"
+msgstr "Série"
+
+msgid "Agencia"
+msgstr "Agência"
+
+msgid "Banco Deposito"
+msgstr "Banco Depósito"

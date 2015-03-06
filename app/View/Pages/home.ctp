@@ -24,47 +24,7 @@ endif;
 		2) <a target="_blank" href="http://book.cakephp.org/2.0/en/development/configuration.html#cakephp-core-configuration" style="color:#fff;">I don't / can't use URL rewriting</a>
 	</p>
 <?php endif; */ ?>
-<?php
-/*
-<h3><?php echo __('Alunos'); ?></h3>
-<p>
-<ul>
-	<li>
-		<?php echo $this->Html->link('Ativos', '') ?>:
-		<?php echo __('XX cadastrado(s).'); ?>
-	</li>
-	<li>
-		<?php echo $this->Html->link('Inativos', '') ?>:
-		<?php echo __('XX cadastrado(s).'); ?>
-	</li>
-</ul>
-</p>
-<h3><?php echo __('Cursos'); ?></h3>
-<p>
-<ul>
-	<li>
-		<?php echo $this->Html->link('Gestao Empresarial', '') ?>:
-		<?php echo __('XX aluno(s) cadastrado(s).'); ?>
-	</li>
-	<li>
-		<?php echo $this->Html->link('Controladoria e Financas', '') ?>:
-		<?php echo __('XX cadastrado(s).'); ?>
-	</li>
-</ul>
-</p>
-<h3><?php echo __('Financeiro'); ?></h3>
-<p>
-<ul>
-	<li>
-		<?php echo $this->Html->link('Receber', '') ?>:
-		<?php echo __('R$ 0,00 na semana.'); ?>
-	</li>
-	<li>
-		<?php echo $this->Html->link('Pagar', '') ?>:
-		<?php echo __('R$ 0,00 na semana.'); ?>
-	</li>
-</ul>
-*/ ?>
+
 <?php echo $this->element('GraficosBase');?>
 
 </p>
