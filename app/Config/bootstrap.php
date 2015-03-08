@@ -63,7 +63,8 @@ Inflector::rules('plural', array('irregular' => array(
 	'permissao' => 'permissoes', 
 	'professor' => 'professores',
 	'lancamentocontabil' => 'lancamentocontabil',
-    'contapagar' => 'contaspagar'
+    'contapagar' => 'contaspagar',
+    'importador' => 'importador'
 	)));
 
 /**

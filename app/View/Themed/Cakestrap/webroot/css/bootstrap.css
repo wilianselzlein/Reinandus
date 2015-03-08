@@ -45,3 +45,16 @@
 	width: 49%;
 }
 
+.importar {
+	float:left;
+	width:15%;
+	height:90px;
+	--margin:5px;
+}
+
+#importados{
+	width:100%;
+	--height:180px;
+	--margin-left:5%;
+	--margin-top:10%;
+}
