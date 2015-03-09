@@ -14,7 +14,7 @@ class ImportadorController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'ConexaoFirebird');
+	public $components = array('Paginator', 'Session', 'ConexaoFirebird', 'ImportarProgramas');
 
 /** 
  * index method
@@ -34,11 +34,18 @@ class ImportadorController extends AppController {
 		$data = $data['Importador'];
 		$caminho = $data['Caminho'];
 
+		if ($caminho == '') {
+			throw new NotFoundException(__('Informe o caminho do banco de dados Firebird.'));
+		}
+
 		$this->ConexaoFirebird->setCaminhoBanco($caminho);
 		$this->ConexaoFirebird->Conectar();
-		
-		debug($this->ConexaoFirebird->getCaminhoBanco());
 
+		$this->ImportarProgramas($this->ConexaoFirebird->getConexao(), $data);
+
+		//debug($this->ConexaoFirebird->getConexao());
+		
+		unset($this->ConexaoFirebird);
 
 		/*$c1 = new $this->ConexaoFirebird(new ComponentCollection());
 		$c1->setPrice(10);

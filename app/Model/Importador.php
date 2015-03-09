@@ -7,6 +7,7 @@ App::uses('AppModel', 'Model');
  * @property Formapgto $Formapgto
  * @property User $User
  */
+
 class Importador extends AppModel {
 
 /**
@@ -27,39 +28,19 @@ class Importador extends AppModel {
  * Validation rules
  *
  * @var array
- * /
+ */
 	public $validate = array(
-		'curso_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				'message' => 'VALIDADE_NUMERIC',
+		'caminho' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'VALIDATE_BLANK',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
-		'disciplina_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				'message' => 'VALIDADE_NUMERIC',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'professor_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				'message' => 'VALIDADE_NUMERIC',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-	);*/
+		)
+	);
 
 
 //The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -80,13 +61,6 @@ class Importador extends AppModel {
 		'Aluno' => array(
 			'className' => 'Aluno',
 			'foreignKey' => 'aluno_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'AlunoDisciplina' => array(
-			'className' => 'AlunoDisciplina',
-			'foreignKey' => '',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

@@ -15,7 +15,7 @@
 
 				<fieldset>
 
-<?php echo $this->Form->input('Caminho'); ?>
+<?php echo $this->Form->input('Caminho', array('value' => 'D:\\Delphi\\PosGraduacao\\exe\\BANCO.FDB')); ?>
 
 <div id="importados">
 	<div class="importar">
