@@ -41,7 +41,7 @@ class ImportadorController extends AppController {
 		$this->ConexaoFirebird->setCaminhoBanco($caminho);
 		$this->ConexaoFirebird->Conectar();
 
-		$this->ImportarProgramas($this->ConexaoFirebird->getConexao(), $data);
+		$this->ImportarProgramas->Importar($this->ConexaoFirebird, $data);
 
 		//debug($this->ConexaoFirebird->getConexao());
 		

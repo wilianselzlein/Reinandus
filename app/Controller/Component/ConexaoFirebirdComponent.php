@@ -19,7 +19,6 @@ class ConexaoFirebirdComponent extends Component {
 	}
 
 	public function Conectar() {
-		//if (!($this->Conexao = ibase_connect($this->CaminhoBanco, $this->Usuario, $this->Senha)))
 		if (!($this->Conexao = ibase_connect($this->CaminhoBanco, self::$Usuario, self::$Senha)))
 			die('Erro ao conectar: ' . ibase_errmsg());
 	}
@@ -34,14 +33,10 @@ class ConexaoFirebirdComponent extends Component {
 		return $this->Conexao;
 	}
 
-	/*public function __construct()
-	{
-		echo 'A classe "', __CLASS__, '" foi instanciada!<br />';
-	}*/
-
 	public function __destruct()
 	{
-		ibase_free_result();
+		if (! is_null($this->Consulta))
+			ibase_free_result($this->Consulta);
 		ibase_close($this->Conexao) or die("<br>" . ibase_errmsg());
 	 	//echo 'A classe "', __CLASS__, '" foi destruida.<br />';
 	}

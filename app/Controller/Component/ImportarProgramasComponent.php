@@ -1,25 +1,26 @@
 <?php
 
-//App::uses('Component', 'Controller', 'ImportadorBase', 'ImportadorBaseComponent');
 App::uses('Component', 'Controller/Component');
-
-App::import('Component', 'ImportadorBaseComponent', 'ImportadorBase');
-
-//use app\Controller\Component\ImportadorBaseComponent;
+App::import('Controller/Component', 'ImportadorBaseComponent');
 
 class ImportarProgramasComponent extends ImportadorBaseComponent {
 
- protected $_mergeParent = 'ImportadorBaseComponent';
-
 	public function PassaValores($parametro) {
-		debug($parametro);
+		$dados = [];
+		$dados['id'] = $parametro['PROCOD'];
+		$dados['nome'] = Inflector::humanize(strtolower(remove acento( $parametro['PRONOME'])));
+
+		criar decoretor mais um
+
+		$dados['is_cadastro'] = True;
+
+		$this->SalvarDados($dados);
 	}
 
 	public function Configurar() {
-		$this->setModel('Programas');
+		$this->setModel('Programa');
 		$this->setSqlConsulta('Select * from TPrograma');
 		$this->setCheckBox('Programas');
-			
 	}
 
 }
