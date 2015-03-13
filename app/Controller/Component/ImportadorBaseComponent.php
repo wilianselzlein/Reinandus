@@ -41,9 +41,9 @@ abstract class ImportadorBaseComponent extends Component {
 	}
 
 	protected function SalvarDados($parametro) {
+		debug($parametro); 
 		$this->Class->create();
         $this->Class->save($parametro);
-		debug($parametro); 
 	}
 	
 	public function Importar($conexao, $data) {

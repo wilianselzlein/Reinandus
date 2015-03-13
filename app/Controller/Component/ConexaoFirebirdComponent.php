@@ -19,7 +19,7 @@ class ConexaoFirebirdComponent extends Component {
 	}
 
 	public function Conectar() {
-		if (!($this->Conexao = ibase_connect($this->CaminhoBanco, self::$Usuario, self::$Senha)))
+		if (!($this->Conexao = ibase_connect($this->CaminhoBanco, self::$Usuario, self::$Senha, 'PT_BR', 512, 3)))
 			die('Erro ao conectar: ' . ibase_errmsg());
 	}
 
