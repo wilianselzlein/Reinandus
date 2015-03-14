@@ -13,8 +13,8 @@ class FormatarRetirar implements InterfaceDecoratorFormatador
     }
 
     public function Retirar($TextoParaRetirar){
-		
-		return str_replace($TextoParaRetirar, '', $this->TextoParaFormatar);
+		$this->TextoParaFormatar = str_replace($TextoParaRetirar, '', $this->TextoParaFormatar);
+		return $this->TextoParaFormatar;
 
     }
 

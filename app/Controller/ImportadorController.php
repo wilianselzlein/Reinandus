@@ -1,5 +1,8 @@
 <?php
 App::uses('AppController', 'Controller');
+App::import('Controller/Component/Importador', 
+	array('ImportarProgramasComponent', 'ImportarPlanosDeContaComponent', 'ImportarHistoricoPadraoComponent'));
+
 /**
  * Importador Controller
  *
@@ -14,7 +17,7 @@ class ImportadorController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'ConexaoFirebird', 'ImportarProgramas');
+	public $components = array('Paginator', 'Session', 'ConexaoFirebird');
 
 /** 
  * index method
@@ -40,60 +43,18 @@ class ImportadorController extends AppController {
 
 		$this->ConexaoFirebird->setCaminhoBanco($caminho);
 		$this->ConexaoFirebird->Conectar();
-
-		$this->ImportarProgramas->Importar($this->ConexaoFirebird, $data);
-
-		//debug($this->ConexaoFirebird->getConexao());
 		
+		$ImportarProgramas = new ImportarProgramasComponent(new ComponentCollection());
+		$ImportarPlanosDeConta = new ImportarPlanosDeContaComponent(new ComponentCollection());
+		$ImportarHistoricoPadrao = new ImportarHistoricoPadraoComponent(new ComponentCollection());
+
+		$ImportarProgramas->Importar($this->ConexaoFirebird, $data);
+		$ImportarPlanosDeConta->Importar($this->ConexaoFirebird, $data);
+		$ImportarHistoricoPadrao->Importar($this->ConexaoFirebird, $data);
+
 		unset($this->ConexaoFirebird);
 
-		/*$c1 = new $this->ConexaoFirebird(new ComponentCollection());
-		$c1->setPrice(10);
-
-		$c2 = new $this->ConexaoFirebird(new ComponentCollection());
-		$c2->setPrice(20);
-
-		$data = $this->request->data;
-		$data = $c1->getPrice();
-		debug($data); 
-		
-		$data = $c2->getPrice();
-		debug($data); */
-
-
-		die;
-
-		/*$data = $data['Importador'];
-		$professor = $data['professor_id'];
-		$cursos = $data['Curso'];
-		$disciplinas = $data['Disciplina'];
-
-		$notas = $this->Importador->AlunoDisciplina->find('all', array('recursive' => 0, 'conditions' =>
-			array(
-				'AlunoDisciplina.professor_id' => $professor, 
-				'Aluno.curso_id' => $cursos,
-				'AlunoDisciplina.disciplina_id' => $disciplinas)
-		));
-		$this->set(compact('notas'));*/
-	}
-
-/**
- * gravar method
- *
- * @return void
- */
-	public function gravar() {
-		if ($this->request->is('post') || $this->request->is('put')) {
-
-			$data = $this->request->data;
-			foreach ($data as $item) {
-				
-				$this->Importador->AlunoDisciplina->create();
-				$this->Importador->AlunoDisciplina->save($item['AlunoDisciplina']);
-
-				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
-			}
-		} 
+		$this->Session->setFlash(__('Importação Finalizada.'), 'flash/success');
 		$this->redirect(array('action' => 'index'));
 	}
 
