@@ -2,7 +2,9 @@
 App::uses('AppController', 'Controller');
 App::import('Controller/Component/Importador', 
 	array('ImportarProgramasComponent', 'ImportarPlanosDeContaComponent', 'ImportarHistoricoPadraoComponent',
-		'ImportarEstadosComponent', 'ImportarCidadesComponent'));
+		'ImportarEstadosComponent', 'ImportarCidadesComponent', 'ImportarGruposComponent', 'ImportarUsuariosComponent',
+		'ImportarDisciplinasComponent', 'ImportarParametrosComponent', 'ImportarFormasDePagamentoComponent',
+		'ImportarContasComponent', 'ImportarLancamentoContabilComponent'));
 
 /**
  * Importador Controller
@@ -41,26 +43,31 @@ class ImportadorController extends AppController {
 		if ($caminho == '') {
 			throw new NotFoundException(__('Informe o caminho do banco de dados Firebird.'));
 		}
+		try {
+			$this->ConexaoFirebird->setCaminhoBanco($caminho);
+			$this->ConexaoFirebird->Conectar();
+			
+			$ImportarProgramas = new ImportarProgramasComponent($this->ConexaoFirebird, $data); //new ComponentCollection()
+			$ImportarPlanosDeConta = new ImportarPlanosDeContaComponent($this->ConexaoFirebird, $data);
+			$ImportarHistoricoPadrao = new ImportarHistoricoPadraoComponent($this->ConexaoFirebird, $data);
+			$ImportarEstados = new ImportarEstadosComponent($this->ConexaoFirebird, $data);
+			$ImportarCidades = new ImportarCidadesComponent($this->ConexaoFirebird, $data);
+			$ImportarGrupos = new ImportarGruposComponent($this->ConexaoFirebird, $data);
+			$ImportarUsuarios = new ImportarUsuariosComponent($this->ConexaoFirebird, $data);
+			$ImportarDisciplinas = new ImportarDisciplinasComponent($this->ConexaoFirebird, $data);
+			$ImportarParametros = new ImportarParametrosComponent($this->ConexaoFirebird, $data);
+			$ImportarFormasDePagamento = new ImportarFormasDePagamentoComponent($this->ConexaoFirebird, $data);
+			$ImportarContas = new ImportarContasComponent($this->ConexaoFirebird, $data);
+			$ImportarLancamentoContabil = new ImportarLancamentoContabilComponent($this->ConexaoFirebird, $data);
 
-		$this->ConexaoFirebird->setCaminhoBanco($caminho);
-		$this->ConexaoFirebird->Conectar();
-		
-		$ImportarProgramas = new ImportarProgramasComponent(new ComponentCollection());
-		$ImportarPlanosDeConta = new ImportarPlanosDeContaComponent(new ComponentCollection());
-		$ImportarHistoricoPadrao = new ImportarHistoricoPadraoComponent(new ComponentCollection());
-		$ImportarEstados = new ImportarEstadosComponent(new ComponentCollection());
-		$ImportarCidades = new ImportarCidadesComponent(new ComponentCollection());
+			$this->Session->setFlash(__('Importação Finalizada.'), 'flash/success');
 
-		$ImportarProgramas->Importar($this->ConexaoFirebird, $data);
-		$ImportarPlanosDeConta->Importar($this->ConexaoFirebird, $data);
-		$ImportarHistoricoPadrao->Importar($this->ConexaoFirebird, $data);
-		$ImportarEstados->Importar($this->ConexaoFirebird, $data);
-		$ImportarCidades->Importar($this->ConexaoFirebird, $data);
-
+		} catch(Exception $e) {
+			$this->Session->setFlash(__('Erro na Importação: ' . $e->getMessage()), 'flash/error');
+		} 
 		unset($this->ConexaoFirebird);
-
-		$this->Session->setFlash(__('Importação Finalizada.'), 'flash/success');
 		$this->redirect(array('action' => 'index'));
+
 	}
 
 }

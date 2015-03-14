@@ -9,6 +9,8 @@ App::uses('AppController', 'Controller');
  */
 class LancamentoContabilController extends AppController {
 
+	public $uses = array('LancamentoContabil');
+
 /**
  * Components
  *

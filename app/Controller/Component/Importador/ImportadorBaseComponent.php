@@ -12,21 +12,29 @@ abstract class ImportadorBaseComponent extends Component {
 	var $SqlConsulta;
 	var $CheckBox;
 	var $Dados;
+	var $Data;
 
 	abstract public function PassaValores($parametro);
 	abstract public function Configurar();
 
-	public function __construct()
+	public function __construct($conexao, $data)
 	{
+		$this->setConexao($conexao);
+		$this->setData($data);
 		$this->Configurar();
+		$this->Importar();
 	}
 
-	private function VerificarImportacaoNecessaria($parametro) {
-		return (boolean)$parametro[$this->CheckBox];
+	private function VerificarImportacaoNecessaria() {
+		return (boolean)$this->Data[$this->CheckBox];
 	}
 
 	private function setConexao($parametro) {
 		$this->Conexao = $parametro;
+	}
+
+	private function setData($parametro) {
+		$this->Data = $parametro;
 	}
 
 	protected function setModel($parametro) {
@@ -53,11 +61,11 @@ abstract class ImportadorBaseComponent extends Component {
 		return $parametro;
 	}
 	
-	public function Importar($conexao, $data) {
+	public function Importar () {
 
-		if ($this->VerificarImportacaoNecessaria($data)) {
+		if ($this->VerificarImportacaoNecessaria()) {
 
-			$Consulta = $conexao->ConsultarSQL($this->SqlConsulta);
+			$Consulta = $this->Conexao->ConsultarSQL($this->SqlConsulta);
 			while ($registro = ibase_fetch_assoc ($Consulta)) { 
 			//while ($row = ibase_fetch_row ($Consulta)) { 
 			//while ($row = ibase_fetch_object ($Consulta)) { 
