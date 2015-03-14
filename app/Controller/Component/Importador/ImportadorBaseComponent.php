@@ -2,7 +2,7 @@
 
 App::uses('Component', 'Controller');
 App::import('Controller/Component/DecoratorFormatador', 
-	array('FormatarEncode', 'FormatarMinusculo', 'FormatarHumanize', 'FormatarRetirar'));
+	array('FormatarEncode', 'FormatarMinusculo', 'FormatarHumanize', 'FormatarRetirar', 'FormatarMaiusculo'));
 
 abstract class ImportadorBaseComponent extends Component {
 

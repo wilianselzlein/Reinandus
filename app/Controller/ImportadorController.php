@@ -1,7 +1,8 @@
 <?php
 App::uses('AppController', 'Controller');
 App::import('Controller/Component/Importador', 
-	array('ImportarProgramasComponent', 'ImportarPlanosDeContaComponent', 'ImportarHistoricoPadraoComponent'));
+	array('ImportarProgramasComponent', 'ImportarPlanosDeContaComponent', 'ImportarHistoricoPadraoComponent',
+		'ImportarEstadosComponent', 'ImportarCidadesComponent'));
 
 /**
  * Importador Controller
@@ -47,10 +48,14 @@ class ImportadorController extends AppController {
 		$ImportarProgramas = new ImportarProgramasComponent(new ComponentCollection());
 		$ImportarPlanosDeConta = new ImportarPlanosDeContaComponent(new ComponentCollection());
 		$ImportarHistoricoPadrao = new ImportarHistoricoPadraoComponent(new ComponentCollection());
+		$ImportarEstados = new ImportarEstadosComponent(new ComponentCollection());
+		$ImportarCidades = new ImportarCidadesComponent(new ComponentCollection());
 
 		$ImportarProgramas->Importar($this->ConexaoFirebird, $data);
 		$ImportarPlanosDeConta->Importar($this->ConexaoFirebird, $data);
 		$ImportarHistoricoPadrao->Importar($this->ConexaoFirebird, $data);
+		$ImportarEstados->Importar($this->ConexaoFirebird, $data);
+		$ImportarCidades->Importar($this->ConexaoFirebird, $data);
 
 		unset($this->ConexaoFirebird);
 
