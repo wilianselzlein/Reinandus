@@ -28,13 +28,6 @@ class ImportarLancamentoContabilComponent extends ImportadorBaseComponent {
 		$this->setCheckBox('Lancamentos');
 	}
 
-	private function PegarUltimoCodigoDeLancamentoImportado () {
-		$Lancamento = ClassRegistry::init('LancamentoContabil');
-		$Maior = $Lancamento->find('all', array('recursive' => -1, 'fields' => 'max(id) as Maximo'));
-		$Maior = $Maior[0][0]['Maximo'];
-		return $Maior;
-	}
-
 }
 
 ?>

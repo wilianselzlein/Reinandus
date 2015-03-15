@@ -20,7 +20,8 @@ class ImportarCidadesComponent extends ImportadorBaseComponent {
 
 	public function Configurar() {
 		$this->setModel('Cidade');
-		$this->setSqlConsulta('Select * from TCidade');
+		$UltimoCodigoDeLancamentoImportador = $this->PegarUltimoCodigoDeLancamentoImportado();
+		$this->setSqlConsulta('Select * from TCidade where CidCod >= ' . $UltimoCodigoDeLancamentoImportador . ' order by CidCod');
 		$this->setCheckBox('Cidades');
 
 		$Estado = ClassRegistry::init('Estado');

@@ -13,6 +13,7 @@ abstract class ImportadorBaseComponent extends Component {
 	var $CheckBox;
 	var $Dados;
 	var $Data;
+	var $Cidades;
 
 	abstract public function PassaValores($parametro);
 	abstract public function Configurar();
@@ -74,6 +75,25 @@ abstract class ImportadorBaseComponent extends Component {
 			
 		}
     }
+
+	protected function PegarUltimoCodigoDeLancamentoImportado () {
+		$Maior = $this->Class->find('all', array('recursive' => -1, 'fields' => 'max(id) as Maximo'));
+		$Maior = $Maior[0][0]['Maximo'];
+		return $Maior;
+	}
+
+	protected function CarregarArrayDeCidades() {
+		$Cidade = ClassRegistry::init('Cidade');
+		$this->Cidades = $Cidade->find('list', array('fields' => 'id', 'order' => 'id'));
+	}
+
+	protected function VerificarCidadeExiste($parametro) {
+		if (in_array($parametro, $this->Cidades) || (is_null($parametro))) 
+			return $parametro;
+		else {
+			return $this->Cidades[1];
+		}
+	}
 
 }
 

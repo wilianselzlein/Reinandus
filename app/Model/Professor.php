@@ -32,7 +32,7 @@ class Professor extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'numero' => array(
+		/*'numero' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				'message' => 'VALIDATE_NUMERIC',
@@ -41,7 +41,7 @@ class Professor extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
+		),*/
 		'nome' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
