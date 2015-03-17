@@ -5,7 +5,7 @@ App::import('Controller/Component/Importador',
 		'ImportarEstadosComponent', 'ImportarCidadesComponent', 'ImportarGruposComponent', 'ImportarUsuariosComponent',
 		'ImportarDisciplinasComponent', 'ImportarParametrosComponent', 'ImportarFormasDePagamentoComponent',
 		'ImportarContasComponent', 'ImportarLancamentoContabilComponent', 'ImportarPessoasComponent', 
-		'ImportarCursosComponent', 'ImportarProfessorComponent'));
+		'ImportarCursosComponent', 'ImportarProfessorComponent', 'ImportarAlunosComponent'));
 
 /**
  * Importador Controller
@@ -48,21 +48,22 @@ class ImportadorController extends AppController {
 			$this->ConexaoFirebird->setCaminhoBanco($caminho);
 			$this->ConexaoFirebird->Conectar();
 			
-			$ImportarProgramas = new ImportarProgramasComponent($this->ConexaoFirebird, $data); //new ComponentCollection()
-			$ImportarPlanosDeConta = new ImportarPlanosDeContaComponent($this->ConexaoFirebird, $data);
-			$ImportarHistoricoPadrao = new ImportarHistoricoPadraoComponent($this->ConexaoFirebird, $data);
-			$ImportarEstados = new ImportarEstadosComponent($this->ConexaoFirebird, $data);
-			$ImportarCidades = new ImportarCidadesComponent($this->ConexaoFirebird, $data);
-			$ImportarGrupos = new ImportarGruposComponent($this->ConexaoFirebird, $data);
-			$ImportarUsuarios = new ImportarUsuariosComponent($this->ConexaoFirebird, $data);
-			$ImportarDisciplinas = new ImportarDisciplinasComponent($this->ConexaoFirebird, $data);
-			$ImportarParametros = new ImportarParametrosComponent($this->ConexaoFirebird, $data);
-			$ImportarFormasDePagamento = new ImportarFormasDePagamentoComponent($this->ConexaoFirebird, $data);
-			$ImportarContas = new ImportarContasComponent($this->ConexaoFirebird, $data);
-			$ImportarLancamentoContabil = new ImportarLancamentoContabilComponent($this->ConexaoFirebird, $data);
-			$ImportarPessoas = new ImportarPessoasComponent($this->ConexaoFirebird, $data);
-			$ImportarCursos = new ImportarCursosComponent($this->ConexaoFirebird, $data);
-			$ImportarProfessor = new ImportarProfessorComponent($this->ConexaoFirebird, $data);			
+			$Programas = new ImportarProgramasComponent($this->ConexaoFirebird, $data); //new ComponentCollection()
+			$PlanosDeConta = new ImportarPlanosDeContaComponent($this->ConexaoFirebird, $data);
+			$HistoricoPadrao = new ImportarHistoricoPadraoComponent($this->ConexaoFirebird, $data);
+			$Estados = new ImportarEstadosComponent($this->ConexaoFirebird, $data);
+			$Cidades = new ImportarCidadesComponent($this->ConexaoFirebird, $data);
+			$Grupos = new ImportarGruposComponent($this->ConexaoFirebird, $data);
+			$Usuarios = new ImportarUsuariosComponent($this->ConexaoFirebird, $data);
+			$Disciplinas = new ImportarDisciplinasComponent($this->ConexaoFirebird, $data);
+			$Parametros = new ImportarParametrosComponent($this->ConexaoFirebird, $data);
+			$FormasDePagamento = new ImportarFormasDePagamentoComponent($this->ConexaoFirebird, $data);
+			$Contas = new ImportarContasComponent($this->ConexaoFirebird, $data);
+			$LancamentoContabil = new ImportarLancamentoContabilComponent($this->ConexaoFirebird, $data);
+			$Pessoas = new ImportarPessoasComponent($this->ConexaoFirebird, $data);
+			$Cursos = new ImportarCursosComponent($this->ConexaoFirebird, $data);
+			$Professor = new ImportarProfessorComponent($this->ConexaoFirebird, $data);
+			$Aluno = new ImportarAlunosComponent($this->ConexaoFirebird, $data);		
 
 			$this->Session->setFlash(__('Importação Finalizada.'), 'flash/success');
 

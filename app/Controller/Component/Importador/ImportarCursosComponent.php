@@ -39,7 +39,7 @@ class ImportarCursosComponent extends ImportadorBaseComponent {
 
 	public function Configurar() {
 		$this->setModel('Curso');
-		$UltimoCodigoDeLancamentoImportador = $this->PegarUltimoCodigoDeLancamentoImportado();
+		$UltimoCodigoDeLancamentoImportador = 0; //$this->PegarUltimoCodigoDeLancamentoImportado();
 		$this->setSqlConsulta('Select * from TCurso where CurCod >= ' . $UltimoCodigoDeLancamentoImportador . ' order by CurCod');
 		$this->setCheckBox('Cursos');
 	}

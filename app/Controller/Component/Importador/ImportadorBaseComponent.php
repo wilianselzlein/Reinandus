@@ -65,7 +65,7 @@ abstract class ImportadorBaseComponent extends Component {
 	public function Importar () {
 
 		if ($this->VerificarImportacaoNecessaria()) {
-
+			set_time_limit(0);
 			$Consulta = $this->Conexao->ConsultarSQL($this->SqlConsulta);
 			while ($registro = ibase_fetch_assoc ($Consulta)) { 
 			//while ($row = ibase_fetch_row ($Consulta)) { 
