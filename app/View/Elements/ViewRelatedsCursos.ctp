@@ -32,7 +32,7 @@
 								</tr>
 							</thead>
 							<tbody>
-									<?php foreach ($array['Curso'] as $curso): ?>
+	<?php foreach ($array['Curso'] as $curso): ?>
 		<tr>
 			<td><?php echo $curso['id']; ?></td>
 			<td><?php echo $curso['nome']; ?></td>
@@ -41,10 +41,10 @@
 			&nbsp;</td>
 			<td><?php echo $curso['turma']; ?></td>
 			<td><?php echo $curso['carga']; ?></td>
-			<td><?php echo $this->Html->link($curso['Pessoa']['fantasia'], array('controller' => 'pessoas', 'action' => 'view', $curso['Pessoa']['id']), array('class' => '')); ?>
+			<td><?php if (! is_null($curso['secretaria_id'])) echo $this->Html->link($curso['Pessoa']['fantasia'], array('controller' => 'pessoas', 'action' => 'view', $curso['Pessoa']['id']), array('class' => '')); ?>
 			&nbsp;</td>
 			<td><?php echo $curso['num_turma']; ?></td>
-			<td><?php echo $curso['Periodo']['nome']; ?></td>
+			<td><?php if (! is_null($curso['periodo_id'])) echo $curso['Periodo']['valor']; ?></td>
 			<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $curso, 'model' => '', 'controller' => 'cursos')); ?>
 		</tr>
 	<?php endforeach; ?>

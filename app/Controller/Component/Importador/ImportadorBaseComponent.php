@@ -53,8 +53,13 @@ abstract class ImportadorBaseComponent extends Component {
 
 	protected function SalvarDados($parametro) {
 		//debug($parametro); 
+		try{
 		$this->Class->create();
         $this->Class->save($parametro);
+		
+		} catch(Exception $e) {
+			echo 'Erro na Importação: ' . $e->getMessage() . ' ' . var_dump($parametro);
+		}
 	}
 
 	public function FormatarValorEncode($parametro){

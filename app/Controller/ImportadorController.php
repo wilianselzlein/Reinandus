@@ -5,7 +5,8 @@ App::import('Controller/Component/Importador',
 		'ImportarEstadosComponent', 'ImportarCidadesComponent', 'ImportarGruposComponent', 'ImportarUsuariosComponent',
 		'ImportarDisciplinasComponent', 'ImportarParametrosComponent', 'ImportarFormasDePagamentoComponent',
 		'ImportarContasComponent', 'ImportarLancamentoContabilComponent', 'ImportarPessoasComponent', 
-		'ImportarCursosComponent', 'ImportarProfessorComponent', 'ImportarAlunosComponent'));
+		'ImportarCursosComponent', 'ImportarProfessorComponent', 'ImportarAlunosComponent', 'ImportarAcessosComponent',
+		'ImportarCursosDisciplinasComponent', 'ImportarDisciplinasProfessoresComponent'));
 
 /**
  * Importador Controller
@@ -47,7 +48,7 @@ class ImportadorController extends AppController {
 		try {
 			$this->ConexaoFirebird->setCaminhoBanco($caminho);
 			$this->ConexaoFirebird->Conectar();
-			
+
 			$Programas = new ImportarProgramasComponent($this->ConexaoFirebird, $data); //new ComponentCollection()
 			$PlanosDeConta = new ImportarPlanosDeContaComponent($this->ConexaoFirebird, $data);
 			$HistoricoPadrao = new ImportarHistoricoPadraoComponent($this->ConexaoFirebird, $data);
@@ -63,13 +64,16 @@ class ImportadorController extends AppController {
 			$Pessoas = new ImportarPessoasComponent($this->ConexaoFirebird, $data);
 			$Cursos = new ImportarCursosComponent($this->ConexaoFirebird, $data);
 			$Professor = new ImportarProfessorComponent($this->ConexaoFirebird, $data);
-			$Aluno = new ImportarAlunosComponent($this->ConexaoFirebird, $data);		
+			$Aluno = new ImportarAlunosComponent($this->ConexaoFirebird, $data);
+			$Acesso = new ImportarAcessosComponent($this->ConexaoFirebird, $data);
+			$CursosDisciplinas = new ImportarCursosDisciplinasComponent($this->ConexaoFirebird, $data);
+			$DisciplinasProfessores = new ImportarDisciplinasProfessoresComponent($this->ConexaoFirebird, $data);
 
 			$this->Session->setFlash(__('Importação Finalizada.'), 'flash/success');
 
 		} catch(Exception $e) {
 			$this->Session->setFlash(__('Erro na Importação: ' . $e->getMessage()), 'flash/error');
-		} 
+		}
 		unset($this->ConexaoFirebird);
 		$this->redirect(array('action' => 'index'));
 

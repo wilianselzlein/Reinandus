@@ -1,4 +1,4 @@
-<?php
+v<?php
 App::uses('AppController', 'Controller');
 /**
  * Professors Controller
@@ -37,7 +37,7 @@ class ProfessoresController extends AppController {
 		if (!$this->Professor->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('recursive' => 2, 'conditions' => array('Professor.' . $this->Professor->primaryKey => $id));
+		$options = array('recursive' => 1, 'conditions' => array('Professor.' . $this->Professor->primaryKey => $id));
 		$this->set('professor', $this->Professor->find('first', $options));
 	}
 
