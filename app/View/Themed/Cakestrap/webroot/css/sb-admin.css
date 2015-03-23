@@ -222,10 +222,10 @@ ul.alert-dropdown {
 .panel-yellow a:hover {
     color: #df8a13;
 }
-
+/* http://manager.pedroescobar.com/tarefas/view/143 */
 .checkbox2 {
-width: 34px;
-height: 34px;
+   width: 16px;
+   height: 16px;
 }
 
 /* BORDA */

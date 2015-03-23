@@ -1,4 +1,4 @@
-v<?php
+<?php
 App::uses('AppController', 'Controller');
 /**
  * Professors Controller
