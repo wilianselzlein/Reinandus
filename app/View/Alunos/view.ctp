@@ -314,9 +314,10 @@ else
 				<h4 class="list-group-item-heading">Egresso</h4>
 				<p class="list-group-item-text"><?php echo $aluno['Detalhe'][0]['egresso']; ?></p>
 			</a>
-		</div>
-
-		<?php echo $aluno['Detalhe'][0]['foto']; ?>
+		</div>       
+      <?php echo $this->Html->image('alunos/thumbs/'.$aluno['Detalhe'][0]['foto']); ?>
+        
+   
     <?php endif; ?>
    </div><!-- /.related Detalhes -->
 

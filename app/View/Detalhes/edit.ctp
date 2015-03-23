@@ -7,7 +7,7 @@
 
 		<div class="detalhes form">
 		
-			<?php echo $this->Form->create('Detalhe', array('role' => 'form', 'class'=>'form-horizontal')); ?>
+			<?php echo $this->Form->create('Detalhe', array('role' => 'form', 'class'=>'form-horizontal','enctype' => 'multipart/form-data')); ?>
 
 				<fieldset>
 
@@ -23,7 +23,7 @@
 					</div><!-- .form-group -->
 					<div class="form-group">
 						<?php echo $this->Form->input('foto', 
-				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+				array('type' => 'file','class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 				); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
