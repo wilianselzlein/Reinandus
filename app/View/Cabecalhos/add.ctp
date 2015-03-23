@@ -10,7 +10,7 @@
 
 		<div class="cabecalhos form">
 		
-			<?php echo $this->Form->create('Cabecalho', array('role' => 'form', 'class'=>'form-horizontal')); ?>
+			<?php echo $this->Form->create('Cabecalho', array('role' => 'form', 'class'=>'form-horizontal','enctype' => 'multipart/form-data')); ?>
 
 				<fieldset>
 

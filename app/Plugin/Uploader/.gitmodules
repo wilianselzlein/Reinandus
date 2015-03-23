@@ -1,0 +1,3 @@
+[submodule "Vendor/phpThumb"]
+	path = Vendor/phpThumb
+	url = https://github.com/JamesHeinrich/phpThumb.git

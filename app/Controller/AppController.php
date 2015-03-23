@@ -32,28 +32,31 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
    public $theme = "Cakestrap";
-   
-   public $helpers = array('Form' => array('className' => 'Bs3Helpers.Bs3Form'));
-   
+
+   public $helpers = array('Form' => array('className' => 'Bs3Helpers.Bs3Form'),
+                           'Wysiwyg.Wysiwyg' => array('_editor' => 'Ck',         
+                                                     )
+                          );
+
    public $components = array(
-        'Session',
-        'Auth' => array(
-           'loginAction' => array(
-                'controller' => 'usuarios',
-                'action' => 'login'
-            ),
-            'loginRedirect' => array(
-                'controller' => 'pages',
-                'action' => 'display',
-                'home'
-            ),
-            'logoutRedirect' => array(
-                'controller' => 'pages',
-                'action' => 'display',
-                'home'
-            ),
-            
-        )
-    );
+      'Session',
+      'Auth' => array(
+         'loginAction' => array(
+            'controller' => 'usuarios',
+            'action' => 'login'
+         ),
+         'loginRedirect' => array(
+            'controller' => 'pages',
+            'action' => 'display',
+            'home'
+         ),
+         'logoutRedirect' => array(
+            'controller' => 'pages',
+            'action' => 'display',
+            'home'
+         ),
+
+      )
+   );
 
 }

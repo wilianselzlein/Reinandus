@@ -77,6 +77,8 @@ Inflector::rules('plural', array('irregular' => array(
  *
  */   
    CakePlugin::load('Bs3Helpers', array('bootstrap' => true));
+   CakePlugin::load('Uploader');
+CakePlugin::load('Wysiwyg');
 /**
  * You can attach event listeners to the request lifecycle as Dispatcher Filter. By default CakePHP bundles two filters:
  *

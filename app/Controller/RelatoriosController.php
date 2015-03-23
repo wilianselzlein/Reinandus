@@ -11,7 +11,7 @@ App::uses('AppController', 'Controller');
  */
 class RelatoriosController extends AppController {
 
-    public $uses = array('Relatorio', 'RelatorioDataset', 'RelatorioFiltro');
+    public $uses = array('Relatorio', 'RelatorioDataset', 'RelatorioFiltro', 'Cabecalhos');
 
     /**
      * Components
