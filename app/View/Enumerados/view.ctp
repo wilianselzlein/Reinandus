@@ -22,11 +22,17 @@
 			
 		</div><!-- /.view -->	
 
-<?php 
-	if ($enumerado['Enumerado']['nome'] == 'aluno')
-		echo $this->element('ViewRelatedsAlunos', array('array' => $enumerado));
-	if ($enumerado['Enumerado']['nome'] == 'curso')
- 		echo $this->element('ViewRelatedsCursos', array('array' => $enumerado)); 
+<?php
+	if (isset($enumerado['AlunoSituacao']) && (count($enumerado['AlunoSituacao']) > 0))
+ 		echo $this->element('ViewRelatedsAlunos', array('array' => $enumerado, 'model' => 'AlunoSituacao')); 
+	if (isset($enumerado['AlunoCivil']) && (count($enumerado['AlunoCivil']) > 0))
+ 		echo $this->element('ViewRelatedsAlunos', array('array' => $enumerado, 'model' => 'AlunoCivil')); 
+	if (isset($enumerado['AlunoIndicacao']) && (count($enumerado['AlunoIndicacao']) > 0))
+ 		echo $this->element('ViewRelatedsAlunos', array('array' => $enumerado, 'model' => 'AlunoIndicacao')); 
+	if (isset($enumerado['CursoTipo']) && (count($enumerado['CursoTipo']) > 0))
+ 		echo $this->element('ViewRelatedsCursos', array('array' => $enumerado, 'model' => 'CursoTipo')); 
+	if (isset($enumerado['CursoPeriodo']) && (count($enumerado['CursoPeriodo']) > 0))
+ 		echo $this->element('ViewRelatedsCursos', array('array' => $enumerado, 'model' => 'CursoPeriodo')); 
  	if ($enumerado['Enumerado']['nome'] == 'aviso')
 		echo $this->element('ViewRelatedsAvisos', array('array' => $enumerado)); 
 ?>

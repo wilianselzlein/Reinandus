@@ -143,6 +143,6 @@
 
    <?php echo $this->element('ViewRelatedsAlunos', array('array' => $curso)); ?>
    <?php echo $this->element('ViewRelatedsAvisos', array('array' => $curso)); ?>
-   <?php echo $this->element('ViewRelatedsDisciplinas', array('array' => $curso)); ?>
+   <?php echo $this->element('ViewRelatedsDisciplinas', array('array' => $curso, 'model' => 'CursoDisciplina')); ?>
 
 </div><!-- /#page-container .row-fluid -->

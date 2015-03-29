@@ -1,3 +1,4 @@
+<?php if (!isset($model)) $model = 'Curso'; ?>
 <div class="panel-footer">
                 <h3><?php echo __('Cursos').' ' ?> 
                     <small><?php echo __('Related') ?></small>
@@ -13,7 +14,7 @@
                 </h3>
             </div>
 			<div class="panel-body">
-				<?php if (!empty($array['Curso'])): ?>
+				<?php if (!empty($array[$model])): ?>
 					
 					<div class="table-responsive">
 						<table class="table table-hover table-condensed">
@@ -32,7 +33,7 @@
 								</tr>
 							</thead>
 							<tbody>
-	<?php foreach ($array['Curso'] as $curso): ?>
+	<?php foreach ($array[$model] as $curso): ?>
 		<tr>
 			<td><?php echo $curso['id']; ?></td>
 			<td><?php echo $curso['nome']; ?></td>

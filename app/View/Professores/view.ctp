@@ -1,4 +1,4 @@
-	 <div class="panel panel-default ">
+<div class="panel panel-default ">
         <div class="panel-heading">
             <h2><?php echo __('Professor'); ?>                <small><?php echo __('View'); ?></small>
 <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action'], $this->params['pass'][0]); ?>
@@ -141,6 +141,6 @@
 		</div><!-- /.view -->
 
 <?php echo $this->element('ViewRelatedsCursos', array('array' => $professor)); ?>
-<?php echo $this->element('ViewRelatedsDisciplinas', array('array' => $professor)); ?>
+<?php echo $this->element('ViewRelatedsDisciplinas', array('array' => $professor, 'model' => 'ProfessorDisciplina')); ?>
 
 </div><!-- /#page-container .row-fluid -->

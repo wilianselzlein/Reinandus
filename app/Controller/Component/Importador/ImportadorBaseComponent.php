@@ -85,6 +85,8 @@ abstract class ImportadorBaseComponent extends Component {
 	protected function PegarUltimoCodigoDeLancamentoImportado () {
 		$Maior = $this->Class->find('all', array('recursive' => -1, 'fields' => 'max(id) as Maximo'));
 		$Maior = $Maior[0][0]['Maximo'];
+		if (is_null($Maior))
+			$Maior = 0;
 		return $Maior;
 	}
 

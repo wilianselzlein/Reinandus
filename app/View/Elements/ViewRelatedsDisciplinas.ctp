@@ -1,3 +1,4 @@
+<?php if (!isset($model)) $model = 'Disciplina'; ?>
 <div class="panel-footer">
       <h3><?php echo __('Disciplinas').' ' ?> 
          <small><?php echo __('Related') ?></small>
@@ -15,7 +16,7 @@
       </h3>
    </div>
    <div class="panel-body">
-      <?php if (!empty($array['CursoDisciplina'])): ?>
+      <?php if (!empty($array[$model])): ?>
 
       <div class="table-responsive">
          <table class="table table-hover table-condensed">
@@ -24,17 +25,17 @@
                   <th><?php echo __('Id'); ?></th>
                   <th><?php echo __('Disciplina'); ?></th>
                   <th><?php echo __('Professor'); ?></th>
-                  <th><?php echo __('Horas Aula'); ?></th>
+                  <th><?php if (isset($disciplina['horas_aula'])) echo __('Horas Aula'); ?></th>
                   <th class="actions text-center"><?php echo __('Actions'); ?></th>
                </tr>
             </thead>
             <tbody>
-               <?php foreach ($array['CursoDisciplina'] as $disciplina): ?>
+               <?php foreach ($array[$model] as $disciplina): ?>
                <tr>
                   <td><?php echo $disciplina['id']; ?></td>
                   <td><?php echo $this->DisplayField->MakeLink($disciplina, 'disciplinas', 'disciplina_id'); ?></td>
-                  <td><?php echo $this->DisplayField->MakeLink($disciplina, 'professors', 'professor_id'); ?></td>
-                  <td><?php echo $disciplina['horas_aula']; ?></td>
+                  <td><?php echo $this->DisplayField->MakeLink($disciplina, 'professores', 'professor_id'); ?></td>
+                  <td><?php if (isset($disciplina['horas_aula'])) echo $disciplina['horas_aula']; ?></td>
                   <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $disciplina, 'model' => '', 'controller' => 'disciplinas')); ?>
                </tr>
                <?php endforeach; ?>

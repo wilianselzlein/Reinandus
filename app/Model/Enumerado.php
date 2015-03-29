@@ -75,35 +75,35 @@ class Enumerado extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'Aluno' => array(
+		'AlunoSituacao' => array(
 			'className' => 'Aluno',
 			'foreignKey' => 'situacao_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
-		'Aluno' => array(
+		'AlunoCivil' => array(
 			'className' => 'Aluno',
 			'foreignKey' => 'estado_civil_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
-		'Aluno' => array(
+		'AlunoIndicacao' => array(
 			'className' => 'Aluno',
 			'foreignKey' => 'indicacao_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
-		'Curso' => array(
+		'CursoTipo' => array(
 			'className' => 'Curso',
 			'foreignKey' => 'tipo_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
-		'Curso' => array(
+		'CursoPeriodo' => array(
 			'className' => 'Curso',
 			'foreignKey' => 'periodo_id',
 			'conditions' => '',
