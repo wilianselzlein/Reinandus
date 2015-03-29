@@ -15,6 +15,8 @@ class ImportarLancamentoContabilComponent extends ImportadorBaseComponent {
 		$dados['historico_padrao_id'] = $parametro['LCTHISTPADRAO'];
 		$dados['identificador'] = $this->FormatarValorEncode($parametro['LCTIDENTIFICADORCOMPLEMENTO']);
 		$dados['documento'] = $parametro['LCTDOCUMENTO'];
+		if (is_null($dados['documento'])) 
+			$dados['documento'] = '0';
 		$dados['valor'] = $parametro['LCTVALOR'];
 		$dados['complemento'] = $this->FormatarValorEncode($parametro['LCTCOMPLEMENTO']);
 		$dados['numero'] = $parametro['LCTNUMERO'];

@@ -14,6 +14,7 @@ abstract class ImportadorBaseComponent extends Component {
 	var $Dados;
 	var $Data;
 	var $Cidades;
+	var $Alunos;
 
 	abstract public function PassaValores($parametro);
 	abstract public function Configurar();
@@ -99,6 +100,19 @@ abstract class ImportadorBaseComponent extends Component {
 			return $this->Cidades[1];
 		}
 	}
+
+	protected function CarregarArrayDeAlunos() {
+		$Aluno = ClassRegistry::init('Aluno');
+		$this->Alunos = $Aluno->find('list', array('fields' => 'id', 'order' => 'id'));
+	}
+
+	protected function VerificarAlunoExiste($parametro) {
+		if (in_array($parametro, $this->Alunos) && (! is_null($parametro)))
+			return $parametro;
+		else
+			return $this->Alunos[1];
+	}
+
 
 }
 

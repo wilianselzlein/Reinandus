@@ -90,9 +90,6 @@
 	<div class="importar">
 		<?php echo $this->Form->input('AlunoFoto', array('type' => 'checkbox')); ?>
 	</div>
-	<div class="importar">
-		<?php echo $this->Form->input('AlunoDisciplinaData', array('type' => 'checkbox')); ?>
-	</div>
 </div>
 
 <?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Importar'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
