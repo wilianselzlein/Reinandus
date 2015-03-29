@@ -19,7 +19,7 @@
 						<table class="table table-hover table-condensed">
 							<thead>
 								<tr class="active">
-											<th><?php echo __('Id'); ?></th>
+		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Nome'); ?></th>
 		<th><?php echo __('Sigla'); ?></th>
 		<th><?php echo __('Coordenador'); ?></th>
@@ -37,14 +37,12 @@
 			<td><?php echo $curso['id']; ?></td>
 			<td><?php echo $curso['nome']; ?></td>
 			<td><?php echo $curso['sigla']; ?></td>
-			<td><?php echo $this->Html->link($curso['Professor']['nome'], array('controller' => 'professors', 'action' => 'view', $curso['Professor']['id']), array('class' => '')); ?>
-			&nbsp;</td>
+			<td><?php echo $this->DisplayField->MakeLink($curso, 'professores', 'professor_id'); ?></td>
 			<td><?php echo $curso['turma']; ?></td>
 			<td><?php echo $curso['carga']; ?></td>
-			<td><?php if (! is_null($curso['secretaria_id'])) echo $this->Html->link($curso['Pessoa']['fantasia'], array('controller' => 'pessoas', 'action' => 'view', $curso['Pessoa']['id']), array('class' => '')); ?>
-			&nbsp;</td>
+			<td><?php echo $this->DisplayField->MakeLink($curso, 'pessoas', 'pessoa_id'); ?></td>
 			<td><?php echo $curso['num_turma']; ?></td>
-			<td><?php if (! is_null($curso['periodo_id'])) echo $curso['Periodo']['valor']; ?></td>
+			<td><?php echo $this->DisplayField->MakeLink($curso, 'enumerados', 'periodo_id'); ?></td>
 			<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $curso, 'model' => '', 'controller' => 'cursos')); ?>
 		</tr>
 	<?php endforeach; ?>

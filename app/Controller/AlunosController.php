@@ -37,8 +37,24 @@ class AlunosController extends AppController {
 		if (!$this->Aluno->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('recursive' => 2, 'conditions' => array('Aluno.' . $this->Aluno->primaryKey => $id));
+		$options = array('recursive' => false, 'conditions' => array('Aluno.' . $this->Aluno->primaryKey => $id));
 		$this->set('aluno', $this->Aluno->find('first', $options));
+
+		$options = array('conditions' => array('AlunoDisciplina.aluno_id' => $id));
+		$disciplinas = $this->Aluno->AlunoDisciplina->find('all', $options);
+		$this->set(compact('disciplinas'));
+
+		$options = array('conditions' => array('Mensalidade.aluno_id' => $id));
+		$mensalidades = $this->Aluno->Mensalidade->find('all', $options);
+		$this->set(compact('mensalidades'));
+
+		$options = array('conditions' => array('Acesso.aluno_id' => $id));
+		$acessos = $this->Aluno->Acesso->find('all', $options);
+		$this->set(compact('acessos'));
+
+		$options = array('recursive' => -1, 'conditions' => array('Detalhe.aluno_id' => $id));
+		$detalhes = $this->Aluno->Detalhe->find('all', $options);
+		$this->set(compact('detalhes'));
 	}
 
 /**

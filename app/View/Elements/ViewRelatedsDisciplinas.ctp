@@ -32,10 +32,8 @@
                <?php foreach ($array['CursoDisciplina'] as $disciplina): ?>
                <tr>
                   <td><?php echo $disciplina['id']; ?></td>
-                  <td><?php echo $this->Html->link($disciplina['Disciplina']['nome'], array('controller' => 'disciplinas', 'action' => 'view', $disciplina['Disciplina']['id']), array('class' => '')); ?>
-                     &nbsp;</td>
-                  <td><?php echo $this->Html->link($disciplina['Professor']['nome'], array('controller' => 'professors', 'action' => 'view', $disciplina['Professor']['id']), array('class' => '')); ?>
-                     &nbsp;</td>
+                  <td><?php echo $this->DisplayField->MakeLink($disciplina, 'disciplinas', 'disciplina_id'); ?></td>
+                  <td><?php echo $this->DisplayField->MakeLink($disciplina, 'professors', 'professor_id'); ?></td>
                   <td><?php echo $disciplina['horas_aula']; ?></td>
                   <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $disciplina, 'model' => '', 'controller' => 'disciplinas')); ?>
                </tr>

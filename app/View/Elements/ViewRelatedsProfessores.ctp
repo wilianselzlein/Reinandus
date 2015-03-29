@@ -32,8 +32,7 @@
 		<tr>
 			<td><?php echo $professor['id']; ?></td>
 			<td><?php echo $professor['nome']; ?></td>
-			<td><?php echo $this->Html->link($professor['Cidade']['nome'], array('controller' => 'cidades', 'action' => 'view', $professor['Cidade']['id']), array('class' => '')); ?>
-			&nbsp;</td>
+			<td><?php echo $this->DisplayField->MakeLink($professor, 'cidades', 'cidade_id'); ?></td>
 			<td><?php echo $professor['celular']; ?></td>
 			<td><?php echo $professor['email']; ?></td>
 			<td><?php echo $professor['resumotitulacao']; ?></td>

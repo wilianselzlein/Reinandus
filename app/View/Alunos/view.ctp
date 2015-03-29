@@ -139,7 +139,7 @@ else
       </h3>
    </div>   
    <div class="panel-body">
-      <?php if (!empty($aluno['AlunoDisciplina'])): ?>
+      <?php if (!empty($disciplinas)): ?>
 
       <div class="table-responsive">
          <table class="table table-hover table-condensed">
@@ -156,21 +156,21 @@ else
                </tr>
             </thead>
             <tbody>
-               <?php foreach ($aluno['AlunoDisciplina'] as $disciplina): ?>
+               <?php foreach ($disciplinas as $disciplina):?>
                <tr>
-                  <td><?php echo $disciplina['id']; ?></td>
+                  <td><?php echo $disciplina['AlunoDisciplina']['id']; ?></td>
                   <td><?php echo $this->Html->link($disciplina['Disciplina']['nome'], array('controller' => 'disciplinas', 'action' => 'view', $disciplina['Disciplina']['id']), array('class' => '')); ?>
                      &nbsp;</td>
-                  <td><?php echo $this->Html->link($disciplina['Professor']['nome'], array('controller' => 'professors', 'action' => 'view', $disciplina['Professor']['id']), array('class' => '')); ?>
+                  <td><?php echo $this->Html->link($disciplina['Professor']['nome'], array('controller' => 'professores', 'action' => 'view', $disciplina['Professor']['id']), array('class' => '')); ?>
                      &nbsp;</td>
-                  <td><?php echo $disciplina['frequencia']; ?></td>
-                  <td><?php echo $disciplina['nota']; ?></td>
-                  <td><?php echo $disciplina['horas_aula']; ?></td>
-                  <td><?php echo $disciplina['data']; ?></td>
+                  <td><?php echo $disciplina['AlunoDisciplina']['frequencia']; ?></td>
+                  <td><?php echo $disciplina['AlunoDisciplina']['nota']; ?></td>
+                  <td><?php echo $disciplina['AlunoDisciplina']['horas_aula']; ?></td>
+                  <td><?php echo $disciplina['AlunoDisciplina']['data']; ?></td>
                   <td class="actions text-center">
-                     <?php echo $this->Html->link('<i class="fa fa-pencil"></i>',  array('controller' => 'alunodisciplinas', 'action' => 'edit',   $disciplina['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'),     'data-toggle'=>'tooltip')); ?>
-                     <?php echo $this->Form->postLink('<i class="fa fa-times"></i>',   array('controller' => 'alunodisciplinas', 'action' => 'delete', $disciplina['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'),   'data-toggle'=>'tooltip'), 
-                           __('Are you sure you want to delete # %s?', $disciplina['id'])); ?>
+                     <?php echo $this->Html->link('<i class="fa fa-pencil"></i>',  array('controller' => 'alunodisciplinas', 'action' => 'edit',   $disciplina['AlunoDisciplina']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'),     'data-toggle'=>'tooltip')); ?>
+                     <?php echo $this->Form->postLink('<i class="fa fa-times"></i>',   array('controller' => 'alunodisciplinas', 'action' => 'delete', $disciplina['AlunoDisciplina']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'),   'data-toggle'=>'tooltip'), 
+                           __('Are you sure you want to delete # %s?', $disciplina['AlunoDisciplina']['id'])); ?>
                   </td>
                </tr>
                <?php endforeach; ?>
@@ -196,7 +196,7 @@ else
       </h3>
    </div>   
    <div class="panel-body">
-      <?php if (!empty($aluno['Mensalidade'])): ?>
+      <?php if (!empty($mensalidades)): ?>
 
       <div class="table-responsive">
          <table class="table table-hover table-condensed">
@@ -212,20 +212,20 @@ else
                </tr>
             </thead>
             <tbody>
-               <?php foreach ($aluno['Mensalidade'] as $mensalidade): ?>
+               <?php foreach ($mensalidades as $mensalidade): ?>
                <tr>
-                  <td><?php echo $mensalidade['id']; ?></td>
-                  <td><?php echo $mensalidade['numero']; ?></td>
-                  <td><?php echo $mensalidade['vencimento']; ?></td>
-                  <td><?php echo $mensalidade['liquido']; ?></td>
-                  <td><?php echo $mensalidade['pagamento']; ?></td>
+                  <td><?php echo $mensalidade['Mensalidade']['id']; ?></td>
+                  <td><?php echo $mensalidade['Mensalidade']['numero']; ?></td>
+                  <td><?php echo $mensalidade['Mensalidade']['vencimento']; ?></td>
+                  <td><?php echo $mensalidade['Mensalidade']['liquido']; ?></td>
+                  <td><?php echo $mensalidade['Mensalidade']['pagamento']; ?></td>
                   <td><?php echo $this->Html->link($mensalidade['Formapgto']['nome'], array('controller' => 'formaspagamentos', 'action' => 'view', $mensalidade['Formapgto']['id']), array('class' => '')); ?>
                      &nbsp;</td>
                   <td class="actions text-center">
-      				<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'mensalidades', 'action' => 'view', $mensalidade['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-                     <?php echo $this->Html->link('<i class="fa fa-pencil"></i>',  array('controller' => 'mensalidades', 'action' => 'edit',   $mensalidade['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'),     'data-toggle'=>'tooltip')); ?>
-                     <?php echo $this->Form->postLink('<i class="fa fa-times"></i>',   array('controller' => 'mensalidades', 'action' => 'delete', $mensalidade['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'),   'data-toggle'=>'tooltip'), 
-                           __('Are you sure you want to delete # %s?', $mensalidade['id'])); ?>
+      				<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'mensalidades', 'action' => 'view', $mensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
+                     <?php echo $this->Html->link('<i class="fa fa-pencil"></i>',  array('controller' => 'mensalidades', 'action' => 'edit',   $mensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'),     'data-toggle'=>'tooltip')); ?>
+                     <?php echo $this->Form->postLink('<i class="fa fa-times"></i>',   array('controller' => 'mensalidades', 'action' => 'delete', $mensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'),   'data-toggle'=>'tooltip'), 
+                           __('Are you sure you want to delete # %s?', $mensalidade['Mensalidade']['id'])); ?>
                   </td>
                </tr>
                <?php endforeach; ?>
@@ -241,15 +241,15 @@ else
 	      </h3>
 	</div>   
 	<div class="panel-body">
-  	<?php if (!empty($aluno['Acesso'])): ?>
+  	<?php if (!empty($acessos)): ?>
 		<?php 
 		$dia = 0; $mes = 0; $sem = 0; $ano = 0;
 
-		foreach ($aluno['Acesso'] as $acesso):
-			if ($acesso['datahora'] == null)
+		foreach ($acessos as $acesso):
+			if ($acesso['Acesso']['datahora'] == null)
 				Continue;
 
-			$interval = date_create('now')->diff(date_create($acesso['datahora']));
+			$interval = date_create('now')->diff(date_create($acesso['Acesso']['datahora']));
 			if ($interval->days == 0) $dia++;
 			if ($interval->days < 30) $mes++;
 			if ($interval->days < 180) $sem++;
@@ -282,13 +282,11 @@ else
                <?php echo __('Actions'); ?> <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-               <?php if (empty($aluno['Detalhe'])): ?>
-               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '.__('Detalhe'), array('controller' => 'detalhes', 'action' => 'add', $aluno['Aluno']['id']), array('escape'=>false)); ?>   </li>
-               <?php endif; ?>
-               <?php if (!empty($aluno['Detalhe'])): ?>
-               <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '   .__('Edit') .' '.__('Detalhe'), array('controller' => 'detalhes', 'action' => 'edit', $aluno['Detalhe'][0]['id']), array('escape'=>false)); ?>   </li>
+               <?php if (! empty($detalhes[0])): ?>
+               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '.__('Detalhe'), array('controller' => 'detalhes', 'action' => 'add', $detalhes[0]['Detalhe']['id']), array('escape'=>false)); ?>   </li>
+               <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '   .__('Edit') .' '.__('Detalhe'), array('controller' => 'detalhes', 'action' => 'edit', $detalhes[0]['Detalhe']['id']), array('escape'=>false)); ?>   </li>
                <li>
-                 <?php echo $this->Form->postLink('<i class="fa fa-times"></i>'. ' ' .__('Delete') .' '.__('Detalhe'), array('controller' => 'detalhes', 'action' => 'delete', $aluno['Detalhe'][0]['id'], $aluno['Aluno']['id']), array('style' => 'margin: 10px;', 'class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $aluno['Detalhe'][0]['id'])); ?>
+                 <?php echo $this->Form->postLink('<i class="fa fa-times"></i>'. ' ' .__('Delete') .' '.__('Detalhe'), array('controller' => 'detalhes', 'action' => 'delete', $detalhes[0]['Detalhe']['id'], $detalhes[0]['Detalhe']['id']), array('style' => 'margin: 10px;', 'class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $detalhes[0]['Detalhe']['id'])); ?>
                 </li>
               <?php endif; ?>
             </ul>       
@@ -296,26 +294,26 @@ else
 	      </h3>
 	</div>   
 	<div class="panel-body">
-  	<?php if (!empty($aluno['Detalhe'])): ?>
+  	<?php if (!empty($detalhes)): ?>
 		<div class="list-group">
 			<a href="#" class="list-group-item active">
 				<h4 class="list-group-item-heading">Ocorrências</h4>
-				<p class="list-group-item-text"><?php echo $aluno['Detalhe'][0]['ocorrencias']; ?></p>
+				<p class="list-group-item-text"><?php echo $detalhes[0]['Detalhe']['ocorrencias']; ?></p>
 			</a>
 			<a href="#" class="list-group-item">
 				<h4 class="list-group-item-heading">Histórico Escolar</h4>
-				<p class="list-group-item-text"><?php echo $aluno['Detalhe'][0]['hist_escolar']; ?></p>
+				<p class="list-group-item-text"><?php echo $detalhes[0]['Detalhe']['hist_escolar']; ?></p>
 			</a>
 			<a href="#" class="list-group-item">
 				<h4 class="list-group-item-heading">Negociação Financeira</h4>
-				<p class="list-group-item-text"><?php echo $aluno['Detalhe'][0]['neg_financeira']; ?></p>
+				<p class="list-group-item-text"><?php echo $detalhes[0]['Detalhe']['neg_financeira']; ?></p>
 			</a>
 			<a href="#" class="list-group-item">
 				<h4 class="list-group-item-heading">Egresso</h4>
-				<p class="list-group-item-text"><?php echo $aluno['Detalhe'][0]['egresso']; ?></p>
+				<p class="list-group-item-text"><?php echo $detalhes[0]['Detalhe']['egresso']; ?></p>
 			</a>
 		</div>       
-      <?php echo $this->Html->image('alunos/thumbs/'.$aluno['Detalhe'][0]['foto']); ?>
+      <?php echo $this->Html->image('alunos/thumbs/'.$detalhes[0]['Detalhe']['foto']); ?>
         
    
     <?php endif; ?>

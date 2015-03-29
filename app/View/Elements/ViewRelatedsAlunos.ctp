@@ -33,10 +33,7 @@
                <tr>
                   <td><?php echo $aluno['id']; ?></td>
                   <td><?php echo $aluno['nome']; ?></td>
-                  <td><?php if (isset($aluno['Situacao']['valor']))
-                   echo $this->Html->link($aluno['Situacao']['valor'], array('controller' => 'enumerados', 'action' => 'view', $aluno['Situacao']['id']), array('class' => '')); ?></td>
-                  <?php /* <td><?php echo $this->Html->link($aluno['Cidade']['nome'], array('controller' => 'cidades', 'action' => 'view', $aluno['Cidade']['id']), array('class' => '')); ?>
-                     &nbsp;</td> */ ?>
+                  <td><?php echo $this->DisplayField->MakeLink($aluno, 'enumerados', 'situacao_id'); ?></td>
                   <td><?php echo $aluno['celular']; ?></td>
                   <td><?php echo $aluno['email']; ?></td>
                   <td><?php echo date('d/m/Y', strtotime($aluno['curso_inicio'])); ?></td>

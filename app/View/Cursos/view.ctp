@@ -1,6 +1,7 @@
 <div class="panel panel-default ">
    <div class="panel-heading">
-      <h2><?php echo __('Curso'); ?>                <small><?php echo __('View'); ?></small>
+      <h2><?php echo __('Curso'); ?>
+      <small><?php echo __('View'); ?></small>
 <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action'], $this->params['pass'][0]); ?>
       </h2>
    </div>
@@ -47,7 +48,7 @@
                </td>
                </tr><tr>		<td><strong><?php echo __('Coordenador'); ?></strong></td>
                <td>
-                  <?php echo $this->Html->link($curso['Professor']['nome'], array('controller' => 'professors', 'action' => 'view', $curso['Professor']['id']), array('class' => '')); ?>
+                  <?php echo $this->Html->link($curso['Professor']['nome'], array('controller' => 'professores', 'action' => 'view', $curso['Professor']['id']), array('class' => '')); ?>
                   &nbsp;
                </td>
                </tr><tr>		<td><strong><?php echo __('Horario'); ?></strong></td>

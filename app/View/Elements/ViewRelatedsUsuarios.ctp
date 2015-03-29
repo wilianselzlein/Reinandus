@@ -31,9 +31,7 @@
 		<tr>
 	    	<td><?php echo $user['id']; ?></td>
 			<td><?php echo $user['username']; ?></td>
-			<td><?php echo $this->Html->link($user['Pessoa']['razaosocial'], array('controller' => 'pessoas', 'action' => 'view', $user['Pessoa']['id']), array('class' => '')); ?>
-			&nbsp;
-			</td>
+			<td><?php echo $this->DisplayField->MakeLink($user, 'pessoas', 'pessoa_id'); ?></td>
 			<td><?php echo date('d/m/Y', strtotime($user['created'])); ?></td>
 			<td><?php echo date('d/m/Y', strtotime($user['modified'])); ?></td>
 			<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $user, 'model' => '', 'controller' => 'usuarios')); ?>

@@ -32,11 +32,10 @@
                <tr>
                   <td><?php echo $aviso['id']; ?></td>
                   <td><?php echo date('d/m/Y', strtotime($aviso['data'])); ?></td>
-                  <td><?php echo $this->Html->link($aviso['User']['username'], array('controller' => 'users', 'action' => 'view', $aviso['User']['id']), array('class' => '')); ?>
-                     &nbsp;</td>
+                  <td><?php echo $this->DisplayField->MakeLink($aviso, 'usuario', 'user_id'); ?></td>
                   <td><?php echo $aviso['arquivo']; ?></td>
                   <td><?php echo $aviso['mensagem']; ?></td>
-                  <td><?php echo $aviso['Tipo']['nome']; ?></td>
+                  <td><?php echo $this->DisplayField->MakeLink($aviso, 'enumerados', 'tipo_id'); ?></td>
                   <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $aviso, 'model' => '', 'controller' => 'avisos')); ?>
                </tr>
                <?php endforeach; ?>
