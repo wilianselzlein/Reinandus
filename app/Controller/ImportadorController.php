@@ -7,7 +7,8 @@ App::import('Controller/Component/Importador',
 		'ImportarContasComponent', 'ImportarLancamentoContabilComponent', 'ImportarPessoasComponent', 
 		'ImportarCursosComponent', 'ImportarProfessorComponent', 'ImportarAlunosComponent', 'ImportarAcessosComponent',
 		'ImportarCursosDisciplinasComponent', 'ImportarDisciplinasProfessoresComponent', 'ImportarAvisosComponent',
-		'ImportarAvisosCursosComponent', 'ImportarAlunosDisciplinasComponent', 'ImportarDetalhesComponent'));
+		'ImportarAvisosCursosComponent', 'ImportarAlunosDisciplinasComponent', 'ImportarDetalhesComponent',
+		'ImportarMensalidadesComponent'));
 
 /**
  * Importador Controller
@@ -73,6 +74,7 @@ class ImportadorController extends AppController {
 			$AvisosCursos = new ImportarAvisosCursosComponent($this->ConexaoFirebird, $data);
 			$AlunosDisciplinas = new ImportarAlunosDisciplinasComponent($this->ConexaoFirebird, $data);
 			$Detalhes = new ImportarDetalhesComponent($this->ConexaoFirebird, $data);
+			$Mensalidades = new ImportarMensalidadesComponent($this->ConexaoFirebird, $data);
 
 			$this->Session->setFlash(__('Importação Finalizada.'), 'flash/success');
 
