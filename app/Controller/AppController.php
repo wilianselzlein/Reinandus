@@ -34,8 +34,21 @@ class AppController extends Controller {
    public $theme = "Cakestrap";
 
    public $helpers = array('Form' => array('className' => 'Bs3Helpers.Bs3Form'),
-                           'Wysiwyg.Wysiwyg' => array('_editor' => 'Ck',         
-                                                     )
+                           'Wysiwyg.Wysiwyg' => array('_editor' => 'Ck'),
+                           'FilterResults.Search' => array(
+                              'operators' => array(
+                                 'LIKE'       => 'containing',
+                                 'NOT LIKE'   => 'not containing',
+                                 'LIKE BEGIN' => 'starting with',
+                                 'LIKE END'   => 'ending with',
+                                 '='  => 'equal to',
+                                 '!=' => 'different',
+                                 '>'  => 'greater than',
+                                 '>=' => 'greater or equal to',
+                                 '<'  => 'less than',
+                                 '<=' => 'less or equal to'
+                              )
+                           )
                           );
 
    public $components = array(
@@ -56,6 +69,16 @@ class AppController extends Controller {
             'home'
          ),
 
+      ),
+      'FilterResults.Filter' => array(
+         'auto' => array(
+            'paginate' => false,
+            'explode'  => true,  // recommended
+         ),
+         'explode' => array(
+            'character'   => ' ',
+            'concatenate' => 'AND',
+         )
       )
    );
 

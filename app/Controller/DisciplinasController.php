@@ -22,6 +22,19 @@ class DisciplinasController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->Filter->addFilters(
+         array(
+            'filter1' => array('OR' => array(
+               'Disciplina.id' => array('operator' => 'LIKE'),
+               'Disciplina.nome' => array('operator' => 'LIKE'),
+               'Disciplina.valor' => array('operator' => 'LIKE'),
+            )),
+         ));
+
+      $this->Filter->setPaginate('order', array('Disciplina.id' => 'desc')); 
+      $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
+      
 		$this->Disciplina->recursive = 0;
 		$this->set('disciplinas', $this->paginate());
 	}

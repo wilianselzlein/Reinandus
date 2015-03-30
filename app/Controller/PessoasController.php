@@ -22,6 +22,24 @@ class PessoasController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->Filter->addFilters(
+         array(
+            'filter1' => array('OR' => array(
+               'Pessoa.id' => array('operator' => 'LIKE'),
+               'Pessoa.fantasia' => array('operator' => 'LIKE'),
+               'Pessoa.razao_social' => array('operator' => 'LIKE'),
+               'Pessoa.endereco' => array('operator' => 'LIKE'),
+               'Pessoa.fone' => array('operator' => 'LIKE'),
+               'Pessoa.email' => array('operator' => 'LIKE'),
+               'Cidade.nome' => array('operator' => 'LIKE'),
+            )),
+         ));
+      
+            
+      $this->Filter->setPaginate('order', array('Pessoa.id' => 'desc')); 
+      $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
+      
 		$this->Pessoa->recursive = 0;
 		$this->set('pessoas', $this->paginate());
 	}

@@ -8,7 +8,7 @@
     </div>
 
 <div class="panel-body">
-
+<?php echo $this->element('pesquisa/simples');?>
 			<div class="table-responsive">
 				 <table class="table table-bordered table-hover table-condensed" >
                 <thead>
