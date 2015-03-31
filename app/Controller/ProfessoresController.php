@@ -28,7 +28,6 @@ class ProfessoresController extends AppController {
                'Professor.id' => array('operator' => 'LIKE'),
                'Professor.nome' => array('operator' => 'LIKE'),
                'Professor.endereco' => array('operator' => 'LIKE'),
-               'Professor.cidade' => array('operator' => 'LIKE'),
                'Professor.fone' => array('operator' => 'LIKE'),
                'Professor.email' => array('operator' => 'LIKE'),
                'Cidade.nome' => array('operator' => 'LIKE'),

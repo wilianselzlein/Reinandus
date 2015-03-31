@@ -30,9 +30,8 @@ class CursosController extends AppController {
                'Curso.id' => array('operator' => 'LIKE'),
                'Curso.sigla' => array('operator' => 'LIKE'),
                'Curso.nome' => array('operator' => 'LIKE'),
-               'Curso.ano' => array('operator' => 'LIKE'),
                'Curso.turma' => array('operator' => 'LIKE'),
-               'Curso.secretaria' => array('operator' => 'LIKE'),
+               'Pessoa.razaosocial' => array('operator' => 'LIKE'),
                'Professor.nome' => array('operator' => 'LIKE'),
             )),
          ));
