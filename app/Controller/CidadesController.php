@@ -26,9 +26,8 @@ class CidadesController extends AppController {
          array(
             'filter1' => array('OR' => array(
                'Cidade.id' => array('operator' => 'LIKE'),
-               'Cidade.fantasia' => array('operator' => 'LIKE'),
-               'Cidade.razao_social' => array('operator' => 'LIKE'),
-               'Estado.sigla' => array('operator' => 'LIKE'),
+               'Cidade.nome' => array('operator' => 'LIKE'),
+               'Cidade.cep' => array('operator' => 'LIKE'),
                'Estado.nome' => array('operator' => 'LIKE'),
             )),
          ));

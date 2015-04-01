@@ -25,18 +25,18 @@ class ContasController extends AppController {
       $this->Filter->addFilters(
          array(
             'filter1' => array('OR' => array(
-               'Conta.id' => array('operator' => 'LIKE'),
-               'Conta.banco' => array('operator' => 'LIKE'),
-               'Conta.agencia' => array('operator' => 'LIKE'),
-               'Conta.conta' => array('operator' => 'LIKE'),
-               'Conta.contato' => array('operator' => 'LIKE'),
-               'Conta.fone' => array('operator' => 'LIKE'),
+               'Contum.id' => array('operator' => 'LIKE'),
+               'Contum.banco' => array('operator' => 'LIKE'),
+               'Contum.agencia' => array('operator' => 'LIKE'),
+               'Contum.conta' => array('operator' => 'LIKE'),
+               'Contum.contato' => array('operator' => 'LIKE'),
+               'Contum.fone' => array('operator' => 'LIKE'),
                'Formapgto.nome' => array('operator' => 'LIKE'),
             )),
          ));
       
             
-      $this->Filter->setPaginate('order', array('Conta.id' => 'desc')); 
+      $this->Filter->setPaginate('order', array('Contum.id' => 'desc')); 
       $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
 
       

@@ -27,7 +27,7 @@ class PessoasController extends AppController {
             'filter1' => array('OR' => array(
                'Pessoa.id' => array('operator' => 'LIKE'),
                'Pessoa.fantasia' => array('operator' => 'LIKE'),
-               'Pessoa.razao_social' => array('operator' => 'LIKE'),
+               'Pessoa.razaosocial' => array('operator' => 'LIKE'),
                'Pessoa.endereco' => array('operator' => 'LIKE'),
                'Pessoa.fone' => array('operator' => 'LIKE'),
                'Pessoa.email' => array('operator' => 'LIKE'),
