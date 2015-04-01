@@ -41,7 +41,7 @@ class ImportarPessoasComponent extends ImportadorBaseComponent {
 
 	public function Configurar() {
 		$this->setModel('Pessoa');
-		$UltimoCodigoDeLancamentoImportador = $this->PegarUltimoCodigoDeLancamentoImportado();
+		$UltimoCodigoDeLancamentoImportador = 0; //$this->PegarUltimoCodigoDeLancamentoImportado();
 		$this->setSqlConsulta('Select * from TNetworking where NetCod >= ' . $UltimoCodigoDeLancamentoImportador . ' order by NetCod');
 		$this->setCheckBox('EmpresasPessoas');
 		$this->CarregarArrayDeCidades();

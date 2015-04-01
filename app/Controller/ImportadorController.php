@@ -86,5 +86,74 @@ class ImportadorController extends AppController {
 
 	}
 
+/* *
+ * relatorio method
+ *
+ * @return void
+ */
+	public function relatorio() {
+		$data = $this->request->data;
+		$caminho = NULL;
+		if (isset($data['Importador']['Caminho']))
+		{
+			$caminho = $data['Importador']['Caminho'];
+		}
+		$dados = [];
+				
+		if (! is_null($caminho)) {
+			try {
+				$this->ConexaoFirebird->setCaminhoBanco($caminho);
+				$this->ConexaoFirebird->Conectar();
+
+				$this->count($this->ConexaoFirebird, $dados, 'Programa', 'TPrograma');
+				$this->count($this->ConexaoFirebird, $dados, 'Cidade', 'TCidade');
+				$this->count($this->ConexaoFirebird, $dados, 'Grupo', 'TGrupoCurso');
+				$this->count($this->ConexaoFirebird, $dados, 'User', 'TUsuario');
+				$this->count($this->ConexaoFirebird, $dados, 'Disciplina', 'TDisciplina');
+				$this->count($this->ConexaoFirebird, $dados, 'Disciplina', 'TDisciplina');
+				$this->count($this->ConexaoFirebird, $dados, 'Aluno', 'TAluno');
+				$this->count($this->ConexaoFirebird, $dados, 'Acesso', 'TAlunoAcesso');
+				$this->count($this->ConexaoFirebird, $dados, 'Professor', 'TProfessor');
+				$this->count($this->ConexaoFirebird, $dados, 'Curso', 'TCurso');
+				$this->count($this->ConexaoFirebird, $dados, 'Mensalidade', 'TMensalidade');
+				$this->count($this->ConexaoFirebird, $dados, 'HistoricoPadrao', 'THistPadrao');
+				$this->count($this->ConexaoFirebird, $dados, 'PlanoConta', 'TPlanoConta');
+				$this->count($this->ConexaoFirebird, $dados, 'LancamentoContabil', 'TLctoContabil');
+				$this->count($this->ConexaoFirebird, $dados, 'Formapgto', 'TFormaPgto');
+				$this->count($this->ConexaoFirebird, $dados, 'Conta', 'TBanco');
+				$this->count($this->ConexaoFirebird, $dados, 'Pessoa', 'TNetworking');
+				$this->count($this->ConexaoFirebird, $dados, 'Parametro', 'TParametro');
+				$this->count($this->ConexaoFirebird, $dados, 'CursoDisciplina', 'TCursoDisciplina');
+				$this->count($this->ConexaoFirebird, $dados, 'DisciplinaProfessor', 'TProfessorDisciplina');
+				$this->count($this->ConexaoFirebird, $dados, 'Aviso', 'TAviso');
+				$this->count($this->ConexaoFirebird, $dados, 'AvisoCurso', 'TAvisoCurso');
+				$this->count($this->ConexaoFirebird, $dados, 'AlunoDisciplina', 'TAlunoDisciplina');
+				$this->count($this->ConexaoFirebird, $dados, 'Detalhe', 'TAluno');
+
+			} catch(Exception $e) {
+				$this->Session->setFlash(__('Erro na conexão: ' . $e->getMessage()), 'flash/error');
+			}
+			unset($this->ConexaoFirebird);
+		}
+		$this->set(compact('dados'));
+	}
+
+/* *
+ * count method
+ *
+ * @return void
+ */
+	private function count($conexao, &$array, $model, $tabela) {
+		
+		$Class = ClassRegistry::init($model);
+		$array[$model]['total'] = $Class->find('count');
+
+		$Consulta = $conexao->ConsultarSQL('select count(1) as total from ' . $tabela);
+		while ($registro = ibase_fetch_assoc ($Consulta)) { 
+			$array[$model]['de'] = $registro['TOTAL'];
+		}		
+
+	}
+
 }
 

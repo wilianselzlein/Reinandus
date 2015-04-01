@@ -98,6 +98,9 @@
 
 			<?php echo $this->Form->end(); ?>
 
+<?php echo $this->Html->link('<i class="fa fa-print"></i> Relatório', array('controller' => 'importador', 'action' => 'relatorio'), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Relatório'), 'data-toggle'=>'tooltip')); ?>
+
+
 		</div><!-- /.form -->
 			
 	</div><!-- /#page-content .col-sm-9 -->
