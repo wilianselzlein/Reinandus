@@ -37,7 +37,7 @@ class ImportarProfessorComponent extends ImportadorBaseComponent {
 
 	public function Configurar() {
 		$this->setModel('Professor');
-		$UltimoCodigoDeLancamentoImportador = $this->PegarUltimoCodigoDeLancamentoImportado();
+		$UltimoCodigoDeLancamentoImportador = 0; //$this->PegarUltimoCodigoDeLancamentoImportado();
 		$this->setSqlConsulta('Select ' .
 			'PROCOD, PRONOME, PROENDERECO, PROBAIRRO, PROCIDADE, PROCEP, PROFONE, PROFAX, PROCELULAR, PROEMAIL, ' . 
 			'PROEMAIL2, PROCPF, PRONOTAFISCAL, PRORESUMOTITULACAO, PROCURRICULUMLATTES, PROVINCULO, PROIDENTIDADE, ' .

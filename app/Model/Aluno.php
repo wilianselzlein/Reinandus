@@ -37,7 +37,7 @@ class Aluno extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'is_ativo' => array(
+		/*'is_ativo' => array(
 			'boolean' => array(
 				'rule' => array('boolean'),
 				//'message' => 'Your custom message here',

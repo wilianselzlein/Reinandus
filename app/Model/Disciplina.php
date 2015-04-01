@@ -29,7 +29,7 @@ class Disciplina extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'nome' => array(
+		/*'nome' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				'message' => 'VALIDATE_BLANK',

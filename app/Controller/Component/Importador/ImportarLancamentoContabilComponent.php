@@ -25,7 +25,7 @@ class ImportarLancamentoContabilComponent extends ImportadorBaseComponent {
 
 	public function Configurar() {
 		$this->setModel('LancamentoContabil');
-		$UltimoCodigoDeLancamentoImportador = $this->PegarUltimoCodigoDeLancamentoImportado();
+		$UltimoCodigoDeLancamentoImportador = 0; //$this->PegarUltimoCodigoDeLancamentoImportado();
 		$this->setSqlConsulta('Select TLctoContabil.*, cast(LCTCOMPLEMENTO as varchar(2000)) as complemento from TLctoContabil where lctnumero >= ' . $UltimoCodigoDeLancamentoImportador . ' order by LctNumero');
 		$this->setCheckBox('Lancamentos');
 	}
