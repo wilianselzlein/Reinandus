@@ -59,7 +59,7 @@ endforeach;
       <div class="col-sm-3" style="padding-left: 0px">
          <div class="actions">
             <ul class="list-group">
-               <li class="list-group-item"><?php echo $this->Html->link(__('Configurar').' '.__('Relatorios'), array('action' => 'configurar')); ?></li>
+               <li class="list-group-item"><?php echo $this->Html->link(__('Configurar').' '.__('Cabecalho'), array('controller' => 'Cabecalhos', 'action' => 'index')); ?></li>
             </ul><!-- /.list-group -->
          </div><!-- /.actions -->
       </div>
