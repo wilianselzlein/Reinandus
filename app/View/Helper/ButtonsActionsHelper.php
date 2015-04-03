@@ -40,20 +40,24 @@ class ButtonsActionsHelper extends AppHelper {
 
 	function MakeButtonsByAction($action, $model, $id = null) {
 		$return = '';
+		
 		if ((! strcasecmp($action, 'index')) || (! strcasecmp($action, 'view')))
 			$return .= 
 				'<li>' . $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__($model), 
 				array('action' => 'add'), array('class' => '', 'escape'=>false)) . '</li>';
-		if ((! strcasecmp($action, 'edit')) || (! strcasecmp($action, 'view')))
+		elseif ((! strcasecmp($action, 'edit')) || (! strcasecmp($action, 'view')))
 			$return .= 
 				'<li>' . $this->Form->postLink('<i class="fa fa-times"></i>'.' '.__('Delete').' '.__($model), array('action' => 'delete', $id), array('escape'=>false), __('Are you sure you want to delete # %s?', $id)) . '</li>';
-		if ((! strcasecmp($action, 'edit')) || (! strcasecmp($action, 'add')) || (! strcasecmp($action, 'view')))
+		elseif ((! strcasecmp($action, 'edit')) || (! strcasecmp($action, 'add')) || (! strcasecmp($action, 'view')))
 			$return .=
-				'<li>' . $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List') .' '.__($this->GetControllerByModel($model)), array('action' => 'index'),array('escape'=>false)) . '</li>';
-		if (! strcasecmp($action, 'view'))
+				'<li>' . $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List') .' '.__($this->GetControllerByModel($model)), array('action' => 'index', 'controller' => $this->GetControllerByModel($model)),array('escape'=>false)) . '</li>';
+		elseif (! strcasecmp($action, 'view'))
 			$return .= 
 				'<li>' . $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('Edit').' '.__($model), 
 				array('action' => 'edit', $id), array('class' => '', 'escape'=>false)) . '</li>';
+		else
+			$return .=
+				'<li>' . $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__(Inflector::humanize($action)) .' '.__($this->GetControllerByModel($model)), array('action' => $action, 'controller' => $this->GetControllerByModel($model)),array('escape'=>false)) . '</li>';
 
 		return $return;
 	}
@@ -86,7 +90,18 @@ class ButtonsActionsHelper extends AppHelper {
 		return $return;
 	}
 
-	public function MakeButtons($controller, $action, $id = null) { 
+	private function MakeOthersButtons($array)
+	{
+		if (! is_array($array))
+			return '';
+		$buttons = $this->AddDivider();
+		foreach ($array as $button) {
+			$buttons .= $this->MakeButtonsByAction($button['action'], $button['model']);
+		}
+		return $buttons;
+	}
+
+	public function MakeButtons($controller, $action, $id = null, $array = null) { 
 
 		$model = $this->GetModelByController($controller);
 		$class = ClassRegistry::init($model);
@@ -101,6 +116,7 @@ class ButtonsActionsHelper extends AppHelper {
 		$this->MakeButtonsByArray($class->belongsTo) .
 		$this->MakeButtonsByArray($class->hasMany) .
 		$this->MakeButtonsByArray($class->hasAndBelongsToMany) .
+		$this->MakeOthersButtons($array) . 
 	'</ul>' .
 '</div>';
 
