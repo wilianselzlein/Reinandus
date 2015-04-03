@@ -22,6 +22,10 @@ class DetalhesController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Detalhe))));
+		$this->Filter->setPaginate('order', array('Detalhe.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
 		$this->Detalhe->recursive = 0;
 		$this->set('detalhes', $this->paginate());
 	}

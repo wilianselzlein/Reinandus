@@ -22,20 +22,11 @@ class FormasPagamentosController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Filter->addFilters(
-         array(
-            'filter1' => array('OR' => array(
-               'Formapgto.id' => array('operator' => 'LIKE'),
-               'Formapgto.nome' => array('operator' => 'LIKE'),
-               'Formapgto.tipo' => array('operator' => 'LIKE'),
-            )),
-         ));
-      
-            
-      $this->Filter->setPaginate('order', array('Formapgto.id' => 'desc')); 
-      $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Formapgto))));
+		$this->Filter->setPaginate('order', array('Formapgto.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
 
-      $this->Formapgto->recursive = 0;
+		$this->Formapgto->recursive = 0;
 		$this->set('formapgtos', $this->paginate());
 	}
 

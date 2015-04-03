@@ -149,10 +149,9 @@ class ImportadorController extends AppController {
 		$array[$model]['total'] = $Class->find('count');
 
 		$Consulta = $conexao->ConsultarSQL('select count(1) as total from ' . $tabela);
-		while ($registro = ibase_fetch_assoc ($Consulta)) { 
-			$array[$model]['de'] = $registro['TOTAL'];
-		}		
-
+		while ($registro = ibase_fetch_object ($Consulta)) { 
+			$array[$model]['de'] = $registro->TOTAL;
+		}
 	}
 
 }

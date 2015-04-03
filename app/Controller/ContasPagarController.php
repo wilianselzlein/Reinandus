@@ -29,6 +29,10 @@ class ContasPagarController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->ContaPagar))));
+		$this->Filter->setPaginate('order', array('ContaPagar.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
 		$this->ContaPagar->recursive = 0;
 		$this->set('contaspagar', $this->paginate());
 	}

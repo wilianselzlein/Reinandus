@@ -22,6 +22,10 @@ class RolesController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Role))));
+		$this->Filter->setPaginate('order', array('Role.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
 		$this->Role->recursive = 0;
 		$this->set('roles', $this->paginate());
 	}

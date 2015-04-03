@@ -23,6 +23,10 @@ class UsuariosController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->User))));
+		$this->Filter->setPaginate('order', array('User.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
 		$this->User->recursive = 0;
 		$this->set('usuarios', $this->paginate());
 	}

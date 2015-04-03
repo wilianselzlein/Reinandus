@@ -22,19 +22,12 @@ class GruposController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Filter->addFilters(
-         array(
-            'filter1' => array('OR' => array(
-               'Grupo.id' => array('operator' => 'LIKE'),
-               'Grupo.nome' => array('operator' => 'LIKE'),
-            )),
-         ));
-      
-            
-      $this->Filter->setPaginate('order', array('Grupo.id' => 'desc')); 
-      $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
 
-      $this->Grupo->recursive = 0;
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Grupo))));
+		$this->Filter->setPaginate('order', array('Grupo.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
+		$this->Grupo->recursive = 0;
 		$this->set('grupos', $this->paginate());
 	}
 

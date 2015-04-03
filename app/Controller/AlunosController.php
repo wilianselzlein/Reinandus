@@ -24,7 +24,6 @@ class AlunosController extends AppController {
 	public function index() {
 
 		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Aluno))));
-
 		$this->Filter->setPaginate('order', array('Aluno.id' => 'desc')); 
 		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
 

@@ -6,7 +6,8 @@
 <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>
       </h3>
    </div>
-   <div class="panel-body">			
+   <div class="panel-body">	
+   <?php echo $this->element('pesquisa/simples');?>		
       <div class="table-responsive">
          <table class="table table-bordered table-hover table-condensed" >
             <thead>

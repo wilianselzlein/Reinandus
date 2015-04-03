@@ -22,6 +22,10 @@ class PlanoContasController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->PlanoConta))));
+		$this->Filter->setPaginate('order', array('PlanoConta.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
 		$this->PlanoConta->recursive = 0;
 		$this->set('planocontas', $this->paginate());
 	}

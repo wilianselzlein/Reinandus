@@ -22,6 +22,11 @@ class AcessosController extends AppController {
  * @return void
  */
 	public function index() {
+
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Acesso))));
+		$this->Filter->setPaginate('order', array('Acesso.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
 		$this->Acesso->recursive = 0;
 		$this->set('acessos', $this->paginate());
 	}

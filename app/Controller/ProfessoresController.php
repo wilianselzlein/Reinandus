@@ -22,12 +22,11 @@ class ProfessoresController extends AppController {
  * @return void
  */
 	public function index() {
-	  $this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Professor))));
 
-      $this->Filter->setPaginate('order', array('Professor.id' => 'desc')); 
-      $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Professor))));
+		$this->Filter->setPaginate('order', array('Professor.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
 
-      
 		$this->Professor->recursive = 0;
 		$this->set('professores', $this->paginate());
 	}

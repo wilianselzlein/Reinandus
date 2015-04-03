@@ -24,6 +24,10 @@ class LancamentoContabilController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->LancamentoContabil))));
+		$this->Filter->setPaginate('order', array('LancamentoContabil.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
 		$this->LancamentoContabil->recursive = 0;
 		$this->set('LancamentoContabil', $this->paginate());
 	}

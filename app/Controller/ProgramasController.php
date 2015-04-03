@@ -22,6 +22,10 @@ class ProgramasController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Programa))));
+		$this->Filter->setPaginate('order', array('Programa.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
 		$this->Programa->recursive = 0;
 		$this->set('programas', $this->paginate());
 	}

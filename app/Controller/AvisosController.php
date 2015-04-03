@@ -24,6 +24,10 @@ class AvisosController extends AppController {
  * @return void
  */
 	public function index($user_id = null) {
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Aviso))));
+		$this->Filter->setPaginate('order', array('Aviso.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
 		$this->Aviso->recursive = 0;
 		if ($user_id != null)
 			$this->Paginator->settings = array(
