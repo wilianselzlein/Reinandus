@@ -43,5 +43,3 @@ class ConexaoFirebirdComponent extends Component {
 }
 
 ?>
-
-

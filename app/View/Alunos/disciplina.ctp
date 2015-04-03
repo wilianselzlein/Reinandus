@@ -28,7 +28,7 @@
 			<?php echo $this->Html->link($AlunoDisciplina['Disciplina']['nome'], array('controller' => 'disciplinas', 'action' => 'view', $AlunoDisciplina['Disciplina']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($AlunoDisciplina['Professor']['nome'], array('controller' => 'professors', 'action' => 'view', $AlunoDisciplina['Professor']['id'])); ?>
+			<?php echo $this->Html->link($AlunoDisciplina['Professor']['nome'], array('controller' => 'professores', 'action' => 'view', $AlunoDisciplina['Professor']['id'])); ?>
 		</td>
 		<td><?php echo h($AlunoDisciplina['AlunoDisciplina']['frequencia']); ?>&nbsp;</td>
 		<td><?php echo h($AlunoDisciplina['AlunoDisciplina']['nota']); ?>&nbsp;</td>
