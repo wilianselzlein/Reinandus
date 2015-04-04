@@ -8,7 +8,7 @@ $relatorio_pdf = new RelatorioPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMA
 /*
  *  $relatorio->SetCreator(PDF_CREATOR);
  *  $relatorio->SetAuthor('Pedro Escobar');
- *  $relatorio->SetTitle('TCPDF Example 048');
+ 
  *  $relatorio->SetSubject('TCPDF Tutorial');
  *  $relatorio->SetKeywords('TCPDF, PDF, example, test, guide');
  */
@@ -20,7 +20,7 @@ $relatorio_pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', 13));
 $relatorio_pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
 $relatorio_pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
 $relatorio_pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-$relatorio_pdf->setTitulo('');
+$relatorio_pdf->setTitulo('Relatório de Professores');
 // set auto page breaks
 $relatorio_pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 

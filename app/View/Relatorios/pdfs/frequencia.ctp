@@ -8,10 +8,11 @@ $relatorio_pdf = new RelatorioPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMA
 /*
  *  $relatorio->SetCreator(PDF_CREATOR);
  *  $relatorio->SetAuthor('Pedro Escobar');
- *  $relatorio->SetTitle('TCPDF Example 048');
  *  $relatorio->SetSubject('TCPDF Tutorial');
  *  $relatorio->SetKeywords('TCPDF, PDF, example, test, guide');
  */
+
+$relatorio_pdf->SetTitulo('Relatório de Frequência');
 
 // set header and footer fonts
 $relatorio_pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', 13));
@@ -32,6 +33,8 @@ $relatorio_pdf->AddPage();
 $relatorio_pdf->writeHTML('<h1>'.$relatorio_pdf->getTitulo().'</h1>', true, false, true, false, 'C');
 
 $relatorio_pdf->SetFont('helvetica', '', 11);
+
+$curso = $frequencia[0]['curso']['curso'];
 
 $html = <<<EOD
         <style>
@@ -61,44 +64,65 @@ $html = <<<EOD
         }
         </style>        
         <br>
+        <table cellspacing="0" cellpadding="1" border="0">
+            <tr>
+                <td width="15%">Curso:</td>
+                <td colspan="3">&nbsp; $curso</td>
+            </tr>
+            <tr>
+                <td width="15%">Professor:</td>
+                <td width="65%">&nbsp;</td>
+                <td width="10%">Turno:</td>
+                <td width="10%">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="15%">Disciplina:</td>
+                <td>&nbsp;</td>
+                <td width="10%">Horário:</td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
         <br>
-		<table cellspacing="0" cellpadding="1" border="0">
+        <br>
+		<table cellspacing="0" cellpadding="1" border="1">
 	        <thead>
 	    		<tr class="teste">
-                            <th class="table-header">Cidade</th>
-                            <th class="table-header">Curso</th>
-                            <th class="table-header">Código</th>
-                            <th class="table-header">Aluno</th>        
-                            <th class="table-header">Situação</th>        
+                            <th class="table-header" colspan="2" width="50%">Aluno</th>
+                            <th class="table-header" width="10%">Curso</th>
+                            <th class="table-header" width="10%">Turma</th>        
+                            <th class="table-header" width="30%">Assinatura</th>        
 	    		</tr>
-                        <tr>
-                            <td colspan="5" class="line"></td>
-                        </tr>
 	        </thead>
 EOD;
   
-//debug($aluno_curso); die;
-for ($index = 0; $index < count($aluno_curso); $index++) {
+//debug($frequencia); die;
+for ($index = 0; $index < count($frequencia); $index++) {
     $html .= '<tr>'
-            .   '<td>'.$aluno_curso[$index]['cidade']['cidade'].'</td>'
-            .   '<td>'.$aluno_curso[$index]['curso']['curso'].'</td>'
-            .   '<td>'.$aluno_curso[$index]['aluno']['codigo'].'</td>'
-            .   '<td>'.$aluno_curso[$index]['aluno']['aluno'].'</td>'            
-            .   '<td>'.$aluno_curso[$index]['enumerado']['situacao'].'</td>'
+            .   '<td width="10%">'.$frequencia[$index]['aluno']['id'].'</td>'
+            .   '<td width="40%">'.$frequencia[$index]['aluno']['aluno'].'</td>'
+            .   '<td width="10%">'.$frequencia[$index]['curso']['sigla'].'</td>'
+            .   '<td width="10%">'.$frequencia[$index]['curso']['turma'].'</td>'            
+            .   '<td width="30%">&nbsp;</td>'
             . '</tr>';
     
 }
-$total_periodo= count($aluno_curso);
+for ($index = 0; $index < 4; $index++) {
+    $html .= '<tr>'
+            .   '<td width="10%">&nbsp;</td>'
+            .   '<td width="40%">&nbsp;</td>'
+            .   '<td width="10%">&nbsp;</td>'
+            .   '<td width="10%">&nbsp;</td>'
+            .   '<td width="30%">&nbsp;</td>'
+            . '</tr>';
+    
+}
+$total_periodo= count($frequencia);
 
-$html .= '<tr><td colspan="5"></td></tr>'
-        .'<tr>'
-        .'<td colspan="5"></td>'
-        .'</tr>'
-        .'<tr>'
-        .   '<td colspan="2" class="totais-label">TOTAL DE ALUNOS:</td>'
+$html .= '<tr>'
+        .   '<td colspan="3" class="totais-label" width="20%">Total de alunos:</td>'
         .   '<td colspan="2" class="totais-label">'.$total_periodo.'</td>'
-        .'</tr>'
-        ;
+        .'</tr>';
+
 $html .= '</table>';
 
 $relatorio_pdf->writeHTML($html, true, false, true, false, 'L');

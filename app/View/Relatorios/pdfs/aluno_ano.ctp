@@ -20,7 +20,7 @@ $relatorio_pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', 13));
 $relatorio_pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
 $relatorio_pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
 $relatorio_pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-$relatorio_pdf->setTitulo('Listagem de Alunos');
+$relatorio_pdf->setTitulo('Alunos por Curso e Ano');
 // set auto page breaks
 $relatorio_pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 
@@ -32,6 +32,10 @@ $relatorio_pdf->AddPage();
 $relatorio_pdf->writeHTML('<h1>'.$relatorio_pdf->getTitulo().'</h1>', true, false, true, false, 'C');
 
 $relatorio_pdf->SetFont('helvetica', '', 11);
+$ano1 = $aluno_ano[0]['0']['maximo'];
+$ano2 = $ano1 - 1;
+$ano3 = $ano1 - 2;
+$ano4 = $ano1 - 3;
 
 $html = <<<EOD
         <style>
@@ -65,37 +69,72 @@ $html = <<<EOD
 		<table cellspacing="0" cellpadding="1" border="0">
 	        <thead>
 	    		<tr class="teste">
-                            <th class="table-header">Cidade</th>
-                            <th class="table-header">Curso</th>
-                            <th class="table-header">Código</th>
-                            <th class="table-header">Aluno</th>        
-                            <th class="table-header">Situação</th>        
+                            <th class="table-header">Sigla</th>
+                            <th class="table-header">$ano1</th>
+                            <th class="table-header">$ano2</th>
+                            <th class="table-header">$ano3</th>
+                            <th class="table-header">$ano4</th>
+                            <th class="table-header">Total</th>
 	    		</tr>
                         <tr>
-                            <td colspan="5" class="line"></td>
+                            <td colspan="6" class="line"></td>
                         </tr>
 	        </thead>
 EOD;
-  
-//debug($aluno_curso); die;
-for ($index = 0; $index < count($aluno_curso); $index++) {
+$ano1 = 0;
+$ano2 = 0;
+$ano3 = 0;
+$ano4 = 0;
+
+//debug($aluno_ano); die;
+for ($index = 0; $index < count($aluno_ano); $index++) {
+	$ano1 += $aluno_ano[$index]['0']['ano1'];
+	$ano2 += $aluno_ano[$index]['0']['ano2'];
+	$ano3 += $aluno_ano[$index]['0']['ano3'];
+	$ano4 += $aluno_ano[$index]['0']['ano4'];
+
+	$somalinha = 
+	  $aluno_ano[$index]['0']['ano1'] +
+	  $aluno_ano[$index]['0']['ano2'] +
+	  $aluno_ano[$index]['0']['ano3'] +
+	  $aluno_ano[$index]['0']['ano4'];
+
     $html .= '<tr>'
-            .   '<td>'.$aluno_curso[$index]['cidade']['cidade'].'</td>'
-            .   '<td>'.$aluno_curso[$index]['curso']['curso'].'</td>'
-            .   '<td>'.$aluno_curso[$index]['aluno']['codigo'].'</td>'
-            .   '<td>'.$aluno_curso[$index]['aluno']['aluno'].'</td>'            
-            .   '<td>'.$aluno_curso[$index]['enumerado']['situacao'].'</td>'
+            .   '<td>'.$aluno_ano[$index]['c']['sigla'].'</td>'
+            .   '<td>'.$aluno_ano[$index]['0']['ano1'].'</td>'
+            .   '<td>'.$aluno_ano[$index]['0']['ano2'].'</td>'
+            .   '<td>'.$aluno_ano[$index]['0']['ano3'].'</td>'            
+            .   '<td>'.$aluno_ano[$index]['0']['ano4'].'</td>'
+            .   '<td>'.$somalinha.'</td>'
             . '</tr>';
     
 }
-$total_periodo= count($aluno_curso);
 
-$html .= '<tr><td colspan="5"></td></tr>'
+$html .= 
+        '<tr>'
+        .'  <td colspan="6" class="line"></td>'
+        .'</tr>'
+		.'<tr>'
+        .   '<td>Total:</td>'
+        .   '<td>'.$ano1.'</td>'
+        .   '<td>'.$ano2.'</td>'
+        .   '<td>'.$ano3.'</td>'
+        .   '<td>'.$ano4.'</td>'
+        .   '<td>'. ($ano1 + $ano2 + $ano3 + $ano4) .'</td>'
+        . '</tr>';
+
+$total_periodo= count($aluno_ano);
+
+$html .= 
+        '<tr>'
+        .'  <td colspan="6" class="line"></td>'
+        .'</tr>'
+		.'<tr><td colspan="5"></td></tr>'
         .'<tr>'
         .'<td colspan="5"></td>'
         .'</tr>'
         .'<tr>'
-        .   '<td colspan="2" class="totais-label">Total de alunos listados:</td>'
+        .   '<td colspan="2" class="totais-label">Total de cursos listados:</td>'
         .   '<td colspan="2" class="totais-label">'.$total_periodo.'</td>'
         .'</tr>'
         ;

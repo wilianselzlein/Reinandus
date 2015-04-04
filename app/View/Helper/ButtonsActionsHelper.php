@@ -45,17 +45,17 @@ class ButtonsActionsHelper extends AppHelper {
 			$return .= 
 				'<li>' . $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__($model), 
 				array('action' => 'add'), array('class' => '', 'escape'=>false)) . '</li>';
-		elseif ((! strcasecmp($action, 'edit')) || (! strcasecmp($action, 'view')))
+		if ((! strcasecmp($action, 'edit')) || (! strcasecmp($action, 'view')))
 			$return .= 
 				'<li>' . $this->Form->postLink('<i class="fa fa-times"></i>'.' '.__('Delete').' '.__($model), array('action' => 'delete', $id), array('escape'=>false), __('Are you sure you want to delete # %s?', $id)) . '</li>';
-		elseif ((! strcasecmp($action, 'edit')) || (! strcasecmp($action, 'add')) || (! strcasecmp($action, 'view')))
+		if ((! strcasecmp($action, 'edit')) || (! strcasecmp($action, 'add')) || (! strcasecmp($action, 'view')))
 			$return .=
 				'<li>' . $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List') .' '.__($this->GetControllerByModel($model)), array('action' => 'index', 'controller' => $this->GetControllerByModel($model)),array('escape'=>false)) . '</li>';
-		elseif (! strcasecmp($action, 'view'))
+		if (! strcasecmp($action, 'view'))
 			$return .= 
 				'<li>' . $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('Edit').' '.__($model), 
 				array('action' => 'edit', $id), array('class' => '', 'escape'=>false)) . '</li>';
-		else
+		if ((strcasecmp($action, 'edit')) || (strcasecmp($action, 'add')) || (strcasecmp($action, 'view')) || (strcasecmp($action, 'index')))
 			$return .=
 				'<li>' . $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__(Inflector::humanize($action)) .' '.__($this->GetControllerByModel($model)), array('action' => $action, 'controller' => $this->GetControllerByModel($model)),array('escape'=>false)) . '</li>';
 

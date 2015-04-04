@@ -8,7 +8,6 @@ $relatorio_pdf = new RelatorioPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMA
 /*
  *  $relatorio->SetCreator(PDF_CREATOR);
  *  $relatorio->SetAuthor('Pedro Escobar');
- *  $relatorio->SetTitle('TCPDF Example 048');
  *  $relatorio->SetSubject('TCPDF Tutorial');
  *  $relatorio->SetKeywords('TCPDF, PDF, example, test, guide');
  */
@@ -29,6 +28,7 @@ $relatorio_pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 // add a page (required with recent versions of tcpdf) 
 $relatorio_pdf->AddPage(); 
 
+$relatorio_pdf->SetTitulo('Relatório de Alunos');
 $relatorio_pdf->writeHTML('<h1>'.$relatorio_pdf->getTitulo().'</h1>', true, false, true, false, 'C');
 
 $relatorio_pdf->SetFont('helvetica', '', 11);
@@ -69,6 +69,9 @@ EOD;
 
 for ($index = 0; $index < count($aluno); $index++) {
     $html .= '<tr>'
+            .   '<td colspan="6" class="line"></td>'
+            . '</tr>'
+            . '<tr>'
             .   '<td><b>Aluno</b></td>'
             .   '<td>'.$aluno[$index]['aluno']['id']. ' ' . $aluno[$index]['aluno']['nome']. '</td>'
             .   '<td><b>Email</b></td>'
@@ -151,9 +154,6 @@ for ($index = 0; $index < count($aluno); $index++) {
             .   '<td>'.$aluno[$index]['aluno']['mono_prazo'].'</td>'
             .   '<td><b>Nota</b></td>'
             .   '<td>'.$aluno[$index]['aluno']['mono_nota'].'</td>'
-            . '</tr>'
-            . '<tr>'
-            .   '<td colspan="6" class="line"></td>'
             . '</tr>';
     
 }
@@ -164,7 +164,7 @@ $html .= '<tr><td colspan="5"></td></tr>'
         .'<td colspan="5"></td>'
         .'</tr>'
         .'<tr>'
-        .   '<td colspan="2" class="totais-label">TOTAL DE ALUNOS:</td>'
+        .   '<td colspan="2" class="totais-label">Total de alunos listados:</td>'
         .   '<td colspan="2" class="totais-label">'.$total_periodo.'</td>'
         .'</tr>'
         ;
