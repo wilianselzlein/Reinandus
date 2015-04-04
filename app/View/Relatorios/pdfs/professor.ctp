@@ -75,33 +75,33 @@ $html = <<<EOD
                             <th class="table-header">Formação</th>
 	    		</tr>
                         <tr>
-                            <td colspan="5" class="line"></td>
+                            <td colspan="8" class="line"></td>
                         </tr>
 	        </thead>
 EOD;
   
-//echo '<pre>'; print_r($professor); echo '</pre>'; die;
 for ($index = 0; $index < count($professor); $index++) {
     $html .= '<tr>'
             .   '<td>'.$professor[$index]['p']['id'].'</td>'
             .   '<td>'.$professor[$index]['p']['nome'].'</td>'
-            .   '<td>'.$professor[$index]['p']['endereco'].'</td>'
+            .   '<td>'.$professor[$index]['p']['endereco']. ' ' . $professor[$index]['p']['numero'] . ' ' 
+            . $professor[$index]['p']['bairro']. '</td>'
             .   '<td>'.$professor[$index]['c']['cidade_nome'].'</td>'            
             .   '<td>'.$professor[$index]['p']['fone'].'</td>'
             .   '<td>'.$professor[$index]['p']['celular'].'</td>'
             .   '<td>'.$professor[$index]['p']['resumotitulacao'].'</td>'
             .   '<td>'.$professor[$index]['p']['formacao'].'</td>'
             . '</tr>';
-    
 }
+
 $total= count($professor);
 
-$html .= '<tr><td colspan="5"></td></tr>'
+$html .= '<tr><td colspan="1"></td></tr>'
         .'<tr>'
-        .'<td colspan="5"></td>'
+        .'<td colspan="1"></td>'
         .'</tr>'
         .'<tr>'
-        .   '<td colspan="2" class="totais-label">Total de professor(es) listado(s):</td>'
+        .   '<td colspan="3" class="totais-label">Total de professor(es) listado(s):</td>'
         .   '<td colspan="2" class="totais-label">'.$total.'</td>'
         .'</tr>'
         ;
