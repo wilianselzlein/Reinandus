@@ -1,4 +1,4 @@
-inadimplencia<?php
+<?php
 
 App::import('Vendor','tcpdf/modelos/RelatorioPDF'); 
 //App::import('Vendor', 'tcpdf_include');
@@ -70,7 +70,7 @@ $html = <<<EOD
                             <th class="table-header">Telefone</th>
                             <th class="table-header">Valor</th>
                             <th class="table-header">Acréscimo</th>
-                            <th class="table-header">Deconto</th>
+                            <th class="table-header">Desconto</th>
                             <th class="table-header">Bolsa</th>
                             <th class="table-header">Líquido</th>
 	    		</tr>
