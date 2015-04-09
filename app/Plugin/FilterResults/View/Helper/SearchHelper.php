@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Helper to create search form.
  *
