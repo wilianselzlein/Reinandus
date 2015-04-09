@@ -84,8 +84,7 @@ class AppController extends Controller {
 
    protected function AdicionarFiltrosLike($model) {
       $tabela = $model->name . '.';
-      $operador = array('operator' => 'LIKE');
-      $array = [];
+      $operador = array('operator' => 'LIKE');      
 
       $colunas = array_keys($model->getColumnTypes());
 
