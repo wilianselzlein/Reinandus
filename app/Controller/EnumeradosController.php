@@ -22,8 +22,12 @@ class EnumeradosController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Enumerado))));
+		$this->Filter->setPaginate('order', array('Enumerado.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
 		$this->Enumerado->recursive = 0;
-    	$this->Paginator->settings = array('limit' => 50);
+    	//$this->Paginator->settings = array('limit' => 50);
 		$this->set('enumerados', $this->paginate());
 	}
 

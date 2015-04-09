@@ -22,6 +22,10 @@ class EstadosController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Estado))));
+		$this->Filter->setPaginate('order', array('Estado.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
 		$this->Estado->recursive = 0;
 		$this->set('estados', $this->paginate());
 	}

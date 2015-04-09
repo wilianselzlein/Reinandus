@@ -22,24 +22,11 @@ class AlunosController extends AppController {
  * @return void
  */
 	public function index() {
-      $this->Filter->addFilters(
-         array(
-            'filter1' => array('OR' => array(
-               'Aluno.id' => array('operator' => 'LIKE'),
-               'Aluno.nome' => array('operator' => 'LIKE'),
-               'Curso.nome' => array('operator' => 'LIKE'),
-               'Aluno.endereco' => array('operator' => 'LIKE'),
-               'Cidade.nome' => array('operator' => 'LIKE'),
-               'Aluno.celular' => array('operator' => 'LIKE'),
-               'Aluno.email' => array('operator' => 'LIKE')
-            )),
-         ));
 
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Aluno))));
+		$this->Filter->setPaginate('order', array('Aluno.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
 
-      $this->Filter->setPaginate('order', array('Aluno.id' => 'desc')); 
-      $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
-
-      
 		$this->Aluno->recursive = 0;
 		$this->set('alunos', $this->paginate());
 	}

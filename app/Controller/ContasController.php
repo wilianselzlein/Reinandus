@@ -22,24 +22,11 @@ class ContasController extends AppController {
  * @return void
  */
 	public function index() {
-      $this->Filter->addFilters(
-         array(
-            'filter1' => array('OR' => array(
-               'Contum.id' => array('operator' => 'LIKE'),
-               'Contum.banco' => array('operator' => 'LIKE'),
-               'Contum.agencia' => array('operator' => 'LIKE'),
-               'Contum.conta' => array('operator' => 'LIKE'),
-               'Contum.contato' => array('operator' => 'LIKE'),
-               'Contum.fone' => array('operator' => 'LIKE'),
-               'Formapgto.nome' => array('operator' => 'LIKE'),
-            )),
-         ));
-      
-            
-      $this->Filter->setPaginate('order', array('Contum.id' => 'desc')); 
-      $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
 
-      
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Contum))));
+		$this->Filter->setPaginate('order', array('Contum.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
 		$this->Contum->recursive = 0;
 		$this->set('conta', $this->paginate());
 	}

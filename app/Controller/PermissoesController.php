@@ -22,6 +22,10 @@ class PermissoesController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Permissao))));
+		$this->Filter->setPaginate('order', array('Permissao.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
 		$this->Permissao->recursive = 0;
 		$this->set('permissoes', $this->paginate());
 	}

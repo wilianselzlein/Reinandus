@@ -30,7 +30,7 @@ class Acesso extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'aluno_id' => array(
+		/*'aluno_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				'message' => 'VALIDADE_NUMERIC',
@@ -49,7 +49,7 @@ class Acesso extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		)
+		)*/
 	);
 
 /**

@@ -20,7 +20,7 @@ $relatorio_pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', 13));
 $relatorio_pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
 $relatorio_pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
 $relatorio_pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-$relatorio_pdf->setTitulo("Relatório de Alunos/Curso");
+$relatorio_pdf->setTitulo('Listagem de Alunos');
 // set auto page breaks
 $relatorio_pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 
@@ -65,11 +65,11 @@ $html = <<<EOD
 		<table cellspacing="0" cellpadding="1" border="0">
 	        <thead>
 	    		<tr class="teste">
-                            <th class="table-header">CIDADE</th>
-                            <th class="table-header">CURSO</th>
-                            <th class="table-header">CODIGO</th>
-                            <th class="table-header">ALUNO</th>        
-                            <th class="table-header">SITUAÇÃO</th>        
+                            <th class="table-header">Cidade</th>
+                            <th class="table-header">Curso</th>
+                            <th class="table-header">Código</th>
+                            <th class="table-header">Aluno</th>        
+                            <th class="table-header">Situação</th>        
 	    		</tr>
                         <tr>
                             <td colspan="5" class="line"></td>
@@ -95,7 +95,7 @@ $html .= '<tr><td colspan="5"></td></tr>'
         .'<td colspan="5"></td>'
         .'</tr>'
         .'<tr>'
-        .   '<td colspan="2" class="totais-label">TOTAL DE ALUNOS:</td>'
+        .   '<td colspan="2" class="totais-label">Total de alunos listados:</td>'
         .   '<td colspan="2" class="totais-label">'.$total_periodo.'</td>'
         .'</tr>'
         ;

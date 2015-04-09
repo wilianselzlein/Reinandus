@@ -2,7 +2,18 @@
    .menu { float: left; width: 80%; }
    .conteudo { margin-left: 90%; margin-top: 20px;}
 </style>
-
+<div class="panel panel-default">
+   <div class="panel-heading">
+      <h3>
+         <span class="fa fa-print"></span> <?php echo __('Relatórios');?>
+         <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action'], null, 
+         array(
+            array('model' => 'Relatorio', 'action' => 'configurar'),
+            array('model' => 'Cabecalho', 'action' => 'add')
+         )); ?>
+      </h3>
+   </div>
+</div>
 <div  class="container">
    <div id="page-container" class="row">
       <style>
@@ -56,14 +67,6 @@ endforeach;
             ?>
          </div>
       </div>
-      <div class="col-sm-3" style="padding-left: 0px">
-         <div class="actions">
-            <ul class="list-group">
-               <li class="list-group-item"><?php echo $this->Html->link(__('Configurar').' '.__('Relatorios'), array('action' => 'configurar')); ?></li>
-            </ul><!-- /.list-group -->
-         </div><!-- /.actions -->
-      </div>
-
    </div><!-- /#page-container .row-fluid -->
 
 </div>

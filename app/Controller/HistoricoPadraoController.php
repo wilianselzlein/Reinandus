@@ -22,6 +22,10 @@ class HistoricoPadraoController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->HistoricoPadrao))));
+		$this->Filter->setPaginate('order', array('HistoricoPadrao.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
 		$this->HistoricoPadrao->recursive = 0;
 		$this->set('histspadrao', $this->paginate());
 	}

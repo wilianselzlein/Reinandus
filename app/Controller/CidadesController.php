@@ -22,20 +22,10 @@ class CidadesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Filter->addFilters(
-         array(
-            'filter1' => array('OR' => array(
-               'Cidade.id' => array('operator' => 'LIKE'),
-               'Cidade.nome' => array('operator' => 'LIKE'),
-               'Cidade.cep' => array('operator' => 'LIKE'),
-               'Estado.nome' => array('operator' => 'LIKE'),
-            )),
-         ));
-      
-            
-      $this->Filter->setPaginate('order', array('Cidade.id' => 'desc')); 
-      $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
 
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Cidade))));
+		$this->Filter->setPaginate('order', array('Cidade.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
       
 		$this->Cidade->recursive = 0;
 		$this->set('cidades', $this->paginate());

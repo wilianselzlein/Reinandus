@@ -72,7 +72,7 @@ class ImportarAlunosComponent extends ImportadorBaseComponent {
 
 	public function Configurar() {
 		$this->setModel('Aluno');
-		$UltimoCodigoDeLancamentoImportador = $this->PegarUltimoCodigoDeLancamentoImportado();
+		$UltimoCodigoDeLancamentoImportador = 0; //$this->PegarUltimoCodigoDeLancamentoImportado();
 		$this->setSqlConsulta('Select * from TAluno where AluCod >= ' . $UltimoCodigoDeLancamentoImportador . ' order by AluCod');
 		$this->setCheckBox('Alunos');
 		$this->CarregarArrayDeCidades();

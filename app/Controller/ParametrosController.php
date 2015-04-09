@@ -22,6 +22,10 @@ class ParametrosController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Parametro))));
+		$this->Filter->setPaginate('order', array('Parametro.id' => 'desc')); 
+		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
 		$this->Parametro->recursive = 0;
 		$this->set('parametros', $this->paginate());
 	}

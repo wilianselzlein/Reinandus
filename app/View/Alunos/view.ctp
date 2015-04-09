@@ -109,7 +109,7 @@ else
 	<?php echo $this->element('LinhaView', array('alias' => 'Data Bloqueio', 'valor' => h($aluno['Aluno']['bloqueado_data']))); ?>
 	<tr>
 		<td><strong><?php echo __('Orientador'); ?></strong></td>
-		<td><?php echo $this->Html->link($aluno['Professor']['nome'], array('controller' => 'professors', 'action' => 'view', $aluno['Professor']['id']), array('class' => '')); ?>&nbsp;</td>
+	<td><?php echo $this->Html->link($aluno['Professor']['nome'], array('controller' => 'professores', 'action' => 'view', $aluno['Professor']['id']), array('class' => '')); ?>&nbsp;</td>
 	</tr>
 	<?php echo $this->element('LinhaView', array('alias' => 'Monografia', 'valor' => h($aluno['Aluno']['mono_titulo']))); ?>
 	<?php echo $this->element('LinhaView', array('alias' => 'Data', 'valor' => h($aluno['Aluno']['mono_data']))); ?>

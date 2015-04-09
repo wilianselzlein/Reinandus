@@ -31,10 +31,14 @@ App::uses('Model', 'Model');
  */
 class AppModel extends Model {
 
-  function ValorEntre($valor, $campo, $max){
-      $valor = $valor[$campo];
-      return ($valor >= 0) && ($valor <= $max);
-  }
+	function ValorEntre($valor, $campo, $max){
+		$valor = $valor[$campo];
+		return ($valor >= 0) && ($valor <= $max);
+	}
 
+	public function findAsCombo($order = 'asc', $conditions = array()) {
+		$list = $this->find('list', array('order' => $this->displayField . ' ' . $order, 'conditions' => $conditions));
+		return $list;
+	}
 
 }

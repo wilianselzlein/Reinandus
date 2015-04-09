@@ -82,4 +82,24 @@ class AppController extends Controller {
       )
    );
 
+   protected function AdicionarFiltrosLike($model) {
+      $tabela = $model->name . '.';
+      $operador = array('operator' => 'LIKE');
+      $array = [];
+
+      $colunas = array_keys($model->getColumnTypes());
+
+      foreach ($colunas as $coluna) {
+         $array[$tabela . $coluna] = $operador;
+      }
+
+      $relacionamentos = $model->belongsTo;
+      foreach ($relacionamentos as $relacionamento => $classeModel) {
+         $classe = ClassRegistry::init($classeModel['className']);
+         $array[$relacionamento . '.' . $classe->displayField] = $operador;
+      }
+
+      return $array;
+   }
+
 }
