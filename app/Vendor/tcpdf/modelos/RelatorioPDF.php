@@ -24,7 +24,7 @@ class RelatorioPDF  extends TCPDF
 
    private $headertitle = "Facet Faculdades";
    private $headertext = "Curitiba / PR";
-   public $headerlogo = "pos_graduacao_facet.png";
+   //public $headerlogo = "pos_graduacao_facet.png";
    private $titulo;
 
 
@@ -51,21 +51,21 @@ class RelatorioPDF  extends TCPDF
 
       $this->setHeaderData($this->headerlogo, PDF_HEADER_LOGO_WIDTH, $this->headertitle, $this->headertext);
       parent::Header();
-      
+
       */
       // Logo
-      $image_file = K_PATH_IMAGES.'pos_graduacao_facet.png';// 'uploads/'.$data['Cabecalho']['logo'];
-      $this->Image($image_file, 10, 10, 30, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+      $image_file = K_PATH_IMAGES. 'uploads/'.$data['Cabecalho']['logo'];//'pos_graduacao_facet.png';//
+      $this->Image($image_file, 10, 10, 30, '', '*', '', 'T', false, 300, '', false, false, 0, false, false, false);
       // Set font
       //$this->SetFont('helvetica', 'B', 20);
       // Title
       //$this->Cell(0, 15, $data['Cabecalho']['cabecalho'], 0, false, 'C', 0, '', 0, false, 'M', 'M');
       //$this->writeHTML($data['Cabecalho']['cabecalho'], true, false, true, false, '');
-      
+
 
       $this->writeHTMLCell(
-            $w = 0, $h = 0, $x = '', $y = '',          $data['Cabecalho']['cabecalho'], $border = 0, $ln = 1, $fill = 0,
-            $reseth = true, $align = 'top', $autopadding = true);
+         $w = 0, $h = 0, $x = '', $y = '',          $data['Cabecalho']['cabecalho'], $border = 0, $ln = 1, $fill = 0,
+         $reseth = true, $align = 'top', $autopadding = true);
    } 
 
    /** 
@@ -75,12 +75,20 @@ class RelatorioPDF  extends TCPDF
     */ 
    function Footer() 
    { 
-      $year = date('Y'); 
-      $footertext = sprintf($this->xfootertext, $year); 
-      $this->SetY(-20); 
-      $this->SetTextColor(0, 0, 0); 
-      $this->SetFont($this->xfooterfont,'',$this->xfooterfontsize); 
-      $this->Cell(0,8, $footertext,'T',1,'C'); 
+      $class = ClassRegistry::init('Cabecalho');
+      $data = $class->find('first');
+      //$year = date('Y'); 
+      //$footertext = sprintf($this->xfootertext, $year); 
+      //$this->SetY(-20); 
+      //$this->SetTextColor(0, 0, 0); 
+      //$this->SetFont($this->xfooterfont,'',$this->xfooterfontsize); 
+      //$this->Cell(0,8, $data['Cabecalho']['rodape'],'T',1,'C'); 
+      //
+      $image_file = K_PATH_IMAGES. 'uploads/'.$data['Cabecalho']['figura'];//'pos_graduacao_facet.png';//
+      $this->Image($image_file, 10, 280, 30, '', '*', '', 'B', false, 300, '', false, false, 0, false, false, false);
+      $this->writeHTMLCell(
+         $w = 0, $h = 0, $x = '', $y ='280',          $data['Cabecalho']['rodape'], $border = 0, $ln = 1, $fill = 0,
+         $reseth = true, $align = 'C', $autopadding = true);
 
    } 
 
