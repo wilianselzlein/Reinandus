@@ -55,7 +55,8 @@ class RelatorioPDF  extends TCPDF
       */
       // Logo
       $image_file = K_PATH_IMAGES. 'uploads/'.$data['Cabecalho']['logo'];//'pos_graduacao_facet.png';//
-      $this->Image($image_file, 10, 10, 30, '', '*', '', 'T', false, 300, '', false, false, 0, false, false, false);
+      if (file_exists($image_file))
+         $this->Image($image_file, 10, 10, 30, '', '*', '', 'T', false, 300, '', false, false, 0, false, false, false);
       // Set font
       //$this->SetFont('helvetica', 'B', 20);
       // Title
@@ -85,7 +86,8 @@ class RelatorioPDF  extends TCPDF
       //$this->Cell(0,8, $data['Cabecalho']['rodape'],'T',1,'C'); 
       //
       $image_file = K_PATH_IMAGES. 'uploads/'.$data['Cabecalho']['figura'];//'pos_graduacao_facet.png';//
-      $this->Image($image_file, 10, 280, 30, '', '*', '', 'B', false, 300, '', false, false, 0, false, false, false);
+      if (file_exists($image_file))
+         $this->Image($image_file, 10, 280, 30, '', '*', '', 'B', false, 300, '', false, false, 0, false, false, false);
       $this->writeHTMLCell(
          $w = 0, $h = 0, $x = '', $y ='280',          $data['Cabecalho']['rodape'], $border = 0, $ln = 1, $fill = 0,
          $reseth = true, $align = 'C', $autopadding = true);
