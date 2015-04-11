@@ -6,6 +6,8 @@ App::import('Controller/Component/DecoratorFormatador',
 
 abstract class ImportadorBaseComponent extends Component {
 
+//update aluno set endereco = CONVERT(BINARY CONVERT(endereco USING latin1) USING utf8);
+
 	var $Class;
 	var $Model;
 	var $Conexao;

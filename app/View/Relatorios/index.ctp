@@ -58,7 +58,7 @@ foreach ($relatorios as $relatorio): ?>
             <?php } ?>
             <div class="dashboard-icon">
                <?php 
-echo $this->Html->link('<i class="fa fa-file-pdf-o fa-5x"></i>', array('action' => 'filter', $relatorio['Relatorio']['id']), array('class' => '', 'escape' => false, 'escape'=> false)); ?>
+echo $this->Html->link('<i class="fa ' . $relatorio['Relatorio']['icone'] .' fa-4x"></i>', array('action' => 'filter', $relatorio['Relatorio']['id']), array('class' => '', 'escape' => false, 'escape'=> false)); ?>
                <span><?php echo $relatorio['Relatorio']['nome'];?></span>
             </div>           
             <?php 

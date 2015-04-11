@@ -28,13 +28,20 @@
     }
 </style>
 
-<h2><?php echo $relatorio['Relatorio']['nome'];  ?></h2>
+<div class="panel panel-default">
+   <div class="panel-heading">
+      <h3>
+         <span class="fa <?php echo __($relatorio['Relatorio']['icone']);?>"></span> <?php echo __($relatorio['Relatorio']['nome']);?>
+         <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], 'index'); ?>
+      </h3>
+   </div>
+</div>
 
 <div class="row">
     <div class="col-xs-6">
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo __('Filtros Disponiveis:');?></h3>
+                <h2 class="panel-title"><?php echo __('Filtros Disponiveis:');?></h2>
             </div>
             <div class="panel-body">
                <?php
@@ -68,9 +75,9 @@
         </div>
     </div>
     <div class="col-xs-6">
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo __('Filtro Selecionado:');?></h3>
+                <h2 class="panel-title"><?php echo __('Filtro Selecionado:');?></h2>
             </div>
             <div class="panel-body">
                 <form id='formulario' onsubmit='return false;' role='form'>
@@ -91,7 +98,7 @@
     
 
     <div id="row">
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php echo __('Filtros Aplicados:');?></h3>
             </div>

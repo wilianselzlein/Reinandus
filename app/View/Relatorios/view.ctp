@@ -37,6 +37,10 @@
 			<?php echo h($relatorio['Relatorio']['tipo']); ?>
 			&nbsp;
 		</td>
+</tr><tr>		<td><strong><?php echo __('Ícone'); ?></strong></td>
+		<td>    
+			<i class="fa <?php echo h($relatorio['Relatorio']['icone']); ?> fa-4x"></i>&nbsp;
+		</td>
 </tr>					</tbody>
 				</table><!-- /.table table-striped table-bordered -->
 			</div><!-- /.table-responsive -->
