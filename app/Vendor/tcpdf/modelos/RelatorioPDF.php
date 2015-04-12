@@ -16,8 +16,6 @@ App::import('Vendor','tcpdf/tcpdf');
 class RelatorioPDF  extends TCPDF 
 { 
 
-
-
    private $xfootertext  ="Copyright © %d Facet Faculdades. All rights reserved.";//= 'Copyright Â© %d XXXXXXXXXXX. All rights reserved.'; 
    private $xfooterfont = PDF_FONT_NAME_MAIN ; 
    private $xfooterfontsize = 8 ; 
@@ -26,8 +24,7 @@ class RelatorioPDF  extends TCPDF
    private $headertext = "Curitiba / PR";
    //public $headerlogo = "pos_graduacao_facet.png";
    private $titulo;
-
-
+   public $html;
 
    /** 
     * Overwrites the default header 
@@ -99,6 +96,7 @@ class RelatorioPDF  extends TCPDF
       $data = $class->find('first');
 
       $this->titulo = $titulo;
+      $this->writeHTML('<h1>'.$titulo.'</h1>', true, false, true, false, 'C');
    }
    public function getTitulo(){
       return $this->titulo;
@@ -113,40 +111,71 @@ class RelatorioPDF  extends TCPDF
 
    }
 
+   	public function __construct() {
+		parent::__construct();
+		/*
+		 *  $relatorio->SetCreator(PDF_CREATOR);
+		 *  $relatorio->SetAuthor('Pedro Escobar');
+		 *  $relatorio->SetTitle('TCPDF Example 048');
+		 *  $relatorio->SetSubject('TCPDF Tutorial');
+		 *  $relatorio->SetKeywords('TCPDF, PDF, example, test, guide');
+		 */
 
+		// set header and footer fonts
+		$this->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', 13));
 
+		// set margins
+		$this->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+		$this->SetHeaderMargin(PDF_MARGIN_HEADER);
+		$this->SetFooterMargin(PDF_MARGIN_FOOTER);
+		// set auto page breaks
+		$this->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 
+		// set image scale factor
+		$this->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		// add a page (required with recent versions of tcpdf) 
+		$this->AddPage(); 
 
+		$this->SetFont('helvetica', '', 11);
+		
+		$this->html = <<<EOD
+        <style>
+        .titulo
+        {
+            font-size: 30;
+            background-color: red;
+        }
+        .table-header
+        {
+            font-weight:bold;
+            text-align:left;            
+        }
+        .group-band
+        {
+            text-align: left;
+            font-weight:bold;
+        }
+        .totais-label
+        {
+            text-align: left;
+            font-weight:bold;
+        }
+        .line
+        {
+            border-top-width: 1;
+        }
+        </style>        
+        <br>
+        <br>
+EOD;
 
+	}
 
+	public function Imprimir() {
+		$this->writeHTML($this->html, true, false, true, false, 'L');
+		$this->lastPage();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		return $this->Output('relatorio.pdf', 'I'); 
+	}
 
 } 
