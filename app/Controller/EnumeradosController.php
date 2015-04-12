@@ -184,10 +184,24 @@ class EnumeradosController extends AppController {
 	$this->AdicionarEnumeradoSeNaoExistir(41, 'contapagar', 'situacao_id', 'Aberto');
 	$this->AdicionarEnumeradoSeNaoExistir(42, 'contapagar', 'situacao_id', 'Fechado');
 	$this->AdicionarEnumeradoSeNaoExistir(43, 'contapagar', 'situacao_id', 'Parcial');
+	//nao mudar esses codigos dos filtros
+	$this->AdicionarEnumeradoSeNaoExistir(51, 'relatorios_filtros', 'tipo_filtro', 'Faixas de numeração');
+	$this->AdicionarEnumeradoSeNaoExistir(52, 'relatorios_filtros', 'tipo_filtro', 'Faixas de string');
+	$this->AdicionarEnumeradoSeNaoExistir(53, 'relatorios_filtros', 'tipo_filtro', 'Opções finitas a serem selecionadas em lista');
+	$this->AdicionarEnumeradoSeNaoExistir(54, 'relatorios_filtros', 'tipo_filtro', 'Faixa de Código ID + campo adicional');
+	$this->AdicionarEnumeradoSeNaoExistir(55, 'relatorios_filtros', 'tipo_filtro', 'Código ID do registro + campo adicional');
+	$this->AdicionarEnumeradoSeNaoExistir(56, 'relatorios_filtros', 'tipo_filtro', 'Campo único para inteiro');
+	$this->AdicionarEnumeradoSeNaoExistir(57, 'relatorios_filtros', 'tipo_filtro', 'Campo único para string');
+	$this->AdicionarEnumeradoSeNaoExistir(58, 'relatorios_filtros', 'tipo_filtro', 'Faixas de datas');
+	$this->AdicionarEnumeradoSeNaoExistir(59, 'relatorios_filtros', 'tipo_filtro', 'Data');
+	$this->AdicionarEnumeradoSeNaoExistir(60, 'relatorios_filtros', 'tipo_filtro', 'Boolean');
+	$this->AdicionarEnumeradoSeNaoExistir(61, 'relatorios_filtros', 'tipo_filtro', 'Faixa de valores moeda ou quantidade');
+	$this->AdicionarEnumeradoSeNaoExistir(62, 'relatorios_filtros', 'tipo_filtro', 'Valor moeda ou quantidade');
+	$this->AdicionarEnumeradoSeNaoExistir(63, 'relatorios_filtros', 'tipo_filtro', 'Valor percentual');
+	//--
 
 	$this->Session->setFlash(__('Os enumerados foram atualizados.'), 'flash/success');
  }
-
 
 /**
  * AdicionarEnumeradoSeNaoExistir method

@@ -116,6 +116,13 @@ class Enumerado extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Filtros' => array(
+			'className' => 'RelatorioFiltro',
+			'foreignKey' => 'tipo_filtro',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 

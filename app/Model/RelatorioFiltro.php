@@ -35,7 +35,14 @@ class RelatorioFiltro extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
+		),
+		'Tipo' => array(
+			'className' => 'Enumerado',
+			'foreignKey' => 'tipo_filtro',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 	);
 
 }

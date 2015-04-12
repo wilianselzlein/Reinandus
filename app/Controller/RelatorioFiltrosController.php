@@ -58,9 +58,11 @@ class RelatorioFiltrosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-                $RelatorioDatasets = ClassRegistry::init('RelatorioDataset');
-                $relatoriodatasets = $RelatorioDatasets->findAsCombo();
-		$this->set(compact('relatoriodatasets'));
+        $RelatorioDatasets = ClassRegistry::init('RelatorioDataset');
+        $relatoriodatasets = $RelatorioDatasets->findAsCombo();
+		
+		$tipos = $this->RelatorioFiltro->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_filtro', 'Tipo.nome' => 'relatorios_filtros')));
+		$this->set(compact('relatoriodatasets', 'tipos'));
 	}
 
 /**
@@ -87,9 +89,10 @@ class RelatorioFiltrosController extends AppController {
 			$this->request->data = $this->RelatorioFiltro->find('first', $options);
 		}
                 
-                $RelatorioDatasets = new RelatorioDataset();
-                $relatoriodatasets = $RelatorioDatasets->findAsCombo();
-		$this->set(compact('relatoriodatasets'));
+        $RelatorioDatasets = new RelatorioDataset();
+        $relatoriodatasets = $RelatorioDatasets->findAsCombo();
+		$tipos = $this->RelatorioFiltro->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_filtro', 'Tipo.nome' => 'relatorios_filtros')));
+		$this->set(compact('relatoriodatasets', 'tipos'));
 	}
 
 /**
