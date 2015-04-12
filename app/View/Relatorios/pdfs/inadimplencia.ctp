@@ -35,18 +35,20 @@ for ($index = 0; $index < count($inadimplencia); $index++) {
 	$bolsa += $inadimplencia[$index]['0']['bolsa'];
 	$liqui += $inadimplencia[$index]['0']['liquido'];
 
-    $relatorio_pdf->html .= 
-		'<tr>'
-		.   '<td>'.$inadimplencia[$index]['aluno']['aluno'].'</td>'
-		.   '<td>'.$inadimplencia[$index]['curso']['curso'].'</td>'
-		.   '<td>'.$inadimplencia[$index]['aluno']['celular'].'<br>'.$inadimplencia[$index]['aluno']['residencial'].'</td>'
-		.   '<td>'.$inadimplencia[$index]['0']['valor'].'</td>'
-		.   '<td>'.$inadimplencia[$index]['0']['acrescimo'].'</td>'
-		.   '<td>'.$inadimplencia[$index]['0']['desconto'].'</td>'
-		.   '<td>'.$inadimplencia[$index]['0']['bolsa'].'</td>'
-		.   '<td>'.$inadimplencia[$index]['0']['liquido'].'</td>'
-		. '</tr>';
+$relatorio_pdf->html .= 
+	'<tr>'
+	.   '<td>'.$inadimplencia[$index]['aluno']['aluno'].'</td>'
+	.   '<td>'.$inadimplencia[$index]['curso']['curso'].'</td>'
+	.   '<td>'.$inadimplencia[$index]['aluno']['celular'].'<br>'.$inadimplencia[$index]['aluno']['residencial'].'</td>'
+	.   '<td>'.$inadimplencia[$index]['0']['valor'].'</td>'
+	.   '<td>'.$inadimplencia[$index]['0']['acrescimo'].'</td>'
+	.   '<td>'.$inadimplencia[$index]['0']['desconto'].'</td>'
+	.   '<td>'.$inadimplencia[$index]['0']['bolsa'].'</td>'
+	.   '<td>'.$inadimplencia[$index]['0']['liquido'].'</td>'
+	. '</tr>';
 }
+
+$total_periodo= count($inadimplencia);
 
 $relatorio_pdf->html .= 
 	'<tr>'
@@ -59,12 +61,8 @@ $relatorio_pdf->html .=
 	.   '<td>'.$desco.'</td>'
 	.   '<td>'.$bolsa.'</td>'
 	.   '<td>'.$liqui.'</td>'
-	. '</tr>';
-
-$total_periodo= count($inadimplencia);
-
-$relatorio_pdf->html .= 
-	'<tr>'
+	. '</tr>'
+	.'<tr>'
 	.'  <td colspan="8" class="line"></td>'
 	.'</tr>'
 	.'<tr><td colspan="8"></td></tr>'
@@ -74,8 +72,7 @@ $relatorio_pdf->html .=
 	.'<tr>'
 	.   '<td colspan="4" class="totais-label">Total de alunos listados</td>'
 	.   '<td colspan="4" class="totais-label">'.$total_periodo.'</td>'
-	.'</tr>';
-
-$relatorio_pdf->html .= '</table>';
+	.'</tr>'
+	.'</table>';
 
 echo $relatorio_pdf->Imprimir();

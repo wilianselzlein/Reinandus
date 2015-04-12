@@ -3,8 +3,8 @@ App::import('Vendor','tcpdf/modelos/RelatorioPDF');
 $relatorio_pdf = new RelatorioPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $relatorio_pdf->setTitulo('Razão');
 
-$relatorio_pdf->html .= '
-	<table cellspacing="0" cellpadding="1" border="0">
+$relatorio_pdf->html .= 
+	'<table cellspacing="0" cellpadding="1" border="0">
 		<thead>
 			<tr class="teste">
 						<th class="table-header">Conta</th>
@@ -42,20 +42,18 @@ $relatorio_pdf->html .= '<tr>'
     
 }
 
-$relatorio_pdf->html .= 
-        '<tr>'
-        .'  <td colspan="8" class="line"></td>'
-        .'</tr>'
-		.'<tr>'
-        .   '<td colspan="6">Total:</td>'
-        .   '<td>'.$deb.'</td>'
-        .   '<td>'.$cre	.'</td>'
-        . '</tr>';
-
 $total_periodo= count($razao);
 
 $relatorio_pdf->html .= 
         '<tr>'
+        .'  <td colspan="8" class="line"></td>'
+        .'</tr>'
+        .'<tr>'
+        .   '<td colspan="6">Total:</td>'
+        .   '<td>'.$deb.'</td>'
+        .   '<td>'.$cre .'</td>'
+        . '</tr>'
+        . '<tr>'
         .'  <td colspan="8" class="line"></td>'
         .'</tr>'
 		.'<tr><td colspan="8"></td></tr>'
@@ -65,8 +63,7 @@ $relatorio_pdf->html .=
         .'<tr>'
         .   '<td colspan="4" class="totais-label">Total de lançamentos listados</td>'
         .   '<td colspan="4" class="totais-label">'.$total_periodo.'</td>'
-        .'</tr>';
-
-$relatorio_pdf->html .= '</table>';
+        .'</tr>'
+        .'</table>';
 
 echo $relatorio_pdf->Imprimir();
