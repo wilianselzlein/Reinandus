@@ -35,7 +35,9 @@
 		</td>
                 <td><?php echo h($filtro['RelatorioFiltro']['campo']); ?>&nbsp;</td>
                 <td><?php echo h($filtro['RelatorioFiltro']['campo_alias']); ?>&nbsp;</td>
-                <td><?php echo h($filtro['RelatorioFiltro']['tipo_filtro']); ?>&nbsp;</td>
+                <td>
+    				<?php echo $this->Html->link($filtro['Tipo']['valor'], array('controller' => 'enumerados', 'action' => 'view', $filtro['Tipo']['id'])); ?>
+                </td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $filtro['RelatorioFiltro']['id']), array('class' => 'btn btn-default btn-xs')); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $filtro['RelatorioFiltro']['id']), array('class' => 'btn btn-default btn-xs')); ?>

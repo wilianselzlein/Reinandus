@@ -37,12 +37,12 @@
 			<?php echo h($relatoriofiltro['RelatorioFiltro']['campo_alias']); ?>
 			&nbsp;
 		</td>
-</tr><tr>		<td><strong><?php echo __('tipo_filtro'); ?></strong></td>
-		<td>    
-			<?php echo h($relatoriofiltro['RelatorioFiltro']['tipo_filtro']); ?>
-			&nbsp;
-		</td>
-</tr>					</tbody>
+</tr>
+<tr>
+	<td><strong><?php echo __('Tipo'); ?></strong></td>
+	<td><?php echo $this->Html->link($relatoriofiltro['Tipo']['valor'], array('controller' => 'enumerados', 'action' => 'view', $relatoriofiltro['Tipo']['id']), array('class' => '')); ?>&nbsp;</td>
+</tr>
+   					</tbody>
 				</table><!-- /.table table-striped table-bordered -->
 			</div><!-- /.table-responsive -->
 			

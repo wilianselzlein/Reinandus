@@ -28,7 +28,7 @@
 						<?php echo $this->Form->input('campo_alias', array('class' => 'form-control')); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
-						<?php echo $this->Form->input('tipo_filtro', array('class' => 'form-control')); ?>
+						<?php echo $this->Form->input('tipo_filtro', array('class' => 'form-control', 'options' => $tipos)); ?>
 					</div><!-- .form-group -->
 					<?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-large btn-primary')); ?>
 
