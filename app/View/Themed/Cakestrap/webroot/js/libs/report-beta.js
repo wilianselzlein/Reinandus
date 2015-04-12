@@ -25,6 +25,19 @@ $(document).ready(function() {
       selectedValue = $(this).val();
       toBeRendered = selectStringComponent(selectedValue);
       $(DYNAMIC_CONTENT).html(toBeRendered);
+
+      var campo = JSON.parse(selectedValue);
+
+      $.ajax({
+         type: "POST",
+         url: '/Reinandus/Relatorios/dados',
+         data: "ajax=true&model="+campo.Modelo,
+         success: function(msg){
+            //console.log(msg);
+            alert(msg);
+            $('.select_dados').html(msg);
+         }
+      });
    });
    /* FILTERS => Selected */
    $(BUTTON_ADD).click(function() {
@@ -218,7 +231,7 @@ $(document).ready(function() {
 
 function selectStringComponent(selectedField) {
    var campo = JSON.parse(selectedField);
-   var component = new Draw(campo.Id, campo.Tipo, campo.Field, campo.Alias);
+   var component = new Draw(campo.Id, campo.Tipo, campo.Field, campo.Alias, campo.Modelo);
    //  component = "";
    switch(parseInt(campo.Tipo)) {
       case TipoFiltro.FAIXAS_NUMERACAO:

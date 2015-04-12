@@ -41,18 +41,6 @@
       </ul>
    </li>
    <li>
-      <a href="javascript:;" data-toggle="collapse" data-target="#rel"><i class="fa fa-fw fa-arrows-v"></i><?php echo __('Relatorios');?><i class="fa fa-fw fa-caret-down"></i></a>
-      <ul id="rel" class="collapse">
-         <li><?php echo $this->Html->link(__('Alunos'),                       array('controller'=>'Relatorios','action'=>'index'));?></li>
-         <li><?php echo $this->Html->link(__('Cursos'),                       array('controller'=>'Relatorios','action'=>'index'));?></li>
-         <li><?php echo $this->Html->link(__('Declarações'),                  array('controller'=>'Relatorios','action'=>'index'));?></li>
-         <li><?php echo $this->Html->link(__('Gerenciamento de Alunos'),      array('controller'=>'Relatorios','action'=>'index'));?></li>
-         <li><?php echo $this->Html->link(__('Mensalidades'),                 array('controller'=>'Relatorios','action'=>'index'));?></li>
-         <li><?php echo $this->Html->link(__('Contas a Pagar'),               array('controller'=>'Relatorios','action'=>'index'));?></li>
-         <li><?php echo $this->Html->link(__('Gerencial'),                    array('controller'=>'Relatorios','action'=>'index'));?></li>
-      </ul>
-   </li>
-   <li>
       <a href="javascript:;" data-toggle="collapse" data-target="#cfg"><i class="fa fa-fw fa-arrows-v"></i><?php echo __('Configuracoes');?><i class="fa fa-fw fa-caret-down"></i></a>
       <ul id="cfg" class="collapse">
          <li><?php echo $this->Html->link(__('Parâmetros'),                   array('controller'=>'Parametros','action'=>'index'));?></li>
@@ -66,4 +54,17 @@
          <li><?php echo $this->Html->link(__('Programas'),                    array('controller'=>'Programas','action'=>'index'));?></li>
       </ul>
    </li>
+   <li>
+      <?php /* <a href="javascript:;" data-toggle="collapse" data-target="#rel"><i class="fa fa-fw fa-arrows-v"></i><?php echo __('Relatorios');?><i class="fa fa-fw fa-caret-down"></i></a>
+      <ul id="rel" class="collapse">
+         <li><?php echo $this->Html->link(__('Alunos'),                       array('controller'=>'Relatorios','action'=>'index'));?></li>
+         <li><?php echo $this->Html->link(__('Cursos'),                       array('controller'=>'Relatorios','action'=>'index'));?></li>
+         <li><?php echo $this->Html->link(__('Declarações'),                  array('controller'=>'Relatorios','action'=>'index'));?></li>
+         <li><?php echo $this->Html->link(__('Gerenciamento de Alunos'),      array('controller'=>'Relatorios','action'=>'index'));?></li>
+         <li><?php echo $this->Html->link(__('Mensalidades'),                 array('controller'=>'Relatorios','action'=>'index'));?></li>
+         <li><?php echo $this->Html->link(__('Contas a Pagar'),               array('controller'=>'Relatorios','action'=>'index'));?></li>
+         <li><?php echo $this->Html->link(__('Gerencial'),                    array('controller'=>'Relatorios','action'=>'index'));?></li>
+      </ul> */ ?>
+      <?php echo $this->Html->link(__('Relatorios'), array('controller'=>'Relatorios','action'=>'index'));?>
+   </li>   
 </ul>

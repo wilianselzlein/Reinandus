@@ -212,4 +212,25 @@ class RelatoriosController extends AppController {
 		$this->set('relatorio', $this->Relatorio->find('first', $options));
 	}
 
+
+/**
+ * dados method
+ *
+ * @throws NotFoundException
+ * @return void
+ */
+function dados() {
+    //debug($this->params['data']['model']); die;
+    $modelo = $this->params['data']['model'];
+    if ($modelo == '') 
+        $modelo = 'Cidade';
+    $dados = array();
+    $this->layout = null;
+
+    $Class = ClassRegistry::init($modelo);
+    $dados = $Class->find('list');
+    
+    $this->set(compact('dados'));
+}
+
 }
