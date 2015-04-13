@@ -6,12 +6,13 @@
  * To change this template use Tools | Templates.
  */
 
-function Draw(id, type, field, alias) {
+function Draw(id, type, field, alias, modelo) {
    var component = '';
    this.id = id;
    this.type = type;
    this.field = field;
    this.alias = alias;
+   this.modelo = modelo;
    render = function() {
       return component;
    }
@@ -42,6 +43,13 @@ function Draw(id, type, field, alias) {
    }
    this.inputText = function() {
       component += "<input  id='" + this.type + "_string' type='text' class='form-control comp' field-label='" + this.alias + "' field-value>";
+   }
+   this.inputSelect = function() {
+      component += 
+         "<select id='select_dados' class='form-control comp' field-label='" + this.alias + "'>" +
+         "<option value='-1'>Todos(as)</option>" +
+         //"<option value='1'>" + this.modelo + "</option>" +
+         "</select>";
    }
    this.inputTextStart = function() {
       component += "<input  id='" + this.type + "_start' type='text' class='form-control comp' field-label='" + this.alias + "' field-value field-position='0'>";
@@ -87,7 +95,13 @@ function Draw(id, type, field, alias) {
       return component;
    }
    //OPCOES_FINITAS: 3
-   this.getOpcoesFinitas = function() {}
+   this.getOpcoesFinitas = function() {
+      this.openDiv();
+      this.label();
+      this.inputSelect();
+      this.closeDiv();
+      return component;
+   }
    //FAIXA_CODIGO_CAMPO_ADICIONAL: 4
    this.getFaixaCodigoCampoAdicional = function() {}
    //CODIGO_CAMPO_ADICIONAL: 5

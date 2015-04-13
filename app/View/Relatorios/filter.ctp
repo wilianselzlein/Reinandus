@@ -53,18 +53,21 @@
                ?>
                 <select id="dynamic-list" class="form-control">
                    <!--<php foreach ($relatorio['RelatorioDataset'] as $dataset): ?>-->
-                     <?php foreach ($relatorioFiltrosDisponiveis as $filtro): ?>
+                     <?php foreach ($relatorioFiltrosDisponiveis as $filtro): 
+                        $tipo = $filtro['RelatorioFiltro']['tipo_filtro'] - 50;
+                     ?>
                     <!--@foreach (var filtro in Model.RelatorioFiltro.ToList())
                     {-->
                         <option value='
 <?php
    echo "{";
-   echo '"Id":'.'"'.$filtro['RelatorioFiltro']['id'].'",'; 
+   echo '"Id":'.'"'.$filtro['RelatorioFiltro']['id'] .'",'; 
    echo '"Field":'.'"'.$filtro['RelatorioFiltro']['campo'].'",'; 
    echo '"Alias":'.'"'.$filtro['RelatorioFiltro']['campo_alias'].'",'; 
-   echo '"Tipo":'.'"'.$filtro['RelatorioFiltro']['tipo_filtro'].'"';
+   echo '"Tipo":'.'"'.$tipo.'",';
+   echo '"Modelo":'.'"'.$filtro['RelatorioFiltro']['modelo'].'"'; 
    echo "}";
-?>'>    
+?>'>
                            <?php echo h($filtro['RelatorioFiltro']['campo_alias']); ?>
                         </option>
                     <!--<php endforeach; ?>-->
@@ -93,8 +96,7 @@
 
 
    <?php echo $this->Form->create('Relatorio',
-                                  array('url' => array('action' => 'download', $relatorio['Relatorio']['id'])
-                                 )); ?>
+            array('url' => array('action' => 'download', $relatorio['Relatorio']['id']))); ?>
     
 
     <div id="row">
