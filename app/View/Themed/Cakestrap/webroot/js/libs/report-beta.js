@@ -34,8 +34,8 @@ $(document).ready(function() {
          data: "ajax=true&model="+campo.Modelo,
          success: function(msg){
             //console.log(msg);
-            alert(msg);
-            $('.select_dados').html(msg);
+            //alert(msg);
+            $('#select_dados').html(msg);
          }
       });
    });

@@ -47,7 +47,7 @@ function Draw(id, type, field, alias, modelo) {
    this.inputSelect = function() {
       component += 
          "<select id='select_dados' class='form-control comp' field-label='" + this.alias + "'>" +
-         "<option value='-1'>Todos(as)</option>" +
+         //"<option value='-1'>Todos(as)</option>" +
          //"<option value='1'>" + this.modelo + "</option>" +
          "</select>";
    }

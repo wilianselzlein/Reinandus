@@ -222,13 +222,11 @@ class RelatoriosController extends AppController {
 function dados() {
     //debug($this->params['data']['model']); die;
     $modelo = $this->params['data']['model'];
-    if ($modelo == '') 
-        $modelo = 'Cidade';
     $dados = array();
     $this->layout = null;
 
     $Class = ClassRegistry::init($modelo);
-    $dados = $Class->find('list');
+    $dados = $Class->find('list', array('order' => array($Class->displayField)));
     
     $this->set(compact('dados'));
 }
