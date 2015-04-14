@@ -200,21 +200,68 @@ class RelatorioPDF  extends TCPDF
             font-size: 11pt;
             font-family: 'Times New Roman';
         }
-        .col-20{
-         width:20%
+        td.text-centered, th.text-centered{
+            text-align: center;
         }
-        .col-25{
-         width:25%
-        }
-        .col-10{
-         width:10%;
-        }
-       .col-15{
-         width:15%;
-        }
-        .col-30{
-         width:30%
-        }
+        
+        .currency, .percentage, .date{
+            font-family: 'Courier';
+         }
+         .col-5{
+           width:5%;
+         }
+         .col-10{
+           width:10%;
+         }
+         .col-15{
+           width:15%;
+         }
+         .col-20{
+           width:20%
+         }
+         .col-25{
+           width:25%
+         }
+         .col-30{
+           width:30%
+         }
+         .col-40{
+           width:40%
+         }
+         .col-45{
+           width:45%
+         }
+         .col-50{
+           width:50%
+         }
+         .col-55{
+           width:55%
+         }
+         .col-60{
+           width:60%
+         }
+         .col-65{
+           width:65%
+         }
+         .col-70{
+           width:70%
+         }
+         .col-75{
+           width:75%
+         }
+         .col-80{
+           width:80%
+         }
+         .col-85{
+           width:85%
+         }
+         .col-90{
+           width:90%
+         }
+         .col-95{
+           width:95%
+         }        
+         
         </style>        
         <br>
         <br>

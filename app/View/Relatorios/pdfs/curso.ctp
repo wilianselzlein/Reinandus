@@ -8,7 +8,7 @@ $relatorio_pdf->html .=
    '<table cellspacing="0" cellpadding="1" border="0">
     <thead>
         <tr class="header">
-            <th class="col-10">Código</th>
+            <th class="col-10 text-centered">Código</th>
             <th class="col-30">Nome</th>
             <th class="col-10">Turma</th>
             <th class="col-10">Carga</th>
@@ -35,7 +35,7 @@ for ($index = 0; $index < count($curso); $index++) {
    $even_class = $index % 2 == 0 ? ' highlighted' : '';
    //TimeHelper::i18nFormat($date, $format = NULL, $invalid = false, $timezone = NULL)¶   
    $mainRow = 
-      $relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['codigo'], 'col-10')
+      $relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['codigo'], 'col-10 text-centered')
       .$relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['nome'], 'col-30')
       .$relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['turma'], 'col-10')
       .$relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['carga'], 'col-10')
@@ -46,11 +46,11 @@ for ($index = 0; $index < count($curso); $index++) {
    $childRow = ''
       .$relatorio_pdf->HtmlTable_TD('')
       //$curso[$index]['curso']['inicio']      
-      .$relatorio_pdf->HtmlTable_TD($this->Time->i18nFormat($curso[$index]['curso']['inicio'], $this->Html->__getDatePatternView()))
-      .$relatorio_pdf->HtmlTable_TD($this->Time->i18nFormat($curso[$index]['curso']['fim'], $this->Html->__getDatePatternView()))
-      .$relatorio_pdf->HtmlTable_TD($this->Number->currency($curso[$index]['curso']['valor'], 'BRL'))
-      .$relatorio_pdf->HtmlTable_TD($this->Number->toPercentage($curso[$index]['curso']['desconto']))
-      .$relatorio_pdf->HtmlTable_TD($this->Number->currency($curso[$index]['curso']['liquido'], 'BRL'))
+      .$relatorio_pdf->HtmlTable_TD($this->Time->i18nFormat($curso[$index]['curso']['inicio'], $this->Html->__getDatePatternView()), 'date')
+      .$relatorio_pdf->HtmlTable_TD($this->Time->i18nFormat($curso[$index]['curso']['fim'], $this->Html->__getDatePatternView()), 'date')
+      .$relatorio_pdf->HtmlTable_TD($this->Number->currency($curso[$index]['curso']['valor'], 'BRL'), 'currency')
+      .$relatorio_pdf->HtmlTable_TD($this->Number->toPercentage($curso[$index]['curso']['desconto']), 'percentage')
+      .$relatorio_pdf->HtmlTable_TD($this->Number->currency($curso[$index]['curso']['liquido'], 'BRL'), 'currency')
       .$relatorio_pdf->HtmlTable_TD('');
 
    $relatorio_pdf->html .= ''
