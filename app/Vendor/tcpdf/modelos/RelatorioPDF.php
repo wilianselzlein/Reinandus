@@ -111,8 +111,8 @@ class RelatorioPDF  extends TCPDF
 
    }
 
-   	public function __construct() {
-		parent::__construct();
+   	public function __construct($orientation='P') {
+		parent::__construct($orientation);
 		/*
 		 *  $relatorio->SetCreator(PDF_CREATOR);
 		 *  $relatorio->SetAuthor('Pedro Escobar');
@@ -134,8 +134,8 @@ class RelatorioPDF  extends TCPDF
 		// set image scale factor
 		$this->setImageScale(PDF_IMAGE_SCALE_RATIO);
 		// add a page (required with recent versions of tcpdf) 
-		$this->AddPage(); 
-
+		 //debug($this->CurOrientation);
+		$this->AddPage($this->CurOrientation); 
 		$this->SetFont('helvetica', '', 11);
 		
 		$this->html = <<<EOD
@@ -164,6 +164,35 @@ class RelatorioPDF  extends TCPDF
         {
             border-top-width: 1;
         }
+        tr.first{
+            background-color: red;
+        }
+        tr.second{
+            background-color: #f4f4f4;
+         }
+         tr.highlighted, th.highlighted{
+            background-color: #E0EBFF;
+         }
+        tr.header{
+            font-weight:bold;
+            text-align:left;     
+            background-color: #f4f4f4;
+        }
+        tr.subheader1{
+            font-weight:bold;
+            text-align:left;               
+            font-style: italic;
+            font-size: 11pt;
+            font-family: 'Times New Roman';
+            background-color: #f4f4f4;
+        }
+        
+        tr.child{
+            font-size: 10pt;
+        }
+        tr.last td{
+            border-bottom-width: 1;
+        }
         </style>        
         <br>
         <br>
@@ -177,5 +206,13 @@ EOD;
 
 		return $this->Output('relatorio.pdf', 'I'); 
 	}
-
+   public function HtmlTable_TR($content, $class=''){
+      return '<tr class="'.$class.'">'.$content.'</tr>';
+   } 
+   public function HtmlTable_TD($content, $class='', $colspan='', $rowspan=''){
+      return  '<td class="'.$class.'" colspan="'.$colspan.'" rowspan="'.$rowspan.'">'.$content.'</td>';
+   } 
+   public function HtmlTable_TH($content, $class='', $colspan='', $rowspan=''){
+      return  '<th class="'.$class.'" colspan="'.$colspan.'" rowspan="'.$rowspan.'">'.$content.'</th>';
+   }
 } 
