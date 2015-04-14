@@ -30,7 +30,7 @@ $(document).ready(function() {
 
       $.ajax({
          type: "POST",
-         url: '/Reinandus/Relatorios/dados',
+         url: '/Relatorios/dados',
          data: "ajax=true&model="+campo.Modelo,
          success: function(msg){
             //console.log(msg);
@@ -118,6 +118,8 @@ $(document).ready(function() {
       var selected_component = "";
       var selectedValues = [];
       var rows = $(DYNAMIC_CONTENT_SELECTED+" table tbody").html();
+      //alert('Oi');
+     // alert(_filter.fields.length);
       for(var i = 0; i < _filter.fields.length; i++) {
          _comp = _filter.fields[i];
          switch(tipoFiltro) {
@@ -223,10 +225,22 @@ $(document).ready(function() {
       //row+= '<input id="' + _filterId + '" name="' + _filterId + '" type="hidden" value="' + _values + '">';
       return row;
    }
+   
+   
+   
    $(DYNAMIC_CONTENT_SELECTED).on('click', '.btn-del-row', function() {
       VAR_SELECTED_FIELDS.pop($(this).attr(ATTR_FILTER_ID));
       $(this).parent().parent().remove();
    });
+   
+   $('#dynamic-content').on('change', '#select_dados', function() {
+      var input = $(this).parent().find("input[type='hidden']");
+      $(input).val($(this).find('option:selected').text());
+      //
+      //alert(t.name);
+      
+   });
+   
 })
 
 function selectStringComponent(selectedField) {

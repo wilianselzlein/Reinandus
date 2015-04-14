@@ -30,4 +30,11 @@ App::uses('Helper', 'View');
  * @package       app.View.Helper
  */
 class AppHelper extends Helper {
+   var $helpers = array('Html', 'Form', 'Text');
+   
+   private $datePattern = "%d/%m/%Y";
+   
+   public function __getDatePatternView() {
+        return $this->datePattern;
+    }
 }

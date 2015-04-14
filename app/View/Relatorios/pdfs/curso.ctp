@@ -8,13 +8,13 @@ $relatorio_pdf->html .=
    '<table cellspacing="0" cellpadding="1" border="0">
     <thead>
         <tr class="header">
-            <th>Código</th>
-            <th>Nome</th>
-            <th>Turma</th>
-            <th>Carga</th>
-            <th>Vencimento</th>            
-            <th>Coordenador</th>
-            <th>Secretário</th>
+            <th class="col-10">Código</th>
+            <th class="col-30">Nome</th>
+            <th class="col-10">Turma</th>
+            <th class="col-10">Carga</th>
+            <th class="col-10">Vencimento</th>            
+            <th class="col-15">Coordenador</th>
+            <th class="col-15">Secretário</th>
         </tr>
         <tr>
             <td colspan="7" class="line"></td>
@@ -33,23 +33,24 @@ $subheader1 = ''
 //debug($curso); die;
 for ($index = 0; $index < count($curso); $index++) {
    $even_class = $index % 2 == 0 ? ' highlighted' : '';
-
+   //TimeHelper::i18nFormat($date, $format = NULL, $invalid = false, $timezone = NULL)¶   
    $mainRow = 
-      $relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['codigo'])
-      .$relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['nome'])
-      .$relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['turma'])
-      .$relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['carga'])
-      .$relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['vencimento'])         
-      .$relatorio_pdf->HtmlTable_TD($curso[$index]['professor']['coordenador'])  
-      .$relatorio_pdf->HtmlTable_TD($curso[$index]['pessoa']['secretario']);    
+      $relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['codigo'], 'col-10')
+      .$relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['nome'], 'col-30')
+      .$relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['turma'], 'col-10')
+      .$relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['carga'], 'col-10')
+      .$relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['vencimento'], 'col-10')         
+      .$relatorio_pdf->HtmlTable_TD($curso[$index]['professor']['coordenador'], 'col-15')  
+      .$relatorio_pdf->HtmlTable_TD($curso[$index]['pessoa']['secretario'], 'col-15');    
 
    $childRow = ''
       .$relatorio_pdf->HtmlTable_TD('')
-      .$relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['inicio'])
-      .$relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['fim'])
-      .$relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['valor'])
-      .$relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['desconto'])
-      .$relatorio_pdf->HtmlTable_TD($curso[$index]['curso']['liquido'])
+      //$curso[$index]['curso']['inicio']      
+      .$relatorio_pdf->HtmlTable_TD($this->Time->i18nFormat($curso[$index]['curso']['inicio'], $this->Html->__getDatePatternView()))
+      .$relatorio_pdf->HtmlTable_TD($this->Time->i18nFormat($curso[$index]['curso']['fim'], $this->Html->__getDatePatternView()))
+      .$relatorio_pdf->HtmlTable_TD($this->Number->currency($curso[$index]['curso']['valor'], 'BRL'))
+      .$relatorio_pdf->HtmlTable_TD($this->Number->toPercentage($curso[$index]['curso']['desconto']))
+      .$relatorio_pdf->HtmlTable_TD($this->Number->currency($curso[$index]['curso']['liquido'], 'BRL'))
       .$relatorio_pdf->HtmlTable_TD('');
 
    $relatorio_pdf->html .= ''
@@ -58,19 +59,8 @@ for ($index = 0; $index < count($curso); $index++) {
       .$relatorio_pdf->HtmlTable_TR($childRow, 'child last'.$even_class);
 }
 
-
-$total_periodo= count($curso);
-
 $relatorio_pdf->html .= ''
-   .'<tr>
-     <td colspan="7"></td></tr>'
-   .'<tr>'
-   .'<td colspan="7"></td>'
-   .'</tr>'
-   .'<tr>'
-   .   '<td colspan="2" class="totais-label">Total de alunos listados:</td>'
-   .   '<td colspan="2" class="totais-label">'.$total_periodo.'</td>'
-   .'</tr>'
+   .$relatorio_pdf->HtmlTable_SUMMARY(count($curso), 'summary', 7)
    .'</table>';
 
 //debug($relatorio_pdf->html);
