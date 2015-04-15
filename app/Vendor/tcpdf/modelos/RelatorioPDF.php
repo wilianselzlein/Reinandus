@@ -82,7 +82,7 @@ class RelatorioPDF  extends TCPDF
       //$this->SetFont($this->xfooterfont,'',$this->xfooterfontsize); 
       //$this->Cell(0,8, $data['Cabecalho']['rodape'],'T',1,'C'); 
       //
-      $position_y = $this->CurOrientation == 'L' ? 180 : 280;
+      $position_y = $this->CurOrientation == 'L' ? 185 : 280;
       $image_file = K_PATH_IMAGES. 'uploads/'.$data['Cabecalho']['figura'];//'pos_graduacao_facet.png';//
       if (file_exists($image_file))
          $this->Image($image_file, 10, $position_y, 30, '', '*', '', 'B', false, 300, '', false, false, 0, false, false, false);
@@ -203,7 +203,7 @@ class RelatorioPDF  extends TCPDF
         td.text-centered, th.text-centered{
             text-align: center;
         }
-        
+
         .currency, .percentage, .date{
             font-family: 'Courier';
          }
@@ -261,14 +261,44 @@ class RelatorioPDF  extends TCPDF
          .col-95{
            width:95%
          }        
-         
+
         </style>        
         <br>
         <br>
 EOD;
 
    }
-
+   // Colored table
+   public function ColoredTable($header,$data) {
+      // Colors, line width and bold font
+      $this->SetFillColor(255, 0, 0);
+      $this->SetTextColor(255);
+      $this->SetDrawColor(128, 0, 0);
+      $this->SetLineWidth(0.3);
+      $this->SetFont('', 'B');
+      // Header
+      $w = array(40, 35, 40, 45);
+      $num_headers = count($header);
+      for($i = 0; $i < $num_headers; ++$i) {
+         $this->Cell($w[$i], 7, $header[$i], 1, 0, 'C', 1);
+      }
+      $this->Ln();
+      // Color and font restoration
+      $this->SetFillColor(224, 235, 255);
+      $this->SetTextColor(0);
+      $this->SetFont('');
+      // Data
+      $fill = 0;
+      foreach($data as $row) {
+         $this->Cell($w[0], 6, $row[0], 'LR', 0, 'L', $fill);
+         $this->Cell($w[1], 6, $row[1], 'LR', 0, 'L', $fill);
+         $this->Cell($w[2], 6, number_format($row[2]), 'LR', 0, 'R', $fill);
+         $this->Cell($w[3], 6, number_format($row[3]), 'LR', 0, 'R', $fill);
+         $this->Ln();
+         $fill=!$fill;
+      }
+      $this->Cell(array_sum($w), 0, '', 'T');
+   }
    public function Imprimir() {
       $this->writeHTML($this->html, true, false, true, false, 'L');
       $this->lastPage();
@@ -284,17 +314,24 @@ EOD;
    public function HtmlTable_TH($content, $class='', $colspan='', $rowspan=''){
       return  '<th class="'.$class.'" colspan="'.$colspan.'" rowspan="'.$rowspan.'">'.$content.'</th>';
    }
-   
+
    public function HtmlTable_DIVIDER($colspan, $rowspan){
       return $this->HtmlTable_TR($this->HtmlTable_TD('', '',$colspan, $rowspan));  
    }
-   
+
    public function HtmlTable_SUMMARY($content, $class='', $colspan='', $rowspan=''){
       $total = 'Total de registros listados: '.$content;
       $summary = ''
          .$this->HtmlTable_DIVIDER($colspan, $rowspan)
          .$this->HtmlTable_TR($this->HtmlTable_TD($total, '', $colspan),$class);
-         
+
       return $summary;
+   }
+   public function Print_HeaderCell($width, $data){
+      $this->Cell($width, 7, $data, 1, 0, 'C', 1);
+   }
+   public function Print_Cell($width, $data, $border = 'LR', $align, $fill){
+      //$this->Cell($w, $h = 0, $txt = '', $border = 0, $ln = 0, $align = '', $fill = false, $link = '', $stretch = 0, $ignore_min_height = false, $calign = 'T', $valign = 'M')	
+         $this->Cell($width, 6, $data, $border, 0, $align, $fill, '', 1);
    }
 } 
