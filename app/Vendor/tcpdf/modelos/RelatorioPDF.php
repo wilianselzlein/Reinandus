@@ -82,11 +82,12 @@ class RelatorioPDF  extends TCPDF
       //$this->SetFont($this->xfooterfont,'',$this->xfooterfontsize); 
       //$this->Cell(0,8, $data['Cabecalho']['rodape'],'T',1,'C'); 
       //
+      $position_y = $this->CurOrientation == 'L' ? 185 : 280;
       $image_file = K_PATH_IMAGES. 'uploads/'.$data['Cabecalho']['figura'];//'pos_graduacao_facet.png';//
       if (file_exists($image_file))
-         $this->Image($image_file, 10, 280, 30, '', '*', '', 'B', false, 300, '', false, false, 0, false, false, false);
+         $this->Image($image_file, 10, $position_y, 30, '', '*', '', 'B', false, 300, '', false, false, 0, false, false, false);
       $this->writeHTMLCell(
-         $w = 0, $h = 0, $x = '', $y ='280',          $data['Cabecalho']['rodape'], $border = 0, $ln = 1, $fill = 0,
+         $w = 0, $h = 0, $x = '', $position_y ,          $data['Cabecalho']['rodape'], $border = 0, $ln = 1, $fill = 0,
          $reseth = true, $align = 'C', $autopadding = true);
 
    } 
@@ -111,9 +112,9 @@ class RelatorioPDF  extends TCPDF
 
    }
 
-   	public function __construct($orientation='P') {
-		parent::__construct($orientation);
-		/*
+   public function __construct($orientation='P') {
+      parent::__construct($orientation);
+      /*
 		 *  $relatorio->SetCreator(PDF_CREATOR);
 		 *  $relatorio->SetAuthor('Pedro Escobar');
 		 *  $relatorio->SetTitle('TCPDF Example 048');
@@ -121,24 +122,24 @@ class RelatorioPDF  extends TCPDF
 		 *  $relatorio->SetKeywords('TCPDF, PDF, example, test, guide');
 		 */
 
-		// set header and footer fonts
-		$this->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', 13));
+      // set header and footer fonts
+      $this->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', 13));
 
-		// set margins
-		$this->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-		$this->SetHeaderMargin(PDF_MARGIN_HEADER);
-		$this->SetFooterMargin(PDF_MARGIN_FOOTER);
-		// set auto page breaks
-		$this->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+      // set margins
+      $this->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+      $this->SetHeaderMargin(PDF_MARGIN_HEADER);
+      $this->SetFooterMargin(PDF_MARGIN_FOOTER);
+      // set auto page breaks
+      $this->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 
-		// set image scale factor
-		$this->setImageScale(PDF_IMAGE_SCALE_RATIO);
-		// add a page (required with recent versions of tcpdf) 
-		 //debug($this->CurOrientation);
-		$this->AddPage($this->CurOrientation); 
-		$this->SetFont('helvetica', '', 11);
-		
-		$this->html = <<<EOD
+      // set image scale factor
+      $this->setImageScale(PDF_IMAGE_SCALE_RATIO);
+      // add a page (required with recent versions of tcpdf) 
+      //debug($this->CurOrientation);
+      $this->AddPage($this->CurOrientation); 
+      $this->SetFont('helvetica', '', 11);
+
+      $this->html = <<<EOD
         <style>
         .titulo
         {
@@ -183,29 +184,127 @@ class RelatorioPDF  extends TCPDF
             text-align:left;               
             font-style: italic;
             font-size: 11pt;
-            font-family: 'Times New Roman';
-            background-color: #f4f4f4;
+            font-family: 'Times New Roman';            
         }
-        
+
         tr.child{
             font-size: 10pt;
         }
         tr.last td{
             border-bottom-width: 1;
         }
+        tr.summary{
+            font-weight:bold;
+            text-align:left;               
+            font-style: italic;
+            font-size: 11pt;
+            font-family: 'Times New Roman';
+        }
+        td.text-centered, th.text-centered{
+            text-align: center;
+        }
+
+        .currency, .percentage, .date{
+            font-family: 'Courier';
+         }
+         .col-5{
+           width:5%;
+         }
+         .col-10{
+           width:10%;
+         }
+         .col-15{
+           width:15%;
+         }
+         .col-20{
+           width:20%
+         }
+         .col-25{
+           width:25%
+         }
+         .col-30{
+           width:30%
+         }
+         .col-40{
+           width:40%
+         }
+         .col-45{
+           width:45%
+         }
+         .col-50{
+           width:50%
+         }
+         .col-55{
+           width:55%
+         }
+         .col-60{
+           width:60%
+         }
+         .col-65{
+           width:65%
+         }
+         .col-70{
+           width:70%
+         }
+         .col-75{
+           width:75%
+         }
+         .col-80{
+           width:80%
+         }
+         .col-85{
+           width:85%
+         }
+         .col-90{
+           width:90%
+         }
+         .col-95{
+           width:95%
+         }        
+
         </style>        
         <br>
         <br>
 EOD;
 
-	}
+   }
+   // Colored table
+   public function ColoredTable($header,$data) {
+      // Colors, line width and bold font
+      $this->SetFillColor(255, 0, 0);
+      $this->SetTextColor(255);
+      $this->SetDrawColor(128, 0, 0);
+      $this->SetLineWidth(0.3);
+      $this->SetFont('', 'B');
+      // Header
+      $w = array(40, 35, 40, 45);
+      $num_headers = count($header);
+      for($i = 0; $i < $num_headers; ++$i) {
+         $this->Cell($w[$i], 7, $header[$i], 1, 0, 'C', 1);
+      }
+      $this->Ln();
+      // Color and font restoration
+      $this->SetFillColor(224, 235, 255);
+      $this->SetTextColor(0);
+      $this->SetFont('');
+      // Data
+      $fill = 0;
+      foreach($data as $row) {
+         $this->Cell($w[0], 6, $row[0], 'LR', 0, 'L', $fill);
+         $this->Cell($w[1], 6, $row[1], 'LR', 0, 'L', $fill);
+         $this->Cell($w[2], 6, number_format($row[2]), 'LR', 0, 'R', $fill);
+         $this->Cell($w[3], 6, number_format($row[3]), 'LR', 0, 'R', $fill);
+         $this->Ln();
+         $fill=!$fill;
+      }
+      $this->Cell(array_sum($w), 0, '', 'T');
+   }
+   public function Imprimir() {
+      $this->writeHTML($this->html, true, false, true, false, 'L');
+      $this->lastPage();
 
-	public function Imprimir() {
-		$this->writeHTML($this->html, true, false, true, false, 'L');
-		$this->lastPage();
-
-		return $this->Output('relatorio.pdf', 'I'); 
-	}
+      return $this->Output('relatorio.pdf', 'I'); 
+   }
    public function HtmlTable_TR($content, $class=''){
       return '<tr class="'.$class.'">'.$content.'</tr>';
    } 
@@ -214,5 +313,25 @@ EOD;
    } 
    public function HtmlTable_TH($content, $class='', $colspan='', $rowspan=''){
       return  '<th class="'.$class.'" colspan="'.$colspan.'" rowspan="'.$rowspan.'">'.$content.'</th>';
+   }
+
+   public function HtmlTable_DIVIDER($colspan, $rowspan){
+      return $this->HtmlTable_TR($this->HtmlTable_TD('', '',$colspan, $rowspan));  
+   }
+
+   public function HtmlTable_SUMMARY($content, $class='', $colspan='', $rowspan=''){
+      $total = 'Total de registros listados: '.$content;
+      $summary = ''
+         .$this->HtmlTable_DIVIDER($colspan, $rowspan)
+         .$this->HtmlTable_TR($this->HtmlTable_TD($total, '', $colspan),$class);
+
+      return $summary;
+   }
+   public function Print_HeaderCell($width, $data){
+      $this->Cell($width, 7, $data, 1, 0, 'C', 1);
+   }
+   public function Print_Cell($width, $data, $border = 'LR', $align, $fill){
+      //$this->Cell($w, $h = 0, $txt = '', $border = 0, $ln = 0, $align = '', $fill = false, $link = '', $stretch = 0, $ignore_min_height = false, $calign = 'T', $valign = 'M')	
+         $this->Cell($width, 6, $data, $border, 0, $align, $fill, '', 1);
    }
 } 

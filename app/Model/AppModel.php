@@ -30,6 +30,7 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+   
 
 	function ValorEntre($valor, $campo, $max){
 		$valor = $valor[$campo];
