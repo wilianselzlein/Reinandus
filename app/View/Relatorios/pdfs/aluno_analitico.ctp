@@ -4,12 +4,12 @@ App::import('Vendor','tcpdf/modelos/RelatorioPDF');
 $relatorio_pdf = new RelatorioPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $relatorio_pdf->SetTitulo('Relatório de Alunos');
 
-$relatorio_pdf->html .= '<table cellspacing="0" cellpadding="1" border="0">';
+$relatorio_pdf->writeHTML($relatorio_pdf->html, true, false, true, false, 'L');
 
 //debug($aluno); die;
 for ($index = 0; $index < count($aluno); $index++) {
-    $relatorio_pdf->html .= 
-            '<tr>'
+    $html = '<table cellspacing="0" cellpadding="1" border="0">'
+            . '<tr>'
             .   '<td colspan="6" class="line"></td>'
             . '</tr>'
             . '<tr>'
@@ -95,12 +95,15 @@ for ($index = 0; $index < count($aluno); $index++) {
             .   '<td>'.$aluno[$index]['aluno']['mono_prazo'].'</td>'
             .   '<td><b>Nota</b></td>'
             .   '<td>'.$aluno[$index]['aluno']['mono_nota'].'</td>'
-            . '</tr>';
-    
+            . '</tr>'
+            . '</table>';
+    $relatorio_pdf->writeHTML($html, true, false, true, false, 'L');
 }
 $total_periodo= count($aluno);
 
-$relatorio_pdf->html .= '<tr><td colspan="5"></td></tr>'
+$relatorio_pdf->html = 
+        '<table cellspacing="0" cellpadding="1" border="0">'
+        .'<tr><td colspan="5"></td></tr>'
         .'<tr>'
         .'<td colspan="5"></td>'
         .'</tr>'
