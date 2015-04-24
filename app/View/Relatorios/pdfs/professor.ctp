@@ -1,51 +1,59 @@
 <?php
 
+App::import('Vendor', 'PeDF/Table');
 App::import('Vendor','tcpdf/modelos/RelatorioPDF'); 
 $relatorio_pdf = new RelatorioPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $relatorio_pdf->setTitulo('Relatório de Professores');
+$html = $relatorio_pdf->html;
 
-$relatorio_pdf->html .= '
-		<table cellspacing="0" cellpadding="1" border="0">
-	        <thead>
-	    		<tr class="teste">
-                            <th class="table-header">Id</th>
-                            <th class="table-header">Nome</th>
-                            <th class="table-header">Endereço</th>
-                            <th class="table-header">Cidade</th>
-                            <th class="table-header">Telefone</th>
-                            <th class="table-header">Celular</th>
-                            <th class="table-header">Titulação</th>
-                            <th class="table-header">Formação</th>
-	    		</tr>
-                        <tr>
-                            <td colspan="8" class="line"></td>
-                        </tr>
-	        </thead>';
-  
+$table = new Table();
+
+$rowHeader = new Row('header');
+$rowHeader
+  ->addColumn('Código', 'col-10 text-centered')
+  ->addColumn('Nome', 'col-20')
+  ->addColumn('Endereço', 'col-20')
+  ->addColumn('Cidade', 'col-10')
+  ->addColumn('Fone', 'col-10')         
+  ->addColumn('Celular', 'col-10')  
+  ->addColumn('Titulação', 'col-10')
+  ->addColumn('Formação', 'col-10')
+  ->close();
+$table->addRow($rowHeader);
+
 for ($index = 0; $index < count($professor); $index++) {
-    $relatorio_pdf->html .= '<tr>'
-            .   '<td>'.$professor[$index]['p']['id'].'</td>'
-            .   '<td>'.$professor[$index]['p']['nome'].'</td>'
-            .   '<td>'.$professor[$index]['p']['endereco']. ' ' . $professor[$index]['p']['numero'] . ' ' 
-            . $professor[$index]['p']['bairro']. '</td>'
-            .   '<td>'.$professor[$index]['c']['cidade_nome'].'</td>'            
-            .   '<td>'.$professor[$index]['p']['fone'].'</td>'
-            .   '<td>'.$professor[$index]['p']['celular'].'</td>'
-            .   '<td>'.$professor[$index]['p']['resumotitulacao'].'</td>'
-            .   '<td>'.$professor[$index]['p']['formacao'].'</td>'
-            . '</tr>';
+    $even_class = $index % 2 == 0 ? ' highlighted' : '';
+   
+   $rowData = new Row(''.$even_class);
+   $rowData
+      ->addColumn($professor[$index]['p']['id'], 'col-10 text-centered')
+      ->addColumn($professor[$index]['p']['nome'], 'col-20')
+      ->addColumn($professor[$index]['p']['endereco']. ' ' . $professor[$index]['p']['numero'] . ' ' 
+            . $professor[$index]['p']['bairro'], 'col-20')
+      ->addColumn($professor[$index]['c']['cidade_nome'], 'col-10')
+      ->addColumn($professor[$index]['p']['fone'], 'col-10')         
+      ->addColumn($professor[$index]['p']['celular'], 'col-10')  
+      ->addColumn($professor[$index]['p']['resumotitulacao'], 'col-10')
+      ->addColumn($professor[$index]['p']['formacao'], 'col-10')
+      ->close();
+    $table->addRow($rowData);
 }
 
-$total= count($professor);
-
-$relatorio_pdf->html .= '<tr><td colspan="1"></td></tr>'
+/*$total= count($professor);
+$relatorio_pdf->html = 
+        '<table cellspacing="0" cellpadding="1" border="0">'
+        .'<tr><td colspan="2"></td></tr>'
         .'<tr>'
-        .'<td colspan="1"></td>'
+        .'<td colspan="2"></td>'
         .'</tr>'
         .'<tr>'
-        .   '<td colspan="3" class="totais-label">Total de professor(es) listado(s):</td>'
-        .   '<td colspan="2" class="totais-label">'.$total.'</td>'
+        .   '<td class="totais-label">Total de professor(es) listado(s):</td>'
+        .   '<td class="totais-label">'.$total.'</td>'
         .'</tr>'
-        .'</table>';
+        .'</table>';*/
 
-echo $relatorio_pdf->Imprimir(); 
+$table->close();
+$html .= $table;
+
+$relatorio_pdf->html = $html;
+$relatorio_pdf->Imprimir();

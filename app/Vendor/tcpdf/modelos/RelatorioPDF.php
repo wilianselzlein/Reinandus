@@ -149,7 +149,8 @@ class RelatorioPDF  extends TCPDF
         .table-header
         {
             font-weight:bold;
-            text-align:left;            
+            text-align:left;
+            font-size: 10pt;           
         }
         .group-band
         {
@@ -178,8 +179,9 @@ class RelatorioPDF  extends TCPDF
             font-weight:bold;
             text-align:left;     
             background-color: #f4f4f4;
+            font-size: 10pt;  
         }
-        tr.subheader1{
+        tr.subheader{
             font-weight:bold;
             text-align:left;               
             font-style: italic;
@@ -192,6 +194,7 @@ class RelatorioPDF  extends TCPDF
         }
         tr.last td{
             border-bottom-width: 1;
+            border-color: #000;
         }
         tr.summary{
             font-weight:bold;
@@ -199,6 +202,9 @@ class RelatorioPDF  extends TCPDF
             font-style: italic;
             font-size: 11pt;
             font-family: 'Times New Roman';
+        }
+        td {
+          font-size: 9pt;
         }
         td.text-centered, th.text-centered{
             text-align: center;
@@ -261,9 +267,7 @@ class RelatorioPDF  extends TCPDF
          .col-95{
            width:95%
          }        
-
-        </style>        
-        <br>
+        </style>
         <br>
 EOD;
 
@@ -300,6 +304,9 @@ EOD;
       $this->Cell(array_sum($w), 0, '', 'T');
    }
    public function Imprimir() {
+      ini_set('memory_limit', '512M');
+      set_time_limit(0);
+
       $this->writeHTML($this->html, true, false, true, false, 'L');
       $this->lastPage();
 
