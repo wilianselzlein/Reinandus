@@ -79,7 +79,8 @@ class AppController extends Controller {
             'character'   => ' ',
             'concatenate' => 'AND',
          )
-      )
+      ), 
+      'RequestHandler'
    );
 
    protected function AdicionarFiltrosLike($model) {
