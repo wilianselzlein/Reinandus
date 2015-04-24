@@ -60,7 +60,7 @@ for ($index = 0; $index < count($curso); $index++) {
    $table->addRow($rowDataChild);
 }
 
-
+$table->addCount(count($curso));
 $table->close();
 $html .= $table;
 

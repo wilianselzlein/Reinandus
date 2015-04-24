@@ -1,25 +1,24 @@
 <?php
+App::import('Vendor', 'PeDF/Table');
 App::import('Vendor','tcpdf/modelos/RelatorioPDF'); 
 $relatorio_pdf = new RelatorioPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $relatorio_pdf->setTitulo('Inadimplência por Aluno');
+$html = $relatorio_pdf->html;
 
-$relatorio_pdf->html .= 
-	'<table cellspacing="0" cellpadding="1" border="0">
-	<thead>
-		<tr class="teste">
-			<th class="table-header">Aluno</th>
-			<th class="table-header">Curso</th>
-			<th class="table-header">Telefone</th>
-			<th class="table-header">Valor</th>
-			<th class="table-header">Acréscimo</th>
-			<th class="table-header">Desconto</th>
-			<th class="table-header">Bolsa</th>
-			<th class="table-header">Líquido</th>
-		</tr>
-		<tr>
-			<td colspan="8" class="line"></td>
-		</tr>
-	</thead>';
+$table = new Table();
+
+$rowHeader = new Row('header');
+$rowHeader
+  ->addColumn('Aluno', 'col-20')
+  ->addColumn('Curso', 'col-20')
+  ->addColumn('Telefone', 'col-15')
+  ->addColumn('Valor', 'col-10')
+  ->addColumn('Acréscimo', 'col-10')         
+  ->addColumn('Desconto', 'col-10')  
+  ->addColumn('Bolsa', 'col-5')
+  ->addColumn('Líquido', 'col-10')
+  ->close();
+$table->addRow($rowHeader);
 
 $valor = 0;
 $acres = 0;
@@ -29,50 +28,44 @@ $liqui = 0;
 
 //debug($inadimplencia); die;
 for ($index = 0; $index < count($inadimplencia); $index++) {
+	$even_class = $index % 2 == 0 ? ' highlighted' : '';
+
 	$valor += $inadimplencia[$index]['0']['valor'];
 	$acres += $inadimplencia[$index]['0']['acrescimo'];
 	$desco += $inadimplencia[$index]['0']['desconto'];
 	$bolsa += $inadimplencia[$index]['0']['bolsa'];
 	$liqui += $inadimplencia[$index]['0']['liquido'];
 
-$relatorio_pdf->html .= 
-	'<tr>'
-	.   '<td>'.$inadimplencia[$index]['aluno']['aluno'].'</td>'
-	.   '<td>'.$inadimplencia[$index]['curso']['curso'].'</td>'
-	.   '<td>'.$inadimplencia[$index]['aluno']['celular'].'<br>'.$inadimplencia[$index]['aluno']['residencial'].'</td>'
-	.   '<td>'.$inadimplencia[$index]['0']['valor'].'</td>'
-	.   '<td>'.$inadimplencia[$index]['0']['acrescimo'].'</td>'
-	.   '<td>'.$inadimplencia[$index]['0']['desconto'].'</td>'
-	.   '<td>'.$inadimplencia[$index]['0']['bolsa'].'</td>'
-	.   '<td>'.$inadimplencia[$index]['0']['liquido'].'</td>'
-	. '</tr>';
+   $rowData = new Row(''.$even_class);
+   $rowData
+      ->addColumn($inadimplencia[$index]['aluno']['aluno'], 'col-20')
+      ->addColumn($inadimplencia[$index]['curso']['curso'], 'col-20')
+      ->addColumn($inadimplencia[$index]['aluno']['celular']. '<br>' . $inadimplencia[$index]['aluno']['residencial'], 'col-15')
+      ->addColumn($this->Number->currency($inadimplencia[$index]['0']['valor'], 'BRL'), 'currency col-10')
+      ->addColumn($this->Number->currency($inadimplencia[$index]['0']['acrescimo'], 'BRL'), 'currency col-10')       
+      ->addColumn($this->Number->currency($inadimplencia[$index]['0']['desconto'], 'BRL'), 'currency col-10')
+      ->addColumn($this->Number->currency($inadimplencia[$index]['0']['bolsa'], 'BRL'), 'currency col-5')
+      ->addColumn($this->Number->currency($inadimplencia[$index]['0']['liquido'], 'BRL'), 'currency col-10')
+      ->close();
+    $table->addRow($rowData);
 }
 
-$total_periodo= count($inadimplencia);
+$rowData = new Row('summary');
+$rowData
+  ->addColumn('', 'col-20')
+  ->addColumn('', 'col-20')
+  ->addColumn('Total:', 'col-15')
+  ->addColumn($this->Number->currency($valor, 'BRL'), 'currency col-10')
+  ->addColumn($this->Number->currency($acres, 'BRL'), 'currency col-10')       
+  ->addColumn($this->Number->currency($desco, 'BRL'), 'currency col-10')
+  ->addColumn($this->Number->currency($bolsa, 'BRL'), 'currency col-5')
+  ->addColumn($this->Number->currency($liqui, 'BRL'), 'currency col-10')
+  ->close();
+$table->addRow($rowData);
 
-$relatorio_pdf->html .= 
-	'<tr>'
-	.'  <td colspan="8" class="line"></td>'
-	.'</tr>'
-	.'<tr>'
-	.   '<td colspan="3">Total:</td>'
-	.   '<td>'.$valor.'</td>'
-	.   '<td>'.$acres.'</td>'
-	.   '<td>'.$desco.'</td>'
-	.   '<td>'.$bolsa.'</td>'
-	.   '<td>'.$liqui.'</td>'
-	. '</tr>'
-	.'<tr>'
-	.'  <td colspan="8" class="line"></td>'
-	.'</tr>'
-	.'<tr><td colspan="8"></td></tr>'
-	.'<tr>'
-	.'<td colspan="8"></td>'
-	.'</tr>'
-	.'<tr>'
-	.   '<td colspan="4" class="totais-label">Total de alunos listados</td>'
-	.   '<td colspan="4" class="totais-label">'.$total_periodo.'</td>'
-	.'</tr>'
-	.'</table>';
+$table->addCount(count($inadimplencia));
+$table->close();
+$html .= $table;
 
-echo $relatorio_pdf->Imprimir();
+$relatorio_pdf->html = $html;
+$relatorio_pdf->Imprimir();

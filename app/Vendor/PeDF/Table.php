@@ -7,12 +7,13 @@
  */
 class Table{
    private $html;
+   private $html_count = '';
 
    public function __construct($class='') {
       $this->html = '<table class="'.$class.'" cellpadding="0" cellspacing="0">';
    }
    public function __toString(){
-      return $this->html;
+      return $this->html . $this->html_count;
    }
    public function close(){
       $this->html .= '</table>';
@@ -23,6 +24,17 @@ class Table{
       return $this;
    }
 
+   public function addCount($count) {
+      $total = new Table();
+      $rowTotal = new Row('');
+      $rowTotal
+        ->addColumn('Total de registros listados:', 'col-30 totais-label')
+        ->addColumn($count, 'col-20 totais-label')
+        ->close();
+      $total->addRow($rowTotal);
+      $total->close();
+      $this->html_count = '<br><hr>' . $total;
+   }
 
 }
 

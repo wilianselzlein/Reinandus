@@ -14,8 +14,8 @@ $rowHeader
   ->addColumn('Nome', 'col-20')
   ->addColumn('Endereço', 'col-20')
   ->addColumn('Cidade', 'col-10')
-  ->addColumn('Fone', 'col-10')         
-  ->addColumn('Celular', 'col-10')  
+  ->addColumn('Fone', 'col-10')
+  ->addColumn('Celular', 'col-10')
   ->addColumn('Titulação', 'col-10')
   ->addColumn('Formação', 'col-10')
   ->close();
@@ -38,20 +38,7 @@ for ($index = 0; $index < count($professor); $index++) {
       ->close();
     $table->addRow($rowData);
 }
-
-/*$total= count($professor);
-$relatorio_pdf->html = 
-        '<table cellspacing="0" cellpadding="1" border="0">'
-        .'<tr><td colspan="2"></td></tr>'
-        .'<tr>'
-        .'<td colspan="2"></td>'
-        .'</tr>'
-        .'<tr>'
-        .   '<td class="totais-label">Total de professor(es) listado(s):</td>'
-        .   '<td class="totais-label">'.$total.'</td>'
-        .'</tr>'
-        .'</table>';*/
-
+$table->addCount(count($professor));
 $table->close();
 $html .= $table;
 
