@@ -1,69 +1,78 @@
 <?php
-
+App::import('Vendor', 'PeDF/Table');
 App::import('Vendor','tcpdf/modelos/RelatorioPDF'); 
 $relatorio_pdf = new RelatorioPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $relatorio_pdf->SetTitulo('Relatório de Frequência');
 
 $curso = $frequencia[0]['curso']['curso'];
 
-$relatorio_pdf->html .= 
-        '<table cellspacing="0" cellpadding="1" border="0">
-            <tr>
-                <td width="15%">Curso:</td>
-                <td colspan="3">&nbsp; '.$curso.'</td>
-            </tr>
-            <tr>
-                <td width="15%">Professor:</td>
-                <td width="65%">&nbsp;</td>
-                <td width="10%">Turno:</td>
-                <td width="10%">&nbsp;</td>
-            </tr>
-            <tr>
-                <td width="15%">Disciplina:</td>
-                <td>&nbsp;</td>
-                <td width="10%">Horário:</td>
-                <td>&nbsp;</td>
-            </tr>
-        </table>
-        <br>
-        <br>
-		<table cellspacing="0" cellpadding="1" border="1">
-	        <thead>
-	    		<tr class="teste">
-                            <th class="table-header" colspan="2" width="50%">Aluno</th>
-                            <th class="table-header" width="10%">Curso</th>
-                            <th class="table-header" width="10%">Turma</th>        
-                            <th class="table-header" width="30%">Assinatura</th>        
-	    		</tr>
-	        </thead>';
+$html = $relatorio_pdf->html;
+$cabecalho = new Table();
+
+$rowData = new Row('');
+$rowData
+  ->addColumn('Curso:', 'col-10')
+  ->addColumn($curso, 'col-90')
+  ->close();
+$cabecalho->addRow($rowData);
+
+$rowData = new Row('');
+$rowData
+  ->addColumn('Professor:', 'col-10')
+  ->addColumn('', 'col-60')
+  ->addColumn('Turno:', 'col-10')
+  ->addColumn('', 'col-20')
+  ->close();
+$cabecalho->addRow($rowData);
+
+$rowData = new Row('');
+$rowData
+  ->addColumn('Disciplina:', 'col-10')
+  ->addColumn('', 'col-60')
+  ->addColumn('Horário:', 'col-10')
+  ->addColumn('', 'col-20')
+  ->close();
+$cabecalho->addRow($rowData);
+
+$cabecalho->close();
+$html .= $cabecalho . '<br><br>';
+
+$table = new Table();
+$rowHeader = new Row('header');
+$rowHeader
+  ->addColumn('Aluno', 'col-50')
+  ->addColumn('Curso', 'col-10')
+  ->addColumn('Turma', 'col-10')
+  ->addColumn('Assinatura', 'col-30')         
+  ->close();
+$table->addRow($rowHeader);
   
 //debug($frequencia); die;
 for ($index = 0; $index < count($frequencia); $index++) {
-    $relatorio_pdf->html .= '<tr>'
-            .   '<td width="10%">'.$frequencia[$index]['aluno']['id'].'</td>'
-            .   '<td width="40%">'.$frequencia[$index]['aluno']['aluno'].'</td>'
-            .   '<td width="10%">'.$frequencia[$index]['curso']['sigla'].'</td>'
-            .   '<td width="10%">'.$frequencia[$index]['curso']['turma'].'</td>'            
-            .   '<td width="30%">&nbsp;</td>'
-            . '</tr>';
-    
+   $rowData = new Row('last');
+   $rowData
+      ->addColumn($frequencia[$index]['aluno']['id'] . ' ' . $frequencia[$index]['aluno']['aluno'], 'col-50')
+      ->addColumn($frequencia[$index]['curso']['sigla'], 'col-10')
+      ->addColumn($frequencia[$index]['curso']['turma'], 'col-10')
+      ->addColumn('&nbsp;', 'col-30')
+      ->close();
+    $table->addRow($rowData);
+
 }
 for ($index = 0; $index < 4; $index++) {
-    $relatorio_pdf->html .= '<tr>'
-            .   '<td width="10%">&nbsp;</td>'
-            .   '<td width="40%">&nbsp;</td>'
-            .   '<td width="10%">&nbsp;</td>'
-            .   '<td width="10%">&nbsp;</td>'
-            .   '<td width="30%">&nbsp;</td>'
-            . '</tr>';
-    
+   $rowData = new Row('last');
+   $rowData
+      ->addColumn('&nbsp;', 'col-50')
+      ->addColumn('&nbsp;', 'col-10')
+      ->addColumn('&nbsp;', 'col-10')
+      ->addColumn('&nbsp;', 'col-30')
+      ->close();
+    $table->addRow($rowData);
 }
-$total_periodo= count($frequencia);
 
-$relatorio_pdf->html .= '<tr>'
-        .   '<td colspan="3" class="totais-label" width="20%">Total de alunos:</td>'
-        .   '<td colspan="2" class="totais-label">'.$total_periodo.'</td>'
-        .'</tr>'
-        .'</table>';
+$table->addCount(count($frequencia));
+$table->close();
+$html .= $table;
 
-echo $relatorio_pdf->Imprimir(); 
+$relatorio_pdf->html = $html;
+$relatorio_pdf->Imprimir();

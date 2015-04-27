@@ -204,7 +204,7 @@ class RelatorioPDF  extends TCPDF
             font-family: 'Times New Roman';
         }
         td {
-          font-size: 9pt;
+          font-size: 8pt;
         }
         td.text-centered, th.text-centered{
             text-align: center;
@@ -304,7 +304,7 @@ EOD;
       $this->Cell(array_sum($w), 0, '', 'T');
    }
    public function Imprimir() {
-      ini_set('memory_limit', '512M');
+      ini_set('memory_limit', '999M');
       set_time_limit(0);
 
       $this->writeHTML($this->html, true, false, true, false, 'L');

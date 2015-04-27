@@ -1,45 +1,40 @@
 <?php
-
+App::import('Vendor', 'PeDF/Table');
 App::import('Vendor','tcpdf/modelos/RelatorioPDF'); 
 $relatorio_pdf = new RelatorioPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $relatorio_pdf->setTitulo('Listagem de Alunos');
+$html = $relatorio_pdf->html;
 
-$relatorio_pdf->html .= 
-        '<table cellspacing="0" cellpadding="1" border="0">
-	        <thead>
-	    		<tr class="teste">
-                            <th class="table-header">Cidade</th>
-                            <th class="table-header">Curso</th>
-                            <th class="table-header">Código</th>
-                            <th class="table-header">Aluno</th>        
-                            <th class="table-header">Situação</th>        
-	    		</tr>
-                        <tr>
-                            <td colspan="5" class="line"></td>
-                        </tr>
-	        </thead>';
-  
+$table = new Table();
+
+$rowHeader = new Row('header');
+$rowHeader
+  ->addColumn('Cidade', 'col-10')
+  ->addColumn('Curso', 'col-30')
+  ->addColumn('Código', 'col-10 text-centered')
+  ->addColumn('Aluno', 'col-30')
+  ->addColumn('Situação', 'col-20')         
+  ->close();
+$table->addRow($rowHeader);
+
 //debug($aluno_curso); die;
 for ($index = 0; $index < count($aluno_curso); $index++) {
-    $relatorio_pdf->html .= '<tr>'
-            .   '<td>'.$aluno_curso[$index]['cidade']['cidade'].'</td>'
-            .   '<td>'.$aluno_curso[$index]['curso']['curso'].'</td>'
-            .   '<td>'.$aluno_curso[$index]['aluno']['codigo'].'</td>'
-            .   '<td>'.$aluno_curso[$index]['aluno']['aluno'].'</td>'            
-            .   '<td>'.$aluno_curso[$index]['enumerado']['situacao'].'</td>'
-            . '</tr>';
-    
+   $even_class = $index % 2 == 0 ? ' highlighted' : '';
+
+   $rowData = new Row(''.$even_class);
+   $rowData
+      ->addColumn($aluno_curso[$index]['cidade']['cidade'], 'col-10')
+      ->addColumn($aluno_curso[$index]['curso']['curso'], 'col-30')
+      ->addColumn($aluno_curso[$index]['aluno']['codigo'], 'col-10 text-centered')
+      ->addColumn($aluno_curso[$index]['aluno']['aluno'], 'col-30')
+      ->addColumn($aluno_curso[$index]['enumerado']['situacao'], 'col-20')
+      ->close();
+    $table->addRow($rowData);
 }
-$total_periodo= count($aluno_curso);
 
-$relatorio_pdf->html .= '<tr><td colspan="5"></td></tr>'
-        .'<tr>'
-        .'<td colspan="5"></td>'
-        .'</tr>'
-        .'<tr>'
-        .   '<td colspan="2" class="totais-label">Total de alunos listados:</td>'
-        .   '<td colspan="2" class="totais-label">'.$total_periodo.'</td>'
-        .'</tr>'
-        .'</table>';
+$table->addCount(count($aluno_curso));
+$table->close();
+$html .= $table;
 
-echo $relatorio_pdf->Imprimir(); 
+$relatorio_pdf->html = $html;
+$relatorio_pdf->Imprimir();
