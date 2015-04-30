@@ -1,116 +1,145 @@
 <?php
-
+App::import('Vendor', 'PeDF/Table');
 App::import('Vendor','tcpdf/modelos/RelatorioPDF'); 
 $relatorio_pdf = new RelatorioPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $relatorio_pdf->SetTitulo('Relatório de Alunos');
+$html = $relatorio_pdf->html;
 
-$relatorio_pdf->writeHTML($relatorio_pdf->html, true, false, true, false, 'L');
+$table = new Table();
+
+$rowHeader = new Row('header');
+$rowHeader
+  ->addColumn('', 'col-10')
+  ->addColumn('', 'col-95')
+  ->close();
+$table->addRow($rowHeader);
 
 //debug($aluno); die;
 for ($index = 0; $index < count($aluno); $index++) {
-    $html = '<table cellspacing="0" cellpadding="1" border="0">'
-            . '<tr>'
-            .   '<td colspan="6" class="line"></td>'
-            . '</tr>'
-            . '<tr>'
-            .   '<td><b>Aluno</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['id']. ' ' . $aluno[$index]['aluno']['nome']. '</td>'
-            .   '<td><b>Email</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['email'].'</td>'
-            .   '<td><b>Pai</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['nome_pai'].'</td>'
-            . '</tr>'
-            . '<tr>'
-            .   '<td><b>Endereço</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['endereco']. ' ' . $aluno[$index]['aluno']['numero'].'</td>'
-            .   '<td><b>Alternativo</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['emailalt'].'</td>'
-            .   '<td><b>Mãe</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['nome_mae'].'</td>'
-            . '</tr>'
-            . '<tr>'
-            .   '<td><b>Bairro</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['bairro'].'</td>'
-            .   '<td><b>CPF</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['cpf'].'</td>'
-            .   '<td><b>Responsável</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['responsavel_id'].'</td>'
-            . '</tr>'
-            . '<tr>'
-            .   '<td><b>Cidade</b></td>'
-            .   '<td>'.$aluno[$index]['cidade']['cidade'].'</td>'
-            .   '<td><b>Identidade</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['identidade'].'</td>'
-            .   '<td><b>Formação</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['formacao'].'</td>'
-            . '</tr>'
-            . '<tr>'
-            .   '<td><b>CEP</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['cep'].'</td>'
-            .   '<td><b>Orgão Exp.</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['orgao_expedidor'].'</td>'
-            .   '<td><b>Curso</b></td>'
-            .   '<td>'.$aluno[$index]['curso']['curso'].'</td>'
-            . '</tr>'
-            . '<tr>'
-            .   '<td><b>Situação</b></td>'
-            .   '<td>'.$aluno[$index]['enumerado']['situacao'].'</td>'
-            .   '<td><b>Data Exp.</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['data_expedicao'].'</td>'
-            .   '<td><b>Início</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['curso_inicio']. '</td>'
-            . '</tr>'
-            . '<tr>'
-            .   '<td><b>Celular</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['celular'].'</td>'
-            .   '<td><b>Nacionalidade</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['nacionalidade'].'</td>'
-            .   '<td><b>Fim</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['curso_fim'] . '</td>'
-            . '</tr>'
-            . '<tr>'
-            .   '<td><b>Residencial</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['residencial'].'</td>'
-            .   '<td><b>Naturalidade</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['naturalidade_id'].'</td>'
-            .   '<td><b>Coordenador</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['professor_id'] . '</td>'
-            . '</tr>'
-            . '<tr>'
-            .   '<td><b>Comercial</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['comercial'].'</td>'
-            .   '<td><b>Nascimento</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['data_nascimento'].'</td>'
-            .   '<td><b>Estado Civil</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['estado_civil_id'].'</td>'
-            . '</tr>'
-            . '<tr>'
-            .   '<td><b>Monografia</b></td>'
-            .   '<td colspan="5">'.$aluno[$index]['aluno']['mono_titulo'].'</td>'
-            . '</tr>'
-            . '<tr>'
-            .   '<td><b>Data</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['mono_data'].'</td>'
-            .   '<td><b>Prazo</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['mono_prazo'].'</td>'
-            .   '<td><b>Nota</b></td>'
-            .   '<td>'.$aluno[$index]['aluno']['mono_nota'].'</td>'
-            . '</tr>'
-            . '</table>';
-    $relatorio_pdf->writeHTML($html, true, false, true, false, 'L');
+    $even_class = $index % 2 == 0 ? ' highlighted' : '';
+
+   $rowData = new Row(''.$even_class);
+   $rowData
+      ->addColumn('Aluno ' . $aluno[$index]['aluno']['id'], 'col-10 totais-label line')
+      ->addColumn($aluno[$index]['aluno']['nome'], 'col-25 line')
+      ->addColumn('Email', 'col-10 totais-label line')
+      ->addColumn($aluno[$index]['aluno']['email'], 'col-25 line')
+      ->addColumn('Pai', 'col-10 totais-label line')
+      ->addColumn($aluno[$index]['aluno']['nome_pai'], 'col-25 line')
+      ->close();
+    $table->addRow($rowData);
+
+   $rowData = new Row(''.$even_class);
+   $rowData
+      ->addColumn('Endereço', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['aluno']['endereco']. ' ' . $aluno[$index]['aluno']['numero'], 'col-25')
+      ->addColumn('Alternativo', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['aluno']['emailalt'], 'col-25')
+      ->addColumn('Mãe', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['aluno']['nome_mae'], 'col-25')
+      ->close();
+    $table->addRow($rowData);
+
+   $rowData = new Row(''.$even_class);
+   $rowData
+      ->addColumn('Bairro', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['aluno']['bairro'], 'col-25')
+      ->addColumn('CPF', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['aluno']['cpf'], 'col-25')
+      ->addColumn('Responsável', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['pessoa']['razaosocial'], 'col-25')
+      ->close();
+    $table->addRow($rowData);
+
+   $rowData = new Row(''.$even_class);
+   $rowData
+      ->addColumn('Cidade', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['cidade']['cidade'], 'col-25')
+      ->addColumn('Identidade', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['aluno']['identidade'], 'col-25')
+      ->addColumn('Formação', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['aluno']['formacao'], 'col-25')
+      ->close();
+    $table->addRow($rowData);
+
+   $rowData = new Row(''.$even_class);
+   $rowData
+      ->addColumn('CEP', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['aluno']['cep'], 'col-25')
+      ->addColumn('Orgão Exp.', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['aluno']['orgao_expedidor'], 'col-25')
+      ->addColumn('Curso', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['curso']['curso'], 'col-25')
+      ->close();
+    $table->addRow($rowData);
+
+   $rowData = new Row(''.$even_class);
+   $rowData
+      ->addColumn('Situação', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['enumerado']['situacao'], 'col-25')
+      ->addColumn('Data Exp.', 'col-10 totais-label')
+      ->addColumn($this->Time->i18nFormat($aluno[$index]['aluno']['data_expedicao'], $this->Html->__getDatePatternView()), 'col-25 date')
+      ->addColumn('Início', 'col-10 totais-label')
+      ->addColumn($this->Time->i18nFormat($aluno[$index]['aluno']['curso_inicio'], $this->Html->__getDatePatternView()), 'col-25 date')
+      ->close();
+    $table->addRow($rowData);
+
+   $rowData = new Row(''.$even_class);
+   $rowData
+      ->addColumn('Celular', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['aluno']['celular'], 'col-25')
+      ->addColumn('Nacional.', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['aluno']['nacionalidade'], 'col-25')
+      ->addColumn('Fim', 'col-10 totais-label')
+      ->addColumn($this->Time->i18nFormat($aluno[$index]['aluno']['curso_fim'], $this->Html->__getDatePatternView()), 'col-25 date')
+      ->close();
+    $table->addRow($rowData);
+
+   $rowData = new Row(''.$even_class);
+   $rowData
+      ->addColumn('Residencial', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['aluno']['residencial'], 'col-25')
+      ->addColumn('Naturalidade', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['naturalidade']['naturalidade'], 'col-25')
+      ->addColumn('Coordenador', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['professor']['professor'], 'col-25')
+      ->close();
+    $table->addRow($rowData);
+
+   $rowData = new Row(''.$even_class);
+   $rowData
+      ->addColumn('Comercial', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['aluno']['comercial'], 'col-25')
+      ->addColumn('Nascimento', 'col-10 totais-label')
+      ->addColumn($this->Time->i18nFormat($aluno[$index]['aluno']['data_nascimento'], $this->Html->__getDatePatternView()), 'col-25 date')
+      ->addColumn('Estado Civil', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['estadocivil']['estadocivil'], 'col-25')
+      ->close();
+    $table->addRow($rowData);
+
+   $rowData = new Row(''.$even_class);
+   $rowData
+      ->addColumn('Monografia', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['aluno']['mono_titulo'], 'col-95 date')
+      ->close();
+    $table->addRow($rowData);
+
+   $rowData = new Row(''.$even_class);
+   $rowData
+      ->addColumn('Data', 'col-10 totais-label')
+      ->addColumn($this->Time->i18nFormat($aluno[$index]['aluno']['mono_data'], $this->Html->__getDatePatternView()), 'col-25 date')
+      ->addColumn('Prazo', 'col-10 totais-label')
+      ->addColumn($this->Time->i18nFormat($aluno[$index]['aluno']['mono_prazo'], $this->Html->__getDatePatternView()), 'col-25 date')
+      ->addColumn('Nota', 'col-10 totais-label')
+      ->addColumn($aluno[$index]['aluno']['mono_nota'], 'col-25')
+      ->close();
+    $table->addRow($rowData);
+
 }
-$total_periodo= count($aluno);
 
-$relatorio_pdf->html = 
-        '<table cellspacing="0" cellpadding="1" border="0">'
-        .'<tr><td colspan="5"></td></tr>'
-        .'<tr>'
-        .'<td colspan="5"></td>'
-        .'</tr>'
-        .'<tr>'
-        .   '<td colspan="2" class="totais-label">Total de alunos listados:</td>'
-        .   '<td colspan="2" class="totais-label">'.$total_periodo.'</td>'
-        .'</tr>'
-        .'</table>';
+$table->addCount(count($aluno));
+$table->close();
+$html .= $table;
 
-echo $relatorio_pdf->Imprimir();
+$relatorio_pdf->html = $html;
+$relatorio_pdf->Imprimir();

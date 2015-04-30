@@ -209,7 +209,6 @@ class RelatorioPDF  extends TCPDF
         td.text-centered, th.text-centered{
             text-align: center;
         }
-
         .currency, .percentage, .date{
             font-family: 'Courier';
          }
