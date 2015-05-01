@@ -230,6 +230,9 @@ class RelatorioPDF  extends TCPDF
          .col-30{
            width:30%
          }
+         .col-35{
+           width:35%
+         }
          .col-40{
            width:40%
          }
