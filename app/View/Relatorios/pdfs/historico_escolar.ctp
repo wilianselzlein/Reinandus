@@ -25,7 +25,7 @@ $rowData = new Row('');
 $rowData
   ->addColumn('Nacionalidade:', 'col-15')
   ->addColumn($historico_escolar[0]['aluno']['nacionalidade'], 'col-15')
-  ->addColumn('Naturalidade:', 'col-10')
+  ->addColumn('Naturalidade:', 'col-15')
   ->addColumn($historico_escolar[0]['cidade']['naturalidade'] . '/' . $historico_escolar[0]['estado']['sigla'], 'col-20')
   ->addColumn('Data do Nascimento:', 'col-20')
   ->addColumn($this->Time->i18nFormat($historico_escolar[0]['aluno']['data_nascimento'], $this->Html->__getDatePatternView()), 'col-20')
@@ -125,24 +125,9 @@ $table->addRow($rowData);
 $table->close();
 $html .= $table;
 
-switch (date('m')) {
-  case '01': $mes = 'Janeiro'; break;
-  case '02': $mes = 'Fevereiro'; break;
-  case '03': $mes = 'Março'; break;
-  case '04': $mes = 'Abril'; break;
-  case '05': $mes = 'Maio'; break;
-  case '06': $mes = 'Junho'; break;
-  case '07': $mes = 'Julho'; break;
-  case '08': $mes = 'Agosto'; break;
-  case '09': $mes = 'Setembro'; break;
-  case '10': $mes = 'Outubro'; break;
-  case '11': $mes = 'Novembro'; break;
-  case '12': $mes = 'Dezembro'; break; 
-}
- 
 $html .= 'Declaramos para os devidos fins que o curso de Pós-Graduação em ' . $curso . ' cumpriu todas as disposições da Resolução MEC/CES-CNE nº 1, de 8 de junho de 2007. <br> <div align="center">' . 
   $historico_escolar[0]['matriz']['matriz'] . ', ' . 
-  date('j') . ' de ' . $mes . ' de ' . date('Y') . '<br><br>' .
+  $this->Time->i18nFormat(date('m/d/Y'), '%d de %B de %Y') . '<br><br>' .
   $historico_escolar[0]['pessoa']['razaosocial'] . '<br>Secretaria</div>';
 
 $relatorio_pdf->html = $html;
