@@ -76,9 +76,9 @@ class RelatoriosController extends AppController {
           $relatorio = $this->Relatorio->find('first', $options);   
           $this->set(compact('relatorio'));
 	
-          
           foreach ($relatorio['RelatorioDataset'] as $dataset){                          
              $sql = $dataset['sql'];
+             //debug($dataset); //die;
              foreach ($dataset['RelatorioFiltro'] as $filtro){    
                $sql .= $this->appendFilters($filtro);
              }
@@ -94,7 +94,7 @@ class RelatoriosController extends AppController {
        $this->layout = '/pdf/default';
        $this->render('/Relatorios/pdfs/'.$relatorio['Relatorio']['arquivo']);
     }
-       
+
    function appendFilters($filtro){
       $filtros = "";
       
@@ -104,27 +104,69 @@ class RelatoriosController extends AppController {
                $compositeValue = explode(",", $value);
                
                $tipoFiltro = $compositeKey[0];
-               
-               $campo = $compositeKey[1];    
-               
+               $campo = $compositeKey[1];
+                
                if($campo == $filtro['campo']){
                   switch($tipoFiltro){
-                     case 7:
+                     case 1: //FAIXAS_NUMERACAO
                      {
-                        $filtros .= " AND ".str_replace("_",".", $campo)." LIKE '%".$compositeValue[0]."%'";                                   
+                        $filtros .= " AND " . str_replace("_",".", $campo) ." BETWEEN ".$compositeValue[0]." AND ".$compositeValue[1];
                         break;
-                     }   
-                     case 8:
+                     }
+                     case 2: //FAIXAS_STRING
                      {
-                        $filtros .= " 
-                        AND cast(".$campo." as DATE) BETWEEN STR_TO_DATE('".$compositeValue[0]."','%d/%m/%Y') ";           
+                        break;
+                     }
+                     case 3: //OPCOES_FINITAS
+                     {
+                        $filtros .= " AND ".str_replace("_",".", $campo)." LIKE '%".$compositeValue[0]."%'";
+                        break;
+                     }
+                     case 4: //FAIXA_CODIGO_CAMPO_ADICIONAL
+                     {
+                        break;
+                     }
+                     case 5: //CODIGO_CAMPO_ADICIONAL
+                     {
+                        break;
+                     }
+                     case 6: //CAMPO_UNICO_INTEIRO
+                     {
+                        break;
+                     }
+                     case 7: //OPCOES_FINITAS
+                     {
+                        $filtros .= " AND ".str_replace("_",".", $campo)." LIKE '%".$compositeValue[0]."%'";
+                        break;
+                     }
+                     case 8: //FAIXA_DATAS
+                     {
+                        $filtros .= "AND cast(".str_replace("_",".", $campo)." as DATE) BETWEEN STR_TO_DATE('".$compositeValue[0]."','%d/%m/%Y') ";
                         $filtros .= " AND STR_TO_DATE('".$compositeValue[1]."','%d/%m/%Y') ";
                         break;
-                     }    
+                     }
+                    case 9: //DATA
+                     {
+                        break;
+                     }
+                    case 10: //BOOLEAN
+                     {
+                        break;
+                     }
+                     case 11: //FAIXA_VALORES
+                     {
+                        break;
+                     }
+                     case 12: //VALOR_QTD
+                     {
+                        break;
+                     }
+                     case 13; //VALOR_PERCENTUAL
+                     {
+                        break;
+                     }
                   }  
                }
-               
-                                        
             }
           }
       return $filtros;

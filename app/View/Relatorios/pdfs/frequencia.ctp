@@ -4,9 +4,11 @@ App::import('Vendor','tcpdf/modelos/RelatorioPDF');
 $relatorio_pdf = new RelatorioPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $relatorio_pdf->SetTitulo('Relatório de Frequência');
 
+$html = $relatorio_pdf->html;
+
+if (count($frequencia) > 0) {
 $curso = $frequencia[0]['curso']['curso'];
 
-$html = $relatorio_pdf->html;
 $cabecalho = new Table();
 
 $rowData = new Row('');
@@ -73,6 +75,7 @@ for ($index = 0; $index < 4; $index++) {
 $table->addCount(count($frequencia));
 $table->close();
 $html .= $table;
+}
 
 $relatorio_pdf->html = $html;
 $relatorio_pdf->Imprimir();
