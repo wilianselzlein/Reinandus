@@ -114,13 +114,13 @@ class RelatorioPDF  extends TCPDF
 
    public function __construct($orientation='P') {
       parent::__construct($orientation);
-      /*
-		 *  $relatorio->SetCreator(PDF_CREATOR);
-		 *  $relatorio->SetAuthor('Pedro Escobar');
-		 *  $relatorio->SetTitle('TCPDF Example 048');
-		 *  $relatorio->SetSubject('TCPDF Tutorial');
-		 *  $relatorio->SetKeywords('TCPDF, PDF, example, test, guide');
-		 */
+      setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+      //date_default_timezone_set('America/Sao_Paulo');
+
+      $this->SetCreator('Reinandus');
+      $this->SetAuthor('Reinandus Sistema de Gestão de Pós-Graduação');
+      $this->SetSubject('Reinandus Sistema de Gestão de Pós-Graduação');
+      $this->SetKeywords('Relatório, Reinandus, Sistema');
 
       // set header and footer fonts
       $this->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', 13));

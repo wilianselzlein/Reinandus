@@ -46,9 +46,6 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
 
     $rowData = new Row('');
 
-    setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
-    //date_default_timezone_set('America/Sao_Paulo');
-
     $rowData
       ->addColumn('Período de Ralização:', 'col-20')
       ->addColumn($this->Time->i18nFormat($historico_escolar[$index]['aluno']['curso_inicio'], '%d de %B de %Y') . ' a ' . $this->Time->i18nFormat($historico_escolar[$index]['aluno']['curso_fim'], '%d de %B de %Y'), 'col-80')
