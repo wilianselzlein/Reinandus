@@ -10,7 +10,7 @@ class Table{
    private $html_count = '';
 
    public function __construct($class='') {
-      $this->html = '<table class="'.$class.'" cellpadding="0" cellspacing="0">';
+      $this->html = '<table class="'.$class.'" cellpadding="2" cellspacing="0">';
    }
    public function __toString(){
       return $this->html . $this->html_count;

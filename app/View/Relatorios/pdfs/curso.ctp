@@ -7,10 +7,7 @@ $relatorio_pdf->setTitulo('Relatório de Cursos');
 $html = $relatorio_pdf->html;
 
 $table = new Table();
-for ($index = 0; $index < count($curso); $index++) {
-   $even_class = $index % 2 == 0 ? ' highlighted' : '';
-   
-   $rowHeader = new Row('header');
+$rowHeader = new Row('header');
    $rowHeader
       ->addColumn('Código', 'col-10 text-centered')
       ->addColumn('Nome', 'col-30')
@@ -20,6 +17,10 @@ for ($index = 0; $index < count($curso); $index++) {
       ->addColumn('Coordenador', 'col-15')  
       ->addColumn('Secretário', 'col-15')
       ->close();
+$table->addRow($rowHeader);
+
+for ($index = 0; $index < count($curso); $index++) {
+   $even_class = $index % 2 == 0 ? ' highlighted' : '';
 
    $rowData = new Row(''.$even_class);
    $rowData
@@ -53,8 +54,7 @@ for ($index = 0; $index < count($curso); $index++) {
       ->addColumn($this->Time->i18nFormat($curso[$index]['curso']['inicio'], $this->Html->__getDatePatternView()), 'date')
       ->addColumn($this->Time->i18nFormat($curso[$index]['curso']['fim'], $this->Html->__getDatePatternView()), 'date')
       ->close();
-
-   $table->addRow($rowHeader);
+   
    $table->addRow($rowData);
    $table->addRow($rowSubheader);
    $table->addRow($rowDataChild);
