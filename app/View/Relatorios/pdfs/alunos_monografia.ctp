@@ -46,9 +46,9 @@ for ($index = 0; $index < count($aluno); $index++) {
 
    $rowDataChild = new Row('child last'.$even_class);
    $rowDataChild
-      ->addColumn('')
-      ->addColumn($aluno[$index]['professor']['nome'], 'col-5')
-      ->addColumn($aluno[$index]['aluno']['mono_titulo'], 'col-25')
+      ->addColumn('', 'col-5')
+      ->addColumn($aluno[$index]['professor']['nome'], 'col-25')
+      ->addColumn($aluno[$index]['aluno']['mono_titulo'], 'col-40')
       ->addColumn($this->Time->i18nFormat($aluno[$index]['aluno']['mono_data'], $this->Html->__getDatePatternView()), 'col-10 date')
       ->addColumn($this->Time->i18nFormat($aluno[$index]['aluno']['mono_prazo'], $this->Html->__getDatePatternView()), 'col-10 date')
       ->addColumn($aluno[$index]['aluno']['mono_nota'], 'col-10')
