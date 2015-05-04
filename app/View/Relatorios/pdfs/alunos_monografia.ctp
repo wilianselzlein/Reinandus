@@ -26,12 +26,12 @@ for ($index = 0; $index < count($aluno); $index++) {
 
    $rowData = new Row(''.$even_class);
    $rowData
-      ->addColumn($aluno[$index]['aluno']['nome'], 'text-centered')
-      ->addColumn($aluno[$index]['aluno']['celular'])
-      ->addColumn($aluno[$index]['aluno']['email'])      
-      ->addColumn($aluno[$index]['curso']['nome'])
-      ->addColumn($this->Time->i18nFormat($aluno[$index]['curso']['inicio'], $this->Html->__getDatePatternView()), 'date')         
-      ->addColumn($this->Time->i18nFormat($aluno[$index]['curso']['fim'], $this->Html->__getDatePatternView()), 'date')  
+      ->addColumn($aluno[$index]['aluno']['nome'], 'col-25 text-centered')
+      ->addColumn($aluno[$index]['aluno']['celular'], 'col-10')
+      ->addColumn($aluno[$index]['aluno']['email'], 'col-20')      
+      ->addColumn($aluno[$index]['curso']['nome'], 'col-25')
+      ->addColumn($this->Time->i18nFormat($aluno[$index]['curso']['inicio'], $this->Html->__getDatePatternView()), 'col-10 date')         
+      ->addColumn($this->Time->i18nFormat($aluno[$index]['curso']['fim'], $this->Html->__getDatePatternView()), 'col-10 date')  
       ->close();
 
    $rowSubheader = new Row('subheader'.$even_class);
@@ -47,11 +47,11 @@ for ($index = 0; $index < count($aluno); $index++) {
    $rowDataChild = new Row('child last'.$even_class);
    $rowDataChild
       ->addColumn('')
-      ->addColumn($aluno[$index]['professor']['nome'])
-      ->addColumn($aluno[$index]['curso']['monografia'])
-      ->addColumn($this->Time->i18nFormat(null, $this->Html->__getDatePatternView()), 'date')
-      ->addColumn($this->Time->i18nFormat(null, $this->Html->__getDatePatternView()), 'date')
-      ->addColumn('')
+      ->addColumn($aluno[$index]['professor']['nome'], 'col-5')
+      ->addColumn($aluno[$index]['aluno']['mono_titulo'], 'col-25')
+      ->addColumn($this->Time->i18nFormat($aluno[$index]['aluno']['mono_data'], $this->Html->__getDatePatternView()), 'col-10 date')
+      ->addColumn($this->Time->i18nFormat($aluno[$index]['aluno']['mono_prazo'], $this->Html->__getDatePatternView()), 'col-10 date')
+      ->addColumn($aluno[$index]['aluno']['mono_nota'], 'col-10')
       ->close();
 
    $table->addRow($rowData);

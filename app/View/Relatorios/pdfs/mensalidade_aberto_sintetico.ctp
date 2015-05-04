@@ -23,12 +23,12 @@ for ($index = 0; $index < count($mensalidade); $index++) {
 
    $rowData = new Row(''.$even_class);
    $rowData
-      ->addColumn($mensalidade[$index]['aluno']['nome'])
-      ->addColumn($mensalidade[$index]['aluno']['celular'])
-      ->addColumn($mensalidade[$index]['aluno']['email'])
-      ->addColumn($mensalidade[$index]['curso']['nome'])
-      ->addColumn($this->Time->i18nFormat($mensalidade[$index]['mensalidade']['vencimento'], $this->Html->__getDatePatternView()), 'date')         
-      ->addColumn($this->Number->currency($mensalidade[$index]['0']['total'], 'BRL'), 'currency')  
+      ->addColumn($mensalidade[$index]['aluno']['nome'], 'col-25 text-centered')
+      ->addColumn($mensalidade[$index]['aluno']['celular'], 'col-10')
+      ->addColumn($mensalidade[$index]['aluno']['email'], 'col-20')
+      ->addColumn($mensalidade[$index]['curso']['nome'], 'col-25')
+      ->addColumn($this->Time->i18nFormat($mensalidade[$index]['mensalidade']['vencimento'], $this->Html->__getDatePatternView()), 'col-10 date')         
+      ->addColumn($this->Number->currency($mensalidade[$index]['0']['total'], 'BRL'), 'col-10 currency')  
       ->close();
 
    $table->addRow($rowData);
