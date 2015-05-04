@@ -193,8 +193,7 @@ class RelatorioPDF  extends TCPDF
             font-size: 10pt;
         }
         tr.last td{
-            border-bottom-width: 1;
-            border-color: #000;
+            border-bottom: 1px solid #000;            
         }
         tr.summary{
             font-weight:bold;
