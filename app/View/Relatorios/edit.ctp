@@ -35,7 +35,7 @@
 						<a href='http://fortawesome.github.io/Font-Awesome/icons/'>Mais ícones</a>
 					</div><!-- .form-group -->
 
-					<?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-large btn-primary')); ?>
+					<?php echo $this->Form->button(__('Submit'), array('type' => 'button', 'id' => 'btn_', 'class' => 'btn btn-large btn-primary', 'onclick'=>'this.disabled=true; form.submit(); return true;')); ?>
 
 				</fieldset>
 

@@ -13,8 +13,8 @@ for ($index = 0; $index < count($decl_reativacao); $index++) {
   $curso = $decl_reativacao[$index]['curso']['curso'];
   $periodo = '[CLIQUE PARA DIGITAR O DIA]';
 
-  $texto = '    Declaramos para os devidos fins que o(a) aluno(a) ' . $aluno . ' reativou sua matricula no dia ' . $periodo . ', tendo um prazo de seis(06) meses, a partir do dia de rematricula, para entrega de sua monografia.
-  ';
+  $texto = '    Declaramos para os devidos fins que o(a) aluno(a) ' . $aluno . ' reativou sua matricula no dia ' . $periodo . ', tendo um prazo de seis(06) meses, a partir do dia de rematricula, para entrega de sua monografia.';
+
   $pdf->TextField('Texto' . $index, 170, 30, array('multiline'=>true, 'lineWidth'=>0, 'borderStyle'=>'none'), array('v'=>$texto));
   $pdf->Ln(30);
   //$pdf->MultiCell(170, 30, $texto, 0, 'J', 0, 1, '', '', true);

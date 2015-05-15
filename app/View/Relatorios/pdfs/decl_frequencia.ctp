@@ -14,8 +14,8 @@ for ($index = 0; $index < count($decl_frequencia); $index++) {
   $dia = '[CLIQUE PARA DIGITAR O DIA]';
   $periodo = '[CLIQUE PARA DIGITAR O PERÍODO]';
 
-  $texto = '    Declaramos para os devidos fins que ' . $aluno . ' é aluno(a) matriculado(a) no Curso de Pós-Graduação em ' . $curso . ' desta instituição de ensino e que frequentou as aulas no ' . $dia . ' no período das ' . $periodo . '.
-  ';
+  $texto = '    Declaramos para os devidos fins que ' . $aluno . ' é aluno(a) matriculado(a) no Curso de Pós-Graduação em ' . $curso . ' desta instituição de ensino e que frequentou as aulas no ' . $dia . ' no período das ' . $periodo . '.';
+
   $pdf->TextField('Texto' . $index, 170, 30, array('multiline'=>true, 'lineWidth'=>0, 'borderStyle'=>'none'), array('v'=>$texto));
   $pdf->Ln(30);
   //$pdf->MultiCell(170, 30, $texto, 0, 'J', 0, 1, '', '', true);
