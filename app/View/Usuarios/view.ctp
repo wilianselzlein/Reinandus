@@ -31,13 +31,22 @@
                   &nbsp;
                   </td>
                </tr>
-               <tr>		
+               <tr>
                   <td><strong><?php echo __('Created'); ?></strong></td>
                   <td><?php echo h($usuario['User']['created']); ?>&nbsp;</td>
                </tr>
                <tr>		
                   <td><strong><?php echo __('Modified'); ?></strong></td>
                   <td><?php echo h($usuario['User']['modified']); ?>&nbsp;</td>
+               </tr>
+               <tr>
+                  <td><strong><?php echo __('Assinatura'); ?></strong></td>
+                  <td>
+                     <?php if ($usuario['User']['assinatura'] != '') { ?> 
+                        <img src="data:image/jpeg;base64,
+                           <?php echo h($usuario['User']['assinatura']); ?>" 
+                     <?php } ?> &nbsp;
+                  </td>
                </tr>
             </tbody>
          </table><!-- /.table table-striped table-bordered -->

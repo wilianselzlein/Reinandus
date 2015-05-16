@@ -18,6 +18,7 @@
                   <th><?php echo $this->Paginator->sort('role_id'); ?></th>
                   <th><?php echo $this->Paginator->sort('created'); ?></th>
                   <th><?php echo $this->Paginator->sort('modified'); ?></th>
+                  <th><?php echo $this->Paginator->sort('assinatura'); ?></th>
                   <th class="actions text-center"><?php echo __('Actions'); ?></th>
                </tr>
             </thead>
@@ -32,8 +33,14 @@
                   <td>
                      <?php echo $this->Html->link($usuario['Role']['nome'], array('controller' => 'roles', 'action' => 'view', $usuario['Role']['id'])); ?>
                   </td> 
-                  <td><?php echo h($usuario['User']['created']); ?>&nbsp;</td>
                   <td><?php echo h($usuario['User']['modified']); ?>&nbsp;</td>
+                  <td><?php echo h($usuario['User']['created']); ?>&nbsp;</td>
+                  <td>
+                     <?php if ($usuario['User']['assinatura'] != '') { ?> 
+                        <img src="data:image/jpeg;base64,
+                           <?php echo h($usuario['User']['assinatura']); ?>" 
+                     <?php } ?> &nbsp;
+                  </td>
                   <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $usuario, 'model' => 'User')); ?>
                </tr>
                <?php endforeach; ?>

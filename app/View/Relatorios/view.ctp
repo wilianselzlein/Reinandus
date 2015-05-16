@@ -108,7 +108,7 @@
 													<td><?php echo $filtro['id']; ?></td>
 													<td><?php echo $filtro['campo']; ?></td>
 													<td><?php echo $filtro['campo_alias']; ?></td>
-													<td><?php echo $filtro['tipo_filtro']; ?></td>
+<td><?php echo $this->DisplayField->MakeLink($filtro, 'enumerados', 'tipo_filtro'); ?></td>
 													<td class="actions">
 														<?php echo $this->Html->link(__('View'), array('controller' => 'RelatorioFiltros', 'action' => 'view', $filtro['id']), array('class' => 'btn btn-default btn-xs')); ?>
 														<?php echo $this->Html->link(__('Edit'), array('controller' => 'RelatorioFiltros', 'action' => 'edit', $filtro['id']), array('class' => 'btn btn-default btn-xs')); ?>
