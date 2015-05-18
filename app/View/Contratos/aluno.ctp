@@ -9,7 +9,7 @@
       <div class="Mensalidades form">
          <?php echo $this->Form->create('Contrato', array('role' => 'form', 'class'=>'form-horizontal')); ?>
          <fieldset>
-<?php echo $this->element('FormContrato'); ?>
+<?php echo $this->element('FormContrato', array('contrato' => true)); ?>
             <?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Gerar'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
          </fieldset>
          <?php echo $this->Form->end(); ?>

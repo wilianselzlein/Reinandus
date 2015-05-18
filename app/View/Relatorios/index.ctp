@@ -60,7 +60,7 @@ foreach ($relatorios as $relatorio): ?>
                <?php 
 echo $this->Html->link('<i class="fa ' . $relatorio['Relatorio']['icone'] .' fa-4x"></i>', array('action' => 'filter', $relatorio['Relatorio']['id']), array('class' => '', 'escape' => false, 'escape'=> false)); ?>
                <span><?php echo $relatorio['Relatorio']['nome'];?></span>
-            </div>           
+            </div>     
             <?php 
 $tipo = $relatorio['Relatorio']['tipo'];
 endforeach; 

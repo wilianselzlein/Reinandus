@@ -31,3 +31,15 @@
 <?php echo $this->Form->input('vencimento', 
      array('type' => 'text', 'class' => 'form-control datepicker-start', 'label'=>array('class'=>'col-sm-1 control-label', 'style' => 'padding-left: 0px;'), 'div'=>true, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
 </div><!-- .form-group -->
+
+<?php if ($contrato) { ?>
+
+<div class="form-group">
+<?php 
+$modelos = $this->Contratos->PegarArquivosDeModelos('Alunos');
+echo $this->Form->input('modelo', array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>', 'options' => $modelos));
+?>
+
+</div><!-- .form-group -->
+
+<?php } ?>
