@@ -9,9 +9,7 @@ $(document).ready(function(){
          };
          $('.datepicker-start').datepicker(datepickerOptions);
          $('.datepicker-end').datepicker(datepickerOptions);
-});
-
-$(function() {   
+   
    var handler = function() {
       $(this).datepicker(datepickerOptions);
    }

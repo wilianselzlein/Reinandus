@@ -78,7 +78,9 @@ for ($index = 0; $index < count($decl_pagamento); $index++) {
   $table->addRow($rowData);
 
     $table->close();
-    $pdf->writeHTML($table, true, false, true, false, 'L');
+    
+    $pdf->html .= $table;
+    $pdf->writeHTML($pdf->html, true, false, true, false, 'L');
 
     $texto = '    E, por ser verdade firmamos a presente.';
     $pdf->MultiCell(90, 5, $texto, 0, 'J', 0, 1, '', '', true);
