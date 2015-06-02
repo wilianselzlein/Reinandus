@@ -45,6 +45,8 @@ class GeraContratoComponent extends Component {
 	private function SetarNoContratoCamposBasicosDaTelaDeFiltro(&$contrato) {
 		setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 
+		$this->CorrigirParametrosNumericos();
+
 		$contrato = str_replace(':data', CakeTime::i18nFormat(date('m/d/Y'), '%d de %B de %Y'), $contrato);
 		$contrato = str_replace(':total', $this->Data['valor'] * $this->Data['quantidade'], $contrato);
 		$contrato = str_replace(':extensototal', CarregarConsultasBaseComponent::ValorPorExtenso($this->Data['valor'] * $this->Data['quantidade']), $contrato);
@@ -61,6 +63,20 @@ class GeraContratoComponent extends Component {
 
 		//formapgto_id":"1","conta_id":"1","obs":"","modelo":"xxxxx.rtf"
 	}
+
+	private function CorrigirParametrosNumericos() {
+		$this->CorrigirParametroNumerico('valor');
+		$this->CorrigirParametroNumerico('quantidade');
+		$this->CorrigirParametroNumerico('liquido');
+		$this->CorrigirParametroNumerico('bolsa');
+		$this->CorrigirParametroNumerico('desconto');
+	}
+
+	private function CorrigirParametroNumerico($campo) {
+		if (! is_numeric($this->Data[$campo]))
+			$this->Data[$campo] = 0.00;
+	}
+
 
 }
 
