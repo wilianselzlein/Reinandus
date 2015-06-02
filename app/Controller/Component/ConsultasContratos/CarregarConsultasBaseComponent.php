@@ -45,12 +45,16 @@ class CarregarConsultasBaseComponent extends Component {
 	}
 
 	public function PegarValorCampo($campo) {
-		return $this->Data[$campo];
+		if (isset($this->Data[$campo]))
+			return $this->Data[$campo];
+		else
+			return 0;
 	}
 
 	protected function Consultar() {
 		$Consulta = ClassRegistry::init($this->Model());
 		$options = array('recursive' => $this->Recursive, 'conditions' => array($this->Model() . '.' . $Consulta->primaryKey => $this->Id));
+		//debug($options);
 		return $Consulta->find('first', $options);
 	}
 

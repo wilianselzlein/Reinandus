@@ -24,12 +24,13 @@ class GeraContratoComponent extends Component {
         $this->SetarNoContratoCamposBasicosDaTelaDeFiltro($s);
 
     	try {
+    		$Instituto = new ConsultarInstitutoComponent($s, 1, 'instituto');
 	        $Aluno = new CarregarConsultasBaseComponent($s, $this->Data['aluno_id'], 'aluno'); //new ComponentCollection()
-			$Curso = new ConsultarCursoComponent($s, $Aluno->PegarValorCampo('curso_id'), 'curso');
-			$Cidade = new CarregarConsultasBaseComponent($s, $Aluno->PegarValorCampo('cidade_id'), 'cidade');
-			$Estado = new CarregarConsultasBaseComponent($s, $Cidade->PegarValorCampo('estado_id'), 'estado');
-			$Instituto = new ConsultarInstitutoComponent($s, 1, 'instituto');
-
+	        if ($Aluno->PegarValorCampo('id') > 0) {
+				$Curso = new ConsultarCursoComponent($s, $Aluno->PegarValorCampo('curso_id'), 'curso');
+				$Cidade = new CarregarConsultasBaseComponent($s, $Aluno->PegarValorCampo('cidade_id'), 'cidade');
+				$Estado = new CarregarConsultasBaseComponent($s, $Cidade->PegarValorCampo('estado_id'), 'estado');
+			}
         } finally {
         	unset($Aluno);
         	unset($Curso);
@@ -43,7 +44,7 @@ class GeraContratoComponent extends Component {
 
 	private function SetarNoContratoCamposBasicosDaTelaDeFiltro(&$contrato) {
 		setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
-		
+
 		$contrato = str_replace(':data', CakeTime::i18nFormat(date('m/d/Y'), '%d de %B de %Y'), $contrato);
 		$contrato = str_replace(':total', $this->Data['valor'] * $this->Data['quantidade'], $contrato);
 		$contrato = str_replace(':extensototal', CarregarConsultasBaseComponent::ValorPorExtenso($this->Data['valor'] * $this->Data['quantidade']), $contrato);
