@@ -3,6 +3,7 @@
 <?php echo $this->Form->input('aluno_id', 
      array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
 </div><!-- .form-group -->
+<?php if (! $contrato) { ?>
 <div class="form-group">
 <?php echo $this->Form->input('formapgto_id', 
      array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
@@ -13,6 +14,7 @@
 <?php echo $this->Form->input('obs', 
      array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
 </div><!-- .form-group -->
+<?php } ?>
 <div class="form-group">
 <?php echo $this->Form->input('valor', 
      array('class' => 'form-control currency', 'label'=>array('class'=>'col-sm-2 control-label'),'div'=>false, 'wrap'=>false, 'between'=>'<div class="col-sm-4"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div></div>')); ?>
