@@ -68,9 +68,9 @@ class CursosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$professores = $this->Curso->Professor->find('list');
-		$pessoas = $this->Curso->Pessoa->find('list');
-		$grupos = $this->Curso->Grupo->find('list');
+		$professores = $this->Curso->Professor->findAsCombo();
+		$pessoas = $this->Curso->Pessoa->findAsCombo();
+		$grupos = $this->Curso->Grupo->findAsCombo();
 		$tipos = $this->Curso->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_id', 'Tipo.nome' => 'curso')));
 		$periodos = $this->Curso->Periodo->find('list', array('conditions' => array('Periodo.referencia' => 'periodo_id')));
 		$this->set(compact('professores', 'pessoas', 'grupos', 'tipos', 'periodos'));
@@ -105,9 +105,9 @@ class CursosController extends AppController {
 			$options = array('conditions' => array('Curso.' . $this->Curso->primaryKey => $id));
 			$this->request->data = $this->Curso->find('first', $options);
 		}
-		$professores = $this->Curso->Professor->find('list');
-		$pessoas = $this->Curso->Pessoa->find('list');
-		$grupos = $this->Curso->Grupo->find('list');
+		$professores = $this->Curso->Professor->findAsCombo();
+		$pessoas = $this->Curso->Pessoa->findAsCombo();
+		$grupos = $this->Curso->Grupo->findAsCombo();
 		$tipos = $this->Curso->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_id', 'Tipo.nome' => 'curso')));
 		$periodos = $this->Curso->Periodo->find('list', array('conditions' => array('Periodo.referencia' => 'periodo_id')));
 		$this->set(compact('professores', 'pessoas', 'grupos', 'tipos', 'periodos'));

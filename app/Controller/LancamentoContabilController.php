@@ -62,9 +62,9 @@ class LancamentoContabilController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$debitos = $this->LancamentoContabil->Debito->find('list');
-		$creditos = $this->LancamentoContabil->Credito->find('list');
-		$historico_padrao = $this->LancamentoContabil->HistoricoPadrao->find('list');
+		$debitos = $this->LancamentoContabil->Debito->findAsCombo();
+		$creditos = $this->LancamentoContabil->Credito->findAsCombo();
+		$historico_padrao = $this->LancamentoContabil->HistoricoPadrao->findAsCombo();
 		$this->set(compact('debitos', 'creditos', 'historico_padrao'));
 	}
 
@@ -91,9 +91,9 @@ class LancamentoContabilController extends AppController {
 			$options = array('conditions' => array('LancamentoContabil.' . $this->LancamentoContabil->primaryKey => $id));
 			$this->request->data = $this->LancamentoContabil->find('first', $options);
 		}
-		$debitos = $this->LancamentoContabil->Debito->find('list');
-		$creditos = $this->LancamentoContabil->Credito->find('list');
-		$historico_padrao = $this->LancamentoContabil->HistoricoPadrao->find('list');
+		$debitos = $this->LancamentoContabil->Debito->findAsCombo();
+		$creditos = $this->LancamentoContabil->Credito->findAsCombo();
+		$historico_padrao = $this->LancamentoContabil->HistoricoPadrao->findAsCombo();
 		$this->set(compact('debitos', 'creditos', 'historico_padrao'));
 	}
 

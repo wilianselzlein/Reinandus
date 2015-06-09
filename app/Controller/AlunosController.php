@@ -87,12 +87,12 @@ class AlunosController extends AppController {
 		$indicacaos = $this->Aluno->Indicacao->find('list', array('conditions' => array('Indicacao.referencia' => 'indicacao_id')));
 		$situacaos = $this->Aluno->Situacao->find('list', array('conditions' => array('Situacao.referencia' => 'situacao_id')));
 
-		$cursos = $this->Aluno->Curso->find('list');
-		$professores = $this->Aluno->Professor->find('list');
-		$cidades = $this->Aluno->Cidade->find('list');
-		$naturalidades = $this->Aluno->Cidade->find('list');
-		$responsavels = $this->Aluno->Responsavel->find('list');
-		$disciplinas = $this->Aluno->AlunoDisciplina->find('list');
+		$cursos = $this->Aluno->Curso->findAsCombo();
+		$professores = $this->Aluno->Professor->findAsCombo();
+		$cidades = $this->Aluno->Cidade->findAsCombo();
+		$naturalidades = $this->Aluno->Cidade->findAsCombo();
+		$responsavels = $this->Aluno->Responsavel->findAsCombo();
+		$disciplinas = $this->Aluno->AlunoDisciplina->findAsCombo();
 
 		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professores', 'cidades', 'naturalidades', 'responsavels', 'disciplinas', 'situacaos'));
 	}
@@ -130,12 +130,12 @@ class AlunosController extends AppController {
 		$indicacaos = $this->Aluno->Indicacao->find('list', array('conditions' => array('Indicacao.referencia' => 'indicacao_id')));
 		$situacaos = $this->Aluno->Situacao->find('list', array('conditions' => array('Situacao.referencia' => 'situacao_id')));
 
-		$cursos = $this->Aluno->Curso->find('list');
-		$professores = $this->Aluno->Professor->find('list');
-		$cidades = $this->Aluno->Cidade->find('list');
-		$naturalidades = $this->Aluno->Cidade->find('list');
-		$responsavels = $this->Aluno->Responsavel->find('list');
-		$disciplinas = $this->Aluno->AlunoDisciplina->find('list');
+		$cursos = $this->Aluno->Curso->findAsCombo();
+		$professores = $this->Aluno->Professor->findAsCombo();
+		$cidades = $this->Aluno->Cidade->findAsCombo();
+		$naturalidades = $this->Aluno->Cidade->findAsCombo();
+		$responsavels = $this->Aluno->Responsavel->findAsCombo();
+		$disciplinas = $this->Aluno->AlunoDisciplina->findAsCombo();
 		
 		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professores', 'cidades', 'naturalidades', 'responsavels', 'disciplinas', 'situacaos'));
 	}

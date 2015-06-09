@@ -66,7 +66,7 @@ class DetalhesController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$alunos = $this->Detalhe->Aluno->find('list');
+		$alunos = $this->Detalhe->Aluno->findAsCombo();
 		$aluno_id = $id;
 		$this->set(compact('alunos', 'pessoas', 'aluno_id'));
 	}
@@ -100,7 +100,7 @@ class DetalhesController extends AppController {
 			$options = array('conditions' => array('Detalhe.' . $this->Detalhe->primaryKey => $id));
 			$this->request->data = $this->Detalhe->find('first', $options);
 		}
-		$alunos = $this->Detalhe->Aluno->find('list');
+		$alunos = $this->Detalhe->Aluno->findAsCombo();
 		$this->set(compact('alunos', 'pessoas'));
 	}
 

@@ -67,7 +67,7 @@ class PessoasController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$cidades = $this->Pessoa->Cidade->find('list');
+		$cidades = $this->Pessoa->Cidade->findAsCombo();
 		$this->set(compact('cidades'));
 	}
 
@@ -100,7 +100,7 @@ class PessoasController extends AppController {
 			$options = array('conditions' => array('Pessoa.' . $this->Pessoa->primaryKey => $id));
 			$this->request->data = $this->Pessoa->find('first', $options);
 		}
-		$cidades = $this->Pessoa->Cidade->find('list');
+		$cidades = $this->Pessoa->Cidade->findAsCombo();
 		$this->set(compact('cidades'));
 	}
 

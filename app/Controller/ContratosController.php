@@ -42,10 +42,10 @@ class ContratosController extends AppController {
  */
 	public function aluno() {
     $this->contrato();
-		$contas = $this->Contrato->Conta->find('list');
-		$alunos = $this->Contrato->Aluno->find('list');
-		$formapgtos = $this->Contrato->Formapgto->find('list');
-		$users = $this->Contrato->User->find('list');
+		$contas = $this->Contrato->Conta->findAsCombo();
+		$alunos = $this->Contrato->Aluno->findAsCombo();
+		$formapgtos = $this->Contrato->Formapgto->findAsCombo();
+		$users = $this->Contrato->User->findAsCombo();
 		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
 	}
 
@@ -56,8 +56,8 @@ class ContratosController extends AppController {
  */
 	public function professor() {
     $this->contrato();
-    $professores = $this->Contrato->Professor->find('list');
-    $disciplinas = $this->Contrato->Disciplina->find('list');
+    $professores = $this->Contrato->Professor->findAsCombo();
+    $disciplinas = $this->Contrato->Disciplina->findAsCombo();
     $this->set(compact('professores', 'disciplinas'));
 	}
 

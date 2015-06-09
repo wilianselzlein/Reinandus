@@ -67,8 +67,8 @@ class ProfessoresController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$cidades = $this->Professor->Cidade->find('list');
-		$disciplinas = $this->Professor->Disciplina->find('list');
+		$cidades = $this->Professor->Cidade->findAsCombo();
+		$disciplinas = $this->Professor->Disciplina->findAsCombo();
 		$this->set(compact('cidades', 'disciplinas'));
 	}
 
@@ -101,8 +101,8 @@ class ProfessoresController extends AppController {
 			$options = array('conditions' => array('Professor.' . $this->Professor->primaryKey => $id));
 			$this->request->data = $this->Professor->find('first', $options);
 		}
-		$cidades = $this->Professor->Cidade->find('list');
-		$disciplinas = $this->Professor->Disciplina->find('list');
+		$cidades = $this->Professor->Cidade->findAsCombo();
+		$disciplinas = $this->Professor->Disciplina->findAsCombo();
 		$this->set(compact('cidades', 'disciplinas'));
 	}
 

@@ -62,9 +62,9 @@ public $uses = array('Instituto');
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$empresas = $this->Instituto->Empresa->find('list');
-		$diretors = $this->Instituto->Diretor->find('list');
-		$tipos = $this->Instituto->Tipo->find('list');
+		$empresas = $this->Instituto->Empresa->findAsCombo();
+		$diretors = $this->Instituto->Diretor->findAsCombo();
+		$tipos = $this->Instituto->Tipo->findAsCombo();
 		$this->set(compact('empresas', 'diretors', 'tipos'));
 	}
 
@@ -97,9 +97,9 @@ public $uses = array('Instituto');
 			$options = array('conditions' => array('Instituto.' . $this->Instituto->primaryKey => $id));
 			$this->request->data = $this->Instituto->find('first', $options);
 		}
-		$empresas = $this->Instituto->Empresa->find('list');
-		$diretors = $this->Instituto->Diretor->find('list');
-		$tipos = $this->Instituto->Tipo->find('list');
+		$empresas = $this->Instituto->Empresa->findAsCombo();
+		$diretors = $this->Instituto->Diretor->findAsCombo();
+		$tipos = $this->Instituto->Tipo->findAsCombo();
 		$this->set(compact('empresas', 'diretors', 'tipos'));
 	}
 

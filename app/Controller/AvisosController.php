@@ -73,10 +73,10 @@ class AvisosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$users = $this->Aviso->User->find('list');
+		$users = $this->Aviso->User->findAsCombo();
 		$tipos = $this->Aviso->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_id', 'Tipo.nome' => 'aviso')));
-		$cursos = $this->Aviso->Curso->find('list');
-		$grupos = $this->Aviso->Grupo->find('list');
+		$cursos = $this->Aviso->Curso->findAsCombo();
+		$grupos = $this->Aviso->Grupo->findAsCombo();
 		$this->set(compact('users', 'tipos', 'cursos', 'grupos'));
 	}
 
@@ -109,10 +109,10 @@ class AvisosController extends AppController {
 			$options = array('conditions' => array('Aviso.' . $this->Aviso->primaryKey => $id));
 			$this->request->data = $this->Aviso->find('first', $options);
 		}
-		$users = $this->Aviso->User->find('list');
+		$users = $this->Aviso->User->findAsCombo();
 		$tipos = $this->Aviso->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_id', 'Tipo.nome' => 'aviso')));
-		$cursos = $this->Aviso->Curso->find('list');
-		$grupos = $this->Aviso->Grupo->find('list');
+		$cursos = $this->Aviso->Curso->findAsCombo();
+		$grupos = $this->Aviso->Grupo->findAsCombo();
 		$this->set(compact('users', 'tipos', 'cursos', 'grupos'));
 	}
 

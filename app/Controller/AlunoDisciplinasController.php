@@ -42,8 +42,8 @@ class AlunoDisciplinasController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$disciplinas = $this->AlunoDisciplina->Disciplina->find('list');
-		$professores = $this->AlunoDisciplina->Professor->find('list');
+		$disciplinas = $this->AlunoDisciplina->Disciplina->findAsCombo();
+		$professores = $this->AlunoDisciplina->Professor->findAsCombo();
 		$this->set(compact('disciplinas', 'professores', 'aluno_id'));
 	}
 
@@ -79,8 +79,8 @@ class AlunoDisciplinasController extends AppController {
 			$options = array('conditions' => array('AlunoDisciplina.' . $this->AlunoDisciplina->primaryKey => $id));
 			$this->request->data = $this->AlunoDisciplina->find('first', $options);
 		}
-		$professores = $this->AlunoDisciplina->Professor->find('list');
-		$disciplinas = $this->AlunoDisciplina->Disciplina->find('list');
+		$professores = $this->AlunoDisciplina->Professor->findAsCombo();
+		$disciplinas = $this->AlunoDisciplina->Disciplina->findAsCombo();
 		$this->set(compact('professores', 'disciplinas'));
 	}
 

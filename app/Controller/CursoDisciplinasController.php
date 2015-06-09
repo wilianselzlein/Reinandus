@@ -35,8 +35,8 @@ class CursoDisciplinasController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$disciplinas = $this->CursoDisciplina->Disciplina->find('list');
-		$professores = $this->CursoDisciplina->Professor->find('list');
+		$disciplinas = $this->CursoDisciplina->Disciplina->findAsCombo();
+		$professores = $this->CursoDisciplina->Professor->findAsCombo();
 		$this->set(compact('disciplinas', 'professores'));
 	}
 

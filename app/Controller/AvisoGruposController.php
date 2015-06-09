@@ -36,7 +36,7 @@ class AvisoGruposController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$grupos = $this->AvisoGrupo->Grupo->find('list');
+		$grupos = $this->AvisoGrupo->Grupo->findAsCombo();
 		$this->set(compact('grupos'));
 	}
 

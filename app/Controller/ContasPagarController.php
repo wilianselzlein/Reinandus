@@ -73,10 +73,10 @@ class ContasPagarController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$contas = $this->ContaPagar->Conta->find('list');
-		$pessoas = $this->ContaPagar->Pessoa->find('list');
-		$formapgtos = $this->ContaPagar->Formapgto->find('list');
-		$users = $this->ContaPagar->User->find('list');
+		$contas = $this->ContaPagar->Conta->findAsCombo();
+		$pessoas = $this->ContaPagar->Pessoa->findAsCombo();
+		$formapgtos = $this->ContaPagar->Formapgto->findAsCombo();
+		$users = $this->ContaPagar->User->findAsCombo();
 		$tipos = $this->ContaPagar->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_id', 'Tipo.nome' => 'contapagar')));
 		$situacaos = $this->ContaPagar->Situacao->find('list', array('conditions' => array('Situacao.referencia' => 'situacao_id', 'Situacao.nome' => 'contapagar')));
 		$this->set(compact('contas', 'pessoas', 'formapgtos', 'users', 'situacaos', 'tipos'));
@@ -111,10 +111,10 @@ class ContasPagarController extends AppController {
 			$options = array('conditions' => array('ContaPagar.' . $this->ContaPagar->primaryKey => $id));
 			$this->request->data = $this->ContaPagar->find('first', $options);
 		}
-		$contas = $this->ContaPagar->Conta->find('list');
-		$pessoas = $this->ContaPagar->Pessoa->find('list');
-		$formapgtos = $this->ContaPagar->Formapgto->find('list');
-		$users = $this->ContaPagar->User->find('list');
+		$contas = $this->ContaPagar->Conta->findAsCombo();
+		$pessoas = $this->ContaPagar->Pessoa->findAsCombo();
+		$formapgtos = $this->ContaPagar->Formapgto->findAsCombo();
+		$users = $this->ContaPagar->User->findAsCombo();
 		$tipos = $this->ContaPagar->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_id', 'Tipo.nome' => 'contapagar')));
 		$situacaos = $this->ContaPagar->Situacao->find('list', array('conditions' => array('Situacao.referencia' => 'situacao_id', 'Situacao.nome' => 'contapagar')));
 		$this->set(compact('contas', 'pessoas', 'formapgtos', 'users', 'situacaos', 'tipos'));
@@ -174,12 +174,12 @@ class ContasPagarController extends AppController {
 			$options = array('conditions' => array('ContaPagar.' . $this->ContaPagar->primaryKey => $id));
 			$this->request->data = $this->ContaPagar->find('first', $options);
 		}
-		$contas = $this->ContaPagar->Conta->find('list');
-		$pessoas = $this->ContaPagar->Pessoa->find('list');
-		$formapgtos = $this->ContaPagar->Formapgto->find('list');
-		$users = $this->ContaPagar->User->find('list');
-		$situacaos = $this->ContaPagar->Situacao->find('list');
-		$tipos = $this->ContaPagar->Tipo->find('list');
+		$contas = $this->ContaPagar->Conta->findAsCombo();
+		$pessoas = $this->ContaPagar->Pessoa->findAsCombo();
+		$formapgtos = $this->ContaPagar->Formapgto->findAsCombo();
+		$users = $this->ContaPagar->User->findAsCombo();
+		$situacaos = $this->ContaPagar->Situacao->findAsCombo();
+		$tipos = $this->ContaPagar->Tipo->findAsCombo();
 		$this->set(compact('contas', 'pessoas', 'formapgtos', 'users', 'situacaos', 'tipos'));
 	}
 

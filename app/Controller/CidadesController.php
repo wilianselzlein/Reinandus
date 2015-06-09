@@ -67,7 +67,7 @@ class CidadesController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$estados = $this->Cidade->Estado->find('list');
+		$estados = $this->Cidade->Estado->findAsCombo();
 		$this->set(compact('estados'));
 	}
 
@@ -100,7 +100,7 @@ class CidadesController extends AppController {
 			$options = array('conditions' => array('Cidade.' . $this->Cidade->primaryKey => $id));
 			$this->request->data = $this->Cidade->find('first', $options);
 		}
-		$estados = $this->Cidade->Estado->find('list');
+		$estados = $this->Cidade->Estado->findAsCombo();
 		$this->set(compact('estados'));
 	}
 

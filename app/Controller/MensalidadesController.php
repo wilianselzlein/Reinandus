@@ -66,10 +66,10 @@ class MensalidadesController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$contas = $this->Mensalidade->Conta->find('list');
-		$alunos = $this->Mensalidade->Aluno->find('list');
-		$formapgtos = $this->Mensalidade->Formapgto->find('list');
-		$users = $this->Mensalidade->User->find('list');
+		$contas = $this->Mensalidade->Conta->findAsCombo();
+		$alunos = $this->Mensalidade->Aluno->findAsCombo();
+		$formapgtos = $this->Mensalidade->Formapgto->findAsCombo();
+		$users = $this->Mensalidade->User->findAsCombo();
 		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
 	}
 
@@ -102,10 +102,10 @@ class MensalidadesController extends AppController {
 			$options = array('conditions' => array('Mensalidade.' . $this->Mensalidade->primaryKey => $id));
 			$this->request->data = $this->Mensalidade->find('first', $options);
 		}
-		$contas = $this->Mensalidade->Conta->find('list');
-		$alunos = $this->Mensalidade->Aluno->find('list');
-		$formapgtos = $this->Mensalidade->Formapgto->find('list');
-		$users = $this->Mensalidade->User->find('list');
+		$contas = $this->Mensalidade->Conta->findAsCombo();
+		$alunos = $this->Mensalidade->Aluno->findAsCombo();
+		$formapgtos = $this->Mensalidade->Formapgto->findAsCombo();
+		$users = $this->Mensalidade->User->findAsCombo();
 		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
 	}
 
@@ -162,10 +162,10 @@ class MensalidadesController extends AppController {
 			$options = array('conditions' => array('Mensalidade.' . $this->Mensalidade->primaryKey => $id));
 			$this->request->data = $this->Mensalidade->find('first', $options);
 		}
-		$contas = $this->Mensalidade->Conta->find('list');
-		$alunos = $this->Mensalidade->Aluno->find('list');
-		$formapgtos = $this->Mensalidade->Formapgto->find('list');
-		$users = $this->Mensalidade->User->find('list');
+		$contas = $this->Mensalidade->Conta->findAsCombo();
+		$alunos = $this->Mensalidade->Aluno->findAsCombo();
+		$formapgtos = $this->Mensalidade->Formapgto->findAsCombo();
+		$users = $this->Mensalidade->User->findAsCombo();
 		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
 	}
 
@@ -192,10 +192,10 @@ class MensalidadesController extends AppController {
         	}
 			$this->redirect(array('action' => 'index'));
 		}
-		$contas = $this->Mensalidade->Conta->find('list');
-		$alunos = $this->Mensalidade->Aluno->find('list');
-		$formapgtos = $this->Mensalidade->Formapgto->find('list');
-		$users = $this->Mensalidade->User->find('list');
+		$contas = $this->Mensalidade->Conta->findAsCombo();
+		$alunos = $this->Mensalidade->Aluno->findAsCombo();
+		$formapgtos = $this->Mensalidade->Formapgto->findAsCombo();
+		$users = $this->Mensalidade->User->findAsCombo();
 		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
 	}
 }

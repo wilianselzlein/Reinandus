@@ -36,7 +36,7 @@ class AvisoCursosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$cursos = $this->AvisoCurso->Curso->find('list');
+		$cursos = $this->AvisoCurso->Curso->findAsCombo();
 		$this->set(compact('cursos'));
 	}
 

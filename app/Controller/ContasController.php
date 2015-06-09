@@ -67,7 +67,7 @@ class ContasController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$formapgtos = $this->Contum->Formapgto->find('list');
+		$formapgtos = $this->Contum->Formapgto->findAsCombo();
 		$this->set(compact('formapgtos'));
 	}
 
@@ -100,7 +100,7 @@ class ContasController extends AppController {
 			$options = array('conditions' => array('Contum.' . $this->Contum->primaryKey => $id));
 			$this->request->data = $this->Contum->find('first', $options);
 		}
-		$formapgtos = $this->Contum->Formapgto->find('list');
+		$formapgtos = $this->Contum->Formapgto->findAsCombo();
 		$this->set(compact('formapgtos'));
 	}
 

@@ -66,8 +66,8 @@ class PermissoesController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$users = $this->Permissao->User->find('list');
-		$programas = $this->Permissao->Programa->find('list');
+		$users = $this->Permissao->User->findAsCombo();
+		$programas = $this->Permissao->Programa->findAsCombo();
 		$this->set(compact('users', 'programas'));
 	}
 
@@ -100,8 +100,8 @@ class PermissoesController extends AppController {
 			$options = array('conditions' => array('Permissao.' . $this->Permissao->primaryKey => $id));
 			$this->request->data = $this->Permissao->find('first', $options);
 		}
-		$users = $this->Permissao->User->find('list');
-		$programas = $this->Permissao->Programa->find('list');
+		$users = $this->Permissao->User->findAsCombo();
+		$programas = $this->Permissao->Programa->findAsCombo();
 		$this->set(compact('users', 'programas'));
 	}
 

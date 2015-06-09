@@ -71,8 +71,8 @@ class UsuariosController extends AppController {
             $this->Session->setFlash(__('Password mismatched.'), 'flash/error');
          }
 		}
-		$pessoas = $this->User->Pessoa->find('list');
-		$roles = $this->User->Role->find('list');
+		$pessoas = $this->User->Pessoa->findAsCombo();
+		$roles = $this->User->Role->findAsCombo();
 		$this->set(compact('pessoas', 'roles'));
 	}
 
@@ -105,8 +105,8 @@ class UsuariosController extends AppController {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);
 		}
-		$pessoas = $this->User->Pessoa->find('list');
-		$roles = $this->User->Role->find('list');
+		$pessoas = $this->User->Pessoa->findAsCombo();
+		$roles = $this->User->Role->findAsCombo();
 		$this->set(compact('pessoas', 'roles'));
 	}
 
