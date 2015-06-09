@@ -105,9 +105,32 @@ function Draw(id, type, field, alias, modelo) {
       return component;
    }
    //FAIXA_CODIGO_CAMPO_ADICIONAL: 4
-   this.getFaixaCodigoCampoAdicional = function() {}
+   this.getFaixaCodigoCampoAdicional = function() {
+      this.openDiv();
+      this.label('Entre');
+      this.inputNumberStart();
+      this.closeDiv();
+      this.openDiv();
+      this.label('e');
+      this.inputNumberEnd();
+      this.closeDiv();
+      this.openDiv();
+      this.label();
+      this.inputNumber();
+      this.closeDiv();
+      return component;
+   }
    //CODIGO_CAMPO_ADICIONAL: 5
-   this.getCodigoCampoAdicional = function() {}
+   this.getCodigoCampoAdicional = function() {
+      this.openDiv();
+      this.label('Id');
+      this.inputNumber();
+      this.openDiv();
+      this.label();
+      this.inputNumber();
+      this.closeDiv();
+      return component;
+   }
    //CAMPO_UNICO_STRING: 6
    this.getCampoUnicoInteiro = function() {
       this.openDiv();

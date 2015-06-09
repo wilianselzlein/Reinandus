@@ -115,6 +115,7 @@ class RelatoriosController extends AppController {
                      }
                      case 2: //FAIXAS_STRING
                      {
+                        $filtros .= " AND " . str_replace("_",".", $campo) ." BETWEEN '".$compositeValue[0]."'' AND '".$compositeValue[1]."'";
                         break;
                      }
                      case 3: //OPCOES_FINITAS
@@ -124,14 +125,17 @@ class RelatoriosController extends AppController {
                      }
                      case 4: //FAIXA_CODIGO_CAMPO_ADICIONAL
                      {
+                        $filtros .= " AND " . str_replace("_",".", $campo) ." = '".$compositeValue[0]."'' AND '".$compositeValue[1]."'";
                         break;
                      }
                      case 5: //CODIGO_CAMPO_ADICIONAL
                      {
+                        $filtros .= " AND ".$compositeValue[0];
                         break;
                      }
                      case 6: //CAMPO_UNICO_INTEIRO
                      {
+                        $filtros .= " AND ".str_replace("_",".", $campo)." = ".$compositeValue[0];
                         break;
                      }
                      case 7: //OPCOES_FINITAS
@@ -147,22 +151,27 @@ class RelatoriosController extends AppController {
                      }
                     case 9: //DATA
                      {
+                        $filtros .= "AND cast(".str_replace("_",".", $campo)." as DATE) = STR_TO_DATE('".$compositeValue[0]."','%d/%m/%Y') ";
                         break;
                      }
                     case 10: //BOOLEAN
                      {
+                        $filtros .= " AND ".str_replace("_",".", $campo)." = '".$compositeValue[0]."'";
                         break;
                      }
                      case 11: //FAIXA_VALORES
                      {
+                        $filtros .= " AND " . str_replace("_",".", $campo) ." BETWEEN ".$compositeValue[0]." AND ".$compositeValue[1];
                         break;
                      }
                      case 12: //VALOR_QTD
                      {
+                        $filtros .= " AND ".str_replace("_",".", $campo)." = ".$compositeValue[0];
                         break;
                      }
                      case 13; //VALOR_PERCENTUAL
                      {
+                        $filtros .= " AND ".str_replace("_",".", $campo)." = ".$compositeValue[0];
                         break;
                      }
                   }  
