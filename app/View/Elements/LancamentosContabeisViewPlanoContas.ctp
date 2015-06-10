@@ -31,7 +31,7 @@
 									<?php foreach ($planoconta['LancamentoContabil' . $nome] as $lctocontabil): ?>
 		<tr>
 			<td><?php echo $lctocontabil['id']; ?></td>
-			<td><?php echo $lctocontabil['data']; ?></td>
+			<td><?php echo date('d/m/Y', strtotime($lctocontabil['data'])); ?></td>
             <td><?php echo $this->Html->link($lctocontabil['Debito']['descricao'], array('controller' => 'planocontas', 'action' => 'view', $lctocontabil['Debito']['id']), array('class' => '')); ?>
              &nbsp;</td>
             <td><?php echo $this->Html->link($lctocontabil['Credito']['descricao'], array('controller' => 'planocontas', 'action' => 'view', $lctocontabil['Credito']['id']), array('class' => '')); ?>

@@ -18,7 +18,7 @@
 		</td>
 </tr><tr>		<td><strong><?php echo __('Data'); ?></strong></td>
 		<td>
-			<?php echo h($aviso['Aviso']['data']); ?>
+			<?php echo date('d/m/Y', strtotime($aviso['Aviso']['data'])); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Usuario'); ?></strong></td>

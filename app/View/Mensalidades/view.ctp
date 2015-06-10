@@ -19,7 +19,7 @@
 		</td>
 </tr>
 <?php echo $this->element('LinhaView', array('alias' => 'Numero', 'valor' => h($mensalidade['Mensalidade']['numero']))); ?>
-<?php echo $this->element('LinhaView', array('alias' => 'Vencimento', 'valor' => h($mensalidade['Mensalidade']['vencimento']))); ?>
+<?php echo $this->element('LinhaView', array('alias' => 'Vencimento', 'valor' => date('d/m/Y', strtotime($mensalidade['Mensalidade']['vencimento'])))); ?>
 <?php echo $this->element('LinhaView', array('alias' => 'Valor', 'valor' => $this->Number->currency($mensalidade['Mensalidade']['valor'],'BRL'))); ?>
 <?php echo $this->element('LinhaView', array('alias' => 'Desconto', 'valor' => $this->Number->currency($mensalidade['Mensalidade']['desconto'],'BRL'))); ?>
 <?php echo $this->element('LinhaView', array('alias' => 'Acréscimo', 'valor' => $this->Number->currency($mensalidade['Mensalidade']['desconto'],'BRL'))); ?>

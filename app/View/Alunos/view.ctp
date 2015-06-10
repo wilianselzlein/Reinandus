@@ -36,7 +36,7 @@ else
 		<td><?php echo $this->Html->link($aluno['Naturalidade']['nome'], array('controller' => 'cidades', 'action' => 'view', $aluno['Naturalidade']['id']), array('class' => '')); ?>&nbsp;</td>
 	</tr>
 	<?php echo $this->element('LinhaView', array('alias' => 'Nacionalidade', 'valor' => h($aluno['Aluno']['nacionalidade']))); ?>
-	<?php echo $this->element('LinhaView', array('alias' => 'Nascimento', 'valor' => h($aluno['Aluno']['data_nascimento']))); ?>
+	<?php echo $this->element('LinhaView', array('alias' => 'Nascimento', 'valor' => date('d/m/Y', strtotime($aluno['Aluno']['data_nascimento'])))); ?>
 	<tr>
 		<td><strong><?php echo __('Estado Civil'); ?></strong></td>
 		<td><?php echo $this->Html->link($aluno['EstadoCivil']['valor'], array('controller' => 'enumerados', 'action' => 'view', $aluno['EstadoCivil']['id']), array('class' => '')); ?>&nbsp;</td>

@@ -19,7 +19,7 @@
 		</td>
 </tr><tr>		<td><strong><?php echo __('Data'); ?></strong></td>
 		<td>
-			<?php echo h($lancamentocontabil['LancamentoContabil']['data']); ?>
+			<?php echo date('d/m/Y', strtotime($lancamentocontabil['LancamentoContabil']['data'])); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Debito'); ?></strong></td>

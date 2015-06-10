@@ -33,7 +33,7 @@
                   <td><?php echo $mensalidade['id']; ?></td>
                   <td><?php echo $mensalidade['numero']; ?></td>
                   <td><?php echo date('d/m/Y', strtotime($mensalidade['vencimento'])); ?></td>
-                  <td><?php echo $mensalidade['liquido']; ?></td>
+                  <td><?php echo $this->Number->currency($mensalidade['liquido'], 'BRL'); ?></td>
                   <td><?php echo date('d/m/Y', strtotime($mensalidade['pagamento'])); ?></td>
                   <td><?php echo $this->DisplayField->MakeLink($mensalidade, 'alunos', 'aluno_id'); ?></td>
 			<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $mensalidade, 'model' => '', 'controller' => 'mensalidades')); ?>

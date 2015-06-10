@@ -83,12 +83,12 @@
                </td>
                </tr><tr>		<td><strong><?php echo __('inicio'); ?></strong></td>
                <td>
-                  <?php echo h($curso['Curso']['inicio']); ?>
+                  <?php echo date('d/m/Y', strtotime($curso['Curso']['inicio'])); ?>
                   &nbsp;
                </td>
                </tr><tr>		<td><strong><?php echo __('fim'); ?></strong></td>
                <td>
-                  <?php echo h($curso['Curso']['fim']); ?>
+                  <?php echo date('d/m/Y', strtotime($curso['Curso']['fim'])); ?>
                   &nbsp;
                </td>
                </tr><tr>		<td><strong><?php echo __('sistema_aval'); ?></strong></td>

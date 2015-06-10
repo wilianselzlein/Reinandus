@@ -23,7 +23,7 @@
 <?php foreach ($avisos as $aviso): ?> 
 	<tr>
 		<td><?php echo h($aviso['Aviso']['id']); ?>&nbsp;</td>
-		<td><?php echo h($aviso['Aviso']['data']); ?>&nbsp;</td>
+		<td><?php echo date('d/m/Y', strtotime($aviso['Aviso']['data'])); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($aviso['User']['username'], array('controller' => 'users', 'action' => 'view', $aviso['User']['id'])); ?>
 		</td>
