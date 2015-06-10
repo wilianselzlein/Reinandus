@@ -181,13 +181,18 @@ class MensalidadesController extends AppController {
         	$data = $data['Mensalidade'];
         	
     		$numero = 1;
-        	$quantidade = (float)$data['quantidade'];
+        	$quantidade = (float) $data['quantidade'];
+
         	while ($numero <= $quantidade) {
         		$mensalidade = $data;
     			$mensalidade['numero'] = $numero;
 
                 $this->Mensalidade->create();
-                $this->Mensalidade->save($mensalidade);
+                if (! $this->Mensalidade->save($mensalidade)) { 
+                	 debug($this->validationErrors); die();
+					//debug($mensalidade);  debug($e); die;
+					//$this->redirect($this->referer());
+            	}
                 $numero++;
         	}
 			$this->redirect(array('action' => 'index'));

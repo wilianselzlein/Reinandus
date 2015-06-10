@@ -145,7 +145,10 @@ class NumberHelper extends AppHelper {
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/number.html#NumberHelper::currency
  */
 	public function currency($number, $currency = null, $options = array()) {
-		return $this->_engine->currency($number, $currency, $options);
+                if (($number == 0.00) && ($currency = 'BRL'))
+                    return 'R$ 0,00';
+                else        
+                    return $this->_engine->currency($number, $currency, $options);
 	}
 
 /**

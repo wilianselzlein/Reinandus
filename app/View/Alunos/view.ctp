@@ -60,8 +60,8 @@ else
 	<?php echo $this->element('LinhaView', array('alias' => 'Senha', 'valor' => h($aluno['Aluno']['senha']))); ?>
 	<?php echo $this->element('LinhaView', array('alias' => 'Email', 'valor' => h($aluno['Aluno']['email']))); ?>
 	<?php echo $this->element('LinhaView', array('alias' => 'Alternativo', 'valor' => h($aluno['Aluno']['emailalt']))); ?>
-	<?php echo $this->element('LinhaView', array('alias' => 'Bolsa', 'valor' => h($aluno['Aluno']['bolsa']))); ?>
-	<?php echo $this->element('LinhaView', array('alias' => 'Desconto', 'valor' => h($aluno['Aluno']['desconto']))); ?>
+	<?php echo $this->element('LinhaView', array('alias' => 'Bolsa', 'valor' => $this->Number->currency($aluno['Aluno']['bolsa'], 'BRL'))); ?>
+	<?php echo $this->element('LinhaView', array('alias' => 'Desconto', 'valor' => $this->Number->currency($aluno['Aluno']['desconto'], 'BRL'))); ?>
 	<tr>
 		<td><strong><?php echo __('Curso'); ?></strong></td>
 		<td><?php echo $this->Html->link($aluno['Curso']['nome'], array('controller' => 'cursos', 'action' => 'view', $aluno['Curso']['id']), array('class' => '')); ?>&nbsp;</td>
@@ -97,7 +97,7 @@ else
 		<td><strong><?php echo __('Indicação'); ?></strong></td>
 		<td><?php echo $this->Html->link($aluno['Indicacao']['valor'], array('controller' => 'enumerados', 'action' => 'view', $aluno['Indicacao']['id']), array('class' => '')); ?>&nbsp;</td>
 	</tr>
-	<?php echo $this->element('LinhaView', array('alias' => 'Valor', 'valor' => h($aluno['Aluno']['indicacao_valor']))); ?>
+	<?php echo $this->element('LinhaView', array('alias' => 'Valor', 'valor' => $this->Number->currency($aluno['Aluno']['indicacao_valor'], 'BRL'))); ?>
 	<?php echo $this->element('LinhaView', array('alias' => 'Nome', 'valor' => h($aluno['Aluno']['indicacao_nome']))); ?>
 	<?php echo $this->element('LinhaView', array('alias' => 'Entregou Diploma', 'valor' => h($aluno['Aluno']['entregou_diploma']))); ?>
 	<?php echo $this->element('LinhaView', array('alias' => 'Emitir Carteirinha', 'valor' => h($aluno['Aluno']['emitir_carteirinha']))); ?>
@@ -166,7 +166,7 @@ else
                   <td><?php echo $disciplina['AlunoDisciplina']['frequencia']; ?></td>
                   <td><?php echo $disciplina['AlunoDisciplina']['nota']; ?></td>
                   <td><?php echo $disciplina['AlunoDisciplina']['horas_aula']; ?></td>
-                  <td><?php echo $disciplina['AlunoDisciplina']['data']; ?></td>
+                  <td><?php echo date('d/m/Y', strtotime($disciplina['AlunoDisciplina']['data'])); ?></td>
                   <td class="actions text-center">
                      <?php echo $this->Html->link('<i class="fa fa-pencil"></i>',  array('controller' => 'alunodisciplinas', 'action' => 'edit',   $disciplina['AlunoDisciplina']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'),     'data-toggle'=>'tooltip')); ?>
                      <?php echo $this->Form->postLink('<i class="fa fa-times"></i>',   array('controller' => 'alunodisciplinas', 'action' => 'delete', $disciplina['AlunoDisciplina']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'),   'data-toggle'=>'tooltip'), 
@@ -216,9 +216,9 @@ else
                <tr>
                   <td><?php echo $mensalidade['Mensalidade']['id']; ?></td>
                   <td><?php echo $mensalidade['Mensalidade']['numero']; ?></td>
-                  <td><?php echo $mensalidade['Mensalidade']['vencimento']; ?></td>
-                  <td><?php echo $mensalidade['Mensalidade']['liquido']; ?></td>
-                  <td><?php echo $mensalidade['Mensalidade']['pagamento']; ?></td>
+                  <td><?php echo date('d/m/Y', strtotime($mensalidade['Mensalidade']['vencimento'])); ?></td>
+                  <td><?php echo $this->Number->currency($mensalidade['Mensalidade']['liquido'], 'BRL'); ?></td>
+                  <td><?php echo date('d/m/Y', strtotime($mensalidade['Mensalidade']['pagamento'])); ?></td>
                   <td><?php echo $this->Html->link($mensalidade['Formapgto']['nome'], array('controller' => 'formaspagamentos', 'action' => 'view', $mensalidade['Formapgto']['id']), array('class' => '')); ?>
                      &nbsp;</td>
                   <td class="actions text-center">
