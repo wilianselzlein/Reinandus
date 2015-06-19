@@ -14,7 +14,7 @@ class MensalidadesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'Boletos.BoletoBb');
 
 /**
  * index method
@@ -202,5 +202,88 @@ class MensalidadesController extends AppController {
 		$formapgtos = $this->Mensalidade->Formapgto->findAsCombo();
 		$users = $this->Mensalidade->User->findAsCombo();
 		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
+	}
+
+	public function boleto($id = null){
+		$this->autoRender = false;
+
+		$dados = array();
+
+		$options = array('recursive' => -1, 'conditions' => array('Mensalidade.' . $this->Mensalidade->primaryKey => $id));
+		$mensalidade = $this->Mensalidade->find('first', $options);
+
+		$options = array('recursive' => -1, 'conditions' => array('Conta.' . $this->Mensalidade->Conta->primaryKey => $mensalidade['Mensalidade']['conta_id']));
+		$conta = $this->Mensalidade->Conta->find('first', $options);
+
+		$options = array('recursive' => -1, 'conditions' => array('Aluno.' . $this->Mensalidade->Aluno->primaryKey => $mensalidade['Mensalidade']['aluno_id']));
+		$aluno = $this->Mensalidade->Aluno->find('first', $options);
+
+		$options = array('recursive' => 1, 'conditions' => array('Cidade.' . $this->Mensalidade->Aluno->Cidade->primaryKey => $aluno['Aluno']['cidade_id']));
+		$cidade = $this->Mensalidade->Aluno->Cidade->find('first', $options);
+
+		$Instituto = ClassRegistry::init('Instituto');
+		$options = array('recursive' => 2, 'conditions' => array('Instituto.' . $Instituto->primaryKey => 1));
+		$instituto = $Instituto->find('first', $options);
+
+		$dados['sacado'] = $aluno['Aluno']['nome'];
+		$dados['endereco1'] = $aluno['Aluno']['endereco'] . ' ' . $aluno['Aluno']['numero'] . ' ' . $aluno['Aluno']['bairro'];
+		$dados['endereco2'] = $cidade['Cidade']['nome'] . '/' . $cidade['Estado']['sigla'];
+		$dados['cpf_cnpj'] = $aluno['Aluno']['cpf'];
+		
+		$dados['valor_cobrado'] = $mensalidade['Mensalidade']['liquido'];
+		$dados['pedido'] = 5; // Usado para gerar o número do documento e o nosso número.
+
+		/* Seus Dados */
+		$dados["identificacao"] = $instituto['Empresa']['fantasia'];
+		$dados["cpf_cnpj"] = $instituto['Empresa']['cnpjcpf'];
+		$dados["endereco"] = $instituto['Empresa']['endereco'] . ' ' . $instituto['Empresa']['numero'] . ' ' . $instituto['Empresa']['bairro'] . ' ' . ' '  . $instituto['Empresa']['cep'];
+		$dados["cidade_uf"] = $instituto['Empresa']['Cidade']['nome'];
+		$dados["cedente"] = $instituto['Empresa']['razaosocial'];
+
+		// Informações da sua conta 
+		//debug($conta); die;
+		$dados["agencia"] = $conta['Conta']['agencia']; // Num da agencia, sem digito
+		$dados["conta"] = $conta['Conta']['conta']; 	// Num da conta, sem digito
+
+		// Dados do contrato com o Banco
+		$dados["convenio"] = $conta['Conta']['cedente'];  // Num do convênio - REGRA: 6 ou 7 ou 8 dígitos
+		$dados["contrato"] = $conta['Conta']['cedente']; // Num do seu contrato
+		$dados["carteira"] = "18";
+		//$dados["variacao_carteira"] = "-019";  // Variação da Carteira, com traço (opcional)
+
+		// Tipo do Boleto
+		$dados["formatacao_convenio"] = "7"; // REGRA: 8 p/ Convênio c/ 8 dígitos, 7 p/ Convênio c/ 7 dígitos, ou 6 se Convênio c/ 6 dígitos
+		$dados["formatacao_nosso_numero"] = "2"; // REGRA: Usado apenas p/ Convênio c/ 6 dígitos: informe 1 se for NossoN�mero de at� 5 dígitos ou 2 para opção de até 17 dígitos
+
+		// Vence em quantos dias? 
+		$dados['dias_vencimento'] = date('j', strtotime($mensalidade['Mensalidade']['vencimento']));
+
+		// Taxa do boleto
+		$dados['taxa'] = 0;
+
+		// Informações para o cliente
+		$dados["demonstrativo1"] = $instituto['Empresa']['fantasia'] . "<br />";
+		$dados["demonstrativo2"] = $aluno['Aluno']['nome'] . "<br />";
+		$dados["demonstrativo3"] = "";
+
+		// OPCIONAIS
+		$dados["quantidade"] = "1";
+		$dados["valor_unitario"] = "";
+
+		// Instruções ao caixa
+		$dados["instrucoes1"] = " Sr. Caixa,";
+		$dados["instrucoes2"] = " Não receber após o vencimento.";
+		$dados["instrucoes3"] = "";
+		$dados["instrucoes4"] = "";
+
+		
+		// MOEDA 
+		$dados["aceite"] = "N";
+		$dados["especie"] = "R$";
+		$dados["especie_doc"] = "DM";
+
+		//debug($data); die;
+
+		$this->BoletoBb->render($dados);
 	}
 }

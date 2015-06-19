@@ -33,6 +33,7 @@
 		<td class="actions text-center">
 
 			<?php echo $this->Html->link('<i class="fa fa-credit-card"></i>', array('action' => 'baixar', $mensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Baixar'), 'data-toggle'=>'tooltip')); ?>
+			<?php echo $this->Html->link('<i class="fa fa-print"></i>', array('action' => 'boleto', $mensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Boleto'), 'data-toggle'=>'tooltip')); ?>
 		</td>
 		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $mensalidade, 'model' => 'Mensalidade')); ?>
 	</tr>

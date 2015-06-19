@@ -80,6 +80,7 @@ Inflector::rules('plural', array('irregular' => array(
    CakePlugin::load('Uploader');
    CakePlugin::load('Wysiwyg');
    CakePlugin::load('FilterResults');
+   CakePlugin::load('Boletos');
 /**
  * You can attach event listeners to the request lifecycle as Dispatcher Filter. By default CakePHP bundles two filters:
  *
