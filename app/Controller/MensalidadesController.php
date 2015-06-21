@@ -14,7 +14,7 @@ class MensalidadesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Boletos.BoletoBb');
+	public $components = array('Paginator', 'Session', 'Boletos.BoletoBb', 'Boletos.BoletoHsbc');
 
 /**
  * index method
@@ -238,7 +238,7 @@ class MensalidadesController extends AppController {
 		$dados["cpf_cnpj"] = $instituto['Empresa']['cnpjcpf'];
 		$dados["endereco"] = $instituto['Empresa']['endereco'] . ' ' . $instituto['Empresa']['numero'] . ' ' . $instituto['Empresa']['bairro'] . ' ' . ' '  . $instituto['Empresa']['cep'];
 		$dados["cidade_uf"] = $instituto['Empresa']['Cidade']['nome'];
-		$dados["cedente"] = $instituto['Empresa']['razaosocial'];
+		$dados["cedente"] = $conta['Conta']['cedente'];
 
 		// Informações da sua conta 
 		//debug($conta); die;
@@ -257,6 +257,7 @@ class MensalidadesController extends AppController {
 
 		// Vence em quantos dias? 
 		$dados['dias_vencimento'] = date('j', strtotime($mensalidade['Mensalidade']['vencimento']));
+		$dados['data_vencimento'] = date('d/m/Y', strtotime($mensalidade['Mensalidade']['vencimento']));
 
 		// Taxa do boleto
 		$dados['taxa'] = 0;
@@ -284,6 +285,6 @@ class MensalidadesController extends AppController {
 
 		//debug($data); die;
 
-		$this->BoletoBb->render($dados);
+		$this->BoletoHsbc->render($dados);
 	}
 }
