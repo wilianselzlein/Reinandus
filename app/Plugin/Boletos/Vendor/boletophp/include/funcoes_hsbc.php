@@ -15,7 +15,7 @@
 // +----------------------------------------------------------------------+
 // | Originado do Projeto BBBoletoFree que tiveram colaborações de Daniel |
 // | William Schultz e Leandro Maniezo que por sua vez foi derivado do	  |
-// | PHPBoleto de João Prado Maia e Pablo Martins F. Costa				  |
+// | PHPBoleto de João Prado Maia e Pablo Martins F. Costa                |
 // | 																	  |
 // | Se vc quer colaborar, nos ajude a desenvolver p/ os demais bancos :-)|
 // | Acesse o site do Projeto BoletoPhp: www.boletophp.com.br             |
@@ -23,56 +23,88 @@
 
 // +----------------------------------------------------------------------+
 // | Equipe Coordenação Projeto BoletoPhp: <boletophp@boletophp.com.br>   |
-// | Desenvolvimento Boleto Itaú: Glauber Portella		                  |
+// | Desenvolvimento Boleto HSBC: Bruno Leonardo M. F. Gonçalves          |
 // +----------------------------------------------------------------------+
 
 
-$codigobanco = "341";
+$codigobanco = "399";
 $codigo_banco_com_dv = geraCodigoBanco($codigobanco);
 $nummoeda = "9";
 $fator_vencimento = fator_vencimento($dadosboleto["data_vencimento"]);
 
 //valor tem 10 digitos, sem virgula
 $valor = formata_numero($dadosboleto["valor_boleto"],10,0,"valor");
-//agencia é 4 digitos
-$agencia = formata_numero($dadosboleto["agencia"],4,0);
-//conta é 5 digitos + 1 do dv
-$conta = formata_numero($dadosboleto["conta"],5,0);
-$conta_dv = formata_numero($dadosboleto["conta_dv"],1,0);
-//carteira 175
+//carteira é CNR
 $carteira = $dadosboleto["carteira"];
-//nosso_numero no maximo 8 digitos
-$nnum = formata_numero($dadosboleto["nosso_numero"],8,0);
+//codigocedente deve possuir 7 caracteres
+$codigocedente = formata_numero($dadosboleto["cedente"],7,0);
 
-$codigo_barras = $codigobanco.$nummoeda.$fator_vencimento.$valor.$carteira.$nnum.modulo_10($agencia.$conta.$carteira.$nnum).$agencia.$conta.modulo_10($agencia.$conta).'000';
-// 43 numeros para o calculo do digito verificador
-$dv = digitoVerificador_barra($codigo_barras);
+$ndoc = $dadosboleto["numero_documento"];
+$vencimento = $dadosboleto["data_vencimento"];
+
+// número do documento (sem dvs) é 13 digitos
+$nnum = formata_numero($dadosboleto["numero_documento"],13,0);
+// nosso número (com dvs) é 16 digitos
+$nossonumero = geraNossoNumero($nnum,$codigocedente,$vencimento,'4');
+
+$vencjuliano = dataJuliano($vencimento);
+$app = "2";
+
+// 43 numeros para o calculo do digito verificador do codigo de barras
+$barra = "$codigobanco$nummoeda$fator_vencimento$valor$codigocedente$nnum$vencjuliano$app";
+$dv = digitoVerificador_barra($barra, 9, 0);
 // Numero para o codigo de barras com 44 digitos
-$linha = substr($codigo_barras,0,4).$dv.substr($codigo_barras,4,43);
+$linha = substr($barra,0,4) . $dv . substr($barra,4);
 
-$nossonumero = $carteira.'/'.$nnum.'-'.modulo_10($agencia.$conta.$carteira.$nnum);
-$agencia_codigo = $agencia." / ". $conta."-".modulo_10($agencia.$conta);
+$agencia_codigo = $codigocedente;
 
 $dadosboleto["codigo_barras"] = $linha;
-$dadosboleto["linha_digitavel"] = monta_linha_digitavel($linha); // verificar
-$dadosboleto["agencia_codigo"] = $agencia_codigo ;
+$dadosboleto["linha_digitavel"] = monta_linha_digitavel($linha);
+$dadosboleto["agencia_codigo"] = $agencia_codigo;
 $dadosboleto["nosso_numero"] = $nossonumero;
 $dadosboleto["codigo_banco_com_dv"] = $codigo_banco_com_dv;
 
+function geraNossoNumero($ndoc,$cedente,$venc,$tipoid) {
+	$ndoc = $ndoc.modulo_11_invertido($ndoc).$tipoid;
+	$venc = substr($venc,0,2).substr($venc,3,2).substr($venc,8,2);
+	$res = $ndoc + $cedente + $venc;
+	return $ndoc . modulo_11_invertido($res);
+}
 
-// FUNÇÕES
-// Algumas foram retiradas do Projeto PhpBoleto e modificadas para atender as particularidades de cada banco
+function dataJuliano($data) {
+	$dia = (int)substr($data,0,2);
+	$mes = (int)substr($data,3,2);
+	$ano = (int)substr($data,6,4);
+	$dataf = strtotime("$ano/$mes/$dia");
+	$datai = strtotime(($ano-1).'/12/31');
+	$dias  = (int)(($dataf - $datai)/(60*60*24));
+  return str_pad($dias,3,'0',STR_PAD_LEFT).substr($data,9,4);
+}
 
-function digitoVerificador_barra($numero) {
+function digitoVerificador_nossonumero($numero) {
 	$resto2 = modulo_11($numero, 9, 1);
-	$digito = 11 - $resto2;
-     if ($digito == 0 || $digito == 1 || $digito == 10  || $digito == 11) {
-        $dv = 1;
+     $digito = 11 - $resto2;
+     if ($digito == 10 || $digito == 11) {
+        $dv = 0;
      } else {
         $dv = $digito;
      }
 	 return $dv;
 }
+
+function digitoVerificador_barra($numero) {
+	$resto2 = modulo_11($numero, 9, 1);
+     if ($resto2 == 0 || $resto2 == 1 || $resto2 == 10) {
+        $dv = 1;
+     } else {
+	 	$dv = 11 - $resto2;
+     }
+	 return $dv;
+}
+
+
+// FUNÇÕES
+// Algumas foram retiradas do Projeto PhpBoleto e modificadas para atender as particularidades de cada banco
 
 function formata_numero($numero,$loop,$insert,$tipo = "geral") {
 	if ($tipo == "geral") {
@@ -189,7 +221,11 @@ function fator_vencimento($data) {
 	$ano = $data[2];
 	$mes = $data[1];
 	$dia = $data[0];
-    return(abs((_dateToDays("1997","10","07")) - (_dateToDays($ano, $mes, $dia))));
+	$fator = abs((_dateToDays("1997","10","07")) - (_dateToDays($ano, $mes, $dia)));
+	if($fator > 9999){
+	    $fator = ($fator%9000)<1000?(($fator%9000)+9000):($fator%9000);
+	}
+	return($fator);
 }
 
 function _dateToDays($year,$month,$day) {
@@ -302,37 +338,63 @@ function modulo_11($num, $base=9, $r=0)  {
     }
 }
 
-// Alterada por Glauber Portella para especificação do Itaú
+function modulo_11_invertido($num)  { // Calculo de Modulo 11 "Invertido" (com pesos de 9 a 2  e não de 2 a 9)
+    $ftini = 2;
+		$ftfim = 9;
+		$fator = $ftfim;
+    $soma = 0;
+	
+    for ($i = strlen($num); $i > 0; $i--) {
+			$soma += substr($num,$i-1,1) * $fator;
+			if(--$fator < $ftini) $fator = $ftfim;
+    }
+	
+    $digito = $soma % 11;
+		if($digito > 9) $digito = 0;
+	
+		return $digito;
+}
+
 function monta_linha_digitavel($codigo) {
-		// campo 1
-        $banco    = substr($codigo,0,3);
-        $moeda    = substr($codigo,3,1);
-        $ccc      = substr($codigo,19,3);
-		$ddnnum   = substr($codigo,22,2);
-		$dv1      = modulo_10($banco.$moeda.$ccc.$ddnnum);
-		// campo 2
-		$resnnum  = substr($codigo,24,6);
-		$dac1     = substr($codigo,30,1);//modulo_10($agencia.$conta.$carteira.$nnum);
-		$dddag    = substr($codigo,31,3);
-		$dv2      = modulo_10($resnnum.$dac1.$dddag);
-		// campo 3
-		$resag    = substr($codigo,34,1);
-		$contadac = substr($codigo,35,6); //substr($codigo,35,5).modulo_10(substr($codigo,35,5));
-		$zeros    = substr($codigo,41,3);
-		$dv3      = modulo_10($resag.$contadac.$zeros);
-		// campo 4
-		$dv4      = substr($codigo,4,1);
-		// campo 5
-        $fator    = substr($codigo,5,4);
-        $valor    = substr($codigo,9,10);
-		
-        $campo1 = substr($banco.$moeda.$ccc.$ddnnum.$dv1,0,5) . '.' . substr($banco.$moeda.$ccc.$ddnnum.$dv1,5,5);
-        $campo2 = substr($resnnum.$dac1.$dddag.$dv2,0,5) . '.' . substr($resnnum.$dac1.$dddag.$dv2,5,6);
-        $campo3 = substr($resag.$contadac.$zeros.$dv3,0,5) . '.' . substr($resag.$contadac.$zeros.$dv3,5,6);
-        $campo4 = $dv4;
-        $campo5 = $fator.$valor;
-		
-        return "$campo1 $campo2 $campo3 $campo4 $campo5"; 
+	// Posição 	Conteúdo
+	// 1 a 3    Número do banco
+	// 4        Código da Moeda - 9 para Real
+	// 5        Digito verificador do Código de Barras
+	// 6 a 9    Fator de Vencimento
+	// 10 a 19  Valor (8 inteiros e 2 decimais)
+	//          Campo Livre definido por cada banco (25 caracteres)
+	// 20 a 26  Código do Cedente
+	// 27 a 39  Código do Documento
+	// 40 a 43  Data de Vencimento em Juliano (mmmy)
+	// 44       Código do aplicativo CNR = 2
+	
+	// 1. Campo - composto pelo código do banco, código da moéda, as cinco primeiras posições
+	// do campo livre e DV (modulo10) deste campo
+	$campo1 = substr($codigo,0,4) . substr($codigo,19,5);
+	$campo1 = $campo1 . modulo_10($campo1);
+	$campo1 = substr($campo1,0,5) . '.' . substr($campo1,5,5);
+	
+	// 2. Campo - composto pelas posiçoes 6 a 15 do campo livre
+	// e livre e DV (modulo10) deste campo
+	$campo2 = substr($codigo,24,2) . substr($codigo,26,8);
+	$campo2 = $campo2 . modulo_10($campo2);
+	$campo2 = substr($campo2,0,5) . '.' . substr($campo2,5,6);
+	
+	// 3. Campo composto pelas posicoes 16 a 25 do campo livre
+	// e livre e DV (modulo10) deste campo
+	$campo3 = substr($codigo,34,5) . substr($codigo,39,4) . substr($codigo,43,1);
+	$campo3 = $campo3 . modulo_10($campo3);
+	$campo3 = substr($campo3,0,5) . '.' . substr($campo3,5,6);
+
+	// 4. Campo - digito verificador do codigo de barras
+	$campo4 = substr($codigo, 4, 1);
+	
+	// 5. Campo composto pelo fator vencimento e valor nominal do documento, sem
+	// indicacao de zeros a esquerda e sem edicao (sem ponto e virgula). Quando se
+	// tratar de valor zerado, a representacao deve ser 000 (tres zeros).
+	$campo5 = substr($codigo, 5, 4) . substr($codigo, 9, 10);
+	
+	return "$campo1 $campo2 $campo3 $campo4 $campo5"; 
 }
 
 function geraCodigoBanco($numero) {
@@ -340,5 +402,4 @@ function geraCodigoBanco($numero) {
     $parte2 = modulo_11($parte1);
     return $parte1 . "-" . $parte2;
 }
-
 ?>

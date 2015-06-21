@@ -35,7 +35,6 @@ if(!Configure::load('Boletos.boleto_bb')){
 	Configure::load('Boletos.BoletoBb');
 }
 
-
 $dadosboleto = Set::merge($dadosboleto, Configure::read('Boleto'));
 
 // VENCIMENTO
@@ -62,7 +61,6 @@ $dadosboleto["valor_boleto"] = $valor_boleto; 	// Valor do Boleto - REGRA: Com v
 
 
 // ---------------------- DADOS FIXOS DE CONFIGURAÇÃO DO SEU BOLETO --------------- //
-
 
 // NÃO ALTERAR!
 include("include/funcoes_bb.php"); 

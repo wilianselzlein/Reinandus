@@ -128,7 +128,7 @@
 					#boleto .cut {
 						width: 666px;
 						margin: 0px auto;
-						border-bottom: 1px navy dashed;
+						border-bottom: 1px black dashed;
 					}
 
 					#boleto .cut p {
@@ -136,7 +136,7 @@
 						padding: 0px;
 						font-family: 'Arial Narrow';
 						font-size: 9px;
-						color: navy;
+						color: black;
 					}
 
 					table.header {
@@ -144,7 +144,7 @@
 						height: 38px;
 						margin-top: 20px;
 						margin-bottom: 10px;
-						border-bottom: 2px navy solid;
+						border-bottom: 2px black solid;
 
 					}
 
@@ -157,16 +157,16 @@
 						text-align: center;
 						font-size: 14px;
 						font-weight: bold;
-						color: navy;
-						border-right: 2px solid navy;
-						border-left: 2px solid navy;
+						color: black;
+						border-right: 2px solid black;
+						border-left: 2px solid black;
 					}
 
 					table.header td.linha_digitavel {
 						width: 464px;
 						text-align: right;
 						font: bold 15px Arial;
-						color: navy
+						color: black
 					}
 
 					table.line {
@@ -179,8 +179,8 @@
 						height: 13px;
 						font-family: 'Arial Narrow';
 						font-size: 9px;
-						color: navy;
-						border-left: 5px #ffe000 solid;
+						color: black;
+						border-left: 5px gray solid;
 						padding-left: 2px;
 					}
 
@@ -188,7 +188,7 @@
 						height: 12px;
 						font-size: 10px;
 						color: black;
-						border-left: 5px #ffe000 solid;
+						border-left: 5px gray solid;
 						padding-left: 2px;
 					}
 
@@ -310,7 +310,7 @@
 						/* width: 180px; */
 						width: 175px;
 						padding-right: 5px;
-						background-color: #ffc ;
+						background-color: silver ;
 					}
 
 					table.line td.sacado {
@@ -325,7 +325,7 @@
 						/* width: 180px; */
 						width: 175px;
 						padding-right: 5px;
-						background-color: #ffc;
+						background-color: silver;
 					}
 
 					table.line td.cedente2 {
@@ -366,7 +366,7 @@
 
 					table.line td.reservado {
 						width: 93px;
-						background-color: #ffc;
+						background-color: silver;
 					}
 
 					table.line td.carteira {
@@ -424,7 +424,7 @@
 						/* width: 180px; */
 						width: 175px;
 						padding-right: 5px;
-						background-color: #ffc ;
+						background-color: silver ;
 					}
 
 					table.line td.sacado2 {
@@ -440,7 +440,7 @@
 					}
 
 					table.line td.cod_baixa {
-						color: navy;
+						color: black;
 						width: 180px;
 					}
 
@@ -455,7 +455,7 @@
 						padding-left: 525px;
 						font-family: 'Arial Narro';
 						font-size: 9px;
-						color: navy;
+						color: black;
 					}
 
 
@@ -496,7 +496,7 @@
 				<div id="instr_content">
 					<p>
 				O pagamento deste boleto tamb&eacute;m poder&aacute; ser efetuado 
-				nos terminais de Auto-Atendimento BB.
+				nos terminais de Auto-Atendimento.
 					</p>
 
 					<h2>Instru&ccedil;&otilde;es</h2>
@@ -529,7 +529,7 @@
 				<table class="header" border=0 cellspacing="0" cellpadding="0">
 					<tbody>
 						<tr>
-							<td width=150><IMG SRC="img/logobb.jpg"></td>
+							<td width=150><IMG SRC="img/logohsbc.jpg"></td>
 							<td width=50>
 								<div class="field_cod_banco"><?php echo $dadosboleto["codigo_banco_com_dv"]?></div>
 							</td>
@@ -622,7 +622,7 @@
 				<table class="header" border=0 cellspacing="0" cellpadding="0">
 					<tbody>
 						<tr>
-							<td width=150><IMG SRC="img/logobb.jpg"></td>
+							<td width=150><IMG SRC="img/logohsbc.jpg"></td>
 							<td width=50>
 								<div class="field_cod_banco"><?php echo $dadosboleto["codigo_banco_com_dv"]?></div>
 							</td>
