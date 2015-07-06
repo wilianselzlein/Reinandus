@@ -40,11 +40,12 @@ class AvisosHelper extends AppHelper {
 		$aluno = ClassRegistry::init('Aluno');
 		
 		$condicoes = array();
-		$condicoes['Aluno.nascimento'] = date('Y-m-d');
-		$conta = $aluno->find('count'); //, array('conditions' => $condicoes));
+		$condicoes['Aluno.data_nascimento'] = date('Y-m-d');
+
+		$conta = $aluno->find('count', array('conditions' => $condicoes));
 		$texto = '<span class="label label-' . $css . '">' . $conta . '</span> Aluno(s)';
 
-		return $this->Html->link($texto, array('controller' => 'aluno', 'action' => 'index', 'Aniver'), array('class' => '', 'escape'=>false));
+		return $this->Html->link($texto, array('controller' => 'Alunos', 'action' => 'index', 'Aniver'), array('class' => '', 'escape'=>false));
 	}
 
 	public function Professores($css) { 
@@ -52,11 +53,11 @@ class AvisosHelper extends AppHelper {
 		$prof = ClassRegistry::init('Professor');
 
 		$condicoes = array();
-		$condicoes['Professor.nascimento'] = date('Y-m-d');
-		$conta = $prof->find('count');//, array('conditions' => $condicoes));
+		$condicoes['Professor.data_nascimento'] = date('Y-m-d');
+		$conta = $prof->find('count', array('conditions' => $condicoes));
 		$texto = '<span class="label label-' . $css . '">' . $conta . '</span> Professor(es)';
 
-		return $this->Html->link($texto, array('controller' => 'professor', 'action' => 'index', 'Aniver'), array('class' => '', 'escape'=>false));
+		return $this->Html->link($texto, array('controller' => 'Professores', 'action' => 'index', 'Aniver'), array('class' => '', 'escape'=>false));
 	}
 
 } 
