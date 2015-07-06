@@ -21,10 +21,23 @@ class MensalidadesController extends AppController {
  *
  * @return void
  */
-	public function index() {
-		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Mensalidade))));
+	public function index($tipo = null) {
+		$filtros = array();
+		$filtros['OR'] = $this->AdicionarFiltrosLike($this->Mensalidade);
+		if ($tipo == 'Recebidas')
+			$filtros['AND'] = array('Mensalidade.pagamento' => array('value' => date('Y-m-d')));
+		if ($tipo == 'Receber')
+			$filtros['AND'] = array('Mensalidade.vencimento' => array('value' => date('Y-m-d')));
+
+		$filtro = array();
+		$filtro['filter1'] = $filtros;
+		$this->Filter->addFilters($filtro);
+
 		$this->Filter->setPaginate('order', array('Mensalidade.id' => 'desc')); 
-		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+		if (! isset($filtros['AND'])) 
+			$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+		else
+			$this->Filter->setPaginate('conditions', $filtros['AND']);
 
 		$this->Mensalidade->recursive = 0;
 		$this->set('mensalidades', $this->paginate());

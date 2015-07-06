@@ -28,10 +28,27 @@ class ContasPagarController extends AppController {
  *
  * @return void
  */
-	public function index() {
-		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->ContaPagar))));
+	public function index($tipo = null) {
+		//$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->ContaPagar))));
+		//$this->Filter->setPaginate('order', array('ContaPagar.id' => 'desc')); 
+		//$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+
+		$filtros = array();
+		$filtros['OR'] = $this->AdicionarFiltrosLike($this->ContaPagar);
+		if ($tipo == 'Pagas')
+			$filtros['AND'] = array('ContaPagar.pagamento' => array('value' => date('Y-m-d')));
+		if ($tipo == 'Pagar')
+			$filtros['AND'] = array('ContaPagar.vencimento' => array('value' => date('Y-m-d')));
+
+		$filtro = array();
+		$filtro['filter1'] = $filtros;
+		$this->Filter->addFilters($filtro);
+
 		$this->Filter->setPaginate('order', array('ContaPagar.id' => 'desc')); 
-		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+		if (! isset($filtros['AND'])) 
+			$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+		else
+			$this->Filter->setPaginate('conditions', $filtros['AND']);
 
 		$this->ContaPagar->recursive = 0;
 		$this->set('contaspagar', $this->paginate());

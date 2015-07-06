@@ -39,6 +39,10 @@ class BoletoBbComponent extends Object {
 
 	}
 
+	public function beforeRedirect($controller){
+
+	}
+
 	public function shutdown($controller){
 
 	}
