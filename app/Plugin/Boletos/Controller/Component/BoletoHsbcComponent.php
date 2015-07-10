@@ -1,5 +1,5 @@
 <?php
-class BoletoBbComponent extends Object {
+class BoletoHsbcComponent extends Object {
 
 	/**
 	 * Armazena as opções padrões do boleto.
@@ -32,7 +32,7 @@ class BoletoBbComponent extends Object {
 			$this->setup($options);
 		}
 		$dadosboleto = $this->options;
-		require_once App::pluginPath('Boletos') . 'Vendor' . DS . 'boletophp' . DS . 'boleto_bb.php';
+		require_once App::pluginPath('Boletos') . 'Vendor' . DS . 'boletophp' . DS . 'boleto_hsbc.php';
 	}
 
 	public function beforeRender($controller){

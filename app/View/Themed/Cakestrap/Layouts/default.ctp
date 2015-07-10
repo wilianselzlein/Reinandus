@@ -89,23 +89,23 @@ echo $this->fetch('script');
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
                   <ul class="dropdown-menu alert-dropdown">
                      <li>
-                        <a href="#"><span class="label label-default">15</span> Avisos</a>
+<?php echo $this->Avisos->Alunos('default'); ?>
                      </li>
                      <li>
-                        <a href="#"><span class="label label-success">35</span> Ativos</a>
+<?php echo $this->Avisos->Professores('success'); ?>
                      </li>
                      <li class="divider"></li>
                      <li>
-                        <a href="#"><span class="label label-primary">90</span> Recebidas</a>
+<?php echo $this->Avisos->Mensalidades('primary', 'Recebidas'); ?>
                      </li>
                      <li>
-                        <a href="#"><span class="label label-info">70</span> A Receber</a>
+<?php echo $this->Avisos->Mensalidades('info', 'Receber'); ?>
                      </li>
                      <li>
-                        <a href="#"><span class="label label-warning">50</span> Pagos</a>
+<?php echo $this->Avisos->Pagar('warning', 'Pagas'); ?>
                      </li>
                      <li>
-                        <a href="#"><span class="label label-danger">25</span> A Pagar</a>
+<?php echo $this->Avisos->Pagar('danger', 'Pagar'); ?>
                      </li>
                   </ul>
                </li>
@@ -147,14 +147,17 @@ echo $this->fetch('script');
                <div  class="container-fluid">
                   <?php echo $this->Session->flash(); ?>
                   <?php echo $this->fetch('content'); ?>
+                  <?php echo $this->element('sql_dump'); ?>
                </div><!-- /#content .container -->
             </div>
 
             <div id="footer" class="container">
                <?php //Silence is golden ?>
+
             </div><!-- /#footer .container -->
 
             </div><!-- /#main-container -->		
+
          <script>$(document).ready(function(){ $('[data-toggle=tooltip]').tooltip()});</script>
          <?php echo $this->Html->script('cfg-datepicker');?>
          <?php echo $this->Html->script('cfg-currency');?>

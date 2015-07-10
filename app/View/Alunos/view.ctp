@@ -208,6 +208,7 @@ else
                   <th><?php echo __('Líquido'); ?></th>
                   <th><?php echo __('Pagamento'); ?></th>
                   <th><?php echo __('Forma'); ?></th>
+                  <th>&nbsp;</th>
                   <th class="actions text-center"><?php echo __('Actions'); ?></th>
                </tr>
             </thead>
@@ -221,6 +222,9 @@ else
                   <td><?php echo date('d/m/Y', strtotime($mensalidade['Mensalidade']['pagamento'])); ?></td>
                   <td><?php echo $this->Html->link($mensalidade['Formapgto']['nome'], array('controller' => 'formaspagamentos', 'action' => 'view', $mensalidade['Formapgto']['id']), array('class' => '')); ?>
                      &nbsp;</td>
+        		  <td class="actions text-center">
+						<?php echo $this->Html->link('<i class="fa fa-print"></i>', array('controller' => 'mensalidades', 'action' => 'boleto', $mensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Boleto'), 'data-toggle'=>'tooltip')); ?>
+				  </td>
                   <td class="actions text-center">
       				<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'mensalidades', 'action' => 'view', $mensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
                      <?php echo $this->Html->link('<i class="fa fa-pencil"></i>',  array('controller' => 'mensalidades', 'action' => 'edit',   $mensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'),     'data-toggle'=>'tooltip')); ?>

@@ -12,6 +12,7 @@
                     <tr class="active">
 							<th><?php echo $this->Paginator->sort('id'); ?></th>
 							<th><?php echo $this->Paginator->sort('numero'); ?></th>
+							<th><?php echo $this->Paginator->sort('aluno'); ?></th>
 							<th><?php echo $this->Paginator->sort('vencimento'); ?></th>
 							<th><?php echo $this->Paginator->sort('liquido'); ?></th>
 							<th><?php echo $this->Paginator->sort('pagamento'); ?></th>
@@ -24,6 +25,9 @@
 	<tr>
 		<td><?php echo h($mensalidade['Mensalidade']['id']); ?>&nbsp;</td>
 		<td><?php echo h($mensalidade['Mensalidade']['numero']); ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($mensalidade['Aluno']['nome'], array('controller' => 'alunos', 'action' => 'view', $mensalidade['Aluno']['id'])); ?>
+		</td>
 		<td><?php echo date('d/m/Y', strtotime($mensalidade['Mensalidade']['vencimento'])); ?>&nbsp;</td>
 		<td><?php echo $this->Number->currency($mensalidade['Mensalidade']['liquido'],'BRL'); ?>&nbsp;</td>
 		<td><?php echo date('d/m/Y', strtotime($mensalidade['Mensalidade']['pagamento'])); ?>&nbsp;</td>
@@ -64,3 +68,4 @@
 </div>
 
 <?php echo $this->element('Modal'); ?>
+

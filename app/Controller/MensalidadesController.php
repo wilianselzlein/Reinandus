@@ -14,17 +14,30 @@ class MensalidadesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Boletos.BoletoBb');
+	public $components = array('Paginator', 'Session', 'Boletos.BoletoBb', 'Boletos.BoletoHsbc');
 
 /**
  * index method
  *
  * @return void
  */
-	public function index() {
-		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Mensalidade))));
+	public function index($tipo = null) {
+		$filtros = array();
+		$filtros['OR'] = $this->AdicionarFiltrosLike($this->Mensalidade);
+		if ($tipo == 'Recebidas')
+			$filtros['AND'] = array('Mensalidade.pagamento' => array('value' => date('Y-m-d')));
+		if ($tipo == 'Receber')
+			$filtros['AND'] = array('Mensalidade.vencimento' => array('value' => date('Y-m-d')));
+
+		$filtro = array();
+		$filtro['filter1'] = $filtros;
+		$this->Filter->addFilters($filtro);
+
 		$this->Filter->setPaginate('order', array('Mensalidade.id' => 'desc')); 
-		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+		if (! isset($filtros['AND'])) 
+			$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+		else
+			$this->Filter->setPaginate('conditions', $filtros['AND']);
 
 		$this->Mensalidade->recursive = 0;
 		$this->set('mensalidades', $this->paginate());
@@ -238,7 +251,7 @@ class MensalidadesController extends AppController {
 		$dados["cpf_cnpj"] = $instituto['Empresa']['cnpjcpf'];
 		$dados["endereco"] = $instituto['Empresa']['endereco'] . ' ' . $instituto['Empresa']['numero'] . ' ' . $instituto['Empresa']['bairro'] . ' ' . ' '  . $instituto['Empresa']['cep'];
 		$dados["cidade_uf"] = $instituto['Empresa']['Cidade']['nome'];
-		$dados["cedente"] = $instituto['Empresa']['razaosocial'];
+		$dados["cedente"] = $conta['Conta']['cedente'];
 
 		// Informações da sua conta 
 		//debug($conta); die;
@@ -257,6 +270,7 @@ class MensalidadesController extends AppController {
 
 		// Vence em quantos dias? 
 		$dados['dias_vencimento'] = date('j', strtotime($mensalidade['Mensalidade']['vencimento']));
+		$dados['data_vencimento'] = date('d/m/Y', strtotime($mensalidade['Mensalidade']['vencimento']));
 
 		// Taxa do boleto
 		$dados['taxa'] = 0;
@@ -284,6 +298,6 @@ class MensalidadesController extends AppController {
 
 		//debug($data); die;
 
-		$this->BoletoBb->render($dados);
+		$this->BoletoHsbc->render($dados);
 	}
 }

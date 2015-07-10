@@ -21,14 +21,26 @@ class ProfessoresController extends AppController {
  *
  * @return void
  */
-	public function index() {
+	public function index($tipo = null) {
 
-		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Professor))));
+		$filtros = array();
+		$filtros['OR'] = $this->AdicionarFiltrosLike($this->Professor);
+		if ($tipo == 'Aniver')
+			$filtros['AND'] = array('Professor.data_nascimento' => array('value' => date('Y-m-d')));
+
+		$filtro = array();
+		$filtros['filter1'] = $filtros;
+		$this->Filter->addFilters($filtro);
+
 		$this->Filter->setPaginate('order', array('Professor.id' => 'desc')); 
-		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+		if (! isset($filtros['AND'])) 
+			$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+		else
+			$this->Filter->setPaginate('conditions', $filtros['AND']);
 
 		$this->Professor->recursive = 0;
 		$this->set('professores', $this->paginate());
+
 	}
 
 /**
