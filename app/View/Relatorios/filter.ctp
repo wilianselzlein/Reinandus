@@ -62,14 +62,14 @@ $campoObrigatorioPrefix = $isObrigatorio == 'true' ? '* ' : '';
 {-->
                <option value='
                               <?php
-                              echo "{";
-                              echo '"Id":'.'"'.$filtro['RelatorioFiltro']['id'] .'",'; 
-                              echo '"Field":'.'"'.$filtro['RelatorioFiltro']['campo'].'",'; 
-                              echo '"Alias":'.'"'.$campoObrigatorioPrefix.$filtro['RelatorioFiltro']['campo_alias'].'",'; 
-                              echo '"Tipo":'.'"'.$tipo.'",';
-                              echo '"Modelo":'.'"'.$filtro['RelatorioFiltro']['modelo'].'",';
-                              echo '"Obrigatorio":'.'"'.$isObrigatorio.'"'; 
-                              echo "}";
+                                 echo "{";
+                                 echo '"Id":'.'"'.$filtro['RelatorioFiltro']['id'] .'",'; 
+                                 echo '"Field":'.'"'.$filtro['RelatorioFiltro']['campo'].'",'; 
+                                 echo '"Alias":'.'"'.$campoObrigatorioPrefix.$filtro['RelatorioFiltro']['campo_alias'].'",'; 
+                                 echo '"Tipo":'.'"'.$tipo.'",';
+                                 echo '"Modelo":'.'"'.$filtro['RelatorioFiltro']['modelo'].'",';
+                                 echo '"Obrigatorio":'.'"'.$isObrigatorio.'"'; 
+                                 echo "}";
                               ?>'>
                   <?php echo h($campoObrigatorioPrefix.$filtro['RelatorioFiltro']['campo_alias']); ?>
                </option>
