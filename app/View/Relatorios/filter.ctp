@@ -44,7 +44,7 @@
             <h2 class="panel-title"><?php echo __('Filtros Disponiveis:');?></h2>
          </div>
          <div class="panel-body">
-            <?php
+            <?php 
 
 //foreach ($relatorioFiltrosDisponiveis as $filtro){
 //   debug($filtro['RelatorioFiltro']['campo_alias']);
@@ -62,14 +62,14 @@ $campoObrigatorioPrefix = $isObrigatorio == 'true' ? '* ' : '';
 {-->
                <option value='
                               <?php
-echo "{";
-echo '"Id":'.'"'.$filtro['RelatorioFiltro']['id'] .'",'; 
-echo '"Field":'.'"'.$filtro['RelatorioFiltro']['campo'].'",'; 
-echo '"Alias":'.'"'.$campoObrigatorioPrefix.$filtro['RelatorioFiltro']['campo_alias'].'",'; 
-echo '"Tipo":'.'"'.$tipo.'",';
-echo '"Modelo":'.'"'.$filtro['RelatorioFiltro']['modelo'].'",';
-echo '"Obrigatorio":'.'"'.$isObrigatorio.'"'; 
-echo "}";
+                              echo "{";
+                              echo '"Id":'.'"'.$filtro['RelatorioFiltro']['id'] .'",'; 
+                              echo '"Field":'.'"'.$filtro['RelatorioFiltro']['campo'].'",'; 
+                              echo '"Alias":'.'"'.$campoObrigatorioPrefix.$filtro['RelatorioFiltro']['campo_alias'].'",'; 
+                              echo '"Tipo":'.'"'.$tipo.'",';
+                              echo '"Modelo":'.'"'.$filtro['RelatorioFiltro']['modelo'].'",';
+                              echo '"Obrigatorio":'.'"'.$isObrigatorio.'"'; 
+                              echo "}";
                               ?>'>
                   <?php echo h($campoObrigatorioPrefix.$filtro['RelatorioFiltro']['campo_alias']); ?>
                </option>
@@ -97,7 +97,7 @@ echo "}";
                });
 
                var camposObrigatoriosPreenchidos = true;
-               
+
                for(var i = 0, len = _filtrosObrigatorios.length; i < len; ++i) {
                   if(jQuery.inArray( _filtrosObrigatorios[i] , _filtrosSelecionados ) > -1){                                      //camposObrigatoriosPreenchidos = true;
                      //alert(_filtrosObrigatorios[i]);                  
@@ -106,7 +106,7 @@ echo "}";
                   {
                      camposObrigatoriosPreenchidos = false;
                   }
-                  
+
                   if(!camposObrigatoriosPreenchidos){
                      alert('Campos obrigatórios não preenchidos!');
                      return false;
@@ -115,7 +115,7 @@ echo "}";
                   }
                }               
             }
-            
+
             $('#my-form').valid();
          </script>
 
