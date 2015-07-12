@@ -64,7 +64,9 @@ body {
       <?php echo $this->Form->create('User', array('class'=>'form-signin', 'role' => 'form'));?>
       
         <?php echo $this->Session->flash(); ?>        
-        <h4>Informe seus dados de autenticação.</h4>
+        <h4>        
+        Informe seus dados de autenticação.
+        </h4>
 
         <div class="input-group input-group">
             <span class="input-group-addon"><i class="fa fa-user"></i></span>
@@ -84,8 +86,9 @@ body {
 </div>
 <script>
    $(function(){
-       BootstrapDialog.show({
-            title: '<i class="fa fa-graduation-cap"></i>&nbsp;&nbsp;&nbsp;&nbsp;Área restrita para professores.',
+      //alert('pedro');
+      / BootstrapDialog.show({
+            title: 'Área restrita para alunos.',
             message: $('#restrict-area-login'),
             cssClass: 'login-dialog',
             closable: false,
