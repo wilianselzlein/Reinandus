@@ -69,11 +69,11 @@ echo $this->fetch('script');
                <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-male"></i> <b class="caret"></b></a>
                   <ul class="dropdown-menu message-dropdown">
-<?php echo $this->UltimosAlunosCadastrados->GerarLista(); ?>
-                     <li class="message-footer">
-<?php echo $this->Html->link('<i class="fa fa-fw fa-male"></i>'.' Ir para '.__('Alunos'), 
-                    array('controller' => 'alunos', 'action' => 'index'), array('class' => '', 'escape'=>false)); ?>
+                     <li class="message-preview">
+<?php echo $this->Html->link('<i class="fa fa-fw fa-male"></i>'.' Ir para o espaço dos '.__('Alunos'), 
+                    array('controller' => 'portal', 'action' => 'index'), array('class' => '', 'escape'=>false)); ?>
                      </li>
+<?php echo $this->UltimosAlunosCadastrados->GerarLista(); ?>
                   </ul>
                </li>
                <li class="dropdown">

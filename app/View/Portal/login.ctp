@@ -1,6 +1,4 @@
-/	
 <body>
-   
 
 <style>
 @import url(http://fonts.googleapis.com/css?family=Lancelot);

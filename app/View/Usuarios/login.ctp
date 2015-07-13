@@ -85,7 +85,7 @@ body {
 <script>
    $(function(){
        BootstrapDialog.show({
-            title: '<i class="fa fa-graduation-cap"></i>&nbsp;&nbsp;&nbsp;&nbsp;Área restrita para professores.',
+            title: '<i class="fa fa-graduation-cap"></i>&nbsp;&nbsp;&nbsp;&nbsp;Área restrita.',
             message: $('#restrict-area-login'),
             cssClass: 'login-dialog',
             closable: false,
