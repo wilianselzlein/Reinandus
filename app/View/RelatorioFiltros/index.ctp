@@ -20,9 +20,10 @@
 						<tr>
 							<th><?php echo $this->Paginator->sort('id'); ?></th>
 							<th><?php echo $this->Paginator->sort('relatorio_dataset_id'); ?></th>
-                                                        <th><?php echo $this->Paginator->sort('campo'); ?></th>
-                                                        <th><?php echo $this->Paginator->sort('campo_alias'); ?></th>
-                                                        <th><?php echo $this->Paginator->sort('tipo_filtro'); ?></th>
+                            <th><?php echo $this->Paginator->sort('campo'); ?></th>
+                            <th><?php echo $this->Paginator->sort('campo_alias'); ?></th>
+                            <th><?php echo $this->Paginator->sort('tipo_filtro'); ?></th>
+                            <th><?php echo $this->Paginator->sort('is_obrigatorio', 'Obrigatório'); ?></th>
 							<th class="actions"><?php echo __('Actions'); ?></th>
 						</tr>
 					</thead>
@@ -33,11 +34,12 @@
 		<td>
                     <?php echo $this->Html->link($filtro['RelatorioDataset']['nome'], array('controller' => 'RelatorioDatasets', 'action' => 'view', $filtro['RelatorioDataset']['id'])); ?>
 		</td>
-                <td><?php echo h($filtro['RelatorioFiltro']['campo']); ?>&nbsp;</td>
-                <td><?php echo h($filtro['RelatorioFiltro']['campo_alias']); ?>&nbsp;</td>
-                <td>
-    				<?php echo $this->Html->link($filtro['Tipo']['valor'], array('controller' => 'enumerados', 'action' => 'view', $filtro['Tipo']['id'])); ?>
-                </td>
+        <td><?php echo h($filtro['RelatorioFiltro']['campo']); ?>&nbsp;</td>
+        <td><?php echo h($filtro['RelatorioFiltro']['campo_alias']); ?>&nbsp;</td>
+        <td>
+			<?php echo $this->Html->link($filtro['Tipo']['valor'], array('controller' => 'enumerados', 'action' => 'view', $filtro['Tipo']['id'])); ?>
+        </td>
+		<td><i class="<?php echo ($filtro['RelatorioFiltro']['is_obrigatorio'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $filtro['RelatorioFiltro']['id']), array('class' => 'btn btn-default btn-xs')); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $filtro['RelatorioFiltro']['id']), array('class' => 'btn btn-default btn-xs')); ?>

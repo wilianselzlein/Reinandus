@@ -36,6 +36,9 @@
 					<div class="form-group">
 						<?php echo $this->Form->input('modelo', array('class' => 'form-control')); ?>
 					</div><!-- .form-group -->
+					<div class="form-group">
+						<?php echo $this->Form->input('is_obrigatorio', array('class' => 'form-control')); ?>
+				</div><!-- .form-group -->
 					<?php echo $this->Form->submit(__('Submit'), array('class' => 'btn btn-large btn-primary')); ?>
 
 				</fieldset>
