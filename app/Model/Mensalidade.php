@@ -9,6 +9,9 @@ App::uses('AppModel', 'Model');
  */
 class Mensalidade extends AppModel {
 
+var $actsAs = array('NumberFormat', 'DateFormat');
+
+
 /**
  * Use table
  *

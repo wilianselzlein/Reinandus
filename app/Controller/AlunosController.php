@@ -201,4 +201,36 @@ class AlunosController extends AppController {
 		$this->set('disciplina', $this->Aluno->AlunoDisciplina->find('all', $options));
 
 	}
+
+/**
+ * reset method
+ *
+ * @throws NotFoundException
+ * @param int $id
+ * @return void
+ */
+	public function reset($id = null) {
+		if (!$this->Aluno->exists($id)) {
+			throw new NotFoundException(__('The record could not be found.'));
+		}
+
+		$options = array('recursive' => -1, 'conditions' => array('Aluno.' . $this->Aluno->primaryKey => $id));
+		$senha = $this->Aluno->find('first', $options);
+		$senha['Aluno']['senha'] = '1';//  'a1d1fd73b693d0eae95ca92a1edff52a07e5e9c6';
+
+		//debug($senha); die;
+
+		if ($this->Aluno->save($senha)) {
+			$this->Session->setFlash(__('Senha resetada. '), "flash/linked/success", 
+				array(
+					"link_text" => __('GO_TO'),
+					"link_url" => array(                  
+					"action" => "view", $id)
+            	)
+        	);
+			$this->redirect(array('action' => 'view', $id));
+		} else {
+			$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
+		}
+	}
 }

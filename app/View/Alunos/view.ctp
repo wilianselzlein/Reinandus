@@ -57,7 +57,11 @@ else
 	<?php echo $this->element('LinhaView', array('alias' => 'Residencial', 'valor' => h($aluno['Aluno']['residencial']))); ?>
 	<?php echo $this->element('LinhaView', array('alias' => 'Comercial', 'valor' => h($aluno['Aluno']['comercial']))); ?>
 	<?php echo $this->element('LinhaView', array('alias' => 'Celular', 'valor' => h($aluno['Aluno']['celular']))); ?>
-	<?php echo $this->element('LinhaView', array('alias' => 'Senha', 'valor' => h($aluno['Aluno']['senha']))); ?>
+<?php echo $this->element('LinhaView', array('alias' => 'Senha', 'valor' => h($aluno['Aluno']['senha']))); ?>
+	  <tr>
+      <td>&nbsp;</td>
+      <td><?php echo $this->Html->link('Resetar para 1', array('controller' => 'alunos', 'action' => 'reset', $aluno['Aluno']['id']), array('class' => '')); ?>&nbsp;</td>
+   </tr>
 	<?php echo $this->element('LinhaView', array('alias' => 'Email', 'valor' => h($aluno['Aluno']['email']))); ?>
 	<?php echo $this->element('LinhaView', array('alias' => 'Alternativo', 'valor' => h($aluno['Aluno']['emailalt']))); ?>
 	<?php echo $this->element('LinhaView', array('alias' => 'Bolsa', 'valor' => $this->Number->currency($aluno['Aluno']['bolsa'], 'BRL'))); ?>
