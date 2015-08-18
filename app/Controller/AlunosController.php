@@ -24,15 +24,20 @@ class AlunosController extends AppController {
 	public function index($tipo = null) {
 
 		$filtros = array();
-		$filtros['OR'] = $this->AdicionarFiltrosLike($this->Aluno);
+		$filtros['OR'] = $this->AdicionarFiltrosLike($this->Aluno, 
+			['is_ativo', 'emitir_carteirinha', 'entregou_cpf', 'cert_entrega', 'created', 
+			'modified', 'cert_solicitado', 'curso_fim', 'curso_inicio', 'entregou_diploma', 
+			'data_expedicao', 'data_nascimento', 'mono_prazo', 'entregou_rg', 'bloqueado_data',
+			'mono_data']);
 		if ($tipo == 'Aniver')
 			$filtros['AND'] = array('Aluno.data_nascimento' => array('value' => date('Y-m-d')));
 
 		$filtro = array();
-		$filtros['filter1'] = $filtros;
+		$filtro['filter1'] = $filtros;
 		$this->Filter->addFilters($filtro);
 
 		$this->Filter->setPaginate('order', array('Aluno.id' => 'desc')); 
+
 		if (! isset($filtros['AND'])) 
 			$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
 		else

@@ -29,7 +29,7 @@ class ProfessoresController extends AppController {
 			$filtros['AND'] = array('Professor.data_nascimento' => array('value' => date('Y-m-d')));
 
 		$filtro = array();
-		$filtros['filter1'] = $filtros;
+		$filtro['filter1'] = $filtros;
 		$this->Filter->addFilters($filtro);
 
 		$this->Filter->setPaginate('order', array('Professor.id' => 'desc')); 

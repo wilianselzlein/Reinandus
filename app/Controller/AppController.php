@@ -69,14 +69,14 @@ class AppController extends Controller {
       'RequestHandler'
    );
 
-   protected function AdicionarFiltrosLike($model) {
+   protected function AdicionarFiltrosLike($model, $ignorados = null) {
       $tabela = $model->name . '.';
       $operador = array('operator' => 'LIKE');      
 
       $colunas = array_keys($model->getColumnTypes());
-
-      foreach ($colunas as $coluna) {
-         $array[$tabela . $coluna] = $operador;
+      foreach ($colunas as $coluna) {        
+         if ((is_null($ignorados)) || (! (in_array($coluna, $ignorados))))
+            $array[$tabela . $coluna] = $operador;
       }
 
       $relacionamentos = $model->belongsTo;
