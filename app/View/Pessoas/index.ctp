@@ -1,7 +1,8 @@
 <div class="panel panel-default">
 
 	<div class="panel-heading"><h3><span class="fa fa-book"></span> <?php echo __('Empresas/Pessoas'); ?>
-	<?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>
+	<?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action'],
+      		 null, array(array('model' => 'Pessoa', 'action' => 'emails'))); ?>
             </h3></div>
 <div class="panel-body">
 <?php echo $this->element('pesquisa/simples');?>

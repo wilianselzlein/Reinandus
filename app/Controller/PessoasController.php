@@ -127,4 +127,19 @@ class PessoasController extends AppController {
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
 		$this->redirect(array('action' => 'index'));
 	}
+
+
+/**
+ * email method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function emails() {
+		$options = array('recursive' => 0, 'fields' => array('Pessoa.email'), 'order' => array('Pessoa.email'));
+	    $emails = $this->Pessoa->find('list', $options);
+		$this->set('emails', $emails);
+	}
+
 }

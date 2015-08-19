@@ -1,0 +1,1 @@
+<?php echo $this->element('emails', array("emails" => $emails)); ?>

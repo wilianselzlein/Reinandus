@@ -238,4 +238,19 @@ class AlunosController extends AppController {
 			$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 		}
 	}
+
+
+/**
+ * email method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function emails() {
+		$options = array('recursive' => 0, 'fields' => array('Aluno.email'), 'order' => array('Aluno.email'));
+	    $emails = $this->Aluno->find('list', $options);
+		$this->set('emails', $emails);
+	}
+
 }

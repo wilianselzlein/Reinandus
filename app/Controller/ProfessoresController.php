@@ -141,4 +141,18 @@ class ProfessoresController extends AppController {
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
 		$this->redirect(array('action' => 'index'));
 	}
+
+/**
+ * email method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function emails() {
+		$options = array('recursive' => 0, 'fields' => array('Professor.email'), 'order' => array('Professor.email'));
+	    $emails = $this->Professor->find('list', $options);
+		$this->set('emails', $emails);
+	}
+
 }
