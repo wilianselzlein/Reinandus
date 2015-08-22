@@ -1,2 +1,20 @@
-<embed width="100%" height="400" name="plugin" 
-src="http://www.facet.br/pos/download/manual_aluno_2013-1.pdf" type="application/pdf">
+
+<style>
+   .tab-content{
+      /*]border: 1px solid red;*/
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      padding-top: 25px;
+      height: 0;
+   }
+   .tab-content iframe {
+      /*border: 1px solid blue;*/
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+   }
+</style>
+
+ <iframe id="frametab" name="tab-frame" src="http://www.facet.br/pos/download/manual_aluno_2013-1.pdf" scrolling="no" noresize frameborder="0"></iframe>
