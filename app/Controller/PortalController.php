@@ -15,12 +15,20 @@ class PortalController extends AppController {
       $id = $dados['Aluno']['id'];
 
       $Aviso = ClassRegistry::init('Aviso');
-      $options = array('recursive' => -1, 'conditions' => array('Aviso.tipo_id' => 21));
+      $options = array('recursive' => -1, 'conditions' => array('Aviso.tipo_id' => 21), 'order' => array('Aviso.Data DESC'));
       $avisos = $Aviso->find('all', $options);
 
       $Material = ClassRegistry::init('Aviso');
-      $options = array('recursive' => -1, 'conditions' => array('Aviso.tipo_id' => 22));
+      $options = array('recursive' => -1, 'conditions' => array('Aviso.tipo_id' => 22), 'order' => array('Aviso.Data DESC'));
       $materiais = $Material->find('all', $options);
+
+      $Vaga = ClassRegistry::init('Aviso');
+      $options = array('recursive' => -1, 'conditions' => array('Aviso.tipo_id' => 24), 'order' => array('Aviso.Data DESC'));
+      $vagas = $Vaga->find('all', $options);
+
+      $Desconto = ClassRegistry::init('Aviso');
+      $options = array('recursive' => -1, 'conditions' => array('Aviso.tipo_id' => 25), 'order' => array('Aviso.Data DESC'));
+      $descontos = $Vaga->find('all', $options);
 
       $Nota = ClassRegistry::init('AlunoDisciplina');
       $options = array('conditions' => array('AlunoDisciplina.aluno_id' => $id));
@@ -29,7 +37,7 @@ class PortalController extends AppController {
       $Grupo = ClassRegistry::init('Grupo');
       $grupos = $Grupo->findAsCombo();
 
-      $this->set(compact('avisos', 'grupos', 'materiais', 'notas'));
+      $this->set(compact('avisos', 'grupos', 'materiais', 'notas', 'vagas'));
    }
 
    public function login(){

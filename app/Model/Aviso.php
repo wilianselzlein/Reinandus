@@ -9,6 +9,8 @@ App::uses('AppModel', 'Model');
  */
 class Aviso extends AppModel {
 
+var $actsAs = array('DateFormat');
+
 /**
  * Use table
  *

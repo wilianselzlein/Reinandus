@@ -14,7 +14,7 @@
   <?php } else { ?>
   <a href="#" class="list-group-item">
   <?php } ?>
-    <h4 class="list-group-item-heading"><?php echo date('d/m/Y', strtotime($material['Aviso']['data'])); ?></h4>
+    <h4 class="list-group-item-heading"><?php echo $material['Aviso']['data']; ?></h4>
     <p class="list-group-item-text"><pre><?php echo $material['Aviso']['mensagem']; ?></pre>
 <br/> <button type="button" class="btn btn-default btn-lg">
 <i class="fa fa-download"></i> Baixar 
