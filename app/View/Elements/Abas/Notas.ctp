@@ -4,46 +4,45 @@
 <br/><br/>
 <div class="panel panel-default">
 <table class="table">
-        <thead>
-          <tr>
-            <th>Disciplina</th>
-            <th>Professor</th>
-            <th>Titulação</th>
-            <th>Datas</th>
-            <th>CH</th>
-            <th>Freq. (%)</th>
-            <th>Nota</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Análise Financeira e Orçamentária</td>
-            <td>Giani Cendron</td>
-            <td>Mestre</td>
-            <td></td>
-            <td>20</td>
-            <td>100</td>
-            <td>9,00</td>
-          </tr>
-          <tr>
-            <td>Análise Financeira e Orçamentária</td>
-            <td>Giani Cendron</td>
-            <td>Mestre</td>
-            <td></td>
-            <td>20</td>
-            <td>100</td>
-            <td>9,00</td>
-          </tr>
-          <tr>
-            <td>Análise Financeira e Orçamentária</td>
-            <td>Giani Cendron</td>
-            <td>Mestre</td>
-            <td></td>
-            <td>20</td>
-            <td>100</td>
-            <td>9,00</td>
-          </tr>
-        </tbody>
-      </table>
+  <thead>
+    <tr>
+      <th>Disciplina</th>
+      <th>Professor</th>
+      <th>Titulação</th>
+      <th>Datas</th>
+      <th>CH</th>
+      <th>Freq. (%)</th>
+      <th>Nota</th>
+    </tr>
+  </thead>
+  <tbody>
+<?php 
+$ha = 0;
+$nt = 0;
+foreach ($notas as $nota):  
+$ha += $nota['AlunoDisciplina']['horas_aula'];
+$nt += $nota['AlunoDisciplina']['nota']; 
+?>
+    <tr>
+      <td><?php echo $nota['Disciplina']['nome']; ?></td>
+      <td><?php echo $nota['Professor']['nome']; ?></td>
+      <td><?php echo $nota['Professor']['resumotitulacao']; ?></td>
+      <td></td>
+      <td><?php echo $nota['AlunoDisciplina']['horas_aula']; ?></td>
+      <td><?php echo $nota['AlunoDisciplina']['data']; ?></td>
+      <td><?php echo $nota['AlunoDisciplina']['nota']; ?></td>
+    </tr>
+<?php endforeach; ?>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><?php echo $ha; ?></td>
+      <td></td>
+      <td><?php echo $nt / count($nota); ?></td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
