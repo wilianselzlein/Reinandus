@@ -14,6 +14,7 @@ $(document).ready(function() {
    const BUTTON_ADD = "#btn-add";
    //------------------------------
    const ATTR_FIELD_LABEL = "field-label";
+   const ATTR_FIELD_TEXT = "field-text";
    const ATTR_FIELD_VALUE = "field-value";
    const ATTR_FIELD_POSITION = "field-position";
    const ATTR_FILTER_TYPE = "filter-type";
@@ -33,8 +34,6 @@ $(document).ready(function() {
          url: '/Relatorios/dados',
          data: "ajax=true&model="+campo.Modelo,
          success: function(msg){
-            //console.log(msg);
-            //alert(msg);
             $('#select_dados').html(msg);
          }
       });
@@ -100,6 +99,7 @@ $(document).ready(function() {
          this.position = _object.getAttribute(ATTR_FIELD_POSITION);
          this.label = _object.getAttribute(ATTR_FIELD_LABEL);
          this.value = _object.value;
+         this.text = _object.getAttribute(ATTR_FIELD_TEXT);
       }
    }
    /*
@@ -118,8 +118,7 @@ $(document).ready(function() {
       var selected_component = "";
       var selectedValues = [];
       var rows = $(DYNAMIC_CONTENT_SELECTED+" table tbody").html();
-      //alert('Oi');
-     // alert(_filter.fields.length);
+
       for(var i = 0; i < _filter.fields.length; i++) {
          _comp = _filter.fields[i];
          switch(tipoFiltro) {
@@ -145,7 +144,7 @@ $(document).ready(function() {
                }
             case TipoFiltro.OPCOES_FINITAS:
                {
-                  selected_component += _filter.fields[i].label + " igual: " + _filter.fields[i].value;
+                  selected_component += _filter.fields[i].label + " igual: " + _filter.fields[i].text;
                   selected_component += "<br>";
                   break;
                }
@@ -236,12 +235,12 @@ $(document).ready(function() {
    $('#dynamic-content').on('change', '#select_dados', function() {
       var multiple_options = "";
       $(this).find('option:selected').each(function() {
-         multiple_options += "'"+$( this ).text() + "', ";
+         multiple_options += ""+$( this ).text() + ", ";
       });
-      //alert(multiple_options);
       var input = $(this).parent().find("input[type='hidden']");
       //$(this).find('option:selected').text()
-      $(input).val(multiple_options.substring(0,multiple_options.length-2));
+      $(input).attr(ATTR_FIELD_TEXT, multiple_options.substring(0,multiple_options.length-2));
+      $(input).val($(this).val());
       //
       
    });
