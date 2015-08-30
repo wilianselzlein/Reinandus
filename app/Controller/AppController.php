@@ -52,7 +52,7 @@ class AppController extends Controller {
                           );
 
    public $components = array(
-      'Security',
+      // -------OBS: ver esse link http://goo.gl/yvxl5Q ---- //'Security',
       'Cookie',
       'Session',
       'Auth',

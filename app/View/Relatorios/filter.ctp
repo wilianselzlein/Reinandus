@@ -116,7 +116,7 @@ $campoObrigatorioPrefix = $isObrigatorio == 'true' ? '* ' : '';
                }               
             }
 
-            $('#my-form').valid();
+            //$('#my-form').valid();
          </script>
 
       </div>

@@ -100,6 +100,7 @@ class RelatoriosController extends AppController {
       
       if (isset($this->request->data)) {             
             foreach ($this->request->data as $key => $value){                    
+               $originalValue = $value;
                $compositeKey = explode(",", $key);
                $compositeValue = explode(",", $value);
                
@@ -120,7 +121,7 @@ class RelatoriosController extends AppController {
                      }
                      case 3: //OPCOES_FINITAS
                      {
-                        $filtros .= " AND ".str_replace("_",".", $campo)." LIKE '%".$compositeValue[0]."%'";
+                        $filtros .= " AND ".str_replace("_",".", $campo)." in (".$originalValue.")";
                         break;
                      }
                      case 4: //FAIXA_CODIGO_CAMPO_ADICIONAL

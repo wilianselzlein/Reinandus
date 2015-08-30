@@ -234,10 +234,15 @@ $(document).ready(function() {
    });
    
    $('#dynamic-content').on('change', '#select_dados', function() {
+      var multiple_options = "";
+      $(this).find('option:selected').each(function() {
+         multiple_options += "'"+$( this ).text() + "', ";
+      });
+      //alert(multiple_options);
       var input = $(this).parent().find("input[type='hidden']");
-      $(input).val($(this).find('option:selected').text());
+      //$(this).find('option:selected').text()
+      $(input).val(multiple_options.substring(0,multiple_options.length-2));
       //
-      //alert(t.name);
       
    });
    

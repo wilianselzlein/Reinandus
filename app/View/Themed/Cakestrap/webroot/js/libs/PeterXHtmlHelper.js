@@ -48,7 +48,7 @@ function Draw(id, type, field, alias, modelo) {
       component += 
          "<input  id='" + this.type + "_number' type='hidden' class='form-control comp' field-label='" + this.alias + "' field-value>"
          +
-         "<select id='select_dados' class='form-control comp' field-label='" + this.alias + "'>" +
+         "<select multiple id='select_dados' class='form-control comp' field-label='" + this.alias + "'>" +
          //"<option value='-1'>Todos(as)</option>" +
          //"<option value='1'>" + this.modelo + "</option>" +
          "</select>";
