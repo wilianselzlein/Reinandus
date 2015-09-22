@@ -184,6 +184,12 @@ if($pessoa['Pessoa']['pessoa'] == 'F'){
                      &nbsp;
                   </td>
                </tr>
+               <tr class=" <?php echo $hidden;?>">    <td><strong><?php echo __('Desconto'); ?></strong></td>
+                  <td>
+                     <?php echo h($pessoa['Pessoa']['desconto']); ?>
+                     &nbsp;
+                  </td>
+               </tr>
                <tr>		<td><strong><?php echo __('Created'); ?></strong></td>
                   <td>
                      <?php echo h($pessoa['Pessoa']['created']); ?>

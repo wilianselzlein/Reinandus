@@ -26,9 +26,9 @@ class PortalController extends AppController {
       $options = array('recursive' => -1, 'conditions' => array('Aviso.tipo_id' => 24), 'order' => array('Aviso.Data DESC'));
       $vagas = $Vaga->find('all', $options);
 
-      $Desconto = ClassRegistry::init('Aviso');
-      $options = array('recursive' => -1, 'conditions' => array('Aviso.tipo_id' => 25), 'order' => array('Aviso.Data DESC'));
-      $descontos = $Vaga->find('all', $options);
+      $Convenio = ClassRegistry::init('Pessoa');
+      $options = array('recursive' => -1, 'conditions' => array('Pessoa.desconto >= ' => 0), 'order' => array('Pessoa.fantasia'));
+      $convenios = $Convenio->find('all', $options);
 
       $Nota = ClassRegistry::init('AlunoDisciplina');
       $options = array('conditions' => array('AlunoDisciplina.aluno_id' => $id));
@@ -37,7 +37,7 @@ class PortalController extends AppController {
       $Grupo = ClassRegistry::init('Grupo');
       $grupos = $Grupo->findAsCombo();
 
-      $this->set(compact('avisos', 'grupos', 'materiais', 'notas', 'vagas'));
+      $this->set(compact('avisos', 'grupos', 'materiais', 'notas', 'vagas', 'convenios'));
    }
 
    public function login(){

@@ -10,33 +10,18 @@
           </tr>
         </thead>
         <tbody>
+<?php foreach ($convenios as $convenio): ?>
           <tr>
             <td>
 <img src="http://intranet.iepg.edu.br:8080/Alunos/imagem.jsp?imgID=558" align="center" height="50" width="50" alt="">
             </td>
-            <td>Sul Serviços Administrativos Empresariais</td>
-            <td>Pedro Rodrigo</td>
-            <td>(41)898098908</td>
-            <td>20%</td>
+            <td><?php echo $convenio['Pessoa']['fantasia']; ?></td>
+            <td><?php echo $convenio['Pessoa']['contato']; ?></td>
+            <td><?php echo $convenio['Pessoa']['fone']; ?></td>
+            <td><?php echo $convenio['Pessoa']['desconto']; ?></td>
           </tr>
-          <tr>
-            <td>
-<img src="http://intranet.iepg.edu.br:8080/Alunos/imagem.jsp?imgID=558" align="center" height="50" width="50" alt="">
-            </td>
-            <td>Sul Serviços Administrativos Empresariais</td>
-            <td>Pedro Rodrigo</td>
-            <td>(41)909090909</td>
-            <td>20%</td>
-          </tr>
-          <tr>
-            <td>
-<img src="http://intranet.iepg.edu.br:8080/Alunos/imagem.jsp?imgID=558" align="center" height="50" width="50" alt="">
-            </td>
-            <td>Sul Serviços Administrativos Empresariais</td>
-            <td>Pedro Rodrigo</td>
-            <td>(41)9090909</td>
-            <td>20%</td>
-          </tr>
+
+<?php endforeach; ?>
         </tbody>
       </table>
 

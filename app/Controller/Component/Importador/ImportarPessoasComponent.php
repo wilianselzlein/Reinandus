@@ -36,6 +36,7 @@ class ImportarPessoasComponent extends ImportadorBaseComponent {
 		$dados['secundario'] = $this->FormatarValorEncode($parametro['NETRAMOSEC']);
 		$dados['fundacao'] = $parametro['NETDATAFUND'];
 		$dados['juntacomercial'] = $this->FormatarValorEncode($parametro['NETJUNTACOMERC']);
+		$dados['desconto'] = $parametro['NETDESCONTO'];
 		$this->SalvarDados($dados);
 	}
 
