@@ -16,23 +16,8 @@ class CursosController extends AppController {
  *
  * @var array
  */
-		public $components = array('Paginator', 'Session', 'Eip.Eip', 'RequestHandler');
-	
-	public $helpers = array('Eip.Eip', 'Javascript');
+        public $components = array('Paginator', 'Session');
 
-
-/**
- * simple option & lazy option
- * no view needed
- */
-public function eip() {
-$this->autoRender = false;
-   $this->Eip->auto('Curso');
-  
-}
-
-
-/**
  * index method
  *
  * @return void
