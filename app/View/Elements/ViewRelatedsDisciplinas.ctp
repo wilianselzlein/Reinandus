@@ -25,7 +25,7 @@
                   <th><?php echo __('Id'); ?></th>
                   <th><?php echo __('Disciplina'); ?></th>
                   <th><?php echo __('Professor'); ?></th>
-                  <th><?php if (isset($disciplina['horas_aula'])) echo __('Horas Aula'); ?></th>
+                  <th><?php echo __('Horas Aula'); ?></th>
                   <th class="actions text-center"><?php echo __('Actions'); ?></th>
                </tr>
             </thead>
