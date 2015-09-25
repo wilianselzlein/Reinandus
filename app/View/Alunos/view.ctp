@@ -36,7 +36,7 @@ else
 		<td><?php echo $this->Html->link($aluno['Naturalidade']['nome'], array('controller' => 'cidades', 'action' => 'view', $aluno['Naturalidade']['id']), array('class' => '')); ?>&nbsp;</td>
 	</tr>
 	<?php echo $this->element('LinhaView', array('alias' => 'Nacionalidade', 'valor' => h($aluno['Aluno']['nacionalidade']))); ?>
-	<?php echo $this->element('LinhaView', array('alias' => 'Nascimento', 'valor' => date('d/m/Y', strtotime($aluno['Aluno']['data_nascimento'])))); ?>
+	<?php echo $this->element('LinhaView', array('alias' => 'Nascimento', 'valor' => $aluno['Aluno']['data_nascimento'])); ?>
 	<tr>
 		<td><strong><?php echo __('Estado Civil'); ?></strong></td>
 		<td><?php echo $this->Html->link($aluno['EstadoCivil']['valor'], array('controller' => 'enumerados', 'action' => 'view', $aluno['EstadoCivil']['id']), array('class' => '')); ?>&nbsp;</td>
@@ -170,7 +170,7 @@ else
                   <td><?php echo $disciplina['AlunoDisciplina']['frequencia']; ?></td>
                   <td><?php echo $disciplina['AlunoDisciplina']['nota']; ?></td>
                   <td><?php echo $disciplina['AlunoDisciplina']['horas_aula']; ?></td>
-                  <td><?php echo date('d/m/Y', strtotime($disciplina['AlunoDisciplina']['data'])); ?></td>
+                  <td><?php echo $disciplina['AlunoDisciplina']['data']; ?></td>
                   <td class="actions text-center">
                      <?php echo $this->Html->link('<i class="fa fa-pencil"></i>',  array('controller' => 'alunodisciplinas', 'action' => 'edit',   $disciplina['AlunoDisciplina']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'),     'data-toggle'=>'tooltip')); ?>
                      <?php echo $this->Form->postLink('<i class="fa fa-times"></i>',   array('controller' => 'alunodisciplinas', 'action' => 'delete', $disciplina['AlunoDisciplina']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'),   'data-toggle'=>'tooltip'), 
@@ -221,9 +221,9 @@ else
                <tr>
                   <td><?php echo $mensalidade['Mensalidade']['id']; ?></td>
                   <td><?php echo $mensalidade['Mensalidade']['numero']; ?></td>
-                  <td><?php echo date('d/m/Y', strtotime($mensalidade['Mensalidade']['vencimento'])); ?></td>
+                  <td><?php echo $mensalidade['Mensalidade']['vencimento']; ?></td>
                   <td><?php echo $this->Number->currency($mensalidade['Mensalidade']['liquido'], 'BRL'); ?></td>
-                  <td><?php echo date('d/m/Y', strtotime($mensalidade['Mensalidade']['pagamento'])); ?></td>
+                  <td><?php echo $mensalidade['Mensalidade']['pagamento']; ?></td>
                   <td><?php echo $this->Html->link($mensalidade['Formapgto']['nome'], array('controller' => 'formaspagamentos', 'action' => 'view', $mensalidade['Formapgto']['id']), array('class' => '')); ?>
                      &nbsp;</td>
         		  <td class="actions text-center">
