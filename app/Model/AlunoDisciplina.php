@@ -6,7 +6,9 @@ App::uses('AppModel', 'Model');
  * @property Curso $Curso
  */
 class AlunoDisciplina extends AppModel {
+	
 var $actsAs = array('DateFormat');
+
 /**
  * Use table
  *
