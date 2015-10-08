@@ -27,7 +27,7 @@
             </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('responsavel_id', 
-                     array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-7">', 'after'=>'</div>')); ?>
+                     array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-7">', 'after'=>'</div>')); ?>
  				<?php echo $this->Form->input('sexo', 
                      array('class' => 'form-control', 'options' => array('M' => 'M', 'F' => 'F'), 'label'=>array('class'=>'col-sm-1 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-2">', 'after'=>'</div>')); ?>
             </div><!-- .form-group -->
@@ -39,7 +39,7 @@
             </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('naturalidade_id', 	
-                     array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-5">', 'after'=>'</div>')); ?>
+                     array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-5">', 'after'=>'</div>')); ?>
                <?php echo $this->Form->input('nacionalidade', 	
                      array('class' => 'form-control', 'label'=>array('text' => 'Nacional.', 'style' => 'padding-left: 0px;', 'class'=>'col-sm-1 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
             </div><!-- .form-group -->
@@ -75,7 +75,7 @@
             </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('cidade_id', 	
-                     array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+                     array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
             </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('residencial', 	
