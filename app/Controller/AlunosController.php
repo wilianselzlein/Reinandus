@@ -109,9 +109,9 @@ class AlunosController extends AppController {
 		$cidades = $this->Aluno->Cidade->findAsCombo();
 		$naturalidades = $this->Aluno->Cidade->findAsCombo();
 		$responsavels = $this->Aluno->Responsavel->findAsCombo();
-		$disciplinas = $this->Aluno->AlunoDisciplina->findAsCombo();
+		//$disciplinas = $this->Aluno->AlunoDisciplina->findAsCombo();
 
-		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professores', 'cidades', 'naturalidades', 'responsavels', 'disciplinas', 'situacaos'));
+		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professores', 'cidades', 'naturalidades', 'responsavels', 'situacaos'));
 	}
 
 /**
@@ -152,9 +152,9 @@ class AlunosController extends AppController {
 		$cidades = $this->Aluno->Cidade->findAsCombo();
 		$naturalidades = $this->Aluno->Cidade->findAsCombo();
 		$responsavels = $this->Aluno->Responsavel->findAsCombo();
-		$disciplinas = $this->Aluno->AlunoDisciplina->findAsCombo();
+		//$disciplinas = $this->Aluno->AlunoDisciplina->findAsCombo();
 		
-		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professores', 'cidades', 'naturalidades', 'responsavels', 'disciplinas', 'situacaos'));
+		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professores', 'cidades', 'naturalidades', 'responsavels', 'situacaos'));
 	}
 
 /**
