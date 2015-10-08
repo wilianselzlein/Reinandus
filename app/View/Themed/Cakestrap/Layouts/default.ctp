@@ -32,14 +32,14 @@ $usuario_logado = $this->Session->read('Auth.User');
    <?php
    echo $this->Html->meta('icon');
    echo $this->fetch('meta');
-   echo $this->Html->css('bootstrap');
+   echo $this->Html->css('bootstrap.min');
    
    echo $this->Html->css('sb-admin');
    echo $this->Html->css('bootstrap-dialog');
    echo $this->Html->css('datepicker3');
    echo $this->Html->css('font-awesome.min');
    echo $this->Html->css('bootstrap-combobox');
-   
+
    echo $this->fetch('css');
    echo $this->Html->script('libs/jquery-1.10.2.min');
    echo $this->Html->script('libs/bootstrap.min');
