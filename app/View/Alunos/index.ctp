@@ -63,5 +63,4 @@
 </div>
 <?php echo $this->element('Modal'); ?>
 <?php echo $this->element('ShowHide'); ?>
-<?php echo $this->('ShowHide'); ?>
 <?php echo $this->Html->script('cfg-cache-modal');?>
