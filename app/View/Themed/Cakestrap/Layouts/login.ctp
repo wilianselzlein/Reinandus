@@ -26,7 +26,7 @@ $copyright = 'GuildSoft';
             echo $this->Html->css('bootstrap-dialog');
             echo $this->Html->css('font-awesome.min');
             echo $this->fetch('css');
-            echo $this->Html->script('libs/jquery-1.10.2.min');
+            echo $this->Html->script('libs/jquery-2.1.4.min');
             echo $this->Html->script('libs/bootstrap.min');
             echo $this->Html->script('libs/bootstrap-dialog');
             echo $this->fetch('script');

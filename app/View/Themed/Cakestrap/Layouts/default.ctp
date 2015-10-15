@@ -41,7 +41,7 @@ $usuario_logado = $this->Session->read('Auth.User');
    echo $this->Html->css('bootstrap-combobox');
 
    echo $this->fetch('css');
-   echo $this->Html->script('libs/jquery-1.10.2.min');
+   echo $this->Html->script('libs/jquery-2.1.4.min');
    echo $this->Html->script('libs/bootstrap.min');
    echo $this->Html->script('libs/bootstrap-dialog');   
    echo $this->Html->script('libs/bootstrap-datepicker');
