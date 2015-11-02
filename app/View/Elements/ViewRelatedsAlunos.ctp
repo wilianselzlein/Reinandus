@@ -34,7 +34,7 @@
                <tr>
                   <td><?php echo $aluno['id']; ?></td>
                   <td><?php echo $aluno['nome']; ?></td>
-                  <td><?php echo $this->DisplayField->MakeLink($aluno, 'enumerados', 'situacao_id'); ?></td>
+                  <td><?php echo $this->DisplayField->MakeLink($aluno, 'situacao', 'situacao_id'); ?></td>
                   <td><?php echo $aluno['celular']; ?></td>
                   <td><?php echo $aluno['email']; ?></td>
                   <td><?php echo date('d/m/Y', strtotime($aluno['curso_inicio'])); ?></td>

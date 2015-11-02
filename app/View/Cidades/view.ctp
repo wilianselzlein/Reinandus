@@ -36,8 +36,8 @@
 			</div><!-- /.table-responsive -->
 			
 		</div><!-- /.view -->
-<?php echo $this->element('ViewRelatedsAlunos', array('array' => $cidade)); ?>
-<?php echo $this->element('ViewRelatedsPessoas', array('array' => $cidade)); ?>
-<?php echo $this->element('ViewRelatedsProfessores', array('array' => $cidade)); ?>
+<?php echo $this->element('ViewRelatedsAlunos', array('array' => $alunos)); ?>
+<?php echo $this->element('ViewRelatedsPessoas', array('array' => $pessoas)); ?>
+<?php echo $this->element('ViewRelatedsProfessores', array('array' => $professores)); ?>
 
 </div><!-- /#page-container .row-fluid -->
