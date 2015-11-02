@@ -34,7 +34,7 @@
 	if (isset($enumerado['CursoPeriodo']) && (count($enumerado['CursoPeriodo']) > 0))
  		echo $this->element('ViewRelatedsCursos', array('array' => $enumerado, 'model' => 'CursoPeriodo')); 
  	if ($enumerado['Enumerado']['nome'] == 'aviso')
-		echo $this->element('ViewRelatedsAvisos', array('array' => $enumerado)); 
+		echo $this->element('ViewRelatedsAvisos', array('array' => $enumerado));
  	if ($enumerado['Enumerado']['nome'] == 'relatorios_filtros')
 		echo $this->element('ViewRelatedsFiltros', array('array' => $enumerado)); 
 ?>

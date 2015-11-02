@@ -14,7 +14,7 @@ class GruposController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'TransformarArray');
 
 /**
  * index method
@@ -42,8 +42,18 @@ class GruposController extends AppController {
 		if (!$this->Grupo->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('recursive' => 2, 'conditions' => array('Grupo.' . $this->Grupo->primaryKey => $id));
+		$options = array('recursive' => 1, 'conditions' => array('Grupo.' . $this->Grupo->primaryKey => $id));
 		$this->set('grupo', $this->Grupo->find('first', $options));
+
+		$options = array('fields' => array('aviso_id'), 'conditions' => array('grupo_id = ' => $id));
+		$avisos = $this->Grupo->AvisoGrupo->find('list', $options); 
+
+		$options = array('conditions' => array('AND' => array('Aviso.id' => $avisos)));
+		$avisos = $this->Grupo->AvisoGrupo->Aviso->find('all', $options);
+
+		$avisos = $this->TransformarArray->FindInContainable('Aviso', $avisos);
+
+		$this->set(compact('avisos'));
 	}
 
 /**

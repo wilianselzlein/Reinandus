@@ -1,4 +1,4 @@
-<?php
+		<?php
 App::uses('AppModel', 'Model');
 /**
  * Grupo Model
@@ -49,8 +49,8 @@ class Grupo extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'AvisoCurso' => array(
-			'className' => 'AvisoCurso',
+		'AvisoGrupo' => array(
+			'className' => 'AvisoGrupo',
 			'foreignKey' => 'grupo_id',
 			'dependent' => false,
 			'conditions' => '',
