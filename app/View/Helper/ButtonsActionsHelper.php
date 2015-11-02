@@ -30,6 +30,7 @@ class ButtonsActionsHelper extends AppHelper {
 		return (strcasecmp($controller, 'Enumerados')) 
 			&& (strcasecmp($controller, 'Acessos'))
 			&& (strcasecmp($controller, 'AlunoDisciplinas'))
+			&& (strcasecmp($controller, 'DisciplinaProfessors'))
 			&& (strcasecmp($controller, 'CursoDisciplinas'))
 			&& (strcasecmp($controller, 'AvisoCurso'));
 	}

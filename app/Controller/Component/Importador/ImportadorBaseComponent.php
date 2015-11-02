@@ -76,7 +76,8 @@ abstract class ImportadorBaseComponent extends Component {
 			set_time_limit(0);
 			$this->Consulta = $this->Conexao->ConsultarSQL($this->SqlConsulta);
 			while ($registro = ibase_fetch_assoc ($this->Consulta)) {
-				$this->PassaValores($registro);
+				if (! VerificarRegistroJaCadastrado($registro))
+					$this->PassaValores($registro);
 			}
 			
 		}
@@ -113,6 +114,10 @@ abstract class ImportadorBaseComponent extends Component {
 			return $parametro;
 		else
 			return $this->Alunos[1];
+	}
+
+	protected function VerificarRegistroJaCadastrado($parametro) {
+		return True;
 	}
 
 

@@ -80,7 +80,7 @@ class ProfessoresController extends AppController {
 			}
 		}
 		$cidades = $this->Professor->Cidade->findAsCombo();
-		$disciplinas = $this->Professor->Disciplina->findAsCombo();
+		$disciplinas = $this->Professor->Disciplina->findAsCombo('asc', array('Disciplina.nome <> ""'));
 		$this->set(compact('cidades', 'disciplinas'));
 	}
 
@@ -114,7 +114,7 @@ class ProfessoresController extends AppController {
 			$this->request->data = $this->Professor->find('first', $options);
 		}
 		$cidades = $this->Professor->Cidade->findAsCombo();
-		$disciplinas = $this->Professor->Disciplina->findAsCombo();
+		$disciplinas = $this->Professor->Disciplina->findAsCombo('asc', array('Disciplina.nome <> ""'));
 		$this->set(compact('cidades', 'disciplinas'));
 	}
 
