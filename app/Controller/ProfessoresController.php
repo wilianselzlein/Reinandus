@@ -150,7 +150,9 @@ class ProfessoresController extends AppController {
  * @return void
  */
 	public function emails() {
-		$options = array('recursive' => 0, 'fields' => array('Professor.email'), 'order' => array('Professor.email'));
+		$options = array('recursive' => 0, 'fields' => array('Professor.email'), 
+			'conditions' => array('Professor.email <> ""'), 'order' => array('Professor.email'));
+
 	    $emails = $this->Professor->find('list', $options);
 		$this->set('emails', $emails);
 	}

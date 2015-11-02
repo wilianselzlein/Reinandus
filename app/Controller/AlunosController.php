@@ -249,7 +249,7 @@ class AlunosController extends AppController {
  */
 	public function emails() {
 		$options = array('recursive' => 0, 'fields' => array('Aluno.email'),
-		'conditions' => array('Aluno.email <> '''''), 'order' => array('Aluno.email'));
+		'conditions' => array('Aluno.email <> ""'), 'order' => array('Aluno.email'));
 	    $emails = $this->Aluno->find('list', $options);
 		$this->set('emails', $emails);
 	}
