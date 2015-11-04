@@ -559,7 +559,7 @@ msgstr "Débito"
 msgid "Credito"
 msgstr "Crédito"
 
-msgid "LancamentoContabil"
+msgid "Lancamentocontabil"
 msgstr "Lançamento Contábil"
 
 msgid "LancamentosContabils"
