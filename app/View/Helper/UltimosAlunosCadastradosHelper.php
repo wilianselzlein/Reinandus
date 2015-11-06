@@ -8,10 +8,11 @@ class UltimosAlunosCadastradosHelper extends AppHelper {
 	public function GerarLista() { 
 
 		$aluno = ClassRegistry::init('Aluno');
+		$aluno->unbindModel(array('belongsTo' => array('Naturalidade', 'Situacao', 'EstadoCivil', 'Indicacao', 'Professor', 'Responsavel')));
 		$alunos = $aluno->find('all', array('recursive' => 0, 'limit' => 5, 'order' => array('Aluno.created DESC') 
 			,'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.created', 'Cidade.nome', 'Curso.nome')
 			));
-		
+
 		$return = '';
 		for ($i = 0; $i < count($alunos); $i++){
 
