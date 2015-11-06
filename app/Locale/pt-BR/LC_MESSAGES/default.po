@@ -562,6 +562,9 @@ msgstr "Crédito"
 msgid "LancamentoContabil"
 msgstr "Lançamento Contábil"
 
+msgid "Lancamentocontabil"
+msgstr "Lançamento Contábil"
+
 msgid "LancamentosContabils"
 msgstr "Lançamentos Contábeis"
 
