@@ -13,7 +13,7 @@
                 </h3>
             </div>
 			<div class="panel-body">
-				<?php if (!empty($planoconta['LancamentoContabil' . $nome])): ?>
+				<?php if (!empty($array['LancamentoContabil' . $nome])): ?>
 					
 					<div class="table-responsive">
 						<table class="table table-hover table-condensed">
@@ -28,7 +28,7 @@
 								</tr>
 							</thead>
 							<tbody>
-									<?php foreach ($planoconta['LancamentoContabil' . $nome] as $lctocontabil): ?>
+									<?php foreach ($array['LancamentoContabil' . $nome] as $lctocontabil): ?>
 		<tr>
 			<td><?php echo $lctocontabil['id']; ?></td>
 			<td><?php echo date('d/m/Y', strtotime($lctocontabil['data'])); ?></td>

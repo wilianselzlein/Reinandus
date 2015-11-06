@@ -4,9 +4,7 @@
 <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action'], $this->params['pass'][0]); ?>
             </h2>
         </div>
-	
-	
-		
+
 		<div class="lancamentocontabils view pandel-body">
 		
 			<div class="table-responsive">

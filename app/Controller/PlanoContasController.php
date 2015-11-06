@@ -14,7 +14,7 @@ class PlanoContasController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'TransformarArray');
 
 /**
  * index method
@@ -41,8 +41,21 @@ class PlanoContasController extends AppController {
 		if (!$this->PlanoConta->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('recursive' => 2, 'conditions' => array('PlanoConta.' . $this->PlanoConta->primaryKey => $id));
+		$options = array('recursive' => false, 'conditions' => array('PlanoConta.' . $this->PlanoConta->primaryKey => $id));
 		$this->set('planoconta', $this->PlanoConta->find('first', $options));
+
+		$LancamentoContabil = ClassRegistry::init('LancamentoContabil');
+
+		$options = array('recursive' => 1, 'conditions' => array('LancamentoContabil.debito_id' => $id), 'limit' => 200);
+		$debitos = $LancamentoContabil->find('all', $options);
+		$debitos = $this->TransformarArray->FindInContainable('LancamentoContabil', $debitos);
+		$this->set(compact('debitos'));
+
+		$options = array('recursive' => 1, 'conditions' => array('LancamentoContabil.credito_id' => $id), 'limit' => 200);
+		$creditos = $LancamentoContabil->find('all', $options);
+		$creditos = $this->TransformarArray->FindInContainable('LancamentoContabil', $creditos);
+		$this->set(compact('creditos'));
+
 	}
 
 /**
@@ -94,7 +107,7 @@ class PlanoContasController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('conditions' => array('PlanoConta.' . $this->PlanoConta->primaryKey => $id));
+			$options = array('recursive' => -1, 'conditions' => array('PlanoConta.' . $this->PlanoConta->primaryKey => $id));
 			$this->request->data = $this->PlanoConta->find('first', $options);
 		}
 	}
