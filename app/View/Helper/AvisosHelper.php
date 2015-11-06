@@ -47,14 +47,14 @@ class AvisosHelper extends AppHelper {
 
 	public function Alunos($css) { 
 
-        $conta = CakeSession::read('Avisos.Alunos');
+        $conta = CakeSession::read('Avisos.Aniver');
 	    if ($conta == null) {
 	    	$aluno = ClassRegistry::init('Aluno');
 			$condicoes = array();
 			$condicoes['Aluno.data_nascimento'] = date('Y-m-d');
 			$aluno->unbindModel(array('belongsTo' => array('Naturalidade', 'Situacao', 'EstadoCivil', 'Indicacao', 'Curso', 'Professor', 'Cidade', 'Responsavel')));
 			$conta = $aluno->find('count', array('recursive' => false, 'conditions' => $condicoes));
-			CakeSession::write('Avisos.Alunos', $conta . ' ');
+			CakeSession::write('Avisos.Aniver', $conta . ' ');
 	    }
 		$texto = '<span class="label label-' . $css . '">' . $conta . '</span> Aluno(s)';
 
