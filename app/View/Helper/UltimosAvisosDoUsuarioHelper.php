@@ -6,13 +6,18 @@ class UltimosAvisosDoUsuarioHelper extends AppHelper {
 	public $helpers = array('Html', 'Form'); 
 
 	public function GerarLista($user_id) { 
-
-		$aviso = ClassRegistry::init('Aviso');
-		$avisos = $aviso->find('all', array('recursive' => 0, 'limit' => 5, 'order' => array('Aviso.data DESC'),
-			'conditions' => array('Aviso.user_id' => $user_id, 'Aviso.tipo_id' => 24),
-			'fields' => array('Aviso.id', 'Aviso.data', 'Aviso.mensagem', 'User.username')
-			));
-		
+		$avisos = CakeSession::read('Avisos.Usuarios');
+		if ($avisos == null) {
+			$aviso = ClassRegistry::init('Aviso');
+			$aviso->unbindModel(array('belongsTo' => array('Tipo')));
+			$avisos = $aviso->find('all', array('recursive' => 0, 'limit' => 5, 'order' => array('Aviso.data DESC'),
+				'conditions' => array('Aviso.user_id' => $user_id, 'Aviso.tipo_id' => 24),
+				'fields' => array('Aviso.id', 'Aviso.data', 'Aviso.mensagem', 'User.username')
+				));
+			$avisos = serialize($avisos);
+			CakeSession::write('Avisos.Usuarios', $avisos);
+		}
+		$avisos = unserialize($avisos);
 		$return = '';
 		for ($i = 0; $i < count($avisos); $i++){
 

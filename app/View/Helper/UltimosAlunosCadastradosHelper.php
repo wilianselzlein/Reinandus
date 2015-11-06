@@ -6,12 +6,17 @@ class UltimosAlunosCadastradosHelper extends AppHelper {
 	public $helpers = array('Html', 'Form'); 
 
 	public function GerarLista() { 
-
-		$aluno = ClassRegistry::init('Aluno');
-		$aluno->unbindModel(array('belongsTo' => array('Naturalidade', 'Situacao', 'EstadoCivil', 'Indicacao', 'Professor', 'Responsavel')));
-		$alunos = $aluno->find('all', array('recursive' => 0, 'limit' => 5, 'order' => array('Aluno.created DESC') 
-			,'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.created', 'Cidade.nome', 'Curso.nome')
-			));
+		$alunos = CakeSession::read('Avisos.Alunos');
+		if ($alunos == null) {
+			$aluno = ClassRegistry::init('Aluno');
+			$aluno->unbindModel(array('belongsTo' => array('Naturalidade', 'Situacao', 'EstadoCivil', 'Indicacao', 'Professor', 'Responsavel')));
+			$alunos = $aluno->find('all', array('recursive' => 0, 'limit' => 5, 'order' => array('Aluno.created DESC') 
+				,'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.created', 'Cidade.nome', 'Curso.nome')
+				));
+			$alunos = serialize($alunos);
+			CakeSession::write('Avisos.Alunos', $alunos);
+		}
+		$alunos = unserialize($alunos);
 
 		$return = '';
 		for ($i = 0; $i < count($alunos); $i++){
