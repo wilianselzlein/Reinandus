@@ -43,7 +43,7 @@ if ($noLogs || isset($_forced_from_dbo_)):
 		printf('<caption>(%s) %s %s took %s ms</caption>', $source, $logInfo['count'], $text, $logInfo['time']);
 	?>
 	<thead>
-		<tr><th>Nr</th><th>Query</th><th>Error</th><th>Affected</th><th>Num. rows</th><th>Took (ms)</th></tr>
+		<tr><th>#</th><th>&nbsp;Query</th><th>E</th><th>A</th><th>R</th><th>T</th></tr>
 	</thead>
 	<tbody>
 	<?php
@@ -63,9 +63,15 @@ if ($noLogs || isset($_forced_from_dbo_)):
 				}
 				$i['query'] .= " , params[ " . rtrim($bindParam, ', ') . " ]";
 			}
+			$sql = '<h6>' . $i['query'] . '</h6>';
+			$sql = str_replace('FROM', '<br>FROM', $sql);
+			$sql = str_replace('LEFT', '<br>LEFT', $sql);
+			$sql = str_replace('WHERE', '<br>WHERE', $sql);
+			$sql = str_replace('`', '', $sql);
+
 			printf('<tr><td>%d</td><td>%s</td><td>%s</td><td style="text-align: right">%d</td><td style="text-align: right">%d</td><td style="text-align: right">%d</td></tr>%s',
 				$k + 1,
-				h($i['query']),
+				$sql,
 				$i['error'],
 				$i['affected'],
 				$i['numRows'],

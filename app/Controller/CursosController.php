@@ -16,8 +16,9 @@ class CursosController extends AppController {
  *
  * @var array
  */
-        public $components = array('Paginator', 'Session');
-
+    public $components = array('Paginator', 'Session');
+    
+/**
  * index method
  *
  * @return void

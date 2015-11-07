@@ -14,7 +14,7 @@ class PessoasController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'TransformarArray');
 
 /**
  * index method
@@ -42,8 +42,21 @@ class PessoasController extends AppController {
 		if (!$this->Pessoa->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('recursive' => 2, 'conditions' => array('Pessoa.' . $this->Pessoa->primaryKey => $id));
+		$options = array('recursive' => 0, 'conditions' => array('Pessoa.' . $this->Pessoa->primaryKey => $id));
 		$this->set('pessoa', $this->Pessoa->find('first', $options));
+
+		$options = array('recursive' => 0, 'conditions' => array('Curso.pessoa_id' => $id), 'limit' => 200);
+		$this->Pessoa->Curso->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
+		$cursos = $this->Pessoa->Curso->find('all', $options);
+		$cursos = $this->TransformarArray->FindInContainable('Curso', $cursos);
+		$this->set(compact('cursos'));
+
+		$options = array('recursive' => 0, 'conditions' => array('Usuario.pessoa_id' => $id), 'limit' => 200);
+		//$this->Pessoa->User->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
+		$usuarios = $this->Pessoa->Usuario->find('all', $options);
+		$usuarios = $this->TransformarArray->FindInContainable('Usuario', $usuarios);
+		$this->set(compact('usuarios'));
+
 	}
 
 /**
