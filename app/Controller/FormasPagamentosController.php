@@ -14,7 +14,7 @@ class FormasPagamentosController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'TransformarArray');
 
 /**
  * index method
@@ -41,8 +41,16 @@ class FormasPagamentosController extends AppController {
 		if (!$this->Formapgto->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('recursive' => 2, 'conditions' => array('Formapgto.' . $this->Formapgto->primaryKey => $id));
+		$options = array('recursive' => false, 'conditions' => array('Formapgto.' . $this->Formapgto->primaryKey => $id));
 		$this->set('formapgto', $this->Formapgto->find('first', $options));
+		
+		$options = array('recursive' => 0, 'conditions' => array('Mensalidade.formapgto_id' => $id), 'limit' => 200, 
+		'fields' => array('Mensalidade.id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Aluno.id', 'Aluno.nome'));
+		
+		$this->Formapgto->Mensalidade->unbindModel(array('belongsTo' => array('User', 'Conta', 'Formapgto')));
+		$mensalidades = $this->Formapgto->Mensalidade->find('all', $options);
+		$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);
+		$this->set(compact('mensalidades'));
 	}
 
 /**

@@ -1,6 +1,7 @@
 	 <div class="panel panel-default ">
         <div class="panel-heading">
-            <h2><?php echo __('FormaPagamento');?>                  <small><?php echo __('View'); ?></small>
+            <h2><?php echo __('FormaPagamento');?>
+            <small><?php echo __('View'); ?></small>
 <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action'], $this->params['pass'][0]); ?>
             </h2>
         </div>	
@@ -86,12 +87,8 @@
 					
 				<?php endif; ?>
 
-				
 			</div><!-- /.related -->
 
-			<?php echo $this->element('ViewRelatedsMensalidades', array('array' => $formapgto)); ?>
-
-			
-	
+			<?php echo $this->element('ViewRelatedsMensalidades', array('array' => $mensalidades)); ?>
 
 </div><!-- /#page-container .row-fluid -->
