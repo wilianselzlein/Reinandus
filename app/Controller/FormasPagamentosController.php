@@ -102,14 +102,14 @@ class FormasPagamentosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('conditions' => array('Formapgto.' . $this->Formapgto->primaryKey => $id));
+			$options = array('recursive' => false, 'conditions' => array('Formapgto.' . $this->Formapgto->primaryKey => $id));
 			$this->request->data = $this->Formapgto->find('first', $options);
 		}
 	}
 
 /**
  * delete method
- *
+* 
  * @throws NotFoundException
  * @throws MethodNotAllowedException
  * @param string $id

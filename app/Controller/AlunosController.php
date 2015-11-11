@@ -107,7 +107,7 @@ class AlunosController extends AppController {
 		$cursos = $this->Aluno->Curso->findAsCombo();
 		$professores = $this->Aluno->Professor->findAsCombo();
 		$cidades = $this->Aluno->Cidade->findAsCombo();
-		$naturalidades = $this->Aluno->Cidade->findAsCombo();
+		$naturalidades = $cidades;
 		$responsavels = $this->Aluno->Responsavel->findAsCombo();
 		//$disciplinas = $this->Aluno->AlunoDisciplina->findAsCombo();
 
@@ -140,7 +140,8 @@ class AlunosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('conditions' => array('Aluno.' . $this->Aluno->primaryKey => $id));
+			$options = array('recursive' => false, 'conditions' => array('Aluno.' . $this->Aluno->primaryKey => $id));
+			$this->Aluno->unbindModel(array('belongsTo' => array('Naturalidade', 'Situacao', 'EstadoCivil', 'Indicacao', 'Curso', 'Professor', 'Cidade', 'Responsavel')));
 			$this->request->data = $this->Aluno->find('first', $options);
 		}
 		$estadoCivils = $this->Aluno->EstadoCivil->find('list', array('conditions' => array('EstadoCivil.referencia' => 'estado_civil_id')));
@@ -150,7 +151,7 @@ class AlunosController extends AppController {
 		$cursos = $this->Aluno->Curso->findAsCombo();
 		$professores = $this->Aluno->Professor->findAsCombo();
 		$cidades = $this->Aluno->Cidade->findAsCombo();
-		$naturalidades = $this->Aluno->Cidade->findAsCombo();
+		$naturalidades = $cidades;
 		$responsavels = $this->Aluno->Responsavel->findAsCombo();
 		//$disciplinas = $this->Aluno->AlunoDisciplina->findAsCombo();
 		

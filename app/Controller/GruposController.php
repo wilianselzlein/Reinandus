@@ -106,7 +106,7 @@ class GruposController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('conditions' => array('Grupo.' . $this->Grupo->primaryKey => $id));
+			$options = array('recursive' => false, 'conditions' => array('Grupo.' . $this->Grupo->primaryKey => $id));
 			$this->request->data = $this->Grupo->find('first', $options);
 		}
 	}

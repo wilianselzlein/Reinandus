@@ -102,7 +102,8 @@ class CursosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('conditions' => array('Curso.' . $this->Curso->primaryKey => $id));
+			$options = array('recursive' => false, 'conditions' => array('Curso.' . $this->Curso->primaryKey => $id));
+			$this->Curso->unbindModel(array('belongsTo' => array('Professor', 'Pessoa', 'Grupo', 'Tipo', 'Periodo')));
 			$this->request->data = $this->Curso->find('first', $options);
 		}
 		$professores = $this->Curso->Professor->findAsCombo();

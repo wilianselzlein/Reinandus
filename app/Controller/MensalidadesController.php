@@ -113,6 +113,7 @@ class MensalidadesController extends AppController {
 			}
 		} else {
 			$options = array('conditions' => array('Mensalidade.' . $this->Mensalidade->primaryKey => $id));
+			$this->Mensalidade->unbindModel(array('belongsTo' => array('Conta', 'Formapgto', 'User', 'Aluno')));
 			$this->request->data = $this->Mensalidade->find('first', $options);
 		}
 		$contas = $this->Mensalidade->Conta->findAsCombo();

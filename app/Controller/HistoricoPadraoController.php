@@ -82,7 +82,7 @@ class HistoricoPadraoController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('conditions' => array('HistoricoPadrao.' . $this->HistoricoPadrao->primaryKey => $id));
+			$options = array('recursive' => false, 'conditions' => array('HistoricoPadrao.' . $this->HistoricoPadrao->primaryKey => $id));
 			$this->request->data = $this->HistoricoPadrao->find('first', $options);
 		}
 	}

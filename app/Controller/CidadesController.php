@@ -115,7 +115,7 @@ class CidadesController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('conditions' => array('Cidade.' . $this->Cidade->primaryKey => $id));
+			$options = array('recursive' => false, 'conditions' => array('Cidade.' . $this->Cidade->primaryKey => $id));
 			$this->request->data = $this->Cidade->find('first', $options);
 		}
 		$estados = $this->Cidade->Estado->findAsCombo();

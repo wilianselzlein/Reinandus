@@ -1,17 +1,14 @@
 <div class="panel panel-default">
-
-<div class="panel-heading">
-            <h3><?php echo __('Disciplina'); ?>                    <small><?php echo __('Add') ?></small>
+	<div class="panel-heading">
+        <h3><?php echo __('Disciplina'); ?>
+        	<small><?php echo __('Add') ?></small>
+        </h3>
+    </div>
 <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>
-	
 	<div class="panel-body">
-
 		<div class="disciplinas form">
-		
 			<?php echo $this->Form->create('Disciplina', array('role' => 'form', 'class'=>'form-horizontal')); ?>
-
 				<fieldset>
-
 					<div class="form-group">
 						<?php echo $this->Form->input('nome', 
 				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')

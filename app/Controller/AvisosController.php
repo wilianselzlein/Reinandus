@@ -106,7 +106,8 @@ class AvisosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('conditions' => array('Aviso.' . $this->Aviso->primaryKey => $id));
+			$options = array('recursive' => false, 'conditions' => array('Aviso.' . $this->Aviso->primaryKey => $id));
+			$this->Aviso->unbindModel(array('belongsTo' => array('User', 'Tipo')));
 			$this->request->data = $this->Aviso->find('first', $options);
 		}
 		$users = $this->Aviso->User->findAsCombo();

@@ -110,7 +110,7 @@ class ProfessoresController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('conditions' => array('Professor.' . $this->Professor->primaryKey => $id));
+			$options = array('recursive' => false, 'conditions' => array('Professor.' . $this->Professor->primaryKey => $id));
 			$this->request->data = $this->Professor->find('first', $options);
 		}
 		$cidades = $this->Professor->Cidade->findAsCombo();

@@ -107,7 +107,7 @@ class PlanoContasController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('recursive' => -1, 'conditions' => array('PlanoConta.' . $this->PlanoConta->primaryKey => $id));
+			$options = array('recursive' => false, 'conditions' => array('PlanoConta.' . $this->PlanoConta->primaryKey => $id));
 			$this->request->data = $this->PlanoConta->find('first', $options);
 		}
 	}

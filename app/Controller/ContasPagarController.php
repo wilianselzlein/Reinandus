@@ -125,7 +125,8 @@ class ContasPagarController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('conditions' => array('ContaPagar.' . $this->ContaPagar->primaryKey => $id));
+			$options = array('recursive' => 'false', 'conditions' => array('ContaPagar.' . $this->ContaPagar->primaryKey => $id));
+			$this->ContaPagar->unbindModel(array('belongsTo' => array('Conta', 'Tipo', 'User', 'Pessoa', 'Situacao')));
 			$this->request->data = $this->ContaPagar->find('first', $options);
 		}
 		$contas = $this->ContaPagar->Conta->findAsCombo();
