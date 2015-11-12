@@ -97,7 +97,8 @@ class AcessosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('conditions' => array('Acesso.' . $this->Acesso->primaryKey => $id));
+			$options = array('recursive' => false, 'conditions' => array('Acesso.' . $this->Acesso->primaryKey => $id));
+			$this->Acesso->unbindModel(array('belongsTo' => array('Aluno')));
 			$this->request->data = $this->Acesso->find('first', $options);
 		}
 		$alunos = $this->Acesso->Aluno->findAsCombo();

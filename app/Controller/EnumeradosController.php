@@ -95,7 +95,7 @@ class EnumeradosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('conditions' => array('Enumerado.' . $this->Enumerado->primaryKey => $id));
+			$options = array('recursive' => false, 'conditions' => array('Enumerado.' . $this->Enumerado->primaryKey => $id));
 			$this->request->data = $this->Enumerado->find('first', $options);
 		}
 	}

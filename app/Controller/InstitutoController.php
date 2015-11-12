@@ -94,7 +94,8 @@ public $uses = array('Instituto');
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('conditions' => array('Instituto.' . $this->Instituto->primaryKey => $id));
+			$options = array('recursive' => false, 'conditions' => array('Instituto.' . $this->Instituto->primaryKey => $id));
+			$this->Instituto->unbindModel(array('belongsTo' => array('Empresa', 'Diretor', 'Tipo')));
 			$this->request->data = $this->Instituto->find('first', $options);
 		}
 		$empresas = $this->Instituto->Empresa->findAsCombo();

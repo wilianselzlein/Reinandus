@@ -35,7 +35,7 @@
                   <td><?php echo $this->DisplayField->MakeLink($aviso, 'usuario', 'user_id'); ?></td>
                   <td><?php echo $aviso['arquivo']; ?></td>
                   <td><?php echo $aviso['mensagem']; ?></td>
-                  <td><?php echo $this->DisplayField->MakeLink($aviso, 'enumerados', 'tipo_id'); ?></td>
+                  <td><?php echo $this->DisplayField->MakeLink($aviso, 'Tipo', 'tipo_id'); ?></td>
                   <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $aviso, 'model' => '', 'controller' => 'avisos')); ?>
                </tr>
                <?php endforeach; ?>

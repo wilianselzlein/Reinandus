@@ -85,10 +85,10 @@
                </tr>
             </thead>
             <tbody>
-               <?php $i = 0; foreach ($usuario['Permissao'] as $permissao): ?>
+               <?php foreach ($usuario['Permissao'] as $permissao): ?>
                <tr>
                   <td><?php echo $permissao['id']; ?></td>
-                  <td><?php echo $this->Html->link($permissao['Programa']['nome'], array('controller' => 'programas', 'action' => 'view', $permissao['Programa']['id']), array('class' => '')); ?>
+                  <td><?php echo $this->Html->link($permissao['programa_id'], array('controller' => 'programas', 'action' => 'view', $permissao['programa_id']), array('class' => '')); ?>
                      &nbsp;</td>
                   <td><i class="<?php echo ($permissao['index'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
                   <td><i class="<?php echo ($permissao['view'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
@@ -109,7 +109,7 @@
       <?php endif; ?>
    </div><!-- /.related PERMISSOES -->
 
-  <?php echo $this->element('ViewRelatedsMensalidades', array('array' => $usuario)); ?>
-  <?php echo $this->element('ViewRelatedsAvisos', array('array' => $usuario)); ?>
+  <?php echo $this->element('ViewRelatedsMensalidades', array('array' => $mensalidades)); ?>
+  <?php echo $this->element('ViewRelatedsAvisos', array('array' => $avisos)); ?>
 
 </div><!-- /#page-container .row-fluid -->

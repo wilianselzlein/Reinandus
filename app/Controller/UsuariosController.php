@@ -14,7 +14,7 @@ class UsuariosController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'TransformarArray');
 
 
 /**
@@ -42,8 +42,21 @@ class UsuariosController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('recursive' => 2, 'conditions' => array('User.' . $this->User->primaryKey => $id));
+		$options = array('recursive' => 1	, 'conditions' => array('User.' . $this->User->primaryKey => $id));
+		$this->User->unbindModel(array('hasMany' => array('Mensalidade', 'Aviso')));
 		$this->set('usuario', $this->User->find('first', $options));
+
+		$options = array('recursive' => 0, 'conditions' => array('Mensalidade.user_id' => $id), 'limit' => 200, 
+		'fields' => array('Mensalidade.id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Aluno.id', 'Aluno.nome'));
+		$this->User->Mensalidade->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
+		$mensalidades = $this->User->Mensalidade->find('all', $options);
+		$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);
+		$this->set(compact('mensalidades'));
+
+		$options = array('recursive' => 0, 'conditions' => array('Aviso.user_id' => $id), 'limit' => 200);
+		$avisos = $this->User->Aviso->find('all', $options);
+		$avisos = $this->TransformarArray->FindInContainable('Aviso', $avisos);
+		$this->set(compact('avisos'));
 	}
 
 /**
@@ -102,7 +115,8 @@ class UsuariosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+			$options = array('recursive' => false, 'conditions' => array('User.' . $this->User->primaryKey => $id));
+			$this->User->unbindModel(array('belongsTo' => array('Pessoa', 'Role')));
 			$this->request->data = $this->User->find('first', $options);
 		}
 		$pessoas = $this->User->Pessoa->findAsCombo();

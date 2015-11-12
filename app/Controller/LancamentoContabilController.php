@@ -88,7 +88,8 @@ class LancamentoContabilController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('conditions' => array('LancamentoContabil.' . $this->LancamentoContabil->primaryKey => $id));
+			$options = array('recursive' => false, 'conditions' => array('LancamentoContabil.' . $this->LancamentoContabil->primaryKey => $id));
+			$this->LancamentoContabil->unbindModel(array('belongsTo' => array('Debito', 'Credito', 'HistoricoPadrao')));
 			$this->request->data = $this->LancamentoContabil->find('first', $options);
 		}
 		$debitos = $this->LancamentoContabil->Debito->findAsCombo();
