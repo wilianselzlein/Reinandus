@@ -27,6 +27,6 @@
 		</div><!-- /.view -->
 
 <?php echo $this->element('ViewRelatedsAvisos', array('array' => $avisos)); ?>					
-<?php echo $this->element('ViewRelatedsCursos', array('array' => $grupo)); ?>
+<?php echo $this->element('ViewRelatedsCursos', array('array' => $cursos)); ?>
 
 </div><!-- /#page-container .row-fluid -->

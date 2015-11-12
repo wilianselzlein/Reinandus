@@ -42,18 +42,23 @@ class GruposController extends AppController {
 		if (!$this->Grupo->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('recursive' => 1, 'conditions' => array('Grupo.' . $this->Grupo->primaryKey => $id));
+		$options = array('recursive' => false, 'conditions' => array('Grupo.' . $this->Grupo->primaryKey => $id));
+		$this->Grupo->unbindModel(array('hasMany' => array('AvisoGrupo', 'Curso')));
 		$this->set('grupo', $this->Grupo->find('first', $options));
 
 		$options = array('fields' => array('aviso_id'), 'conditions' => array('grupo_id = ' => $id));
-		$avisos = $this->Grupo->AvisoGrupo->find('list', $options); 
+		$avisos = $this->Grupo->AvisoGrupo->find('list', $options);
 
 		$options = array('conditions' => array('AND' => array('Aviso.id' => $avisos)));
 		$avisos = $this->Grupo->AvisoGrupo->Aviso->find('all', $options);
-
 		$avisos = $this->TransformarArray->FindInContainable('Aviso', $avisos);
-
 		$this->set(compact('avisos'));
+
+		$options = array('recursive' => 0, 'conditions' => array('Curso.grupo_id' => $id), 'limit' => 200);
+		//$this->Grupo->Curso->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
+		$cursos = $this->Grupo->Curso->find('all', $options);
+		$cursos = $this->TransformarArray->FindInContainable('Curso', $cursos);
+		$this->set(compact('cursos'));
 	}
 
 /**

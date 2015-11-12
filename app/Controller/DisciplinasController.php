@@ -14,7 +14,7 @@ class DisciplinasController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'TransformarArray');
 
 /**
  * index method
@@ -42,8 +42,26 @@ class DisciplinasController extends AppController {
 		if (!$this->Disciplina->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('recursive' => 2, 'conditions' => array('Disciplina.' . $this->Disciplina->primaryKey => $id));
+		$options = array('recursive' => false, 'conditions' => array('Disciplina.' . $this->Disciplina->primaryKey => $id));
 		$this->set('disciplina', $this->Disciplina->find('first', $options));
+
+		$options = array('conditions' => array('AlunoDisciplina.disciplina_id' => $id), 'limit' => 200);
+		$this->Disciplina->AlunoDisciplina->bindModel(array('belongsTo' => array('Aluno')));
+		$alunos = $this->Disciplina->AlunoDisciplina->find('all', $options);
+	    $alunos = $this->TransformarArray->FindInContainable('Aluno', $alunos);
+		$this->set(compact('alunos'));
+
+		/*$options = array('conditions' => array('Pessoa.cidade_id' => $id), 'limit' => 200);
+		$this->Cidade->Pessoa->unbindModel(array('hasMany' => array('Curso', 'Detalhe', 'Usuario')));
+		$pessoas = $this->Cidade->Pessoa->find('all', $options);
+		$pessoas = $this->TransformarArray->FindInContainable('Pessoa', $pessoas);
+		$this->set(compact('pessoas'));
+
+		$options = array('conditions' => array('Professor.cidade_id' => $id), 'limit' => 200);
+		$this->Cidade->Professor->unbindModel(array('hasAndBelongsToMany' => array('Disciplina'), 'hasMany' => array('Aluno', 'AlunoDisciplina', 'Curso', 'CursoDisciplina', 'ProfessorDisciplina')));
+		$professores = $this->Cidade->Professor->find('all', $options);
+		$professores = $this->TransformarArray->FindInContainable('Professor', $professores);
+		$this->set(compact('professores'));*/
 	}
 
 /**
