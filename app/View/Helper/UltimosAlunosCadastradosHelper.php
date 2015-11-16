@@ -7,10 +7,14 @@ class UltimosAlunosCadastradosHelper extends AppHelper {
 
 	public function GerarLista() { 
 		$alunos = CakeSession::read('Avisos.Alunos');
+		
 		if ($alunos == null) {
 			$aluno = ClassRegistry::init('Aluno');
-			$aluno->unbindModel(array('belongsTo' => array('Naturalidade', 'Situacao', 'EstadoCivil', 'Indicacao', 'Professor', 'Responsavel')));
-			$alunos = $aluno->find('all', array('recursive' => 0, 'limit' => 5, 'order' => array('Aluno.created DESC') 
+			$aluno->unbindModel(array(
+				'belongsTo' => array('Naturalidade', 'Situacao', 'EstadoCivil', 'Indicacao', 'Professor', 'Responsavel'),
+				'hasMany' => array('Acesso', 'Detalhe', 'AlunoDisciplina', 'Mensalidade')));
+			$aluno->bindModel(array('belongsTo' => array('Cidade', 'Curso')));
+			$alunos = $aluno->find('all', array('recursive' => 1, 'limit' => 5, 'order' => array('Aluno.created DESC') 
 				,'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.created', 'Cidade.nome', 'Curso.nome')
 				));
 			$alunos = serialize($alunos);
