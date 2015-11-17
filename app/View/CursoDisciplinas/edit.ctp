@@ -12,7 +12,7 @@
 
 		<fieldset>
 			<div class="form-group">		            
-			<?php echo $this->Form->hidden('curso_id', array('type' => 'text', 'class' => 'form-control', 'value' => $curso_id, 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+			<?php echo $this->Form->hidden('curso_id', array('type' => 'text', 'class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
 			</div>
 			<div class="form-group">
 				<?php echo $this->Form->input('disciplina_id', array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
