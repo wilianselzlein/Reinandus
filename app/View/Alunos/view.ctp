@@ -251,7 +251,7 @@ else
 	<div class="panel-body">
   	<?php if (!empty($acessos)): ?>
 		<?php 
-		$dia = 0; $mes = 0; $sem = 0; $ano = 0;
+		$dia = 0; $mes = 0; $sem = 0; $ano = 0; $out = 0;
 
 		foreach ($acessos as $acesso):
 			if ($acesso['Acesso']['datahora'] == null)
@@ -262,6 +262,7 @@ else
 			if ($interval->days < 30) $mes++;
 			if ($interval->days < 180) $sem++;
 			if ($interval->days < 360) $ano++;
+			if ($interval->days > 360) $out++;
 
 		endforeach; ?>
 		<ul class="list-group" style=" width: 40%; ">
@@ -276,6 +277,9 @@ else
 		  </li>
 		  <li class="list-group-item">
 		    <span class="badge"><?php echo $ano; ?></span> No ano
+		  </li>
+		  <li class="list-group-item">
+		    <span class="badge"><?php echo $out; ?></span> Antes
 		  </li>
 		</ul>
     <?php endif; ?>
@@ -303,26 +307,28 @@ else
 	</div>   
 	<div class="panel-body">
   	<?php if (!empty($detalhes)): ?>
-		<div class="list-group">
-			<a href="#" class="list-group-item active">
-				<h4 class="list-group-item-heading">Ocorrências</h4>
-				<p class="list-group-item-text"><?php echo $detalhes[0]['Detalhe']['ocorrencias']; ?></p>
-			</a>
-			<a href="#" class="list-group-item">
-				<h4 class="list-group-item-heading">Histórico Escolar</h4>
-				<p class="list-group-item-text"><?php echo $detalhes[0]['Detalhe']['hist_escolar']; ?></p>
-			</a>
-			<a href="#" class="list-group-item">
-				<h4 class="list-group-item-heading">Negociação Financeira</h4>
-				<p class="list-group-item-text"><?php echo $detalhes[0]['Detalhe']['neg_financeira']; ?></p>
-			</a>
-			<a href="#" class="list-group-item">
-				<h4 class="list-group-item-heading">Egresso</h4>
-				<p class="list-group-item-text"><?php echo $detalhes[0]['Detalhe']['egresso']; ?></p>
-			</a>
-		</div>       
-      <?php echo $this->Html->image('alunos/thumbs/'.$detalhes[0]['Detalhe']['foto']); ?>
-        
+		<?php foreach ($detalhes as $detalhe): ?>
+
+			<div class="list-group">
+				<a href="#" class="list-group-item active">
+					<h4 class="list-group-item-heading">Ocorrências</h4>
+					<p class="list-group-item-text"><?php echo $detalhe['Detalhe']['ocorrencias']; ?></p>
+				</a>
+				<a href="#" class="list-group-item">
+					<h4 class="list-group-item-heading">Histórico Escolar</h4>
+					<p class="list-group-item-text"><?php echo $detalhe['Detalhe']['hist_escolar']; ?></p>
+				</a>
+				<a href="#" class="list-group-item">
+					<h4 class="list-group-item-heading">Negociação Financeira</h4>
+					<p class="list-group-item-text"><?php echo $detalhe['Detalhe']['neg_financeira']; ?></p>
+				</a>
+				<a href="#" class="list-group-item">
+					<h4 class="list-group-item-heading">Egresso</h4>
+					<p class="list-group-item-text"><?php echo $detalhe['Detalhe']['egresso']; ?></p>
+				</a>
+			</div>       
+	      	<?php echo $this->Html->image('alunos/thumbs/'.$detalhe['Detalhe']['foto']); ?>
+		<?php endforeach; ?>
    
     <?php endif; ?>
    </div><!-- /.related Detalhes -->
