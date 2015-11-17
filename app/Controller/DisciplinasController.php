@@ -49,8 +49,10 @@ class DisciplinasController extends AppController {
 		$options = array('fields' => array('aluno_id'), 'conditions' => array('AlunoDisciplina.disciplina_id = ' => $id), 'limit' => 200);
 		$alunos = $this->Disciplina->AlunoDisciplina->find('list', $options);
 		sort($alunos);
+		if (empty($alunos)) $alunos[] = 0;
 
-		$options = array('recursive' => false, 'conditions' => array('Aluno.id >= ' => min($alunos), 'Aluno.id <= ' => max($alunos), 'AND' => array('Aluno.id' => $alunos)));
+		$options = array('recursive' => false, 'conditions' => array('Aluno.id >= ' => min($alunos), 'Aluno.id <= ' => max($alunos), 'AND' => array('Aluno.id' => $alunos)),
+			'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.celular', 'Aluno.email', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Situacao.id', 'Situacao.valor'));
 		$this->Disciplina->Aluno->unbindModel(
 			array('belongsTo' => array('Naturalidade', 'EstadoCivil', 'Indicacao', 'Curso', 'Professor', 'Responsavel', 'Cidade')),
 			array('hasMany' => array('Acesso', 'Detalhe', 'AlunoDisciplina', 'Mensalidade')));
@@ -62,8 +64,10 @@ class DisciplinasController extends AppController {
 		$options = array('fields' => array('curso_id'), 'conditions' => array('CursoDisciplina.disciplina_id = ' => $id), 'limit' => 200);
 		$cursos = $this->Disciplina->CursoDisciplina->find('list', $options);
 		sort($cursos);
+		if (empty($cursos)) $cursos[] = 0;
 		
-		$options = array('recursive' => false, 'conditions' => array('Curso.id >= ' => min($cursos), 'Curso.id <= ' => max($cursos),'AND' => array('Curso.id' => $cursos)));
+		$options = array('recursive' => false, 'conditions' => array('Curso.id >= ' => min($cursos), 'Curso.id <= ' => max($cursos),'AND' => array('Curso.id' => $cursos)),
+			'fields' => array('Curso.id', 'Curso.nome', 'Curso.turma', 'Curso.carga', 'Curso.sigla', 'Curso.num_turma', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 'Professor.id', 'Professor.nome', 'Periodo.id', 'Periodo.valor'));
 		$this->Disciplina->Curso->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
 		$cursos = $this->Disciplina->Curso->find('all', $options);
 		$cursos = $this->TransformarArray->FindInContainable('Curso', $cursos);
@@ -73,8 +77,10 @@ class DisciplinasController extends AppController {
 		$options = array('fields' => array('professor_id'), 'conditions' => array('DisciplinaProfessor.disciplina_id = ' => $id), 'limit' => 200);
 		$professores = $this->Disciplina->DisciplinaProfessor->find('list', $options);
 		sort($professores);
+		if (empty($professores)) $professores[] = 0;
 		
-		$options = array('recursive' => false, 'conditions' => array('Professor.id >= ' => min($professores), 'Professor.id <= ' => max($professores), 'AND' => array('Professor.id' => $professores)));
+		$options = array('recursive' => false, 'conditions' => array('Professor.id >= ' => min($professores), 'Professor.id <= ' => max($professores), 'AND' => array('Professor.id' => $professores)), 
+			'fields' => array('Professor.id', 'Professor.nome', 'Professor.celular', 'Professor.email', 'Professor.resumotitulacao', 'Cidade.id', 'Cidade.nome'));
 		$professores = $this->Disciplina->Professor->find('all', $options);
 		$professores = $this->TransformarArray->FindInContainable('Professor', $professores);
 		$this->set(compact('professores'));
