@@ -62,19 +62,25 @@ class AlunosController extends AppController {
 		$options = array('recursive' => false, 'conditions' => array('Aluno.' . $this->Aluno->primaryKey => $id));
 		$this->set('aluno', $this->Aluno->find('first', $options));
 
-		$options = array('conditions' => array('AlunoDisciplina.aluno_id' => $id));
+		$options = array('recursive' => false, 'conditions' => array('AlunoDisciplina.aluno_id' => $id), 'limit' => 200,
+			'fields' => array('AlunoDisciplina.id', 'AlunoDisciplina.frequencia', 'AlunoDisciplina.nota', 'AlunoDisciplina.horas_aula', 'AlunoDisciplina.data', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'));
+		$this->Aluno->AlunoDisciplina->unbindModel(array('belongsTo' => array('Aluno')));
 		$disciplinas = $this->Aluno->AlunoDisciplina->find('all', $options);
 		$this->set(compact('disciplinas'));
 
-		$options = array('conditions' => array('Mensalidade.aluno_id' => $id));
+		$options = array('recursive' => false, 'conditions' => array('Mensalidade.aluno_id' => $id), 'limit' => 200,
+			'fields' => array('Mensalidade.id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Formapgto.id', 'Formapgto.nome'));
+		$this->Aluno->Mensalidade->unbindModel(array('belongsTo' => array('Aluno', 'Conta', 'User')));
 		$mensalidades = $this->Aluno->Mensalidade->find('all', $options);
 		$this->set(compact('mensalidades'));
 
-		$options = array('conditions' => array('Acesso.aluno_id' => $id));
+		$options = array('recursive' => false, 'conditions' => array('Acesso.aluno_id' => $id));
+		$this->Aluno->Acesso->unbindModel(array('belongsTo' => array('Aluno')));
 		$acessos = $this->Aluno->Acesso->find('all', $options);
 		$this->set(compact('acessos'));
 
-		$options = array('recursive' => -1, 'conditions' => array('Detalhe.aluno_id' => $id));
+		$options = array('recursive' => false, 'conditions' => array('Detalhe.aluno_id' => $id));
+		$this->Aluno->Detalhe->unbindModel(array('belongsTo' => array('Aluno')));
 		$detalhes = $this->Aluno->Detalhe->find('all', $options);
 		$this->set(compact('detalhes'));
 	}
