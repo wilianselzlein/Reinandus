@@ -15,6 +15,7 @@
  * @since         CakePHP(tm) v 1.3
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+define('TEMPO_MEDIO', 100);
 define('TEMPO_LIMITE', 300);
 
 if (!class_exists('ConnectionManager') || Configure::read('debug') < 2) {
@@ -72,7 +73,7 @@ if ($noLogs || isset($_forced_from_dbo_)):
 			$sql = str_replace('`', '', $sql);
 
 			printf('<tr class="%s"><td>%d</td><td>%s</td><td>%s</td><td style="text-align: right">%d</td><td style="text-align: right">%d</td><td style="text-align: right">%d</td></tr>%s',
-				($i['took'] > TEMPO_LIMITE) ? 'danger' : '',
+				($i['took'] > TEMPO_LIMITE) ? 'danger' : (($i['took'] > TEMPO_MEDIO) ? 'warning' : '') ,
 				$k + 1,
 				$sql,
 				$i['error'],
