@@ -15,6 +15,7 @@
  * @since         CakePHP(tm) v 1.3
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+define('TEMPO_LIMITE', 300);
 
 if (!class_exists('ConnectionManager') || Configure::read('debug') < 2) {
 	return false;
@@ -37,7 +38,7 @@ if ($noLogs || isset($_forced_from_dbo_)):
 	foreach ($sqlLogs as $source => $logInfo):
 		$text = $logInfo['count'] > 1 ? 'queries' : 'query';
 		printf(
-			'<table class="cake-sql-log" id="cakeSqlLog_%s" summary="Cake SQL Log" cellspacing="0" border="1">',
+			'<table class="table table-responsive cake-sql-log" id="cakeSqlLog_%s" summary="Cake SQL Log" cellspacing="0" border="1">',
 			preg_replace('/[^A-Za-z0-9_]/', '_', uniqid(time(), true))
 		);
 		printf('<caption>(%s) %s %s took %s ms</caption>', $source, $logInfo['count'], $text, $logInfo['time']);
@@ -70,7 +71,8 @@ if ($noLogs || isset($_forced_from_dbo_)):
 			$sql = str_replace('ORDER', '<br>ORDER', $sql);
 			$sql = str_replace('`', '', $sql);
 
-			printf('<tr><td>%d</td><td>%s</td><td>%s</td><td style="text-align: right">%d</td><td style="text-align: right">%d</td><td style="text-align: right">%d</td></tr>%s',
+			printf('<tr class="%s"><td>%d</td><td>%s</td><td>%s</td><td style="text-align: right">%d</td><td style="text-align: right">%d</td><td style="text-align: right">%d</td></tr>%s',
+				($i['took'] > TEMPO_LIMITE) ? 'danger' : '',
 				$k + 1,
 				$sql,
 				$i['error'],

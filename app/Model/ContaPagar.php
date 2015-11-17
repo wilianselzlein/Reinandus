@@ -8,20 +8,20 @@ App::uses('AppModel', 'Model');
  * @property User $User
  */
 class ContaPagar extends AppModel {
-
+	var $actsAs = array('DateFormat');
 /**
  * Use table
  *
  * @var mixed False or table name
  */
-	public $useTable = 'conta_pagar';
+public $useTable = 'conta_pagar';
 
 /**
  * Display field
  *
  * @var string
  */
-	public $displayField = 'numero';
+public $displayField = 'numero';
 
 /**
  * Validation rules
@@ -29,31 +29,31 @@ class ContaPagar extends AppModel {
  * @var array
  */
 
-	public $validate = array(
-		'documento' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				'message' => 'VALIDATE_BLANK',
+public $validate = array(
+	'documento' => array(
+		'notEmpty' => array(
+			'rule' => array('notEmpty'),
+			'message' => 'VALIDATE_BLANK',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'vencimento' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				'message' => 'VALIDATE_BLANK',
+	'vencimento' => array(
+		'notEmpty' => array(
+			'rule' => array('notEmpty'),
+			'message' => 'VALIDATE_BLANK',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'valor' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				'message' => 'VALIDATE_BLANK',
+	'valor' => array(
+		'notEmpty' => array(
+			'rule' => array('notEmpty'),
+			'message' => 'VALIDATE_BLANK',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -69,48 +69,48 @@ class ContaPagar extends AppModel {
  *
  * @var array
  */
-	public $belongsTo = array(
-		'Conta' => array(
-			'className' => 'Contum',
-			'foreignKey' => 'conta_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+public $belongsTo = array(
+	'Conta' => array(
+		'className' => 'Contum',
+		'foreignKey' => 'conta_id',
+		'conditions' => '',
+		'fields' => '',
+		'order' => ''
 		),
-		'Tipo' => array(
-			'className' => 'Enumerado',
-			'foreignKey' => 'tipo_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+	'Tipo' => array(
+		'className' => 'Enumerado',
+		'foreignKey' => 'tipo_id',
+		'conditions' => '',
+		'fields' => '',
+		'order' => ''
 		),
-		'User' => array(
-			'className' => 'User',
-			'foreignKey' => 'user_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+	'User' => array(
+		'className' => 'User',
+		'foreignKey' => 'user_id',
+		'conditions' => '',
+		'fields' => '',
+		'order' => ''
 		),
-		'Pessoa' => array(
-			'className' => 'Pessoa',
-			'foreignKey' => 'pessoa_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+	'Pessoa' => array(
+		'className' => 'Pessoa',
+		'foreignKey' => 'pessoa_id',
+		'conditions' => '',
+		'fields' => '',
+		'order' => ''
 		),
-		'Situacao' => array(
-			'className' => 'Enumerado',
-			'foreignKey' => 'situacao_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+	'Situacao' => array(
+		'className' => 'Enumerado',
+		'foreignKey' => 'situacao_id',
+		'conditions' => '',
+		'fields' => '',
+		'order' => ''
 		),
-		'Formapgto' => array(
-			'className' => 'Formapgto',
-			'foreignKey' => 'formapgto_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+	'Formapgto' => array(
+		'className' => 'Formapgto',
+		'foreignKey' => 'formapgto_id',
+		'conditions' => '',
+		'fields' => '',
+		'order' => ''
 		)
 	);
 }
