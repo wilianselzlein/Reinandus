@@ -18,7 +18,7 @@
 						<table class="table table-hover table-condensed">
 							<thead>
 								<tr class="active">
-											<th><?php echo __('Id'); ?></th>
+		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Usuario'); ?></th>
 		<th><?php echo __('Pessoa'); ?></th>
 		<th><?php echo __('Created'); ?></th>

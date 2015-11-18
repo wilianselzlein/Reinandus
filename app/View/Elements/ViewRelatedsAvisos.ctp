@@ -32,7 +32,7 @@
                <tr>
                   <td><?php echo $aviso['id']; ?></td>
                   <td><?php echo date('d/m/Y', strtotime($aviso['data'])); ?></td>
-                  <td><?php echo $this->DisplayField->MakeLink($aviso, 'usuario', 'user_id'); ?></td>
+                  <td><?php echo $this->DisplayField->MakeLink($aviso, 'User', 'user_id'); ?></td>
                   <td><?php echo $aviso['arquivo']; ?></td>
                   <td><?php echo $aviso['mensagem']; ?></td>
                   <td><?php echo $this->DisplayField->MakeLink($aviso, 'Tipo', 'tipo_id'); ?></td>
