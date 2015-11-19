@@ -14,7 +14,7 @@ class EnumeradosController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'TransformarArray');
 
 /**
  * index method
@@ -42,8 +42,47 @@ class EnumeradosController extends AppController {
 		if (!$this->Enumerado->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('recursive' => 2, 'conditions' => array('Enumerado.' . $this->Enumerado->primaryKey => $id));
-		$this->set('enumerado', $this->Enumerado->find('first', $options));
+		$options = array('recursive' => false, 'conditions' => array('Enumerado.' . $this->Enumerado->primaryKey => $id), 'limit' => 1);
+		$enumerados = $this->Enumerado->find('first', $options);
+		$this->set('enumerado', $enumerados);
+
+		if ($enumerados['Enumerado']['nome'] == 'aluno') {
+			$alunos = ClassRegistry::init('Aluno');
+			$options = array('conditions' => array('Aluno.' . $enumerados['Enumerado']['referencia'] => $id), 'limit' => 200,
+			  'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.celular', 'Aluno.email', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Situacao.id', 'Situacao.valor'));
+			$alunos->unbindModel(array(
+				'hasMany' => array('Acesso', 'Detalhe', 'AlunoDisciplina', 'Mensalidade'),
+				'belongsTo' => array('Naturalidade', 'EstadoCivil', 'Indicacao', 'Curso', 'Professor', 'Cidade', 'Responsavel')));
+			$alunos = $alunos->find('all', $options);
+			$alunos = $this->TransformarArray->FindInContainable('Aluno', $alunos);
+			$this->set(compact('alunos'));
+		}
+
+		if ($enumerados['Enumerado']['nome'] == 'aviso') {
+			$avisos = ClassRegistry::init('Aviso');
+			$avisos = $avisos->find('all', array('recursive' => 0, 'order' => array('Aviso.data DESC'),
+				'conditions' => array('Aviso.' . $enumerados['Enumerado']['referencia'] => $id),
+				'fields' => array('Aviso.id', 'Aviso.data', 'Aviso.arquivo', 'Aviso.mensagem', 'Aviso.tipo_id', 'User.username', 'Tipo.valor', 'User.id')
+				));
+			$avisos = $this->TransformarArray->FindInContainable('Aviso', $avisos);
+			$this->set(compact('avisos'));
+		}
+
+		if ($enumerados['Enumerado']['nome'] == 'curso') {
+			$cursos = ClassRegistry::init('Curso');
+			$cursos->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
+			$cursos = $cursos->find('all', array('recursive' => 0, 
+				'conditions' => array('Curso.' . $enumerados['Enumerado']['referencia'] => $id),
+				'fields' => array('Curso.id', 'Curso.nome', 'Curso.turma', 'Curso.carga', 'Curso.sigla', 'Curso.num_turma', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 'Professor.id', 'Professor.nome', 'Periodo.id', 'Periodo.valor')));
+			$cursos = $this->TransformarArray->FindInContainable('Curso', $cursos);
+			$this->set(compact('cursos'));
+		}
+		/*
+		$this->AdicionarEnumeradoSeNaoExistir(32, 'instituto', 'tipo_id', 'Instituto');
+		$this->AdicionarEnumeradoSeNaoExistir(40, 'contapagar', 'tipo_id', 'Recibos');
+		$this->AdicionarEnumeradoSeNaoExistir(41, 'contapagar', 'situacao_id', 'Aberto');
+		$this->AdicionarEnumeradoSeNaoExistir(51, 'relatorios_filtros', 'tipo_filtro', 'Faixas de numeração');
+		*/
 	}
 
 /**
