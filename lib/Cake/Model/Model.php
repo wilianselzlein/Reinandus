@@ -2821,6 +2821,7 @@ class Model extends Object implements CakeEventListener {
 		}
 
 		return (bool)$this->find('count', array(
+                        'fields' => '1',
 			'conditions' => array(
 				$this->alias . '.' . $this->primaryKey => $id
 			),
