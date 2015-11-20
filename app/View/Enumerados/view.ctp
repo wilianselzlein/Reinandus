@@ -29,12 +29,8 @@
  		echo $this->element('ViewRelatedsAvisos', array('array' => $avisos)); 
  	if (isset($cursos) && (count($cursos) > 0))
  		echo $this->element('ViewRelatedsCursos', array('array' => $cursos)); 
-
-	/*
- 	if ($enumerado['Enumerado']['nome'] == 'aviso')
-		echo $this->element('ViewRelatedsAvisos', array('array' => $enumerado));
- 	if ($enumerado['Enumerado']['nome'] == 'relatorios_filtros')
-		echo $this->element('ViewRelatedsFiltros', array('array' => $enumerado)); */
+ 	if (isset($filtros) && (count($filtros) > 0))
+ 		echo $this->element('ViewRelatedsFiltros', array('array' => $filtros, 'model' => 'RelatoriosFiltros')); 
 ?>
 
-</div><!-- /#page-container .row-fluid -->
+</div><!-- /#page-container .row-fluid ->

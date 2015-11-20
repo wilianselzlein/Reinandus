@@ -33,7 +33,7 @@
                <?php foreach ($array[$model] as $filtro): ?>
                <tr>
                   <td><?php echo $filtro['id']; ?></td>
-                  <td><?php echo $this->DisplayField->MakeLink($filtro, 'relatoriodatasets', 'relatorio_dataset_id'); ?></td>
+                  <td><?php echo $this->DisplayField->MakeLink($filtro, 'RelatoriosDatasets', 'relatorio_dataset_id'); ?></td>
                   <td><?php echo $filtro['campo']; ?></td>
                   <td><?php echo $filtro['campo_alias']; ?></td>
                   <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $filtro, 'model' => '', 'controller' => 'relatoriofiltros')); ?>
