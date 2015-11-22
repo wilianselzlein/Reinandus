@@ -27,7 +27,8 @@ class CursosController extends AppController {
 		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Curso))));
 		$this->Filter->setPaginate('order', array('Curso.id' => 'desc')); 
 		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
-
+		$this->Filter->setPaginate('fields', array('Curso.id', 'Curso.nome', 'Curso.sigla', 'Curso.turma', 'Curso.carga', 
+			'Professor.id', 'Professor.nome', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial'));
 		$this->Curso->recursive = 0;
 		$this->set('cursos', $this->paginate());
 	}
