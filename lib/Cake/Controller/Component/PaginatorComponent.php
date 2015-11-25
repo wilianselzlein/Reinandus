@@ -209,7 +209,10 @@ class PaginatorComponent extends Component {
 			if ($recursive != $object->recursive) {
 				$parameters['recursive'] = $recursive;
 			}
-			$count = $object->find('count', array_merge($parameters, $extra));
+			$cond = array_merge($parameters, $extra);
+			$cond['fields'] = '1';
+			$cond['recursive'] = -1;
+			$count = $object->find('count', $cond);
 		}
 		$pageCount = (int)ceil($count / $limit);
 		$requestedPage = $page;

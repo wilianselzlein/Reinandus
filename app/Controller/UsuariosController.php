@@ -26,7 +26,7 @@ class UsuariosController extends AppController {
 		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->User))));
 		$this->Filter->setPaginate('order', array('User.id' => 'desc')); 
 		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
-
+		$this->Filter->setPaginate('fields', array('User.Id', 'User.username', 'Pessoa.id', 'Pessoa.fantasia', 'Role.id', 'Role.nome', 'User.created', 'User.modified', 'User.assinatura'));
 		$this->User->recursive = 0;
 		$this->set('usuarios', $this->paginate());
 	}
@@ -42,7 +42,7 @@ class UsuariosController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('recursive' => 1	, 'conditions' => array('User.' . $this->User->primaryKey => $id));
+		$options = array('recursive' => 1, 'conditions' => array('User.' . $this->User->primaryKey => $id));
 		$this->User->unbindModel(array('hasMany' => array('Mensalidade', 'Aviso')));
 		$this->set('usuario', $this->User->find('first', $options));
 

@@ -38,6 +38,9 @@ class ProfessoresController extends AppController {
 		else
 			$this->Filter->setPaginate('conditions', $filtros['AND']);
 
+		$this->Filter->setPaginate('fields', array('Professor.id', 'Professor.nome', 'Professor.endereco', 'Cidade.id', 'Cidade.nome', 
+			'Professor.fone', 'Professor.email', 'Professor.numero', 'Professor.bairro', 'Professor.cep'));
+
 		$this->Professor->recursive = 0;
 		$this->set('professores', $this->paginate());
 
