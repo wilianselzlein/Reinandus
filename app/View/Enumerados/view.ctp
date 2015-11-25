@@ -30,7 +30,9 @@
  	if (isset($cursos) && (count($cursos) > 0))
  		echo $this->element('ViewRelatedsCursos', array('array' => $cursos)); 
  	if (isset($filtros) && (count($filtros) > 0))
- 		echo $this->element('ViewRelatedsFiltros', array('array' => $filtros, 'model' => 'RelatoriosFiltros')); 
+ 		echo $this->element('ViewRelatedsFiltros', array('array' => $filtros, 'model' => 'RelatoriosFiltros'));
+ 	if (isset($contas) && (count($contas) > 0))
+ 		echo $this->element('Relateds/ContasPagar', array('array' => $contas)); 
 ?>
 
 </div><!-- /#page-container .row-fluid ->

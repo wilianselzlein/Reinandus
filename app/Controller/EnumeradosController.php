@@ -85,11 +85,18 @@ class EnumeradosController extends AppController {
 			$filtros = $this->TransformarArray->FindInContainable('RelatoriosFiltros', $filtros);
 			$this->set(compact('filtros'));
 		}
-		/*
-		$this->AdicionarEnumeradoSeNaoExistir(32, 'instituto', 'tipo_id', 'Instituto');
-		$this->AdicionarEnumeradoSeNaoExistir(40, 'contapagar', 'tipo_id', 'Recibos');
-		$this->AdicionarEnumeradoSeNaoExistir(41, 'contapagar', 'situacao_id', 'Aberto');
-		*/
+
+		if ($enumerados['Enumerado']['nome'] == 'contapagar') {
+			$contas = ClassRegistry::init('ContaPagar');
+			$contas = $contas->find('all', array('recursive' => 0, 'order' => array('ContaPagar.vencimento'),
+				'conditions' => array('ContaPagar.' . $enumerados['Enumerado']['referencia'] => $id),
+				'fields' => array('ContaPagar.id', 'ContaPagar.documento', 'Pessoa.id', 'Pessoa.razaosocial', 'ContaPagar.valor', 'ContaPagar.vencimento', 'ContaPagar.pagamento')
+				));
+			$contas = $this->TransformarArray->FindInContainable('ContaPagar', $contas);
+			$this->set(compact('contas'));
+		}
+
+		//$this->AdicionarEnumeradoSeNaoExistir(32, 'instituto', 'tipo_id', 'Instituto');
 	}
 
 /**
