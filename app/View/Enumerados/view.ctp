@@ -24,15 +24,15 @@
 
 <?php
 	if (isset($alunos) && (count($alunos) > 0))
- 		echo $this->element('ViewRelatedsAlunos', array('array' => $alunos)); 
+ 		echo $this->element('Relateds/Alunos', array('array' => $alunos)); 
  	if (isset($avisos) && (count($avisos) > 0))
- 		echo $this->element('ViewRelatedsAvisos', array('array' => $avisos)); 
+ 		echo $this->element('Relateds/Avisos', array('array' => $avisos)); 
  	if (isset($cursos) && (count($cursos) > 0))
- 		echo $this->element('ViewRelatedsCursos', array('array' => $cursos)); 
+ 		echo $this->element('Relateds/Cursos', array('array' => $cursos)); 
  	if (isset($filtros) && (count($filtros) > 0))
- 		echo $this->element('ViewRelatedsFiltros', array('array' => $filtros, 'model' => 'RelatoriosFiltros'));
+ 		echo $this->element('Relateds/Filtros', array('array' => $filtros, 'model' => 'RelatoriosFiltros'));
  	if (isset($contas) && (count($contas) > 0))
  		echo $this->element('Relateds/ContasPagar', array('array' => $contas)); 
 ?>
 
-</div><!-- /#page-container .row-fluid ->
+</div><!-- /#page-container .row-fluid -->
