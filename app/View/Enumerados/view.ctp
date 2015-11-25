@@ -1,6 +1,6 @@
 	 <div class="panel panel-default ">
         <div class="panel-heading">
-            <h2><?php echo __('Enumerado'); ?>
+            <h2><?php echo __($enumerado['Enumerado']['valor']); ?>
             <small><?php echo __('View'); ?></small>
 <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action'], $this->params['pass'][0]); ?>
         </h2>
