@@ -141,8 +141,8 @@
 
    </div><!-- /.view -->
 
-   <?php echo $this->element('ViewRelatedsAlunos', array('array' => $curso)); ?>
-   <?php echo $this->element('ViewRelatedsAvisos', array('array' => $curso)); ?>
-   <?php echo $this->element('ViewRelatedsDisciplinas', array('array' => $curso, 'model' => 'CursoDisciplina')); ?>
+   <?php echo $this->element('Relateds/Alunos', array('array' => $curso)); ?>
+   <?php echo $this->element('Relateds/Avisos', array('array' => $curso)); ?>
+   <?php echo $this->element('Relateds/Disciplinas', array('array' => $curso, 'model' => 'CursoDisciplina')); ?>
 
 </div><!-- /#page-container .row-fluid -->

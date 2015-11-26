@@ -206,7 +206,7 @@ if($pessoa['Pessoa']['pessoa'] == 'F'){
       </div><!-- /.table-responsive -->
 
    </div><!-- /.view -->
-<?php echo $this->element('ViewRelatedsCursos', array('array' => $cursos)); ?>
-<?php echo $this->element('ViewRelatedsUsuarios', array('array' => $usuarios)); ?>
+<?php echo $this->element('Relateds/Cursos', array('array' => $cursos)); ?>
+<?php echo $this->element('Relateds/Usuarios', array('array' => $usuarios)); ?>
 
 </div><!-- /#page-container .row-fluid -->

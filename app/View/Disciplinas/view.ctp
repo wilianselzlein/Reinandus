@@ -30,8 +30,8 @@
 			
 		</div><!-- /.view -->
 
-   <?php echo $this->element('ViewRelatedsAlunos', array('array' => $alunos)); ?>
-   <?php echo $this->element('ViewRelatedsCursos', array('array' => $cursos)); ?>
-   <?php echo $this->element('ViewRelatedsProfessores', array('array' => $professores)); ?>
+   <?php echo $this->element('Relateds/Alunos', array('array' => $alunos)); ?>
+   <?php echo $this->element('Relateds/Cursos', array('array' => $cursos)); ?>
+   <?php echo $this->element('Relateds/Professores', array('array' => $professores)); ?>
 
 </div><!-- /#page-container .row-fluid -->

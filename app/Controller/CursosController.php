@@ -43,8 +43,8 @@ class CursosController extends AppController {
 	public function view($id = null) {
 		if (!$this->Curso->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
-		}
-		$options = array('recursive' => 0, 'conditions' => array('Curso.' . $this->Curso->primaryKey => $id));
+	}	
+		$options = array('recursive' => ,0 'conditions' => array('Curso.' . $this->Curso->primaryKey => $id));
 		$this->set('curso', $this->Curso->find('first', $options));
 	}
 

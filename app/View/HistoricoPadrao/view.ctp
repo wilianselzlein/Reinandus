@@ -25,5 +25,5 @@
 			</div><!-- /.table-responsive -->
 		</div><!-- /.view -->
 			
-<?php echo $this->element('ViewRelatedsLancamentosContabeis', array('array' => $historicopadrao)); ?>
+<?php echo $this->element('Relateds/LancamentosContabeis', array('array' => $historicopadrao)); ?>
 </div><!-- /#page-container .row-fluid -->

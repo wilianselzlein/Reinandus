@@ -140,7 +140,7 @@
 			
 		</div><!-- /.view -->
 
-<?php echo $this->element('ViewRelatedsCursos', array('array' => $professor)); ?>
-<?php echo $this->element('ViewRelatedsDisciplinas', array('array' => $professor, 'model' => 'ProfessorDisciplina')); ?>
+<?php echo $this->element('Relateds/Cursos', array('array' => $professor)); ?>
+<?php echo $this->element('Relateds/Disciplinas', array('array' => $professor, 'model' => 'ProfessorDisciplina')); ?>
 
 </div><!-- /#page-container .row-fluid -->

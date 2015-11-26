@@ -26,6 +26,6 @@
 			
 		</div><!-- /.view -->
 
-<?php echo $this->element('ViewRelatedsUsuarios', array('array' => $role)); ?>
+<?php echo $this->element('Relateds/Usuarios', array('array' => $role)); ?>
 
 </div><!-- /#page-container .row-fluid -->
