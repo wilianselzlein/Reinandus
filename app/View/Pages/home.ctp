@@ -25,6 +25,6 @@ endif;
 	</p>
 <?php endif; */ ?>
 
-<?php echo $this->element('GraficosBase');?>
+<?php echo $this->element('Graficos/Base');?>
 
 </p>

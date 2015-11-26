@@ -7,13 +7,13 @@
 	     <h3 class="panel-title">Alunos</h3>
 	  </div>
 	  <div class="panel-body">
-	    <?php echo $this->element('GraficoAlunoSituacao');?>
+	    <?php echo $this->element('Graficos/AlunoSituacao');?>
 	    <div id="GraficoAlunoSituacao" class="grafico grafico30"></div>
-	    <?php echo $this->element('GraficoAlunoCidade');?>
+	    <?php echo $this->element('Graficos/AlunoCidade');?>
 	    <div id="GraficoAlunoCidade" class="grafico grafico70"></div>
-	    <?php echo $this->element('GraficoAlunoTotal');?>
+	    <?php echo $this->element('Graficos/AlunoTotal');?>
 	    <div id="GraficoAlunoTotal" class="grafico grafico30"></div> 
-	    <?php echo $this->element('GraficoAlunoPorAno');?>
+	    <?php echo $this->element('Graficos/AlunoPorAno');?>
 	    <div id="GraficoAlunoPorAno" class="grafico grafico70"></div> 
 	  </div>
 	</div>
@@ -23,9 +23,9 @@
 	    <h3 class="panel-title">Cursos</h3>
 	  </div>
 	  <div class="panel-body">
-	    <?php echo $this->element('GraficoCursoAlunos');?>
+	    <?php echo $this->element('Graficos/CursoAlunos');?>
 	    <div id="GraficoCursoAlunos" class="grafico grafico50"></div>
-	    <?php echo $this->element('GraficoCursoRentavel');?>
+	    <?php echo $this->element('Graficos/CursoRentavel');?>
 	    <div id="GraficoCursoRentavel" class="grafico grafico50"></div>
 	  </div>
 	</div>
@@ -35,11 +35,11 @@
 	    <h3 class="panel-title">Mensalidade</h3>
 	  </div>
 	  <div class="panel-body">
-	    <?php echo $this->element('GraficoMensAbertaPagaMensal');?>
+	    <?php echo $this->element('Graficos/MensAbertaPagaMensal');?>
 	    <div id="GraficoMensAbertaPagaMensal" class="grafico grafico33"></div>
-	    <?php echo $this->element('GraficoMensAbertaPagaSemestral');?>
+	    <?php echo $this->element('Graficos/MensAbertaPagaSemestral');?>
 	    <div id="GraficoMensAbertaPagaSemestral" class="grafico grafico33"></div>
-	    <?php echo $this->element('GraficoMensAbertaPagaAnual');?>
+	    <?php echo $this->element('Graficos/MensAbertaPagaAnual');?>
 	    <div id="GraficoMensAbertaPagaAnual" class="grafico grafico33"></div> 
 	  </div>
 	</div>
@@ -49,11 +49,11 @@
 	    <h3 class="panel-title">Contas a Pagar</h3>
 	  </div>
 	  <div class="panel-body">
-	    <?php echo $this->element('GraficoPagarAbertaPagaMensal');?>
+	    <?php echo $this->element('Graficos/AbertaPagaMensal');?>
 	    <div id="GraficoPagarAbertaPagaMensal" class="grafico grafico33"></div>
-	    <?php echo $this->element('GraficoPagarAbertaPagaSemestral');?>
+	    <?php echo $this->element('Graficos/PagarAbertaPagaSemestral');?>
 	    <div id="GraficoPagarAbertaPagaSemestral" class="grafico grafico33"></div>
-	    <?php echo $this->element('GraficoPagarAbertaPagaAnual');?>
+	    <?php echo $this->element('Graficos/PagarAbertaPagaAnual');?>
 	    <div id="GraficoPagarAbertaPagaAnual" class="grafico grafico33"></div> 
 	  </div>
 	</div>
@@ -63,13 +63,13 @@
 	    <h3 class="panel-title">Comparativos</h3>
 	  </div>
 	  <div class="panel-body">
-	    <?php echo $this->element('GraficoComparativoRecebPagarMes');?>
+	    <?php echo $this->element('Graficos/ComparativoRecebPagarMes');?>
 	    <div id="GraficoComparativoRecebPagarMes" class="grafico grafico50"></div>
-	    <?php echo $this->element('GraficoComparativoRecebPagarAno');?>
+	    <?php echo $this->element('Graficos/ComparativoRecebPagarAno');?>
 	    <div id="GraficoComparativoRecebPagarAno" class="grafico grafico50"></div>
-	    <?php echo $this->element('GraficoComparativoRecDespMes');?>
+	    <?php echo $this->element('Graficos/ComparativoRecDespMes');?>
 	    <div id="GraficoComparativoRecDespMes" class="grafico grafico50"></div>
-	    <?php echo $this->element('GraficoComparativoRecDespAno');?>
+	    <?php echo $this->element('Graficos/ComparativoRecDespAno');?>
 	    <div id="GraficoComparativoRecDespAno" class="grafico grafico50"></div>
 	  </div>
 	</div>
