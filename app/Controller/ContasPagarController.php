@@ -49,6 +49,8 @@ class ContasPagarController extends AppController {
 			$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
 		else
 			$this->Filter->setPaginate('conditions', $filtros['AND']);
+        $this->Filter->setPaginate('fields', array('ContaPagar.id', 'ContaPagar.documento', 'ContaPagar.serie', 'Pessoa.id', 'Pessoa.fantasia', 'ContaPagar.vencimento', 'ContaPagar.valor', 'ContaPagar.pagamento',
+           'Formapgto.id', 'Formapgto.nome'));
 
 		$this->ContaPagar->recursive = 0;
 		$this->set('contaspagar', $this->paginate());

@@ -26,6 +26,8 @@ class PessoasController extends AppController {
 		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Pessoa))));
 		$this->Filter->setPaginate('order', array('Pessoa.id' => 'desc')); 
 		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+		$this->Filter->setPaginate('fields', array('Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 'Pessoa.endereco', 'Pessoa.numero', 'Pessoa.bairro', 'Pessoa.cep',
+           'Cidade.id', 'Cidade.nome', 'Pessoa.fone', 'Pessoa.email'));
 
 		$this->Pessoa->recursive = 0;
 		$this->set('pessoas', $this->paginate());
