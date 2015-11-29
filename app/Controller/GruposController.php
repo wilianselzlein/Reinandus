@@ -48,14 +48,19 @@ class GruposController extends AppController {
 
 		$options = array('fields' => array('aviso_id'), 'conditions' => array('grupo_id = ' => $id));
 		$avisos = $this->Grupo->AvisoGrupo->find('list', $options);
+		sort($avisos);
+		if (empty($avisos)) $avisos[] = 0;
 
-		$options = array('conditions' => array('AND' => array('Aviso.id' => $avisos)));
+		$options = array('recursive' => 0, 'conditions' => array('Aviso.id >= ' => min($avisos), 'Aviso.id <= ' => max($avisos), 'AND' => array('Aviso.id' => $avisos)),
+		  'fields' => array('Aviso.id', 'Aviso.data', 'Aviso.arquivo', 'Aviso.mensagem', 'User.id', 'User.username', 'Tipo.id', 'Tipo.valor'));
 		$avisos = $this->Grupo->AvisoGrupo->Aviso->find('all', $options);
 		$avisos = $this->TransformarArray->FindInContainable('Aviso', $avisos);
 		$this->set(compact('avisos'));
 
-		$options = array('recursive' => 0, 'conditions' => array('Curso.grupo_id' => $id), 'limit' => 200);
-		//$this->Grupo->Curso->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
+		$options = array('recursive' => 0, 'conditions' => array('Curso.grupo_id' => $id), 'limit' => 200,
+          'fields' => array('Curso.id', 'Curso.nome', 'Curso.turma', 'Curso.carga', 'Curso.sigla', 'Curso.num_turma', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 'Professor.id', 'Professor.nome', 'Periodo.id', 'Periodo.valor'));
+		$this->Grupo->Curso->unbindModel(array(
+			'belongsTo' => array('Grupo', 'Tipo')));
 		$cursos = $this->Grupo->Curso->find('all', $options);
 		$cursos = $this->TransformarArray->FindInContainable('Curso', $cursos);
 		$this->set(compact('cursos'));

@@ -16,7 +16,7 @@ class CursosController extends AppController {
  *
  * @var array
  */
-    public $components = array('Paginator', 'Session');
+    public $components = array('Paginator', 'Session', 'TransformarArray');
     
 /**
  * index method
@@ -46,6 +46,33 @@ class CursosController extends AppController {
 	}	
 		$options = array('recursive' => 0, 'conditions' => array('Curso.' . $this->Curso->primaryKey => $id));
 		$this->set('curso', $this->Curso->find('first', $options));
+
+		$options = array('conditions' => array('Aluno.curso_id' => $id), 'limit' => 200,
+		  'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.celular', 'Aluno.email', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Situacao.id', 'Situacao.valor'));
+		$this->Curso->Aluno->unbindModel(array(
+			'hasMany' => array('Acesso', 'Detalhe', 'AlunoDisciplina', 'Mensalidade'),
+			'belongsTo' => array('Naturalidade', 'EstadoCivil', 'Indicacao', 'Curso', 'Professor', 'Cidade', 'Responsavel')));
+		$alunos = $this->Curso->Aluno->find('all', $options);
+		$alunos = $this->TransformarArray->FindInContainable('Aluno', $alunos);
+		$this->set(compact('alunos'));
+
+		$options = array('fields' => array('aviso_id'), 'conditions' => array('curso_id = ' => $id));
+		$avisos = $this->Curso->AvisoCurso->find('list', $options);
+		sort($avisos);
+		if (empty($avisos)) $avisos[] = 0;
+
+		$options = array('recursive' => 0, 'conditions' => array('Aviso.id >= ' => min($avisos), 'Aviso.id <= ' => max($avisos), 'AND' => array('Aviso.id' => $avisos)),
+		  'fields' => array('Aviso.id', 'Aviso.data', 'Aviso.arquivo', 'Aviso.mensagem', 'User.id', 'User.username', 'Tipo.id', 'Tipo.valor'));
+		$avisos = $this->Curso->Aviso->find('all', $options);
+		$avisos = $this->TransformarArray->FindInContainable('Aviso', $avisos);
+		$this->set(compact('avisos'));
+
+		$options = array('recursive' => false, 'conditions' => array('CursoDisciplina.curso_id' => $id), 'limit' => 200,
+			'fields' => array('CursoDisciplina.id', 'CursoDisciplina.disciplina_id', 'CursoDisciplina.horas_aula', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'));
+		$this->Curso->CursoDisciplina->unbindModel(array('belongsTo' => array('Curso')));
+		$disciplinas = $this->Curso->CursoDisciplina->find('all', $options);
+		$disciplinas = $this->TransformarArray->FindInContainable('Disciplina', $disciplinas);
+		$this->set(compact('disciplinas'));
 	}
 
 /**
