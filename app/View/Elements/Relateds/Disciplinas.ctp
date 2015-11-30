@@ -33,7 +33,7 @@
                <?php foreach ($array[$model] as $disciplina): ?>
                <tr>
                   <td><?php echo $disciplina['id']; ?></td>
-                  <td><?php echo $this->DisplayField->MakeLink($disciplina, 'disciplinas', 'disciplina_id'); ?></td>
+                  <td><?php echo $this->DisplayField->MakeLink($disciplina, 'disciplinas', 'id'); ?></td>
                   <td><?php echo $this->DisplayField->MakeLink($disciplina, 'professores', 'professor_id'); ?></td>
                   <td><?php if (isset($disciplina['horas_aula'])) echo $disciplina['horas_aula']; ?></td>
                   <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $disciplina, 'model' => '', 'controller' => 'disciplinas')); ?>

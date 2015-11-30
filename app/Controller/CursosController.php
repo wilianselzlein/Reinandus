@@ -71,7 +71,7 @@ class CursosController extends AppController {
 			'fields' => array('CursoDisciplina.id', 'CursoDisciplina.disciplina_id', 'CursoDisciplina.horas_aula', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'));
 		$this->Curso->CursoDisciplina->unbindModel(array('belongsTo' => array('Curso')));
 		$disciplinas = $this->Curso->CursoDisciplina->find('all', $options);
-		$disciplinas = $this->TransformarArray->FindInContainable('Disciplina', $disciplinas);
+		$disciplinas = $this->TransformarArray->FindInContainable('CursoDisciplina', $disciplinas);
 		$this->set(compact('disciplinas'));
 	}
 

@@ -143,6 +143,6 @@
 
    <?php echo $this->element('Relateds/Alunos', array('array' => $alunos)); ?>
    <?php echo $this->element('Relateds/Avisos', array('array' => $avisos)); ?>
-   <?php echo $this->element('Relateds/Disciplinas', array('array' => $disciplinas)); ?>
+   <?php echo $this->element('Relateds/Disciplinas', array('array' => $disciplinas, 'model' => 'CursoDisciplina'));?>
 
 </div><!-- /#page-container .row-fluid -->
