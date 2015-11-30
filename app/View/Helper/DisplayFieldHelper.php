@@ -15,9 +15,11 @@ class DisplayFieldHelper extends AppHelper {
 
 	public function MakeLink($array, $controller, $field_id) { 
 
+		if (($controller == 'periodo') || ($controller == 'situacao'))
+			$controller = 'Enumerados';
+
 		$model = $this->GetModelByController($controller);
 		$class = ClassRegistry::init($model);
-
 		if (isset($array[$model])) {
 			if (isset($array[$model][$class->primaryKey])) {
 				$id = $array[$model][$class->primaryKey];
