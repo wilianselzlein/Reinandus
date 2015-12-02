@@ -43,7 +43,7 @@
 			<td><?php echo $curso['carga']; ?></td>
 			<td><?php echo $this->DisplayField->MakeLink($curso, 'pessoas', 'pessoa_id'); ?></td>
 			<td><?php echo $curso['num_turma']; ?></td>
-			<td><?php echo $this->DisplayField->MakeLink($curso, 'periodo', 'periodo_id'); ?></td>
+			<td><?php echo $this->DisplayField->MakeLink($curso, 'Periodo', 'id'); ?></td>
 			<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $curso, 'model' => '', 'controller' => 'cursos')); ?>
 		</tr>
 	<?php endforeach; ?>

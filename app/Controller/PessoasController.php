@@ -47,14 +47,16 @@ class PessoasController extends AppController {
 		$options = array('recursive' => 0, 'conditions' => array('Pessoa.' . $this->Pessoa->primaryKey => $id));
 		$this->set('pessoa', $this->Pessoa->find('first', $options));
 
-		$options = array('recursive' => 0, 'conditions' => array('Curso.pessoa_id' => $id), 'limit' => 200);
+		$options = array('recursive' => 0, 'conditions' => array('Curso.pessoa_id' => $id), 'limit' => 200,
+		 'fields' => array('Curso.id', 'Curso.nome', 'Curso.turma', 'Curso.carga', 'Curso.sigla', 'Curso.num_turma', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 'Professor.id', 'Professor.nome', 'Periodo.id', 'Periodo.valor'));
 		$this->Pessoa->Curso->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
 		$cursos = $this->Pessoa->Curso->find('all', $options);
 		$cursos = $this->TransformarArray->FindInContainable('Curso', $cursos);
 		$this->set(compact('cursos'));
 
-		$options = array('recursive' => 0, 'conditions' => array('Usuario.pessoa_id' => $id), 'limit' => 200);
-		//$this->Pessoa->User->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
+		$options = array('recursive' => 0, 'conditions' => array('Usuario.pessoa_id' => $id), 'limit' => 200,
+		 'fields' => array('Usuario.id', 'Usuario.username', 'Usuario.created', 'Usuario.modified', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial'));
+        //$this->Pessoa->User->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
 		$usuarios = $this->Pessoa->Usuario->find('all', $options);
 		$usuarios = $this->TransformarArray->FindInContainable('Usuario', $usuarios);
 		$this->set(compact('usuarios'));
