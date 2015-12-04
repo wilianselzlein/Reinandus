@@ -69,4 +69,38 @@ class Contum extends AppModel {
 			'order' => ''
 		)
 	);
+	
+/**
+ * hasMany associations
+ *
+ * @var array
+ */
+	public $hasMany = array(
+		'Mensalidade' => array(
+			'className' => 'Mensalidade',
+			'foreignKey' => 'conta_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'ContaPagar' => array(
+			'className' => 'ContaPagar',
+			'foreignKey' => 'conta_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
 }

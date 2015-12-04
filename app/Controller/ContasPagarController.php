@@ -67,7 +67,12 @@ class ContasPagarController extends AppController {
 		if (!$this->ContaPagar->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('conditions' => array('ContaPagar.' . $this->ContaPagar->primaryKey => $id));
+		$options = array('conditions' => array('ContaPagar.' . $this->ContaPagar->primaryKey => $id), 
+		  'fields' => array(
+/*'ContaPagar.id', 'ContaPagar.pessoa_id', 'ContaPagar.tipo_id', 'ContaPagar.cadastro', 'ContaPagar.emissao', 'ContaPagar.vencimento', 'ContaPagar.pagamento', 'ContaPagar.documento', 'ContaPagar.serie', 
+'ContaPagar.conta_id', 'ContaPagar.valor', 'ContaPagar.saldo', 'ContaPagar.juro', 'ContaPagar.multa', 'ContaPagar.situacao_id', 'ContaPagar.observacao', 'ContaPagar.cheque', 'ContaPagar.agencia', 
+'ContaPagar.user_id', 'ContaPagar.banco_deposito', 'ContaPagar.conta_corrente', 'ContaPagar.liberado', 'ContaPagar.formapgto_id', 'ContaPagar.portador', */
+'ContaPagar.*', 'Conta.id', 'Conta.conta', 'Tipo.id', 'Tipo.valor', 'User.id', 'User.username', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 'Situacao.id', 'Situacao.valor', 'Formapgto.id', 'Formapgto.nome'));
 		$this->set('contapagar', $this->ContaPagar->find('first', $options));
 	}
 

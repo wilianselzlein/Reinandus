@@ -14,7 +14,7 @@ class RolesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'TransformarArray');
 
 /**
  * index method
@@ -41,8 +41,15 @@ class RolesController extends AppController {
 		if (!$this->Role->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('recursive' => 2, 'conditions' => array('Role.' . $this->Role->primaryKey => $id));
+		$options = array('recursive' => false, 'conditions' => array('Role.' . $this->Role->primaryKey => $id));
 		$this->set('role', $this->Role->find('first', $options));
+		
+		$options = array('recursive' => 0, 'conditions' => array('Usuario.role_id' => $id), 'limit' => 200,
+		 'fields' => array('Usuario.id', 'Usuario.username', 'Usuario.created', 'Usuario.modified', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial'));
+        //$this->Pessoa->User->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
+		$usuarios = $this->Role->Usuario->find('all', $options);
+		$usuarios = $this->TransformarArray->FindInContainable('Usuario', $usuarios);
+		$this->set(compact('usuarios'));
 	}
 
 /**

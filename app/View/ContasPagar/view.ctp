@@ -20,7 +20,7 @@
 </tr>
 <tr>		<td><strong><?php echo __('Tipo'); ?></strong></td>
 		<td>
-			<?php echo $this->Html->link($contapagar['Tipo']['nome'], array('controller' => 'enumerados', 'action' => 'view', $contapagar['Tipo']['id']), array('class' => '')); ?>
+			<?php echo $this->Html->link($contapagar['Tipo']['valor'], array('controller' => 'enumerados', 'action' => 'view', $contapagar['Tipo']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
 </tr>
@@ -40,9 +40,9 @@
 <?php echo $this->element('LinhaView', array('alias' => 'Saldo', 'valor' => $this->Number->currency($contapagar['ContaPagar']['saldo'],'BRL'))); ?>
 <?php echo $this->element('LinhaView', array('alias' => 'Juro', 'valor' => $this->Number->currency($contapagar['ContaPagar']['juro'],'BRL'))); ?>
 <?php echo $this->element('LinhaView', array('alias' => 'Multa', 'valor' => $this->Number->currency($contapagar['ContaPagar']['multa'],'BRL'))); ?>
-<tr>		<td><strong><?php echo __('Tipo'); ?></strong></td>
+<tr>		<td><strong><?php echo __('Situação'); ?></strong></td>
 		<td>
-			<?php echo $this->Html->link($contapagar['Situacao']['nome'], array('controller' => 'enumerados', 'action' => 'view', $contapagar['Situacao']['id']), array('class' => '')); ?>
+			<?php echo $this->Html->link($contapagar['Situacao']['valor'], array('controller' => 'enumerados', 'action' => 'view', $contapagar['Situacao']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
 </tr>
@@ -65,7 +65,7 @@
 </tr>
 <tr>		<td><strong><?php echo __('Formapgto'); ?></strong></td>
 		<td>
-			<?php echo $this->Html->link($contapagar['Formapgto']['nome'], array('controller' => 'formaspagamentos', 'action' => 'view', $contapagar['Formapgto']['id']), array('class' => '')); ?>
+			<?php echo $this->Html->link($contapagar['Formapgto']['nome'], array('controller' => 'FormasPagamentos', 'action' => 'view', $contapagar['Formapgto']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
 </tr>

@@ -106,7 +106,6 @@
 			
 		</div><!-- /.view -->
 
-			
-	
+<?php echo $this->element('Relateds/Mensalidades', array('array' => $mensalidades)); ?>
 
 </div><!-- /#page-container .row-fluid -->

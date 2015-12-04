@@ -13,18 +13,24 @@ class DisplayFieldHelper extends AppHelper {
 
 	}
 
+	private function GetController($controller) {
+		if (($controller == 'Periodo') || ($controller == 'Situacao'))
+			return 'Enumerados';
+		else
+			return $controller;
+	}
+
 	public function MakeLink($array, $controller, $field_id) { 
-
-		if (($controller == 'periodo') || ($controller == 'situacao'))
-			$controller = 'Enumerados';
-
+		//$controller = $this->GetController($controller);
 		$model = $this->GetModelByController($controller);
-		$class = ClassRegistry::init($model);
+		$model_controller = $this->GetModelByController($this->GetController($controller));
+		$class = ClassRegistry::init($model_controller);
 		if (isset($array[$model])) {
 			if (isset($array[$model][$class->primaryKey])) {
 				$id = $array[$model][$class->primaryKey];
+			  
 				echo $this->Html->link($array[$model][$class->displayField], 
-					array('controller' => $controller, 'action' => 'view', $id), 
+					array('controller' => $this->GetController($controller), 'action' => 'view', $id), 
 					array('class' => '')) . '&nbsp;';
 			}
 		} else {
@@ -35,8 +41,8 @@ class DisplayFieldHelper extends AppHelper {
 				'recursive' => false, 'fields' => array($class->displayField, $class->primaryKey)));
 			
 			$display = $data[$model][$class->displayField];
-			echo $this->Html->link($display, array('controller' => $controller, 'action' => 'view', $id), array('class' => '')) . '&nbsp;';
-			
+			/*echo $this->Html->link($display, array('controller' => $this->GetController($controller), 'action' => 'view', $id), array('class' => '')) . '&nbsp;';
+			*/
 		}
 	}
 } 
