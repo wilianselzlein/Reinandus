@@ -56,7 +56,14 @@ class MensalidadesController extends AppController {
 		if (!$this->Mensalidade->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('conditions' => array('Mensalidade.' . $this->Mensalidade->primaryKey => $id));
+		$options = array('conditions' => array('Mensalidade.' . $this->Mensalidade->primaryKey => $id),
+			'fields' => array(
+/*Mensalidade.id, Mensalidade.numero, Mensalidade.vencimento, Mensalidade.conta_id, Mensalidade.valor, 
+Mensalidade.desconto, Mensalidade.acrescimo, Mensalidade.liquido, Mensalidade.pago, Mensalidade.pagamento,
+Mensalidade.obs, Mensalidade.formapgto_id, Mensalidade.user_id, Mensalidade.bolsa, Mensalidade.documento, 
+Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade.aluno_id, */
+'Mensalidade.*', 'Conta.id', 'Conta.conta', 'Formapgto.id', 'Formapgto.nome', 'User.id', 'User.username',
+'Aluno.id', 'Aluno.nome'));
 		$this->set('mensalidade', $this->Mensalidade->find('first', $options));
 	}
 
