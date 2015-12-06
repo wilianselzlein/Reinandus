@@ -25,7 +25,9 @@ class DisplayFieldHelper extends AppHelper {
 		$model = $this->GetModelByController($controller);
 		$model_controller = $this->GetModelByController($this->GetController($controller));
 		$class = ClassRegistry::init($model_controller);
+		//debug($array[$model]);
 		if (isset($array[$model])) {
+			//debug($array[$model]);
 			if (isset($array[$model][$class->primaryKey])) {
 				$id = $array[$model][$class->primaryKey];
 			  
@@ -36,13 +38,10 @@ class DisplayFieldHelper extends AppHelper {
 		} else {
 			$id = $array[$field_id];
 			if (is_null($id)) return;
-			
-			$data = $class->find('first', array('conditions' => array($model . '.' . $class->primaryKey => $id),
+			$data = $class->find('first', array('conditions' => array($this->GetModelByController($this->GetController($model)) . '.' . $class->primaryKey => $id),
 				'recursive' => false, 'fields' => array($class->displayField, $class->primaryKey)));
-			
 			$display = $data[$model][$class->displayField];
-			/*echo $this->Html->link($display, array('controller' => $this->GetController($controller), 'action' => 'view', $id), array('class' => '')) . '&nbsp;';
-			*/
+			echo $this->Html->link($display, array('controller' => $this->GetController($controller), 'action' => 'view', $id), array('class' => '')) . '&nbsp;';
 		}
 	}
 } 

@@ -107,7 +107,7 @@
 </tr><tr>		<td><strong><?php echo __('Lattes'); ?></strong></td>
 		<td>
 			<?php echo h($professor['Professor']['lattes']); ?>
-			&nbsp;`
+			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Vinculo'); ?></strong></td>
 		<td>
@@ -140,7 +140,7 @@
 			
 		</div><!-- /.view -->
 
-<?php echo $this->element('Relateds/Cursos', array('array' => $professor)); ?>
-<?php echo $this->element('Relateds/Disciplinas', array('array' => $professor, 'model' => 'ProfessorDisciplina')); ?>
+<?php echo $this->element('Relateds/Cursos', array('array' => $cursos)); ?>
+<?php echo $this->element('Relateds/Disciplinas', array('array' => $disciplinas, 'model' => 'ProfessorDisciplina')); ?>
 
 </div><!-- /#page-container .row-fluid -->

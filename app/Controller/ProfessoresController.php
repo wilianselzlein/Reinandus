@@ -14,7 +14,7 @@ class ProfessoresController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'TransformarArray');
 
 /**
  * index method
@@ -57,8 +57,22 @@ class ProfessoresController extends AppController {
 		if (!$this->Professor->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('recursive' => 1, 'conditions' => array('Professor.' . $this->Professor->primaryKey => $id));
+		$options = array('recursive' => 0, 'conditions' => array('Professor.' . $this->Professor->primaryKey => $id));
 		$this->set('professor', $this->Professor->find('first', $options));
+
+		$options = array('recursive' => 0, 'conditions' => array('Curso.professor_id' => $id), 'limit' => 200,
+		 'fields' => array('Curso.id', 'Curso.nome', 'Curso.turma', 'Curso.carga', 'Curso.sigla', 'Curso.num_turma', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 'Professor.id', 'Professor.nome', 'Periodo.id', 'Periodo.valor'));
+		$this->Professor->Curso->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
+		$cursos = $this->Professor->Curso->find('all', $options);
+		$cursos = $this->TransformarArray->FindInContainable('Curso', $cursos);
+		$this->set(compact('cursos'));
+
+		$options = array('recursive' => 0, 'conditions' => array('DisciplinaProfessor.professor_id' => $id), 'limit' => 200,
+			'fields' => array('DisciplinaProfessor.id', 'DisciplinaProfessor.disciplina_id', /*'DisciplinaProfessor.horas_aula',*/ 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'));
+		$this->Professor->DisciplinaProfessor->bindModel(array('belongsTo' => array('Disciplina', 'Professor')));
+		$disciplinas = $this->Professor->DisciplinaProfessor->find('all', $options);
+		$disciplinas = $this->TransformarArray->FindInContainable('DisciplinaProfessor', $disciplinas);
+		$this->set(compact('disciplinas'));
 	}
 
 /**
