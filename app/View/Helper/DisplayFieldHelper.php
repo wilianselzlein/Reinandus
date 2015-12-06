@@ -14,7 +14,7 @@ class DisplayFieldHelper extends AppHelper {
 	}
 
 	private function GetController($controller) {
-		if (($controller == 'Periodo') || ($controller == 'Situacao'))
+		if (($controller == 'Periodo') || ($controller == 'Situacao') || ($controller == 'Tipo'))
 			return 'Enumerados';
 		else
 			return $controller;

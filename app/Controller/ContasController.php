@@ -47,12 +47,17 @@ class ContasController extends AppController {
 		
 		$options = array('recursive' => 0, 'conditions' => array('Mensalidade.conta_id' => $id), 'limit' => 200, 
 		'fields' => array('Mensalidade.id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Aluno.id', 'Aluno.nome'));
-		$this->Contum->Mensalidade->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
+		$this->Contum->Mensalidade->unbindModel(array('belongsTo' => array('Grupo', 'Tipo', 'User', 'Formapgto')));
 		$mensalidades = $this->Contum->Mensalidade->find('all', $options);
 		$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);
 		$this->set(compact('mensalidades'));
 		
-		//adicionar contas a pagar
+		$options = array('recursive' => 0, 'conditions' => array('ContaPagar.conta_id' => $id), 'limit' => 200, 
+    		'fields' => array('ContaPagar.id', 'ContaPagar.documento', 'Pessoa.id', 'Pessoa.razaosocial', 'ContaPagar.valor', 'ContaPagar.vencimento', 'ContaPagar.pagamento'));
+		$this->Contum->ContaPagar->unbindModel(array('belongsTo' => array('Conta', 'User', 'Formapgto')));
+		$pagar = $this->Contum->ContaPagar->find('all', $options);
+		$pagar = $this->TransformarArray->FindInContainable('ContaPagar', $pagar);
+		$this->set(compact('pagar'));
 	}
 
 /**

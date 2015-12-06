@@ -61,7 +61,20 @@ class AlunosController extends AppController {
 		if (!$this->Aluno->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('recursive' => false, 'conditions' => array('Aluno.' . $this->Aluno->primaryKey => $id));
+		$options = array('recursive' => false, 'conditions' => array('Aluno.' . $this->Aluno->primaryKey => $id),
+			'fields' => array(
+/*Aluno.id, Aluno.is_ativo, Aluno.nome, Aluno.nacionalidade, Aluno.data_nascimento, Aluno.naturalidade_id, 
+Aluno.situacao_id, Aluno.estado_civil_id, Aluno.orgao_expedidor, Aluno.data_expedicao, Aluno.sexo, Aluno.nome_mae, 
+Aluno.nome_pai, Aluno.indicacao_id, Aluno.curso_id, Aluno.professor_id, Aluno.emitir_carteirinha, Aluno.entregou_cpf,
+Aluno.entregou_diploma, Aluno.bolsa, Aluno.cpf, Aluno.identidade, Aluno.endereco, Aluno.bairro, Aluno.cidade_id,
+Aluno.cep, Aluno.residencial, Aluno.comercial, Aluno.celular, Aluno.email, Aluno.numero, Aluno.emailalt, 
+Aluno.indicacao_nome, Aluno.indicacao_valor, Aluno.indicacao_pago, Aluno.curso_inicio, Aluno.curso_fim, 
+Aluno.mono_titulo, Aluno.mono_data, Aluno.mono_nota, Aluno.bloqueado, Aluno.bloqueado_data, Aluno.senha, 
+Aluno.entregou_rg, Aluno.desconto, Aluno.mono_prazo, Aluno.pesquisa, Aluno.responsavel_id, Aluno.cert_solicitado, 
+Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
+ 'Aluno.*', 'Naturalidade.id', 'Naturalidade.nome', 'Situacao.id', 'Situacao.valor', 'EstadoCivil.id', 'EstadoCivil.valor',
+ 'Indicacao.id', 'Indicacao.valor', 'Curso.id', 'Curso.nome', 'Professor.id', 'Professor.nome', 
+ 'Cidade.id', 'Cidade.nome', 'Responsavel.id', 'Responsavel.fantasia', 'Responsavel.razaosocial'));
 		$this->set('aluno', $this->Aluno->find('first', $options));
 
 		$options = array('recursive' => false, 'conditions' => array('AlunoDisciplina.aluno_id' => $id), 'limit' => 200,

@@ -44,7 +44,14 @@ class CursosController extends AppController {
 		if (!$this->Curso->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 	}	
-		$options = array('recursive' => 0, 'conditions' => array('Curso.' . $this->Curso->primaryKey => $id));
+		$options = array('recursive' => 0, 'conditions' => array('Curso.' . $this->Curso->primaryKey => $id),
+			'fields' => array(
+ /*Curso.id, Curso.nome, Curso.professor_id, Curso.turma, Curso.carga, Curso.valor, Curso.percentual, Curso.desconto, 
+ Curso.liquido, Curso.dia_vencimento, Curso.inicio, Curso.fim, Curso.sistema_aval, Curso.criterios_aval, 
+ Curso.pessoa_id, Curso.sigla, Curso.site, Curso.monografia, Curso.aviso, Curso.calendario, Curso.horario,
+  Curso.num_turma, Curso.grupo_id, Curso.tipo_id, Curso.periodo_id, Curso.created, Curso.modified,*/
+ 'Curso.*', 'Professor.id', 'Professor.nome', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial',
+ 'Grupo.id', 'Grupo.nome', 'Tipo.id', 'Tipo.valor', 'Periodo.id', 'Periodo.valor'));
 		$this->set('curso', $this->Curso->find('first', $options));
 
 		$options = array('conditions' => array('Aluno.curso_id' => $id), 'limit' => 200,
