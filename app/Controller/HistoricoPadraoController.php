@@ -14,7 +14,7 @@ class HistoricoPadraoController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'TransformarArray');
 
 /**
  * index method
@@ -41,8 +41,15 @@ class HistoricoPadraoController extends AppController {
 		if (!$this->HistoricoPadrao->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('recursive' => 2, 'conditions' => array('HistoricoPadrao.' . $this->HistoricoPadrao->primaryKey => $id));
+		$options = array('recursive' => 0, 'conditions' => array('HistoricoPadrao.' . $this->HistoricoPadrao->primaryKey => $id));
 		$this->set('historicopadrao', $this->HistoricoPadrao->find('first', $options));
+
+		$LancamentoContabil = ClassRegistry::init('LancamentoContabil');
+		$options = array('recursive' => 1, 'conditions' => array('LancamentoContabil.historico_padrao_id' => $id), 'limit' => 200);
+		$lancamentos = $LancamentoContabil->find('all', $options);
+		$lancamentos = $this->TransformarArray->FindInContainable('LancamentoContabil', $lancamentos);
+
+		$this->set(compact('lancamentos'));
 	}
 
 /**

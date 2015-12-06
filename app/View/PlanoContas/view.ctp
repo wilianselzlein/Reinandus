@@ -35,6 +35,6 @@
 			</div><!-- /.table-responsive -->
 		</div><!-- /.view -->
 	
-	<?php echo  $this->element('LancamentosContabeisViewPlanoContas', array('array' => $debitos, "nome" => "")); ?>
+	<?php echo $this->element('LancamentosContabeisViewPlanoContas', array('array' => $debitos, "nome" => "")); ?>
 	<?php echo $this->element('LancamentosContabeisViewPlanoContas', array('array' => $creditos, "nome" => "")); ?>
-</div><!-- /#page-container .row-fluid -->
+</div>

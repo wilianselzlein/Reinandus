@@ -17,6 +17,9 @@ class DisplayFieldHelper extends AppHelper {
 		if (($controller == 'Periodo') || ($controller == 'Situacao') || ($controller == 'Tipo'))
 			return 'Enumerados';
 		else
+		if (($controller == 'credito') || ($controller == 'debito'))
+			return 'PlanoContas';
+		else
 			return $controller;
 	}
 
