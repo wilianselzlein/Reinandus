@@ -51,6 +51,8 @@ class ContasController extends AppController {
 		$mensalidades = $this->Contum->Mensalidade->find('all', $options);
 		$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);
 		$this->set(compact('mensalidades'));
+		
+		//adicionar contas a pagar
 	}
 
 /**
