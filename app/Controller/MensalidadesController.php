@@ -182,11 +182,13 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('conditions' => array('Mensalidade.' . $this->Mensalidade->primaryKey => $id));
+			$options = array('recursive' => false, 'conditions' => array('Mensalidade.' . $this->Mensalidade->primaryKey => $id),
+				'fields' => array('Mensalidade.*', 'Conta.id', 'Conta.conta', 'Formapgto.id', 'Formapgto.nome', 'User.id', 'User.username', 'Aluno.id', 'Aluno.nome'));
 			$this->request->data = $this->Mensalidade->find('first', $options);
 		}
 		$contas = $this->Mensalidade->Conta->findAsCombo();
-		$alunos = $this->Mensalidade->Aluno->findAsCombo();
+		$aluno_id = $this->request->data['Mensalidade']['aluno_id'];
+		$alunos = $this->Mensalidade->Aluno->find('list', array('conditions' => array('Aluno.id' => $aluno_id)));
 		$formapgtos = $this->Mensalidade->Formapgto->findAsCombo();
 		$users = $this->Mensalidade->User->findAsCombo();
 		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
