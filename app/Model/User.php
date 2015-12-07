@@ -110,6 +110,19 @@ class User extends AppModel {
          'finderQuery' => '',
          'counterQuery' => ''
       ),
+      'ContaPagar' => array(
+         'className' => 'ContaPagar',
+         'foreignKey' => 'user_id',
+         'dependent' => false,
+         'conditions' => '',
+         'fields' => '',
+         'order' => '',
+         'limit' => '',
+         'offset' => '',
+         'exclusive' => '',
+         'finderQuery' => '',
+         'counterQuery' => ''
+      ),
       'Permissao' => array(
          'className' => 'Permissao',
          'foreignKey' => 'user_id',

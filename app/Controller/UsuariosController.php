@@ -57,6 +57,13 @@ class UsuariosController extends AppController {
 		$avisos = $this->User->Aviso->find('all', $options);
 		$avisos = $this->TransformarArray->FindInContainable('Aviso', $avisos);
 		$this->set(compact('avisos'));
+		
+		$options = array('recursive' => 0, 'conditions' => array('ContaPagar.user_id' => $id), 'limit' => 200, 
+    		'fields' => array('ContaPagar.id', 'ContaPagar.documento', 'Pessoa.id', 'Pessoa.razaosocial', 'ContaPagar.valor', 'ContaPagar.vencimento', 'ContaPagar.pagamento'));
+		$this->User->ContaPagar->unbindModel(array('belongsTo' => array('Conta', 'User', 'Formapgto')));
+		$pagar = $this->User->ContaPagar->find('all', $options);
+		$pagar = $this->TransformarArray->FindInContainable('ContaPagar', $pagar);
+		$this->set(compact('pagar'));
 	}
 
 /**

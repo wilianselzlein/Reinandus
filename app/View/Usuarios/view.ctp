@@ -109,7 +109,10 @@
       <?php endif; ?>
    </div><!-- /.related PERMISSOES -->
 
-  <?php echo $this->element('Relateds/Mensalidades', array('array' => $mensalidades)); ?>
-  <?php echo $this->element('Relateds/Avisos', array('array' => $avisos)); ?>
+<?php 
+echo $this->element('Relateds/Mensalidades', array('array' => $mensalidades));
+echo $this->element('Relateds/Avisos', array('array' => $avisos));
+echo $this->element('Relateds/ContasPagar', array('array' => $pagar));
+?>
 
 </div><!-- /#page-container .row-fluid -->

@@ -43,14 +43,21 @@ class FormasPagamentosController extends AppController {
 		}
 		$options = array('recursive' => false, 'conditions' => array('Formapgto.' . $this->Formapgto->primaryKey => $id));
 		$this->set('formapgto', $this->Formapgto->find('first', $options));
-		
+
 		$options = array('recursive' => 0, 'conditions' => array('Mensalidade.formapgto_id' => $id), 'limit' => 200, 
 		'fields' => array('Mensalidade.id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Aluno.id', 'Aluno.nome'));
-		
+
 		$this->Formapgto->Mensalidade->unbindModel(array('belongsTo' => array('User', 'Conta', 'Formapgto')));
 		$mensalidades = $this->Formapgto->Mensalidade->find('all', $options);
 		$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);
 		$this->set(compact('mensalidades'));
+
+		$options = array('recursive' => 0, 'conditions' => array('ContaPagar.formapgto_id' => $id), 'limit' => 200, 
+    		'fields' => array('ContaPagar.id', 'ContaPagar.documento', 'Pessoa.id', 'Pessoa.razaosocial', 'ContaPagar.valor', 'ContaPagar.vencimento', 'ContaPagar.pagamento'));
+		$this->Formapgto->ContaPagar->unbindModel(array('belongsTo' => array('Conta', 'User', 'Formapgto')));
+		$pagar = $this->Formapgto->ContaPagar->find('all', $options);
+		$pagar = $this->TransformarArray->FindInContainable('ContaPagar', $pagar);
+		$this->set(compact('pagar'));
 	}
 
 /**
