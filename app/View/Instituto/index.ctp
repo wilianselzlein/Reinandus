@@ -27,7 +27,7 @@
 		<td>
 			<?php echo $this->Html->link($instituto['Diretor']['fantasia'], array('controller' => 'pessoas', 'action' => 'view', $instituto['Diretor']['id'])); ?>
 		</td>
-		<td><?php echo h($instituto['Tipo']['nome']); ?>&nbsp;</td>
+		<td><?php echo h($instituto['Tipo']['valor']); ?>&nbsp;</td>
 		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $instituto, 'model' => 'Instituto')); ?>
 	</tr>
 <?php endforeach; ?>

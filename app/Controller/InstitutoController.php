@@ -23,6 +23,8 @@ public $uses = array('Instituto');
  */
 	public function index() {
 		$this->Instituto->recursive = 0;
+		$this->Paginator->settings = array('fields' => 
+			array('Instituto.*', 'Empresa.id', 'Empresa.fantasia', 'Empresa.razaosocial', 'Diretor.id', 'Diretor.fantasia', 'Diretor.razaosocial', 'Tipo.id', 'Tipo.valor'));
 		$this->set('institutos', $this->paginate());
 	}
 

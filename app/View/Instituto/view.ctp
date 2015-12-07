@@ -27,9 +27,9 @@
 			<?php echo $this->Html->link($instituto['Diretor']['fantasia'], array('controller' => 'pessoas', 'action' => 'view', $instituto['Diretor']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
-</tr><tr>		<td><strong><?php echo __('TIpo'); ?></strong></td>
+</tr><tr>		<td><strong><?php echo __('Tipo'); ?></strong></td>
 		<td>
-			<?php echo h($instituto['Tipo']['nome']); ?>
+			<?php echo h($instituto['Tipo']['valor']); ?>
 			&nbsp;
 		</td>
 </tr>					</tbody>
@@ -37,7 +37,5 @@
 			</div><!-- /.table-responsive -->
 			
 		</div><!-- /.view -->
-			
-	
 
 </div><!-- /#page-container .row-fluid -->
