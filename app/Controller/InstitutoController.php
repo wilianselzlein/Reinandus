@@ -39,7 +39,8 @@ public $uses = array('Instituto');
 		if (!$this->Instituto->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('conditions' => array('Instituto.' . $this->Instituto->primaryKey => $id));
+		$options = array('conditions' => array('Instituto.' . $this->Instituto->primaryKey => $id),
+			'fields' => array('Instituto.*', 'Empresa.id', 'Empresa.fantasia', 'Empresa.razaosocial', 'Diretor.id', 'Diretor.fantasia', 'Diretor.razaosocial', 'Tipo.id', 'Tipo.valor'));
 		$this->set('instituto', $this->Instituto->find('first', $options));
 	}
 

@@ -79,6 +79,9 @@ msgstr "Histórico"
 msgid "Historicos"
 msgstr "Históricos"
 
+msgid "Historico Padrao"
+msgstr "Histórico Padrão"
+
 msgid "Descricao"
 msgstr "Descrição"
 

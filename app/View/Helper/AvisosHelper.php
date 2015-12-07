@@ -20,7 +20,7 @@ class AvisosHelper extends AppHelper {
 			$conta = $mensalidade->find('count', array('recursive' => false, 'conditions' => $condicoes));
 			CakeSession::write('Avisos.' . $tipo, $conta . ' ');
 	    }
-		$texto = '<span class="label label-' . $css . '">' . $conta . '</span> ' . $tipo;
+		$texto = '<span class="label label-' . $css . '">' . $conta . '</span>&nbsp;' . $tipo;
 
 		return $this->Html->link($texto, array('controller' => 'mensalidades', 'action' => 'index', $tipo), array('class' => '', 'escape'=>false));
 	}
@@ -40,7 +40,7 @@ class AvisosHelper extends AppHelper {
 			$conta = $pagar->find('count', array('conditions' => $condicoes));
 			CakeSession::write('Avisos.' . $tipo, $conta . ' ');
 	    }
-		$texto = '<span class="label label-' . $css . '">' . $conta . '</span> ' . $tipo;
+		$texto = '<span class="label label-' . $css . '">' . $conta . '</span>&nbsp;' . $tipo;
 
 		return $this->Html->link($texto, array('controller' => 'contaspagar', 'action' => 'index', $tipo), array('class' => '', 'escape'=>false));
 	}
@@ -56,7 +56,7 @@ class AvisosHelper extends AppHelper {
 			$conta = $aluno->find('count', array('recursive' => false, 'conditions' => $condicoes));
 			CakeSession::write('Avisos.Aniver', $conta . ' ');
 	    }
-		$texto = '<span class="label label-' . $css . '">' . $conta . '</span> Aluno(s)';
+		$texto = '<span class="label label-' . $css . '">' . $conta . '</span>&nbsp;Aluno(s)';
 
 		return $this->Html->link($texto, array('controller' => 'Alunos', 'action' => 'index', 'Aniver'), array('class' => '', 'escape'=>false));
 	}
@@ -72,7 +72,7 @@ class AvisosHelper extends AppHelper {
 			$conta = $prof->find('count', array('recursive' => false, 'conditions' => $condicoes));
 			CakeSession::write('Avisos.Professores', $conta . ' ');
         }
-		$texto = '<span class="label label-' . $css . '">' . $conta . '</span> Professor(es)';
+		$texto = '<span class="label label-' . $css . '">' . $conta . '</span>&nbsp;Professor(es)';
 
 		return $this->Html->link($texto, array('controller' => 'Professores', 'action' => 'index', 'Aniver'), array('class' => '', 'escape'=>false));
 	}

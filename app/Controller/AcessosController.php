@@ -43,7 +43,8 @@ class AcessosController extends AppController {
 		if (!$this->Acesso->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('conditions' => array('Acesso.' . $this->Acesso->primaryKey => $id));
+		$options = array('conditions' => array('Acesso.' . $this->Acesso->primaryKey => $id), 
+			'fields' => array('Acesso.id', 'Acesso.aluno_id', 'Acesso.datahora', 'Aluno.id', 'Aluno.nome'));
 		$this->set('acesso', $this->Acesso->find('first', $options));
 	}
 
