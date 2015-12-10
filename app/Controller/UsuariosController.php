@@ -81,8 +81,7 @@ class UsuariosController extends AppController {
                "link_url" => array(                  
                   "action" => "view",
                   $this->User->id
-               )
-            ));
+               )));
                $this->redirect(array('action' => 'index'));
             } else {
                $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
