@@ -30,6 +30,29 @@
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 
+$leads = array('user', 'users', 'User', 'Users');
+foreach ($leads as $key) {
+	Router::connect('/' .$key, array('controller' => 'usuarios', 'action' => 'index'));
+	Router::connect('/' . $key . '/add', array('controller' => 'usuarios', 'action' => 'add'));
+	Router::connect('/' . $key . '/add/', array('controller' => 'usuarios', 'action' => 'add'));
+	Router::redirect('/' . $key . '/view/*', array('controller' => 'usuarios', 'action' => 'view'), array('persist'=>array('id')), array('persist' => true));
+	Router::redirect('/' . $key . '/edit/*', array('controller' => 'usuarios', 'action' => 'edit'), array('persist'=>array('id')), array('persist' => true));
+}
+
+//Router::connect('/Users', array('controller' => 'usuarios', 'action' => 'index'));
+//Router::connect('/Users/add/', array('controller' => 'usuarios', 'action' => 'add'));
+//Router::redirect('/Users/view/*', array('controller' => 'usuarios', 'action' => 'view'), array('persist'=>array('id')), array('persist' => true));
+//Router::redirect('/Users/edit/*', array('controller' => 'usuarios', 'action' => 'edit'), array('persist'=>array('id')), array('persist' => true));
+//Router::connect('/Users/edit/*', array('controller' => 'usuarios', 'action' => 'edit', array('id' => '[0-9]+')));
+//Router::connect("/{$prefix}/:action/*",  array('prefix' => $prefix, $prefix => true));
+//Router::connect('/Users/view/:id', array('controller' => 'usuarios', 'action' => 'view'), array('pass' => array('id')));
+//Router::connect('/Users/:action/*', array('controller' => 'usuarios'));
+//Router::connect('/Users/:action/:id', array('controller' => 'usuarios', 'action' => 'action'), array('id' => '[0-9]+')
+//Router::connect('/Users/:action/:id', array('controller' => 'usuarios', 'action' => 'action'), array('pass' => array('id'), 'id' => '[0-9]+'));
+//Router::connect("/User/:id", array('controller' => 'usuarios', "action" => "view", "[method]" => "PUT"), array("id" => "[0-9]+"));
+//Router::redirect('/Users/{$prefix}/*', array('controller' => 'usuarios', 'action' => $prefix), array('persist'=>array('id')), arra(y'persist' => true));
+//Router::redirect('/Users/:action/*', array('controller' => 'usuarios'), array('persist' => array('id')), array('persist' => true));
+
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.
