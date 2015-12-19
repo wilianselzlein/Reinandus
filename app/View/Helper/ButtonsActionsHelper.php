@@ -32,7 +32,7 @@ class ButtonsActionsHelper extends AppHelper {
 			&& (strcasecmp($controller, 'AlunoDisciplinas'))
 			&& (strcasecmp($controller, 'DisciplinaProfessors'))
 			&& (strcasecmp($controller, 'CursoDisciplinas'))
-			&& (strcasecmp($controller, 'AvisoCurso'));
+			&& (strcasecmp($controller, 'AvisoCursos'));
 	}
 
 	function TestDuplicate($string, $controller) {
@@ -41,25 +41,27 @@ class ButtonsActionsHelper extends AppHelper {
 
 	function MakeButtonsByAction($action, $model, $id = null) {
 		$return = '';
-		
-		if ((! strcasecmp($action, 'index')) || (! strcasecmp($action, 'view')))
-			$return .= 
-				'<li>' . $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__($model), 
-				array('action' => 'add'), array('class' => '', 'escape'=>false)) . '</li>';
-		if ((! strcasecmp($action, 'edit')) || (! strcasecmp($action, 'view')))
-			$return .= 
-				'<li>' . $this->Form->postLink('<i class="fa fa-times"></i>'.' '.__('Delete').' '.__($model), array('action' => 'delete', $id), array('escape'=>false), __('Are you sure you want to delete # %s?', $id)) . '</li>';
-		if ((! strcasecmp($action, 'edit')) || (! strcasecmp($action, 'add')) || (! strcasecmp($action, 'view')))
-			$return .=
-				'<li>' . $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List') .' '.__($this->GetControllerByModel($model)), array('action' => 'index', 'controller' => $this->GetControllerByModel($model)),array('escape'=>false)) . '</li>';
-		if (! strcasecmp($action, 'view'))
-			$return .= 
-				'<li>' . $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('Edit').' '.__($model), 
-				array('action' => 'edit', $id), array('class' => '', 'escape'=>false)) . '</li>';
-		if ((strcasecmp($action, 'edit')) || (strcasecmp($action, 'add')) || (strcasecmp($action, 'view')) || (strcasecmp($action, 'index')))
-			$return .=
-				'<li>' . $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__(Inflector::humanize($action)) .' '.__($this->GetControllerByModel($model)), array('action' => $action, 'controller' => $this->GetControllerByModel($model)),array('escape'=>false)) . '</li>';
+		$controller = $this->GetControllerByModel($model);
 
+		if ($this->ControllerNotInListIgnoreds($controller)) {
+			if ((! strcasecmp($action, 'index')) || (! strcasecmp($action, 'view')))
+				$return .= 
+					'<li>' . $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__($model), 
+					array('action' => 'add'), array('class' => '', 'escape'=>false)) . '</li>';
+			if ((! strcasecmp($action, 'edit')) || (! strcasecmp($action, 'view')))
+				$return .= 
+					'<li>' . $this->Form->postLink('<i class="fa fa-times"></i>'.' '.__('Delete').' '.__($model), array('action' => 'delete', $id), array('escape'=>false), __('Are you sure you want to delete # %s?', $id)) . '</li>';
+			if ((! strcasecmp($action, 'edit')) || (! strcasecmp($action, 'add')) || (! strcasecmp($action, 'view')))
+				$return .=
+					'<li>' . $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__('List') .' '.__($this->GetControllerByModel($model)), array('action' => 'index', 'controller' => $this->GetControllerByModel($model)),array('escape'=>false)) . '</li>';
+			if (! strcasecmp($action, 'view'))
+				$return .= 
+					'<li>' . $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('Edit').' '.__($model), 
+					array('action' => 'edit', $id), array('class' => '', 'escape'=>false)) . '</li>';
+			if ((strcasecmp($action, 'edit')) && (strcasecmp($action, 'add')) && (strcasecmp($action, 'view')) && (strcasecmp($action, 'index')))
+				$return .=
+					'<li>' . $this->Html->link('<i class="fa fa-list-alt"></i>'.' '.__(Inflector::humanize($action)) .' '.__($this->GetControllerByModel($model)), array('action' => $action, 'controller' => $this->GetControllerByModel($model)),array('escape'=>false)) . '</li>';
+		}
 		return $return;
 	}
 
@@ -71,7 +73,7 @@ class ButtonsActionsHelper extends AppHelper {
 
 			$controller = $this->GetControllerByModel($className['className']);
 
-			if (($this->ControllerNotInListIgnoreds($controller)) && (! $this->TestDuplicate($return, $controller))) 
+			if (($this->ControllerNotInListIgnoreds($controller)) && (! $this->TestDuplicate($return, $controller)))
 				$return .= $this->AddDivider() . 
 					'<li>' .
 	$this->Html->link(

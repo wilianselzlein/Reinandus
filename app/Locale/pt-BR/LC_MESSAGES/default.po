@@ -633,3 +633,6 @@ msgstr "Agência"
 
 msgid "Banco Deposito"
 msgstr "Banco Depósito"
+
+msgid "Renegociacao"
+msgstr "Renegoacição"
