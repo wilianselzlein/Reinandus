@@ -635,4 +635,4 @@ msgid "Banco Deposito"
 msgstr "Banco Depósito"
 
 msgid "Renegociacao"
-msgstr "Renegoacição"
+msgstr "Renegociação"

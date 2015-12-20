@@ -44,7 +44,7 @@ class ContratosController extends AppController {
     $this->contrato();
 		$contas = $this->Contrato->Conta->findAsCombo();
 		$alunos = $this->Contrato->Aluno->findAsCombo();
-		$formapgtos = $this->Contrato->Formapgto->findAsCombo();
+        $formapgtos = $this->Contrato->Formapgto->findAsCombo('asc', 'tipo <> "I"');
 		$users = $this->Contrato->User->findAsCombo();
 		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
 	}

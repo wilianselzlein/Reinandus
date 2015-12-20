@@ -8,10 +8,8 @@
    </div>
 
    <div class="panel-body">
-
-      <div class="table-responsive">
       <?php echo $this->Form->create('Notas', array('role' => 'form', 'class'=>'form-horizontal', 'action' => 'gravar')); ?>
-         <table class="table table-bordered table-hover table-condensed" >
+         <table class="table table-bordered table-hover table-condensed">
             <thead>
                <tr class="active">
                   <th>Id</th>
@@ -69,11 +67,8 @@
                <?php endforeach; ?>
             </tbody>
          </table>
-            <?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
-
+         <?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
       <?php echo $this->Form->end(); ?>
-      </div><!-- /.table-responsive -->
-
    </div>
 </div>
 

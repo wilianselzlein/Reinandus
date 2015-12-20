@@ -90,7 +90,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		}
 		$contas = $this->Mensalidade->Conta->findAsCombo();
 		$alunos = $this->Mensalidade->Aluno->findAsCombo();
-		$formapgtos = $this->Mensalidade->Formapgto->findAsCombo();
+		$formapgtos = $this->Mensalidade->Formapgto->findAsCombo('asc', 'tipo <> "I"');
 		$users = $this->Mensalidade->User->findAsCombo();
 		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
 	}
@@ -127,7 +127,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		}
 		$contas = $this->Mensalidade->Conta->findAsCombo();
 		$alunos = $this->Mensalidade->Aluno->findAsCombo();
-		$formapgtos = $this->Mensalidade->Formapgto->findAsCombo();
+		$formapgtos = $this->Mensalidade->Formapgto->findAsCombo('asc', 'tipo <> "I"');
 		$users = $this->Mensalidade->User->findAsCombo();
 		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
 	}
@@ -189,7 +189,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$contas = $this->Mensalidade->Conta->findAsCombo();
 		$aluno_id = $this->request->data['Mensalidade']['aluno_id'];
 		$alunos = $this->Mensalidade->Aluno->find('list', array('conditions' => array('Aluno.id' => $aluno_id)));
-		$formapgtos = $this->Mensalidade->Formapgto->findAsCombo();
+		$formapgtos = $this->Mensalidade->Formapgto->findAsCombo('asc', 'tipo <> "I"');
 		$users = $this->Mensalidade->User->findAsCombo();
 		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
 	}
@@ -224,7 +224,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		}
 		$contas = $this->Mensalidade->Conta->findAsCombo();
 		$alunos = $this->Mensalidade->Aluno->findAsCombo();
-		$formapgtos = $this->Mensalidade->Formapgto->findAsCombo();
+		$formapgtos = $this->Mensalidade->Formapgto->findAsCombo('asc', 'tipo <> "I"');
 		$users = $this->Mensalidade->User->findAsCombo();
 		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
 	}

@@ -41,8 +41,8 @@ class ContasPagarController extends AppController {
 			$filtros['AND'] = array('ContaPagar.vencimento' => array('value' => date('Y-m-d')));
 
 		$filtro = array();
-		$filtro['filter1'] = $filtros;
-		$this->Filter->addFilters($filtro);
+		$filtro['filter1'] = $filtros;	
+	$this->Filter->addFilters($filtro);
 
 		$this->Filter->setPaginate('order', array('ContaPagar.id' => 'desc')); 
 		if (! isset($filtros['AND'])) 
@@ -99,7 +99,7 @@ class ContasPagarController extends AppController {
 		}
 		$contas = $this->ContaPagar->Conta->findAsCombo();
 		$pessoas = $this->ContaPagar->Pessoa->findAsCombo();
-		$formapgtos = $this->ContaPagar->Formapgto->findAsCombo();
+		$formapgtos = $this->ContaPagar->Formapgto->findAsCombo('asc', 'tipo <> "I"');
 		$users = $this->ContaPagar->User->findAsCombo();
 		$tipos = $this->ContaPagar->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_id', 'Tipo.nome' => 'contapagar')));
 		$situacaos = $this->ContaPagar->Situacao->find('list', array('conditions' => array('Situacao.referencia' => 'situacao_id', 'Situacao.nome' => 'contapagar')));
@@ -138,7 +138,7 @@ class ContasPagarController extends AppController {
 		}
 		$contas = $this->ContaPagar->Conta->findAsCombo();
 		$pessoas = $this->ContaPagar->Pessoa->findAsCombo();
-		$formapgtos = $this->ContaPagar->Formapgto->findAsCombo();
+		$formapgtos = $this->ContaPagar->Formapgto->findAsCombo('asc', 'tipo <> "I"');
 		$users = $this->ContaPagar->User->findAsCombo();
 		$tipos = $this->ContaPagar->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_id', 'Tipo.nome' => 'contapagar')));
 		$situacaos = $this->ContaPagar->Situacao->find('list', array('conditions' => array('Situacao.referencia' => 'situacao_id', 'Situacao.nome' => 'contapagar')));
@@ -208,7 +208,7 @@ ContaPagar.conta_corrente, ContaPagar.liberado, ContaPagar.formapgto_id, ContaPa
 		$contas = $this->ContaPagar->Conta->findAsCombo();
 		$pessoa_id = $this->request->data['ContaPagar']['pessoa_id'];
 		$pessoas = $this->ContaPagar->Pessoa->find('list', array('conditions' => array('Pessoa.id' => $pessoa_id)));
-		$formapgtos = $this->ContaPagar->Formapgto->findAsCombo();
+		$formapgtos = $this->ContaPagar->Formapgto->findAsCombo('asc', 'tipo <> "I"');
 		$users = $this->ContaPagar->User->findAsCombo();
 		$situacaos = $this->ContaPagar->Situacao->findAsCombo();
 		$tipos = $this->ContaPagar->Tipo->findAsCombo();
