@@ -1,8 +1,10 @@
 <div class="panel panel-default">
-
-<div class="panel-heading">
-            <h3><?php echo __('Detalhe'); ?>                    <small><?php echo __('Edit') ?></small>
-<?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>	
+	<div class="panel-heading">
+        <h3><?php echo __('Detalhe'); ?>
+        <small><?php echo __('Edit') ?></small>
+		<?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>
+		</h3>
+	</div>
 	<div class="panel-body">
 
 		<div class="detalhes form">
