@@ -1,7 +1,7 @@
 <div class="panel panel-default">
 
    <div class="panel-heading">
-      <h3><?php echo __('Aviso'); ?>                    
+      <h3><?php echo __('Aviso'); ?>
          <small><?php echo __('Add') ?></small>
         <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>
       </h3>
@@ -16,27 +16,27 @@
          <fieldset>
 
             <div class="form-group">
-               <?php echo $this->Form->input('data', 
+               <?php echo $this->Form->input('data',
                                              array('type' => 'text', 'class' => 'form-control datepicker-start', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('user_id', 
+               <?php echo $this->Form->input('user_id',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('mensagem', 
+               <?php echo $this->Form->input('mensagem',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('tipo_id', 
+               <?php echo $this->Form->input('tipo_id',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->file('arq', 
+               <?php echo $this->Form->file('arq',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->

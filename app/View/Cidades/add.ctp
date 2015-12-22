@@ -10,17 +10,17 @@
          <?php echo $this->Form->create('Cidade', array('role' => 'form', 'class'=>'form-horizontal')); ?>
          <fieldset>
             <div class="form-group">
-               <?php echo $this->Form->input('estado_id', 
+               <?php echo $this->Form->input('estado_id',
+                                             array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+                                            ); ?>
+            </div><!-- .form-group -->
+            <div class="form-group">
+               <?php echo $this->Form->input('nome',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('nome', 
-                                             array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
-                                            ); ?>
-            </div><!-- .form-group -->
-            <div class="form-group">
-               <?php echo $this->Form->input('cep', 
+               <?php echo $this->Form->input('cep',
                                              array('class' => 'form-control cep', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->

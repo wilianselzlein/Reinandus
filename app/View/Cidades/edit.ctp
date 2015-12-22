@@ -1,7 +1,7 @@
 <div class="panel panel-default">
 
    <div class="panel-heading">
-      <h3><?php echo __('Cidade'); ?>                    
+      <h3><?php echo __('Cidade'); ?>
          <small><?php echo __('Edit') ?></small>
          <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>
       </h3>
@@ -16,22 +16,22 @@
          <fieldset>
 
             <div class="form-group">
-               <?php echo $this->Form->input('id', 
+               <?php echo $this->Form->input('id',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('estado_id', 
+               <?php echo $this->Form->input('estado_id',
+                                             array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+                                            ); ?>
+            </div><!-- .form-group -->
+            <div class="form-group">
+               <?php echo $this->Form->input('nome',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('nome', 
-                                             array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
-                                            ); ?>
-            </div><!-- .form-group -->
-            <div class="form-group">
-               <?php echo $this->Form->input('cep', 
+               <?php echo $this->Form->input('cep',
                                              array('class' => 'form-control cep', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->

@@ -15,129 +15,129 @@
          <fieldset>
 
             <div class="form-group">
-               <?php echo $this->Form->input('id', 
+               <?php echo $this->Form->input('id',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('nome', 
+               <?php echo $this->Form->input('nome',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('endereco', 
+               <?php echo $this->Form->input('endereco',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('numero', 
+               <?php echo $this->Form->input('numero',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('bairro', 
+               <?php echo $this->Form->input('bairro',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('cidade_id', 
-                                             array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+               <?php echo $this->Form->input('cidade_id',
+                                             array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('cep', 
+               <?php echo $this->Form->input('cep',
                                              array('class' => 'form-control cep', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('fone', 
+               <?php echo $this->Form->input('fone',
                                              array('class' => 'form-control dddphone', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('fax', 
+               <?php echo $this->Form->input('fax',
                                              array('class' => 'form-control dddphone', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('celular', 
+               <?php echo $this->Form->input('celular',
                                              array('class' => 'form-control dddphone', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('email', 
+               <?php echo $this->Form->input('email',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('emailalt', 
+               <?php echo $this->Form->input('emailalt',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('cpf', 
+               <?php echo $this->Form->input('cpf',
                                              array('class' => 'form-control cpf', 'label'=>array('text' => 'CPF', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-               <?php echo $this->Form->input('rg', 
+               <?php echo $this->Form->input('rg',
                                              array('class' => 'form-control', 'label'=>array('text' => 'RG', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
-              <?php    echo $this->Form->label(__('notafiscal'), null, array('text' => 'Nota Fiscal', 'class'=>'col-sm-2 control-label')); 
-                             echo $this->Form->input('notafiscal', 
-                                                  array('type' => 'checkbox', 'class' => 'form-control  checkbox2',                                              
-                                                        'before'=>'<div class="col-sm-10">', 
+              <?php    echo $this->Form->label(__('notafiscal'), null, array('text' => 'Nota Fiscal', 'class'=>'col-sm-2 control-label'));
+                             echo $this->Form->input('notafiscal',
+                                                  array('type' => 'checkbox', 'class' => 'form-control  checkbox2',
+                                                        'before'=>'<div class="col-sm-10">',
                                                         'after'=>'</div>',
-                                                        'div'=>false, 
-                                                        'label'=>false, 
-                                                        'checked'=>true)); 
+                                                        'div'=>false,
+                                                        'label'=>false,
+                                                        'checked'=>true));
                     ?>
             </div><!-- .form-group -->
            <div class="form-group">
-               <?php echo $this->Form->input('obs', 
+               <?php echo $this->Form->input('obs',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
            <div class="form-group">
-               <?php echo $this->Form->input('curriculum', 
+               <?php echo $this->Form->input('curriculum',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
            <div class="form-group">
-               <?php echo $this->Form->input('titulacao', 
+               <?php echo $this->Form->input('titulacao',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
            <div class="form-group">
-               <?php echo $this->Form->input('resumotitulacao', 
+               <?php echo $this->Form->input('resumotitulacao',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
            <div class="form-group">
-               <?php echo $this->Form->input('lattes', 
+               <?php echo $this->Form->input('lattes',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
           <div class="form-group">
-            <?php    echo $this->Form->label(__('vinculo'), null, array('class'=>'col-sm-2 control-label')); 
-                           echo $this->Form->input('vinculo', 
-                                                array('type' => 'checkbox', 'class' => 'form-control  checkbox2',                                              
-                                                      'before'=>'<div class="col-sm-10">', 
+            <?php    echo $this->Form->label(__('vinculo'), null, array('class'=>'col-sm-2 control-label'));
+                           echo $this->Form->input('vinculo',
+                                                array('type' => 'checkbox', 'class' => 'form-control  checkbox2',
+                                                      'before'=>'<div class="col-sm-10">',
                                                       'after'=>'</div>',
-                                                      'div'=>false, 
-                                                      'label'=>false, 
-                                                      'checked'=>true)); 
+                                                      'div'=>false,
+                                                      'label'=>false,
+                                                      'checked'=>true));
                   ?>
           </div><!-- .form-group -->
            <div class="form-group">
-               <?php echo $this->Form->input('formacao', 
+               <?php echo $this->Form->input('formacao',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
            <div class="form-group">
-               <?php echo $this->Form->input('dadosfin', 
+               <?php echo $this->Form->input('dadosfin',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
@@ -158,5 +158,3 @@
    </div><!-- /#page-content .col-sm-9 -->
 
 </div><!-- /#page-container .row-fluid -->
-
-
