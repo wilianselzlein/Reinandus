@@ -76,7 +76,8 @@ class AlunoDisciplinasController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('conditions' => array('AlunoDisciplina.' . $this->AlunoDisciplina->primaryKey => $id));
+			$options = array('recursive' => false, 'conditions' => array('AlunoDisciplina.' . $this->AlunoDisciplina->primaryKey => $id));
+			$this->AlunoDisciplina->unbindModel(array('belongsTo' => array('Aluno', 'Disciplina', 'Professor')));
 			$this->request->data = $this->AlunoDisciplina->find('first', $options);
 		}
 		$professores = $this->AlunoDisciplina->Professor->findAsCombo();
@@ -118,8 +119,8 @@ class AlunoDisciplinasController extends AppController {
 	  $curso = $curso['Aluno']['curso_id'];
 
 	  $disciplinas = $this->Curso->CursoDisciplina->find('all', array(
-	  	'fields' => array('CursoDisciplina.disciplina_id', 'CursoDisciplina.professor_id', 'CursoDisciplina.horas_aula')
-		));
+	  	'fields' => array('CursoDisciplina.disciplina_id', 'CursoDisciplina.professor_id', 'CursoDisciplina.horas_aula'),
+	  	'conditions' => array('Curso.Id' => $curso)));
 
 		foreach ($disciplinas as $disciplina):
 			$aluno = $disciplina['CursoDisciplina'];

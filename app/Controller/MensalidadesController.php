@@ -204,18 +204,22 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
         if ($this->request->is('post') || $this->request->is('put')) {
         	$data = $this->request->data;
         	$data = $data['Mensalidade'];
-        	
+
     		$numero = 1;
         	$quantidade = (float) $data['quantidade'];
 
         	while ($numero <= $quantidade) {
         		$mensalidade = $data;
     			$mensalidade['numero'] = $numero;
+    			
+    			$vencimento = str_replace("/", "-", $mensalidade['vencimento']);
+    			$vencimento = strtotime($vencimento);
+				$vencimento = date("Y-m-d", strtotime("+" . ($numero - 1) . " month", $vencimento));
+				$mensalidade['vencimento'] = $vencimento;
 
                 $this->Mensalidade->create();
                 if (! $this->Mensalidade->save($mensalidade)) { 
-                	 debug($this->validationErrors); die();
-					//debug($mensalidade);  debug($e); die;
+                	 debug($mensalidade); debug($this->validationErrors); die();
 					//$this->redirect($this->referer());
             	}
                 $numero++;

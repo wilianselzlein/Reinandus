@@ -25,8 +25,8 @@ class DetalhesController extends AppController {
 		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Detalhe))));
 		$this->Filter->setPaginate('order', array('Detalhe.id' => 'desc')); 
 		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
-
-		$this->Detalhe->recursive = 0;
+		$this->Filter->setPaginate('fields', array('Detalhe.id', 'Detalhe.aluno_id', 'Detalhe.foto', 'Detalhe.ocorrencias', 'Detalhe.hist_escolar', 'Detalhe.neg_financeira', 'Detalhe.egresso', 'Detalhe.pessoa_id', 'Detalhe.foto1', 'Aluno.id', 'Aluno.nome'));
+		$this->Detalhe->recursive = false;
 		$this->set('detalhes', $this->paginate());
 	}
 
@@ -41,7 +41,8 @@ class DetalhesController extends AppController {
 		if (!$this->Detalhe->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('conditions' => array('Detalhe.' . $this->Detalhe->primaryKey => $id));
+		$options = array('recursive' => false, 'conditions' => array('Detalhe.' . $this->Detalhe->primaryKey => $id), 
+			'fields' => array('Detalhe.id', 'Detalhe.aluno_id', 'Detalhe.foto', 'Detalhe.ocorrencias', 'Detalhe.hist_escolar', 'Detalhe.neg_financeira', 'Detalhe.egresso', 'Detalhe.pessoa_id', 'Detalhe.foto1', 'Aluno.id', 'Aluno.nome'));
 		$this->set('detalhe', $this->Detalhe->find('first', $options));
 	}
 
@@ -97,10 +98,11 @@ class DetalhesController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('conditions' => array('Detalhe.' . $this->Detalhe->primaryKey => $id));
+			$options = array('recursive' => false, 'conditions' => array('Detalhe.' . $this->Detalhe->primaryKey => $id));
+			$this->Detalhe->unbindModel(array('belongsTo' => array('Aluno')));
 			$this->request->data = $this->Detalhe->find('first', $options);
 		}
-		$alunos = $this->Detalhe->Aluno->findAsCombo();
+		$alunos = $this->Detalhe->Aluno->findAsCombo('asc', 'Aluno.id = ' . $this->request->data['Detalhe']['aluno_id']);
 		$this->set(compact('alunos', 'pessoas'));
 	}
 

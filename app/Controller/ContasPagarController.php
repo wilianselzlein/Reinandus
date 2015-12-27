@@ -205,13 +205,13 @@ ContaPagar.conta_corrente, ContaPagar.liberado, ContaPagar.formapgto_id, ContaPa
 'Situacao.id', 'Situacao.valor', 'Formapgto.id', 'Formapgto.nome'));
 			$this->request->data = $this->ContaPagar->find('first', $options);
 		}
-		$contas = $this->ContaPagar->Conta->findAsCombo();
-		$pessoa_id = $this->request->data['ContaPagar']['pessoa_id'];
-		$pessoas = $this->ContaPagar->Pessoa->find('list', array('conditions' => array('Pessoa.id' => $pessoa_id)));
-		$formapgtos = $this->ContaPagar->Formapgto->findAsCombo('asc', 'tipo <> "I"');
+		//$contas = $this->ContaPagar->Conta->findAsCombo();
+		//$pessoa_id = $this->request->data['ContaPagar']['pessoa_id'];
+		//$pessoas = $this->ContaPagar->Pessoa->find('list', array('conditions' => array('Pessoa.id' => $pessoa_id)));
+		//$formapgtos = $this->ContaPagar->Formapgto->findAsCombo('asc', 'tipo <> "I"');
+		//$tipos = $this->ContaPagar->Tipo->findAsCombo();
 		$users = $this->ContaPagar->User->findAsCombo();
 		$situacaos = $this->ContaPagar->Situacao->findAsCombo();
-		$tipos = $this->ContaPagar->Tipo->findAsCombo();
 		$this->set(compact('contas', 'pessoas', 'formapgtos', 'users', 'situacaos', 'tipos'));
 	}
 
