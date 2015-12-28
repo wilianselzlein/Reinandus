@@ -12,6 +12,7 @@ class ImportarAlunosComponent extends ImportadorBaseComponent {
 		$dados = [];
 		$dados['id'] = $parametro['ALUCOD'];
 		$dados['nome'] = $this->FormatarValorEncode($parametro['ALUNOME']);
+		$this->TratarCampoEmBranco('nome');
 		$dados['endereco'] = $this->FormatarValorEncode($parametro['ALUENDERECO']);
 		$dados['numero'] = '';
 		$dados['bairro'] = $this->FormatarValorEncode($parametro['ALUBAIRRO']);
@@ -127,6 +128,7 @@ class ImportarAlunosComponent extends ImportadorBaseComponent {
 		$cadastro['pessoa'] = 'F';
 		$cadastro['fantasia'] = $responsavel;
 		$cadastro['razaosocial'] = $responsavel;
+		$this->TratarCampoEmBranco('razaosocial', $responsavel_cpf);
 		$cadastro['endereco'] = $dados['endereco'];
 		$cadastro['bairro'] = $dados['bairro'];
 		$cadastro['cidade_id'] = $dados['cidade_id'];

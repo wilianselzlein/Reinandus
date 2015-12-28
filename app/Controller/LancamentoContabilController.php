@@ -62,8 +62,9 @@ class LancamentoContabilController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$debitos = $this->LancamentoContabil->Debito->findAsCombo();
-		$creditos = $this->LancamentoContabil->Credito->findAsCombo();
+		$nivel = $this->PegarMaiorNivel();
+		$debitos = $this->LancamentoContabil->Debito->findAsCombo('asc', 'Nivel = ' . $nivel);
+		$creditos = $this->LancamentoContabil->Credito->findAsCombo('asc', 'Nivel = ' . $nivel);
 		$historico_padrao = $this->LancamentoContabil->HistoricoPadrao->findAsCombo();
 		$this->set(compact('debitos', 'creditos', 'historico_padrao'));
 	}
@@ -92,8 +93,9 @@ class LancamentoContabilController extends AppController {
 			$this->LancamentoContabil->unbindModel(array('belongsTo' => array('Debito', 'Credito', 'HistoricoPadrao')));
 			$this->request->data = $this->LancamentoContabil->find('first', $options);
 		}
-		$debitos = $this->LancamentoContabil->Debito->findAsCombo();
-		$creditos = $this->LancamentoContabil->Credito->findAsCombo();
+		$nivel = $this->PegarMaiorNivel();
+		$debitos = $this->LancamentoContabil->Debito->findAsCombo('asc', 'Nivel = ' . $nivel);
+		$creditos = $this->LancamentoContabil->Credito->findAsCombo('asc', 'Nivel = ' . $nivel);
 		$historico_padrao = $this->LancamentoContabil->HistoricoPadrao->findAsCombo();
 		$this->set(compact('debitos', 'creditos', 'historico_padrao'));
 	}
@@ -121,4 +123,19 @@ class LancamentoContabilController extends AppController {
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
 		$this->redirect(array('action' => 'index'));
 	}
+
+/**
+ * PegarMaiorNivel method
+ *
+ * @throws NotFoundException
+ * @throws MethodNotAllowedException
+ * @param string
+ * @return integer
+ */
+	public function PegarMaiorNivel() {
+		$options = array('recursive' => false, 'fields' => array('Max(Debito.Nivel) as Nivel'));
+		$nivel = $this->LancamentoContabil->Debito->find('first', $options);
+		return $nivel[0]['Nivel'];
+	}
+	
 }

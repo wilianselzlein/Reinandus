@@ -120,6 +120,14 @@ abstract class ImportadorBaseComponent extends Component {
 		return True;
 	}
 
+	protected function TratarCampoEmBranco($campo, $valor = '') {
+		if ($dados[$campo] == '') {
+          if ($valor == '')
+          	$dados[$campo] = $dados['id'];
+          else
+            $dados[$campo] = $valor;
+		}
+	}
 
 }
 

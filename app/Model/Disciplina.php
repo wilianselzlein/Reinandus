@@ -29,7 +29,7 @@ class Disciplina extends AppModel {
  * @var array
  */
 	public $validate = array(
-		/*'nome' => array(
+		'nome' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				'message' => 'VALIDATE_BLANK',
@@ -38,8 +38,8 @@ class Disciplina extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
-		/*'valor' => array(
+		)/*,
+		'valor' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				'message' => 'VALIDATE_NUMERIC',
