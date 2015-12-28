@@ -11,7 +11,7 @@
                 <thead>
                     <tr class="active">
 							<th><?php echo $this->Paginator->sort('id'); ?></th>
-							<th><?php echo $this->Paginator->sort('banco'); ?></th>
+							<th><?php echo $this->Paginator->sort('banco', 'Descrição'); ?></th>
 							<th><?php echo $this->Paginator->sort('agencia'); ?></th>
 							<th><?php echo $this->Paginator->sort('conta'); ?></th>
 							<th><?php echo $this->Paginator->sort('contato'); ?></th>

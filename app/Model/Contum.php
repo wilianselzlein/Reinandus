@@ -12,7 +12,7 @@ class Contum extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'conta';
+	public $displayField = 'banco';
 
 
 /**

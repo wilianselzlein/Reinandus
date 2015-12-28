@@ -15,7 +15,7 @@
 			<?php echo h($contum['Contum']['id']); ?>
 			&nbsp;
 		</td>
-</tr><tr>		<td><strong><?php echo __('Banco'); ?></strong></td>
+</tr><tr>		<td><strong><?php echo __('Descrição'); ?></strong></td>
 		<td>
 			<?php echo h($contum['Contum']['banco']); ?>
 			&nbsp;
