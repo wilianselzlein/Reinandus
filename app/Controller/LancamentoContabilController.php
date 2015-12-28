@@ -28,7 +28,7 @@ class LancamentoContabilController extends AppController {
 		$this->Filter->setPaginate('order', array('LancamentoContabil.id' => 'desc')); 
 		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
 
-		$this->LancamentoContabil->recursive = 0;
+		$this->LancamentoContabil->recursive = 1;
 		$this->set('LancamentoContabil', $this->paginate());
 	}
 
