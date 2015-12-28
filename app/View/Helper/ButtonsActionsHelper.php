@@ -19,13 +19,13 @@ class ButtonsActionsHelper extends AppHelper {
 		$return = Inflector::camelize(Inflector::humanize(Inflector::pluralize($model)));
 		if (! strcasecmp($return, 'Conta')) 
 			$return = 'Contas';
+		if (! strcasecmp($return, 'Lancamentocontabil')) 
+			$return = 'LancamentoContabil';
+		if (! strcasecmp($return, 'Contaspagar')) 
+			$return = 'ContasPagar';
+		if (! strcasecmp($return, 'HistoricoPadraos')) 
+			$return = 'HistoricoPadrao';
 
-		//if (! strcasecmp($return, 'Professors')) 
-		//	$return = 'Professores';
-		//if (! strcasecmp($return, 'LancamentoContabils')) 
-		//	$return = 'LancamentoContabil';
-		//if (! strcasecmp($return, 'Permissaos')) 
-		//	$return = 'Permissoes';
 		return $return;
 	}
 
