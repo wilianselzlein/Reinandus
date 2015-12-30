@@ -13,7 +13,13 @@ class PortalController extends AppController {
    public function index() {
       $dados = $this->Session->read('Auth');
       $id = $dados['Aluno']['id'];
-
+      
+      $Aluno = ClassRegistry::init('Aluno');
+      $options = array('recursive' => 0, 'conditions' => array('Aluno.id' => $id));
+      $alunos = $Aluno->find('all', $options);
+      $alunos = $alunos[0];
+      //debug($alunos); die;
+      
       $Aviso = ClassRegistry::init('Aviso');
       $options = array('recursive' => -1, 'conditions' => array('Aviso.tipo_id' => 21), 'order' => array('Aviso.Data DESC'));
       $avisos = $Aviso->find('all', $options);
@@ -37,7 +43,7 @@ class PortalController extends AppController {
       $Grupo = ClassRegistry::init('Grupo');
       $grupos = $Grupo->findAsCombo();
 
-      $this->set(compact('avisos', 'grupos', 'materiais', 'notas', 'vagas', 'convenios'));
+      $this->set(compact('alunos', 'avisos', 'grupos', 'materiais', 'notas', 'vagas', 'convenios'));
    }
 
    public function login(){

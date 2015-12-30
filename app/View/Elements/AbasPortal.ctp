@@ -21,6 +21,9 @@
                 <li>
                     <a href="#tabVag" data-toggle="tab"></span>Vagas de <br>Emprego</a>
                 </li>
+                <li>
+                    <a href="#tabPro" data-toggle="tab"></span>Protocolo <br> &nbsp; </a>
+                </li>
         </ul>
     	<div class="panel panel-default">
 		  <div class="panel-body">
@@ -28,26 +31,29 @@
                 <div class="tab-pane active" id="tabAvi">
 <?php echo $this->element('Abas/Avisos'); ?>
 				</div>
-				<div class="tab-pane" id="tabMat">  
+				<div class="tab-pane" id="tabMat">
 <?php echo $this->element('Abas/Materiais'); ?>
                 </div>
-                <div class="tab-pane" id="tabNot">   
+                <div class="tab-pane" id="tabNot">
 <?php echo $this->element('Abas/Notas'); ?>
 				</div>
-                <div class="tab-pane" id="tabMen"> 
+                <div class="tab-pane" id="tabMen">
 
-                </div>            
-                <div class="tab-pane" id="tabMan">       
+                </div>
+                <div class="tab-pane" id="tabMan">
 <?php echo $this->element('Abas/Manual'); ?>
                 </div>
-                <div class="tab-pane" id="tabCon">       
+                <div class="tab-pane" id="tabCon">
 <?php echo $this->element('Abas/Convenios'); ?>
                 </div>
-                <div class="tab-pane" id="tabVag">       
+                <div class="tab-pane" id="tabVag">
 <?php echo $this->element('Abas/Vagas'); ?>
                 </div>
+                <div class="tab-pane" id="tabPro">
+<?php echo $this->element('Abas/Protocolo'); ?>
+                </div>
         	</div>
-    	  </div>            
+    	  </div>
         </div>
     </div>
 
