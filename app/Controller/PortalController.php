@@ -7,6 +7,7 @@
  */
 
 App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 
 class PortalController extends AppController {
 
@@ -64,5 +65,34 @@ class PortalController extends AppController {
    public function logout() {
         $this->redirect($this->Auth->logout());
    }
+
+   public function protocolo() {
+        $this->SendEmail($this->request->data);
+   }
+
+  private function SendEmail($dados) {
+
+      $emails = array('secretaria@facet.br', 'wilianselzlein@gmail.com');
+
+      $Email = new CakeEmail('smtp');
+      $Email->emailFormat('html');
+      $Email->to($emails);
+      $Email->subject('Protocolo');
+
+      $Email->send(
+        'Protocolo do Portal:<br>' . 
+        'Data: ' . Date('Y/m/d H:i') . '<br>' .
+        'Aluno: ' . $dados['portal']['nome'] . '<br>' .
+        'Matricula: ' . $dados['portal']['matricula'] . '<br>' .
+        'Email: ' . $dados['portal']['email'] . '<br>' .
+        'Telefone: ' . $dados['portal']['telefone'] . '<br>' .
+        'Curso: ' . $dados['portal']['curso'] . '<br>' .
+        'Turma: ' . $dados['portal']['turma'] . '<br>' .
+        '<br>'.
+        'Requerimento: ' . $dados['portal']['requerimento'] . '<br>' .
+        'Justificativa: ' . $dados['portal']['justificativa'] . '<br>' .
+        '<br>'.
+        'Email automático, apenas leitura, favor não responder no mesmo.<br>');
+    }
 
 }

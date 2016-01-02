@@ -41,18 +41,18 @@ class EmailConfig {
 
 	public $default = array(
 		'transport' => 'Mail',
-		'from' => 'you@localhost',
+		'from' => 'secretaria@facet.br',
 		//'charset' => 'utf-8',
 		//'headerCharset' => 'utf-8',
 	);
 
 	public $smtp = array(
 		'transport' => 'Smtp',
-		'from' => array('site@localhost' => 'My Site'),
-		'host' => 'localhost',
+		'from' => array('secretaria@facet.br' => 'Facet'),
+		'host' => 'mail.facet.br',
 		'port' => 25,
 		'timeout' => 30,
-		'username' => 'user',
+		'username' => 'secretaria@facet.br',
 		'password' => 'secret',
 		'client' => null,
 		'log' => false,
@@ -61,7 +61,7 @@ class EmailConfig {
 	);
 
 	public $fast = array(
-		'from' => 'you@localhost',
+		'from' => 'secretaria@facet.br',
 		'sender' => null,
 		'to' => null,
 		'cc' => null,
@@ -80,10 +80,10 @@ class EmailConfig {
 		'attachments' => null,
 		'emailFormat' => null,
 		'transport' => 'Smtp',
-		'host' => 'localhost',
+		'host' => 'mail.facet.br',
 		'port' => 25,
 		'timeout' => 30,
-		'username' => 'user',
+		'username' => 'secretaria@facet.br',
 		'password' => 'secret',
 		'client' => null,
 		'log' => true,
