@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="form-group">
-      <?php echo $this->Form->input('grupo', array('class' => 'form-control', 'options' => $grupos, 'label'=>array('text' => 'Curso:'))); ?>
+      <?php echo $this->Form->input('grupo', array('class' => 'form-control', 'options' => $grupos, 'selected' => $alunos['Curso']['grupo_id'], 'label'=>array('text' => 'Curso:'))); ?>
     </div><!-- .form-group -->
   </div>
 </div>

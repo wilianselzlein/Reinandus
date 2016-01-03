@@ -125,13 +125,16 @@ echo $this->fetch('script');
                <?php echo $this->Session->flash(); ?>
                <?php echo $this->fetch('content'); ?>
             </div><!-- /#content .container -->
+            <?php echo $this->element('sql_dump'); ?>
          </div>
+         
 
          <div id="footer" class="container">
             <?php //Silence is golden ?>
          </div><!-- /#footer .container -->
 
       </div><!-- /#main-container -->		
+
       <script>$(document).ready(function(){ $('[data-toggle=tooltip]').tooltip()});</script>
       <?php echo $this->Html->script('cfg-datepicker');?>
       <?php echo $this->Html->script('cfg-currency');?>
@@ -140,6 +143,7 @@ echo $this->fetch('script');
       <?php echo $this->Html->script('cfg-cpf');?>
       <?php echo $this->Html->script('cfg-cnpj');?>
       <?php echo $this->Html->script('cfg-dddphone');?>
+      
    </body>
 
 </html>

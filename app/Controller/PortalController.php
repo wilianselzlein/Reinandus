@@ -20,13 +20,31 @@ class PortalController extends AppController {
       $alunos = $Aluno->find('all', $options);
       $alunos = $alunos[0];
       //debug($alunos); die;
-      
+
+      $AvisoCurso = ClassRegistry::init('AvisoCurso');
+      $options = array('fields' => array('AvisoCurso.aviso_id'), 'recursive' => -1, 'conditions' => array('AvisoCurso.curso_id' => $alunos['Aluno']['curso_id']));
+      $avisoscurso = $AvisoCurso->find('list', $options);
+      sort($avisoscurso);
+      if (empty($avisoscurso)) $avisoscurso[] = 0;
+      //debug($avisoscurso); die;
+
+      $AvisoGrupo = ClassRegistry::init('AvisoGrupo');
+      $options = array('fields' => array('AvisoGrupo.aviso_id'), 'recursive' => -1, 'conditions' => array('AvisoGrupo.grupo_id' => $alunos['Curso']['grupo_id']));
+      $avisosgrupo = $AvisoGrupo->find('list', $options);
+      sort($avisosgrupo);
+      if (empty($avisosgrupo)) $avisosgrupo[] = 0;
+      //debug($avisosgrupo); die;
+
+      $registros = array_merge($avisoscurso, $avisosgrupo);
+      //debug($avisos); die;
+
       $Aviso = ClassRegistry::init('Aviso');
-      $options = array('recursive' => -1, 'conditions' => array('Aviso.tipo_id' => 21), 'order' => array('Aviso.Data DESC'));
+      $options = array('recursive' => -1, 'conditions' => array('Aviso.id >= ' => min($registros), 'Aviso.id <= ' => max($registros), 'AND' => array('Aviso.id' => $registros), 'Aviso.tipo_id' => 21), 'order' => array('Aviso.Data DESC'));
       $avisos = $Aviso->find('all', $options);
+      //debug($avisos); die;
 
       $Material = ClassRegistry::init('Aviso');
-      $options = array('recursive' => -1, 'conditions' => array('Aviso.tipo_id' => 22), 'order' => array('Aviso.Data DESC'));
+      $options = array('recursive' => -1, 'conditions' => array('Aviso.id >= ' => min($registros), 'Aviso.id <= ' => max($registros), 'AND' => array('Aviso.id' => $registros), 'Aviso.tipo_id' => 22), 'order' => array('Aviso.Data DESC'));
       $materiais = $Material->find('all', $options);
 
       $Vaga = ClassRegistry::init('Aviso');

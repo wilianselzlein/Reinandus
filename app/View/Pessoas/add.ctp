@@ -149,7 +149,7 @@
                                              array('class' => 'form-control', 'label'=>array('text' => 'Junta Comercial', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group pessoa-juridica <?php echo $hidden;?>">
+            <div class="form-group pessoa-juridica hidden">
                <?php echo $this->Form->input('desconto',
                                              array('class' => 'form-control', 'label'=>array('text' => 'Desconto', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
