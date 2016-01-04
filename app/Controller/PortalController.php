@@ -112,5 +112,11 @@ class PortalController extends AppController {
         '<br>'.
         'Email automático, apenas leitura, favor não responder no mesmo.<br>');
     }
-
+    
+    public function avisos() {
+        $grupo = $this->request->data;
+        debug($grupo);
+        echo $grupo['Post']['grupo'];
+        //$this->layout = false;
+    }
 }
