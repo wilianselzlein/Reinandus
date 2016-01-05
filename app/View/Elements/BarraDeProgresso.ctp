@@ -1,1 +1,4 @@
-<?php echo $this->Html->image('load.gif', array('id' => 'loading', 'style'=> 'display:none')); ?>
+<?php 
+if ($nome == '') $nome = 'loading';
+echo $this->Html->image('load.gif', array('id' => $nome, 'style'=> 'display:none')); 
+?>

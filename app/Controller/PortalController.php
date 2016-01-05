@@ -19,33 +19,24 @@ class PortalController extends AppController {
       $options = array('recursive' => 0, 'conditions' => array('Aluno.id' => $id));
       $alunos = $Aluno->find('all', $options);
       $alunos = $alunos[0];
-      //debug($alunos); die;
 
-      $AvisoCurso = ClassRegistry::init('AvisoCurso');
+      /*$AvisoCurso = ClassRegistry::init('AvisoCurso');
       $options = array('fields' => array('AvisoCurso.aviso_id'), 'recursive' => -1, 'conditions' => array('AvisoCurso.curso_id' => $alunos['Aluno']['curso_id']));
       $avisoscurso = $AvisoCurso->find('list', $options);
       sort($avisoscurso);
       if (empty($avisoscurso)) $avisoscurso[] = 0;
-      //debug($avisoscurso); die;
 
       $AvisoGrupo = ClassRegistry::init('AvisoGrupo');
       $options = array('fields' => array('AvisoGrupo.aviso_id'), 'recursive' => -1, 'conditions' => array('AvisoGrupo.grupo_id' => $alunos['Curso']['grupo_id']));
       $avisosgrupo = $AvisoGrupo->find('list', $options);
       sort($avisosgrupo);
       if (empty($avisosgrupo)) $avisosgrupo[] = 0;
-      //debug($avisosgrupo); die;
 
       $registros = array_merge($avisoscurso, $avisosgrupo);
-      //debug($registros); die;
-
-      /*$Aviso = ClassRegistry::init('Aviso');
-      $options = array('recursive' => -1, 'conditions' => array('Aviso.id >= ' => min($registros), 'Aviso.id <= ' => max($registros), 'AND' => array('Aviso.id' => $registros), 'Aviso.tipo_id' => 21), 'order' => array('Aviso.Data DESC'));
-      $avisos = $Aviso->find('all', $options);*/
-      //debug($avisos); die;
 
       $Material = ClassRegistry::init('Aviso');
       $options = array('recursive' => -1, 'conditions' => array('Aviso.id >= ' => min($registros), 'Aviso.id <= ' => max($registros), 'AND' => array('Aviso.id' => $registros), 'Aviso.tipo_id' => 22), 'order' => array('Aviso.Data DESC'));
-      $materiais = $Material->find('all', $options);
+      $materiais = $Material->find('all', $options);*/
 
       $Vaga = ClassRegistry::init('Aviso');
       $options = array('recursive' => -1, 'conditions' => array('Aviso.tipo_id' => 24), 'order' => array('Aviso.Data DESC'));
@@ -62,7 +53,7 @@ class PortalController extends AppController {
       $Grupo = ClassRegistry::init('Grupo');
       $grupos = $Grupo->findAsCombo();
 
-      $this->set(compact('alunos', /*'avisos',*/ 'avisoscurso', 'grupos', 'materiais', 'notas', 'vagas', 'convenios'));
+      $this->set(compact('alunos', 'grupos', 'materiais', 'notas', 'vagas', 'convenios'));
    }
 
    public function login(){
@@ -113,36 +104,45 @@ class PortalController extends AppController {
         'Email automático, apenas leitura, favor não responder no mesmo.<br>');
     }
     
-    public function avisos() {
+    private function CarregarDadosAvisos($tipo) {
       $grupo = $this->request->data;
-//debug($grupo);
-//echo $grupo['Post']['grupo'];
+      $grupo = $grupo['Post']['grupo'];
 
-      $cursos = explode(',', $grupo['Post']['cursos']);
-//debug($cursos); die;
+      $Curso = ClassRegistry::init('Curso');
+      $options = array('fields' => array('Curso.id'), 'recursive' => -1, 'conditions' => array('Curso.grupo_id' => $grupo));
+      $cursos = $Curso->find('list', $options);
+      sort($cursos);
+      if (empty($cursos)) $cursos[] = 0;
+
       $AvisoCurso = ClassRegistry::init('AvisoCurso');
-      $options = array('fields' => array('AvisoCurso.aviso_id'), 'recursive' => -1, 'conditions' => array('AvisoCurso.aviso_id >= ' => min($cursos), 'AvisoCurso.aviso_id <= ' => max($cursos), 'AND' => array('AvisoCurso.aviso_id' => $cursos)));
+      $options = array('fields' => array('AvisoCurso.aviso_id'), 'recursive' => -1, 'conditions' => array('AvisoCurso.curso_id >= ' => min($cursos), 'AvisoCurso.curso_id <= ' => max($cursos), 'AND' => array('AvisoCurso.curso_id' => $cursos)));
       $avisoscurso = $AvisoCurso->find('list', $options);
       sort($avisoscurso);
       if (empty($avisoscurso)) $avisoscurso[] = 0;
-//debug($avisoscurso); die;
 
       $AvisoGrupo = ClassRegistry::init('AvisoGrupo');
-      $options = array('fields' => array('AvisoGrupo.aviso_id'), 'recursive' => -1, 'conditions' => array('AvisoGrupo.grupo_id' => $grupo['Post']['grupo']));
+      $options = array('fields' => array('AvisoGrupo.aviso_id'), 'recursive' => -1, 'conditions' => array('AvisoGrupo.grupo_id' => $grupo));
       $avisosgrupo = $AvisoGrupo->find('list', $options);
       sort($avisosgrupo);
       if (empty($avisosgrupo)) $avisosgrupo[] = 0;
-//debug($avisosgrupo); die;
 
       $registros = array_merge($avisoscurso, $avisosgrupo);
-//debug($registros); die;
+
       $Aviso = ClassRegistry::init('Aviso');
-      $options = array('recursive' => -1, 'conditions' => array('Aviso.id >= ' => min($registros), 'Aviso.id <= ' => max($registros), 'AND' => array('Aviso.id' => $registros), 'Aviso.tipo_id' => 21), 'order' => array('Aviso.Data DESC'));
+      $options = array('recursive' => -1, 'conditions' => array('Aviso.id >= ' => min($registros), 'Aviso.id <= ' => max($registros), 'AND' => array('Aviso.id' => $registros), 'Aviso.tipo_id' => $tipo), 'order' => array('Aviso.Data DESC'));
       $avisos = $Aviso->find('all', $options);
-//debug($avisos); die;
-
-      $this->set(compact('avisos'));
-
-        //$this->layout = false;
+      return $avisos;
     }
+
+    public function avisos() {
+
+      $avisos = $this->CarregarDadosAvisos(21);
+      $this->set(compact('avisos'));
+    }
+
+    public function materiais() {
+      $materiais = $this->CarregarDadosAvisos(22);
+      $this->set(compact('materiais'));
+    }
+
 }

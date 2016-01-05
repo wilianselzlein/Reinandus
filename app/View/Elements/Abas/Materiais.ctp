@@ -1,24 +1,16 @@
 <div class="panel panel-default">
   <div class="panel-body">
-    <div class="form-group">
-      <?php echo $this->Form->input('grupo', array('class' => 'form-control', 'options' => $grupos, 'selected' => $alunos['Curso']['grupo_id'], 'label'=>array('text' => 'Curso:'))); ?>
-    </div><!-- .form-group -->
+    <?php echo $this->Ajax->Form(array('type' => 'post', 'options' => array('id' => 'form_materiais', 'model'=>'Post', 'update'=>'div_materiais', 'indicator' => 'barra_materiais', 'url' => array('controller' => 'portal', 'action' => 'materiais')))); ?>
+      <div class="form-group">
+        <?php echo $this->Form->input('grupo', array('class' => 'form-control', 'options' => $grupos, 'selected' => $alunos['Curso']['grupo_id'], 'label'=>array('text' => 'Curso:'))); ?>
+      </div><!-- .form-group -->
+    <?php echo $this->Form->button('<i class="fa fa-search"></i>'.' '.__('Consultar'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit', 'id' => 'btn_materiais')); ?>
+    <?php echo $this->Form->end() ?>
   </div>
 </div>
-<?php 
-  $i = 0;
-  foreach ($materiais as $material): 
-?>
-  <?php if ($i === 0) { ?>
-  <a href="#" class="list-group-item active">
-  <?php } else { ?>
-  <a href="#" class="list-group-item">
-  <?php } ?>
-    <h4 class="list-group-item-heading"><?php echo $material['Aviso']['data']; ?></h4>
-    <p class="list-group-item-text"><pre><?php echo $material['Aviso']['mensagem']; ?></pre>
-<br/> <button type="button" class="btn btn-default btn-lg">
-<i class="fa fa-download"></i> Baixar 
-</button>
-    </p>
-  </a>
-<?php $i++; endforeach; ?>
+<?php echo $this->element('BarraDeProgresso', array('nome' => 'barra_materiais')); ?>
+
+<div id="div_materiais" class="list-group">
+</div>
+
+<script>document.getElementById('btn_materiais').click();</script>
