@@ -1,5 +1,5 @@
 <button type="button" class="btn btn-default btn-lg">
-<i class="fa fa-print"></i> Imprimir Declaração de Matrícula
+  <i class="fa fa-print"></i> Imprimir Declaração de Matrícula
 </button>
 <br/><br/>
 <div class="panel panel-default">
@@ -29,7 +29,7 @@ $nt += $nota['AlunoDisciplina']['nota'];
       <td><?php echo $nota['Professor']['resumotitulacao']; ?></td>
       <td></td>
       <td><?php echo $nota['AlunoDisciplina']['horas_aula']; ?></td>
-      <td><?php echo date('d/m/Y', strtotime($nota['AlunoDisciplina']['data'])); ?></td>
+      <td><?php echo $nota['AlunoDisciplina']['data']; ?></td>
       <td><?php echo $nota['AlunoDisciplina']['nota']; ?></td>
     </tr>
 <?php endforeach; ?>
@@ -40,7 +40,7 @@ $nt += $nota['AlunoDisciplina']['nota'];
       <td></td>
       <td><?php echo $ha; ?></td>
       <td></td>
-      <td><?php echo $nt / count($nota); ?></td>
+      <td><?php echo $nt / count($notas);?></td>
     </tr>
   </tbody>
 </table>
