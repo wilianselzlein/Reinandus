@@ -13,7 +13,7 @@ App::uses('AppModel', 'Model');
  * @property Disciplina $Disciplina
  */
 class Curso extends AppModel {
-
+	var $actsAs = array('DateFormat');
 /**
  * Use table
  *

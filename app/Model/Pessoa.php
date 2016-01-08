@@ -9,7 +9,7 @@ App::uses('AppModel', 'Model');
  * @property User $User
  */
 class Pessoa extends AppModel {
-
+	var $actsAs = array('DateFormat');
 /**
  * Use table
  *

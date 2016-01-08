@@ -11,7 +11,7 @@ App::uses('AppModel', 'Model');
  * @property Disciplina $Disciplina
  */
 class Professor extends AppModel {
-
+	var $actsAs = array('DateFormat');
 /**
  * Use table
  *

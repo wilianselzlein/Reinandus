@@ -6,7 +6,7 @@
         </div>
 
 		<div class="lancamentocontabils view pandel-body">
-		
+
 			<div class="table-responsive">
 				<table class="table table-hover table-condensed">
 					<tbody>
@@ -17,7 +17,7 @@
 		</td>
 </tr><tr>		<td><strong><?php echo __('Data'); ?></strong></td>
 		<td>
-			<?php echo date('d/m/Y', strtotime($lancamentocontabil['LancamentoContabil']['data'])); ?>
+			<?php echo $lancamentocontabil['LancamentoContabil']['data']; ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Debito'); ?></strong></td>
@@ -58,8 +58,8 @@
 </tr>					</tbody>
 				</table><!-- /.table table-striped table-bordered -->
 			</div><!-- /.table-responsive -->
-			
+
 		</div><!-- /.view -->
-	
+
 
 </div><!-- /#page-container .row-fluid -->

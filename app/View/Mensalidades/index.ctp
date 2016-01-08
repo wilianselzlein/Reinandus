@@ -21,16 +21,16 @@
 						</tr>
 					</thead>
 					<tbody>
-<?php foreach ($mensalidades as $mensalidade): ?> 
+<?php foreach ($mensalidades as $mensalidade): ?>
 	<tr>
 		<td><?php echo h($mensalidade['Mensalidade']['id']); ?>&nbsp;</td>
 		<td><?php echo h($mensalidade['Mensalidade']['numero']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($mensalidade['Aluno']['nome'], array('controller' => 'alunos', 'action' => 'view', $mensalidade['Aluno']['id'])); ?>
 		</td>
-		<td><?php echo date('d/m/Y', strtotime($mensalidade['Mensalidade']['vencimento'])); ?>&nbsp;</td>
+		<td><?php echo h($mensalidade['Mensalidade']['vencimento']); ?>&nbsp;</td>
 		<td><?php echo $this->Number->currency($mensalidade['Mensalidade']['liquido'],'BRL'); ?>&nbsp;</td>
-		<td><?php echo date('d/m/Y', strtotime($mensalidade['Mensalidade']['pagamento'])); ?>&nbsp;</td>
+		<td><?php echo h($mensalidade['Mensalidade']['pagamento']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($mensalidade['Formapgto']['nome'], array('controller' => 'formaspagamentos', 'action' => 'view', $mensalidade['Formapgto']['id'])); ?>
 		</td>
@@ -64,8 +64,7 @@
 				?>
 			</ul><!-- /.pagination -->
 			</div>
-	
+
 </div>
 
 <?php echo $this->element('Modal'); ?>
-

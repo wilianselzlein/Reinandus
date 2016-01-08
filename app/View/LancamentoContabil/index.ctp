@@ -23,7 +23,7 @@
 <?php foreach ($LancamentoContabil as $lancamentocontabil): ?>
 	<tr>
 		<td><?php echo h($lancamentocontabil['LancamentoContabil']['id']); ?>&nbsp;</td>
-		<td><?php echo date('d/m/Y', strtotime($lancamentocontabil['LancamentoContabil']['data'])); ?>&nbsp;</td>
+		<td><?php echo $lancamentocontabil['LancamentoContabil']['data']; ?>&nbsp;</td>
             <td><?php echo $this->Html->link($lancamentocontabil['Debito']['descricao'], array('controller' => 'planocontas', 'action' => 'view', $lancamentocontabil['Debito']['id']), array('class' => '')); ?>
              &nbsp;</td>
             <td><?php echo $this->Html->link($lancamentocontabil['Credito']['descricao'], array('controller' => 'planocontas', 'action' => 'view', $lancamentocontabil['Credito']['id']), array('class' => '')); ?>

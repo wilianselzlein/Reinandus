@@ -174,7 +174,7 @@ if($pessoa['Pessoa']['pessoa'] == 'F'){
                </tr>
                <tr class=" <?php echo $hidden;?>">	<td><strong><?php echo __('Fundacao'); ?></strong></td>
                   <td>
-                     <?php echo date('d/m/Y', strtotime($pessoa['Pessoa']['fundacao'])); ?>
+                     <?php echo h($pessoa['Pessoa']['fundacao']); ?>
                      &nbsp;
                   </td>
                </tr>
@@ -192,13 +192,13 @@ if($pessoa['Pessoa']['pessoa'] == 'F'){
                </tr>
                <tr>		<td><strong><?php echo __('Created'); ?></strong></td>
                   <td>
-                     <?php echo date('d/m/Y H:i:s', strtotime($pessoa['Pessoa']['created'])); ?>
+                     <?php echo h($pessoa['Pessoa']['created']); ?>
                      &nbsp;
                   </td>
                </tr>
                <tr>		<td><strong><?php echo __('Modified'); ?></strong></td>
                   <td>
-                     <?php echo date('d/m/Y H:i:s', strtotime($pessoa['Pessoa']['modified'])); ?>
+                     <?php echo h($pessoa['Pessoa']['modified']); ?>
                      &nbsp;
                   </td>
                </tr>					</tbody>
