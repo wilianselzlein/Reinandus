@@ -1,0 +1,74 @@
+<?PHP
+App::uses('CakeTime', 'Utility');
+
+class DateFormatBehavior extends ModelBehavior {
+
+    private $fields;
+    public $settings;
+
+    private $defaultFormat = '%d/%m/%Y';
+
+    private $saveFormat = '%Y-%m-%d';
+
+    public function setup(Model $model, $config = array())    {
+        parent::setup($model, $config);
+        $this->fields = $config;
+        $columns = $model->getColumnTypes();
+        debug($columns);
+        foreach($columns as $column => $type){
+           if(($type != 'date') && ($type != 'datetime')) unset($columns[$column]);
+        }
+        debug($columns);
+        debug("------------------------------------ teste ".date('m/d/Y h:i:s a', time())." ".$model->name);
+        debug($this->fields);
+
+        if (!isset($this->settings[$model->alias])) {
+        $this->settings[$model->alias] = $columns;
+    }
+    $this->settings[$model->alias] = array_merge(
+        $this->settings[$model->alias], (array)$settings);
+    }
+
+    public function beforeValidate(Model $model, $options = array())
+    {
+
+
+        foreach ($this->fields as $field) {
+            $separate = explode('.',$field);
+            $alias = count($separate) > 1 ? $separate[0] : $model->alias;
+            $field = count($separate) > 1 ? $separate[1] : $separate[0];
+            // If the string is empty, it continues
+            if(empty($model->data[$alias][$field])) continue;
+
+            $count = count_chars($model->data[$alias][$field]);
+            $count = $count[ord('/')];
+
+            // It means, that the date string have slashes and are already formatted
+            if($count === 0) continue;
+
+            $model->data[$alias][$field] = CakeTime::format(strtotime($model->data[$alias][$field]), $this->saveFormat);
+
+        }
+        return parent::beforeValidate($model, $options);
+    }
+
+    public function afterFind(Model $model, $results, $primary = false){
+      //debug($results);
+
+        parent::afterFind($model, $results, $primary);
+debug("------------------------------------ teste ".date('m/d/Y h:i:s a', time())." ".$model->name);
+        foreach($this->settings[$model->alias] as $field){
+
+            $separate = explode('.',$field);
+            $alias = count($separate) > 1 ? $separate[0] : $model->alias;
+            $field = count($separate) > 1 ? $separate[1] : $separate[0];
+            foreach($results as $key => $value) {
+                if(empty($results[$key][$alias][$field])) continue;
+                $results[$key][$alias][$field] = CakeTime::format($value[$alias][$field], $this->defaultFormat);
+            }
+        }
+        return $results;
+    }
+
+
+}
