@@ -117,7 +117,6 @@ class PortalController extends AppController {
     }
 
     public function avisos() {
-
       $avisos = $this->CarregarDadosAvisos(21);
       $this->set(compact('avisos'));
     }
@@ -127,4 +126,9 @@ class PortalController extends AppController {
       $this->set(compact('materiais'));
     }
 
+    public function matricula() {
+      $dados = $this->request->data;
+      $dados = $aluno['Portal'];
+      $this->set(compact('dados'));
+    }
 }
