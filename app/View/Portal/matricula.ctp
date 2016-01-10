@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Pós-Graduação FACET Faculdades</title>
+<title>Pós-Graduação</title>
 <style type="text/css">
 <!--
 .style1 {font-size: 18px}
@@ -24,10 +24,10 @@
 <hr>
 <p class="style1" align="center">D E C L A R A Ç Ã O&nbsp;&nbsp;&nbsp;&nbsp;D E&nbsp;&nbsp;&nbsp;&nbsp;M A T R Í C U L A </p>
 <p class="style2" align="center">IMPRESSA VIA SITE.</p>
-<p class="style2" align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Declaramos para os devidos fins que Wilian Ivo Selzlein é
-    aluno(a) matriculado(a) no Curso de Pós-Graduação em Gestão Empresarial - 2011
-    nesta instituição de ensino, com início em 26/03/2011 e previsão de término até 07/01/2013.
-    Atualmente a situação do aluno(a) encontra-se como Término do Curso.
+<p class="style2" align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Declaramos para os devidos fins que <?php echo $dados['Portal']['nome']; ?> é
+    aluno(a) matriculado(a) no Curso de Pós-Graduação em <?php echo $dados['Curso']['nome']; ?>
+    nesta instituição de ensino, com início em <?php echo h($dados['Portal']['curso_inicio']); ?> e previsão de térmio até <?php echo h($dados['Portal']['curso_fim']); ?>.
+    Atualmente a situação do aluno(a) encontra-se como <?php echo $dados['Portal']['situacao']; ?>.
 </p>
 
 <p class="style2" align="justify"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E por ser verdade firmamos a presente.</p>
@@ -72,9 +72,13 @@
 </script>
 </p>
 <p align="center">
-    <img src="assinatura.jpg" alt="" align="middle">
+ <?php if ($dados['User']['assinatura'] != '') { ?> 
+    <img src="data:image/jpeg;base64,
+       <?php echo h($dados['User']['assinatura']); ?>" 
+ <?php } ?> &nbsp;
+
 </p>
-<p class="style2" align="center"><strong>Roberto Ari Guindani<br>
+<p class="style2" align="center"><strong><?php echo $dados['Pessoa']['razaosocial']; ?><br>
 Departamento de Pós-Graduação</strong></p>
 <br><br>
 <br><br>

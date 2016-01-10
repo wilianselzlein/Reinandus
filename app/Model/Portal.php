@@ -10,6 +10,8 @@ App::uses('AppModel', 'Model');
 
 class Portal extends AppModel {
 
+var $actsAs = array('DateFormat');
+
 /**
  * Use table
  *

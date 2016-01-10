@@ -2,6 +2,7 @@
 
   <?php echo $this->Form->hidden('id', array('value' => $notas[0]['AlunoDisciplina']['aluno_id'])); ?>
   <?php echo $this->Form->hidden('nome', array('value' => $notas[0]['Aluno']['nome'])); ?>
+  <?php echo $this->Form->hidden('curso', array('value' => $notas[0]['Aluno']['curso_id'])); ?>
   <?php echo $this->Form->hidden('curso_inicio', array('value' => $notas[0]['Aluno']['curso_inicio'])); ?>
   <?php echo $this->Form->hidden('curso_fim', array('value' => $notas[0]['Aluno']['curso_fim'])); ?>
   <?php echo $this->Form->hidden('situacao', array('value' => $notas[0]['Aluno']['situacao_id'])); ?>

@@ -9,7 +9,7 @@ App::uses('AppController', 'Controller');
  */
 class CursosController extends AppController {
 
-    public $uses = array('Curso', 'CursoDisciplina');
+    public $uses = array('Curso', 'CursoDisciplina', 'User');
 
 /**
  * Components
@@ -173,18 +173,42 @@ class CursosController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 
-
 /**
  * disciplina method
- *
+ * @throws NotFoundException
+ * @param string $id
  * @return void
  */
 	public function disciplina($id) {
+		if (!$this->Curso->exists()) {
+			throw new NotFoundException(__('The record could not be found.'));
+		}
 		$this->layout = false;
 		$options = array('conditions' => array('CursoDisciplina.curso_id' => $id));
 		$this->set('curso_id', $id);
 		$this->set('disciplina', $this->CursoDisciplina->find('all', $options));
-
 	}
 
+/**
+ * PegarDadosParaImpressaoDaMatricula method
+ * @throws NotFoundException
+ * @param string $id
+ * @return array
+ */
+	public function PegarDadosParaImpressaoDaMatricula($id) {
+		if (!$this->Curso->exists($id)) {
+			throw new NotFoundException(__('The record could not be found.'));
+		}
+
+		$options = array('recursive' => 0, 'conditions' => array('Curso.' . $this->Curso->primaryKey => $id),
+			'fields' => array('Curso.nome', 'Curso.turma', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial'));
+		$curso = $this->Curso->find('first', $options);
+
+		$Usuario = ClassRegistry::init('User');
+		$Usuario->recursive = -1;
+		$usuario = $Usuario->findByPessoaId($curso['Pessoa']['id'], array('User.assinatura'));
+
+		$dados = array_merge($curso, $usuario);
+		return $dados;
+	}
 }
