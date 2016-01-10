@@ -8,7 +8,8 @@
 
 App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
-App::import('Controller', 'Cursos');
+App::import('Controller', array('Cursos', 'Enumerados', 'Institutos'));
+//App::import('Controller', 'Enumerados');
 
 class PortalController extends AppController {
 
@@ -129,13 +130,25 @@ class PortalController extends AppController {
 
     public function matricula() {
       $dados = $this->request->data;
+      if (count($dados) == 0) 
+        $this->redirect(array('action' => 'index'));
 
       $Curso = new CursosController;
       $curso = $Curso->PegarDadosParaImpressaoDaMatricula($dados['Portal']['curso']);
-      $dados = array_merge($dados, $curso);
 
+      $Situacao = ClassRegistry::init('Enumerado');
+      $Situacao->recursive = -1;
+      $situacao = $Situacao->findById($dados['Portal']['situacao'], array('Enumerado.valor'));
+
+      $Instit = ClassRegistry::init('Instituto');
+      $Instit->recursive = 2;
+      $instituto = $Instit->findByTipoId(32);
+      //debug($instituto);
+      $instituicao = $Instit->findByTipoId(33);
+      // debug($instituicao); die;
+
+      $dados = array_merge($dados, $curso, $situacao);
       //debug($dados); die;
-
       $this->set(compact('dados'));
     }
 }

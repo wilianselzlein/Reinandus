@@ -9,7 +9,7 @@ App::uses('AppController', 'Controller');
  */
 class CursosController extends AppController {
 
-    public $uses = array('Curso', 'CursoDisciplina', 'User');
+    public $uses = array('Curso', 'CursoDisciplina', 'User', 'Enumerado');
 
 /**
  * Components

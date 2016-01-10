@@ -27,7 +27,7 @@
 <p class="style2" align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Declaramos para os devidos fins que <?php echo $dados['Portal']['nome']; ?> é
     aluno(a) matriculado(a) no Curso de Pós-Graduação em <?php echo $dados['Curso']['nome']; ?>
     nesta instituição de ensino, com início em <?php echo h($dados['Portal']['curso_inicio']); ?> e previsão de térmio até <?php echo h($dados['Portal']['curso_fim']); ?>.
-    Atualmente a situação do aluno(a) encontra-se como <?php echo $dados['Portal']['situacao']; ?>.
+    Atualmente a situação do aluno(a) encontra-se como <?php echo $dados['Enumerado']['valor']; ?>.
 </p>
 
 <p class="style2" align="justify"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E por ser verdade firmamos a presente.</p>
