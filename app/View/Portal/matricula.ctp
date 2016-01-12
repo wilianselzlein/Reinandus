@@ -14,7 +14,7 @@
   	<tbody>
   		<tr>
 		    <td width="16%"><img src="facet.jpg" alt="" height="51" width="147"></td>
-		    <td width="84%">FACULDADE DE CIÊNCIAS SOCIAIS E APLICADAS DO PARANÁ<br>
+		    <td width="84%"><?php echo $dados['Curso']['nome']; ?><br>
 		      CURSO DE PÓS-GRADUAÇÃO- Reconhecido pela Portaria M.E.C. nº. 1801- D.O.U. 14/07/2003<br>
 		    Mantida pela Sociedade Educacional de Ciências e Tecnologia</td>
   		</tr>

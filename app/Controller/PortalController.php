@@ -9,7 +9,6 @@
 App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
 App::import('Controller', array('Cursos', 'Enumerados', 'Institutos'));
-//App::import('Controller', 'Enumerados');
 
 class PortalController extends AppController {
 
@@ -141,14 +140,16 @@ class PortalController extends AppController {
       $situacao = $Situacao->findById($dados['Portal']['situacao'], array('Enumerado.valor'));
 
       $Instit = ClassRegistry::init('Instituto');
-      $Instit->recursive = 2;
-      $instituto = $Instit->findByTipoId(32);
+      $Instit->recursive = 1;
+      $instituto = $Instit->findByTipoId(32, 
+        array('Instituto.id', 'Instituto.empresa_id', 'Empresa.razaosocial', 'Empresa.endereco', 'Empresa.numero', 'Empresa.bairro', 'Empresa.cidade_id', 'Empresa.fone', 'Empresa.email', 'Empresa.site', 'Diretor.razaosocial'));
       //debug($instituto);
-      $instituicao = $Instit->findByTipoId(33);
-      // debug($instituicao); die;
+      $instituicao = $Instit->findByTipoId(33,
+        array('Instituto.id', 'Instituto.empresa_id', 'Empresa.razaosocial', 'Diretor.razaosocial'));
+      //debug($instituicao); die;
 
-      $dados = array_merge($dados, $curso, $situacao);
-      //debug($dados); die;
+      $dados = array_merge($dados, $curso, $situacao, /*$instituto, $instituicao*/);
+      debug($dados); die;
       $this->set(compact('dados'));
     }
 }
