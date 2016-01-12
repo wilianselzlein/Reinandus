@@ -28,17 +28,19 @@
 <?php 
 $ha = 0;
 $nt = 0;
+$fr = 0;
 foreach ($notas as $nota):  
 $ha += $nota['AlunoDisciplina']['horas_aula'];
 $nt += $nota['AlunoDisciplina']['nota']; 
+$fr += $nota['AlunoDisciplina']['frequencia']; 
 ?>
     <tr>
       <td><?php echo $nota['Disciplina']['nome']; ?></td>
       <td><?php echo $nota['Professor']['nome']; ?></td>
       <td><?php echo $nota['Professor']['resumotitulacao']; ?></td>
-      <td></td>
-      <td><?php echo $nota['AlunoDisciplina']['horas_aula']; ?></td>
       <td><?php echo $nota['AlunoDisciplina']['data']; ?></td>
+      <td><?php echo $nota['AlunoDisciplina']['horas_aula']; ?></td>
+      <td><?php echo $nota['AlunoDisciplina']['frequencia']; ?></td>
       <td><?php echo $nota['AlunoDisciplina']['nota']; ?></td>
     </tr>
 <?php endforeach; ?>
@@ -48,7 +50,7 @@ $nt += $nota['AlunoDisciplina']['nota'];
       <td></td>
       <td></td>
       <td><?php echo $ha; ?></td>
-      <td></td>
+      <td><?php echo $fr / count($notas);?></td>
       <td><?php echo $nt / count($notas);?></td>
     </tr>
   </tbody>

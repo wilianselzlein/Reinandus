@@ -141,15 +141,21 @@ class PortalController extends AppController {
 
       $Instit = ClassRegistry::init('Instituto');
       $Instit->recursive = 1;
-      $instituto = $Instit->findByTipoId(32, 
+      $consulta = $Instit->findByTipoId(32, 
         array('Instituto.id', 'Instituto.empresa_id', 'Empresa.razaosocial', 'Empresa.endereco', 'Empresa.numero', 'Empresa.bairro', 'Empresa.cidade_id', 'Empresa.fone', 'Empresa.email', 'Empresa.site', 'Diretor.razaosocial'));
-      //debug($instituto);
-      $instituicao = $Instit->findByTipoId(33,
-        array('Instituto.id', 'Instituto.empresa_id', 'Empresa.razaosocial', 'Diretor.razaosocial'));
-      //debug($instituicao); die;
+      $instituto['Instituto'] = $consulta;
 
-      $dados = array_merge($dados, $curso, $situacao, /*$instituto, $instituicao*/);
-      debug($dados); die;
+      $consulta = $Instit->findByTipoId(33,
+        array('Instituto.id', 'Instituto.empresa_id', 'Empresa.razaosocial', 'Diretor.razaosocial'));
+      $instituicao['Instituicao'] = $consulta;
+
+      $Cidade = ClassRegistry::init('Cidade');
+      $Cidade->recursive = 0;
+      $cidade = $Cidade->findById($instituto['Instituto']['Empresa']['cidade_id'], array('Cidade.nome', 'Estado.sigla'));
+      $instituto['Instituto']['Cidade'] = $cidade;
+
+      $dados = array_merge($dados, $curso, $situacao, $instituto, $instituicao);
+  
       $this->set(compact('dados'));
     }
 }

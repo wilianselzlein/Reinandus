@@ -14,7 +14,7 @@
   	<tbody>
   		<tr>
 		    <td width="16%"><img src="facet.jpg" alt="" height="51" width="147"></td>
-		    <td width="84%"><?php echo $dados['Curso']['nome']; ?><br>
+		    <td width="84%"><?php echo $dados['Instituicao']['Empresa']['razaosocial']; ?><br>
 		      CURSO DE PÓS-GRADUAÇÃO- Reconhecido pela Portaria M.E.C. nº. 1801- D.O.U. 14/07/2003<br>
 		    Mantida pela Sociedade Educacional de Ciências e Tecnologia</td>
   		</tr>
@@ -32,7 +32,9 @@
 
 <p class="style2" align="justify"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E por ser verdade firmamos a presente.</p>
 
-<p class="style2" align="center">Curitiba - PR,
+<p class="style2" align="center">
+<?php echo $dados['Instituto']['Cidade']['Cidade']['nome']; ?>&nbsp;-&nbsp;
+<?php echo $dados['Instituto']['Cidade']['Estado']['sigla']; ?>,&nbsp;
 <script language="JavaScript">
     hoje = new Date()
     dia = hoje.getDate()
@@ -84,7 +86,15 @@ Departamento de Pós-Graduação</strong></p>
 <br><br>
 <br><br>
 <br><br>
-<p class="style2" align="left">IEPG - Instituto de Extensão e Pós-Graduação<br>
-  Avenida Marechal Floriano Peixoto, 470 Centro<br>
-Curitiba (41)30245369 pos@facet.br www.facet.br/pos</p>
+<p class="style2" align="left">
+ <?php echo $dados['Instituto']['Empresa']['razaosocial']; ?><br>
+ <?php echo $dados['Instituto']['Empresa']['endereco']; ?>&nbsp;
+ <?php echo $dados['Instituto']['Empresa']['numero']; ?>&nbsp;
+ <?php echo $dados['Instituto']['Empresa']['bairro']; ?><br>
+ <?php echo $dados['Instituto']['Cidade']['Cidade']['nome']; ?>&nbsp;
+ <?php echo $dados['Instituto']['Cidade']['Estado']['sigla']; ?>&nbsp;
+ <?php echo $dados['Instituto']['Empresa']['fone']; ?>&nbsp;
+ <?php echo $dados['Instituto']['Empresa']['email']; ?>&nbsp;
+ <?php echo $dados['Instituto']['Empresa']['site']; ?>
+ </p>
 </body></html>
