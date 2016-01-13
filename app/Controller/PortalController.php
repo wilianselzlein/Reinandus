@@ -33,10 +33,14 @@ class PortalController extends AppController {
       $options = array('conditions' => array('AlunoDisciplina.aluno_id' => $id));
       $notas = $Nota->find('all', $options);
 
+      $Mensalidade = ClassRegistry::init('Mensalidade');
+      $options = array('conditions' => array('Mensalidade.aluno_id' => $id));
+      $mensalidades = $Mensalidade->find('all', $options);
+
       $Grupo = ClassRegistry::init('Grupo');
       $grupos = $Grupo->findAsCombo();
 
-      $this->set(compact('alunos', 'grupos', 'materiais', 'notas', 'vagas', 'convenios'));
+      $this->set(compact('alunos', 'grupos', 'materiais', 'notas', 'vagas', 'convenios', 'mensalidades'));
    }
 
    public function login(){

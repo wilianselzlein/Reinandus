@@ -22,7 +22,7 @@
 <?php echo $this->element('LinhaView', array('alias' => 'Vencimento', 'valor' => h($mensalidade['Mensalidade']['vencimento']))); ?>
 <?php echo $this->element('LinhaView', array('alias' => 'Valor', 'valor' => $this->Number->currency($mensalidade['Mensalidade']['valor'],'BRL'))); ?>
 <?php echo $this->element('LinhaView', array('alias' => 'Desconto', 'valor' => $this->Number->currency($mensalidade['Mensalidade']['desconto'],'BRL'))); ?>
-<?php echo $this->element('LinhaView', array('alias' => 'Acréscimo', 'valor' => $this->Number->currency($mensalidade['Mensalidade']['desconto'],'BRL'))); ?>
+<?php echo $this->element('LinhaView', array('alias' => 'Acréscimo', 'valor' => $this->Number->currency($mensalidade['Mensalidade']['acrescimo'],'BRL'))); ?>
 <?php echo $this->element('LinhaView', array('alias' => 'Líquido', 'valor' => $this->Number->currency($mensalidade['Mensalidade']['liquido'],'BRL'))); ?>
 <?php echo $this->element('LinhaView', array('alias' => 'Valor Pago', 'valor' => $this->Number->currency($mensalidade['Mensalidade']['pago'],'BRL'))); ?>
 <?php echo $this->element('LinhaView', array('alias' => 'Pago', 'valor' => $this->Number->currency($mensalidade['Mensalidade']['pagamento'],'BRL'))); ?>

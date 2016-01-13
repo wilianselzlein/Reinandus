@@ -4,7 +4,7 @@
 <style type="text/css">
 <!--
 .style1 {font-size: 18px}
-.style2 {font-size: 14px; }
+.style2 {font-size: 14px}
 -->
 </style>
 </head>
