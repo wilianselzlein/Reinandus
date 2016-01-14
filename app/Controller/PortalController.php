@@ -34,13 +34,15 @@ class PortalController extends AppController {
       $notas = $Nota->find('all', $options);
 
       $Mensalidade = ClassRegistry::init('Mensalidade');
-      $options = array('conditions' => array('Mensalidade.aluno_id' => $id));
+      $options = array('conditions' => array('Mensalidade.aluno_id' => $id), 'fields' => array('Mensalidade.*', 'year(Mensalidade.vencimento) as ano', 'Aluno.nome', 'Aluno.curso_id'));
       $mensalidades = $Mensalidade->find('all', $options);
+
+      $anos = $this->PegarOsAnosDasMensalidades($mensalidades);
 
       $Grupo = ClassRegistry::init('Grupo');
       $grupos = $Grupo->findAsCombo();
 
-      $this->set(compact('alunos', 'grupos', 'materiais', 'notas', 'vagas', 'convenios', 'mensalidades'));
+      $this->set(compact('alunos', 'grupos', 'materiais', 'notas', 'vagas', 'convenios', 'mensalidades', 'anos'));
    }
 
    public function login(){
@@ -162,4 +164,15 @@ class PortalController extends AppController {
   
       $this->set(compact('dados'));
     }
+
+    private function PegarOsAnosDasMensalidades($mensalidades) {
+      $anos = [];
+      foreach ($mensalidades as $mensalidade) {
+        $ano = $mensalidade['0']['ano'];
+        if (! in_array($ano, $anos))
+          $anos[] = $ano;
+      }
+      return $anos;
+    }
+
 }

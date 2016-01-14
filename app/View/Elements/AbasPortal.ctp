@@ -38,7 +38,7 @@
 <?php echo $this->element('Abas/Notas'); ?>
 				</div>
                 <div class="tab-pane" id="tabMen">
-
+<?php echo $this->element('Abas/Mensalidades'); ?>
                 </div>
                 <div class="tab-pane" id="tabMan">
 <?php echo $this->element('Abas/Manual'); ?>
