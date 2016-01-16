@@ -13,13 +13,16 @@
                     <a href="#tabMen" data-toggle="tab"></span>Controle de <br>Mensalidades</a>
                 </li>
                 <li>
-                    <a href="#tabMan" data-toggle="tab">Manual do <br>Aluno</a>
+                    <a href="#tabMan" data-toggle="tab">Manual <br>do Aluno</a>
                 </li>
                 <li>
                     <a href="#tabCon" data-toggle="tab"></span>Convênios e<br> Descontos<br></a>
                 </li>
                 <li>
                     <a href="#tabVag" data-toggle="tab"></span>Vagas de <br>Emprego</a>
+                </li>
+                <li>
+                    <a href="#tabTcc" data-toggle="tab"></span>Envio <br>de TCC</a>
                 </li>
                 <li>
                     <a href="#tabPro" data-toggle="tab"></span>Protocolo <br> &nbsp; </a>
@@ -51,6 +54,9 @@
                 </div>
                 <div class="tab-pane" id="tabPro">
 <?php echo $this->element('Abas/Protocolo'); ?>
+                </div>
+                <div class="tab-pane" id="tabTcc">
+<?php echo $this->element('Abas/Tcc'); ?>
                 </div>
         	</div>
     	  </div>
