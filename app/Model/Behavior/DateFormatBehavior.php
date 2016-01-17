@@ -84,7 +84,7 @@ class DateFormatBehavior extends ModelBehavior {
    }
 
    public function beforeSave(Model $model, $options = array()) {
-      $Model->data = $this->_changeDate($Model->data, $this->databaseFormat, $model);
+      $model->data = $this->_changeDate($model->data, $this->databaseFormat, $model);
       return true;
    }
 
