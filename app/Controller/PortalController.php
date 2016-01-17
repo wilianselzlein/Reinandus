@@ -9,8 +9,16 @@
 App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
 App::import('Controller', array('Cursos', 'Enumerados', 'Institutos'));
+App::import('Controller', 'Mensalidades');
 
 class PortalController extends AppController {
+
+/**
+ * Components
+ *
+ * @var array
+ */
+  public $components = array('Session', 'Boletos.BoletoHsbc');
 
    public function index() {
       $dados = $this->Session->read('Auth');
@@ -174,5 +182,11 @@ class PortalController extends AppController {
       }
       return $anos;
     }
+
+    public function Boleto($id) {
+      $Mensalidade = new MensalidadesController;
+      $Mensalidade->boleto($id);
+    }
+
 
 }

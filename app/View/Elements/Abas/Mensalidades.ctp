@@ -46,7 +46,17 @@ foreach ($mensalidades as $mensalidade):
     <tr>
       <td><?php echo $mensalidade['Mensalidade']['numero']; ?> &nbsp;</td>
       <td><?php echo h($mensalidade['Mensalidade']['vencimento']); ?> &nbsp;</td>
-      <td><?php echo $this->Number->currency($mensalidade['Mensalidade']['pagamento'], 'BRL'); ?> &nbsp;</td>
+      <td>
+        <?php 
+          $pagamento = $mensalidade['Mensalidade']['pagamento'];
+          if (! is_null($pagamento))
+             echo h($pagamento);
+          else  {
+             echo $this->Html->link('<i class="fa fa-print"></i>', array('action' => 'boleto', $mensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Imprimir Boleto'), 'data-toggle'=>'tooltip'));
+           } 
+        ?> 
+      &nbsp;
+      </td>
       <td><?php echo $this->Number->currency($mensalidade['Mensalidade']['valor'], 'BRL'); ?> &nbsp;</td>
       <td><?php echo $this->Number->currency($mensalidade['Mensalidade']['acrescimo'], 'BRL'); ?> &nbsp;</td>
       <td><?php echo $this->Number->currency($mensalidade['Mensalidade']['desconto'], 'BRL'); ?> &nbsp;</td>
