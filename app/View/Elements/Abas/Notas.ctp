@@ -10,7 +10,7 @@
   <?php echo $this->Form->button('<i class="fa fa-print"></i>'.' '.__('Imprimir Declaração de Matrícula'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit', 'id' => 'btn_materiais')); ?>
 <?php echo $this->Form->end(); ?>
 
-<br/><br/>
+<br/>
 <div class="panel panel-default">
 <table class="table">
   <thead>
@@ -35,25 +35,24 @@ $nt += $nota['AlunoDisciplina']['nota'];
 $fr += $nota['AlunoDisciplina']['frequencia']; 
 ?>
     <tr>
-      <td><?php echo $nota['Disciplina']['nome']; ?></td>
-      <td><?php echo $nota['Professor']['nome']; ?></td>
-      <td><?php echo $nota['Professor']['resumotitulacao']; ?></td>
-      <td><?php echo $nota['AlunoDisciplina']['data']; ?></td>
-      <td><?php echo $nota['AlunoDisciplina']['horas_aula']; ?></td>
-      <td><?php echo $nota['AlunoDisciplina']['frequencia']; ?></td>
-      <td><?php echo $nota['AlunoDisciplina']['nota']; ?></td>
+      <td><?php echo $nota['Disciplina']['nome']; ?>&nbsp;</td>
+      <td><?php echo $nota['Professor']['nome']; ?>&nbsp;</td>
+      <td><?php echo $nota['Professor']['resumotitulacao']; ?>&nbsp;</td>
+      <td><?php echo h($nota['AlunoDisciplina']['data']); ?>&nbsp;</td>
+      <td><?php echo $nota['AlunoDisciplina']['horas_aula']; ?>&nbsp;</td>
+      <td><?php echo $nota['AlunoDisciplina']['frequencia']; ?>&nbsp;</td>
+      <td><?php echo $nota['AlunoDisciplina']['nota']; ?>&nbsp;</td>
     </tr>
 <?php endforeach; ?>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><?php echo $ha; ?></td>
-      <td><?php echo $fr / count($notas);?></td>
-      <td><?php echo $nt / count($notas);?></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><?php echo $ha; ?>&nbsp;</td>
+      <td><?php echo $fr / count($notas);?>&nbsp;</td>
+      <td><?php echo $nt / count($notas);?>&nbsp;</td>
     </tr>
   </tbody>
 </table>
-
 </div>

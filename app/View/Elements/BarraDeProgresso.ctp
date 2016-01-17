@@ -5,5 +5,5 @@ if (isset($nome)) {
 } else {
     $nome = 'loading';
 }
-echo $this->Html->image('load.gif', array('id' => $nome, 'style'=> 'display:none')); 
+echo $this->Html->image('load.gif', array('id' => $nome, 'width'=>'100%', 'height' => '20px', 'style'=> 'display:none;')); 
 ?>
