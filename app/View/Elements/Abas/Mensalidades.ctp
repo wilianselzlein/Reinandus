@@ -1,16 +1,14 @@
 <?php echo $this->Form->create('Portal', array('role' => 'form', 'class'=>'form-horizontal', 'action' => 'comprovante', 'target' => '_blank')); ?>
-
   <?php echo $this->Form->hidden('id', array('value' => $mensalidades[0]['Mensalidade']['aluno_id'])); ?>
   <?php echo $this->Form->hidden('nome', array('value' => $mensalidades[0]['Aluno']['nome'])); ?>
   <?php echo $this->Form->hidden('curso', array('value' => $mensalidades[0]['Aluno']['curso_id'])); ?>
   <div style="float: left; width: 30%;">
-    <?php echo $this->Form->input('ano', array('options' => $anos)); ?>
+    <?php echo $this->Form->input('ano', array('options' => $anos, 'label' => array('text' => 'Ano:'))); ?>
   </div>
   <div style="float: right; width: 70%;"> &nbsp;
     <?php echo $this->Form->button('<i class="fa fa-print"></i>'.' '.__('Imprimir Comprovante de Pagamentos'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit', 'id' => 'btncomprovante')); ?>
   </div>
 <?php echo $this->Form->end(); ?>
-
 <br/><br/>
 <div class="panel panel-default">
 <table class="table">
@@ -52,7 +50,7 @@ foreach ($mensalidades as $mensalidade):
           if (! is_null($pagamento))
              echo h($pagamento);
           else  {
-             echo $this->Html->link('<i class="fa fa-print"></i>', array('action' => 'boleto', $mensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Imprimir Boleto'), 'data-toggle'=>'tooltip'));
+             echo $this->Html->link('<i class="fa fa-print"></i>', array('action' => 'boleto', $mensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs', 'escape' => false, 'title' => __('Imprimir Boleto'), 'data-toggle' => 'tooltip', 'target' => '_blank'));
            } 
         ?> 
       &nbsp;

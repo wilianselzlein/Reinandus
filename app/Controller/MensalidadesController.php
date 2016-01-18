@@ -233,11 +233,9 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
 	}
 
-	public function boleto($id = null){
-		$this->autoRender = false;
-
-		$dados = array();
-
+    public function DadosBoleto($id) {
+    	$dados = array();
+    	
 		$options = array('recursive' => -1, 'conditions' => array('Mensalidade.' . $this->Mensalidade->primaryKey => $id));
 		$mensalidade = $this->Mensalidade->find('first', $options);
 
@@ -306,14 +304,19 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$dados["instrucoes3"] = "";
 		$dados["instrucoes4"] = "";
 
-		
 		// MOEDA 
 		$dados["aceite"] = "N";
 		$dados["especie"] = "R$";
 		$dados["especie_doc"] = "DM";
 
 		//debug($data); die;
+		
+		return $dados;
+    }
 
+	public function boleto($id){
+		$this->autoRender = false;
+		$dados = $this->DadosBoleto($id);
 		$this->BoletoHsbc->render($dados);
 	}
 }

@@ -185,7 +185,8 @@ class PortalController extends AppController {
 
     public function Boleto($id) {
       $Mensalidade = new MensalidadesController;
-      $Mensalidade->boleto($id);
+      $dados = $Mensalidade->DadosBoleto($id);
+      $this->BoletoHsbc->render($dados);
     }
 
 
