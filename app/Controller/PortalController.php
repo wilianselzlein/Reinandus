@@ -178,7 +178,7 @@ class PortalController extends AppController {
       foreach ($mensalidades as $mensalidade) {
         $ano = $mensalidade['0']['ano'];
         if (! in_array($ano, $anos))
-          $anos[] = $ano;
+          $anos[$ano] = $ano;
       }
       return $anos;
     }
@@ -189,5 +189,9 @@ class PortalController extends AppController {
       $this->BoletoHsbc->render($dados);
     }
 
+    public function comprovante() {
+      $dados = $this->request->data;
+      debug($dados);
+    }
 
 }
