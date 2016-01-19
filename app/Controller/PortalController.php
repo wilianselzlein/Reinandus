@@ -8,7 +8,9 @@
 
 App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
-App::import('Controller', array('Cursos', 'Enumerados', 'Institutos'));
+App::import('Controller', 'Cursos');
+App::import('Controller', 'Enumerados');
+App::import('Controller', 'Institutos');
 App::import('Controller', 'Mensalidades');
 
 class PortalController extends AppController {
@@ -140,8 +142,8 @@ class PortalController extends AppController {
       $materiais = $this->CarregarDadosAvisos(22);
       $this->set(compact('materiais'));
     }
-
-    public function matricula() {
+    
+    private function DadosComprovantes() {
       $dados = $this->request->data;
       if (count($dados) == 0) 
         $this->redirect(array('action' => 'index'));
@@ -149,14 +151,17 @@ class PortalController extends AppController {
       $Curso = new CursosController;
       $curso = $Curso->PegarDadosParaImpressaoDaMatricula($dados['Portal']['curso']);
 
-      $Situacao = ClassRegistry::init('Enumerado');
-      $Situacao->recursive = -1;
-      $situacao = $Situacao->findById($dados['Portal']['situacao'], array('Enumerado.valor'));
-
+      $situacao = [];
+      if (isset($dados['Portal']['situacao'])) {
+        $Situacao = ClassRegistry::init('Enumerado');
+        $Situacao->recursive = -1;
+        $situacao = $Situacao->findById($dados['Portal']['situacao'], array('Enumerado.valor'));
+      }
+      
       $Instit = ClassRegistry::init('Instituto');
       $Instit->recursive = 1;
       $consulta = $Instit->findByTipoId(32, 
-        array('Instituto.id', 'Instituto.empresa_id', 'Empresa.razaosocial', 'Empresa.endereco', 'Empresa.numero', 'Empresa.bairro', 'Empresa.cidade_id', 'Empresa.fone', 'Empresa.email', 'Empresa.site', 'Diretor.razaosocial'));
+        array('Instituto.id', 'Instituto.empresa_id', 'Empresa.razaosocial', 'Empresa.cnpjcpf', 'Empresa.endereco', 'Empresa.numero', 'Empresa.bairro', 'Empresa.cidade_id', 'Empresa.fone', 'Empresa.email', 'Empresa.site', 'Diretor.razaosocial'));
       $instituto['Instituto'] = $consulta;
 
       $consulta = $Instit->findByTipoId(33,
@@ -169,7 +174,11 @@ class PortalController extends AppController {
       $instituto['Instituto']['Cidade'] = $cidade;
 
       $dados = array_merge($dados, $curso, $situacao, $instituto, $instituicao);
-  
+      return $dados;
+    }
+
+    public function matricula() {
+      $dados = $this->DadosComprovantes();
       $this->set(compact('dados'));
     }
 
@@ -190,8 +199,8 @@ class PortalController extends AppController {
     }
 
     public function comprovante() {
-      $dados = $this->request->data;
-      debug($dados);
+      $dados = $this->DadosComprovantes();
+      $this->set(compact('dados'));
     }
 
 }
