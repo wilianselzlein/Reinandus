@@ -218,7 +218,7 @@ var $actsAs = array('DateFormat');
 	);
    
    public function beforeSave($options = array()) {
-      if (isset($this->data[$this->alias]['senha'])) {
+      if ((isset($this->data[$this->alias]['senha'])) && (strlen($this->data[$this->alias]['senha']) <= 20)) {
          $this->data[$this->alias]['senha'] = AuthComponent::password($this->data[$this->alias]['senha']);
       }
       return true;
