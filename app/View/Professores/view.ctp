@@ -109,6 +109,11 @@
 			<?php echo h($professor['Professor']['lattes']); ?>
 			&nbsp;
 		</td>
+</tr><tr>		<td><strong><?php echo __('Senha'); ?></strong></td>
+		<td>
+			<?php echo h($professor['Professor']['senha']); ?>
+			&nbsp;
+		</td>
 </tr><tr>		<td><strong><?php echo __('Vinculo'); ?></strong></td>
 		<td>
 			<i class="<?php echo ($professor['Professor']['vinculo'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;

@@ -31,6 +31,7 @@ class ImportarProfessorComponent extends ImportadorBaseComponent {
 		$dados['lattes'] = $this->FormatarValorEncode($parametro['PROCURRICULUMLATTES']);
 		$dados['vinculo'] = $parametro['PROVINCULO'];
 		$dados['rg'] = $this->FormatarValorEncode($parametro['PROIDENTIDADE']);
+		$dados['senha'] = $dados['cpf'];
 		
 		$this->SalvarDados($dados);
 	}

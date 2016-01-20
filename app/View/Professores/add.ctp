@@ -115,6 +115,11 @@ echo $this->Form->input('notafiscal',
                                              array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
+           <div class="form-group">
+               <?php echo $this->Form->input('senha',
+                                             array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+                                            ); ?>
+            </div><!-- .form-group -->
             <div class="form-group">
                <?php    echo $this->Form->label(__('vinculo'), null, array('class'=>'col-sm-2 control-label'));
 echo $this->Form->input('vinculo',
