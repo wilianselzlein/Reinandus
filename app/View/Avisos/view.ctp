@@ -38,7 +38,7 @@
 	</tr>
 <tr>		<td><strong><?php echo __('Arquivo'); ?></strong></td>
 		<td>
-			<a href="/reinandus/arqs/<?php echo basename($aviso['Aviso']['caminho']); ?>"><?php echo h($aviso['Aviso']['arquivo']); ?></a>
+			<a href="/arqs/<?php echo basename($aviso['Aviso']['caminho']); ?>"><?php echo h($aviso['Aviso']['arquivo']); ?></a>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Caminho'); ?></strong></td>
