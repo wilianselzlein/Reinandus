@@ -200,7 +200,9 @@ class PortalController extends AppController {
 
     public function comprovante() {
       $dados = $this->DadosComprovantes();
-      $this->set(compact('dados'));
+      $mensalidades = $this->request->data['Portal']['mensalidades'];
+      $mensalidades = unserialize($mensalidades);
+      $this->set(compact('dados', 'mensalidades'));
     }
 
 }

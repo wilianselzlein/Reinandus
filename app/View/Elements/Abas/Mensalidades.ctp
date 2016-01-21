@@ -2,6 +2,8 @@
   <?php echo $this->Form->hidden('id', array('value' => $mensalidades[0]['Mensalidade']['aluno_id'])); ?>
   <?php echo $this->Form->hidden('nome', array('value' => $mensalidades[0]['Aluno']['nome'])); ?>
   <?php echo $this->Form->hidden('curso', array('value' => $mensalidades[0]['Aluno']['curso_id'])); ?>
+  <?php echo $this->Form->hidden('mensalidades', array('value' => 
+      serialize($mensalidades))); ?>
   <div style="float: left; width: 30%;">
     <?php echo $this->Form->input('ano', array('options' => $anos, 'label' => array('text' => 'Ano:'))); ?>
   </div>

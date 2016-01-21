@@ -26,8 +26,8 @@
 <p class="style2" align="center">SEGUNDA VIA</p>
 <p class="style2" align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A <?php echo $dados['Instituto']['Empresa']['razaosocial']; ?>, 
 <?php echo $dados['Instituto']['Empresa']['cnpjcpf']; ?>, que administra o curso de Pós-Graduação da <?php echo $dados['Instituicao']['Empresa']['razaosocial']; ?>
-, representada por seu diretor <?php echo $dados['Instituto']['Diretor']['razaosocial']; ?>, declara para os devidos fins e a quem interessar possa que <?php echo $dados['Portal']['nome']; ?>
-pagou o valor de R$ <?php echo 'XXXXXXX' ?> referente o curso de pós-graduação em <?php echo $dados['Curso']['nome']; ?>.
+, representada por seu diretor <?php echo $dados['Instituto']['Diretor']['razaosocial']; ?>, declara para os devidos fins e a quem interessar possa que <?php echo $dados['Portal']['nome']; ?> 
+pagou o valor de R$ <?php echo array_sum(array_column(array_column($mensalidades, 'Mensalidade'), 'valor')); ?>,00 referente o curso de pós-graduação em <?php echo $dados['Curso']['nome']; ?>.
 </p>
 
 <p class="style2" align="justify"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Abaixo apresenta-se o demonstrativo analítico dos pagamentos:</p>
@@ -35,24 +35,34 @@ pagou o valor de R$ <?php echo 'XXXXXXX' ?> referente o curso de pós-graduaçã
 <table width="100%" border="0">
   <tr>
     <td><strong>Data</strong></td>
-    <td><div align="right"><strong>Valor Integral </strong></div></td>
-    <td><div align="right"><strong>Desconto</strong></div></td>
-    <td><div align="right"><strong>Valor L&iacute;quido </strong></div></td>
+    <td><strong>Valor Integral </strong></td>
+    <td><strong>Desconto</strong></td>
+    <td><strong>Valor L&iacute;quido </strong></td>
   </tr>
 
-  <tr>
-    <td>12/09/2015</td>
-    <td><div align="right">437,50</div></td>
-    <td><div align="right">218,50</div></td>
-    <td><div align="right">219,00</div></td>
-  </tr>
-  
-  <tr>
-    <td><strong>Total...:</strong></td>
-    <td><div align="right">437,50</div></td>
-    <td><div align="right">218,50</div></td>
-    <td><div align="right">219,00</div></td>
-  </tr>
+<?php 
+$vl = 0;
+$de = 0;
+$li = 0;
+foreach ($mensalidades as $mensalidade):  
+  $vl += $mensalidade['Mensalidade']['valor'];
+  $de += $mensalidade['Mensalidade']['desconto']; 
+  $li += $mensalidade['Mensalidade']['liquido']; 
+?>
+    <tr>
+      <td><?php echo h($mensalidade['Mensalidade']['vencimento']); ?> &nbsp;</td>
+      <td><?php echo $this->Number->currency($mensalidade['Mensalidade']['valor'], 'BRL'); ?> &nbsp;</td>
+      <td><?php echo $this->Number->currency($mensalidade['Mensalidade']['desconto'], 'BRL'); ?> &nbsp;</td>
+      <td><?php echo $this->Number->currency($mensalidade['Mensalidade']['liquido'], 'BRL'); ?> &nbsp;</td>
+    </tr>
+<?php endforeach; ?>
+    <tr>
+      <td> &nbsp;</td>
+      <td><?php echo $this->Number->currency($vl, 'BRL'); ?> &nbsp;</td>
+      <td><?php echo $this->Number->currency($de, 'BRL'); ?> &nbsp;</td>
+      <td><?php echo $this->Number->currency($li, 'BRL'); ?> &nbsp;</td>
+    </tr>
+
 </table>
 
 <p class="style2" align="justify"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E por ser verdade firmamos a presente.</p>
