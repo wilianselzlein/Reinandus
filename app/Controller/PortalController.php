@@ -202,6 +202,12 @@ class PortalController extends AppController {
       $dados = $this->DadosComprovantes();
       $mensalidades = $this->request->data['Portal']['mensalidades'];
       $mensalidades = unserialize($mensalidades);
+      $filtro = $this->request->data['Portal']['ano'];
+      debug($filtro);
+       foreach($mensalidades as $mensalidade){
+         debug($mensalidade[0]['ano']);
+       }
+       die;
       $this->set(compact('dados', 'mensalidades'));
     }
 
