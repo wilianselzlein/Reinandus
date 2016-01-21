@@ -203,11 +203,12 @@ class PortalController extends AppController {
       $mensalidades = $this->request->data['Portal']['mensalidades'];
       $mensalidades = unserialize($mensalidades);
       $filtro = $this->request->data['Portal']['ano'];
-      debug($filtro);
-       foreach($mensalidades as $mensalidade){
-         debug($mensalidade[0]['ano']);
-       }
-       die;
+      $resultado = [];
+      foreach($mensalidades as $mensalidade){
+         if ($mensalidade[0]['ano'] == $filtro)
+            $resultado[] = $mensalidade;
+      }
+      $mensalidades = $resultado;
       $this->set(compact('dados', 'mensalidades'));
     }
 
