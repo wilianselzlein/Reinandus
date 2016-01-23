@@ -78,8 +78,8 @@ class Pessoa extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'Detalhe' => array(
-			'className' => 'Detalhe',
+		'Logo' => array(
+			'className' => 'Logo',
 			'foreignKey' => 'pessoa_id',
 			'dependent' => false,
 			'conditions' => '',
