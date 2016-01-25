@@ -8,7 +8,7 @@ App::import('Controller/Component/Importador',
 		'ImportarCursosComponent', 'ImportarProfessorComponent', 'ImportarAlunosComponent', 'ImportarAcessosComponent',
 		'ImportarCursosDisciplinasComponent', 'ImportarDisciplinasProfessoresComponent', 'ImportarAvisosComponent',
 		'ImportarAvisosCursosComponent', 'ImportarAlunosDisciplinasComponent', 'ImportarDetalhesComponent',
-		'ImportarMensalidadesComponent'));
+		'ImportarMensalidadesComponent', 'ImportarLogosComponent'));
 
 /**
  * Importador Controller
@@ -75,6 +75,7 @@ class ImportadorController extends AppController {
 			$AlunosDisciplinas = new ImportarAlunosDisciplinasComponent($this->ConexaoFirebird, $data);
 			$Detalhes = new ImportarDetalhesComponent($this->ConexaoFirebird, $data);
 			$Mensalidades = new ImportarMensalidadesComponent($this->ConexaoFirebird, $data);
+			$Logos = new ImportarLogosComponent($this->ConexaoFirebird, $data);
 
 			$this->Session->setFlash(__('Importação Finalizada.'), 'flash/success');
 
@@ -129,6 +130,7 @@ class ImportadorController extends AppController {
 				$this->count($this->ConexaoFirebird, $dados, 'AvisoCurso', 'TAvisoCurso');
 				$this->count($this->ConexaoFirebird, $dados, 'AlunoDisciplina', 'TAlunoDisciplina');
 				$this->count($this->ConexaoFirebird, $dados, 'Detalhe', 'TAluno');
+				$this->count($this->ConexaoFirebird, $dados, 'Logo', 'TNetworking');
 
 			} catch(Exception $e) {
 				$this->Session->setFlash(__('Erro na conexão: ' . $e->getMessage()), 'flash/error');
