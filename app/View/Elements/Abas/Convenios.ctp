@@ -13,7 +13,7 @@
 <?php foreach ($convenios as $convenio): ?>
           <tr>
             <td>
-<img src="http://intranet.iepg.edu.br:8080/Alunos/imagem.jsp?imgID=558" align="center" height="50" width="50" alt="">
+<?php echo $this->Html->image('pessoas/thumbs/'.$convenio['Pessoa']['id'], array('align'=> 'center', 'height' => '50', 'width' => '50')); ?>
             </td>
             <td><?php echo $convenio['Pessoa']['fantasia']; ?></td>
             <td><?php echo $convenio['Pessoa']['contato']; ?></td>

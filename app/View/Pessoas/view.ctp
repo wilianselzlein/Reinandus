@@ -207,6 +207,14 @@ if($pessoa['Pessoa']['pessoa'] == 'F'){
 
    </div><!-- /.view -->
 <?php echo $this->element('Relateds/Cursos', array('array' => $cursos)); ?>
-<?php echo $this->element('Relateds/Usuarios', array('array' => $usuarios)); ?>
+<?php echo $this->element('Relateds/Usuarios', array('array' => $usuarios));?>
 
+<div class="panel-body">
+  	<?php if (!empty($logos)): ?>
+		<?php foreach ($logos as $logo): ?>
+      	<?php echo $this->Html->image('pessoas/thumbs/'.$logo['Logo']['pessoa_id']); ?>
+		<?php endforeach; ?>
+    <?php endif; ?>
+</div><!-- /.related Logos -->
+   
 </div><!-- /#page-container .row-fluid -->

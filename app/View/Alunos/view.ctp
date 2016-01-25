@@ -327,7 +327,7 @@ else
 					<p class="list-group-item-text"><?php echo $detalhe['Detalhe']['egresso']; ?></p>
 				</a>
 			</div>       
-	      	<?php echo $this->Html->image('alunos/thumbs/'.$detalhe['Detalhe']['foto']); ?>
+	      	<?php echo $this->Html->image('alunos/thumbs/'.$detalhe['Detalhe']['aluno_id']); ?>
 		<?php endforeach; ?>
    
     <?php endif; ?>
