@@ -130,4 +130,31 @@ class AcessosController extends AppController {
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
 		$this->redirect(array('action' => 'index'));
 	}
+
+/**
+ * AdicionarHistoricoDeAcesso method
+ *
+ * @throws NotFoundException
+ * @throws MethodNotAllowedException
+ * @param string $id
+ * @return void
+ */
+	public function AdicionarHistoricoDeAcesso($id = null) {
+
+		$this->Acesso->Aluno->id = $id;
+		if (!$this->Acesso->Aluno->exists()) {
+			throw new NotFoundException(__('The record could not be found.'));
+		}
+		$this->Acesso->create();
+		$dados = [];
+		$dados['aluno_id'] = $id;
+		$dados['datahora'] = date("Y-m-d h:m:s");
+		if (! $this->Acesso->save($dados)) { 
+        	 debug($dados); debug($this->validationErrors); die();
+
+    	}
+	}
+	
+
+
 }

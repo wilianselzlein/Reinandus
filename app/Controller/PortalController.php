@@ -12,6 +12,7 @@ App::import('Controller', 'Cursos');
 App::import('Controller', 'Enumerados');
 App::import('Controller', 'Institutos');
 App::import('Controller', 'Mensalidades');
+App::import('Controller', 'Acessos');
 
 class PortalController extends AppController {
 
@@ -25,6 +26,9 @@ class PortalController extends AppController {
    public function index() {
       $dados = $this->Session->read('Auth');
       $id = $dados['Aluno']['id'];
+      
+      $Acesso = new AcessosController;
+      $Acesso->AdicionarHistoricoDeAcesso($id);
       
       $Aluno = ClassRegistry::init('Aluno');
       $options = array('recursive' => 0, 'conditions' => array('Aluno.id' => $id));
