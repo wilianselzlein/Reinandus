@@ -25,14 +25,14 @@ class Detalhe extends AppModel {
    public $actsAs = array('Uploader.ImageUpload' => array(
       'foto' => array(
          'required'               => false,
-         'directory'           => 'img/alunos/',
+         'directory'           => 'img/uploads/',
          'allowed_mime'        => array('image/jpeg', 'image/pjpeg', 'image/gif', 'image/png'),
          'allowed_extension'   => array('.jpg', '.jpeg', '.png', '.gif'),
          'allowed_size'        => 2097152,
          'random_filename'     => true,
          'resize' => array(
             'thumb' => array(
-               'directory' => 'img/alunos/thumbs/',
+               'directory' => 'img/uploads/thumbs/',
                'phpThumb' => array(
                   'far' => 1,
                   'bg'  => 'FFFFFF',
@@ -42,7 +42,7 @@ class Detalhe extends AppModel {
                'height' => 150
             ),
             'max' => array(
-               'directory' => 'img/alunos/thumbs/',
+               'directory' => 'img/uploads/thumbs/',
                'phpThumb' => array(
                   //'far' => 1,
                   //'bg'  => 'FFFFFF',
