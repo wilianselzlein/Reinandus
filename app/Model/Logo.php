@@ -24,14 +24,14 @@ class Logo extends AppModel {
    public $actsAs = array('Uploader.ImageUpload' => array(
       'logo' => array(
          'required'               => false,
-         'directory'           => 'img/uploads/',
+         'directory'           => 'img/logos/',
          'allowed_mime'        => array('image/jpeg', 'image/pjpeg', 'image/gif', 'image/png'),
          'allowed_extension'   => array('.jpg', '.jpeg', '.png', '.gif'),
          'allowed_size'        => 2097152,
          'random_filename'     => true,
          'resize' => array(
             'thumb' => array(
-               'directory' => 'img/uploads/thumbs/',
+               'directory' => 'img/logos/thumbs/',
                'phpThumb' => array(
                   'far' => 1,
                   'bg'  => 'FFFFFF',
@@ -41,7 +41,7 @@ class Logo extends AppModel {
                'height' => 150
             ),
             'max' => array(
-               'directory' => 'img/uploads/thumbs/',
+               'directory' => 'img/logos/thumbs/',
                'phpThumb' => array(
                   //'far' => 1,
                   //'bg'  => 'FFFFFF',

@@ -124,9 +124,9 @@ class DetalhesController extends AppController {
 		}
 		if ($this->Detalhe->delete()) {
 			$this->Session->setFlash(__('Record deleted'), 'flash/success');
-			$this->redirect(array('controller' => 'alunos', 'action' => 'view', $aluno_id));
+			$this->redirect(array('controller' => 'detalhes', 'action' => 'index'));
 		}
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
-		$this->redirect(array('controller' => 'alunos', 'action' => 'view', $aluno_id));
+		$this->redirect(array('controller' => 'detalhes', 'action' => 'index'));
 	}
 }

@@ -212,7 +212,7 @@ if($pessoa['Pessoa']['pessoa'] == 'F'){
 <div class="panel-body">
   	<?php if (!empty($logos)): ?>
 		<?php foreach ($logos as $logo): ?>
-      	<?php echo $this->Html->image('pessoas/thumbs/'.$logo['Logo']['pessoa_id']); ?>
+      	<?php echo $this->Html->image('logos/thumbs/'.$logo['Logo']['logo']); ?>
 		<?php endforeach; ?>
     <?php endif; ?>
 </div><!-- /.related Logos -->

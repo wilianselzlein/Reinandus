@@ -76,7 +76,7 @@
 		</td>
 		<td>
           <a href="#" class="thumbnail" data-toggle="modal" data-target="#lightbox"> 
-            <?php echo $this->Html->image('uploads/thumbs/'.$logo['Logo']['logo'], array('width'=>'100','height'=>'50')); ?>&nbsp;
+            <?php echo $this->Html->image('logos/thumbs/'.$logo['Logo']['logo'], array('width'=>'100','height'=>'50')); ?>&nbsp;
          </a>
       </td>
 		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $logo, 'model' => 'Logo')); ?>

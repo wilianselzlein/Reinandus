@@ -124,9 +124,9 @@ class LogosController extends AppController {
 		}
 		if ($this->Logo->delete()) {
 			$this->Session->setFlash(__('Record deleted'), 'flash/success');
-			$this->redirect(array('controller' => 'pessoas', 'action' => 'view', $pessoa_id));
+			$this->redirect(array('controller' => 'logos', 'action' => 'index'));
 		}
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
-		$this->redirect(array('controller' => 'pessoas', 'action' => 'view', $pessoa_id));
+		$this->redirect(array('controller' => 'logos', 'action' => 'index'));
 	}
 }
