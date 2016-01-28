@@ -7,6 +7,9 @@ App::uses('AppModel', 'Model');
  */
 class Acesso extends AppModel {
 
+var $actsAs = array('DateFormat');
+
+
 /**
  * Use table
  *
