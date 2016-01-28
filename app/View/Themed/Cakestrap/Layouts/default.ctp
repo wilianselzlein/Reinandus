@@ -37,6 +37,7 @@ $usuario_logado = $this->Session->read('Auth.User');
    echo $this->Html->css('sb-admin');
    echo $this->Html->css('bootstrap-dialog');
    echo $this->Html->css('datepicker3');
+   echo $this->Html->css('bootstrap-datetimepicker');
    echo $this->Html->css('font-awesome.min');
    echo $this->Html->css('bootstrap-combobox');
 
@@ -45,9 +46,13 @@ $usuario_logado = $this->Session->read('Auth.User');
    echo $this->Html->script('libs/bootstrap.min');
    echo $this->Html->script('libs/bootstrap-dialog');   
    echo $this->Html->script('libs/bootstrap-datepicker');
+   echo $this->Html->script('libs/bootstrap-datetimepicker');
+   echo $this->Html->script('libs/locales/bootstrap-datetimepicker.pt-BR');
    echo $this->Html->script('libs/locales/bootstrap-datepicker.pt-BR');
    echo $this->Html->script('libs/jquery.mask');
    echo $this->Html->script('libs/bootstrap-combobox');
+   echo $this->Html->script('libs/datetimepicker');
+   echo $this->Html->script('datetimepicker');
    echo $this->fetch('script');
    ?>
 </head>

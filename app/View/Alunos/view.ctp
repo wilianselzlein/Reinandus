@@ -293,13 +293,13 @@ else
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                <?php echo __('Actions'); ?> <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" role="menu">
+            <ul class="dropdown-menu" role="menu">  
+               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '.__('Detalhe'), array('controller' => 'detalhes', 'action' => 'add', $aluno['Aluno']['id']), array('escape'=>false)); ?>   </li>
                <?php if (! empty($detalhes[0])): ?>
-               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '.__('Detalhe'), array('controller' => 'detalhes', 'action' => 'add', $detalhes[0]['Detalhe']['id']), array('escape'=>false)); ?>   </li>
                <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '   .__('Edit') .' '.__('Detalhe'), array('controller' => 'detalhes', 'action' => 'edit', $detalhes[0]['Detalhe']['id']), array('escape'=>false)); ?>   </li>
                <li>
                  <?php echo $this->Form->postLink('<i class="fa fa-times"></i>'. ' ' .__('Delete') .' '.__('Detalhe'), array('controller' => 'detalhes', 'action' => 'delete', $detalhes[0]['Detalhe']['id'], $detalhes[0]['Detalhe']['id']), array('style' => 'margin: 10px;', 'class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $detalhes[0]['Detalhe']['id'])); ?>
-                </li>
+             </li>
               <?php endif; ?>
             </ul>       
          </div>
