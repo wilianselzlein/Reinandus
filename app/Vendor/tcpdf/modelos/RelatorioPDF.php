@@ -53,16 +53,15 @@ class RelatorioPDF  extends TCPDF
       // Logo
       $image_file = K_PATH_IMAGES. 'uploads/'.$data['Cabecalho']['logo'];//'pos_graduacao_facet.png';//
       if (file_exists($image_file))
-         $this->Image($image_file, 10, 10, 30, '', '*', '', 'T', false, 300, '', false, false, 0, false, false, false);
+         $this->Image($image_file, 10, 10, 30, '', '', '', 'T', false, 300, '', false, false, 0, false, false, false);
       // Set font
       //$this->SetFont('helvetica', 'B', 20);
       // Title
       //$this->Cell(0, 15, $data['Cabecalho']['cabecalho'], 0, false, 'C', 0, '', 0, false, 'M', 'M');
       //$this->writeHTML($data['Cabecalho']['cabecalho'], true, false, true, false, '');
 
-
       $this->writeHTMLCell(
-         $w = 0, $h = 0, $x = '', $y = '',          $data['Cabecalho']['cabecalho'], $border = 0, $ln = 1, $fill = 0,
+         $w = 0, $h = 0, $x = '50', $y = '', $data['Cabecalho']['cabecalho'], $border = 0, $ln = 1, $fill = 0,
          $reseth = true, $align = 'top', $autopadding = true);
    } 
 
@@ -85,10 +84,10 @@ class RelatorioPDF  extends TCPDF
       $position_y = $this->CurOrientation == 'L' ? 185 : 280;
       $image_file = K_PATH_IMAGES. 'uploads/'.$data['Cabecalho']['figura'];//'pos_graduacao_facet.png';//
       if (file_exists($image_file))
-         $this->Image($image_file, 10, $position_y, 30, '', '*', '', 'B', false, 300, '', false, false, 0, false, false, false);
+         $this->Image($image_file, 10, $position_y, 30, '', '', '', 'T', false, 300, '', false, false, 0, false, false, false);
       $this->writeHTMLCell(
-         $w = 0, $h = 0, $x = '', $position_y ,          $data['Cabecalho']['rodape'], $border = 0, $ln = 1, $fill = 0,
-         $reseth = true, $align = 'C', $autopadding = true);
+         $w = 0, $h = 0, $x = '50', $position_y , $data['Cabecalho']['rodape'], $border = 0, $ln = 1, $fill = 0,
+         $reseth = true, $align = 'L', $autopadding = true);
 
    } 
 
