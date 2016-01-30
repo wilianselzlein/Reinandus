@@ -13,7 +13,11 @@
 <?php foreach ($convenios as $convenio): ?>
           <tr>
             <td>
-<?php echo $this->Html->image('pessoas/thumbs/'.$convenio['Pessoa']['id'], array('align'=> 'center', 'height' => '50', 'width' => '50')); ?>
+<?php 
+if (count($convenio['Logo']) > 0)
+  echo $this->Html->image('logos/thumbs/'.$convenio['Logo'][0]['logo'], 
+    array('align'=> 'center', 'height' => '50', 'width' => '50')); 
+?>
             </td>
             <td><?php echo $convenio['Pessoa']['fantasia']; ?></td>
             <td><?php echo $convenio['Pessoa']['contato']; ?></td>
