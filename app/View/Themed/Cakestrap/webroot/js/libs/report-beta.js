@@ -31,7 +31,7 @@ $(document).ready(function() {
 
       $.ajax({
          type: "POST",
-         url: '/Relatorios/dados',
+         url: '/Reinandus/Relatorios/dados',
          data: "ajax=true&model="+campo.Modelo,
          success: function(msg){
             $('#select_dados').html(msg);
