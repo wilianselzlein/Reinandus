@@ -8,8 +8,8 @@ class ImportarLogosComponent extends ImportadorBaseComponent {
 	public function PassaValores($parametro) {
 
 		$dados = [];
-		$dados['empsa_id'] = $this->VerificarAlunoExiste($parametro['EMPCOD']);
-		$dados['logo'] = $parametro['NETLOGO'];
+		$dados['empresa_id'] = $this->VerificarAlunoExiste($parametro['EMPCOD']);
+		$dados['imagem'] = $parametro['NETLOGO'];
 		
 		$this->SalvarDados($dados);
 	}

@@ -25,7 +25,7 @@ class LogosController extends AppController {
 		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Logo))));
 		$this->Filter->setPaginate('order', array('Logo.id' => 'desc')); 
 		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
-		$this->Filter->setPaginate('fields', array('Logo.id', 'Logo.pessoa_id', 'Logo.logo', 'Pessoa.id', 'Pessoa.razaosocial'));
+		$this->Filter->setPaginate('fields', array('Logo.id', 'Logo.pessoa_id', 'Logo.logo', 'Logo.imagem', 'Pessoa.id', 'Pessoa.razaosocial'));
 		$this->Logo->recursive = false;
 		$this->set('logos', $this->paginate());
 	}
@@ -42,7 +42,7 @@ class LogosController extends AppController {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
 		$options = array('recursive' => false, 'conditions' => array('Logo.' . $this->Logo->primaryKey => $id), 
-			'fields' => array('Logo.id', 'Logo.pessoa_id', 'Logo.logo', 'Pessoa.id', 'Pessoa.razaosocial'));
+			'fields' => array('Logo.id', 'Logo.pessoa_id', 'Logo.logo', 'Logo.imagem', 'Pessoa.id', 'Pessoa.razaosocial'));
 		$this->set('logo', $this->Logo->find('first', $options));
 	}
 

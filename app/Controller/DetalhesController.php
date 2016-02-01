@@ -25,7 +25,7 @@ class DetalhesController extends AppController {
 		$this->Filter->addFilters(array('filter1' => array('OR' => $this->AdicionarFiltrosLike($this->Detalhe))));
 		$this->Filter->setPaginate('order', array('Detalhe.id' => 'desc')); 
 		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
-		$this->Filter->setPaginate('fields', array('Detalhe.id', 'Detalhe.aluno_id', 'Detalhe.foto', 'Detalhe.ocorrencias', 'Detalhe.hist_escolar', 'Detalhe.neg_financeira', 'Detalhe.egresso', 'Detalhe.pessoa_id', 'Detalhe.foto1', 'Aluno.id', 'Aluno.nome'));
+		$this->Filter->setPaginate('fields', array('Detalhe.id', 'Detalhe.aluno_id', 'Detalhe.foto', 'Detalhe.ocorrencias', 'Detalhe.hist_escolar', 'Detalhe.neg_financeira', 'Detalhe.egresso', 'Detalhe.pessoa_id', 'Detalhe.imagem', 'Aluno.id', 'Aluno.nome'));
 		$this->Detalhe->recursive = false;
 		$this->set('detalhes', $this->paginate());
 	}
@@ -42,7 +42,7 @@ class DetalhesController extends AppController {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
 		$options = array('recursive' => false, 'conditions' => array('Detalhe.' . $this->Detalhe->primaryKey => $id), 
-			'fields' => array('Detalhe.id', 'Detalhe.aluno_id', 'Detalhe.foto', 'Detalhe.ocorrencias', 'Detalhe.hist_escolar', 'Detalhe.neg_financeira', 'Detalhe.egresso', 'Detalhe.pessoa_id', 'Detalhe.foto1', 'Aluno.id', 'Aluno.nome'));
+			'fields' => array('Detalhe.id', 'Detalhe.aluno_id', 'Detalhe.foto', 'Detalhe.ocorrencias', 'Detalhe.hist_escolar', 'Detalhe.neg_financeira', 'Detalhe.egresso', 'Detalhe.pessoa_id', 'Detalhe.imagem', 'Aluno.id', 'Aluno.nome'));
 		$this->set('detalhe', $this->Detalhe->find('first', $options));
 	}
 

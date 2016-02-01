@@ -9,7 +9,7 @@ class ImportarDetalhesComponent extends ImportadorBaseComponent {
 
 		$dados = [];
 		$dados['aluno_id'] = $this->VerificarAlunoExiste($parametro['ALUCOD']);
-		$dados['foto1'] = $parametro['FOTO'];
+		$dados['imagem'] = $parametro['FOTO'];
 		$dados['ocorrencias'] = $this->FormatarValorEncode($parametro['OCORRENCIAS']);
 		$dados['hist_escolar'] = $this->FormatarValorEncode($parametro['HISTESCOLAR']);
 		$dados['neg_financeira'] = $this->FormatarValorEncode($parametro['NEGFINANCEIRA']);
