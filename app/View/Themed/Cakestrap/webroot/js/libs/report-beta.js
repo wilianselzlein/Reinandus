@@ -29,14 +29,36 @@ $(document).ready(function() {
 
       var campo = JSON.parse(selectedValue);
 
-      $.ajax({
+     $.ajax({
          type: "POST",
          url: '/Reinandus/Relatorios/dados',
          data: "ajax=true&model="+campo.Modelo,
          success: function(msg){
             $('#select_dados').html(msg);
+         },
+         error: function(msg){
+            $.ajax({
+                  type: "POST",
+                  url: '/Relatorios/dados',
+                  data: "ajax=true&model="+campo.Modelo,
+                  success: function(msg){
+                     $('#select_dados').html(msg);
+                  },
+                  error: function(msg){
+                     alert("Erro carregar dados.");
+                  }
+            });
          }
       });
+      /*
+      $.ajax({
+         type: "POST",
+         url: '/Relatorios/dados',
+         data: "ajax=true&model="+campo.Modelo,
+         success: function(msg){
+            $('#select_dados').html(msg);
+         }
+      });*/
    });
    /* FILTERS => Selected */
    $(BUTTON_ADD).click(function() {
