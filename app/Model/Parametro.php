@@ -47,4 +47,21 @@ class Parametro extends AppModel {
 			),
 		)
 	);
+	
+/**
+ * valor method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return string
+ */
+	public function valor($id = null) {
+		if (!$this->exists($id)) {
+			throw new NotFoundException(__('The record could not be found.'));
+		}
+		$options = array('conditions' => array('Parametro.' . $this->primaryKey => $id));
+		$parametro = $this->find('first', $options);
+                return $parametro['Parametro']['valor'];
+	}
+	
 }

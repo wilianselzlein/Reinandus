@@ -122,4 +122,75 @@ class ParametrosController extends AppController {
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
 		$this->redirect(array('action' => 'index'));
 	}
+
+/**
+ * atualizar method
+ *
+ * @return void
+ */
+	public function atualizar() {
+		$this->AdicionarPararametrosSeNecessario();
+		$this->redirect(array('action' => 'index'));
+	}
+
+/**
+ * AdicionarEnumeradosSeNecessario method
+ *
+ * @return void
+ */
+ private function AdicionarPararametrosSeNecessario() {
+ 	$this->AdicionarParametroSeNaoExistir(01, 'Bloquear Alunos Com Codigo Menores', '0');
+ 	$this->AdicionarParametroSeNaoExistir(02, 'Bloq Alteracoes Antes Da Data', '01/01/2016');
+ 	$this->AdicionarParametroSeNaoExistir(03, 'Dia Limite Desconto', '12');
+ 	$this->AdicionarParametroSeNaoExistir(04, 'Mascara Plano De Contas?', '9.9.99.99.999');
+ 	$this->AdicionarParametroSeNaoExistir(05, 'Filtro Data Inicial Lctocontabil?', '01/01/2015');
+    $this->AdicionarParametroSeNaoExistir(06, 'Filtro Data Final Lctocontabil?', '01/01/2016');
+ 	$this->AdicionarParametroSeNaoExistir(07, 'Nome Sistema', 'Sistema Reinandus de Gestão');
+ 	$this->AdicionarParametroSeNaoExistir(08, 'Habilitar permissoes', 'S');
+ 	/*$this->AdicionarParametroSeNaoExistir(09, '', '');
+ 	$this->AdicionarParametroSeNaoExistir(10, '', '');
+ 	$this->AdicionarParametroSeNaoExistir(11, '', '');
+ 	$this->AdicionarParametroSeNaoExistir(12, '', '');
+ 	$this->AdicionarParametroSeNaoExistir(13, '', '');
+ 	$this->AdicionarParametroSeNaoExistir(14, '', '');
+ 	$this->AdicionarParametroSeNaoExistir(15, '', '');
+ 	$this->AdicionarParametroSeNaoExistir(16, '', '');
+ 	$this->AdicionarParametroSeNaoExistir(17, '', '');
+ 	$this->AdicionarParametroSeNaoExistir(18, '', '');
+ 	$this->AdicionarParametroSeNaoExistir(19, '', '');
+ 	$this->AdicionarParametroSeNaoExistir(20, '', '');
+ 	$this->AdicionarParametroSeNaoExistir(21, '', '');
+ 	$this->AdicionarParametroSeNaoExistir(22, '', '');*/
+	$this->Session->setFlash(__('Os parametros foram atualizados.'), 'flash/success');
+ }
+
+/**
+ * AdicionarParametrSoeNaoExistir method
+ * @param int $id
+ * @param string $nome
+ * @param string $valor
+ * @return void
+ */
+ 	private function AdicionarParametroSeNaoExistir($id, $nome, $valor) {
+        
+        $cadastro=[];
+        $cadastro['Parametro']['id'] = $id;
+        $cadastro['Parametro']['nome'] = $nome;
+		$cadastro['Parametro']['valor'] = $valor;
+
+		$this->Parametro->create();
+		$this->Parametro->save($cadastro);
+
+		if (! $this->Parametro->save($cadastro)) {
+				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), "flash/linked/error", array(
+               "link_text" => __('GO_TO'),
+               "link_url" => array(                  
+                  "action" => "view",
+                  $this->Parametro->id
+           		)
+        	));
+			$this->redirect(array('action' => 'index'));
+		}
+ 	}
+
 }
