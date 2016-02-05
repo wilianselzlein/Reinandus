@@ -139,14 +139,14 @@ class ParametrosController extends AppController {
  * @return void
  */
  private function AdicionarPararametrosSeNecessario() {
- 	$this->AdicionarParametroSeNaoExistir(01, 'Bloquear Alunos Com Codigo Menores', '0');
- 	$this->AdicionarParametroSeNaoExistir(02, 'Bloq Alteracoes Antes Da Data', '01/01/2016');
- 	$this->AdicionarParametroSeNaoExistir(03, 'Dia Limite Desconto', '12');
- 	$this->AdicionarParametroSeNaoExistir(04, 'Mascara Plano De Contas?', '9.9.99.99.999');
- 	$this->AdicionarParametroSeNaoExistir(05, 'Filtro Data Inicial Lctocontabil?', '01/01/2015');
-    $this->AdicionarParametroSeNaoExistir(06, 'Filtro Data Final Lctocontabil?', '01/01/2016');
- 	$this->AdicionarParametroSeNaoExistir(07, 'Nome Sistema', 'Sistema Reinandus de Gestão');
- 	$this->AdicionarParametroSeNaoExistir(08, 'Habilitar permissoes', 'S');
+ 	$this->AdicionarParametroSeNaoExistir(1, 'Bloquear Alunos Com Codigo Menores', '0');
+ 	$this->AdicionarParametroSeNaoExistir(2, 'Bloq Alteracoes Antes Da Data', '01/01/2016');
+ 	$this->AdicionarParametroSeNaoExistir(3, 'Dia Limite Desconto', '12');
+ 	$this->AdicionarParametroSeNaoExistir(4, 'Mascara Plano De Contas?', '9.9.99.99.999');
+ 	$this->AdicionarParametroSeNaoExistir(5, 'Filtro Data Inicial Lctocontabil?', '01/01/2015');
+    $this->AdicionarParametroSeNaoExistir(6, 'Filtro Data Final Lctocontabil?', '01/01/2016');
+ 	$this->AdicionarParametroSeNaoExistir(7, 'Nome Sistema', 'Sistema Reinandus de Gestão');
+ 	$this->AdicionarParametroSeNaoExistir(8, 'Habilitar permissoes', 'S');
  	/*$this->AdicionarParametroSeNaoExistir(09, '', '');
  	$this->AdicionarParametroSeNaoExistir(10, '', '');
  	$this->AdicionarParametroSeNaoExistir(11, '', '');
