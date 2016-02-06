@@ -158,6 +158,47 @@ class AppController extends Controller {
                'userModel' => 'User',
             )
          );
+        
+        $parametro = ClassRegistry::init('Parametro');
+        $user_id = $this->Auth->user('id');
+        $model = $this->modelClass;
+        $view = $this->view;
+        if (($user_id != '') && ($parametro->valor(8) == 'S') &&
+            (($model != 'Page') && ($view != 'display')) &&
+            (($model != 'User') && ($view != 'logout')) &&
+            (($model != 'User') && ($view != 'login'))) {
+            
+            $Permissao = ClassRegistry::init('Permissao');
+            $options = array('fields' => array('Permissao.index', 'Permissao.view', 'Permissao.edit', 'Permissao.add', 'Permissao.delete'), 'conditions' => array('Permissao.user_id' => $user_id, 'Programa.nome ' => $model));
+            
+		      $permissoes = $Permissao->find('first', $options);
+		      
+            if ((isset($permissoes)) && (count($permissoes) > 0)) {
+                $acesso = false;
+                switch ($view) {
+                    case "index":
+                    case "view":
+                    case "edit":
+                    case "add":
+                    case "delete":
+                        $acesso = $permissoes['Permissao'][$view];
+                        break;
+                    default:
+                        $acesso = 1; //liberar todas as exceçoes de views
+                        break;
+                }
+                $acesso = (bool) $acesso;
+                if (! $acesso) {
+                    //throw new NotFoundException(__('The record could not be found.'));
+                    $this->Session->setFlash(__('__PERMISSAO'), 'flash/error'); // . ' ' . $this->modelClass . '/' . $this->view . ' - ' . $this->Auth->user('role')
+                    $this->redirect(array('controller' => 'Pages', 'action' => 'display'));
+                }
+            }
+        
+        }
+    //}
+
+
       } 
    }
 
