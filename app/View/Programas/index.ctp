@@ -1,6 +1,7 @@
 <div class="panel panel-default">
 
 	<div class="panel-heading"><h3><span class="fa fa-wrench"></span> <?php echo __('Programas'); ?>
+    <?php echo $this->Html->link('<i class="fa fa-refresh"></i>', array('action' => 'atualizar'), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Atualizar Parametros'), 'data-toggle'=>'tooltip')); ?>
 	<?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>
             </h3></div>
 

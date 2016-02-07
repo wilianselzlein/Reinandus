@@ -55,6 +55,7 @@
 		<th><?php echo __('View'); ?></th>
 		<th><?php echo __('Edit'); ?></th>
 		<th><?php echo __('Add'); ?></th>
+		<th><?php echo __('Delete'); ?></th>
 									<th class="actions text-center"><?php echo __('Actions'); ?></th>
 								</tr>
 							</thead>
@@ -68,6 +69,7 @@
 			<td><i class="<?php echo ($permissao['view'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
 			<td><i class="<?php echo ($permissao['edit'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
 			<td><i class="<?php echo ($permissao['add'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
+			<td><i class="<?php echo ($permissao['delete'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
 			<td class="actions text-center">
 				<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'permissoes', 'action' => 'view', $permissao['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
 				<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('controller' => 'permissoes', 'action' => 'edit', $permissao['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>

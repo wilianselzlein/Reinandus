@@ -134,7 +134,7 @@ class ParametrosController extends AppController {
 	}
 
 /**
- * AdicionarEnumeradosSeNecessario method
+ * AdicionarParametrosSeNecessario method
  *
  * @return void
  */
@@ -184,7 +184,7 @@ class ParametrosController extends AppController {
 		if (! $this->Parametro->save($cadastro)) {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), "flash/linked/error", array(
                "link_text" => __('GO_TO'),
-               "link_url" => array(                  
+               "link_url" => array(
                   "action" => "view",
                   $this->Parametro->id
            		)

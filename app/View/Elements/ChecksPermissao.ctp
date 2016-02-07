@@ -19,4 +19,9 @@
 			array('type' => 'checkbox', 'class' => 'form-control  checkbox2',
 			'before'=>'<div class="col-sm-10">', 
 			'after'=>'</div>', 'div'=>false, 'label'=>false, 'checked'=>true)); ?>
+	<?php echo $this->Form->label('add', null, array('text' => 'Delete', 'class'=>'col-sm-2 control-label')); 
+		echo $this->Form->input('delete', 
+			array('type' => 'checkbox', 'class' => 'form-control  checkbox2',
+			'before'=>'<div class="col-sm-10">', 
+			'after'=>'</div>', 'div'=>false, 'label'=>false, 'checked'=>true)); ?>
 </div><!-- .form-group -->

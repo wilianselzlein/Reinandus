@@ -17,6 +17,7 @@
 							<th><?php echo $this->Paginator->sort('view'); ?></th>
 							<th><?php echo $this->Paginator->sort('edit'); ?></th>
 							<th><?php echo $this->Paginator->sort('add'); ?></th>
+							<th><?php echo $this->Paginator->sort('delete'); ?></th>
 							<th class="actions text-center"><?php echo __('Actions'); ?></th>
 						</tr>
 					</thead>
@@ -33,7 +34,8 @@
 		<td><i class="<?php echo ($permissao['Permissao']['index'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
 		<td><i class="<?php echo ($permissao['Permissao']['view'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
 		<td><i class="<?php echo ($permissao['Permissao']['edit'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>		
-		<td><i class="<?php echo ($permissao['Permissao']['add'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>		
+		<td><i class="<?php echo ($permissao['Permissao']['add'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
+		<td><i class="<?php echo ($permissao['Permissao']['delete'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>		
 		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $permissao, 'model' => 'Permissao')); ?>
 	</tr>
 <?php endforeach; ?>
