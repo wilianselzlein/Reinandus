@@ -191,7 +191,13 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$alunos = $this->Mensalidade->Aluno->find('list', array('conditions' => array('Aluno.id' => $aluno_id)));
 		$formapgtos = $this->Mensalidade->Formapgto->findAsCombo('asc', 'tipo <> "I"');
 		$users = $this->Mensalidade->User->findAsCombo();
-		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
+
+        $dados = $this->Session->read('Auth');
+        $user_id = $dados['User']['id'];
+        $this->Mensalidade->Formapgto->recursive = -1;
+        $formapgto_id = $this->Mensalidade->Formapgto->findByTipo('P');
+        $formapgto_id = $formapgto_id['Formapgto']['id'];
+		$this->set(compact('contas', 'formapgtos', 'users', 'alunos', 'user_id', 'formapgto_id'));
 	}
 
 /**
