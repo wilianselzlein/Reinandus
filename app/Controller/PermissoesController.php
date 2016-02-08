@@ -128,4 +128,54 @@ class PermissoesController extends AppController {
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
 		$this->redirect(array('action' => 'index'));
 	}
+
+/**
+ * adicionar method
+ *
+ * @throws NotFoundException
+ * @throws MethodNotAllowedException
+ * @param string $id
+ * @return void
+ */
+	public function adicionar($id = null) {
+		if (!$this->request->is('post')) {
+			throw new MethodNotAllowedException();
+		}
+		$this->Permissao->User->id = $id;
+		if (!$this->Permissao->exists()) {
+			throw new NotFoundException(__('The record could not be found.'));
+		}
+		/*if ($this->Permissao->delete()) {
+			$this->Session->setFlash(__('Record deleted'), 'flash/success');
+			$this->redirect(array('action' => 'index'));
+		}*/
+		$this->Session->setFlash(__('Permissões adicionadas!'), 'flash/error');
+		$this->redirect(array('action' => 'index'));
+	}
+
+/**
+ * negar method
+ *
+ * @throws NotFoundException
+ * @throws MethodNotAllowedException
+ * @param string $id
+ * @return void
+ */
+	public function negar($id = null) {
+		if (!$this->request->is('post')) {
+			throw new MethodNotAllowedException();
+		}
+		$this->Permissao->User->id = $id;
+		if (!$this->Permissao->exists()) {
+			throw new NotFoundException(__('The record could not be found.'));
+		}
+		/*if ($this->Permissao->delete()) {
+			$this->Session->setFlash(__('Record deleted'), 'flash/success');
+			$this->redirect(array('action' => 'index'));
+		}*/
+		$this->Session->setFlash(__('Permissões negadas!'), 'flash/error');
+		$this->redirect(array('action' => 'index'));
+	}
+
 }
+

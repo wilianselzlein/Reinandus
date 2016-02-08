@@ -10,17 +10,17 @@
 				<table class="table table-bordered table-hover table-condensed" >
                 <thead>
                     <tr class="active">
-							<th><?php echo $this->Paginator->sort('id'); ?></th>
-							<th><?php echo $this->Paginator->sort('numero'); ?></th>
-							<th><?php echo $this->Paginator->sort('aluno'); ?></th>
-							<th><?php echo $this->Paginator->sort('vencimento'); ?></th>
-							<th><?php echo $this->Paginator->sort('liquido'); ?></th>
-							<th><?php echo $this->Paginator->sort('pagamento'); ?></th>
-							<th><?php echo $this->Paginator->sort('formapgto_id'); ?></th>
-							<th class="actions text-center" colspan="2"><?php echo __('Actions'); ?></th>
-						</tr>
-					</thead>
-					<tbody>
+						<th><?php echo $this->Paginator->sort('id'); ?></th>
+						<th><?php echo $this->Paginator->sort('numero'); ?></th>
+						<th><?php echo $this->Paginator->sort('aluno'); ?></th>
+						<th><?php echo $this->Paginator->sort('vencimento'); ?></th>
+						<th><?php echo $this->Paginator->sort('liquido'); ?></th>
+						<th><?php echo $this->Paginator->sort('pagamento'); ?></th>
+						<th><?php echo $this->Paginator->sort('formapgto_id'); ?></th>
+						<th class="actions text-center" colspan="2"><?php echo __('Actions'); ?></th>
+					</tr>
+				</thead>
+				<tbody>
 <?php foreach ($mensalidades as $mensalidade): ?>
 	<tr>
 		<td><?php echo h($mensalidade['Mensalidade']['id']); ?>&nbsp;</td>

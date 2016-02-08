@@ -19,7 +19,7 @@
                   <th><?php echo $this->Paginator->sort('created'); ?></th>
                   <th><?php echo $this->Paginator->sort('modified'); ?></th>
                   <th><?php echo $this->Paginator->sort('assinatura'); ?></th>
-                  <th class="actions text-center"><?php echo __('Actions'); ?></th>
+                  <th class="actions text-center" colspan="2"><?php echo __('Actions'); ?></th>
                </tr>
             </thead>
             <tbody>
@@ -40,6 +40,11 @@
                         <img src="data:image/jpeg;base64,
                            <?php echo h($usuario['User']['assinatura']); ?>" 
                      <?php } ?> &nbsp;
+                  </td>
+                  <td class="actions text-center">
+
+                     <?php echo $this->Html->link('<i class="fa fa-user-plus"></i>', array('controller' => 'Permissao', 'action' => 'adicionar', $usuario['User']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Adicionar Permissões'), 'data-toggle'=>'tooltip')); ?>
+                     <?php echo $this->Html->link('<i class="fa fa-user-times"></i>', array('controller' => 'Permissao','action' => 'negar', $usuario['User']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Negar Permissões'), 'data-toggle'=>'tooltip')); ?>
                   </td>
                   <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $usuario, 'model' => 'User')); ?>
                </tr>
