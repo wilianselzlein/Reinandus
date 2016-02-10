@@ -42,8 +42,13 @@ class UsuariosController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('recursive' => 1, 'conditions' => array('User.' . $this->User->primaryKey => $id));
-		$this->User->unbindModel(array('hasMany' => array('Mensalidade', 'Aviso')));
+		$options = array('recursive' => 1, 'conditions' => array('User.' . $this->User->primaryKey => $id),
+			'fields' => array('User.*', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 'Role.id', 'Role.nome'));
+/*
+User.id, User.username, User.password, User.pessoa_id, User.created, User.modified, User.role_id, User.assinatura, Pessoa.id, Pessoa.fantasia, Pessoa.razaosocial, Pessoa.endereco, Pessoa.numero, Pessoa.bairro, Pessoa.cidade_id, Pessoa.cep, Pessoa.fone, Pessoa.fax, Pessoa.celular, Pessoa.email, Pessoa.emailalt, Pessoa.site, Pessoa.cnpjcpf, Pessoa.resumo, Pessoa.obs, Pessoa.empresa, Pessoa.contato, Pessoa.ie, Pessoa.im, Pessoa.orgao, Pessoa.orgaonum, Pessoa.pessoa, Pessoa.ramo, Pessoa.secundario, Pessoa.fundacao, Pessoa.juntacomercial, Pessoa.created, Pessoa.modified, Pessoa.desconto, Role.id, Role.nome
+FROM pedroescobar15.user AS User 
+*/
+		$this->User->unbindModel(array('hasMany' => array('Mensalidade', 'Aviso', 'ContaPagar')));
 		$this->set('usuario', $this->User->find('first', $options));
 
 		$options = array('recursive' => 0, 'conditions' => array('Mensalidade.user_id' => $id), 'limit' => 200, 
@@ -53,7 +58,11 @@ class UsuariosController extends AppController {
 		$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);
 		$this->set(compact('mensalidades'));
 
-		$options = array('recursive' => 0, 'conditions' => array('Aviso.user_id' => $id), 'limit' => 200);
+		$options = array('recursive' => 0, 'conditions' => array('Aviso.user_id' => $id), 'limit' => 200,
+			'fields' => array('Aviso.*', 'User.id', 'User.username', 'Tipo.id', 'Tipo.valor'));
+/*
+Aviso.id, Aviso.data, Aviso.user_id, Aviso.arquivo, Aviso.mensagem, Aviso.tipo_id, Aviso.caminho, Aviso.tipo, Aviso.tamanho, User.id, User.username, User.password, User.pessoa_id, User.created, User.modified, User.role_id, User.assinatura, Tipo.id, Tipo.nome, Tipo.referencia, Tipo.valor
+*/
 		$avisos = $this->User->Aviso->find('all', $options);
 		$avisos = $this->TransformarArray->FindInContainable('Aviso', $avisos);
 		$this->set(compact('avisos'));
