@@ -43,8 +43,8 @@
                   </td>
                   <td class="actions text-center">
 
-                     <?php echo $this->Html->link('<i class="fa fa-user-plus"></i>', array('controller' => 'Permissao', 'action' => 'adicionar', $usuario['User']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Adicionar Permissões'), 'data-toggle'=>'tooltip')); ?>
-                     <?php echo $this->Html->link('<i class="fa fa-user-times"></i>', array('controller' => 'Permissao','action' => 'negar', $usuario['User']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Negar Permissões'), 'data-toggle'=>'tooltip')); ?>
+                     <?php echo $this->Html->link('<i class="fa fa-user-plus"></i>', array('controller' => 'Permissoes', 'action' => 'adicionar', $usuario['User']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Adicionar Permissões'), 'data-toggle'=>'tooltip')); ?>
+                     <?php echo $this->Html->link('<i class="fa fa-user-times"></i>', array('controller' => 'Permissoes','action' => 'negar', $usuario['User']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Negar Permissões'), 'data-toggle'=>'tooltip')); ?>
                   </td>
                   <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $usuario, 'model' => 'User')); ?>
                </tr>

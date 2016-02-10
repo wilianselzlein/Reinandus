@@ -14,7 +14,7 @@ class PermissoesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'TransformarArray');
 
 /**
  * index method
@@ -137,20 +137,11 @@ class PermissoesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function adicionar($id = null) {
-		if (!$this->request->is('post')) {
-			throw new MethodNotAllowedException();
-		}
-		$this->Permissao->User->id = $id;
-		if (!$this->Permissao->exists()) {
-			throw new NotFoundException(__('The record could not be found.'));
-		}
-		/*if ($this->Permissao->delete()) {
-			$this->Session->setFlash(__('Record deleted'), 'flash/success');
-			$this->redirect(array('action' => 'index'));
-		}*/
+	public function adicionar($user_id = null) {
+		//$this->VerificarUsuarioParaPermissao($id);
+		$this->IncluirPermissoesNoUsuario($user_id, true);
 		$this->Session->setFlash(__('Permissões adicionadas!'), 'flash/error');
-		$this->redirect(array('action' => 'index'));
+		$this->redirect(array('controller' => 'user', 'action' => 'view', $user_id));
 	}
 
 /**
@@ -161,21 +152,58 @@ class PermissoesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function negar($id = null) {
+	public function negar($user_id = null) {
+		//$this->VerificarUsuarioParaPermissao($id);
+		$this->IncluirPermissoesNoUsuario($user_id, false);
+		$this->Session->setFlash(__('Permissões negadas!'), 'flash/error');
+		$this->redirect(array('controller' => 'user', 'action' => 'view', $user_id));
+	}
+
+/**
+ * VerificarUsuarioParaPermissao method
+ *
+ * @throws NotFoundException
+ * @throws MethodNotAllowedException
+ * @param string $id
+ * @return void
+ */
+	private function VerificarUsuarioParaPermissao($user_id) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}
-		$this->Permissao->User->id = $id;
+		$this->Permissao->User->id = $user_id;
 		if (!$this->Permissao->exists()) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		/*if ($this->Permissao->delete()) {
-			$this->Session->setFlash(__('Record deleted'), 'flash/success');
-			$this->redirect(array('action' => 'index'));
-		}*/
-		$this->Session->setFlash(__('Permissões negadas!'), 'flash/error');
-		$this->redirect(array('action' => 'index'));
 	}
 
-}
+/**
+ * IncluirPermissoesNoUsuario method
+ *
+ * @throws NotFoundException
+ * @throws MethodNotAllowedException
+ * @param string $id
+ * @param boolean $permitir
+ * @return void
+ */
+	private function IncluirPermissoesNoUsuario($user_id, $permitir) {
+		$incluidas = $this->Permissao->find('list', array('fields' => array('Permissao.programa_id'), 'conditions' => array('Permissao.user_id' => $user_id)));
+		if (empty($incluidas)) $incluidas[] = 0;
+		$options = array('recursive' => false, 'conditions' => array('NOT' => array('Programa.id' => $incluidas)), 'fields' => 'Programa.id');
+		$programas = $this->Permissao->Programa->find('list', $options);
 
+		foreach ($programas as $programa) {
+			$dados = [];
+			$dados['user_id'] = $user_id;
+			$dados['programa_id'] = $programa;
+			$dados['add'] = $permitir;
+			$dados['delete'] = $permitir;
+			$dados['index'] = $permitir;
+			$dados['view'] = $permitir;
+			$dados['edit'] = $permitir;
+			$this->Permissao->create();
+			$this->Permissao->save($dados);
+		}
+		//debug($programas); die;
+	}
+}
