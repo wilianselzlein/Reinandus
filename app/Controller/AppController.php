@@ -167,12 +167,25 @@ class AppController extends Controller {
             (($model != 'Page') && ($view != 'display')) &&
             (($model != 'User') && ($view != 'logout')) &&
             (($model != 'User') && ($view != 'login'))) {
-            
-            $Permissao = ClassRegistry::init('Permissao');
-            $options = array('fields' => array('Permissao.index', 'Permissao.view', 'Permissao.edit', 'Permissao.add', 'Permissao.delete'), 'conditions' => array('Permissao.user_id' => $user_id, 'Programa.nome ' => $model));
-            
-		      $permissoes = $Permissao->find('first', $options);
-		      
+
+		$variavel = 'Permissoes';
+		$permissoes = CakeSession::read($variavel);
+		if ($permissoes == null) {
+         $Permissao = ClassRegistry::init('Permissao');
+         $options = array('fields' => array('Programa.nome', 'Permissao.index', 'Permissao.view', 'Permissao.edit', 'Permissao.add', 'Permissao.delete'), 'conditions' => array('Permissao.user_id' => $user_id));
+	      $permissoes = $Permissao->find('all', $options);
+			$permissoes = serialize($permissoes);
+			CakeSession::write($variavel, $permissoes);
+		}
+		$permissoes = unserialize($permissoes);
+
+		foreach ($permissoes as $permissao) {
+		   if ($permissao['Programa']['nome'] == $model) {
+		      $filtro = $permissao['Permissao'];
+		   }
+		}
+		$permissoes = $filtro;
+
             if ((isset($permissoes)) && (count($permissoes) > 0)) {
                 $acesso = false;
                 switch ($view) {
@@ -181,7 +194,7 @@ class AppController extends Controller {
                     case "edit":
                     case "add":
                     case "delete":
-                        $acesso = $permissoes['Permissao'][$view];
+                        $acesso = $permissoes[$view];
                         break;
                     default:
                         $acesso = 1; //liberar todas as exceçoes de views

@@ -56,12 +56,18 @@ class Parametro extends AppModel {
  * @return string
  */
 	public function valor($id = null) {
-		if (!$this->exists($id)) {
-			throw new NotFoundException(__('The record could not be found.'));
+		$variavel = 'Parametros.' . $id;
+		$valor = CakeSession::read($variavel);
+		if ($valor == null) {
+			if (!$this->exists($id)) {
+				throw new NotFoundException(__('The record could not be found.'));
+			}
+			$options = array('conditions' => array('Parametro.' . $this->primaryKey => $id));
+			$parametro = $this->find('first', $options);
+			$valor = $parametro['Parametro']['valor'];
+			CakeSession::write($variavel, $valor);
 		}
-		$options = array('conditions' => array('Parametro.' . $this->primaryKey => $id));
-		$parametro = $this->find('first', $options);
-                return $parametro['Parametro']['valor'];
+        return $valor;
 	}
 	
 }
