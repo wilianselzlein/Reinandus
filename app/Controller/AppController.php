@@ -130,8 +130,6 @@ class AppController extends Controller {
          $this->Auth->loginRedirect = array('controller'=>'portal','action'=>'index');
          $this->Auth->logoutRedirect = array('controller'=>'portal','action'=>'login');
          $this->Auth->authorize = 'Controller';
-
-
          $this->Auth->authenticate = array(
             AuthComponent::ALL => array(
                'userModel' => 'Aluno',
@@ -152,73 +150,24 @@ class AppController extends Controller {
          AuthComponent::$sessionKey = 'Auth.User'; 
          $this->Auth->loginAction = array('controller'=>'usuarios','action'=>'login');
          $this->Auth->logoutRedirect = '/';
-
          $this->Auth->authenticate = array(
             'Form' => array(
                'userModel' => 'User',
             )
          );
-        
-        $parametro = ClassRegistry::init('Parametro');
-        $user_id = $this->Auth->user('id');
-        $model = $this->modelClass;
-        $view = $this->view;
-        if (($user_id != '') && ($parametro->valor(8) == 'S') &&
-            (($model != 'Page') && ($view != 'display')) &&
-            (($model != 'User') && ($view != 'logout')) &&
-            (($model != 'User') && ($view != 'login'))) {
 
-		$variavel = 'Permissoes';
-		$permissoes = CakeSession::read($variavel);
-		if ($permissoes == null) {
-         $Permissao = ClassRegistry::init('Permissao');
-         $options = array('fields' => array('Programa.nome', 'Permissao.index', 'Permissao.view', 'Permissao.edit', 'Permissao.add', 'Permissao.delete'), 'conditions' => array('Permissao.user_id' => $user_id));
-	      $permissoes = $Permissao->find('all', $options);
-			$permissoes = serialize($permissoes);
-			CakeSession::write($variavel, $permissoes);
-		}
-		$permissoes = unserialize($permissoes);
-//debug($user_id); debug($permissoes); die;		
-		foreach ($permissoes as $permissao) {
-		   if ($permissao['Programa']['nome'] == $model) {
-		      $filtro = $permissao;
-		   }
-		}
-		$permissoes = $filtro;
-//debug($permissoes); die;
-            if ((isset($permissoes)) && (count($permissoes) > 0)) {
-                $acesso = false;
-                switch ($view) {
-                    case "index":
-                    case "view":
-                    case "edit":
-                    case "add":
-                    case "delete":
-                        $acesso = $permissoes['Permissao'][$view];
-                        break;
-                    default:
-                        $acesso = 1; //liberar todas as exceçoes de views
-                        break;
-                }
-                $acesso = (bool) $acesso;
-                if (! $acesso) {
-                    //throw new NotFoundException(__('The record could not be found.'));
-                    $this->Session->setFlash(__('__PERMISSAO'), 'flash/error'); // . ' ' . $this->modelClass . '/' . $this->view . ' - ' . $this->Auth->user('role')
-                    $this->redirect(array('controller' => 'Pages', 'action' => 'display'));
-                }
-            }
-        
-        }
+        $this->VerificarPermissaoDeAcesso();
+
     //}
-      } 
+      }
    }
 
-   // Before Render
    function beforeRender() {
       if($this->name == 'CakeError') {
          $this->layout = null;
       }
    }
+
    public function isAuthorized($user){
       //debug($this->name);
       //debug($this->Session->read('Auth.Aluno'));
@@ -233,9 +182,62 @@ class AppController extends Controller {
       return true;
    }
 
+  private function VerificarPermissaoDeAcesso() {
+      $parametro = ClassRegistry::init('Parametro');
+      $user_id = $this->Auth->user('id');
+      $model = $this->modelClass;
+      $view = $this->view;
+      if (($user_id != '') && ($parametro->valor(8) == 'S') &&
+          (($model != 'Page') && ($view != 'display')) &&
+          (($model != 'User') && ($view != 'logout')) &&
+          (($model != 'User') && ($view != 'login'))) {
 
+          $permissoes = $this->ConsultarPermissoes($user_id, $model);
 
+          if ((isset($permissoes)) && (count($permissoes) > 0)) {
+              $acesso = false;
+              switch ($view) {
+                  case "index":
+                  case "view":
+                  case "edit":
+                  case "add":
+                  case "delete":
+                      $acesso = $permissoes['Permissao'][$view];
+                      break;
+                  default:
+                      $acesso = 1; //liberar todas as exceçoes de views
+                      break;
+              }
+              $acesso = (bool) $acesso;
+              if (! $acesso) {
+                  //throw new NotFoundException(__('The record could not be found.'));
+                  $this->Session->setFlash(__('__PERMISSAO'), 'flash/error'); // . ' ' . $this->modelClass . '/' . $this->view . ' - ' . $this->Auth->user('role')
+                  $this->redirect(array('controller' => 'Pages', 'action' => 'display'));
+              }
+          }
+      }
+  }
 
+  private function ConsultarPermissoes($user_id, $model) {
+      $variavel = 'Permissoes';
+      $permissoes = CakeSession::read($variavel);
 
+      if ($permissoes == null) {
+          $Permissao = ClassRegistry::init('Permissao');
+          $options = array('fields' => array('Programa.nome', 'Permissao.index', 'Permissao.view', 'Permissao.edit', 'Permissao.add', 'Permissao.delete'), 'conditions' => array('Permissao.user_id' => $user_id));
+            $permissoes = $Permissao->find('all', $options);
+          $permissoes = serialize($permissoes);
+          CakeSession::write($variavel, $permissoes);
+      }
 
-}                                      
+      $permissoes = unserialize($permissoes);
+
+      foreach ($permissoes as $permissao) {
+         if ($permissao['Programa']['nome'] == $model) {
+            $filtro = $permissao;
+         }
+      }
+      return $filtro;
+  }
+
+}
