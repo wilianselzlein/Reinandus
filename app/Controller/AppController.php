@@ -178,14 +178,14 @@ class AppController extends Controller {
 			CakeSession::write($variavel, $permissoes);
 		}
 		$permissoes = unserialize($permissoes);
-
+//debug($user_id); debug($permissoes); die;		
 		foreach ($permissoes as $permissao) {
 		   if ($permissao['Programa']['nome'] == $model) {
-		      $filtro = $permissao['Permissao'];
+		      $filtro = $permissao;
 		   }
 		}
 		$permissoes = $filtro;
-
+//debug($permissoes); die;
             if ((isset($permissoes)) && (count($permissoes) > 0)) {
                 $acesso = false;
                 switch ($view) {
@@ -194,7 +194,7 @@ class AppController extends Controller {
                     case "edit":
                     case "add":
                     case "delete":
-                        $acesso = $permissoes[$view];
+                        $acesso = $permissoes['Permissao'][$view];
                         break;
                     default:
                         $acesso = 1; //liberar todas as exceçoes de views
