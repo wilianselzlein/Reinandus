@@ -231,7 +231,8 @@ class AppController extends Controller {
       }
 
       $permissoes = unserialize($permissoes);
-
+      $filtro = [];
+      
       foreach ($permissoes as $permissao) {
          if ($permissao['Programa']['nome'] == $model) {
             $filtro = $permissao;
