@@ -82,9 +82,12 @@ class RelatoriosController extends AppController {
              foreach ($dataset['RelatorioFiltro'] as $filtro){    
                $sql .= $this->appendFilters($filtro);
              }
-             
+
              $sql .= ' ' . $dataset['order'];
-             //debug($sql); die;
+             debug($this->VerificarParametroDebugarSqlRelatoriosAtivo()); die;
+             if ($this->VerificarParametroDebugarSqlRelatoriosAtivo()) {
+                debug($sql); die;
+             }
              $queryResult = $this->Relatorio->query($sql);            
              
              $this->set($dataset['nome'], $queryResult);  
@@ -94,6 +97,11 @@ class RelatoriosController extends AppController {
        $this->layout = '/pdf/default';
        $this->render('/Relatorios/pdfs/'.$relatorio['Relatorio']['arquivo']);
     }
+
+  private function VerificarParametroDebugarSqlRelatoriosAtivo() {
+      $parametro = ClassRegistry::init('Parametro');
+      return $parametro->valor(9) == 'S';
+  }
 
    function appendFilters($filtro){
       $filtros = "";

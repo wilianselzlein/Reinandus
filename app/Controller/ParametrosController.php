@@ -147,8 +147,8 @@ class ParametrosController extends AppController {
     $this->AdicionarParametroSeNaoExistir(6, 'Filtro Data Final Lctocontabil?', '01/01/2016');
  	$this->AdicionarParametroSeNaoExistir(7, 'Nome Sistema', 'Sistema Reinandus de Gestão');
  	$this->AdicionarParametroSeNaoExistir(8, 'Habilitar permissoes', 'S');
- 	/*$this->AdicionarParametroSeNaoExistir(09, '', '');
- 	$this->AdicionarParametroSeNaoExistir(10, '', '');
+ 	$this->AdicionarParametroSeNaoExistir(9, 'Debugar Relatorios', 'N');
+ 	/*$this->AdicionarParametroSeNaoExistir(10, '', '');
  	$this->AdicionarParametroSeNaoExistir(11, '', '');
  	$this->AdicionarParametroSeNaoExistir(12, '', '');
  	$this->AdicionarParametroSeNaoExistir(13, '', '');

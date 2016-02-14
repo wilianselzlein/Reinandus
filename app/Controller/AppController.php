@@ -182,12 +182,17 @@ class AppController extends Controller {
       return true;
    }
 
-  private function VerificarPermissaoDeAcesso() {
+  private function VerificarParametroPermissoesEstaHabilitado() {
       $parametro = ClassRegistry::init('Parametro');
+      return $parametro->valor(8) == 'S';
+  }
+
+  private function VerificarPermissaoDeAcesso() {
+      
       $user_id = $this->Auth->user('id');
       $model = $this->modelClass;
       $view = $this->view;
-      if (($user_id != '') && ($parametro->valor(8) == 'S') &&
+      if (($user_id != '') && ($this->VerificarParametroPermissoesEstaHabilitado()) &&
           (($model != 'Page') && ($view != 'display')) &&
           (($model != 'User') && ($view != 'logout')) &&
           (($model != 'User') && ($view != 'login'))) {
@@ -232,7 +237,7 @@ class AppController extends Controller {
 
       $permissoes = unserialize($permissoes);
       $filtro = [];
-      
+
       foreach ($permissoes as $permissao) {
          if ($permissao['Programa']['nome'] == $model) {
             $filtro = $permissao;

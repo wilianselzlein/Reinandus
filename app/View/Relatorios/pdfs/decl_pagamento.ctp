@@ -71,9 +71,9 @@ for ($index = 0; $index < count($decl_pagamento); $index++) {
   $rowData = new Row('summary');
   $rowData
     ->addColumn('Total:', 'col-15')
-    ->addColumn($this->Number->currency($valor, 'BRL'), 'currency col-10')       
-    ->addColumn($this->Number->currency($desco, 'BRL'), 'currency col-10')
-    ->addColumn($this->Number->currency($liqui, 'BRL'), 'currency col-10')
+    ->addColumn($this->Number->currency($valor, 'BRL'), 'currency col-20')       
+    ->addColumn($this->Number->currency($desco, 'BRL'), 'currency col-20')
+    ->addColumn($this->Number->currency($liqui, 'BRL'), 'currency col-20')
     ->close();
   $table->addRow($rowData);
 
