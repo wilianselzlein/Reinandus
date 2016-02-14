@@ -210,7 +210,7 @@ class AppController extends Controller {
                       $acesso = $permissoes['Permissao'][$view];
                       break;
                   default:
-                      $acesso = 1; //liberar todas as exceçoes de views
+                      $acesso = 0; //negar todas as exceçoes
                       break;
               }
               $acesso = (bool) $acesso;
