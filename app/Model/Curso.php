@@ -45,16 +45,16 @@ class Curso extends AppModel {
 			),
 		)/*,
 		'turma' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				'message' => 'VALIDATE_BLANK',
+			'numeric' => array(
+				'rule' => array('numeric'),
+				'message' => 'VALIDADE_NUMERIC',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'valor' => array(
+		/*'valor' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				'message' => 'VALIDATE_BLANK',

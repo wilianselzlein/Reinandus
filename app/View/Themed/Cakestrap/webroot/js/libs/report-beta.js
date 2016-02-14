@@ -43,10 +43,10 @@ $(document).ready(function() {
                   data: "ajax=true&model="+campo.Modelo,
                   success: function(msg){
                      $('#select_dados').html(msg);
-                  },
+                  }/*,
                   error: function(msg){
                      alert("Erro carregar dados.");
-                  }
+                  }*/
             });
          }
       });
