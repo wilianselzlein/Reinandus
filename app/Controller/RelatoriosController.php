@@ -84,7 +84,6 @@ class RelatoriosController extends AppController {
              }
 
              $sql .= ' ' . $dataset['order'];
-             debug($this->VerificarParametroDebugarSqlRelatoriosAtivo()); die;
              if ($this->VerificarParametroDebugarSqlRelatoriosAtivo()) {
                 debug($sql); die;
              }

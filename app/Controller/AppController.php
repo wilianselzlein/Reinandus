@@ -210,13 +210,13 @@ class AppController extends Controller {
                       $acesso = $permissoes['Permissao'][$view];
                       break;
                   default:
-                      $acesso = 0; //negar todas as exceçoes
+                      $acesso = $permissoes['Permissao']['index']; //0; //negar todas as exceçoes
                       break;
               }
               $acesso = (bool) $acesso;
               if (! $acesso) {
                   //throw new NotFoundException(__('The record could not be found.'));
-                  $this->Session->setFlash(__('__PERMISSAO'), 'flash/error'); // . ' ' . $this->modelClass . '/' . $this->view . ' - ' . $this->Auth->user('role')
+                  $this->Session->setFlash(__('__PERMISSAO') . ' M="' . $model . '" V="' . $view . '"', 'flash/error'); //$this->Auth->user('role')
                   $this->redirect(array('controller' => 'Pages', 'action' => 'display'));
               }
           }
