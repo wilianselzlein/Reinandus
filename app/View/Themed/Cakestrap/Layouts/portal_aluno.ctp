@@ -21,7 +21,7 @@ $components = array('Paginator', 'Session');
 $usuario_logado = $this->Session->read('Auth.Aluno');
 
 ?>
-<?php echo $this->Html->docType('html5'); ?> 
+<?php echo $this->Html->docType('html5'); ?>
 <html>
    <head>
       <?php echo $this->Html->charset(); ?>
@@ -59,7 +59,7 @@ echo $this->fetch('script');
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                </button>
-               <?php echo $this->Html->Link('Sistema Pós-Graduação', array('controller' => 'Pages', 'action' => 'display'), arraY('class' => 'navbar-brand')); ?>
+               <?php echo $this->Html->Link('Sistema Pós-Graduação', array('controller' => 'portal', 'action' => 'index', 'aluno' => true ), arraY('class' => 'navbar-brand')); ?>
             </div>
 
             <ul class="nav navbar-nav navbar-right">
@@ -72,7 +72,7 @@ echo $this->fetch('script');
 
                </li>
                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>                 
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
                </li>
                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img id="gravatar-img" src="//www.gravatar.com/avatar/<?php echo md5( strtolower( trim( $this->Session->read('Auth.Aluno.email') ) ) ) ?>?s=30" >
@@ -85,14 +85,14 @@ echo $this->fetch('script');
                            <div class="row">
                               <div class="col-md-5">
                                  <img id="gravatar-img" src="//www.gravatar.com/avatar/<?php echo md5( strtolower( trim( $this->Session->read('Auth.Aluno.email') ) ) ) ?>"
-                                      class="img-responsive" />                                 
+                                      class="img-responsive" />
                               </div>
                               <div class="col-md-7">
                                  <span><?php echo $usuario_logado['nome']; ?></span>
                                  <p class="text-muted small"><?php echo $usuario_logado['email']; ?></p>
-                                 <div class="divider"></div>                                                                  
+                                 <div class="divider"></div>
                                  <?php echo $this->Html->link(__('Alguma coisa'), array('controller' => 'portal', 	'action' => 'index'), array('class'=>'btn btn-primary btn-sm active'))?>
-                                 <div class="divider"></div>  
+                                 <div class="divider"></div>
                               </div>
                            </div>
                         </div>
@@ -127,13 +127,13 @@ echo $this->fetch('script');
             </div><!-- /#content .container -->
             <?php echo $this->element('sql_dump'); ?>
          </div>
-         
+
 
          <div id="footer" class="container">
             <?php //Silence is golden ?>
          </div><!-- /#footer .container -->
 
-      </div><!-- /#main-container -->		
+      </div><!-- /#main-container -->
 
       <script>$(document).ready(function(){ $('[data-toggle=tooltip]').tooltip()});</script>
       <?php echo $this->Html->script('cfg-datepicker');?>
@@ -143,7 +143,7 @@ echo $this->fetch('script');
       <?php echo $this->Html->script('cfg-cpf');?>
       <?php echo $this->Html->script('cfg-cnpj');?>
       <?php echo $this->Html->script('cfg-dddphone');?>
-      
+
    </body>
 
 </html>

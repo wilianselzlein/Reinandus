@@ -65,16 +65,16 @@ class AppController extends Controller {
             'character'   => ' ',
             'concatenate' => 'AND',
          )
-      ), 
+      ),
       'RequestHandler'
    );
 
    protected function AdicionarFiltrosLike($model, $ignorados = null) {
       $tabela = $model->name . '.';
-      $operador = array('operator' => 'LIKE');      
+      $operador = array('operator' => 'LIKE');
 
       $colunas = array_keys($model->getColumnTypes());
-      foreach ($colunas as $coluna) {        
+      foreach ($colunas as $coluna) {
          if ((is_null($ignorados)) || (! (in_array($coluna, $ignorados))))
             $array[$tabela . $coluna] = $operador;
       }
@@ -91,7 +91,7 @@ class AppController extends Controller {
    /*
    function beforeFilter() {
 
-      if($this->params['controller']=='Portal') 
+      if($this->params['controller']=='Portal')
       {
          $this->Auth->userModel = 'Aluno';
          $this->Auth->fields = array('username' => 'numero', 'password' => 'senha');
@@ -121,11 +121,11 @@ class AppController extends Controller {
 
    function beforeFilter() {
 
-      if ($this->name =='Portal') {
-         //debug($this->params);           
+      if ($this->request->prefix == 'aluno') {
+         //debug($this->params);
          $this->layout = 'portal_aluno';
 
-         AuthComponent::$sessionKey = 'Auth.Aluno'; 
+         AuthComponent::$sessionKey = 'Auth.Aluno';
          $this->Auth->loginAction = array('controller'=>'portal','action'=>'login');
          $this->Auth->loginRedirect = array('controller'=>'portal','action'=>'index');
          $this->Auth->logoutRedirect = array('controller'=>'portal','action'=>'login');
@@ -147,7 +147,7 @@ class AppController extends Controller {
 
       } else {//if ($this->request->prefix == 'phys') {
 
-         AuthComponent::$sessionKey = 'Auth.User'; 
+         AuthComponent::$sessionKey = 'Auth.User';
          $this->Auth->loginAction = array('controller'=>'usuarios','action'=>'login');
          $this->Auth->logoutRedirect = '/';
          $this->Auth->authenticate = array(
@@ -188,7 +188,7 @@ class AppController extends Controller {
   }
 
   private function VerificarPermissaoDeAcesso() {
-      
+
       $user_id = $this->Auth->user('id');
       $model = $this->modelClass;
       $view = $this->view;

@@ -1,6 +1,4 @@
-	
 <body>
-   
 
 <style>
 @import url(http://fonts.googleapis.com/css?family=Lancelot);
@@ -61,7 +59,7 @@ body {
 </style>
 <div id="restrict-area-login">
 
-      <?php echo $this->Form->create('User', array('class'=>'form-signin', 'role' => 'form'));?>
+      <?php echo $this->Form->create('Aluno', array('class'=>'form-signin', 'role' => 'form'));?>
       
         <?php echo $this->Session->flash(); ?>        
         <h4>        
@@ -70,13 +68,13 @@ body {
 
         <div class="input-group input-group">
             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-            <?php echo $this->Form->input('username', array('class' => 'form-control non-rounded', 'placeholder'=>"Usuário", "label"=>false,  'div' => array('class' => 'control-group')));?>            
+            <?php echo $this->Form->input('id', array('class' => 'form-control non-rounded', 'type'=>'text','placeholder'=>"Usuário", "label"=>false,  'div' => array('class' => 'control-group')));?>            
         </div>
 
         <br>
         <div class="input-group input-group">
             <span class="input-group-addon"><i class="fa fa-key"></i></span>
-            <?php echo $this->Form->input('password', array('class' => 'form-control non-rounded', 'placeholder'=>"Senha", "label"=>false,  'div' => array('class' => 'control-group')));?>
+            <?php echo $this->Form->input('senha', array('class' => 'form-control non-rounded', 'type'=>'password','placeholder'=>"Senha", "label"=>false,  'div' => array('class' => 'control-group')));?>
         </div>
         <br>
 <?php echo $this->Form->submit(__('Acessar'), array('class' => 'btn btn-lg btn-default btn-block non-rounded'));?>    
@@ -87,11 +85,11 @@ body {
 <script>
    $(function(){
       //alert('pedro');
-      / BootstrapDialog.show({
-            title: 'Área restrita para alunos.',
-            message: $('#restrict-area-login'),
-            cssClass: 'login-dialog',
-            closable: false,
+      // BootstrapDialog.show({
+//            title: 'Área restrita para alunos.',
+//            message: $('#restrict-area-login'),
+//            cssClass: 'login-dialog',
+//            closable: false,
 //            buttons: [{
 //                label: 'Entrar',
 //                cssClass: 'btn-default',

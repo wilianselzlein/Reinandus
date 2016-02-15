@@ -23,13 +23,13 @@ class PortalController extends AppController {
  */
   public $components = array('Session', 'Boletos.BoletoHsbc');
 
-   public function index() {
+   public function aluno_index() {
       $dados = $this->Session->read('Auth');
       $id = $dados['Aluno']['id'];
-      
+
       $Acesso = new AcessosController;
       $Acesso->AdicionarHistoricoDeAcesso($id);
-      
+
       $Aluno = ClassRegistry::init('Aluno');
       $options = array('recursive' => 0, 'conditions' => array('Aluno.id' => $id));
       $alunos = $Aluno->find('all', $options);
@@ -60,10 +60,10 @@ class PortalController extends AppController {
       $this->set(compact('alunos', 'grupos', 'materiais', 'notas', 'vagas', 'convenios', 'mensalidades', 'anos'));
    }
 
-   public function login(){
+   public function aluno_login(){
       $this->layout = 'login';
         // Verifica o tipo de requisição, se for POST(form submit) tenta logar.
-      if($this->request->is('post')) {           
+      if($this->request->is('post')) {
          //debug($this->Auth->authenticate);
          //debug($this->Auth->redirect());
          //die();
@@ -75,7 +75,7 @@ class PortalController extends AppController {
       }
    }
 
-   public function logout() {
+   public function aluno_logout() {
         $this->redirect($this->Auth->logout());
    }
 
@@ -93,7 +93,7 @@ class PortalController extends AppController {
       $Email->subject('Protocolo');
 
       $Email->send(
-        'Protocolo do Portal:<br>' . 
+        'Protocolo do Portal:<br>' .
         'Data: ' . Date('Y/m/d H:i') . '<br>' .
         'Aluno: ' . $dados['portal']['nome'] . '<br>' .
         'Matricula: ' . $dados['portal']['matricula'] . '<br>' .
@@ -107,7 +107,7 @@ class PortalController extends AppController {
         '<br>'.
         'Email automático, apenas leitura, favor não responder no mesmo.<br>');
     }
-    
+
     private function CarregarDadosAvisos($tipo) {
       $grupo = $this->request->data;
       $grupo = $grupo['Post']['grupo'];
@@ -138,19 +138,19 @@ class PortalController extends AppController {
       return $avisos;
     }
 
-    public function avisos() {
+    public function aluno_avisos() {
       $avisos = $this->CarregarDadosAvisos(21);
       $this->set(compact('avisos'));
     }
 
-    public function materiais() {
+    public function aluno_materiais() {
       $materiais = $this->CarregarDadosAvisos(22);
       $this->set(compact('materiais'));
     }
-    
+
     private function DadosComprovantes() {
       $dados = $this->request->data;
-      if (count($dados) == 0) 
+      if (count($dados) == 0)
         $this->redirect(array('action' => 'index'));
 
       $Curso = new CursosController;
@@ -162,10 +162,10 @@ class PortalController extends AppController {
         $Situacao->recursive = -1;
         $situacao = $Situacao->findById($dados['Portal']['situacao'], array('Enumerado.valor'));
       }
-      
+
       $Instit = ClassRegistry::init('Instituto');
       $Instit->recursive = 1;
-      $consulta = $Instit->findByTipoId(32, 
+      $consulta = $Instit->findByTipoId(32,
         array('Instituto.id', 'Instituto.empresa_id', 'Empresa.razaosocial', 'Empresa.cnpjcpf', 'Empresa.endereco', 'Empresa.numero', 'Empresa.bairro', 'Empresa.cidade_id', 'Empresa.fone', 'Empresa.email', 'Empresa.site', 'Diretor.razaosocial'));
       $instituto['Instituto'] = $consulta;
 
@@ -182,7 +182,7 @@ class PortalController extends AppController {
       return $dados;
     }
 
-    public function matricula() {
+    public function aluno_matricula() {
       $dados = $this->DadosComprovantes();
       $this->set(compact('dados'));
     }
@@ -203,7 +203,7 @@ class PortalController extends AppController {
       $this->BoletoHsbc->render($dados);
     }
 
-    public function comprovante() {
+    public function aluno_comprovante() {
       $dados = $this->DadosComprovantes();
       $mensalidades = $this->request->data['Portal']['mensalidades'];
       $mensalidades = unserialize($mensalidades);
