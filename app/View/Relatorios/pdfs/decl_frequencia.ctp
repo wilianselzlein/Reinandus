@@ -33,8 +33,8 @@ for ($index = 0; $index < count($decl_frequencia); $index++) {
   $pdf->Ln(10);
 
 $imgdata = base64_decode($decl_frequencia[$index]['user']['assinatura']);
-
-$pdf->Image('@'.$imgdata, 90);
+if ($imgdata != '')
+  $pdf->Image('@'.$imgdata, 90);
 
   $pdf->Ln(20);
 

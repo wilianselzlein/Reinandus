@@ -99,7 +99,8 @@ class RelatoriosController extends AppController {
 
   private function VerificarParametroDebugarSqlRelatoriosAtivo() {
       $parametro = ClassRegistry::init('Parametro');
-      return $parametro->valor(9) == 'S';
+      $nao_usar_cache = false;
+      return $parametro->valor(9, $nao_usar_cache) == 'S';
   }
 
    function appendFilters($filtro){
