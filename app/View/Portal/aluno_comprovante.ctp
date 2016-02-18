@@ -25,8 +25,8 @@
 <p class="style1" align="center">C O M P R O V A N T E&nbsp;&nbsp;&nbsp;&nbsp;D E&nbsp;&nbsp;&nbsp;&nbsp;P A G A M E N T O</p>
 <p class="style2" align="center">SEGUNDA VIA</p>
 <p class="style2" align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A <?php echo $dados['Instituto']['Empresa']['razaosocial']; ?>, 
-<?php echo $dados['Instituto']['Empresa']['cnpjcpf']; ?>, que administra o curso de Pós-Graduação da <?php echo $dados['Instituicao']['Empresa']['razaosocial']; ?>
-, representada por seu diretor <?php echo $dados['Instituto']['Diretor']['razaosocial']; ?>, declara para os devidos fins e a quem interessar possa que <?php echo $dados['Portal']['nome']; ?> 
+<?php echo $dados['Instituto']['Empresa']['cnpjcpf']; ?>, gestora dos recursos financeiros da Pós-Graduação <?php echo $dados['Instituicao']['Empresa']['razaosocial']; ?>
+, declara para os devidos fins e a quem interessar possa que <?php echo $dados['Portal']['nome']; ?> 
 pagou o valor de R$ <?php echo array_sum(array_column(array_column($mensalidades, 'Mensalidade'), 'valor')); ?>,00 referente o curso de pós-graduação em <?php echo $dados['Curso']['nome']; ?>.
 </p>
 
