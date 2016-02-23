@@ -26,7 +26,7 @@ for ($index = 0; $index < count($decl_pagamento); $index++) {
     $cnpj = $decl_pagamento[$index]['empresa']['cnpjcpf'];
     $diretor = $decl_pagamento[$index]['diretor']['nome'];
 
-    $texto = '    A ' . $instituto . ', CNPJ ' . $cnpj . ' , que administra o curso de Pós-Graduação da ' . $instituicao . ' representada por seu diretor ' . $diretor . ', declara para os devidos fins e a quem interessar possa que ' . $aluno . ' pagou o valor abaixo referente o curso de pós-graduação em ' . $curso . '. Abaixo apresenta-se o demonstrativo analítico dos pagamentos:';
+    $texto = '    A ' . $instituto . ', CNPJ ' . $cnpj . ' , que administra o curso de Pós-Graduação da ' . $instituicao . ' através do seu representante ' . $diretor . ', declara para os devidos fins e a quem interessar possa que ' . $aluno . ' pagou o valor abaixo referente o curso de pós-graduação em ' . $curso . '. Abaixo apresenta-se o demonstrativo analítico dos pagamentos:';
 
     $pdf->TextField('Texto' . $index, 170, 30, array('multiline'=>true, 'lineWidth'=>0, 'borderStyle'=>'none'), array('v'=>$texto));
     $pdf->Ln(30);

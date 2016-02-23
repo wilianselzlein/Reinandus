@@ -32,7 +32,7 @@ for ($index = 0; $index < count($decl_reativacao); $index++) {
   $pdf->Ln(10);
 
 $imgdata = base64_decode($decl_reativacao[$index]['user']['assinatura']);
-
+if ($imgdata != '')
 $pdf->Image('@'.$imgdata, 90);
 
   $pdf->Ln(20);

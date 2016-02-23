@@ -16,7 +16,7 @@ for ($index = 0; $index < count($decl_professor); $index++) {
   $representante = 'Roberto Ari Guindani';
   
 
-  $texto = '    A FACET Faculdade, estabelecida na Rua Mal. Floriano Peixoto, 470, Curitiba, através do seu representante '.$representante.', declara que o(a) ' . $professor . ' ministrou a disciplina de '.$disciplina.', com carga horária de ' . $horas . ' horas/aula nos dias '.$dia.' a '.$dia.'.';
+  $texto = '    A FACET Faculdade, estabelecida na Rua Mal. Floriano Peixoto, 470, Curitiba, declara que o(a) ' . $professor . ' ministrou a disciplina de '.$disciplina.', com carga horária de ' . $horas . ' horas/aula nos dias '.$dia.' a '.$dia.'.';
 
   $pdf->TextField('Texto' . $index, 170, 30, array('multiline'=>true, 'lineWidth'=>0, 'borderStyle'=>'none'), array('v'=>$texto));
   $pdf->Ln(30);
@@ -34,9 +34,9 @@ for ($index = 0; $index < count($decl_professor); $index++) {
 
   $pdf->Ln(10);
 
-$imgdata = base64_decode($decl_professor[$index]['user']['assinatura']);
-
-$pdf->Image('@'.$imgdata, 90);
+  $imgdata = base64_decode($decl_professor[$index]['user']['assinatura']);
+  if ($imgdata != '')
+    $pdf->Image('@'.$imgdata, 90);
 
   $pdf->Ln(20);
 

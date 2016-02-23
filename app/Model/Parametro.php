@@ -55,9 +55,11 @@ class Parametro extends AppModel {
  * @param string $id
  * @return string
  */
-	public function valor($id = null) {
+	public function valor($id = null, $usa_cache = true) {
 		$variavel = 'Parametros.' . $id;
 		$valor = CakeSession::read($variavel);
+		if (! $usa_cache) 
+			$valor = null;
 		if ($valor == null) {
 			if (!$this->exists($id)) {
 				throw new NotFoundException(__('The record could not be found.'));
