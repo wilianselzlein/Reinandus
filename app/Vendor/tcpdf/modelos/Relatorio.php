@@ -12,18 +12,15 @@ App::import('Vendor','tcpdf/tcpdf');
  * @author Pedro
  */
 
-
 class Relatorio  extends TCPDF 
 { 
-    
 
-   
-    private $xfootertext  ="Copyright © %d Inovatech Soluções Tecnológicas. All rights reserved.";//= 'Copyright Â© %d XXXXXXXXXXX. All rights reserved.'; 
+    private $xfootertext  ="Copyright © %d Wilian Selzlein. All rights reserved."; 
     private $xfooterfont = PDF_FONT_NAME_MAIN ; 
     private $xfooterfontsize = 8 ; 
     
-    private $headertitle = "Inovatech Soluções Tecnológicas";
-    private $headertext = "Matriz - Caxias do Sul";
+    private $headertitle = "Wilian Selzlein";
+    private $headertext = "Florianopolis";
     private $headerlogo = "logo.png";
     private $titulo;
     
@@ -62,7 +59,9 @@ class Relatorio  extends TCPDF
     public function setTitulo($titulo){
         $this->titulo = $titulo;
     }
+    
     public function getTitulo(){
         return $this->titulo;
     }
+
 } 
