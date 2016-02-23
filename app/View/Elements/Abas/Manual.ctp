@@ -17,4 +17,4 @@
    }
 </style>
 
- <iframe id="frametab" name="tab-frame" src="http://www.facet.br/pos/download/manual_aluno_2013-1.pdf" scrolling="no" noresize frameborder="0"></iframe>
+<iframe id="frametab" name="tab-frame" src="<?php echo $manual; ?>" scrolling="no" noresize frameborder="0"></iframe>

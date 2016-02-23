@@ -80,7 +80,7 @@ $usuario_logado = $this->Session->read('Auth.User');
                <ul class="dropdown-menu message-dropdown">
                   <li class="message-preview">
                      <?php echo $this->Html->link('<i class="fa fa-fw fa-male"></i>'.' Ir para o espaço dos '.__('Alunos'), 
-                     array('controller' => 'portal', 'action' => 'index'), array('class' => '', 'escape'=>false)); ?>
+                     array('controller' => 'aluno', 'action' => 'portal'), array('class' => '', 'escape'=>false)); ?>
                   </li>
                   <?php echo $this->UltimosAlunosCadastrados->GerarLista(); ?>
                </ul>
