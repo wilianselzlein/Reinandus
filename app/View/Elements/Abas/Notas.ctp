@@ -50,8 +50,8 @@ $fr += $nota['AlunoDisciplina']['frequencia'];
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td><?php echo $ha; ?>&nbsp;</td>
-      <td><?php echo $fr / count($notas);?>&nbsp;</td>
-      <td><?php echo $nt / count($notas);?>&nbsp;</td>
+      <td><?php echo round($fr / count($notas), 2);?>&nbsp;</td>
+      <td><?php echo round($nt / count($notas), 2);?>&nbsp;</td>
     </tr>
   </tbody>
 </table>
