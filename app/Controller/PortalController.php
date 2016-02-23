@@ -56,10 +56,16 @@ class PortalController extends AppController {
 
       $Grupo = ClassRegistry::init('Grupo');
       $grupos = $Grupo->findAsCombo();
+      $manual = $this->PegarLinkManualDoAlunoNoParametro();
 
-      $this->set(compact('alunos', 'grupos', 'materiais', 'notas', 'vagas', 'convenios', 'mensalidades', 'anos'));
+      $this->set(compact('alunos', 'grupos', 'materiais', 'notas', 'vagas', 'convenios', 'mensalidades', 'anos', 'manual'));
    }
 
+   private function PegarLinkManualDoAlunoNoParametro() {
+      $parametro = ClassRegistry::init('Parametro');
+      return $parametro->valor(10);
+   }
+  
    public function aluno_login(){
       $this->layout = 'login';
         // Verifica o tipo de requisição, se for POST(form submit) tenta logar.
