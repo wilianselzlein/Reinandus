@@ -13,7 +13,13 @@
 <table border="0" width="100%">
   	<tbody>
   		<tr>
-		    <td width="16%"><img src="facet.jpg" alt="" height="51" width="147"></td>
+		    <td width="16%">
+<?php
+    $class = ClassRegistry::init('Cabecalho');
+    $data = $class->find('first');
+    echo '<img src="' . '/img/uploads/'.$data['Cabecalho']['logo'] . '" alt="" height="51" width="147">';
+?>
+		    </td>
 		    <td width="84%"><?php echo $dados['Instituicao']['Empresa']['razaosocial']; ?><br>
 		      CURSO DE PÓS-GRADUAÇÃO- Reconhecido pela Portaria M.E.C. nº. 1801- D.O.U. 14/07/2003<br>
 		    Mantida pela Sociedade Educacional de Ciências e Tecnologia</td>

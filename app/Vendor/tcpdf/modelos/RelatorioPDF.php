@@ -16,12 +16,12 @@ App::import('Vendor','tcpdf/tcpdf');
 class RelatorioPDF  extends TCPDF 
 { 
 
-   private $xfootertext  ="Copyright © %d Facet Faculdades. All rights reserved.";//= 'Copyright Â© %d XXXXXXXXXXX. All rights reserved.'; 
+   private $xfootertext  ="Copyright © %d Wilian Selzlein. All rights reserved.";
    private $xfooterfont = PDF_FONT_NAME_MAIN ; 
    private $xfooterfontsize = 8 ; 
 
-   private $headertitle = "Facet Faculdades";
-   private $headertext = "Curitiba / PR";
+   private $headertitle = "Wilian Selzlein";
+   private $headertext = "Florianopolis / SC";
    //public $headerlogo = "pos_graduacao_facet.png";
    private $titulo;
    public $html;
