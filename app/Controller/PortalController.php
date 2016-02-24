@@ -85,7 +85,7 @@ class PortalController extends AppController {
         $this->redirect($this->Auth->logout());
    }
 
-   public function protocolo() {
+   public function aluno_protocolo() {
         $this->SendEmail($this->request->data);
    }
 
@@ -203,7 +203,7 @@ class PortalController extends AppController {
       return $anos;
     }
 
-    public function Boleto($id) {
+    public function aluno_Boleto($id) {
       $Mensalidade = new MensalidadesController;
       $dados = $Mensalidade->DadosBoleto($id);
       $this->BoletoHsbc->render($dados);
@@ -216,7 +216,7 @@ class PortalController extends AppController {
       $filtro = $this->request->data['Portal']['ano'];
       $resultado = [];
       foreach($mensalidades as $mensalidade){
-         if ($mensalidade[0]['ano'] == $filtro)
+         if (($mensalidade[0]['ano'] == $filtro) && (isset($mensalidade['Mensalidade']['pagamento'])))
             $resultado[] = $mensalidade;
       }
       $mensalidades = $resultado;
