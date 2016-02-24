@@ -120,7 +120,7 @@ echo $this->fetch('script');
          </nav>
 
 
-         <div id="page-wrapper">
+         <div id="page-wrapper" style="padding-top: 0">
             <div  class="container-fluid">
                <?php echo $this->Session->flash(); ?>
                <?php echo $this->fetch('content'); ?>
