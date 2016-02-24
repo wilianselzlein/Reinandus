@@ -49,7 +49,7 @@ echo $this->fetch('script');
       ?>
    </head>
    <body>
-      <div id="wrapper">
+      <div id="wrappera">
          <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -63,7 +63,7 @@ echo $this->fetch('script');
             </div>
 
             <ul class="nav navbar-nav navbar-right">
-               <li class="dropdown">
+               <!--<li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-male"></i> <b class="caret"></b></a>
 
                </li>
@@ -73,7 +73,7 @@ echo $this->fetch('script');
                </li>
                <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-               </li>
+               </li>-->
                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img id="gravatar-img" src="//www.gravatar.com/avatar/<?php echo md5( strtolower( trim( $this->Session->read('Auth.Aluno.email') ) ) ) ?>?s=30" >
                   <!-- php echo $this->Html->image('alunos/thumbs/'.$detalhes[0]['Detalhe']['foto'], array('width'=>'50','height'=>'50')); ?>-->
@@ -91,7 +91,7 @@ echo $this->fetch('script');
                                  <span><?php echo $usuario_logado['nome']; ?></span>
                                  <p class="text-muted small"><?php echo $usuario_logado['email']; ?></p>
                                  <div class="divider"></div>
-                                 <?php echo $this->Html->link(__('Alguma coisa'), array('controller' => 'portal', 	'action' => 'index'), array('class'=>'btn btn-primary btn-sm active'))?>
+                                 <?php //echo $this->Html->link(__('Alguma coisa'), array('controller' => 'portal', 	'action' => 'index'), array('class'=>'btn btn-primary btn-sm active'))?>
                                  <div class="divider"></div>
                               </div>
                            </div>
