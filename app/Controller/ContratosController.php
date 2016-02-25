@@ -25,14 +25,20 @@ class ContratosController extends AppController {
  * @return void
  */
   public function contrato() {
+    
     if ($this->request->is('post') || $this->request->is('put')) {
+        $this->layout = false;
+      
         $data = $this->request->data;
         $this->GeraContrato->setData($data);
 
         header('Content-type: application/rtf');
         header('Content-Disposition: inline, filename=Contrato.rtf');
 
-        echo $this->GeraContrato->Gerar();
+        $contrato = $this->GeraContrato->Gerar();
+
+        echo $contrato; 
+        die;
     }
   }
 /**
