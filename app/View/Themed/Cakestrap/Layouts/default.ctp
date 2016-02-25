@@ -59,7 +59,7 @@ $usuario_logado = $this->Session->read('Auth.User');
 
 <body>
 
-   <!--<div id="wrapper">-->
+   <div id="wrapper">
 
       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
          <!-- Brand and toggle get grouped for better mobile display -->
@@ -164,7 +164,7 @@ $usuario_logado = $this->Session->read('Auth.User');
 
             </div><!-- /#footer .container -->
 
-   <!--</div><!-- /#main-container -->		
+   </div><!-- /#main-container -->
 
          <script>
             $(document).ready(function(){ $('[data-toggle=tooltip]').tooltip()});

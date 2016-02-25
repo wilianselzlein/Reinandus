@@ -22,7 +22,7 @@ if (count($convenio['Logo']) > 0)
             <td><?php echo $convenio['Pessoa']['fantasia']; ?></td>
             <td><?php echo $convenio['Pessoa']['contato']; ?></td>
             <td><?php echo $convenio['Pessoa']['fone']; ?></td>
-            <td><?php echo $convenio['Pessoa']['desconto']; ?></td>
+            <td><?php echo $convenio['Pessoa']['desconto']; ?>%</td>
           </tr>
 
 <?php endforeach; ?>
