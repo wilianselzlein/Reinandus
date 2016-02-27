@@ -15,19 +15,16 @@
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-
 $cakeDescription = __d('cake_dev', 'Reinandus');
 $components = array('Paginator', 'Session');
 $usuario_logado = $this->Session->read('Auth.User');
-
 ?>
 <?php echo $this->Html->docType('html5'); ?> 
 <html>
 <head>
    <?php echo $this->Html->charset(); ?>
    <title>
-      <?php echo $cakeDescription ?>:
-      <?php echo $title_for_layout; ?>
+      <?php echo $cakeDescription; ?>: <?php echo $title_for_layout; ?>
    </title>
    <?php
    echo $this->Html->meta('icon');
