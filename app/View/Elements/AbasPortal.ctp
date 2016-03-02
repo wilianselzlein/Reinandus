@@ -1,31 +1,40 @@
     <div id="content">
         <ul id="tabs" class="nav nav-tabs" data-tabs="tabs" style=" border-bottom-width: 0px;">
                 <li class="active">
-                    <a href="#tabAvi" data-toggle="tab">Mural de<br>Avisos</a>
+                    <a href="#tabAvi" data-toggle="tab" alt="Mural de Avisos"><i class="fa fa-bullhorn fa-4x"></i>&nbsp;</a>
                 </li>
                 <li >
-                    <a href="#tabMat" data-toggle="tab">Materiais <br> do Aluno</a>
+                    <a href="#tabMat" data-toggle="tab" alt="Materiais do Aluno"><i class="fa fa-download fa-4x"></i>&nbsp;</a>
                 </li>
                 <li>
-                    <a href="#tabNot" data-toggle="tab"></span>Notas e <br>Frequência</a>
+                    <a href="#tabNot" data-toggle="tab" alt="Notas e Frequência"><i class="fa fa-list fa-4x"></i>&nbsp;</a>
                 </li>
                 <li>
-                    <a href="#tabMen" data-toggle="tab"></span>Controle de <br>Mensalidades</a>
+                    <a href="#tabMen" data-toggle="tab" alt="Controle de Mensalidades"><i class="fa fa-dollar fa-4x"></i>&nbsp;</a>
                 </li>
                 <li>
-                    <a href="#tabMan" data-toggle="tab">Manual <br>do Aluno</a>
+                    <a href="#tabMan" data-toggle="tab" alt="Manual do Aluno"><i class="fa fa-bookmark fa-4x"></i>&nbsp;</a>
                 </li>
                 <li>
-                    <a href="#tabCon" data-toggle="tab"></span>Convênios e<br> Descontos<br></a>
+                    <a href="#tabCon" data-toggle="tab" alt="Convênios e Descontos"><i class="fa fa-cutlery fa-4x"></i>&nbsp;</a>
                 </li>
                 <li>
-                    <a href="#tabVag" data-toggle="tab"></span>Vagas de <br>Emprego</a>
+                    <a href="#tabVag" data-toggle="tab" alt="Vagas de Emprego"><i class="fa fa-suitcase fa-4x"></i>&nbsp;</a>
                 </li>
-                <li>
+                <!--<li>
                     <a href="#tabTcc" data-toggle="tab"></span>Envio <br>de TCC</a>
+                </li>-->
+                <li>
+                    <a href="#tabPro" data-toggle="tab" alt="Protocolo"><i class="fa fa-life-ring fa-4x"></i>&nbsp;</a>
                 </li>
                 <li>
-                    <a href="#tabPro" data-toggle="tab"></span>Protocolo <br> &nbsp; </a>
+                    <a href="#tabFor" data-toggle="tab" alt="Fórum"><i class="fa fa-comments fa-4x"></i>&nbsp;</a>
+                </li>
+                <li>
+                    <a href="#tabCal" data-toggle="tab" alt="Calendário"><i class="fa fa-calendar fa-4x"></i>&nbsp;</a>
+                </li>
+                <li>
+                    <a href="#tabPes" data-toggle="tab" alt="Pesquisa"><i class="fa fa-star-half-o fa-4x"></i>&nbsp;</a>
                 </li>
         </ul>
     	<div class="panel panel-default">
@@ -57,6 +66,15 @@
                 </div>
                 <div class="tab-pane" id="tabTcc">
 <?php echo $this->element('Abas/Tcc'); ?>
+                </div>
+                <div class="tab-pane" id="tabFor">
+<?php echo $this->element('Abas/Forum'); ?>
+                </div>
+                <div class="tab-pane" id="tabPes">
+<?php echo $this->element('Abas/Pesquisa'); ?>
+                </div>
+                <div class="tab-pane" id="tabCal">
+<?php echo $this->element('Abas/Calendario'); ?>
                 </div>
         	</div>
     	  </div>

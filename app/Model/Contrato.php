@@ -1,7 +1,7 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Mensalidade Model
+ * Contrato Model
  *
  * @property Conta $Conta
  * @property Formapgto $Formapgto

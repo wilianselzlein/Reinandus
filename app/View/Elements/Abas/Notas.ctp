@@ -36,7 +36,7 @@ $fr += $nota['AlunoDisciplina']['frequencia'];
 ?>
     <tr>
       <td><?php echo $nota['Disciplina']['nome']; ?>&nbsp;</td>
-      <td><?php echo $nota['Professor']['nome']; ?>&nbsp;</td>
+      <td><?php echo $nota['Professor']['nome']; ?>&nbsp;<a><?php echo $nota['Professor']['email']; ?></a></td>
       <td><?php echo $nota['Professor']['resumotitulacao']; ?>&nbsp;</td>
       <td><?php echo h($nota['AlunoDisciplina']['data']); ?>&nbsp;</td>
       <td><?php echo $nota['AlunoDisciplina']['horas_aula']; ?>&nbsp;</td>
