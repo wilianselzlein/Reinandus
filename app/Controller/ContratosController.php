@@ -27,20 +27,29 @@ class ContratosController extends AppController {
   public function contrato() {
     
     if ($this->request->is('post') || $this->request->is('put')) {
-        $this->layout = false;
+        //$this->layout = false;
       
         $data = $this->request->data;
         $this->GeraContrato->setData($data);
 
-        header('Content-type: application/rtf');
-        header('Content-Disposition: inline, filename=Contrato.rtf');
+        //header('Content-type: application/rtf');
+        //header('Content-Disposition: inline, filename=Contrato.rtf');
 
         $contrato = $this->GeraContrato->Gerar();
+        
+        $caminho = 'arqs/';
+        $arquivo = $data['Contrato']['aluno_id'] . ' - ' . $data['Contrato']['modelo'];
 
-        echo $contrato; 
-        die;
+        $fp = fopen($caminho . $arquivo, 'a');
+        $escreve = fwrite($fp, $contrato);
+        fclose($fp);
+
+        $this->download($caminho, $arquivo);
+        //echo $contrato; 
+        //die;
     }
   }
+
 /**
  * aluno method
  *
@@ -65,6 +74,17 @@ class ContratosController extends AppController {
     $professores = $this->Contrato->Professor->findAsCombo();
     $disciplinas = $this->Contrato->Disciplina->findAsCombo();
     $this->set(compact('professores', 'disciplinas'));
+	}
+
+
+/**
+ * download method
+ *
+ * @return void
+ */
+	public function download($caminho, $arquivo) {
+    $this->response->file($caminho . $arquivo, array('download' => true, 'name' => $arquivo));
+    return $this->response;
 	}
 
 }
