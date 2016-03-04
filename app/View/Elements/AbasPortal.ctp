@@ -13,7 +13,7 @@
                     <a href="#Mensalidades" data-toggle="tab" title="Controle de Mensalidades"><i class="fa fa-dollar fa-4x"></i>&nbsp;</a>
                 </li>
                 <li>
-                    <a href="#Manual" data-toggle="tab" title="Manual do Aluno"><i class="fa fa-bookmark fa-4x"></i>&nbsp;</a>
+                    <a href="#Manual" data-toggle="tab" title="Manual do Aluno"><i class="fa fa-book fa-4x"></i>&nbsp;</a>
                 </li>
                 <li>
                     <a href="#Convenios" data-toggle="tab" title="Convênios e Descontos"><i class="fa fa-cutlery fa-4x"></i>&nbsp;</a>
@@ -40,7 +40,7 @@
     	<div class="panel panel-default">
 		  <div class="panel-body">
 	    	<div id="my-tab-content" class="tab-content">
-                <div class="tab-pane active" id="tabAvi">
+                <div class="tab-pane active" id="Avisos">
 <?php echo $this->element('Abas/Avisos'); ?>
 				</div>
 				<div class="tab-pane" id="Materiais">
