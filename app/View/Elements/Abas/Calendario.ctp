@@ -1,24 +1,12 @@
-<style type="text/css">
-<!--
-.tabelas{
-	border: #FFFFFF 1px solid;
-	background-color:#FFF
-}
-.tabelas td {
-	border:1px solid #FFFFFF;
-	padding: 3px 3px 3px 3px;
-	margin: 3px 3px 3px 3px;
-}
--->
-</style>
+<h4><?php echo $alunos['Curso']['nome']; ?></h4>
 <?php 
-    
+//<h2 style="margin-top: 0px;">Calendário</h2>
     $site = $alunos['Curso']['calendario'];
     
     // Habilita todas mensagens de erros que possa acontecer
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
-
+    
     // Declaração de variáveis
     $encontrouDiv = false;
     // Pega o conteúdo do site (retornado como string) e coloca dentro de uma variável
@@ -26,17 +14,18 @@
     
     //<div class="tabelas_alinhamento">
     //<table class="tabelas">
-
+    
     // Pega tudo o que há na DIV com id='testeB' com id exp utilizando expressão regular
     $reg = '/<table class="tabelas".*>(.|\s)+?<\/table>/i';
-    if(preg_match($reg, $urlContent, $resultado)){
+    if (preg_match($reg, $urlContent, $resultado)) {
         $encontrouDiv = true;
         $conteudoDiv = $resultado[0];
     }
-
-    if($encontrouDiv){
+    
+    if ($encontrouDiv) {
+        $conteudoDiv = str_replace('class="tabelas"', " class='table'", $conteudoDiv);
         echo $conteudoDiv;
-    }else{
+    } else {
         echo 'Calendário não encontrado!';
     }
 ?>
