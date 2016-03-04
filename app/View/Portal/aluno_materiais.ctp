@@ -13,6 +13,12 @@
         <i class="fa fa-download"></i> Baixar 
       </button>
     </a>
+    <small>
+      <?php
+        $tamanho = $material['Aviso']['tamanho'];
+        if ($tamanho > 0)
+          echo round($tamanho / 1024 / 1024, 2) . 'mb'; ?> 
+    </small>
   </li>
   <br>
   <br>
