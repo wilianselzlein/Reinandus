@@ -28,7 +28,7 @@
     //<table class="tabelas">
 
     // Pega tudo o que há na DIV com id='testeB' com id exp utilizando expressão regular
-    $reg = '/<table class="tabelas".*>(.|\s)+?<\/div>/i';
+    $reg = '/<table class="tabelas".*>(.|\s)+?<\/table>/i';
     if(preg_match($reg, $urlContent, $resultado)){
         $encontrouDiv = true;
         $conteudoDiv = $resultado[0];
