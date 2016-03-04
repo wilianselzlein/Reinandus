@@ -1,11 +1,11 @@
 <?php echo $this->Form->create('Portal', array('role' => 'form', 'class'=>'form-horizontal', 'action' => 'matricula', 'target' => '_blank')); ?>
 
   <?php echo $this->Form->hidden('id', array('value' => $notas[0]['AlunoDisciplina']['aluno_id'])); ?>
-  <?php echo $this->Form->hidden('nome', array('value' => $notas[0]['Aluno']['nome'])); ?>
-  <?php echo $this->Form->hidden('curso', array('value' => $notas[0]['Aluno']['curso_id'])); ?>
-  <?php echo $this->Form->hidden('curso_inicio', array('value' => $notas[0]['Aluno']['curso_inicio'])); ?>
-  <?php echo $this->Form->hidden('curso_fim', array('value' => $notas[0]['Aluno']['curso_fim'])); ?>
-  <?php echo $this->Form->hidden('situacao', array('value' => $notas[0]['Aluno']['situacao_id'])); ?>
+  <?php echo $this->Form->hidden('nome', array('value' => $alunos['Aluno']['nome'])); ?>
+  <?php echo $this->Form->hidden('curso', array('value' => $alunos['Curso']['id'])); ?>
+  <?php echo $this->Form->hidden('curso_inicio', array('value' => $alunos['Aluno']['curso_inicio'])); ?>
+  <?php echo $this->Form->hidden('curso_fim', array('value' => $alunos['Aluno']['curso_fim'])); ?>
+  <?php echo $this->Form->hidden('situacao', array('value' => $alunos['Aluno']['situacao_id'])); ?>
 
   <?php echo $this->Form->button('<i class="fa fa-print"></i>'.' '.__('Imprimir Declaração de Matrícula'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit', 'id' => 'btn_materiais')); ?>
 <?php echo $this->Form->end(); ?>

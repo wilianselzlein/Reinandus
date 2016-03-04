@@ -31,7 +31,9 @@ class PortalController extends AppController {
       $Acesso->AdicionarHistoricoDeAcesso($id);
 
       $Aluno = ClassRegistry::init('Aluno');
-      $options = array('recursive' => 0, 'conditions' => array('Aluno.id' => $id));
+      $Aluno->unbindModel(array('belongsTo' => array('Naturalidade', 'EstadoCivil', 'Indicacao', 'Cidade', 'Responsavel', 'Professor')));
+      $options = array('recursive' => 0, 'conditions' => array('Aluno.id' => $id), 
+        'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.email', 'Aluno.celular', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Aluno.situacao_id', 'Curso.id', 'Curso.nome', 'Curso.grupo_id', 'Curso.turma', 'Curso.calendario'));
       $alunos = $Aluno->find('all', $options);
       $alunos = $alunos[0];
 
@@ -40,12 +42,16 @@ class PortalController extends AppController {
       $vagas = $Vaga->find('all', $options);
 
       $Convenio = ClassRegistry::init('Pessoa');
-      $Convenio->unbindModel(array('hasMany' => array('Curso', 'Usuario')));
-      $options = array('recursive' => 1, 'conditions' => array('Pessoa.desconto >= ' => 0), 'order' => array('Pessoa.fantasia'));
+      $Convenio->unbindModel(array('hasMany' => array('Curso', 'Usuario', 'Cidade')));
+      $options = array('recursive' => 1, 'conditions' => array('Pessoa.desconto >= ' => 0), 'order' => array('Pessoa.fantasia'), 
+        'fields' => array('Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 'Pessoa.fone', 'Pessoa.Empresa', 'Pessoa.contato', 'Pessoa.desconto'));
       $convenios = $Convenio->find('all', $options);
 
       $Nota = ClassRegistry::init('AlunoDisciplina');
-      $options = array('conditions' => array('AlunoDisciplina.aluno_id' => $id));
+      $Nota->unbindModel(array('belongsTo' => array('Aluno')));
+      $options = array('conditions' => array('AlunoDisciplina.aluno_id' => $id),
+        'fields' => array('AlunoDisciplina.id', 'AlunoDisciplina.aluno_id', 'AlunoDisciplina.frequencia', 'AlunoDisciplina.nota', 
+          'AlunoDisciplina.horas_aula', 'AlunoDisciplina.data', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome', 'Professor.email', 'Professor.emailalt', 'Professor.resumotitulacao'));
       $notas = $Nota->find('all', $options);
 
       $Mensalidade = ClassRegistry::init('Mensalidade');
