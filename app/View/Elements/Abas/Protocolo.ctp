@@ -47,7 +47,7 @@
                     array('type' => 'textarea', 'class' => 'form-control', 'label'=>array('class'=>'col-sm-1 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
             </div><!-- .form-group -->
          </fieldset>
-         <?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Enviar'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
+         <?php echo $this->Form->button('<i class="fa fa-share"></i>'.' '.__('Enviar'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
          <?php echo $this->Form->end(); ?>
       </div><!-- /.form -->
   </div>
