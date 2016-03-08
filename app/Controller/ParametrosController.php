@@ -148,7 +148,7 @@ class ParametrosController extends AppController {
  	$this->AdicionarParametroSeNaoExistir(7, 'Nome Sistema', 'Sistema Reinandus de Gestão');
  	$this->AdicionarParametroSeNaoExistir(8, 'Habilitar permissoes', 'S');
  	$this->AdicionarParametroSeNaoExistir(9, 'Debugar Relatorios', 'N');
- 	$this->AdicionarParametroSeNaoExistir(10, 'Link calendario', 'http://www.facet.br/pos/espaco_aluno/download/manual_aluno_2014.pdf');
+ 	$this->AdicionarParametroSeNaoExistir(10, 'Link Manual', 'http://www.facet.br/pos/espaco_aluno/download/manual_aluno_2014.pdf');
  	/*$this->AdicionarParametroSeNaoExistir(11, '', '');
  	$this->AdicionarParametroSeNaoExistir(12, '', '');
  	$this->AdicionarParametroSeNaoExistir(13, '', '');

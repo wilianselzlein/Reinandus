@@ -1,40 +1,40 @@
     <div id="content">
         <ul id="tabs" class="nav nav-tabs" data-tabs="tabs" style=" border-bottom-width: 0px;">
                 <li class="active">
-                    <a href="#Avisos" data-toggle="tab" title="Mural de Avisos"><i class="fa fa-bullhorn fa-4x"></i>&nbsp;</a>
+                    <a href="#Avisos" data-toggle="tab" title="Mural de Avisos" data-tt="tooltip"><i class="fa fa-bullhorn fa-4x"></i>&nbsp;</a>
                 </li>
                 <li >
-                    <a href="#Materiais" data-toggle="tab" title="Materiais do Aluno"><i class="fa fa-download fa-4x"></i>&nbsp;</a>
+                    <a href="#Materiais" class="" title="Materiais" data-toggle="tab" data-tt="tooltip"><i class="fa fa-download fa-4x"></i></a>
                 </li>
                 <li>
-                    <a href="#Notas" data-toggle="tab" title="Notas e Frequência"><i class="fa fa-list fa-4x"></i>&nbsp;</a>
+                    <a href="#Notas" data-toggle="tab" title="Notas e Frequência" data-tt="tooltip"><i class="fa fa-list fa-4x"></i>&nbsp;</a>
                 </li>
                 <li>
-                    <a href="#Mensalidades" data-toggle="tab" title="Controle de Mensalidades"><i class="fa fa-dollar fa-4x"></i>&nbsp;</a>
+                    <a href="#Mensalidades" data-toggle="tab" title="Controle de Mensalidades" data-tt="tooltip"><i class="fa fa-dollar fa-4x"></i>&nbsp;</a>
                 </li>
                 <li>
-                    <a href="#Manual" data-toggle="tab" title="Manual do Aluno"><i class="fa fa-book fa-4x"></i>&nbsp;</a>
+                    <a href="#Manual" data-toggle="tab" title="Manual do Aluno" data-tt="tooltip"><i class="fa fa-book fa-4x"></i>&nbsp;</a>
                 </li>
                 <li>
-                    <a href="#Convenios" data-toggle="tab" title="Convênios e Descontos"><i class="fa fa-cutlery fa-4x"></i>&nbsp;</a>
+                    <a href="#Convenios" data-toggle="tab" title="Convênios e Descontos" data-tt="tooltip"><i class="fa fa-thumbs-o-up fa-4x"></i>&nbsp;</a>
                 </li>
                 <li>
-                    <a href="#Vagas" data-toggle="tab" title="Vagas de Emprego"><i class="fa fa-suitcase fa-4x"></i>&nbsp;</a>
+                    <a href="#Vagas" data-toggle="tab" title="Vagas de Emprego" data-tt="tooltip"><i class="fa fa-suitcase fa-4x"></i>&nbsp;</a>
                 </li>
                 <!--<li>
-                    <a href="#Tcc" data-toggle="tab"></span>Envio <br>de TCC</a>
+                    <a href="#Tcc" data-toggle="tab" title="Envio de TCC" data-tt="tooltip"></span>Envio <br>de TCC</a>
                 </li>-->
                 <li>
-                    <a href="#Protocolo" data-toggle="tab" title="Protocolo"><i class="fa fa-life-ring fa-4x"></i>&nbsp;</a>
+                    <a href="#Protocolo" data-toggle="tab" title="Protocolo" data-tt="tooltip"><i class="fa fa-envelope-o fa-4x"></i>&nbsp;</a>
+                </li>
+                <!--<li>
+                    <a href="#Forum" data-toggle="tab" title="Fórum" data-tt="tooltip"><i class="fa fa-comments fa-4x"></i>&nbsp;</a>
+                </li>-->
+                <li>
+                    <a href="#Calendario" data-toggle="tab" title="Calendário" data-tt="tooltip"><i class="fa fa-calendar fa-4x"></i>&nbsp;</a>
                 </li>
                 <li>
-                    <a href="#Forum" data-toggle="tab" title="Fórum"><i class="fa fa-comments fa-4x"></i>&nbsp;</a>
-                </li>
-                <li>
-                    <a href="#Calendario" data-toggle="tab" title="Calendário"><i class="fa fa-calendar fa-4x"></i>&nbsp;</a>
-                </li>
-                <li>
-                    <a href="#Pesquisa" data-toggle="tab" title="Pesquisa"><i class="fa fa-star-half-o fa-4x"></i>&nbsp;</a>
+                    <a href="#Pesquisa" data-toggle="tab" title="Pesquisa" data-tt="tooltip"><i class="fa fa-star-half-o fa-4x"></i>&nbsp;</a>
                 </li>
         </ul>
     	<div class="panel panel-default">
@@ -83,6 +83,7 @@
 
     <script type="text/javascript">
         jQuery(document).ready(function($) {
+            $("[data-tt=tooltip]").tooltip();
             $('#tabs').tab();
         });
     </script> 
