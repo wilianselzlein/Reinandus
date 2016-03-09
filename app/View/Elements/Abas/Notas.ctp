@@ -9,7 +9,11 @@
 
   <?php echo $this->Form->button('<i class="fa fa-print"></i>'.' '.__('Imprimir Declaração de Matrícula'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit', 'id' => 'btn_materiais')); ?>
 <?php echo $this->Form->end(); ?>
-
+<?php if (count($notas) == 0) { ?> 
+  <div class="alert alert-info" role="alert">
+    <b>Nenhuma nota lançada.</b>
+  </div>
+<?php } ?>
 <br/>
 <div class="panel panel-default">
 <table class="table">

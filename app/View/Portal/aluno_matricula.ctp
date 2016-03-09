@@ -103,4 +103,6 @@ Departamento de Pós-Graduação</strong></p>
  <?php echo $dados['Instituto']['Empresa']['email']; ?>&nbsp;
  <?php echo $dados['Instituto']['Empresa']['site']; ?>
  </p>
-</body></html>
+<script>window.print();</script>
+</body>
+</html>

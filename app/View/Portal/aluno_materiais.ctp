@@ -1,4 +1,10 @@
 <ul class="list-group">
+<?php if (count($materiais) == 0) { ?> 
+  <div class="alert alert-info" role="alert">
+    <b>Nenhum material cadastrado.</b>
+  </div>
+<?php } ?>
+
 <?php foreach ($materiais as $material): ?>
   <li class="list-group-item">
     <h4 class="list-group-item-heading">

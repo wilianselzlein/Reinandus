@@ -1,3 +1,8 @@
+<?php if (count($convenios) == 0) { ?> 
+  <div class="alert alert-info" role="alert">
+    <b>Nenhum convênio cadastrado.</b>
+  </div>
+<?php } ?>
 <div class="panel panel-default">
 <table class="table">
         <thead>

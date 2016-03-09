@@ -135,7 +135,11 @@ echo $this->fetch('script');
 
       </div><!-- /#main-container -->
 
-      <script>$(document).ready(function(){ $('[data-toggle=tooltip]').tooltip()});</script>
+      <script>
+         $(document).ready(function(){ 
+            $('[data-toggle=tooltip]').tooltip()});
+            $("[data-tt=tooltip]").tooltip();
+         </script>
       <?php echo $this->Html->script('cfg-datepicker');?>
       <?php echo $this->Html->script('cfg-currency');?>
       <?php echo $this->Html->script('cfg-percentage');?>
