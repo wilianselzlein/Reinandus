@@ -62,7 +62,7 @@ class Parametro extends AppModel {
 			$valor = null;
 		if ($valor == null) {
 			if (!$this->exists($id)) {
-				throw new NotFoundException(__('The record could not be found.'));
+				throw new NotFoundException(__('The record could not be found.') . ' - Parametro ');
 			}
 			$options = array('conditions' => array('Parametro.' . $this->primaryKey => $id));
 			$parametro = $this->find('first', $options);

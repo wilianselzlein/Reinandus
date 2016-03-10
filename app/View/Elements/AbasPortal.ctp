@@ -33,9 +33,11 @@
                 <li>
                     <a href="#Calendario" data-toggle="tab" title="Calendário" data-tt="tooltip"><i class="fa fa-calendar fa-4x"></i>&nbsp;</a>
                 </li>
-                <li>
-                    <a href="#Pesquisa" data-toggle="tab" title="Pesquisa" data-tt="tooltip"><i class="fa fa-star-half-o fa-4x"></i>&nbsp;</a>
-                </li>
+                <?php if ($pesquisa_ativa) { ?>
+                    <li>
+                        <a href="#Pesquisa" data-toggle="tab" title="Pesquisa" data-tt="tooltip"><i class="fa fa-star-half-o fa-4x"></i>&nbsp;</a>
+                    </li>
+                <?php } ?>
         </ul>
     	<div class="panel panel-default">
 		  <div class="panel-body">
