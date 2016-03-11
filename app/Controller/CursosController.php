@@ -202,6 +202,7 @@ class CursosController extends AppController {
 
 		$options = array('recursive' => 0, 'conditions' => array('Curso.' . $this->Curso->primaryKey => $id),
 			'fields' => array('Curso.nome', 'Curso.turma', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial'));
+		$this->Curso->unbindModel(array('hasMany' => array('Professor', 'Grupo', 'Tipo', 'Periodo')));
 		$curso = $this->Curso->find('first', $options);
 
 		$Usuario = ClassRegistry::init('User');
