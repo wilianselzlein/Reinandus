@@ -249,22 +249,6 @@ else
 	      </h3>
 	</div>   
 	<div class="panel-body">
-  	<?php if (!empty($acessos)): ?>
-		<?php 
-		$dia = 0; $mes = 0; $sem = 0; $ano = 0; $out = 0;
-
-		foreach ($acessos as $acesso):
-			if ($acesso['Acesso']['datahora'] == null)
-				Continue;
-
-			$interval = date_create('now')->diff(date_create($acesso['Acesso']['datahora']));
-			if ($interval->days == 0) $dia++;
-			if ($interval->days < 30) $mes++;
-			if ($interval->days < 180) $sem++;
-			if ($interval->days < 360) $ano++;
-			if ($interval->days > 360) $out++;
-
-		endforeach; ?>
 		<ul class="list-group" style=" width: 40%; ">
 		  <li class="list-group-item">
 		    <span class="badge"><?php echo $dia; ?></span> No dia
@@ -273,19 +257,16 @@ else
 		    <span class="badge"><?php echo $mes; ?></span> No mes
 		  </li>
 		  <li class="list-group-item">
-		    <span class="badge"><?php echo $sem; ?></span> No semestre
+		    <span class="badge"><?php echo $semana; ?></span> No semestre
 		  </li>
 		  <li class="list-group-item">
 		    <span class="badge"><?php echo $ano; ?></span> No ano
 		  </li>
 		  <li class="list-group-item">
-		    <span class="badge"><?php echo $out; ?></span> Antes
+		    <span class="badge"><?php echo $antes; ?></span> Antes
 		  </li>
 		</ul>
-    <?php endif; ?>
-   </div><!-- /.related Acessos -->
-
-
+	</div><!-- /.related Acessos -->
 	<div class="panel-footer">
 	      <h3><?php echo __('Detalhes').' ' ?> 
 	         <small><?php echo __('do aluno') ?></small>

@@ -89,17 +89,41 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 		$mensalidades = $this->Aluno->Mensalidade->find('all', $options);
 		$this->set(compact('mensalidades'));
 
-		$options = array('recursive' => false, 'conditions' => array('Acesso.aluno_id' => $id));
-		$this->Aluno->Acesso->unbindModel(array('belongsTo' => array('Aluno')));
-		$acessos = $this->Aluno->Acesso->find('all', $options);
-		$this->set(compact('acessos'));
+		$dia = $this->ConsultarAcessos($id, '>=', '0 day');
+		$this->set(compact('dia'));
 
+		$semana = $this->ConsultarAcessos($id, '>=', '-1 week');
+		$this->set(compact('semana'));
+
+		$mes = $this->ConsultarAcessos($id, '>=', '-1 month');
+		$this->set(compact('mes'));
+
+		$ano = $this->ConsultarAcessos($id, '>=', '-1 year');
+		$this->set(compact('ano'));
+
+		$antes = $this->ConsultarAcessos($id, '<', '-1 year');
+		$this->set(compact('antes'));
+		
 		$options = array('recursive' => false, 'conditions' => array('Detalhe.aluno_id' => $id));
 		$this->Aluno->Detalhe->unbindModel(array('belongsTo' => array('Aluno')));
 		$detalhes = $this->Aluno->Detalhe->find('all', $options);
 		$this->set(compact('detalhes'));
 	}
-
+	
+/**
+ * ConsultarAcessos method
+ * @param string $id
+ * @param string $sinal
+ * @param string $periodo
+ * @return void
+ */
+	public function ConsultarAcessos($id, $sinal, $periodo) {
+		$options = array('recursive' => false, 'conditions' => array('Acesso.aluno_id' => $id, 'date(Acesso.datahora) ' . $sinal => date('Y-m-d', strtotime($periodo))));
+		$this->Aluno->Acesso->unbindModel(array('belongsTo' => array('Aluno')));
+		$acessos = $this->Aluno->Acesso->find('count', $options);
+		return $acessos;
+	}
+		
 /**
  * add method
  *
