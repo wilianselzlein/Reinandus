@@ -51,7 +51,7 @@ class ImportadorController extends AppController {
 			$this->ConexaoFirebird->setCaminhoBanco($caminho);
 			$this->ConexaoFirebird->Conectar();
 
-			$Programas = new ImportarProgramasComponent($this->ConexaoFirebird, $data); //new ComponentCollection()
+			//$Programas = new ImportarProgramasComponent($this->ConexaoFirebird, $data); //new ComponentCollection()
 			$PlanosDeConta = new ImportarPlanosDeContaComponent($this->ConexaoFirebird, $data);
 			$HistoricoPadrao = new ImportarHistoricoPadraoComponent($this->ConexaoFirebird, $data);
 			$Estados = new ImportarEstadosComponent($this->ConexaoFirebird, $data);
@@ -77,7 +77,33 @@ class ImportadorController extends AppController {
 			$Mensalidades = new ImportarMensalidadesComponent($this->ConexaoFirebird, $data);
 			$Logos = new ImportarLogosComponent($this->ConexaoFirebird, $data);
 
-			$this->Session->setFlash(__('Importação Finalizada.'), 'flash/success');
+			$this->Session->setFlash(__('Importação Finalizada. <br>' . 
+				//$Programas->GerarRelatorio() .
+				$PlanosDeConta->GerarRelatorio() .
+				$HistoricoPadrao->GerarRelatorio() .
+				$Estados->GerarRelatorio() .
+				$Cidades->GerarRelatorio() .
+				$Grupos->GerarRelatorio() .
+				$Usuarios->GerarRelatorio() .
+				$Disciplinas->GerarRelatorio() .
+				$Parametros->GerarRelatorio() .
+				$FormasDePagamento->GerarRelatorio() .
+				$Contas->GerarRelatorio() .
+				$LancamentoContabil->GerarRelatorio() .
+				$Pessoas->GerarRelatorio() .
+				$Cursos->GerarRelatorio() .
+				$Professor->GerarRelatorio() .
+				$Aluno->GerarRelatorio() .
+				$Acesso->GerarRelatorio() .
+				$CursosDisciplinas->GerarRelatorio() .
+				$DisciplinasProfessores->GerarRelatorio() .
+				$Avisos->GerarRelatorio() .
+				$AvisosCursos->GerarRelatorio() .
+				$AlunosDisciplinas->GerarRelatorio() .
+				$Detalhes->GerarRelatorio() .
+				$Mensalidades->GerarRelatorio() .
+				$Logos->GerarRelatorio()
+			), 'flash/success');
 
 		} catch(Exception $e) {
 			$this->Session->setFlash(__('Erro na Importação: ' . $e->getMessage()), 'flash/error');
@@ -105,8 +131,8 @@ class ImportadorController extends AppController {
 			try {
 				$this->ConexaoFirebird->setCaminhoBanco($caminho);
 				$this->ConexaoFirebird->Conectar();
-
 				$this->count($this->ConexaoFirebird, $dados, 'Programa', 'TPrograma');
+				//$this->count($this->ConexaoFirebird, $dados, 'Estado', 'TEstado');
 				$this->count($this->ConexaoFirebird, $dados, 'Cidade', 'TCidade');
 				$this->count($this->ConexaoFirebird, $dados, 'Grupo', 'TGrupoCurso');
 				$this->count($this->ConexaoFirebird, $dados, 'User', 'TUsuario');

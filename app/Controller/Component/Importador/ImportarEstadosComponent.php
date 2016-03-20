@@ -16,7 +16,7 @@ class ImportarEstadosComponent extends ImportadorBaseComponent {
 
 	public function Configurar() {
 		$this->setModel('Estado');
-		$this->setSqlConsulta('Select distinct upper(CidUF) as CIDUF from TCidade where ciduf is not null');
+		$this->setSqlConsulta('Select distinct upper(CidUF) as CIDUF from TCidade where ciduf is not null and ciduf <> \'\'');
 		$this->setCheckBox('Estados');
 	}
 

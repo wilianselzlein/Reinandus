@@ -19,7 +19,7 @@
 
 <div id="importados">
 	<div class="importar">
-		<?php echo $this->Form->input('Programas', array('type' => 'checkbox')); ?>
+		<?php //echo $this->Form->input('Programas', array('type' => 'checkbox')); ?>
 	</div>
 	<div class="importar">
 		<?php echo $this->Form->input('Estados', array('type' => 'checkbox')); ?>
@@ -29,9 +29,6 @@
 	</div>
 	<div class="importar">
 		<?php echo $this->Form->input('Grupos', array('type' => 'checkbox')); ?>
-	</div>
-	<div class="importar">
-		<?php echo $this->Form->input('Usuarios', array('type' => 'checkbox')); ?>
 	</div>
 	<div class="importar">
 		<?php echo $this->Form->input('Disciplinas', array('type' => 'checkbox')); ?>
@@ -68,6 +65,9 @@
 	</div>
 	<div class="importar">
 		<?php echo $this->Form->input('EmpresasPessoas', array('type' => 'checkbox')); ?>
+	</div>
+	<div class="importar">
+		<?php echo $this->Form->input('Usuarios', array('type' => 'checkbox')); ?>
 	</div>
 	<div class="importar">
 		<?php echo $this->Form->input('Parametros', array('type' => 'checkbox')); ?>

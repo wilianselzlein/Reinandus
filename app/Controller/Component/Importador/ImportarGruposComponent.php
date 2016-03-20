@@ -9,7 +9,7 @@ class ImportarGruposComponent extends ImportadorBaseComponent {
 		$dados = [];
 		$dados['id'] = $parametro['GRUCOD'];
 		$dados['nome'] = $this->FormatarValorEncode($parametro['GRUNOME']);
-		
+		$dados['nome'] = $this->TratarCampoEmBranco($dados, 'nome');
 		$this->SalvarDados($dados);
 	}
 

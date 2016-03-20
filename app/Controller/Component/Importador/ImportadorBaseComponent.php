@@ -57,9 +57,8 @@ abstract class ImportadorBaseComponent extends Component {
 	protected function SalvarDados($parametro) {
 		//debug($parametro); 
 		try{
-		$this->Class->create();
-        $this->Class->save($parametro);
-		
+			$this->Class->create();
+    	    $this->Class->save($parametro);
 		} catch(Exception $e) {
 			echo 'Erro na Importação: ' . $e->getMessage() . ' ' . var_dump($parametro);
 		}
@@ -73,10 +72,11 @@ abstract class ImportadorBaseComponent extends Component {
 	public function Importar () {
 
 		if ($this->VerificarImportacaoNecessaria()) {
+			$this->ZerarAutoIncremento();
 			set_time_limit(0);
 			$this->Consulta = $this->Conexao->ConsultarSQL($this->SqlConsulta);
 			while ($registro = ibase_fetch_assoc ($this->Consulta)) {
-				if (! VerificarRegistroJaCadastrado($registro))
+				if (! $this->VerificarRegistroJaCadastrado($registro))
 					$this->PassaValores($registro);
 			}
 			
@@ -117,16 +117,41 @@ abstract class ImportadorBaseComponent extends Component {
 	}
 
 	protected function VerificarRegistroJaCadastrado($parametro) {
-		return True;
+		return False;
 	}
 
-	protected function TratarCampoEmBranco($campo, $valor = '') {
+	protected function TratarCampoEmBranco($dados, $campo, $valor = '') {
 		if ($dados[$campo] == '') {
           if ($valor == '')
-          	$dados[$campo] = $dados['id'];
+          	return $dados['id'];
           else
-            $dados[$campo] = $valor;
+            return $valor;
 		}
+		else
+			return $dados[$campo];
+	}
+
+	public function GerarRelatorio() {
+		if ($this->VerificarImportacaoNecessaria()) {
+			$consultados = 0;
+			$this->Consulta = $this->Conexao->ConsultarSQL($this->SqlConsulta);
+			while ($registro = ibase_fetch_assoc ($this->Consulta)) {
+				//if (! $this->VerificarRegistroJaCadastrado($registro))
+					$consultados++;
+			}
+			$importados = $this->Class->Find('count'); 
+			return $this->Model . ' ' . $importados . '/' . $consultados . '<br>';
+		}
+		else
+			return '';
+	}
+
+	protected function ZerarAutoIncremento() {
+		App::import('Model', 'ConnectionManager');
+		$conexao = new ConnectionManager;
+		$conexao = $conexao->getDataSource('default');
+		$sql = 'ALTER TABLE ' . $this->Model . ' AUTO_INCREMENT = 1';
+		$conexao->query($sql);
 	}
 
 }

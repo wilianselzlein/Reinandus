@@ -16,6 +16,7 @@ class ImportarCidadesComponent extends ImportadorBaseComponent {
 			$dados['estado_id'] = 1;
 		$dados['cep'] = $this->FormatarValorEncode($parametro['CIDCEP']);
 		$dados['nome'] = $this->FormatarValorEncode($parametro['CIDNOME']);
+		$dados['nome'] = $this->TratarCampoEmBranco($dados, 'nome');
 
 		$this->SalvarDados($dados);
 	}
@@ -29,7 +30,7 @@ class ImportarCidadesComponent extends ImportadorBaseComponent {
 
 	public function Configurar() {
 		$this->setModel('Cidade');
-		$UltimoCodigoDeLancamentoImportador = 0;// $this->PegarUltimoCodigoDeLancamentoImportado();
+		$UltimoCodigoDeLancamentoImportador = -1;// $this->PegarUltimoCodigoDeLancamentoImportado();
 		$this->setSqlConsulta('Select * from TCidade where CidCod >= ' . $UltimoCodigoDeLancamentoImportador . ' order by CidCod');
 		$this->setCheckBox('Cidades');
 

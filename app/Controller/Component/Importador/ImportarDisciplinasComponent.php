@@ -10,7 +10,7 @@ class ImportarDisciplinasComponent extends ImportadorBaseComponent {
 		$dados = [];
 		$dados['id'] = $parametro['DISCOD'];
 		$dados['nome'] = $this->FormatarValorEncode($parametro['DISNOME']);
-		$this->TratarCampoEmBranco('nome');
+		$dados['nome'] = $this->TratarCampoEmBranco($dados, 'nome');
 		$dados['valor'] = $parametro['DISVALOR'];
 		$this->SalvarDados($dados);
 	}
