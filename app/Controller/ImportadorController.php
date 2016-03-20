@@ -59,7 +59,7 @@ class ImportadorController extends AppController {
 			$Grupos = new ImportarGruposComponent($this->ConexaoFirebird, $data);
 			$Usuarios = new ImportarUsuariosComponent($this->ConexaoFirebird, $data);
 			$Disciplinas = new ImportarDisciplinasComponent($this->ConexaoFirebird, $data);
-			$Parametros = new ImportarParametrosComponent($this->ConexaoFirebird, $data);
+			//$Parametros = new ImportarParametrosComponent($this->ConexaoFirebird, $data);
 			$FormasDePagamento = new ImportarFormasDePagamentoComponent($this->ConexaoFirebird, $data);
 			$Contas = new ImportarContasComponent($this->ConexaoFirebird, $data);
 			$LancamentoContabil = new ImportarLancamentoContabilComponent($this->ConexaoFirebird, $data);
@@ -86,7 +86,7 @@ class ImportadorController extends AppController {
 				$Grupos->GerarRelatorio() .
 				$Usuarios->GerarRelatorio() .
 				$Disciplinas->GerarRelatorio() .
-				$Parametros->GerarRelatorio() .
+				//$Parametros->GerarRelatorio() .
 				$FormasDePagamento->GerarRelatorio() .
 				$Contas->GerarRelatorio() .
 				$LancamentoContabil->GerarRelatorio() .

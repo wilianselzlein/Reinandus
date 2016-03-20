@@ -15,7 +15,7 @@ class ImportarAvisosCursosComponent extends ImportadorBaseComponent {
 
 	public function Configurar() {
 		$this->setModel('AvisoCurso');
-		$this->setSqlConsulta('Select * from TAvisoCurso');
+		$this->setSqlConsulta('Select * from TAvisoCurso where avicurcurso in (select curcod from tcurso)');
 		$this->setCheckBox('AvisoCurso');
 	}
 

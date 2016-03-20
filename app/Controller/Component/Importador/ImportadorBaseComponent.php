@@ -150,10 +150,16 @@ abstract class ImportadorBaseComponent extends Component {
 		App::import('Model', 'ConnectionManager');
 		$conexao = new ConnectionManager;
 		$conexao = $conexao->getDataSource('default');
-		$sql = 'ALTER TABLE ' . $this->Model . ' AUTO_INCREMENT = 1';
+		$sql = 'ALTER TABLE ' . $this->PegarTabela($this->Model) . ' AUTO_INCREMENT = 1';
 		$conexao->query($sql);
 	}
 
+	private function PegarTabela($tabela) {
+		if ($tabela = 'HistoricoPadrao')
+			return 'historico_padrao';
+		else
+			return $tabela;
+	}
 }
 
 ?>

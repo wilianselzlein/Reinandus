@@ -34,28 +34,10 @@
 		<?php echo $this->Form->input('Disciplinas', array('type' => 'checkbox')); ?>
 	</div>
 	<div class="importar">
-		<?php echo $this->Form->input('Alunos', array('type' => 'checkbox')); ?>
-	</div>
-	<div class="importar">
-		<?php echo $this->Form->input('Acessos', array('type' => 'checkbox')); ?>
-	</div>
-	<div class="importar">
-		<?php echo $this->Form->input('Professor', array('type' => 'checkbox')); ?>
-	</div>
-	<div class="importar">
-		<?php echo $this->Form->input('Cursos', array('type' => 'checkbox')); ?>
-	</div>
-	<div class="importar">
-		<?php echo $this->Form->input('Mensalidades', array('type' => 'checkbox')); ?>
-	</div>
-	<div class="importar">
 		<?php echo $this->Form->input('HistoricosPadrao', array('type' => 'checkbox')); ?>
 	</div>
 	<div class="importar">
 		<?php echo $this->Form->input('PlanosDeContas', array('type' => 'checkbox')); ?>
-	</div>
-	<div class="importar">
-		<?php echo $this->Form->input('Lancamentos', array('type' => 'checkbox')); ?>
 	</div>
 	<div class="importar">
 		<?php echo $this->Form->input('FormasDePagamento', array('type' => 'checkbox')); ?>
@@ -70,7 +52,10 @@
 		<?php echo $this->Form->input('Usuarios', array('type' => 'checkbox')); ?>
 	</div>
 	<div class="importar">
-		<?php echo $this->Form->input('Parametros', array('type' => 'checkbox')); ?>
+		<?php echo $this->Form->input('Professor', array('type' => 'checkbox')); ?>
+	</div>
+	<div class="importar">
+		<?php echo $this->Form->input('Cursos', array('type' => 'checkbox')); ?>
 	</div>
 	<div class="importar">
 		<?php echo $this->Form->input('CursoDisciplina', array('type' => 'checkbox')); ?>
@@ -85,6 +70,18 @@
 		<?php echo $this->Form->input('AvisoCurso', array('type' => 'checkbox')); ?>
 	</div>
 	<div class="importar">
+		<?php echo $this->Form->input('Alunos', array('type' => 'checkbox')); ?>
+	</div>
+	<div class="importar">
+		<?php echo $this->Form->input('Acessos', array('type' => 'checkbox')); ?>
+	</div>
+	<div class="importar">
+		<?php echo $this->Form->input('Mensalidades', array('type' => 'checkbox')); ?>
+	</div>
+	<div class="importar">
+		<?php //echo $this->Form->input('Parametros', array('type' => 'checkbox')); ?>
+	</div>
+	<div class="importar">
 		<?php echo $this->Form->input('AlunoDisciplina', array('type' => 'checkbox')); ?>
 	</div>
 	<div class="importar">
@@ -92,6 +89,9 @@
 	</div>
 	<div class="importar">
 		<?php echo $this->Form->input('Logo', array('type' => 'checkbox')); ?>
+	</div>
+	<div class="importar">
+		<?php echo $this->Form->input('Lancamentos', array('type' => 'checkbox')); ?>
 	</div>
 </div>
 

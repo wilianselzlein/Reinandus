@@ -12,7 +12,7 @@ class ImportarAlunosComponent extends ImportadorBaseComponent {
 		$dados = [];
 		$dados['id'] = $parametro['ALUCOD'];
 		$dados['nome'] = $this->FormatarValorEncode($parametro['ALUNOME']);
-		$this->TratarCampoEmBranco('nome');
+		$dados['nome'] = $this->TratarCampoEmBranco($dados, 'nome');
 		$dados['endereco'] = $this->FormatarValorEncode($parametro['ALUENDERECO']);
 		$dados['numero'] = '';
 		$dados['bairro'] = $this->FormatarValorEncode($parametro['ALUBAIRRO']);
@@ -34,7 +34,7 @@ class ImportarAlunosComponent extends ImportadorBaseComponent {
 		$dados['sexo'] = $this->FormatarValorEncode($parametro['ALUSEXO']);
 		$dados['nome_mae'] = $this->FormatarValorEncode($parametro['ALUNOMEMAE']);
 		$dados['nome_pai'] = $this->FormatarValorEncode($parametro['ALUNOMEPAI']);
-		$dados['curso_id'] =  is_null($parametro['ALUCURSO']) ? 0 : $parametro['ALUCURSO']; //$this->FormatarValorEncode($parametro['ALUCURSO']);
+		$dados['curso_id'] =  is_null($parametro['ALUCURSO']) ? -1 : $parametro['ALUCURSO']; //$this->FormatarValorEncode($parametro['ALUCURSO']);
 		$dados['professor_id'] = $this->FormatarValorEncode($parametro['ALUORIENTADOR']);
 		$dados['entregou_cpf'] = $parametro['ALUENTREGOUCPF'];
 		$dados['entregou_diploma'] = $parametro['ALUENTREGOUDIPLOMA'];
@@ -77,6 +77,7 @@ class ImportarAlunosComponent extends ImportadorBaseComponent {
 		$this->setSqlConsulta('Select * from TAluno where AluCod >= ' . $UltimoCodigoDeLancamentoImportador . ' order by AluCod');
 		$this->setCheckBox('Alunos');
 		$this->CarregarArrayDeCidades();
+		$this->CadastrarCursoParaAlunosSemCurso();
 		$this->CarregarArrayDeCursos();
 	}
 
@@ -128,7 +129,7 @@ class ImportarAlunosComponent extends ImportadorBaseComponent {
 		$cadastro['pessoa'] = 'F';
 		$cadastro['fantasia'] = $responsavel;
 		$cadastro['razaosocial'] = $responsavel;
-		$this->TratarCampoEmBranco('razaosocial', $responsavel_cpf);
+		$cadastro['razaosocial'] = $this->TratarCampoEmBranco($cadastro, 'razaosocial', $responsavel_cpf);
 		$cadastro['endereco'] = $dados['endereco'];
 		$cadastro['bairro'] = $dados['bairro'];
 		$cadastro['cidade_id'] = $dados['cidade_id'];
@@ -142,6 +143,15 @@ class ImportarAlunosComponent extends ImportadorBaseComponent {
 		$Pessoa->create();
 		$Pessoa->save($cadastro);
 		return $Pessoa->getLastInsertID();
+	}
+
+	private function CadastrarCursoParaAlunosSemCurso() {
+		$cadastro['id'] = -1;
+		$cadastro['nome'] = 'Importacao';
+
+		$Curso = ClassRegistry::init('Curso');
+		$Curso->create(); 
+		$Curso->save($cadastro);
 	}
 }
 

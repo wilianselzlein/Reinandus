@@ -10,6 +10,7 @@ class ImportarPessoasComponent extends ImportadorBaseComponent {
 		$dados = [];
 		$dados['id'] = $parametro['NETCOD'];
 		$dados['fantasia'] = $this->FormatarValorEncode($parametro['NETNOME']);
+		$dados['empresa'] = $this->FormatarValorEncode($parametro['NETEMPRESA']);
 		$dados['razaosocial'] = $this->FormatarValorEncode($parametro['NETNOME']);
 		$dados['razaosocial'] = $this->TratarCampoEmBranco($dados, 'razaosocial', $dados['fantasia']);
 		$dados['razaosocial'] = $this->TratarCampoEmBranco($dados, 'razaosocial', $dados['empresa']);
@@ -28,7 +29,6 @@ class ImportarPessoasComponent extends ImportadorBaseComponent {
 		$dados['cnpjcpf'] = $this->FormatarValorEncode($parametro['NETCPF']);
 		$dados['resumo'] = $this->FormatarValorEncode($parametro['NETRESUMO']);
 		$dados['obs'] = $this->FormatarValorEncode($parametro['NETOBS']);
-		$dados['empresa'] = $this->FormatarValorEncode($parametro['NETEMPRESA']);
 		$dados['contato'] = $this->FormatarValorEncode($parametro['NETCONTATO']);
 		$dados['ie'] = $parametro['NETIE'];
 		$dados['im'] = $parametro['NETIM'];

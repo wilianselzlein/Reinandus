@@ -10,6 +10,7 @@ class ImportarProfessorComponent extends ImportadorBaseComponent {
 		$dados = [];
 		$dados['id'] = $parametro['PROCOD'];
 		$dados['nome'] = $this->FormatarValorEncode($parametro['PRONOME']);
+		$dados['nome'] = $this->TratarCampoEmBranco($dados, 'nome');
 		$dados['endereco'] = $this->FormatarValorEncode($parametro['PROENDERECO']);
 		$dados['numero'] = '';
 		$dados['bairro'] = $this->FormatarValorEncode($parametro['PROBAIRRO']);

@@ -20,7 +20,7 @@ class ImportarAvisosComponent extends ImportadorBaseComponent {
 
 	public function Configurar() {
 		$this->setModel('Aviso');
-		$this->setSqlConsulta('Select Taviso.*, cast(Taviso.AviMensagem as varchar(2000)) as MENSAGEM from Taviso');
+		$this->setSqlConsulta('Select Taviso.*, cast(Taviso.AviMensagem as varchar(10000)) as MENSAGEM from Taviso');
 		$this->setCheckBox('Avisos');
 		$this->CarregarArrayDeUsuarios();
 	}

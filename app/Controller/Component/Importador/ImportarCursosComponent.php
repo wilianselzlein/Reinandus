@@ -10,8 +10,8 @@ class ImportarCursosComponent extends ImportadorBaseComponent {
 		$dados = [];
 		$dados['id'] = $parametro['CURCOD'];
 		$dados['nome'] = $this->FormatarValorEncode($parametro['CURNOME']);
+		$dados['nome'] = $this->TratarCampoEmBranco($dados, 'nome');
 		$dados['professor_id'] = $parametro['CURCOORDENADOR'];
-		$dados['nome'] = $this->FormatarValorEncode($parametro['CURNOME']);
 		$dados['turma'] = $parametro['CURTURMA'];
 		$dados['carga'] = $parametro['CURCARGA'];
 		$dados['valor'] = $parametro['CURVALOR'];
@@ -39,7 +39,7 @@ class ImportarCursosComponent extends ImportadorBaseComponent {
 
 	public function Configurar() {
 		$this->setModel('Curso');
-		$UltimoCodigoDeLancamentoImportador = 0; //$this->PegarUltimoCodigoDeLancamentoImportado();
+		$UltimoCodigoDeLancamentoImportador = -1; //$this->PegarUltimoCodigoDeLancamentoImportado();
 		$this->setSqlConsulta('Select * from TCurso where CurCod >= ' . $UltimoCodigoDeLancamentoImportador . ' order by CurCod');
 		$this->setCheckBox('Cursos');
 	}
