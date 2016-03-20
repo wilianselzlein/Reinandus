@@ -155,7 +155,7 @@ class AppController extends Controller {
                'userModel' => 'User',
             )
          );
-         $this->Auth->allow('index', 'importar');
+         //$this->Auth->allow('index', 'importar', 'relatorio');
          $this->VerificarPermissaoDeAcesso();
     //}
       }

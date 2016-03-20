@@ -8,7 +8,7 @@ class ImportarLogosComponent extends ImportadorBaseComponent {
 	public function PassaValores($parametro) {
 
 		$dados = [];
-		$dados['empresa_id'] = $this->VerificarAlunoExiste($parametro['EMPCOD']);
+		$dados['pessoa_id'] = $parametro['NETCOD'];
 		$dados['imagem'] = $parametro['NETLOGO'];
 		
 		$this->SalvarDados($dados);
@@ -21,7 +21,6 @@ class ImportarLogosComponent extends ImportadorBaseComponent {
 			from TNetworking
 			where NetLogo is not null');
 		$this->setCheckBox('Logo');
-		$this->CarregarArrayDeAlunos();
 	}
 
 }

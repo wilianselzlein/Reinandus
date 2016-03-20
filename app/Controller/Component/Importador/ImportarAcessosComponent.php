@@ -18,7 +18,11 @@ class ImportarAcessosComponent extends ImportadorBaseComponent {
 		$this->setCheckBox('Acessos');
 		$this->CarregarArrayDeAlunos();
 	}
-
+/*
+ALTER TABLE TALUNOACESSO ADD ALUACECODIGO INTEGER;
+update tALUNOACESSO set ALUACEcodigo = 0;
+update tALUNOACESSO set ALUACEcodigo = (select coalesce(max(aluacecodigo), 0) + 1 from talunoacesso);
+*/
 }
 
 ?>
