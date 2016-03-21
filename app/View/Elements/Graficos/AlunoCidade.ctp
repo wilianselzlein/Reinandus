@@ -1,4 +1,4 @@
-		<script type="text/javascript">
+<script type="text/javascript">
 $(function () {
     $('#GraficoAlunoCidade').highcharts({
         chart: {
@@ -8,7 +8,7 @@ $(function () {
             text: 'Por Cidade'
         },
         xAxis: {
-            categories: ['Curitiba', 'Registro', 'Mafra', 'Fraiburgo'],
+            categories: [<?php echo $cidade_nomes; ?>],
             title: {
                 text: null
             }
@@ -31,8 +31,8 @@ $(function () {
         },
         series: [{
             name: ' ',
-            data: [973, 914, 4054, 732]
+            data: [<?php echo $cidade_valores; ?>]
         }]
     });
 });
-		</script>
+</script>

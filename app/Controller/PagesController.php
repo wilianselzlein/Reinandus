@@ -19,6 +19,7 @@
  */
 
 App::uses('AppController', 'Controller');
+App::import('Controller', 'Graficos');
 
 /**
  * Static content controller
@@ -63,7 +64,7 @@ class PagesController extends AppController {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
 		}
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
-
+		$this->GerarGraficos();
 		try {
 			$this->render(implode('/', $path));
 		} catch (MissingViewException $e) {
@@ -72,5 +73,13 @@ class PagesController extends AppController {
 			}
 			throw new NotFoundException();
 		}
+	}
+	
+	private function GerarGraficos() {
+	    $Grafico = new GraficosController;
+	    
+      	$Grafico->GerarDeCidades($cidade_nomes, $cidade_valores);
+		$this->set(compact('cidade_nomes', 'cidade_valores'));
+
 	}
 }
