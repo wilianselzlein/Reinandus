@@ -33,7 +33,7 @@ $(function () {
             type: 'pie',
             name: 'Browser share',
             data: [
-                {
+                /*{
                     name: 'Ativos',
                     y: 50,
                     sliced: true,
@@ -41,9 +41,14 @@ $(function () {
                 },
                 ['Inativos', 20],
                 ['TCC', 10],
-                ['Outras', 20]
+                ['Outras', 20]*/
+                <?php 
+                foreach ($situacao_valores as $item) {
+                    echo '[' . $item['valor'] . ", " . $item['quant'] . "], ";
+                }
+                ?>
             ]
         }]
     });
 });
-		</script>
+</script>

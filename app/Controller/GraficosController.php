@@ -53,4 +53,47 @@ SELECT s.*
         $valores = implode(', ', $valores);
     }
 
+    public function GerarDeSituacao(&$valores) {
+        $consulta = $this->Grafico->query("
+SELECT s.*
+  FROM (SELECT Q1.valor, Q1.quant
+          FROM (SELECT e.valor, Count(a.id) AS quant
+                  FROM enumerado e
+                  JOIN aluno a
+                    ON a.situacao_id = e.id
+                 WHERE e.nome = 'aluno'
+                   AND e.referencia = 'situacao_id'
+                   AND e.is_ativo = 1
+                 GROUP BY e.valor) Q1
+         ORDER BY Q1.quant DESC LIMIT 5) s
+UNION ALL
+SELECT s.*
+  FROM (SELECT 'Outras', Q1.quant
+          FROM (SELECT Count(a.id) AS quant
+                  FROM aluno a
+                 WHERE a.situacao_id IS NULL
+                    or a.situacao_id NOT IN
+                       (SELECT Q2.situacao_id
+                          FROM (SELECT Q3.*
+                                  FROM (SELECT a.situacao_id, Count(a.id) AS quant
+                                          FROM enumerado e
+                                          JOIN aluno a
+                                            ON a.situacao_id = e.id
+                                         WHERE e.nome = 'aluno'
+                                           AND e.referencia = 'situacao_id'
+                                           AND e.is_ativo = 1
+                                         GROUP BY a.situacao_id) Q3
+                                 ORDER BY Q3.quant DESC LIMIT 5) Q2)) Q1) s
+");
+        $valores = [];
+        foreach ($consulta as $item) {
+            $valor = [];
+            $valor['valor'] = "'" . $item[0]['valor'] . "'";
+            $valor['quant'] = $item[0]['quant'];
+            $valores[] = $valor;
+        }
+
+        //debug($valores); die;
+    }
+
 }
