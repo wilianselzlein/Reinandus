@@ -80,6 +80,9 @@ class PagesController extends AppController {
 	    
       	$Grafico->GerarDeCidades($cidade_nomes, $cidade_valores);
 		$this->set(compact('cidade_nomes', 'cidade_valores'));
+		
+		$Grafico->GerarDeSituacao($situacao_valores);
+		$this->set(compact('situacao_valores'));
 
 	}
 }
