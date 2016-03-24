@@ -180,9 +180,9 @@ class CursosController extends AppController {
  * @return void
  */
 	public function disciplina($id) {
-		if (!$this->Curso->exists()) {
-			throw new NotFoundException(__('The record could not be found.'));
-		}
+		//if (!$this->Curso->CursoDisciplina->Disciplina->exists()) {
+		//	throw new NotFoundException(__('The record could not be found.'));
+		//}
 		$this->layout = false;
 		$options = array('conditions' => array('CursoDisciplina.curso_id' => $id));
 		$this->set('curso_id', $id);
