@@ -14,7 +14,7 @@ class ImportarPessoasComponent extends ImportadorBaseComponent {
 		$dados['razaosocial'] = $this->FormatarValorEncode($parametro['NETNOME']);
 		$dados['razaosocial'] = $this->TratarCampoEmBranco($dados, 'razaosocial', $dados['fantasia']);
 		$dados['razaosocial'] = $this->TratarCampoEmBranco($dados, 'razaosocial', $dados['empresa']);
-		$dados['razaosocial'] = $this->TratarCampoEmBranco($dados, 'razaosocial');
+		//$dados['razaosocial'] = $this->TratarCampoEmBranco($dados, 'razaosocial');
 		$dados['endereco'] = $this->FormatarValorEncode($parametro['NETENDERECO']);
 		$dados['numero'] = '';
 		$dados['bairro'] = $this->FormatarValorEncode($parametro['NETBAIRRO']);

@@ -73,6 +73,15 @@ class ProfessoresController extends AppController {
 		$disciplinas = $this->Professor->DisciplinaProfessor->find('all', $options);
 		$disciplinas = $this->TransformarArray->FindInContainable('DisciplinaProfessor', $disciplinas);
 		$this->set(compact('disciplinas'));
+
+		$options = array('conditions' => array('Aluno.professor_id' => $id), 'limit' => 200,
+		  'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.celular', 'Aluno.email', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Situacao.id', 'Situacao.valor'));
+		$this->Professor->Aluno->unbindModel(array(
+			'hasMany' => array('Acesso', 'Detalhe', 'AlunoDisciplina', 'Mensalidade'),
+			'belongsTo' => array('Naturalidade', 'EstadoCivil', 'Indicacao', 'Curso', 'Professor', 'Cidade', 'Responsavel')));
+		$alunos = $this->Professor->Aluno->find('all', $options);
+		$alunos = $this->TransformarArray->FindInContainable('Aluno', $alunos);
+		$this->set(compact('alunos'));
 	}
 
 /**

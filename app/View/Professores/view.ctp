@@ -146,6 +146,8 @@
 		</div><!-- /.view -->
 
 <?php echo $this->element('Relateds/Cursos', array('array' => $cursos)); ?>
-<?php echo $this->element('Relateds/Disciplinas', array('array' => $disciplinas, 'model' => 'ProfessorDisciplina')); ?>
+<?php echo $this->element('Relateds/Disciplinas', array('array' => $disciplinas, 'model' => 'ProfessorDisciplina'));
+ ?>
+<?php echo $this->element('Relateds/Alunos', array('array' => $alunos));?>
 
 </div><!-- /#page-container .row-fluid -->
