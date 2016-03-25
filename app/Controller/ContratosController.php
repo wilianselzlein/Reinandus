@@ -38,7 +38,10 @@ class ContratosController extends AppController {
         $contrato = $this->GeraContrato->Gerar();
         
         $caminho = 'arqs/';
+        if (isset($data['Contrato']['aluno_id'])) 
         $arquivo = $data['Contrato']['aluno_id'] . ' - ' . $data['Contrato']['modelo'];
+        else
+        $arquivo = $data['Contrato']['professor_id'] . ' - ' . $data['Contrato']['modelo'];
 
         $fp = fopen($caminho . $arquivo, 'a');
         $escreve = fwrite($fp, $contrato);

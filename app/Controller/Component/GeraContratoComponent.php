@@ -23,32 +23,24 @@ class GeraContratoComponent extends Component {
 
         $this->SetarNoContratoCamposBasicosDaTelaDeFiltro($s);
 
-    	try {
-    		$Instituto = new ConsultarInstitutoComponent($s, 1, 'instituto');
-    		if (isset($this->Data['aluno_id'])) {
-	        	$Aluno = new CarregarConsultasBaseComponent($s, $this->Data['aluno_id'], 'aluno'); //new ComponentCollection()
-		
-		        if ($Aluno->PegarValorCampo('id') > 0) {
-					$Curso = new ConsultarCursoComponent($s, $Aluno->PegarValorCampo('curso_id'), 'curso');
-					$Cidade = new CarregarConsultasBaseComponent($s, $Aluno->PegarValorCampo('cidade_id'), 'cidade');
-					$Estado = new CarregarConsultasBaseComponent($s, $Cidade->PegarValorCampo('estado_id'), 'estado');
-				}
+		$Instituto = new ConsultarInstitutoComponent($s, 1, 'instituto');
+		if (isset($this->Data['aluno_id'])) {
+        	$Aluno = new CarregarConsultasBaseComponent($s, $this->Data['aluno_id'], 'aluno'); //new ComponentCollection()
+	
+	        if ($Aluno->PegarValorCampo('id') > 0) {
+				$Curso = new ConsultarCursoComponent($s, $Aluno->PegarValorCampo('curso_id'), 'curso');
+				$Cidade = new CarregarConsultasBaseComponent($s, $Aluno->PegarValorCampo('cidade_id'), 'cidade');
+				$Estado = new CarregarConsultasBaseComponent($s, $Cidade->PegarValorCampo('estado_id'), 'estado');
 			}
-			if (isset($this->Data['professor_id'])) {
-	        	$Professor = new CarregarConsultasBaseComponent($s, $this->Data['professor_id'], 'professor'); //new ComponentCollection()
-		
-		        if ($Professor->PegarValorCampo('id') > 0) {
-		        	$Cidade = new CarregarConsultasBaseComponent($s, $Professor->PegarValorCampo('cidade_id'), 'cidade');
-					$Estado = new CarregarConsultasBaseComponent($s, $Cidade->PegarValorCampo('estado_id'), 'estado');
-				}
+		}
+		if (isset($this->Data['professor_id'])) {
+        	$Professor = new CarregarConsultasBaseComponent($s, $this->Data['professor_id'], 'professor'); //new ComponentCollection()
+	
+	        if ($Professor->PegarValorCampo('id') > 0) {
+	        	$Cidade = new CarregarConsultasBaseComponent($s, $Professor->PegarValorCampo('cidade_id'), 'cidade');
+				$Estado = new CarregarConsultasBaseComponent($s, $Cidade->PegarValorCampo('estado_id'), 'estado');
 			}
-        } finally {
-        	unset($Aluno);
-        	unset($Curso);
-        	unset($Cidade);
-        	unset($Estado);
-        	unset($Instituto);
-        }
+		}
 
         return $s;
 	}
