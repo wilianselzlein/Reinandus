@@ -161,7 +161,8 @@ class PessoasController extends AppController {
  * @return void
  */
 	public function emails() {
-		$options = array('recursive' => 0, 'fields' => array('Pessoa.email'), 'order' => array('Pessoa.email'));
+		$options = array('recursive' => 0, 'fields' => array('Pessoa.email'), 
+			'conditions' => array('Pessoa.email <> ""'), 'order' => array('Pessoa.email'));
 	    $emails = $this->Pessoa->find('list', $options);
 		$this->set('emails', $emails);
 	}
