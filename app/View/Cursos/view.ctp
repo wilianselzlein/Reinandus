@@ -41,7 +41,7 @@
                   <?php echo h($curso['Curso']['carga']); ?>
                   &nbsp;
                </td>
-               </tr><tr>		<td><strong><?php echo __('Secretaria'); ?></strong></td>
+               </tr><tr>		<td><strong><?php echo __('Secretário(a)'); ?></strong></td>
                <td>
                   <?php echo $this->Html->link($curso['Pessoa']['fantasia'], array('controller' => 'pessoas', 'action' => 'view', $curso['Pessoa']['id']), array('class' => '')); ?>
                   &nbsp;
