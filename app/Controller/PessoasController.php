@@ -61,6 +61,16 @@ class PessoasController extends AppController {
 		$usuarios = $this->TransformarArray->FindInContainable('Usuario', $usuarios);
 		$this->set(compact('usuarios'));
 
+
+		$options = array('conditions' => array('Aluno.responsavel_id' => $id), 'limit' => 200,
+		  'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.celular', 'Aluno.email', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Situacao.id', 'Situacao.valor'));
+		$this->Pessoa->Aluno->unbindModel(array(
+			'hasMany' => array('Acesso', 'Detalhe', 'AlunoDisciplina', 'Mensalidade'),
+			'belongsTo' => array('Naturalidade', 'EstadoCivil', 'Indicacao', 'Curso', 'Professor', 'Cidade', 'Responsavel')));
+		$alunos = $this->Pessoa->Aluno->find('all', $options);
+		$alunos = $this->TransformarArray->FindInContainable('Aluno', $alunos);
+		$this->set(compact('alunos'));
+
 		$options = array('recursive' => 0, 'conditions' => array('Logo.pessoa_id' => $id), 'limit' => 200,
 		 'fields' => array('Logo.id', 'Logo.logo', 'Logo.pessoa_id'));
         $this->Pessoa->Logo->unbindModel(array('belongsTo' => array('Pessoa')));

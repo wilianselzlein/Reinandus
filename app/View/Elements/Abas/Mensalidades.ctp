@@ -1,9 +1,11 @@
-<?php echo $this->Form->create('Portal', array('role' => 'form', 'class'=>'form-horizontal', 'action' => 'comprovante', 'target' => '_blank')); ?>
-  <?php echo $this->Form->hidden('id', array('value' => $mensalidades[0]['Mensalidade']['aluno_id'])); ?>
-  <?php echo $this->Form->hidden('nome', array('value' => $mensalidades[0]['Aluno']['nome'])); ?>
-  <?php echo $this->Form->hidden('curso', array('value' => $mensalidades[0]['Aluno']['curso_id'])); ?>
-  <?php echo $this->Form->hidden('mensalidades', array('value' => 
-      serialize($mensalidades))); ?>
+  <?php 
+  if (isset($mensalidades[0])) {
+    echo $this->Form->create('Portal', array('role' => 'form', 'class'=>'form-horizontal', 'action' => 'comprovante', 'target' => '_blank')); 
+    echo $this->Form->hidden('id', array('value' => $mensalidades[0]['Mensalidade']['aluno_id']));
+    echo $this->Form->hidden('nome', array('value' => $mensalidades[0]['Aluno']['nome']));
+    echo $this->Form->hidden('curso', array('value' => $mensalidades[0]['Aluno']['curso_id']));
+    echo $this->Form->hidden('mensalidades', array('value' => serialize($mensalidades))); 
+  ?>
   <div style="float: left; width: 30%;">
     <?php echo $this->Form->input('ano', array('options' => $anos, 'label' => array('text' => 'Ano:'))); ?>
   </div>
@@ -79,3 +81,8 @@ foreach ($mensalidades as $mensalidade):
   </tbody>
 </table>
 </div>
+<?php } else { ?>
+  <div class="alert alert-info" role="alert">
+    <b>Nenhuma mensalidade cadastrada.</b>
+  </div>
+ <?php } ?>

@@ -12,6 +12,7 @@
 	<div class="panel-body">
 		<?php echo $this->element('pesquisa/simples');?>
 		<div class="table-responsive">
+			<?php echo $this->element('BarraDeProgresso'); ?>
 			<table class="table table-bordered table-hover table-condensed" >
 				<thead>
 					<tr class="active">
@@ -55,7 +56,6 @@
 					<?php endforeach; ?>
 				</tbody>
 			</table>
-			<?php echo $this->element('BarraDeProgresso'); ?>
 		</div><!-- /.table-responsive -->
 
 	</div>
