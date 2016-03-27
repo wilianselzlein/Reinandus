@@ -16,8 +16,9 @@
    $('.modal-header .form-reset').click(function(){
       $('.modal-content [role="form"]')[0].reset();
    });
-
-   $(document).ready(function(){ $('[data-toggle=tooltip]').tooltip()});   
+   $(document).ready(function(){ $('[data-toggle=tooltip]').tooltip()});
+   $(document).ready(function(){ $('[data-tt=tooltip]').tooltip()});   
+   $(document).ready(function(){ $('.combobox').combobox(); });
 </script>
 <?php echo $this->Html->script('cfg-datepicker');?>
 <?php echo $this->Html->script('cfg-currency');?>
