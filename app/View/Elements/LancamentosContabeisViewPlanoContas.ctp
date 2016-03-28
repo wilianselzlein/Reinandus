@@ -7,7 +7,7 @@
                 <?php echo __('Actions'); ?> <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('lctocontabil'), array('controller' => 'lancamentocontabil', 'action' => 'add'), array('class' => '', 'escape' => false)); ?>
+                <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('lctocontabil'), array('controller' => 'LancamentoContabil', 'action' => 'add'), array('class' => '', 'escape' => false)); ?>
                 </li>
             </ul>
         </div>
@@ -32,13 +32,13 @@
 						<tr>
 	<td><?php echo $lctocontabil['id']; ?></td>
 	<td><?php echo date('d/m/Y', strtotime($lctocontabil['data'])); ?></td>
-	<td><?php echo $this->Html->link($lctocontabil['Debito']['descricao'], array('controller' => 'planocontas', 'action' => 'view', $lctocontabil['Debito']['id']), array('class' => '')); ?> &nbsp;</td>
-	<td><?php echo $this->Html->link($lctocontabil['Credito']['descricao'], array('controller' => 'planocontas', 'action' => 'view', $lctocontabil['Credito']['id']), array('class' => '')); ?> &nbsp;</td>
+	<td><?php echo $this->Html->link($lctocontabil['Debito']['descricao'], array('controller' => 'PlanoContas', 'action' => 'view', $lctocontabil['Debito']['id']), array('class' => '')); ?> &nbsp;</td>
+	<td><?php echo $this->Html->link($lctocontabil['Credito']['descricao'], array('controller' => 'PlanoContas', 'action' => 'view', $lctocontabil['Credito']['id']), array('class' => '')); ?> &nbsp;</td>
 	<td><?php echo $this->Number->currency($lctocontabil['valor'],'BRL');?></td>
 	<td class="actions text-center">
-	<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'lancamentocontabil', 'action' => 'view', $lctocontabil['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
-	<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('controller' => 'lancamentocontabil', 'action' => 'edit', $lctocontabil['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
-	<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'lancamentocontabil', 'action' => 'delete', $lctocontabil['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are yiou sure you want to delete # %s?', $lctocontabil['id'])); ?>
+	<?php echo $this->Html->link('<i class="fa fa-eye"></i>', array('controller' => 'LancamentoContabil', 'action' => 'view', $lctocontabil['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('View'), 'data-toggle'=>'tooltip')); ?>
+	<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('controller' => 'LancamentoContabil', 'action' => 'edit', $lctocontabil['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Edit'), 'data-toggle'=>'tooltip')); ?>
+	<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'LancamentoContabil', 'action' => 'delete', $lctocontabil['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are yiou sure you want to delete # %s?', $lctocontabil['id'])); ?>
 	</td>
 						</tr>
 					<?php endforeach; ?>

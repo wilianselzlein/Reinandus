@@ -43,7 +43,15 @@ class LancamentoContabilController extends AppController {
 		if (!$this->LancamentoContabil->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('conditions' => array('LancamentoContabil.' . $this->LancamentoContabil->primaryKey => $id));
+		$options = array('conditions' => array('LancamentoContabil.' . $this->LancamentoContabil->primaryKey => $id),
+				'fields' => array(
+					'LancamentoContabil.id', 'LancamentoContabil.data', 'LancamentoContabil.debito_id', 'LancamentoContabil.credito_id', 'LancamentoContabil.historico_padrao_id', 
+					'LancamentoContabil.identificador', 'LancamentoContabil.documento', 'LancamentoContabil.valor', 'LancamentoContabil.complemento', 'LancamentoContabil.numero', 
+					'LancamentoContabil.created', 'LancamentoContabil.modified', 
+					'Debito.id', 'Debito.reduzido', 'Debito.analitico', 'Debito.descricao',
+					'Credito.id', 'Credito.reduzido', 'Credito.analitico', 'Credito.descricao',
+					'HistoricoPadrao.id', 'HistoricoPadrao.nome')
+		);
 		$this->set('lancamentocontabil', $this->LancamentoContabil->find('first', $options));
 	}
 

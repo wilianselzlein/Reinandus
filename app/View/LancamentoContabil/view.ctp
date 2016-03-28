@@ -22,17 +22,17 @@
 		</td>
 </tr><tr>		<td><strong><?php echo __('Debito'); ?></strong></td>
 		<td>
-			<?php echo $this->Html->link($lancamentocontabil['Debito']['descricao'], array('controller' => 'planocontas', 'action' => 'view', $lancamentocontabil['Debito']['id']), array('class' => '')); ?>
+			<?php echo $this->Html->link($lancamentocontabil['Debito']['reduzido'] . ' - ' . $lancamentocontabil['Debito']['analitico'] . ' - ' . $lancamentocontabil['Debito']['descricao'], array('controller' => 'PlanoContas', 'action' => 'view', $lancamentocontabil['Debito']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Credito'); ?></strong></td>
 		<td>
-			<?php echo $this->Html->link($lancamentocontabil['Credito']['descricao'], array('controller' => 'planocontas', 'action' => 'view', $lancamentocontabil['Credito']['id']), array('class' => '')); ?>
+			<?php echo $this->Html->link($lancamentocontabil['Credito']['reduzido'] . ' - ' . $lancamentocontabil['Credito']['analitico'] . ' - ' . $lancamentocontabil['Credito']['descricao'], array('controller' => 'PlanoContas', 'action' => 'view', $lancamentocontabil['Credito']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('HistoricoPadrao'); ?></strong></td>
 		<td>
-			<?php echo $this->Html->link($lancamentocontabil['HistoricoPadrao']['nome'], array('controller' => 'historicopadrao', 'action' => 'view', $lancamentocontabil['HistoricoPadrao']['id']), array('class' => '')); ?>
+			<?php echo $this->Html->link($lancamentocontabil['HistoricoPadrao']['nome'], array('controller' => 'HistoricoPadrao', 'action' => 'view', $lancamentocontabil['HistoricoPadrao']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Identificador'); ?></strong></td>

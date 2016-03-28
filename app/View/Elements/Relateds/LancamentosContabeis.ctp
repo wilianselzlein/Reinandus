@@ -6,7 +6,7 @@
                 <?php echo __('Actions'); ?> <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('lctocontabil'), array('controller' => 'lancamentocontabil', 'action' => 'add'), array('class' => '', 'escape' => false)); ?>
+                <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('lctocontabil'), array('controller' => 'LancamentoContabil', 'action' => 'add'), array('class' => '', 'escape' => false)); ?>
                 </li>
             </ul>       
         </div>
