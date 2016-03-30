@@ -27,7 +27,8 @@ class RelatoriosController extends AppController {
      */
     
     public function index() {
-        $options = array('order' => array('Relatorio.Tipo', 'Relatorio.Id'));
+        $options = array('order' => array('Relatorio.Tipo', 'Relatorio.Nome'));
+        $this->Relatorio->unbindModel(array('hasMany' => array('RelatorioDataset')));
         $relatorios = $this->Relatorio->find('all', $options);
         $this->set(compact('relatorios'));
     }
