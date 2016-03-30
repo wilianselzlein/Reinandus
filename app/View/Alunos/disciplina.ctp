@@ -17,7 +17,7 @@
 		<th> HA </th>
 		<th> Data </th>
 		<th width="7%">			
-		<?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>', array('controller' => 'aluno_disciplinas', 'action' => 'add', $aluno_id, 'modal'), array('class' => 'btn btn-default btn-xs','escape'=>false, 'data-toggle'=>'modal', 'data-target'=>'#modal-dialog', 'title'=>__('Add') . __('Disciplina'))); ?>
+		<?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>', array('controller' => 'aluno_disciplinas', 'action' => 'add', $aluno_id), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Add') . __('Disciplina'))); ?>
 			<?php echo $this->Html->link('<i class="fa fa-graduation-cap"></i>', array('controller' => 'aluno_disciplinas', 'action' => 'adddocurso', $aluno_id), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Add Disciplinas do Curso'), 'data-toggle'=>'tooltip')); ?>
 		</th>
 	</tr>

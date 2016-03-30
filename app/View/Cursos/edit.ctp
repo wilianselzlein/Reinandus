@@ -47,12 +47,12 @@
             </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('pessoa_id',
-                                             array('class' => 'form-control combobox', 'label'=>array('text' => 'Secretaria', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+                                             array('class' => 'form-control combobox', 'label'=>array('text' => 'Secretário(a)', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('professor_id',
-                                             array('class' => 'form-control combobox', 'label'=>array('Coordenador', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+                                             array('class' => 'form-control combobox', 'label'=>array('text' => 'Coordenador', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">

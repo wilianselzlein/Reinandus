@@ -166,7 +166,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 	public function baixar($id = null) {
         $this->Mensalidade->id = $id;
 		if (!$this->Mensalidade->exists($id)) {
-			throw new NotFoundException(__('The record could not be found.?>'));
+			throw new NotFoundException(__('The record could not be found.'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Mensalidade->save($this->request->data)) {
@@ -203,13 +203,17 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 /**
  * gerar method
  *
- * @throws NotFoundException
+ * @throws Exception
  * @return void
  */
 	public function gerar() {
         if ($this->request->is('post') || $this->request->is('put')) {
         	$data = $this->request->data;
         	$data = $data['Mensalidade'];
+        	$ValorMaximo = $this->PegarValorLimite();
+        	if ($data['valor'] > $ValorMaximo) {
+    			throw new Exception(__('Proibido gerar mensalidades maior que R$ ' . $ValorMaximo));
+        	}
 
     		$numero = 1;
         	$quantidade = (float) $data['quantidade'];
@@ -238,6 +242,16 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$users = $this->Mensalidade->User->findAsCombo();
 		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
 	}
+
+/**
+ * PegarValorLimite method
+ *
+ * @return void
+ */
+	private function PegarValorLimite() {
+	      $parametro = ClassRegistry::init('Parametro');
+	      return $parametro->valor(12);
+     }
 
     public function DadosBoleto($id) {
     	$dados = array();

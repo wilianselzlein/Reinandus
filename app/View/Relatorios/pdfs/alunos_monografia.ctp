@@ -37,7 +37,7 @@ for ($index = 0; $index < count($aluno); $index++) {
    $rowSubheader = new Row('subheader'.$even_class);
    $rowSubheader
       ->addColumn('', 'col-5')
-      ->addColumn('Coordenador', 'col-25')  
+      ->addColumn('Orientador', 'col-25')  
       ->addColumn('Monografia', 'col-40')
       ->addColumn('Data', 'col-10')
       ->addColumn('Prazo', 'col-10')

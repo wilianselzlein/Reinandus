@@ -42,8 +42,8 @@ class PortalController extends AppController {
       $vagas = $Vaga->find('all', $options);
 
       $Convenio = ClassRegistry::init('Pessoa');
-      $Convenio->unbindModel(array('hasMany' => array('Curso', 'Usuario', 'Cidade')));
-      $options = array('recursive' => 1, 'conditions' => array('Pessoa.desconto >= ' => 0), 'order' => array('Pessoa.fantasia'), 
+      $Convenio->unbindModel(array('hasMany' => array('Curso', 'Usuario', 'Cidade', 'Aluno')));
+      $options = array('recursive' => 1, 'conditions' => array('Pessoa.desconto > ' => 0), 'order' => array('Pessoa.fantasia'), 
         'fields' => array('Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 'Pessoa.fone', 'Pessoa.Empresa', 'Pessoa.contato', 'Pessoa.desconto'));
       $convenios = $Convenio->find('all', $options);
 

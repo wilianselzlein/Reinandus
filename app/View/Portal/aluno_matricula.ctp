@@ -80,7 +80,7 @@
 </script>
 </p>
 <p align="center">
- <?php if ($dados['User']['assinatura'] != '') { ?> 
+ <?php if ((isset($dados['User']['assinatura'])) && ($dados['User']['assinatura'] != '')) { ?> 
     <img src="data:image/jpeg;base64,
        <?php echo h($dados['User']['assinatura']); ?>" 
  <?php } ?> &nbsp;

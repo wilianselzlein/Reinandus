@@ -61,7 +61,7 @@ class ImportarAlunosComponent extends ImportadorBaseComponent {
 		$dados['estado_civil_id'] =  $this->TratarEstadoCivil($this->FormatarValorEncode($parametro['ALUESTADOCIVIL']));
 		//$dados['indicacao_id'] = '';
 		$responsavel_cpf = $this->FormatarValorEncode($parametro['ALURESPONSAVELCPF']);
-		if (! $responsavel_cpf == '') {
+		if ((! $responsavel_cpf == '') && (! $responsavel_cpf == '  .   .   -  ')) {
 			if ($this->FormatarValorEncode($parametro['ALURESPONSAVEL'] == 'Pai'))
 				$responsavel = $dados['nome_pai'];
 			else

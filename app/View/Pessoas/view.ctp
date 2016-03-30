@@ -208,6 +208,7 @@ if($pessoa['Pessoa']['pessoa'] == 'F'){
    </div><!-- /.view -->
 <?php echo $this->element('Relateds/Cursos', array('array' => $cursos)); ?>
 <?php echo $this->element('Relateds/Usuarios', array('array' => $usuarios));?>
+<?php echo $this->element('Relateds/Alunos', array('array' => $alunos));?>
 
 <div class="panel-body">
   	<?php if (!empty($logos)): ?>

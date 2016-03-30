@@ -18,13 +18,22 @@
 <?php foreach ($convenios as $convenio): ?>
           <tr>
             <td>
-<?php 
-if (count($convenio['Logo']) > 0)
+<?php
+if (count($convenio['Logo']) > 0) {
+  //echo $convenio['Logo'][0]['imagem'];
   echo $this->Html->image('logos/thumbs/'.$convenio['Logo'][0]['logo'], 
     array('align'=> 'center', 'height' => '50', 'width' => '50')); 
+}
 ?>
             </td>
-            <td><?php echo $convenio['Pessoa']['fantasia']; ?></td>
+            <td>
+            <?php 
+              if ($convenio['Pessoa']['fantasia'] == '')
+                 echo $convenio['Pessoa']['razaosocial'];
+              else
+                 echo $convenio['Pessoa']['fantasia'];
+            ?>
+            </td>
             <td><?php echo $convenio['Pessoa']['contato']; ?></td>
             <td><?php echo $convenio['Pessoa']['fone']; ?></td>
             <td><?php echo $convenio['Pessoa']['desconto']; ?>%</td>

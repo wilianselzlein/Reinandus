@@ -29,7 +29,7 @@
 			<?php echo $this->Html->link($AlunoMensalidade['Formapgto']['nome'], array('controller' => 'FormasPagamentos', 'action' => 'view', $AlunoMensalidade['Formapgto']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'aviso_cursos', 'action' => 'delete', $AlunoMensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $AlunoMensalidade['Mensalidade']['id'])); ?>
+			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'Mensalidades', 'action' => 'delete', $AlunoMensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $AlunoMensalidade['Mensalidade']['id'])); ?>
 		</td>
 	</tr>
 	<?php endforeach; ?>

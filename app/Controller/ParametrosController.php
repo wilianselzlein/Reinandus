@@ -150,8 +150,8 @@ class ParametrosController extends AppController {
  	$this->AdicionarParametroSeNaoExistir(9, 'Debugar Relatorios', 'N');
  	$this->AdicionarParametroSeNaoExistir(10, 'Link Manual', 'http://www.facet.br/pos/espaco_aluno/download/manual_aluno_2014.pdf');
  	$this->AdicionarParametroSeNaoExistir(11, 'Habilitar pesquisa no portal', 'S');
- 	/*$this->AdicionarParametroSeNaoExistir(12, '', '');
- 	$this->AdicionarParametroSeNaoExistir(13, '', '');
+ 	$this->AdicionarParametroSeNaoExistir(12, 'Bloquer mensalidades com valor maior que', '500');
+ 	/*$this->AdicionarParametroSeNaoExistir(13, '', '');
  	$this->AdicionarParametroSeNaoExistir(14, '', '');
  	$this->AdicionarParametroSeNaoExistir(15, '', '');
  	$this->AdicionarParametroSeNaoExistir(16, '', '');
