@@ -12,7 +12,7 @@ $(function () {
         },
 
         title: {
-            text: 'Cadastrados'
+            text: 'Ativos'
         },
 
         pane: {
@@ -51,7 +51,7 @@ $(function () {
         // the value axis
         yAxis: {
             min: 0,
-            max: 200,
+            max: 600,
 
             minorTickInterval: 'auto',
             minorTickWidth: 1,
@@ -73,15 +73,15 @@ $(function () {
             },
             plotBands: [{
                 from: 0,
-                to: 120,
+                to: 200,
                 color: '#55BF3B' // green
             }, {
-                from: 120,
-                to: 160,
+                from: 200,
+                to: 400,
                 color: '#DDDF0D' // yellow
             }, {
-                from: 160,
-                to: 200,
+                from: 400,
+                to: 600,
                 color: '#DF5353' // red
             }]
         },
@@ -90,7 +90,7 @@ $(function () {
         },
         series: [{
             name: ' ',
-            data: [80],
+            data: [<?php echo $ativos; ?>],
             tooltip: {
                 valueSuffix: ' '
             }
@@ -98,4 +98,4 @@ $(function () {
 
     });
 });
-        </script>
+</script>
