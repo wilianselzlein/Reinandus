@@ -254,10 +254,13 @@ else
 		    <span class="badge"><?php echo $dia; ?></span> No dia
 		  </li>
 		  <li class="list-group-item">
+		    <span class="badge"><?php echo $semana; ?></span> Na semana
+		  </li>
+		  <li class="list-group-item">
 		    <span class="badge"><?php echo $mes; ?></span> No mes
 		  </li>
 		  <li class="list-group-item">
-		    <span class="badge"><?php echo $semana; ?></span> No semestre
+		    <span class="badge"><?php echo $sem; ?></span> No semestre
 		  </li>
 		  <li class="list-group-item">
 		    <span class="badge"><?php echo $ano; ?></span> No ano

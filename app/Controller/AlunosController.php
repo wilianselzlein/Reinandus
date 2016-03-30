@@ -98,6 +98,9 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 		$mes = $this->ConsultarAcessos($id, '>=', '-1 month');
 		$this->set(compact('mes'));
 
+		$sem = $this->ConsultarAcessos($id, '>=', '-6 month');
+		$this->set(compact('sem'));
+		
 		$ano = $this->ConsultarAcessos($id, '>=', '-1 year');
 		$this->set(compact('ano'));
 
