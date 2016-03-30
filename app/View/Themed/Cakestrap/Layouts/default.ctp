@@ -72,7 +72,7 @@ $usuario_logado = $this->Session->read('Auth.User');
          <!-- Top Menu Items -->
          <ul class="nav navbar-right top-nav">
             <li class="dropdown">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-male"></i> <b class="caret"></b></a>
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Últimos alunos cadastrados"><i class="fa fa-male"></i> <b class="caret"></b></a>
                <ul class="dropdown-menu message-dropdown">
                   <li class="message-preview">
                      <?php echo $this->Html->link('<i class="fa fa-fw fa-male"></i>'.' Ir para o espaço dos '.__('Alunos'), 
@@ -82,7 +82,7 @@ $usuario_logado = $this->Session->read('Auth.User');
                </ul>
             </li>
             <li class="dropdown">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Recados internos"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
                <ul class="dropdown-menu message-dropdown">
                   <?php echo $this->UltimosAvisosDoUsuario->GerarLista($usuario_logado['id']); ?>
                   <li class="message-footer">
@@ -91,7 +91,7 @@ $usuario_logado = $this->Session->read('Auth.User');
                   </ul>
                </li>
                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Notificações"><i class="fa fa-bell"></i> <b class="caret"></b></a>
                   <ul class="dropdown-menu alert-dropdown">
                      <li>
                         <?php echo $this->Avisos->Alunos('default'); ?>
@@ -115,7 +115,7 @@ $usuario_logado = $this->Session->read('Auth.User');
                   </ul>
                </li>
                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Perfil"><i class="fa fa-user"></i> 
                      <?php echo $usuario_logado['username']; ?>
                      <b class="caret"></b>
                   </a>
@@ -162,9 +162,12 @@ $usuario_logado = $this->Session->read('Auth.User');
             </div><!-- /#footer .container -->
 
    </div><!-- /#main-container -->
-
          <script>
-            $(document).ready(function(){ $('[data-toggle=tooltip]').tooltip()});
+            $(document).ready(function(){ 
+               $('[data-tt=tooltip]').tooltip();
+               $('[data-toggle=tooltip]').tooltip();
+            });
+            $("[data-tt=tooltip]").tooltip();
             $(document).ready(function(){ $('.combobox').combobox(); });
          </script>
          <?php echo $this->Html->script('cfg-datepicker');?>
