@@ -13,6 +13,10 @@
 	    <div id="GraficoAlunoCidade" class="grafico grafico70"></div>
 	    <?php echo $this->element('Graficos/AlunoTotal');?>
 	    <div id="GraficoAlunoTotal" class="grafico grafico30"></div> 
+	    <?php echo $this->element('Graficos/AlunoTcc');?>
+	    <div id="GraficoAlunoPendenteMatricula" class="grafico grafico30"></div> 
+	    <?php echo $this->element('Graficos/AlunoPendenteMatricula');?>
+	    <div id="GraficoAlunoTcc" class="grafico grafico30"></div> 
 	    <?php echo $this->element('Graficos/AlunoPorAno');?>
 	    <div id="GraficoAlunoPorAno" class="grafico grafico70"></div> 
 	  </div>

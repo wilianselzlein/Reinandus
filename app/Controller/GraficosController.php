@@ -96,8 +96,8 @@ SELECT s.*
         //debug($valores); die;
     }
 
-    public function GerarDeAtivos(&$valores) {
-        $consulta = $this->Grafico->query("SELECT count(1) as quant from aluno where situacao_id = 7");
+    public function GerarPorSituacao(&$valores, $situacao_id) {
+        $consulta = $this->Grafico->query("SELECT count(1) as quant from aluno where situacao_id = " . $situacao_id);
         $valores = $consulta[0][0]['quant'];
     }
 

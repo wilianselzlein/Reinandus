@@ -84,7 +84,13 @@ class PagesController extends AppController {
 		$Grafico->GerarDeSituacao($situacao_valores);
 		$this->set(compact('situacao_valores'));
 
-		$Grafico->GerarDeAtivos($ativos);
+		$Grafico->GerarPorSituacao($ativos, 7);
 		$this->set(compact('ativos'));
+		
+		$Grafico->GerarPorSituacao($tcc, 8);
+		$this->set(compact('tcc'));
+		
+		$Grafico->GerarPorSituacao($pendente_matricula, 15);
+		$this->set(compact('pendente_matricula'));
 	}
 }
