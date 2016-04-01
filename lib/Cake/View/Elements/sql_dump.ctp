@@ -18,7 +18,9 @@
 define('TEMPO_MEDIO', 100);
 define('TEMPO_LIMITE', 300);
 
-if (!class_exists('ConnectionManager') || Configure::read('debug') < 2) {
+$parametro = ClassRegistry::init('Parametro');
+
+if (!class_exists('ConnectionManager') || Configure::read('debug') < 2 || $parametro->valor(13) == 'N') {
 	return false;
 }
 $noLogs = !isset($sqlLogs);
