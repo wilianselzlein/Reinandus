@@ -198,7 +198,7 @@ class RelatorioPDF  extends TCPDF
             font-weight:bold;
             text-align:left;               
             font-style: italic;
-            font-size: 11pt;
+            font-size: 10pt;
             font-family: 'Times New Roman';
         }
         td {
@@ -209,6 +209,7 @@ class RelatorioPDF  extends TCPDF
         }
         .currency, .percentage, .date{
             font-family: 'Courier';
+            font-size: 7pt;
          }
          .col-5{
            width:5%;

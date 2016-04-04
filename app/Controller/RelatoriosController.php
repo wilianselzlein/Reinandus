@@ -93,9 +93,11 @@ class RelatoriosController extends AppController {
              $this->set($dataset['nome'], $queryResult);  
              
           }
+          $this->layout = '/pdf/default';
+          $this->render('/Relatorios/pdfs/'.$relatorio['Relatorio']['arquivo']);
+       } else {
+           $this->redirect($this->referer());
        }
-       $this->layout = '/pdf/default';
-       $this->render('/Relatorios/pdfs/'.$relatorio['Relatorio']['arquivo']);
     }
 
   private function VerificarParametroDebugarSqlRelatoriosAtivo() {

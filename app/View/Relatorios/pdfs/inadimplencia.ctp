@@ -9,14 +9,14 @@ $table = new Table();
 
 $rowHeader = new Row('header');
 $rowHeader
-  ->addColumn('Aluno', 'col-20')
-  ->addColumn('Curso', 'col-20')
-  ->addColumn('Telefone', 'col-15')
-  ->addColumn('Valor', 'col-10')
-  ->addColumn('Acréscimo', 'col-10')         
+  ->addColumn('Aluno', 'col-14')
+  ->addColumn('Curso', 'col-15')
+  ->addColumn('Telefone', 'col-11')
+  ->addColumn('Valor', 'col-15')
+  ->addColumn('Acréscimo', 'col-10')
   ->addColumn('Desconto', 'col-10')  
-  ->addColumn('Bolsa', 'col-5')
-  ->addColumn('Líquido', 'col-10')
+  ->addColumn('Bolsa', 'col-10')
+  ->addColumn('Líquido', 'col-15')
   ->close();
 $table->addRow($rowHeader);
 
@@ -38,14 +38,14 @@ for ($index = 0; $index < count($inadimplencia); $index++) {
 
    $rowData = new Row(''.$even_class);
    $rowData
-      ->addColumn($inadimplencia[$index]['aluno']['aluno'], 'col-20')
-      ->addColumn($inadimplencia[$index]['curso']['curso'], 'col-20')
-      ->addColumn($inadimplencia[$index]['aluno']['celular']. '<br>' . $inadimplencia[$index]['aluno']['residencial'], 'col-15')
-      ->addColumn($this->Number->currency($inadimplencia[$index]['0']['valor'], 'BRL'), 'currency col-10')
+      ->addColumn($inadimplencia[$index]['aluno']['aluno'], 'col-14')
+      ->addColumn($inadimplencia[$index]['curso']['curso'], 'col-15')
+      ->addColumn($inadimplencia[$index]['aluno']['celular']. '<br>' . $inadimplencia[$index]['aluno']['residencial'], 'col-11')
+      ->addColumn($this->Number->currency($inadimplencia[$index]['0']['valor'], 'BRL'), 'currency col-15')
       ->addColumn($this->Number->currency($inadimplencia[$index]['0']['acrescimo'], 'BRL'), 'currency col-10')       
       ->addColumn($this->Number->currency($inadimplencia[$index]['0']['desconto'], 'BRL'), 'currency col-10')
-      ->addColumn($this->Number->currency($inadimplencia[$index]['0']['bolsa'], 'BRL'), 'currency col-5')
-      ->addColumn($this->Number->currency($inadimplencia[$index]['0']['liquido'], 'BRL'), 'currency col-10')
+      ->addColumn($this->Number->currency($inadimplencia[$index]['0']['bolsa'], 'BRL'), 'currency col-10')
+      ->addColumn($this->Number->currency($inadimplencia[$index]['0']['liquido'], 'BRL'), 'currency col-15')
       ->close();
     $table->addRow($rowData);
 }
