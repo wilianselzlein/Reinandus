@@ -12,16 +12,16 @@ $rowHeader
   ->addColumn('Aluno', 'col-14')
   ->addColumn('Curso', 'col-15')
   ->addColumn('Telefone', 'col-11')
+  ->addColumn('Qtd', 'col-5')
   ->addColumn('Valor', 'col-15')
-  ->addColumn('Acréscimo', 'col-10')
-  ->addColumn('Desconto', 'col-10')  
+  ->addColumn('Desconto', 'col-15')  
   ->addColumn('Bolsa', 'col-10')
   ->addColumn('Líquido', 'col-15')
   ->close();
 $table->addRow($rowHeader);
 
 $valor = 0;
-$acres = 0;
+$quant = 0;
 $desco = 0;
 $bolsa = 0;
 $liqui = 0;
@@ -31,7 +31,7 @@ for ($index = 0; $index < count($inadimplencia); $index++) {
 	$even_class = $index % 2 == 0 ? ' highlighted' : '';
 
 	$valor += $inadimplencia[$index]['0']['valor'];
-	$acres += $inadimplencia[$index]['0']['acrescimo'];
+	$quant += $inadimplencia[$index]['0']['quant'];
 	$desco += $inadimplencia[$index]['0']['desconto'];
 	$bolsa += $inadimplencia[$index]['0']['bolsa'];
 	$liqui += $inadimplencia[$index]['0']['liquido'];
@@ -41,9 +41,9 @@ for ($index = 0; $index < count($inadimplencia); $index++) {
       ->addColumn($inadimplencia[$index]['aluno']['aluno'], 'col-14')
       ->addColumn($inadimplencia[$index]['curso']['curso'], 'col-15')
       ->addColumn($inadimplencia[$index]['aluno']['celular']. '<br>' . $inadimplencia[$index]['aluno']['residencial'], 'col-11')
+      ->addColumn($this->Number->Format($inadimplencia[$index]['0']['quant']), 'col-5')
       ->addColumn($this->Number->currency($inadimplencia[$index]['0']['valor'], 'BRL'), 'currency col-15')
-      ->addColumn($this->Number->currency($inadimplencia[$index]['0']['acrescimo'], 'BRL'), 'currency col-10')       
-      ->addColumn($this->Number->currency($inadimplencia[$index]['0']['desconto'], 'BRL'), 'currency col-10')
+      ->addColumn($this->Number->currency($inadimplencia[$index]['0']['desconto'], 'BRL'), 'currency col-15')
       ->addColumn($this->Number->currency($inadimplencia[$index]['0']['bolsa'], 'BRL'), 'currency col-10')
       ->addColumn($this->Number->currency($inadimplencia[$index]['0']['liquido'], 'BRL'), 'currency col-15')
       ->close();
@@ -52,14 +52,14 @@ for ($index = 0; $index < count($inadimplencia); $index++) {
 
 $rowData = new Row('summary');
 $rowData
-  ->addColumn('', 'col-20')
-  ->addColumn('', 'col-20')
-  ->addColumn('Total:', 'col-15')
-  ->addColumn($this->Number->currency($valor, 'BRL'), 'currency col-10')
-  ->addColumn($this->Number->currency($acres, 'BRL'), 'currency col-10')       
-  ->addColumn($this->Number->currency($desco, 'BRL'), 'currency col-10')
-  ->addColumn($this->Number->currency($bolsa, 'BRL'), 'currency col-5')
-  ->addColumn($this->Number->currency($liqui, 'BRL'), 'currency col-10')
+  ->addColumn('', 'col-14')
+  ->addColumn('', 'col-15')
+  ->addColumn('Total:', 'col-11')
+  ->addColumn($this->Number->Format($quant), 'col-5')
+  ->addColumn($this->Number->currency($valor, 'BRL'), 'currency col-15')
+  ->addColumn($this->Number->currency($desco, 'BRL'), 'currency col-15')
+  ->addColumn($this->Number->currency($bolsa, 'BRL'), 'currency col-10')
+  ->addColumn($this->Number->currency($liqui, 'BRL'), 'currency col-15')
   ->close();
 $table->addRow($rowData);
 
