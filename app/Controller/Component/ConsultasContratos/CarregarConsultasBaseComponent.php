@@ -19,7 +19,8 @@ class CarregarConsultasBaseComponent extends Component {
 		$this->Data = [];
 		if ($this->VerificarConsultaNecessaria()) {
 			$this->Data = $this->Consultar();
-			$this->Data = $this->Data[$this->Model()];
+			if (isset($this->Data[$this->Model()]))
+			    $this->Data = $this->Data[$this->Model()];
 		}
 		$this->SubstituirTags();
 		$contrato = $this->Contrato;

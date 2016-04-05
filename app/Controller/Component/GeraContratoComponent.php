@@ -34,7 +34,7 @@ class GeraContratoComponent extends Component {
 			}
 		}
 		if (isset($this->Data['professor_id'])) {
-        	$Professor = new CarregarConsultasBaseComponent($s, $this->Data['professor_id'], 'professor'); //new ComponentCollection()
+        	$Professor = new CarregarConsultasBaseComponent($s, $this->Data['professor_id'], 'professor');  //new ComponentCollection()
 	
 	        if ($Professor->PegarValorCampo('id') > 0) {
 	        	$Cidade = new CarregarConsultasBaseComponent($s, $Professor->PegarValorCampo('cidade_id'), 'cidade');

@@ -19,9 +19,12 @@ define('TEMPO_MEDIO', 100);
 define('TEMPO_LIMITE', 300);
 
 $parametro = ClassRegistry::init('Parametro');
-
-if (!class_exists('ConnectionManager') || Configure::read('debug') < 2 || $parametro->valor(13) == 'N') {
-	return false;
+$usuario_logado = $this->Session->read('Auth.User');
+//debug($usuario_logado); die;
+if ($usuario_logado['username'] != 'Master') {
+	if (!class_exists('ConnectionManager') || Configure::read('debug') < 2 || $parametro->valor(13) == 'N') {
+		return false;
+	}
 }
 $noLogs = !isset($sqlLogs);
 if ($noLogs):

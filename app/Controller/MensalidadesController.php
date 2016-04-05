@@ -196,7 +196,8 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
         $user_id = $dados['User']['id'];
         $this->Mensalidade->Formapgto->recursive = -1;
         $formapgto_id = $this->Mensalidade->Formapgto->findByTipo('P');
-        $formapgto_id = $formapgto_id['Formapgto']['id'];
+        if (isset($formapgto_id['Formapgto']))
+        	$formapgto_id = $formapgto_id['Formapgto']['id'];
 		$this->set(compact('contas', 'formapgtos', 'users', 'alunos', 'user_id', 'formapgto_id'));
 	}
 

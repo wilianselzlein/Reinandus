@@ -116,7 +116,16 @@ class CidadesController extends AppController {
                   $this->Cidade->id
                )
             ));
-				$this->redirect(array('action' => 'index'));
+            
+    $dbo = $this->Cidade->getDatasource();
+    $logs = $dbo->getLog();
+    $lastLog = end($logs['log']);
+    $query = $lastLog['query'];
+
+            Debugger::dump($query);
+            
+			$this->redirect(array('action' => 'index'));
+
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
@@ -151,4 +160,5 @@ class CidadesController extends AppController {
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
 		$this->redirect(array('action' => 'index'));
 	}
+
 }
