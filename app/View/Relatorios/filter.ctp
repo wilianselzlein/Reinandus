@@ -32,7 +32,7 @@
    <div class="panel-heading">
       <h3>
          <span class="fa <?php echo __($relatorio['Relatorio']['icone']);?>"></span> <?php echo __($relatorio['Relatorio']['nome']);?>
-         <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], 'index'); ?>
+         <?php //echo $this->ButtonsActions->MakeButtons($this->params['controller'], 'index'); ?>
       </h3>
    </div>
 </div>
@@ -137,10 +137,7 @@ $campoObrigatorioPrefix = $isObrigatorio == 'true' ? '* ' : '';
    </div>
 </div>
 
-
-
 <?php echo $this->Form->create('Relatorio', array('url' => array('action' => 'download', $relatorio['Relatorio']['id']), 'onsubmit'=>'return checkForm();')); ?>
-
 
 <div id="row">
    <div class="panel panel-default">

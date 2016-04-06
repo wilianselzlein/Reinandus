@@ -117,13 +117,6 @@ class CidadesController extends AppController {
                )
             ));
             
-    $dbo = $this->Cidade->getDatasource();
-    $logs = $dbo->getLog();
-    $lastLog = end($logs['log']);
-    $query = $lastLog['query'];
-
-            Debugger::dump($query);
-            
 			$this->redirect(array('action' => 'index'));
 
 			} else {

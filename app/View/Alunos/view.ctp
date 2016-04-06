@@ -1,4 +1,4 @@
-	 <div class="panel panel-default ">
+ <div class="panel panel-default ">
         <div class="panel-heading">
             <h2>
 <?php 
@@ -289,31 +289,31 @@ else
          </div>
 	      </h3>
 	</div>   
-	<div class="panel-body">
+	
   	<?php if (!empty($detalhes)): ?>
+		<ul class="list-group">
 		<?php foreach ($detalhes as $detalhe): ?>
-
-			<div class="list-group">
-				<a href="#" class="list-group-item active">
-					<h4 class="list-group-item-heading">Ocorrências</h4>
-					<p class="list-group-item-text"><?php echo $detalhe['Detalhe']['ocorrencias']; ?></p>
-				</a>
-				<a href="#" class="list-group-item">
-					<h4 class="list-group-item-heading">Histórico Escolar</h4>
-					<p class="list-group-item-text"><?php echo $detalhe['Detalhe']['hist_escolar']; ?></p>
-				</a>
-				<a href="#" class="list-group-item">
-					<h4 class="list-group-item-heading">Negociação Financeira</h4>
-					<p class="list-group-item-text"><?php echo $detalhe['Detalhe']['neg_financeira']; ?></p>
-				</a>
-				<a href="#" class="list-group-item">
-					<h4 class="list-group-item-heading">Egresso</h4>
-					<p class="list-group-item-text"><?php echo $detalhe['Detalhe']['egresso']; ?></p>
-				</a>
-			</div>       
+			<div class="panel-body">
+		    <li class="list-group-item">
+		    	<h4 class="list-group-item-heading">Ocorrências</h4>
+		   	 	<p class="list-group-item-text"><pre><?php echo $detalhe['Detalhe']['ocorrencias']; ?></pre></p>
+		    </li>
+		    <li class="list-group-item">
+		    	<h4 class="list-group-item-heading">Histórico Escolar</h4>
+		   	 	<p class="list-group-item-text"><pre><?php echo $detalhe['Detalhe']['hist_escolar']; ?></pre></p>
+		    </li>
+		    <li class="list-group-item">
+		    	<h4 class="list-group-item-heading">Negociação Financeira</h4>
+		   	 	<p class="list-group-item-text"><pre><?php echo $detalhe['Detalhe']['neg_financeira']; ?></pre></p>
+		    </li>
+		    <li class="list-group-item">
+		    	<h4 class="list-group-item-heading">Egresso</h4>
+		   	 	<p class="list-group-item-text"><pre><?php echo $detalhe['Detalhe']['egresso']; ?></pre></p>
+		    </li>
 	      	<?php echo $this->Html->image('detalhes/thumbs/'.$detalhe['Detalhe']['foto']); ?>
+			</div>  
 		<?php endforeach; ?>
-   
+		</ul>
     <?php endif; ?>
    </div><!-- /.related Detalhes -->
 
