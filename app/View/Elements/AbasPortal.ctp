@@ -38,6 +38,9 @@
                         <a href="#Pesquisa" data-toggle="tab" title="Pesquisa" data-tt="tooltip"><i class="fa fa-star-half-o fa-4x"></i>&nbsp;</a>
                     </li>
                 <?php } ?>
+                <li>
+                    <a href="#Facebook" data-toggle="tab" title="Facebook" data-tt="tooltip"><i class="fa fa-facebook fa-4x"></i>&nbsp;</a>
+                </li>
         </ul>
     	<div class="panel panel-default">
 		  <div class="panel-body">
@@ -77,6 +80,9 @@
                 </div>
                 <div class="tab-pane" id="Calendario">
 <?php echo $this->element('Abas/Calendario'); ?>
+                </div>
+                <div class="tab-pane" id="Facebook">
+<?php echo $this->element('Abas/Facebook'); ?>
                 </div>
         	</div>
     	  </div>
