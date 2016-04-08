@@ -636,3 +636,6 @@ msgstr "Banco Depósito"
 
 msgid "Renegociacao"
 msgstr "Renegociação"
+
+msgid "Codigo"
+msgstr "Código"

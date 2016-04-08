@@ -12,7 +12,6 @@
                     <tr class="active">
 							<th><?php echo $this->Paginator->sort('id'); ?></th>
 							<th><?php echo $this->Paginator->sort('nome'); ?></th>
-							<th><?php echo $this->Paginator->sort('valor'); ?></th>
 							<th class="actions text-center"><?php echo __('Actions'); ?></th>
 						</tr>
 					</thead>
@@ -21,7 +20,6 @@
 	<tr>
 		<td><?php echo h($disciplina['Disciplina']['id']); ?>&nbsp;</td>
 		<td><?php echo h($disciplina['Disciplina']['nome']); ?>&nbsp;</td>
-		<td><?php echo $this->Number->currency($disciplina['Disciplina']['valor'],'BRL'); ?>&nbsp;</td>
 <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $disciplina, 'model' => 'Disciplina')); ?>
 	</tr>
 <?php endforeach; ?>

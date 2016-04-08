@@ -6,6 +6,7 @@
    <div class="panel-body">
       <?php echo $this->element('pesquisa/simples');?>
       <div class="table-responsive">
+        <?php echo $this->element('BarraDeProgresso'); ?>
         <table class="table table-bordered table-hover table-condensed" >
            <thead>
              <tr class="active">
@@ -15,7 +16,7 @@
                <th><?php echo $this->Paginator->sort('turma'); ?></th>
                <th><?php echo $this->Paginator->sort('carga', 'Carga Horaria'); ?></th>
                <th><?php echo $this->Paginator->sort('professor_id', 'Coordenador'); ?></th>
-               <th><?php echo $this->Paginator->sort('pessoa_id', 'Secretaria'); ?></th>
+               <th><?php echo $this->Paginator->sort('pessoa_id', 'Secretária'); ?></th>
                <th class="actions text-center" colspan="2"><?php echo __('Actions'); ?></th>
             </tr>
          </thead>
@@ -42,8 +43,6 @@
             <?php endforeach; ?>
          </tbody>
       </table>
-      <?php echo $this->element('BarraDeProgresso'); ?>
-
    </div><!-- /.table-responsive -->
    <?php echo $this->element('Paginator'); ?>
 </div>

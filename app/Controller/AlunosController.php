@@ -135,6 +135,10 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 	public function add() {      
 		if ($this->request->is('post')) {
 			$this->Aluno->create();
+
+			if ($this->request->data['Aluno']['codigo'] > 0) 
+				$this->request->data['Aluno']['id'] = $this->request->data['Aluno']['codigo'];
+
 			if ($this->Aluno->save($this->request->data)) {
 				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                "link_text" => __('GO_TO'),

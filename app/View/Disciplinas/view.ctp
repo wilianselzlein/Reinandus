@@ -19,11 +19,6 @@
 			<?php echo h($disciplina['Disciplina']['nome']); ?>
 			&nbsp;
 		</td>
-</tr><tr>		<td><strong><?php echo __('Valor'); ?></strong></td>
-		<td>
-			<?php echo $this->Number->currency($disciplina['Disciplina']['valor'], 'BRL'); ?>
-			&nbsp;
-		</td>
 </tr>					</tbody>
 				</table><!-- /.table table-striped table-bordered -->
 			</div><!-- /.table-responsive -->
