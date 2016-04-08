@@ -625,7 +625,8 @@ class Model extends Object implements CakeEventListener {
  */
 	public $findMethods = array(
 		'all' => true, 'first' => true, 'count' => true,
-		'neighbors' => true, 'list' => true, 'threaded' => true
+		'neighbors' => true, 'list' => true, 'threaded' => true,
+                'combo' => true
 	);
 
 /**
@@ -3160,6 +3161,72 @@ class Model extends Object implements CakeEventListener {
 		return Hash::combine($results, $query['list']['keyPath'], $query['list']['valuePath'], $query['list']['groupPath']);
 	}
 
+/**
+ * Handles the before/after filter logic for find('combo') operations. Only called by Model::find().
+ *
+ * @param string $state Either "before" or "after"
+ * @param array $query Query.
+ * @param array $results Results.
+ * @return array Key/value pairs of primary keys/display field values of all records found
+ * @see Model::find()
+ */
+	protected function _findCombo($state, $query, $results = array()) {
+		if ($state === 'before') {
+			if (empty($query['fields'])) {
+                                $query['fields'] = array("{$this->alias}.{$this->primaryKey}", "CONCAT({$this->alias}.{$this->primaryKey} , ' - ' , {$this->alias}.{$this->displayField}) as {$this->displayField}");
+                                $list = array("{n}.{$this->alias}.{$this->primaryKey}", "{n}.{$this->alias}.{$this->displayField}", null);
+			} else {
+				if (!is_array($query['fields'])) {
+					$query['fields'] = String::tokenize($query['fields']);
+				}
+
+				if (count($query['fields']) === 1) {
+					if (strpos($query['fields'][0], '.') === false) {
+						$query['fields'][0] = $this->alias . '.' . $query['fields'][0];
+					}
+
+					$list = array("{n}.{$this->alias}.{$this->primaryKey}", '{n}.' . $query['fields'][0], null);
+					$query['fields'] = array("{$this->alias}.{$this->primaryKey}", $query['fields'][0]);
+				} elseif (count($query['fields']) === 3) {
+					for ($i = 0; $i < 3; $i++) {
+						if (strpos($query['fields'][$i], '.') === false) {
+							$query['fields'][$i] = $this->alias . '.' . $query['fields'][$i];
+						}
+					}
+
+					$list = array('{n}.' . $query['fields'][0], '{n}.' . $query['fields'][1], '{n}.' . $query['fields'][2]);
+				} else {
+					for ($i = 0; $i < 2; $i++) {
+						if (strpos($query['fields'][$i], '.') === false) {
+							$query['fields'][$i] = $this->alias . '.' . $query['fields'][$i];
+						}
+					}
+
+					$list = array('{n}.' . $query['fields'][0], '{n}.' . $query['fields'][1], null);
+				}
+			}
+
+			if (!isset($query['recursive']) || $query['recursive'] === null) {
+				$query['recursive'] = -1;
+			}
+			list($query['list']['keyPath'], $query['list']['valuePath'], $query['list']['groupPath']) = $list;
+
+			return $query;
+		}
+
+		if (empty($results)) {
+			return array();
+		}
+                
+                for($i=0;$i<count($results);$i++){
+                    $results[$i][$this->alias][$this->displayField] = $results[$i]['0'][$this->displayField];
+                    unset($results[$i]['0']);
+                }
+
+		return Hash::combine($results, $query['list']['keyPath'], $query['list']['valuePath'], $query['list']['groupPath']);
+	}
+
+        
 /**
  * Detects the previous field's value, then uses logic to find the 'wrapping'
  * rows and return them.

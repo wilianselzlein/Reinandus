@@ -38,7 +38,8 @@ class AppModel extends Model {
 	}
 
 	public function findAsCombo($order = 'asc', $conditions = array()) {
-		$list = $this->find('list', array('order' => $this->displayField . ' ' . $order, 'conditions' => $conditions));
+		$list = $this->find('combo', 
+			array('order' => $this->displayField . ' ' . $order, 'conditions' => $conditions));
 		return $list;
 	}
 
