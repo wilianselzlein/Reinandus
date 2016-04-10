@@ -301,10 +301,32 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
  * @return void
  */
 	public function emails() {
+		$options = array('recursive' => 0, 'fields' => array('Situacao.id', 'Situacao.valor'),
+		'conditions' => array('Situacao.nome' => 'Aluno', 'Situacao.referencia' => 'situacao_id'));
+		$situacoes = $this->Aluno->Situacao->find('all', $options);
+
+		$i = 0;
+		foreach ($situacoes as $situacao) {
+			$situacoes[$i]['Situacao']['emails'] = $this->EmailPorSituacao($situacao['Situacao']['id']);
+			$i++;
+		}
+		$this->set('situacoes', $situacoes);
+	}
+
+
+/**
+ * EmailPorSituacao method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function EmailPorSituacao($situacao) {
 		$options = array('recursive' => 0, 'fields' => array('Aluno.email'),
-		'conditions' => array('Aluno.email <> ""'), 'order' => array('Aluno.email'));
-	    $emails = $this->Aluno->find('list', $options);
-		$this->set('emails', $emails);
+		'conditions' => array('Aluno.email <> ""', 'Aluno.situacao_id' => $situacao), 'order' => array('Aluno.email'));
+		$this->Aluno->unbindModel(array('belongsTo' => 
+				array('Naturalidade', 'EstadoCivil', 'Indicacao', 'Curso', 'Professor', 'Cidade', 'Responsavel')));
+	    return $this->Aluno->find('list', $options);
 	}
 
 }
