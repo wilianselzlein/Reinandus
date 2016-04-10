@@ -252,6 +252,19 @@ class EnumeradosController extends AppController {
 	$this->AdicionarEnumeradoSeNaoExistir(62, 'relatorios_filtros', 'tipo_filtro', 'Valor moeda ou quantidade');
 	$this->AdicionarEnumeradoSeNaoExistir(63, 'relatorios_filtros', 'tipo_filtro', 'Valor percentual');
 	//--
+    $this->AdicionarEnumeradoSeNaoExistir(64, 'aluno', 'indicacao_id', 'Convênio');
+    $this->AdicionarEnumeradoSeNaoExistir(65, 'aluno', 'indicacao_id', 'Envio SMS');
+    $this->AdicionarEnumeradoSeNaoExistir(66, 'aluno', 'indicacao_id', 'Gazeta On-line-RPC');
+    $this->AdicionarEnumeradoSeNaoExistir(67, 'aluno', 'indicacao_id', 'Google');
+    $this->AdicionarEnumeradoSeNaoExistir(68, 'aluno', 'indicacao_id', 'Jornal');
+    $this->AdicionarEnumeradoSeNaoExistir(69, 'aluno', 'indicacao_id', 'LinkedIn');
+    $this->AdicionarEnumeradoSeNaoExistir(70, 'aluno', 'indicacao_id', 'Mala Direta');
+    $this->AdicionarEnumeradoSeNaoExistir(71, 'aluno', 'indicacao_id', 'Outdoor');
+    $this->AdicionarEnumeradoSeNaoExistir(72, 'aluno', 'indicacao_id', 'Peixe Urbano');
+    $this->AdicionarEnumeradoSeNaoExistir(73, 'aluno', 'indicacao_id', 'Programa Educa Mais Brasil');
+    $this->AdicionarEnumeradoSeNaoExistir(74, 'aluno', 'indicacao_id', 'Rádio');
+    $this->AdicionarEnumeradoSeNaoExistir(75, 'aluno', 'indicacao_id', 'TV');
+    $this->AdicionarEnumeradoSeNaoExistir(76, 'aluno', 'indicacao_id', 'Outros');
 
 	$this->Session->setFlash(__('Os enumerados foram atualizados.'), 'flash/success');
  }

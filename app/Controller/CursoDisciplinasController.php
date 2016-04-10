@@ -31,7 +31,7 @@ class CursoDisciplinasController extends AppController {
 			$this->request->data['CursoDisciplina']['curso_id'] = $curso_id;
 			if ($this->CursoDisciplina->save($this->request->data)) {
 				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
-				$this->redirect(array('controller' => 'cursos', 'action' => 'index'));
+				$this->redirect(array('controller' => 'cursos', 'action' => 'view', $curso_id));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}

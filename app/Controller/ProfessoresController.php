@@ -67,13 +67,6 @@ class ProfessoresController extends AppController {
 		$cursos = $this->TransformarArray->FindInContainable('Curso', $cursos);
 		$this->set(compact('cursos'));
 
-		$options = array('recursive' => 0, 'conditions' => array('DisciplinaProfessor.professor_id' => $id), 'limit' => 200,
-			'fields' => array('DisciplinaProfessor.id', 'DisciplinaProfessor.disciplina_id', /*'DisciplinaProfessor.horas_aula',*/ 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'));
-		$this->Professor->DisciplinaProfessor->bindModel(array('belongsTo' => array('Disciplina', 'Professor')));
-		$disciplinas = $this->Professor->DisciplinaProfessor->find('all', $options);
-		$disciplinas = $this->TransformarArray->FindInContainable('DisciplinaProfessor', $disciplinas);
-		$this->set(compact('disciplinas'));
-
 		$options = array('conditions' => array('Aluno.professor_id' => $id), 'limit' => 200,
 		  'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.celular', 'Aluno.email', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Situacao.id', 'Situacao.valor'));
 		$this->Professor->Aluno->unbindModel(array(
@@ -82,6 +75,28 @@ class ProfessoresController extends AppController {
 		$alunos = $this->Professor->Aluno->find('all', $options);
 		$alunos = $this->TransformarArray->FindInContainable('Aluno', $alunos);
 		$this->set(compact('alunos'));
+
+		$options = array('recursive' => 0, 'conditions' => array('DisciplinaProfessor.professor_id' => $id), 'limit' => 200,
+			'fields' => array('DisciplinaProfessor.id', 'DisciplinaProfessor.disciplina_id', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'));
+		$this->Professor->DisciplinaProfessor->bindModel(array('belongsTo' => array('Disciplina', 'Professor')));
+		$disciplinas = $this->Professor->DisciplinaProfessor->find('all', $options);
+		$disciplinas = $this->TransformarArray->FindInContainable('DisciplinaProfessor', $disciplinas);
+		$this->set(compact('disciplinas'));
+
+		$options = array('recursive' => 0, 'conditions' => array('CursoDisciplina.professor_id' => $id), 'limit' => 200,
+			'fields' => array('DISTINCT Curso.id', 'Curso.nome', 'CursoDisciplina.id', 'CursoDisciplina.disciplina_id', 'CursoDisciplina.horas_aula', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'));
+		$this->Professor->Curso->CursoDisciplina->bindModel(array('belongsTo' => array('Disciplina', 'Professor')));
+		$relacionadas = $this->Professor->Curso->CursoDisciplina->find('all', $options);
+		$relacionadas = $this->TransformarArray->FindInContainable('CursoDisciplina', $relacionadas);
+		$this->set(compact('relacionadas'));
+
+		$options = array('recursive' => 0, 'conditions' => array('AlunoDisciplina.professor_id' => $id), 'limit' => 200,
+			'fields' => array('DISTINCT Aluno.id', 'Aluno.nome', 'AlunoDisciplina.id', 'AlunoDisciplina.disciplina_id', 'AlunoDisciplina.horas_aula', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'));
+		$this->Professor->Aluno->AlunoDisciplina->bindModel(array('belongsTo' => array('Disciplina', 'Professor')));
+		$ministradas = $this->Professor->Aluno->AlunoDisciplina->find('all', $options);
+		$ministradas = $this->TransformarArray->FindInContainable('AlunoDisciplina', $ministradas);
+
+		$this->set(compact('ministradas'));
 	}
 
 /**

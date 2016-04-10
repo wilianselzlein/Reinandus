@@ -1,4 +1,5 @@
 <?php if (!isset($model)) $model = 'Disciplina'; ?>
+<?php if (!isset($controller)) $controller = 'disciplinas'; ?>
 <div class="panel-footer">
       <h3><?php echo __('Disciplinas').' ' ?> 
          <small><?php echo __('Related') ?></small>
@@ -17,7 +18,10 @@
    </div>
    <div class="panel-body">
       <?php if (!empty($array[$model])): ?>
-
+      <?php 
+         $TemAluno = isset($array[$model][0]['Aluno']);
+         $TemCurso = isset($array[$model][0]['Curso']);
+      ?>
       <div class="table-responsive">
          <table class="table table-hover table-condensed">
             <thead>
@@ -25,6 +29,12 @@
                   <th><?php echo __('Id'); ?></th>
                   <th><?php echo __('Disciplina'); ?></th>
                   <th><?php echo __('Professor'); ?></th>
+                  <?php if ($TemCurso) { ?>
+                     <th><?php echo __('Curso'); ?></th>
+                  <?php } ?>
+                  <?php if ($TemAluno) { ?>
+                     <th><?php echo __('Aluno'); ?></th>
+                  <?php } ?>
                   <th><?php echo __('Horas Aula'); ?></th>
                   <th class="actions text-center"><?php echo __('Actions'); ?></th>
                </tr>
@@ -35,8 +45,14 @@
                   <td><?php echo $disciplina['id']; ?></td>
                   <td><?php echo $this->DisplayField->MakeLink($disciplina, 'disciplinas', 'id'); ?></td>
                   <td><?php echo $this->DisplayField->MakeLink($disciplina, 'professores', 'professor_id'); ?></td>
+                  <?php if ($TemCurso) { ?>
+                     <td><?php echo $this->DisplayField->MakeLink($disciplina, 'cursos', 'curso_id'); ?></td>
+                  <?php } ?>
+                  <?php if ($TemAluno) { ?>
+                     <td><?php echo $this->DisplayField->MakeLink($disciplina, 'alunos', 'aluno_id'); ?></td>
+                  <?php } ?>
                   <td><?php if (isset($disciplina['horas_aula'])) echo $disciplina['horas_aula']; ?></td>
-                  <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $disciplina, 'model' => '', 'controller' => 'disciplinas')); ?>
+                  <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $disciplina, 'model' => '', 'controller' => $controller)); ?>
                </tr>
                <?php endforeach; ?>
             </tbody>

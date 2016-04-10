@@ -20,6 +20,7 @@
             <td>
 <?php
 if (count($convenio['Logo']) > 0) {
+  //echo $this->Html->image(Router::url(array('controller' => 'logos', 'action' => 'logo', convenio['Logo'][0]['id'],)));
   //echo $convenio['Logo'][0]['imagem'];
   echo $this->Html->image('logos/thumbs/'.$convenio['Logo'][0]['logo'], 
     array('align'=> 'center', 'height' => '50', 'width' => '50')); 

@@ -639,3 +639,6 @@ msgstr "Renegociação"
 
 msgid "Codigo"
 msgstr "Código"
+
+msgid "Re-password"
+msgstr "Confirmar Senha"
