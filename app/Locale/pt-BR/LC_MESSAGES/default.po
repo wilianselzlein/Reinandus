@@ -286,6 +286,12 @@ msgstr "Permissões"
 msgid "Emailsup"
 msgstr "Email Superior"
 
+msgid "Alternativo"
+msgstr "Email Alternativo"
+
+msgid "alternativo"
+msgstr "Email Alternativo"
+
 msgid "Emailalt"
 msgstr "Email Alternativo"
 

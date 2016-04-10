@@ -65,7 +65,7 @@ else
 	<?php echo $this->element('LinhaView', array('alias' => 'Email', 'valor' => h($aluno['Aluno']['email']))); ?>
 	<?php echo $this->element('LinhaView', array('alias' => 'Alternativo', 'valor' => h($aluno['Aluno']['emailalt']))); ?>
 	<?php echo $this->element('LinhaView', array('alias' => 'Bolsa', 'valor' => $this->Number->currency($aluno['Aluno']['bolsa'], 'BRL'))); ?>
-	<?php echo $this->element('LinhaView', array('alias' => 'Desconto', 'valor' => $this->Number->currency($aluno['Aluno']['desconto'], 'BRL'))); ?>
+	<?php //echo $this->element('LinhaView', array('alias' => 'Desconto', 'valor' => $this->Number->currency($aluno['Aluno']['desconto'], 'BRL'))); ?>
 	<tr>
 		<td><strong><?php echo __('Curso'); ?></strong></td>
 		<td><?php echo $this->Html->link($aluno['Curso']['nome'], array('controller' => 'cursos', 'action' => 'view', $aluno['Curso']['id']), array('class' => '')); ?>&nbsp;</td>

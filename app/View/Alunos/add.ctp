@@ -96,15 +96,13 @@
                <?php echo $this->Form->input('email',
                      array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-5">', 'after'=>'</div>')); ?>
                <?php echo $this->Form->input('emailalt',
-                     array('class' => 'form-control', 'label'=>array('style' => 'padding-left: 0px;', 'text' => 'Alternativo', 'class'=>'col-sm-1 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
+                     array('class' => 'form-control', 'label'=>array('style' => 'padding-left: 0px;', 'class'=>'col-sm-1 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
             </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('bolsa',
                                              array('class' => 'form-control currency', 'type'=>'text','label'=>array('class'=>'col-sm-2 control-label'), 'div' => array('class' => 'control-group'), 'wrap'=>false, 'between'=>'<div class="col-sm-5"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">%</span>', 'after'=>'</div></div></div>')
                                             ); ?>
-               <?php echo $this->Form->input('desconto',
-                                             array('class' => 'form-control currency', 'type'=>'text','label'=>array('style' => 'padding-left: 0px;', 'class'=>'col-sm-1 control-label'), 'div' => array('class' => 'control-group'), 'wrap'=>false,'between'=>'<div class="col-sm-4"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div></div>')
-                                            ); ?>
+               <?php //echo $this->Form->input('desconto', array('class' => 'form-control currency', 'type'=>'text','label'=>array('style' => 'padding-left: 0px;', 'class'=>'col-sm-1 control-label'), 'div' => array('class' => 'control-group'), 'wrap'=>false,'between'=>'<div class="col-sm-4"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div></div>')); ?>
             </div><!-- .form-group -->
 			<?php echo $this->element('AbasCadAlunos'); ?>
             <?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>

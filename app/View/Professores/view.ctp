@@ -131,12 +131,12 @@
 		</td>
 </tr><tr>		<td><strong><?php echo __('Created'); ?></strong></td>
 		<td>
-			<?php echo date('d/m/Y H:i:s', strtotime($professor['Professor']['created'])); ?>
+			<?php echo date($professor['Professor']['created']); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Modified'); ?></strong></td>
 		<td>
-			<?php echo date('d/m/Y H:i:s', strtotime($professor['Professor']['modified'])); ?>
+			<?php echo date($professor['Professor']['modified']); ?>
 			&nbsp;
 		</td>
 </tr>					</tbody>
