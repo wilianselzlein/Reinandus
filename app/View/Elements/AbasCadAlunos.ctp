@@ -1,3 +1,16 @@
+<script>
+function CursoFim() {
+	var st = document.getElementById("AlunoCursoInicio").value;
+	if (! st.toString() == '') {
+		var parts = st.split('/');
+		var data = parts[0].toString() + "/" + parts[1].toString() + "/" + (parseInt(parts[2]) + 2).toString();
+		var stf = document.getElementById("AlunoCursoFim");
+		stf.value = data;
+		stf.setAttribute('value', data);
+	}
+}
+</script>
+
     <div id="content">
         <ul id="tabs" class="nav nav-tabs" data-tabs="tabs" style=" border-bottom-width: 0px;">
                 <li class="active">
@@ -26,9 +39,9 @@
 		            </div><!-- .form-group -->
 					<div class="form-group">
 					   <?php echo $this->Form->input('curso_inicio',
-					         array('type' => 'text', 'class' => 'form-control datepicker-start', 'label'=>array('text' => 'Início', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
+					         array('type' => 'text', 'class' => 'form-control datepicker-start', 'onblur' => 'CursoFim()', 'label'=>array('text' => 'Início', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
 					   <?php echo $this->Form->input('curso_fim',
-					         array('type' => 'text', 'class' => 'form-control datepicker-end', 'label'=>array('text' => 'Fim', 'class'=>'col-sm-1 control-label', 'style' => 'padding-left: 0px;'), 'div'=>false, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
+					         array('type' => 'text', 'class' => 'form-control', 'label'=>array('text' => 'Fim', 'class'=>'col-sm-1 control-label', 'style' => 'padding-left: 0px;'), 'div'=>false, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
 					</div><!-- .form-group -->
 
 				</div>
