@@ -75,25 +75,9 @@ else
 					</tbody>
 				</table><!-- /.table table-striped table-bordered -->
 
-<a class="btn btn-default btn-xs" id="mostrar">Mostrar outros dados</a>
-<a class="btn btn-default btn-xs" id="fechar">Fechar outros dados</a>
+<?php echo $this->element('MostraEsconde', 
+   array('mostra' => 'Mostrar outros dados', 'esconde' => 'Fechar outros dados')); ?>
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('#dados').hide();
-		$('#fechar').hide();
-		$('#mostrar').click(function(){
-			$('#dados').show('slow');
-			$('#mostrar').hide();
-			$('#fechar').show();
-		});
-		$('#fechar').click(function(){
-			$('#dados').hide('slow');
-			$('#mostrar').show();
-			$('#fechar').hide();
-		});
-	});
-</script>
 <div id="dados" >
 				<table class="table table-hover table-condensed">
 					<tbody>

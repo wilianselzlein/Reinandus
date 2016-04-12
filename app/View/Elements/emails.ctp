@@ -5,27 +5,8 @@
 			<span class="fa fa-list"></span> <?php echo (isset($titulo)) ? $titulo : 'Emails'; ?>
         </h3>
     </div>
-    <?php /*
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('#dados').hide();
-			$('#fechar').hide();
-			$('#mostrar').click(function(){
-				$('#dados').show('slow');
-				$('#mostrar').hide();
-				$('#fechar').show();
-			});
-			$('#fechar').click(function(){
-				$('#dados').hide('slow');
-				$('#mostrar').show();
-				$('#fechar').hide();
-			});
-		});
-	</script>
-
-	<a class="btn btn-default btn-xs" id="mostrar">Mostrar</a>
-	<a class="btn btn-default btn-xs" id="fechar">Fechar</a>
-	*/ ?>
+    <?php /* echo $this->element('MostraEsconde', 
+   array('mostra' => 'Mostrar outros dados', 'esconde' => 'Fechar outros dados'); ?>*/ ?>
 	<div id="dados">
 		<div class="panel-body">
 			<div class="table-responsive">

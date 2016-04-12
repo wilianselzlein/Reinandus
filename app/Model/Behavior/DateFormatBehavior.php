@@ -37,7 +37,7 @@ class DateFormatBehavior extends ModelBehavior {
 
    //This function search an array to get a date or datetime field.
    function _changeDate($queryDataConditions , $dateFormat, $model){
-      if (isset($queryDataConditions)) {
+      if (isset($queryDataConditions) && is_array($queryDataConditions)) {
          foreach($queryDataConditions as $key => $value){
             if(is_array($value)){
                $queryDataConditions[$key] = $this->_changeDate($value,$dateFormat, $model);

@@ -39,9 +39,9 @@ class ContratosController extends AppController {
         
         $caminho = 'arqs/';
         if (isset($data['Contrato']['aluno_id'])) 
-        $arquivo = $data['Contrato']['aluno_id'] . ' - ' . $data['Contrato']['modelo'];
+            $arquivo = $data['Contrato']['aluno_id'] . ' - ' . $data['Contrato']['modelo'];
         else
-        $arquivo = $data['Contrato']['professor_id'] . ' - ' . $data['Contrato']['modelo'];
+            $arquivo = $data['Contrato']['professor_id'] . ' - ' . $data['Contrato']['modelo'];
 
         $fp = fopen($caminho . $arquivo, 'a');
         $escreve = fwrite($fp, $contrato);
@@ -59,10 +59,10 @@ class ContratosController extends AppController {
  * @return void
  */
 	public function aluno() {
-    $this->contrato();
+        $this->contrato();
 		$contas = $this->Contrato->Conta->findAsCombo();
 		$alunos = $this->Contrato->Aluno->findAsCombo();
-    $formapgtos = $this->Contrato->Formapgto->findAsCombo('asc', 'tipo <> "I"');
+        $formapgtos = $this->Contrato->Formapgto->findAsCombo('asc', 'tipo <> "I"');
 		$users = $this->Contrato->User->findAsCombo();
 		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
 	}
@@ -73,10 +73,10 @@ class ContratosController extends AppController {
  * @return void
  */
 	public function professor() {
-    $this->contrato();
-    $professores = $this->Contrato->Professor->findAsCombo();
-    $disciplinas = $this->Contrato->Disciplina->findAsCombo();
-    $this->set(compact('professores', 'disciplinas'));
+        $this->contrato();
+        $professores = $this->Contrato->Professor->findAsCombo('asc', 'Professor.cidade_id > 0');
+        $disciplinas = $this->Contrato->Disciplina->findAsCombo();
+        $this->set(compact('professores', 'disciplinas'));
 	}
 
 
@@ -86,8 +86,8 @@ class ContratosController extends AppController {
  * @return void
  */
 	public function download($caminho, $arquivo) {
-    $this->response->file($caminho . $arquivo, array('download' => true, 'name' => $arquivo));
-    return $this->response;
+        $this->response->file($caminho . $arquivo, array('download' => true, 'name' => $arquivo));
+        return $this->response;
 	}
 
 }

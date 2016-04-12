@@ -44,11 +44,16 @@
                <?php echo $this->Form->input('Grupo',array('multiple' => 'checkbox', /*'class' => 'form-control',*/ 'label'=>array('text' => 'Grupos', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             );?>
             </div><!-- .form-group -->
-            <div class="form-group">
-               <?php echo $this->Form->input('Curso',array('multiple' => 'checkbox', /*'class' => 'form-control',*/ 'label'=>array('text' => 'Cursos', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
-                                            );?>
-            </div><!-- .form-group -->
-
+            <?php echo $this->element('MostraEsconde', 
+              array('mostra' => 'Mostrar cursos', 'esconde' => 'Fechar cursos')); ?>
+            <div id="dados">
+              <div class="form-group">
+                 <?php echo $this->Form->input('Curso',array('multiple' => 'checkbox', /*'class' => 'form-control',*/ 'label'=>array('text' => 'Cursos', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+                                              );?>
+              </div><!-- .form-group -->
+            </div>
+            <br/>
+            <br/>
             <?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
 
 
