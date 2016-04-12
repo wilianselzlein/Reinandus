@@ -95,4 +95,15 @@ class CursoDisciplinasController extends AppController {
 		$this->redirect(array('controller' => 'cursos', 'action' => 'index'));
 	}
 
+/**
+ * view method
+ *
+ * @return void
+ */
+	public function view($id = null) {
+		$curso_id = $this->CursoDisciplina->findById($id, array('Curso.id'));
+		$curso_id = $curso_id['Curso']['id']; 
+		$this->redirect(array('controller' => 'cursos', 'action' => 'view', $curso_id));
+	}
+
 }

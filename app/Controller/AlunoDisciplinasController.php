@@ -132,4 +132,16 @@ class AlunoDisciplinasController extends AppController {
 		$this->redirect(array('controller' => 'alunos', 'action' => 'view', $aluno_id));
 	}
 
+
+/**
+ * view method
+ *
+ * @return void
+ */
+	public function view($id = null) {
+		$aluno_id = $this->AlunoDisciplina->findById($id, array('Aluno.id'));
+		$aluno_id = $aluno_id['Aluno']['id']; 
+		$this->redirect(array('controller' => 'alunos', 'action' => 'view', $aluno_id));
+	}
+
 }
