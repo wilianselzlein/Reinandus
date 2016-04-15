@@ -37,9 +37,7 @@ class PortalController extends AppController {
       $alunos = $Aluno->find('all', $options);
       $alunos = $alunos[0];
 
-      $Vaga = ClassRegistry::init('Aviso');
-      $options = array('recursive' => -1, 'conditions' => array('Aviso.tipo_id' => 24), 'order' => array('Aviso.Data DESC'));
-      $vagas = $Vaga->find('all', $options);
+      $vagas = $this->Portal->query('select * from vvagas');
 
       $Convenio = ClassRegistry::init('Pessoa');
       $Convenio->unbindModel(array('hasMany' => array('Curso', 'Usuario', 'Cidade', 'Aluno')));
@@ -60,11 +58,11 @@ class PortalController extends AppController {
 
       $anos = $this->PegarOsAnosDasMensalidades($mensalidades);
 
-      $Grupo = ClassRegistry::init('Grupo');
-      $grupos = $Grupo->findAsCombo();
+      $grupos = $this->Portal->query('select * from vgrupos');
+      $grupos = Set::combine($grupos, '{n}.vgrupos.grupo_id', '{n}.vgrupos.grupo_nome');
+
       $manual = $this->PegarLinkManualDoAlunoNoParametro();
       $pesquisa_ativa = $this->VerificarSePesquisaEstaAtiva();
-      
 
       $this->set(compact('alunos', 'grupos', 'materiais', 'notas', 'vagas', 'convenios', 'mensalidades', 'anos', 'manual', 'pesquisa_ativa'));
    }
