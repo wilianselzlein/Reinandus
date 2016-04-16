@@ -30,30 +30,13 @@ class PortalController extends AppController {
       $Acesso = new AcessosController;
       $Acesso->AdicionarHistoricoDeAcesso($id);
 
-      $Aluno = ClassRegistry::init('Aluno');
-      $Aluno->unbindModel(array('belongsTo' => array('Naturalidade', 'EstadoCivil', 'Indicacao', 'Cidade', 'Responsavel', 'Professor')));
-      $options = array('recursive' => 0, 'conditions' => array('Aluno.id' => $id), 
-        'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.email', 'Aluno.celular', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Aluno.situacao_id', 'Curso.id', 'Curso.nome', 'Curso.grupo_id', 'Curso.turma', 'Curso.calendario'));
-      $alunos = $Aluno->find('all', $options);
+      $alunos = $this->Portal->query('select * from valuno where aluno_id = ' . $id); 
       $alunos = $alunos[0];
-
       $vagas = $this->Portal->query('select * from vvagas');
       $convenios = $this->Portal->query('select * from vconvenios');
-
-      /*$Nota = ClassRegistry::init('AlunoDisciplina');
-      $Nota->unbindModel(array('belongsTo' => array('Aluno')));
-      $options = array('conditions' => array('AlunoDisciplina.aluno_id' => $id),
-        'fields' => array('AlunoDisciplina.id', 'AlunoDisciplina.aluno_id', 'AlunoDisciplina.frequencia', 'AlunoDisciplina.nota', 
-          'AlunoDisciplina.horas_aula', 'AlunoDisciplina.data', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome', 'Professor.email', 'Professor.emailalt', 'Professor.resumotitulacao'));
-      $notas = $Nota->find('all', $options);*/
       $notas = $this->Portal->query('select * from vdisciplinas where aluno_disciplina_aluno_id = ' . $id);
-
-      $Mensalidade = ClassRegistry::init('Mensalidade');
-      $options = array('conditions' => array('Mensalidade.aluno_id' => $id), 'fields' => array('Mensalidade.*', 'year(Mensalidade.vencimento) as ano', 'Aluno.nome', 'Aluno.curso_id'));
-      $mensalidades = $Mensalidade->find('all', $options);
-
+      $mensalidades = $this->Portal->query('select * from vmensalidades where mensalidade_aluno_id = ' . $id);
       $anos = $this->PegarOsAnosDasMensalidades($mensalidades);
-
       $grupos = $this->Portal->query('select * from vgrupos');
       $grupos = Set::combine($grupos, '{n}.vgrupos.grupo_id', '{n}.vgrupos.grupo_nome');
 
@@ -203,7 +186,7 @@ class PortalController extends AppController {
     private function PegarOsAnosDasMensalidades($mensalidades) {
       $anos = [];
       foreach ($mensalidades as $mensalidade) {
-        $ano = $mensalidade['0']['ano'];
+        $ano = $mensalidade['vmensalidades']['mensalidade_ano'];
         if (! in_array($ano, $anos))
           $anos[$ano] = $ano;
       }

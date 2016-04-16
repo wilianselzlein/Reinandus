@@ -1,9 +1,9 @@
   <?php 
   if (isset($mensalidades[0])) {
     echo $this->Form->create('Portal', array('role' => 'form', 'class'=>'form-horizontal', 'action' => 'comprovante', 'target' => '_blank')); 
-    echo $this->Form->hidden('id', array('value' => $mensalidades[0]['Mensalidade']['aluno_id']));
-    echo $this->Form->hidden('nome', array('value' => $mensalidades[0]['Aluno']['nome']));
-    echo $this->Form->hidden('curso', array('value' => $mensalidades[0]['Aluno']['curso_id']));
+    echo $this->Form->hidden('id', array('value' => $mensalidades[0]['vmensalidades']['mensalidade_aluno_id']));
+    echo $this->Form->hidden('nome', array('value' => $mensalidades[0]['vmensalidades']['aluno_nome']));
+    echo $this->Form->hidden('curso', array('value' => $mensalidades[0]['vmensalidades']['aluno_curso_id']));
     echo $this->Form->hidden('mensalidades', array('value' => serialize($mensalidades))); 
   ?>
   <div style="float: left; width: 30%;">
@@ -38,33 +38,35 @@ $bo = 0;
 $pa = 0;
 $li = 0;
 foreach ($mensalidades as $mensalidade):  
-  $vl += $mensalidade['Mensalidade']['valor'];
-  $ac += $mensalidade['Mensalidade']['acrescimo']; 
-  $de += $mensalidade['Mensalidade']['desconto']; 
-  $bo += $mensalidade['Mensalidade']['bolsa']; 
-  $pa += $mensalidade['Mensalidade']['pago']; 
-  $li += $mensalidade['Mensalidade']['liquido']; 
+  $vl += $mensalidade['vmensalidades']['mensalidade_valor'];
+  $ac += $mensalidade['vmensalidades']['mensalidade_acrescimo']; 
+  $de += $mensalidade['vmensalidades']['mensalidade_desconto']; 
+  $bo += $mensalidade['vmensalidades']['mensalidade_bolsa']; 
+  $pa += $mensalidade['vmensalidades']['mensalidade_pago']; 
+  $li += $mensalidade['vmensalidades']['mensalidade_liquido']; 
 ?>
     <tr>
-      <td><?php echo $mensalidade['Mensalidade']['numero']; ?> &nbsp;</td>
-      <td><?php echo h($mensalidade['Mensalidade']['vencimento']); ?> &nbsp;</td>
+      <td><?php echo $mensalidade['vmensalidades']['mensalidade_numero']; ?> &nbsp;</td>
+      <td><?php echo h($mensalidade['vmensalidades']['mensalidade_vencimento']); ?> &nbsp;</td>
       <td>
         <?php 
-          $pagamento = $mensalidade['Mensalidade']['pagamento'];
+          $pagamento = $mensalidade['vmensalidades']['mensalidade_pagamento'];
           if (! is_null($pagamento))
              echo h($pagamento);
           else  {
-             echo $this->Html->link('<i class="fa fa-print"></i>', array('action' => 'boleto', $mensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs', 'escape' => false, 'title' => __('Imprimir Boleto'), 'data-toggle' => 'tooltip', 'target' => '_blank'));
+             echo $this->Html->link('<i class="fa fa-print"></i>', 
+              array('action' => 'boleto', $mensalidade['vmensalidades']['mensalidade_id']), 
+              array('class' => 'btn btn-default btn-xs', 'escape' => false, 'title' => __('Imprimir Boleto'), 'data-toggle' => 'tooltip', 'target' => '_blank'));
            } 
         ?> 
       &nbsp;
       </td>
-      <td><?php echo $this->Number->currency($mensalidade['Mensalidade']['valor'], 'BRL'); ?> &nbsp;</td>
-      <td><?php echo $this->Number->currency($mensalidade['Mensalidade']['acrescimo'], 'BRL'); ?> &nbsp;</td>
-      <td><?php echo $this->Number->currency($mensalidade['Mensalidade']['desconto'], 'BRL'); ?> &nbsp;</td>
-      <td><?php echo $this->Number->currency($mensalidade['Mensalidade']['bolsa'], 'BRL'); ?> &nbsp;</td>
-      <td><?php echo $this->Number->currency($mensalidade['Mensalidade']['pago'], 'BRL'); ?> &nbsp;</td>
-      <td><?php echo $this->Number->currency($mensalidade['Mensalidade']['liquido'], 'BRL'); ?> &nbsp;</td>
+      <td><?php echo $this->Number->currency($mensalidade['vmensalidades']['mensalidade_valor'], 'BRL'); ?> &nbsp;</td>
+      <td><?php echo $this->Number->currency($mensalidade['vmensalidades']['mensalidade_acrescimo'], 'BRL'); ?> &nbsp;</td>
+      <td><?php echo $this->Number->currency($mensalidade['vmensalidades']['mensalidade_desconto'], 'BRL'); ?> &nbsp;</td>
+      <td><?php echo $this->Number->currency($mensalidade['vmensalidades']['mensalidade_bolsa'], 'BRL'); ?> &nbsp;</td>
+      <td><?php echo $this->Number->currency($mensalidade['vmensalidades']['mensalidade_pago'], 'BRL'); ?> &nbsp;</td>
+      <td><?php echo $this->Number->currency($mensalidade['vmensalidades']['mensalidade_liquido'], 'BRL'); ?> &nbsp;</td>
     </tr>
 <?php endforeach; ?>
     <tr>

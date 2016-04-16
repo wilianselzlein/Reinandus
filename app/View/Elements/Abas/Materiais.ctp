@@ -3,7 +3,7 @@
     <?php echo $this->Ajax->Form(array('type' => 'post', 'options' => array('id' => 'form_materiais', 'model'=>'Post', 'update'=>'div_materiais', 'indicator' => 'barra_materiais', 'url' => array('controller' => 'portal', 'action' => 'materiais')))); ?>
     <div style="float: left; width: 70%;">
       <div class="form-group">
-        <?php echo $this->Form->input('grupo', array('class' => 'form-control', 'options' => $grupos, 'selected' => $alunos['Curso']['grupo_id'], 'label'=>array('text' => 'Curso:'))); ?>
+        <?php echo $this->Form->input('grupo', array('class' => 'form-control', 'options' => $grupos, 'selected' => $alunos['valuno']['curso_grupo_id'], 'label'=>array('text' => 'Curso:'))); ?>
       </div><!-- .form-group -->
     </div>
     <div style="float: left; width: 30%;"> <br/> &nbsp; 

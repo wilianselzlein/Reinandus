@@ -5,21 +5,21 @@
          <fieldset>
             <div class="form-group">
                <?php echo $this->Form->input('nome',
-                     array('class' => 'form-control', 'default' => $alunos['Aluno']['nome'], 'readonly' => 'readonly', 'label'=>array('class'=>'col-sm-1 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-7">', 'after'=>'</div>')); ?>
+                     array('class' => 'form-control', 'default' => $alunos['valuno']['aluno_nome'], 'readonly' => 'readonly', 'label'=>array('class'=>'col-sm-1 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-7">', 'after'=>'</div>')); ?>
                <?php echo $this->Form->input('matricula',
-                     array('class' => 'form-control', 'default' => $alunos['Aluno']['id'], 'readonly' => 'readonly', 'label'=>array('class'=>'col-sm-1 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-3">', 'after'=>'</div>')); ?>
+                     array('class' => 'form-control', 'default' => $alunos['valuno']['aluno_id'], 'readonly' => 'readonly', 'label'=>array('class'=>'col-sm-1 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-3">', 'after'=>'</div>')); ?>
             </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('email',
-                     array('class' => 'form-control', 'default' => $alunos['Aluno']['email'], 'readonly' => 'readonly', 'label'=>array('class'=>'col-sm-1 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-7">', 'after'=>'</div>')); ?>
+                     array('class' => 'form-control', 'default' => $alunos['valuno']['aluno_email'], 'readonly' => 'readonly', 'label'=>array('class'=>'col-sm-1 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-7">', 'after'=>'</div>')); ?>
                <?php echo $this->Form->input('telefone',
-                     array('class' => 'form-control', 'default' => $alunos['Aluno']['celular'], 'readonly' => 'readonly', 'label'=>array('class'=>'col-sm-1 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-3">', 'after'=>'</div>')); ?>
+                     array('class' => 'form-control', 'default' => $alunos['valuno']['aluno_celular'], 'readonly' => 'readonly', 'label'=>array('class'=>'col-sm-1 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-3">', 'after'=>'</div>')); ?>
             </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('curso',
-                     array('class' => 'form-control', 'default' => $alunos['Curso']['nome'], 'readonly' => 'readonly', 'label'=>array('class'=>'col-sm-1 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-7">', 'after'=>'</div>')); ?>
+                     array('class' => 'form-control', 'default' => $alunos['valuno']['curso_nome'], 'readonly' => 'readonly', 'label'=>array('class'=>'col-sm-1 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-7">', 'after'=>'</div>')); ?>
                <?php echo $this->Form->input('turma',
-                     array('class' => 'form-control', 'default' => $alunos['Curso']['turma'], 'readonly' => 'readonly', 'label'=>array('class'=>'col-sm-1 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-3">', 'after'=>'</div>')); ?>
+                     array('class' => 'form-control', 'default' => $alunos['valuno']['curso_turma'], 'readonly' => 'readonly', 'label'=>array('class'=>'col-sm-1 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-3">', 'after'=>'</div>')); ?>
             </div><!-- .form-group -->
             <b>O abaixo assinado vem requerer:</b>
             <div class="panel panel-default">

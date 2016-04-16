@@ -1,6 +1,6 @@
-<h4><?php echo $alunos['Curso']['nome']; ?></h4>
+<h4><?php echo $alunos['valuno']['curso_nome']; ?></h4>
 <?php 
-    $site = $alunos['Curso']['calendario'];
+    $site = $alunos['valuno']['curso_calendario'];
     
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
