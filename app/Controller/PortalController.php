@@ -38,19 +38,15 @@ class PortalController extends AppController {
       $alunos = $alunos[0];
 
       $vagas = $this->Portal->query('select * from vvagas');
+      $convenios = $this->Portal->query('select * from vconvenios');
 
-      $Convenio = ClassRegistry::init('Pessoa');
-      $Convenio->unbindModel(array('hasMany' => array('Curso', 'Usuario', 'Cidade', 'Aluno')));
-      $options = array('recursive' => 1, 'conditions' => array('Pessoa.desconto > ' => 0), 'order' => array('Pessoa.fantasia'), 
-        'fields' => array('Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 'Pessoa.fone', 'Pessoa.Empresa', 'Pessoa.contato', 'Pessoa.desconto'));
-      $convenios = $Convenio->find('all', $options);
-
-      $Nota = ClassRegistry::init('AlunoDisciplina');
+      /*$Nota = ClassRegistry::init('AlunoDisciplina');
       $Nota->unbindModel(array('belongsTo' => array('Aluno')));
       $options = array('conditions' => array('AlunoDisciplina.aluno_id' => $id),
         'fields' => array('AlunoDisciplina.id', 'AlunoDisciplina.aluno_id', 'AlunoDisciplina.frequencia', 'AlunoDisciplina.nota', 
           'AlunoDisciplina.horas_aula', 'AlunoDisciplina.data', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome', 'Professor.email', 'Professor.emailalt', 'Professor.resumotitulacao'));
-      $notas = $Nota->find('all', $options);
+      $notas = $Nota->find('all', $options);*/
+      $notas = $this->Portal->query('select * from vdisciplinas where aluno_disciplina_aluno_id = ' . $id);
 
       $Mensalidade = ClassRegistry::init('Mensalidade');
       $options = array('conditions' => array('Mensalidade.aluno_id' => $id), 'fields' => array('Mensalidade.*', 'year(Mensalidade.vencimento) as ano', 'Aluno.nome', 'Aluno.curso_id'));

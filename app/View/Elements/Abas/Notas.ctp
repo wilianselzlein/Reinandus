@@ -34,18 +34,18 @@ $ha = 0;
 $nt = 0;
 $fr = 0;
 foreach ($notas as $nota):  
-$ha += $nota['AlunoDisciplina']['horas_aula'];
-$nt += $nota['AlunoDisciplina']['nota']; 
-$fr += $nota['AlunoDisciplina']['frequencia']; 
+$ha += $nota['vdisciplinas']['aluno_disciplina_horas_aula'];
+$nt += $nota['vdisciplinas']['aluno_disciplina_nota']; 
+$fr += $nota['vdisciplinas']['aluno_disciplina_frequencia']; 
 ?>
     <tr>
-      <td><?php echo $nota['Disciplina']['nome']; ?>&nbsp;</td>
-      <td><?php echo $nota['Professor']['nome']; ?>&nbsp;<a><?php echo $nota['Professor']['email']; ?></a></td>
-      <td><?php echo $nota['Professor']['resumotitulacao']; ?>&nbsp;</td>
-      <td><?php echo h($nota['AlunoDisciplina']['data']); ?>&nbsp;</td>
-      <td><?php echo $nota['AlunoDisciplina']['horas_aula']; ?>&nbsp;</td>
-      <td><?php echo $nota['AlunoDisciplina']['frequencia']; ?>&nbsp;</td>
-      <td><?php echo $nota['AlunoDisciplina']['nota']; ?>&nbsp;</td>
+      <td><?php echo $nota['vdisciplinas']['disciplina_nome']; ?>&nbsp;</td>
+      <td><?php echo $nota['vdisciplinas']['professor_nome']; ?>&nbsp;</td>
+      <td><?php echo $nota['vdisciplinas']['professor_resumo_titulacao']; ?>&nbsp;</td>
+    <td><?php   echo h($nota['vdisciplinas']['aluno_disciplina_data']); ?>&nbsp;</td>
+      <td><?php echo $nota['vdisciplinas']['aluno_disciplina_horas_aula']; ?>&nbsp;</td>
+      <td><?php echo $nota['vdisciplinas']['aluno_disciplina_frequencia']; ?>&nbsp;</td>
+      <td><?php echo $nota['vdisciplinas']['aluno_disciplina_nota']; ?>&nbsp;</td>
     </tr>
 <?php endforeach; ?>
     <tr>
