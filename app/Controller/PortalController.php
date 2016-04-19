@@ -108,7 +108,7 @@ class PortalController extends AppController {
       $grupo = $this->request->data;
       $grupo = $grupo['Post']['grupo'];
 
-      $Curso = ClassRegistry::init('Curso');
+      /*$Curso = ClassRegistry::init('Curso');
       $options = array('fields' => array('Curso.id'), 'recursive' => -1, 'conditions' => array('Curso.grupo_id' => $grupo));
       $cursos = $Curso->find('list', $options);
       sort($cursos);
@@ -130,7 +130,9 @@ class PortalController extends AppController {
 
       $Aviso = ClassRegistry::init('Aviso');
       $options = array('recursive' => -1, 'conditions' => array('Aviso.id >= ' => min($registros), 'Aviso.id <= ' => max($registros), 'AND' => array('Aviso.id' => $registros), 'Aviso.tipo_id' => $tipo), 'order' => array('Aviso.Data DESC'));
-      $avisos = $Aviso->find('all', $options);
+      $avisos = $Aviso->find('all', $options);*/
+      $avisos = $this->Portal->query('select * from vavisos where grupo_id = ' . $grupo . ' and aviso_tipo_id = ' . $tipo);
+
       return $avisos;
     }
 
@@ -214,3 +216,4 @@ class PortalController extends AppController {
     }
 
 }
+  
