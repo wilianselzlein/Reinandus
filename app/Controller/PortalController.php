@@ -107,30 +107,6 @@ class PortalController extends AppController {
     private function CarregarDadosAvisos($tipo) {
       $grupo = $this->request->data;
       $grupo = $grupo['Post']['grupo'];
-
-      /*$Curso = ClassRegistry::init('Curso');
-      $options = array('fields' => array('Curso.id'), 'recursive' => -1, 'conditions' => array('Curso.grupo_id' => $grupo));
-      $cursos = $Curso->find('list', $options);
-      sort($cursos);
-      if (empty($cursos)) $cursos[] = 0;
-
-      $AvisoCurso = ClassRegistry::init('AvisoCurso');
-      $options = array('fields' => array('AvisoCurso.aviso_id'), 'recursive' => -1, 'conditions' => array('AvisoCurso.curso_id >= ' => min($cursos), 'AvisoCurso.curso_id <= ' => max($cursos), 'AND' => array('AvisoCurso.curso_id' => $cursos)));
-      $avisoscurso = $AvisoCurso->find('list', $options);
-      sort($avisoscurso);
-      if (empty($avisoscurso)) $avisoscurso[] = 0;
-
-      $AvisoGrupo = ClassRegistry::init('AvisoGrupo');
-      $options = array('fields' => array('AvisoGrupo.aviso_id'), 'recursive' => -1, 'conditions' => array('AvisoGrupo.grupo_id' => $grupo));
-      $avisosgrupo = $AvisoGrupo->find('list', $options);
-      sort($avisosgrupo);
-      if (empty($avisosgrupo)) $avisosgrupo[] = 0;
-
-      $registros = array_merge($avisoscurso, $avisosgrupo);
-
-      $Aviso = ClassRegistry::init('Aviso');
-      $options = array('recursive' => -1, 'conditions' => array('Aviso.id >= ' => min($registros), 'Aviso.id <= ' => max($registros), 'AND' => array('Aviso.id' => $registros), 'Aviso.tipo_id' => $tipo), 'order' => array('Aviso.Data DESC'));
-      $avisos = $Aviso->find('all', $options);*/
       $avisos = $this->Portal->query('select * from vavisos where grupo_id = ' . $grupo . ' and aviso_tipo_id = ' . $tipo);
 
       return $avisos;
