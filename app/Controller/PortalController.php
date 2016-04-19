@@ -129,26 +129,6 @@ class PortalController extends AppController {
 
       $Curso = new CursosController;
       $curso = $Curso->PegarDadosParaImpressaoDaMatricula($dados['Portal']['curso']);
-
-      /*$situacao = [];
-      if (isset($dados['Portal']['situacao'])) {
-        $situacao[] = $dados['Portal']['situacao'];
-      }
-
-      /*$Instit = ClassRegistry::init('Instituto');
-      $Instit->recursive = 1;
-      $consulta = $Instit->findByTipoId(32,
-        array('Instituto.id', 'Instituto.empresa_id', 'Empresa.razaosocial', 'Empresa.cnpjcpf', 'Empresa.endereco', 'Empresa.numero', 'Empresa.bairro', 'Empresa.cidade_id', 'Empresa.fone', 'Empresa.email', 'Empresa.site', 'Diretor.razaosocial'));
-      $instituto['Instituto'] = $consulta;
-
-      $consulta = $Instit->findByTipoId(33,
-        array('Instituto.id', 'Instituto.empresa_id', 'Empresa.razaosocial', 'Diretor.razaosocial'));
-      $instituicao['Instituicao'] = $consulta;
-
-      $Cidade = ClassRegistry::init('Cidade');
-      $Cidade->recursive = 0;
-      $cidade = $Cidade->findById($instituto['Instituto']['Empresa']['cidade_id'], array('Cidade.nome', 'Estado.sigla'));
-      $instituto['Instituto']['Cidade'] = $cidade;*/
       
       $consulta = $this->Portal->query('select * from vinstituto');
       $instituto['Instituto'] = $consulta[0]['vinstituto'];
