@@ -20,7 +20,7 @@
     echo '<img src="' . '/img/uploads/'.$data['Cabecalho']['logo'] . '" alt="" height="51" width="147">';
 ?>
 		    </td>
-		    <td width="84%"><?php echo $dados['Instituicao']['Empresa']['razaosocial']; ?><br>
+		    <td width="84%"><?php echo $dados['Instituicao']['empresa_razaosocial']; ?><br>
 		      CURSO DE PÓS-GRADUAÇÃO- Reconhecido pela Portaria M.E.C. nº. 1801- D.O.U. 14/07/2003<br>
 		    Mantida pela Sociedade Educacional de Ciências e Tecnologia</td>
   		</tr>
@@ -33,14 +33,14 @@
 <p class="style2" align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Declaramos para os devidos fins que <?php echo $dados['Portal']['nome']; ?> é
     aluno(a) matriculado(a) no Curso de Pós-Graduação em <?php echo $dados['Curso']['nome']; ?>
     nesta instituição de ensino, com início em <?php echo h(date('d/m/Y', strtotime($dados['Portal']['curso_inicio']))); ?> e previsão de térmio até <?php echo h(date('d/m/Y', strtotime($dados['Portal']['curso_fim']))); ?>.
-    Atualmente a situação do aluno(a) encontra-se como <?php echo $dados['Enumerado']['valor']; ?>.
+    Atualmente a situação do aluno(a) encontra-se como <?php echo $dados['Portal']['situacao']; ?>.
 </p>
 
 <p class="style2" align="justify"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E por ser verdade firmamos a presente.</p>
 
 <p class="style2" align="center">
-<?php echo $dados['Instituto']['Cidade']['Cidade']['nome']; ?>&nbsp;-&nbsp;
-<?php echo $dados['Instituto']['Cidade']['Estado']['sigla']; ?>,&nbsp;
+<?php echo $dados['Instituto']['cidade_nome']; ?>&nbsp;-&nbsp;
+<?php echo $dados['Instituto']['estado_sigla']; ?>,&nbsp;
 <script language="JavaScript">
     hoje = new Date()
     dia = hoje.getDate()
@@ -93,15 +93,15 @@ Departamento de Pós-Graduação</strong></p>
 <br><br>
 <br><br>
 <p class="style2" align="left">
- <?php echo $dados['Instituto']['Empresa']['razaosocial']; ?><br>
- <?php echo $dados['Instituto']['Empresa']['endereco']; ?>&nbsp;
- <?php echo $dados['Instituto']['Empresa']['numero']; ?>&nbsp;
- <?php echo $dados['Instituto']['Empresa']['bairro']; ?><br>
- <?php echo $dados['Instituto']['Cidade']['Cidade']['nome']; ?>&nbsp;
- <?php echo $dados['Instituto']['Cidade']['Estado']['sigla']; ?>&nbsp;
- <?php echo $dados['Instituto']['Empresa']['fone']; ?>&nbsp;
- <?php echo $dados['Instituto']['Empresa']['email']; ?>&nbsp;
- <?php echo $dados['Instituto']['Empresa']['site']; ?>
+ <?php echo $dados['Instituto']['empresa_razaosocial']; ?><br>
+ <?php echo $dados['Instituto']['empresa_endereco']; ?>&nbsp;
+ <?php echo $dados['Instituto']['empresa_numero']; ?>&nbsp;
+ <?php echo $dados['Instituto']['empresa_bairro']; ?><br>
+ <?php echo $dados['Instituto']['cidade_nome']; ?>&nbsp;
+ <?php echo $dados['Instituto']['estado_sigla']; ?>&nbsp;
+ <?php echo $dados['Instituto']['empresa_fone']; ?>&nbsp;
+ <?php echo $dados['Instituto']['empresa_email']; ?>&nbsp;
+ <?php echo $dados['Instituto']['empresa_site']; ?>
  </p>
 <script>window.print();</script>
 </body>

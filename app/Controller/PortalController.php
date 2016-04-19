@@ -130,14 +130,12 @@ class PortalController extends AppController {
       $Curso = new CursosController;
       $curso = $Curso->PegarDadosParaImpressaoDaMatricula($dados['Portal']['curso']);
 
-      $situacao = [];
+      /*$situacao = [];
       if (isset($dados['Portal']['situacao'])) {
-        $Situacao = ClassRegistry::init('Enumerado');
-        $Situacao->recursive = -1;
-        $situacao = $Situacao->findById($dados['Portal']['situacao'], array('Enumerado.valor'));
+        $situacao[] = $dados['Portal']['situacao'];
       }
 
-      $Instit = ClassRegistry::init('Instituto');
+      /*$Instit = ClassRegistry::init('Instituto');
       $Instit->recursive = 1;
       $consulta = $Instit->findByTipoId(32,
         array('Instituto.id', 'Instituto.empresa_id', 'Empresa.razaosocial', 'Empresa.cnpjcpf', 'Empresa.endereco', 'Empresa.numero', 'Empresa.bairro', 'Empresa.cidade_id', 'Empresa.fone', 'Empresa.email', 'Empresa.site', 'Diretor.razaosocial'));
@@ -150,9 +148,13 @@ class PortalController extends AppController {
       $Cidade = ClassRegistry::init('Cidade');
       $Cidade->recursive = 0;
       $cidade = $Cidade->findById($instituto['Instituto']['Empresa']['cidade_id'], array('Cidade.nome', 'Estado.sigla'));
-      $instituto['Instituto']['Cidade'] = $cidade;
+      $instituto['Instituto']['Cidade'] = $cidade;*/
+      
+      $consulta = $this->Portal->query('select * from vinstituto');
+      $instituto['Instituto'] = $consulta[0]['vinstituto'];
+      $instituicao['Instituicao'] = $consulta[1]['vinstituto'];
 
-      $dados = array_merge($dados, $curso, $situacao, $instituto, $instituicao);
+      $dados = array_merge($dados, $curso, $instituto, $instituicao);
       return $dados;
     }
 

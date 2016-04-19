@@ -5,7 +5,7 @@
   <?php echo $this->Form->hidden('curso', array('value' => $alunos['valuno']['curso_id'])); ?>
   <?php echo $this->Form->hidden('curso_inicio', array('value' => $alunos['valuno']['aluno_curso_inicio'])); ?>
   <?php echo $this->Form->hidden('curso_fim', array('value' => $alunos['valuno']['aluno_curso_fim'])); ?>
-  <?php echo $this->Form->hidden('situacao', array('value' => $alunos['valuno']['aluno_situacao_id'])); ?>
+  <?php echo $this->Form->hidden('situacao', array('value' => $alunos['valuno']['situacao_valor'])); ?>
 
   <?php echo $this->Form->button('<i class="fa fa-print"></i>'.' '.__('Imprimir Declaração de Matrícula'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit', 'id' => 'btn_materiais')); ?>
 <?php echo $this->Form->end(); ?>
