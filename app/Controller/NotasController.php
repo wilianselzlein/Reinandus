@@ -44,7 +44,9 @@ class NotasController extends AppController {
 			array('AlunoDisciplina.professor_id' => $professor, 'Aluno.curso_id' => $cursos, 'AlunoDisciplina.disciplina_id' => $disciplinas),
 			'fields' => array('AlunoDisciplina.id', 'AlunoDisciplina.aluno_id', 'AlunoDisciplina.disciplina_id', 'AlunoDisciplina.professor_id', 'AlunoDisciplina.frequencia', 
 				'AlunoDisciplina.nota', 'AlunoDisciplina.horas_aula', 'AlunoDisciplina.data', 'Aluno.id', 'Aluno.nome', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome')));
-		$this->set(compact('notas'));
+
+		$professores = $this->Nota->Professor->findAsCombo();
+		$this->set(compact('notas', 'professores'));
 	}
 
 /**
@@ -56,8 +58,9 @@ class NotasController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 
 			$data = $this->request->data;
+			//debug($data); die;
 			foreach ($data as $item) {
-				
+				//debug($item['AlunoDisciplina']); die;
 				$this->Nota->AlunoDisciplina->create();
 				$this->Nota->AlunoDisciplina->save($item['AlunoDisciplina']);
 
