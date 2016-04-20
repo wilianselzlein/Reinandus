@@ -33,8 +33,8 @@
                           <td><?php echo $ContasPagar['documento']; ?></td>
                           <td><?php echo $this->DisplayField->MakeLink($ContasPagar, 'pessoas', 'pessoa_id'); ?></td>
                           <td><?php echo $this->Number->currency($ContasPagar['valor'], 'BRL'); ?></td>
-                          <td><?php echo date('d/m/Y', strtotime($ContasPagar['vencimento'])); ?></td>
-                          <td><?php echo date('d/m/Y', strtotime($ContasPagar['pagamento'])); ?></td>
+                          <td><?php echo h($ContasPagar['vencimento']); ?></td>
+                          <td><?php echo h($ContasPagar['pagamento']); ?></td>
                 			<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $ContasPagar, 'model' => '', 'controller' => 'ContasPagar')); ?>
                 		</tr>
                     <?php endforeach; ?>

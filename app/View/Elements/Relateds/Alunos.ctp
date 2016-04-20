@@ -37,8 +37,8 @@
                   <td><?php echo $this->DisplayField->MakeLink($aluno, 'Situacao', 'situacao_id'); ?></td>
                   <td><?php echo $aluno['celular']; ?></td>
                   <td><?php echo $aluno['email']; ?></td>
-                  <td><?php echo date('d/m/Y', strtotime($aluno['curso_inicio'])); ?></td>
-                  <td><?php echo date('d/m/Y', strtotime($aluno['curso_fim'])); ?></td>
+                  <td><?php echo h($aluno['curso_inicio']); ?></td>
+                  <td><?php echo h($aluno['curso_fim']); ?></td>
                   <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $aluno, 'model' => '', 'controller' => 'alunos')); ?>
                </tr>
                <?php endforeach; ?>

@@ -30,7 +30,7 @@
 					<?php foreach ($array['LancamentoContabil'] as $lctocontabil): ?>
 						<tr>
 	<td><?php echo $lctocontabil['id']; ?></td>
-	<td><?php echo date('d/m/Y', strtotime($lctocontabil['data'])); ?></td>
+	<td><?php echo h($lctocontabil['data']); ?></td>
 	<td><?php echo $this->DisplayField->MakeLink($lctocontabil, 'debito', 'debito_id'); ?></td>
 	<td><?php echo $this->DisplayField->MakeLink($lctocontabil, 'credito', 'credito_id'); ?></td>
 	<td><?php echo $this->Number->currency($lctocontabil['valor'],'BRL');?></td>

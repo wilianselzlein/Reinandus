@@ -32,8 +32,8 @@
 	    	<td><?php echo $user['id']; ?></td>
 			<td><?php echo $user['username']; ?></td>
 			<td><?php echo $this->DisplayField->MakeLink($user, 'pessoas', 'pessoa_id'); ?></td>
-			<td><?php echo date('d/m/Y', strtotime($user['created'])); ?></td>
-			<td><?php echo date('d/m/Y', strtotime($user['modified'])); ?></td>
+			<td><?php echo h($user['created']); ?></td>
+			<td><?php echo h($user['modified']); ?></td>
 			<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $user, 'model' => '', 'controller' => 'usuarios')); ?>
 		</tr>
 	<?php endforeach; ?>
