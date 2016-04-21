@@ -21,6 +21,10 @@
 <?php echo $this->Form->input('liquido',
      array('class' => 'form-control currency', 'type'=>'text', 'label'=>array('class'=>'col-sm-1 control-label', 'style' => 'padding-left: 0px;'), 'div'=>false,'wrap'=>false, 'between'=>'<div class="col-sm-4"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div></div>')); ?>
 </div><!-- .form-group -->
+<?php if ($baixa) { ?>
+<div class="panel panel-default">
+  <div class="panel-body">
+<?php } ?>
 <div class="form-group">
 <?php echo $this->Form->input('pago',
      array('class' => 'form-control currency', 'type'=>'text', 'label'=>array('text' => 'Valor Pago', 'class'=>'col-sm-2 control-label'), 'div'=>false,'wrap'=>false, 'between'=>'<div class="col-sm-4"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div></div>')); ?>
@@ -50,6 +54,10 @@
 <?php echo $this->Form->input('documento',
      array('class' => 'form-control', 'label'=>array('class'=>'col-sm-1 control-label', 'style' => 'padding-left: 0px;'), 'div'=>true, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
 </div><!-- .form-group -->
+<?php if ($baixa) { ?>
+</div>
+  </div>
+<?php } ?>
 <?php if (! $baixa) { ?>
      <div class="form-group">
      <?php echo $this->Form->input('obs',
