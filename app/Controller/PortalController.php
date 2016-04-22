@@ -127,14 +127,12 @@ class PortalController extends AppController {
       if (count($dados) == 0)
         $this->redirect(array('action' => 'index'));
 
-      $Curso = new CursosController;
-      $curso = $Curso->PegarDadosParaImpressaoDaMatricula($dados['Portal']['curso']);
-      
       $consulta = $this->Portal->query('select * from vinstituto');
       $instituto['Instituto'] = $consulta[0]['vinstituto'];
       $instituicao['Instituicao'] = $consulta[1]['vinstituto'];
+      $cabecalho = $this->Portal->query('select * from vcabecalho');
 
-      $dados = array_merge($dados, $curso, $instituto, $instituicao);
+      $dados = array_merge($dados, $instituto, $instituicao, $cabecalho[0]);
       return $dados;
     }
 

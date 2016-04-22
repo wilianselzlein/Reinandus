@@ -3,6 +3,10 @@
   <?php echo $this->Form->hidden('id', array('value' => $alunos['valuno']['aluno_id'])); ?>
   <?php echo $this->Form->hidden('nome', array('value' => $alunos['valuno']['aluno_nome'])); ?>
   <?php echo $this->Form->hidden('curso', array('value' => $alunos['valuno']['curso_id'])); ?>
+  <?php echo $this->Form->hidden('curso_nome', array('value' => $alunos['valuno']['curso_nome'])); ?>
+  <?php echo $this->Form->hidden('curso_turma', array('value' => $alunos['valuno']['curso_turma'])); ?>
+  <?php echo $this->Form->hidden('pessoa_razaosocial', array('value' => $alunos['valuno']['pessoa_razaosocial'])); ?>
+  <?php echo $this->Form->hidden('user_assinatura', array('value' => $alunos['valuno']['user_assinatura'])); ?>
   <?php echo $this->Form->hidden('curso_inicio', array('value' => $alunos['valuno']['aluno_curso_inicio'])); ?>
   <?php echo $this->Form->hidden('curso_fim', array('value' => $alunos['valuno']['aluno_curso_fim'])); ?>
   <?php echo $this->Form->hidden('situacao', array('value' => $alunos['valuno']['situacao_valor'])); ?>

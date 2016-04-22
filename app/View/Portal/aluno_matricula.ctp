@@ -15,9 +15,7 @@
   		<tr>
 		    <td width="16%">
 <?php      
-    $class = ClassRegistry::init('Cabecalho');
-    $data = $class->find('first');
-    echo '<img src="' . '/img/uploads/'.$data['Cabecalho']['logo'] . '" alt="" height="51" width="147">';
+    echo '<img src="' . '/img/uploads/'.$dados['vcabecalho']['cabecalho_logo'] . '" alt="" height="51" width="147">';
 ?>
 		    </td>
 		    <td width="84%"><?php echo $dados['Instituicao']['empresa_razaosocial']; ?><br>
@@ -31,7 +29,7 @@
 <p class="style1" align="center">D E C L A R A Ç Ã O&nbsp;&nbsp;&nbsp;&nbsp;D E&nbsp;&nbsp;&nbsp;&nbsp;M A T R Í C U L A </p>
 <p class="style2" align="center">IMPRESSA VIA SITE.</p>
 <p class="style2" align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Declaramos para os devidos fins que <?php echo $dados['Portal']['nome']; ?> é
-    aluno(a) matriculado(a) no Curso de Pós-Graduação em <?php echo $dados['Curso']['nome']; ?>
+    aluno(a) matriculado(a) no Curso de Pós-Graduação em <?php echo $dados['Portal']['curso_nome']; ?>
     nesta instituição de ensino, com início em <?php echo h(date('d/m/Y', strtotime($dados['Portal']['curso_inicio']))); ?> e previsão de térmio até <?php echo h(date('d/m/Y', strtotime($dados['Portal']['curso_fim']))); ?>.
     Atualmente a situação do aluno(a) encontra-se como <?php echo $dados['Portal']['situacao']; ?>.
 </p>
@@ -80,13 +78,13 @@
 </script>
 </p>
 <p align="center">
- <?php if ((isset($dados['User']['assinatura'])) && ($dados['User']['assinatura'] != '')) { ?> 
+ <?php if ((isset($dados['Portal']['user_assinatura'])) && ($dados['Portal']['user_assinatura'] != '')) { ?> 
     <img src="data:image/jpeg;base64,
-       <?php echo h($dados['User']['assinatura']); ?>" 
+       <?php echo h($dados['Portal']['user_assinatura']); ?>" 
  <?php } ?> &nbsp;
 
 </p>
-<p class="style2" align="center"><strong><?php echo $dados['Pessoa']['razaosocial']; ?><br>
+<p class="style2" align="center"><strong><?php echo $dados['Portal']['pessoa_razaosocial']; ?><br>
 Departamento de Pós-Graduação</strong></p>
 <br><br>
 <br><br>

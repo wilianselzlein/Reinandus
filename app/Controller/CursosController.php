@@ -189,27 +189,4 @@ class CursosController extends AppController {
 		$this->set('disciplina', $this->CursoDisciplina->find('all', $options));
 	}
 
-/**
- * PegarDadosParaImpressaoDaMatricula method
- * @throws NotFoundException
- * @param string $id
- * @return array
- */
-	public function PegarDadosParaImpressaoDaMatricula($id) {
-		if (!$this->Curso->exists($id)) {
-			throw new NotFoundException(__('The record could not be found.'));
-		}
-
-		$options = array('recursive' => 0, 'conditions' => array('Curso.' . $this->Curso->primaryKey => $id),
-			'fields' => array('Curso.nome', 'Curso.turma', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial'));
-		$this->Curso->unbindModel(array('hasMany' => array('Professor', 'Grupo', 'Tipo', 'Periodo')));
-		$curso = $this->Curso->find('first', $options);
-
-		$Usuario = ClassRegistry::init('User');
-		$Usuario->recursive = -1;
-		$usuario = $Usuario->findByPessoaId($curso['Pessoa']['id'], array('User.assinatura'));
-
-		$dados = array_merge($curso, $usuario);
-		return $dados;
-	}
 }
