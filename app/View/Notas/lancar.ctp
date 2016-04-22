@@ -38,7 +38,9 @@
                      <?php echo $this->Html->link($nota['Disciplina']['nome'], array('controller' => 'disciplinas', 'action' => 'view', $nota['Disciplina']['id'])); ?>
                   </td>
                   <td>
-                     <?php echo $this->Html->link($nota['Professor']['nome'], array('controller' => 'professores', 'action' => 'view', $nota['Professor']['id'])); ?>
+                        <?php echo $this->Form->input('professor_id', array('class' => 'form-control combobox', 
+                              'label' => false, 'div'=>true, 'value' =>  $nota['Professor']['id'], 
+                              'name' => 'data[' . $conta . '][AlunoDisciplina][professor_id]')); ?>
                   </td>
                   <td>
                      <?php echo $this->Html->link($nota['Aluno']['nome'], array('controller' => 'alunos', 'action' => 'view', $nota['Aluno']['id'])); ?>
