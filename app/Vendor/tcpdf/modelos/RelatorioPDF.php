@@ -13,18 +13,18 @@ App::import('Vendor','tcpdf/tcpdf');
  */
 
 
-class RelatorioPDF  extends TCPDF 
-{ 
+class RelatorioPDF extends TCPDF {
 
    private $xfootertext  ="Copyright © %d Wilian Selzlein. All rights reserved.";
-   private $xfooterfont = PDF_FONT_NAME_MAIN ; 
-   private $xfooterfontsize = 8 ; 
+   private $xfooterfont = PDF_FONT_NAME_MAIN;
+   private $xfooterfontsize = 8;
 
    private $headertitle = "Wilian Selzlein";
    private $headertext = "Florianopolis / SC";
    //public $headerlogo = "pos_graduacao_facet.png";
    private $titulo;
    public $html;
+   public $Sessao;
 
    /** 
     * Overwrites the default header 
@@ -342,4 +342,22 @@ EOD;
       //$this->Cell($w, $h = 0, $txt = '', $border = 0, $ln = 0, $align = '', $fill = false, $link = '', $stretch = 0, $ignore_min_height = false, $calign = 'T', $valign = 'M')	
          $this->Cell($width, 6, $data, $border, 0, $align, $fill, '', 1);
    }
+
+   public function AssinaturaUsuarioLogado() {
+      $this->Ln(10);
+      $assinatura = $this->Sessao['User']['assinatura'];
+      if ($assinatura != '') {
+        $imgdata = base64_decode($assinatura);
+        if ($imgdata != '')
+          $this->Image('@'.$imgdata, 90);
+      }
+   }
+
+   public function AssinaturaNomePessoaRelacionadaAoUsuario() {
+      $this->Ln(10);
+      $secretario = $this->Sessao['User']['Pessoa']['razaosocial'];
+      $texto = $secretario . ' 
+        ' . 'Departamento da Pós-Graduação'; 
+      $this->MultiCell(170, 15, $texto, 0, 'C', 0, 0, '', '', true);
+   }   
 } 
