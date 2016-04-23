@@ -1,7 +1,8 @@
 <?php
 App::import('Vendor', 'PeDF/Table');
 App::import('Vendor','tcpdf/modelos/RelatorioPDF'); 
-$pdf = new RelatorioPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+$pdf = new RelatorioPDF();
+$pdf->Sessao = $this->Session->read('Auth');
 
 for ($index = 0; $index < count($decl_professor); $index++) {
   $pdf->Ln(30);
@@ -32,18 +33,8 @@ for ($index = 0; $index < count($decl_professor); $index++) {
   $texto = $cidade . '/' . $uf . ', ' . $data . '.'; 
   $pdf->MultiCell(170, 5, $texto, 0, 'C', 0, 0, '', '', true);
 
-  $pdf->Ln(10);
-
-  $imgdata = base64_decode($decl_professor[$index]['user']['assinatura']);
-  if ($imgdata != '')
-    $pdf->Image('@'.$imgdata, 90);
-
-  $pdf->Ln(20);
-
-  $secretario = $decl_professor[$index]['secretario']['razaosocial'];
-  $texto = $secretario . ' 
-  ' . 'Departamento da Pós-Graduação'; 
-  $pdf->MultiCell(170, 15, $texto, 0, 'C', 0, 0, '', '', true);
+  $pdf->AssinaturaUsuarioLogado();
+  $pdf->AssinaturaNomePessoaRelacionadaAoUsuario();
 
   $ultimoregistro = $index == count($decl_professor) - 1;
   if (! $ultimoregistro)
