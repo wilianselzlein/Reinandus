@@ -152,9 +152,9 @@ class ParametrosController extends AppController {
  	$this->AdicionarParametroSeNaoExistir(11, 'Habilitar pesquisa no portal', 'S');
  	$this->AdicionarParametroSeNaoExistir(12, 'Bloquer mensalidades com valor maior que', '500');
  	$this->AdicionarParametroSeNaoExistir(13, 'Habilitar SQL Debug', 'S');
- 	/*$this->AdicionarParametroSeNaoExistir(14, '', '');
- 	$this->AdicionarParametroSeNaoExistir(15, '', '');
- 	$this->AdicionarParametroSeNaoExistir(16, '', '');
+ 	$this->AdicionarParametroSeNaoExistir(14, 'Conta Credito Padrao', '14');
+ 	$this->AdicionarParametroSeNaoExistir(15, 'Conta Debito Padrao', ' ');
+ 	/*$this->AdicionarParametroSeNaoExistir(16, '', '');
  	$this->AdicionarParametroSeNaoExistir(17, '', '');
  	$this->AdicionarParametroSeNaoExistir(18, '', '');
  	$this->AdicionarParametroSeNaoExistir(19, '', '');

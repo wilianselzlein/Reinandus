@@ -224,4 +224,16 @@ var $actsAs = array('DateFormat');
       return true;
    }
 
+   public function RetornarDadosCursoFormContrato($aluno_id){
+   		$curso = [];
+		if ($aluno_id != null) {
+			$this->recursive = false;
+			$this->unbindModel(array('belongsTo' => 
+					array('Naturalidade', 'Situacao', 'EstadoCivil', 'Indicacao', 'Professor', 'Cidade', 'Responsavel')));
+			$curso = $this->findById($aluno_id, array('Curso.valor', 'Curso.desconto', 'Curso.liquido'));
+			if (isset($curso['Curso']))
+				$curso = $curso['Curso'];
+		}
+		return $curso;
+	}
 }

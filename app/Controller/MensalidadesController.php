@@ -207,41 +207,48 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
  * @throws Exception
  * @return void
  */
-	public function gerar() {
-        if ($this->request->is('post') || $this->request->is('put')) {
+	public function gerar($aluno_id = null) {
+        if ($this->request->is('post') || $this->request->is('put')) {	
         	$data = $this->request->data;
         	$data = $data['Mensalidade'];
-        	$ValorMaximo = $this->PegarValorLimite();
-        	if ($data['valor'] > $ValorMaximo) {
-    			throw new Exception(__('Proibido gerar mensalidades maior que R$ ' . $ValorMaximo));
+        	if ($aluno_id == null) {
+				$aluno_id = $data['aluno_id'];
         	}
 
-    		$numero = 1;
-        	$quantidade = (float) $data['quantidade'];
+        	if (! (bool) $data['selecionou']) {
+	        	$ValorMaximo = $this->PegarValorLimite();
+	        	if ($data['valor'] > $ValorMaximo) {
+	    			throw new Exception(__('Proibido gerar mensalidades maior que R$ ' . $ValorMaximo));
+	        	}
 
-        	while ($numero <= $quantidade) {
-        		$mensalidade = $data;
-    			$mensalidade['numero'] = $numero;
-    			
-    			$vencimento = str_replace("/", "-", $mensalidade['vencimento']);
-    			$vencimento = strtotime($vencimento);
-				$vencimento = date("Y-m-d", strtotime("+" . ($numero - 1) . " month", $vencimento));
-				$mensalidade['vencimento'] = $vencimento;
+	    		$numero = 1;
+	        	$quantidade = (float) $data['quantidade'];
 
-                $this->Mensalidade->create();
-                if (! $this->Mensalidade->save($mensalidade)) { 
-                	 debug($mensalidade); debug($this->validationErrors); die();
-					//$this->redirect($this->referer());
-            	}
-                $numero++;
-        	}
-			$this->redirect(array('action' => 'index'));
+	        	while ($numero <= $quantidade) {
+	        		$mensalidade = $data;
+	    			$mensalidade['numero'] = $numero;
+	    			
+	    			$vencimento = str_replace("/", "-", $mensalidade['vencimento']);
+	    			$vencimento = strtotime($vencimento);
+					$vencimento = date("Y-m-d", strtotime("+" . ($numero - 1) . " month", $vencimento));
+					$mensalidade['vencimento'] = $vencimento;
+
+	                $this->Mensalidade->create();
+	                if (! $this->Mensalidade->save($mensalidade)) { 
+	                	 debug($mensalidade); debug($this->validationErrors); die();
+						//$this->redirect($this->referer());
+	            	}
+	                $numero++;
+	        	}
+				$this->redirect(array('action' => 'index'));
+			}
 		}
+		$curso = $this->Mensalidade->Aluno->RetornarDadosCursoFormContrato($aluno_id);
 		$contas = $this->Mensalidade->Conta->findAsCombo();
-		$alunos = $this->Mensalidade->Aluno->findAsCombo();
+		$alunos = $this->Mensalidade->Aluno->findAsComboCampo('Aluno.id', $aluno_id);
 		$formapgtos = $this->Mensalidade->Formapgto->findAsCombo('asc', 'tipo <> "I"');
 		$users = $this->Mensalidade->User->findAsCombo();
-		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
+		$this->set(compact('contas', 'formapgtos', 'users', 'alunos', 'aluno_id', 'curso'));
 	}
 
 /**

@@ -43,4 +43,12 @@ class AppModel extends Model {
 		return $list;
 	}
 
+	public function findAsComboCampo($campo, $valor) {
+		$conditions = [];
+		if ($valor != null)
+			$conditions = array($campo => $valor);
+		$list = $this->find('combo', array('conditions' => $conditions));
+		return $list;
+	}
+
 }
