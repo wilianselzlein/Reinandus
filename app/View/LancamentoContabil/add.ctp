@@ -27,12 +27,12 @@
             </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('credito_id',
-                                             array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+                                             array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>', 'value' => $credito_id)
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('historico_padrao_id',
-                                             array('options' => $historico_padrao, 'class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+                                             array('options' => $historico_padrao, 'class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>', 'value' => $historico_padrao_id)
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">

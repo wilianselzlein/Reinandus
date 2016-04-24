@@ -74,7 +74,10 @@ class LancamentoContabilController extends AppController {
 		$debitos = $this->LancamentoContabil->Debito->findAsCombo('asc', 'Nivel = ' . $nivel);
 		$creditos = $this->LancamentoContabil->Credito->findAsCombo('asc', 'Nivel = ' . $nivel);
 		$historico_padrao = $this->LancamentoContabil->HistoricoPadrao->findAsCombo();
-		$this->set(compact('debitos', 'creditos', 'historico_padrao'));
+		$parametro = ClassRegistry::init('Parametro');
+		$historico_padrao_id = $parametro->valor(15);
+		$credito_id = $parametro->valor(14);
+		$this->set(compact('debitos', 'creditos', 'historico_padrao', 'historico_padrao_id', 'credito_id'));
 	}
 
 /**
