@@ -4,7 +4,11 @@
     echo $this->Form->hidden('id', array('value' => $mensalidades[0]['vmensalidades']['mensalidade_aluno_id']));
     echo $this->Form->hidden('nome', array('value' => $mensalidades[0]['vmensalidades']['aluno_nome']));
     echo $this->Form->hidden('curso', array('value' => $mensalidades[0]['vmensalidades']['aluno_curso_id']));
-    echo $this->Form->hidden('mensalidades', array('value' => serialize($mensalidades))); 
+    echo $this->Form->hidden('curso_nome', array('value' => $alunos['valuno']['curso_nome']));
+    echo $this->Form->hidden('curso_turma', array('value' => $alunos['valuno']['curso_turma']));
+    echo $this->Form->hidden('pessoa_razaosocial', array('value' => $alunos['valuno']['pessoa_razaosocial']));
+    echo $this->Form->hidden('user_assinatura', array('value' => $alunos['valuno']['user_assinatura']));
+    echo $this->Form->hidden('mensalidades', array('value' => serialize($mensalidades)));
   ?>
   <div style="float: left; width: 30%;">
     <?php echo $this->Form->input('ano', array('options' => $anos, 'label' => array('text' => 'Ano:'))); ?>

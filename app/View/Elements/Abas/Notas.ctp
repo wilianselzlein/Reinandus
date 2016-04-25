@@ -1,18 +1,18 @@
-<?php echo $this->Form->create('Portal', array('role' => 'form', 'class'=>'form-horizontal', 'action' => 'matricula', 'target' => '_blank')); ?>
-  
-  <?php echo $this->Form->hidden('id', array('value' => $alunos['valuno']['aluno_id'])); ?>
-  <?php echo $this->Form->hidden('nome', array('value' => $alunos['valuno']['aluno_nome'])); ?>
-  <?php echo $this->Form->hidden('curso', array('value' => $alunos['valuno']['curso_id'])); ?>
-  <?php echo $this->Form->hidden('curso_nome', array('value' => $alunos['valuno']['curso_nome'])); ?>
-  <?php echo $this->Form->hidden('curso_turma', array('value' => $alunos['valuno']['curso_turma'])); ?>
-  <?php echo $this->Form->hidden('pessoa_razaosocial', array('value' => $alunos['valuno']['pessoa_razaosocial'])); ?>
-  <?php echo $this->Form->hidden('user_assinatura', array('value' => $alunos['valuno']['user_assinatura'])); ?>
-  <?php echo $this->Form->hidden('curso_inicio', array('value' => $alunos['valuno']['aluno_curso_inicio'])); ?>
-  <?php echo $this->Form->hidden('curso_fim', array('value' => $alunos['valuno']['aluno_curso_fim'])); ?>
-  <?php echo $this->Form->hidden('situacao', array('value' => $alunos['valuno']['situacao_valor'])); ?>
-
-  <?php echo $this->Form->button('<i class="fa fa-print"></i>'.' '.__('Imprimir Declaração de Matrícula'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit', 'id' => 'btn_materiais')); ?>
-<?php echo $this->Form->end(); ?>
+<?php
+  echo $this->Form->create('Portal', array('role' => 'form', 'class'=>'form-horizontal', 'action' => 'matricula', 'target' => '_blank')); 
+  echo $this->Form->hidden('id', array('value' => $alunos['valuno']['aluno_id']));
+  echo $this->Form->hidden('nome', array('value' => $alunos['valuno']['aluno_nome']));
+  echo $this->Form->hidden('curso', array('value' => $alunos['valuno']['curso_id']));
+  echo $this->Form->hidden('curso_nome', array('value' => $alunos['valuno']['curso_nome']));
+  echo $this->Form->hidden('curso_turma', array('value' => $alunos['valuno']['curso_turma']));
+  echo $this->Form->hidden('pessoa_razaosocial', array('value' => $alunos['valuno']['pessoa_razaosocial']));
+  echo $this->Form->hidden('user_assinatura', array('value' => $alunos['valuno']['user_assinatura']));
+  echo $this->Form->hidden('curso_inicio', array('value' => $alunos['valuno']['aluno_curso_inicio']));
+  echo $this->Form->hidden('curso_fim', array('value' => $alunos['valuno']['aluno_curso_fim']));
+  echo $this->Form->hidden('situacao', array('value' => $alunos['valuno']['situacao_valor']));
+  echo $this->Form->button('<i class="fa fa-print"></i>'.' '.__('Imprimir Declaração de Matrícula'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit', 'id' => 'btn_materiais'));
+  echo $this->Form->end();
+?>
 <br/>
 <?php if (count($notas) == 0) { ?> 
   <div class="alert alert-info" role="alert">

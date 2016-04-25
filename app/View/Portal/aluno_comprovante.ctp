@@ -14,13 +14,9 @@
   	<tbody>
   		<tr>
 		    <td width="16%">
-<?php
-    $class = ClassRegistry::init('Cabecalho');
-    $data = $class->find('first');
-    echo '<img src="' . '/img/uploads/'.$data['Cabecalho']['logo'] . '" alt="" height="51" width="147">';
-?>
+<?php echo '<img src="' . '/img/uploads/' . $dados['vcabecalho']['cabecalho_logo'] . '" alt="" height="51" width="147">'; ?>
 		    </td>
-		    <td width="84%"><?php echo $dados['Instituicao']['Empresa']['razaosocial']; ?><br>
+		    <td width="84%"><?php echo $dados['Instituicao']['empresa_razaosocial']; ?><br>
 		      CURSO DE PÓS-GRADUAÇÃO- Reconhecido pela Portaria M.E.C. nº. 1801- D.O.U. 14/07/2003<br>
 		    Mantida pela Sociedade Educacional de Ciências e Tecnologia</td>
   		</tr>
@@ -30,10 +26,10 @@
 <hr>
 <p class="style1" align="center">C O M P R O V A N T E&nbsp;&nbsp;&nbsp;&nbsp;D E&nbsp;&nbsp;&nbsp;&nbsp;P A G A M E N T O</p>
 <p class="style2" align="center">SEGUNDA VIA</p>
-<p class="style2" align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A <?php echo $dados['Instituto']['Empresa']['razaosocial']; ?>, 
-<?php echo $dados['Instituto']['Empresa']['cnpjcpf']; ?>, gestora dos recursos financeiros da Pós-Graduação <?php echo $dados['Instituicao']['Empresa']['razaosocial']; ?>
+<p class="style2" align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A <?php echo $dados['Instituto']['empresa_razaosocial']; ?>, 
+<?php echo $dados['Instituto']['empresa_cpnjcpf']; ?>, gestora dos recursos financeiros da Pós-Graduação <?php echo $dados['Instituicao']['empresa_razaosocial']; ?>
 , declara para os devidos fins e a quem interessar possa que <?php echo $dados['Portal']['nome']; ?> 
-pagou o valor de R$ <?php echo array_sum(array_column(array_column($mensalidades, 'Mensalidade'), 'valor')); ?>,00 referente o curso de pós-graduação em <?php echo $dados['Curso']['nome']; ?>.
+pagou o valor de R$ <?php echo array_sum(array_column(array_column($mensalidades, 'Mensalidade'), 'valor')); ?>,00 referente o curso de pós-graduação em <?php echo $dados['Portal']['curso_nome']; ?>.
 </p>
 
 <p class="style2" align="justify"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Abaixo apresenta-se o demonstrativo analítico dos pagamentos:</p>
@@ -74,8 +70,8 @@ foreach ($mensalidades as $mensalidade):
 <p class="style2" align="justify"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E por ser verdade firmamos a presente.</p>
 
 <p class="style2" align="center">
-<?php echo $dados['Instituto']['Cidade']['Cidade']['nome']; ?>&nbsp;-&nbsp;
-<?php echo $dados['Instituto']['Cidade']['Estado']['sigla']; ?>,&nbsp;
+<?php echo $dados['Instituto']['cidade_nome']; ?>&nbsp;-&nbsp;
+<?php echo $dados['Instituto']['estado_sigla']; ?>,&nbsp;
 <script language="JavaScript">
     hoje = new Date()
     dia = hoje.getDate()
@@ -115,28 +111,28 @@ foreach ($mensalidades as $mensalidade):
 </script>
 </p>
 <p align="center">
- <?php if ($dados['User']['assinatura'] != '') { ?> 
+ <?php if ((isset($dados['Portal']['user_assinatura'])) && ($dados['Portal']['user_assinatura'] != '')) { ?> 
     <img src="data:image/jpeg;base64,
-       <?php echo h($dados['User']['assinatura']); ?>" 
+       <?php echo h($dados['Portal']['user_assinatura']); ?>" 
  <?php } ?> &nbsp;
-
 </p>
-<p class="style2" align="center"><strong><?php echo $dados['Pessoa']['razaosocial']; ?><br>
+<p class="style2" align="center"><strong><?php echo $dados['Portal']['pessoa_razaosocial']; ?><br>
+
 Departamento de Pós-Graduação</strong></p>
 <br><br>
 <br><br>
 <br><br>
 <br><br>
 <p class="style2" align="left">
- <?php echo $dados['Instituto']['Empresa']['razaosocial']; ?><br>
- <?php echo $dados['Instituto']['Empresa']['endereco']; ?>&nbsp;
- <?php echo $dados['Instituto']['Empresa']['numero']; ?>&nbsp;
- <?php echo $dados['Instituto']['Empresa']['bairro']; ?><br>
- <?php echo $dados['Instituto']['Cidade']['Cidade']['nome']; ?>&nbsp;
- <?php echo $dados['Instituto']['Cidade']['Estado']['sigla']; ?>&nbsp;
- <?php echo $dados['Instituto']['Empresa']['fone']; ?>&nbsp;
- <?php echo $dados['Instituto']['Empresa']['email']; ?>&nbsp;
- <?php echo $dados['Instituto']['Empresa']['site']; ?>
+ <?php echo $dados['Instituto']['empresa_razaosocial']; ?><br>
+ <?php echo $dados['Instituto']['empresa_endereco']; ?>&nbsp;
+ <?php echo $dados['Instituto']['empresa_numero']; ?>&nbsp;
+ <?php echo $dados['Instituto']['empresa_bairro']; ?><br>
+ <?php echo $dados['Instituto']['cidade_nome']; ?>&nbsp;
+ <?php echo $dados['Instituto']['estado_sigla']; ?>&nbsp;
+ <?php echo $dados['Instituto']['empresa_fone']; ?>&nbsp;
+ <?php echo $dados['Instituto']['empresa_email']; ?>&nbsp;
+ <?php echo $dados['Instituto']['empresa_site']; ?>
  </p>
 <script>window.print();</script>
 </body>

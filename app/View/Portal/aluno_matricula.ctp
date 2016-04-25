@@ -14,9 +14,7 @@
   	<tbody>
   		<tr>
 		    <td width="16%">
-<?php      
-    echo '<img src="' . '/img/uploads/'.$dados['vcabecalho']['cabecalho_logo'] . '" alt="" height="51" width="147">';
-?>
+                <?php echo '<img src="' . '/img/uploads/' . $dados['vcabecalho']['cabecalho_logo'] . '" alt="" height="51" width="147">'; ?>
 		    </td>
 		    <td width="84%"><?php echo $dados['Instituicao']['empresa_razaosocial']; ?><br>
 		      CURSO DE PÓS-GRADUAÇÃO- Reconhecido pela Portaria M.E.C. nº. 1801- D.O.U. 14/07/2003<br>
@@ -82,7 +80,6 @@
     <img src="data:image/jpeg;base64,
        <?php echo h($dados['Portal']['user_assinatura']); ?>" 
  <?php } ?> &nbsp;
-
 </p>
 <p class="style2" align="center"><strong><?php echo $dados['Portal']['pessoa_razaosocial']; ?><br>
 Departamento de Pós-Graduação</strong></p>
