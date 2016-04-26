@@ -13,9 +13,7 @@
          )); ?>
       </h3>
    </div>
-</div>
-<div  class="container">
-   <div id="page-container" class="row">
+   <div id="page-container" class="panel-body">
       <style>
          .dashboard-icon
          {
@@ -45,8 +43,8 @@
       <div>
          <div>
             <?php
-$tipo = '';
-foreach ($relatorios as $relatorio): ?>
+   $tipo = '';
+   foreach ($relatorios as $relatorio): ?>
             <?php if (! strcmp($tipo, $relatorio['Relatorio']['tipo']) == 0) { ?>
          </div>
       </div>
@@ -58,12 +56,12 @@ foreach ($relatorios as $relatorio): ?>
             <?php } ?>
             <div class="dashboard-icon">
                <?php 
-echo $this->Html->link('<i class="fa ' . $relatorio['Relatorio']['icone'] .' fa-4x"></i>', array('action' => 'filter', $relatorio['Relatorio']['id']), array('class' => '', 'escape' => false, 'escape'=> false)); ?>
+   echo $this->Html->link('<i class="fa ' . $relatorio['Relatorio']['icone'] .' fa-4x"></i>', array('action' => 'filter', $relatorio['Relatorio']['id']), array('class' => '', 'escape' => false, 'escape'=> false)); ?>
                <span><?php echo $relatorio['Relatorio']['nome'];?></span>
             </div>     
             <?php 
-$tipo = $relatorio['Relatorio']['tipo'];
-endforeach; 
+   $tipo = $relatorio['Relatorio']['tipo'];
+   endforeach; 
             ?>
          </div>
       </div>

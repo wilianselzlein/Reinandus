@@ -121,11 +121,12 @@ echo $this->fetch('script');
 
 
          <div id="page-wrapper" style="padding-top: 0">
-            <div  class="container-fluid">
+            <div class="container-fluid">
                <?php echo $this->Session->flash(); ?>
                <?php echo $this->fetch('content'); ?>
+               <?php echo $this->element('sql_dump'); ?>
             </div><!-- /#content .container -->
-            <?php echo $this->element('sql_dump'); ?>
+            
          </div>
 
 
