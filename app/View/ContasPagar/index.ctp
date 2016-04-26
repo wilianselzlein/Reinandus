@@ -17,6 +17,7 @@
 							<th><?php echo $this->Paginator->sort('vencimento'); ?></th>
 							<th><?php echo $this->Paginator->sort('pagamento'); ?></th>
 							<th><?php echo $this->Paginator->sort('formapgto_id'); ?></th>
+							<th><?php echo $this->Paginator->sort('liberado'); ?></th>
 							<th class="actions text-center" colspan="2"><?php echo __('Actions'); ?></th>
 						</tr>
 					</thead>
@@ -34,8 +35,8 @@
 		<td>
 			<?php echo $this->Html->link($contapagar['Formapgto']['nome'], array('controller' => 'formaspagamentos', 'action' => 'view', $contapagar['Formapgto']['id'])); ?>
 		</td>
+		<td><i class="<?php echo ($contapagar['ContaPagar']['liberado'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
 		<td class="actions text-center">
-
 			<?php echo $this->Html->link('<i class="fa fa-credit-card"></i>', array('action' => 'baixar', $contapagar['ContaPagar']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Baixar'), 'data-toggle'=>'tooltip')); ?>
 		</td>
 		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $contapagar, 'model' => 'ContaPagar')); ?>
