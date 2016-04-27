@@ -200,6 +200,7 @@ class RelatorioPDF extends TCPDF {
             font-style: italic;
             font-size: 10pt;
             font-family: 'Times New Roman';
+            background-color: #f4f4f4;
         }
         td {
           font-size: 8pt;
