@@ -4489,6 +4489,7 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
 }
 .tab-content>.tab-pane
 {
+	border: 1px solid red;
  display: none;
 }
 .tab-content>.active
