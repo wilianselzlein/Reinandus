@@ -26,5 +26,3 @@ endif;
 <?php endif; */ ?>
 
 <?php echo $this->element('Graficos/Base');?>
-
-</p>
