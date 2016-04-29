@@ -1,7 +1,7 @@
 <?php if (! isset($baixa)) $baixa = False; ?>
 <?php if (! isset($add)) $add = False; ?>
 <?php if (! $baixa) { ?>
-     <?php if ($add) { ?>
+     <?php if (! $baixa) { ?>
             <div class="form-group">
                <?php 
                     /*echo $this->Form->input('simplificado',
@@ -18,7 +18,7 @@
      </div><!-- .form-group -->
      <div class="form-group cad-simplificado hidden">
      <?php echo $this->Form->input('formapgto_id',
-          array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label', 'style' => 'padding-left: 0px;'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+          array('class' => 'form-control combobox', 'value' => (isset($formapgto_id) ? $formapgto_id : ''), 'label'=>array('class'=>'col-sm-2 control-label', 'style' => 'padding-left: 0px;'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
      </div><!-- .form-group -->
      <div class="form-group cad-simplificado hidden">
      <?php echo $this->Form->input('cadastro',
@@ -60,8 +60,11 @@
 <div class="form-group cad-simplificado hidden">
 <?php echo $this->Form->input('situacao_id',
      array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
-<?php echo $this->Form->input('user_id',
-     array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-1 control-label', 'style' => 'padding-left: 0px;'), 'div'=>true, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
+<?php 
+$user_id = $this->Session->read('Auth.User');
+$user_id = $user_id['id'];
+echo $this->Form->input('user_id',
+     array('class' => 'form-control combobox', 'value' => ($add ? $user_id : ''), 'label'=>array('class'=>'col-sm-1 control-label', 'style' => 'padding-left: 0px;'), 'div'=>true, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
 </div><!-- .form-group -->
 <div class="form-group cad-simplificado hidden">
 <?php echo $this->Form->input('cheque',

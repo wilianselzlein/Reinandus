@@ -85,6 +85,11 @@ class ContasPagarController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->ContaPagar->create();
+			$data = $this->request->data;	
+			if ($data['ContaPagar']['cadastro'] == '')
+				$data['ContaPagar']['cadastro'] = date('d/m/y');
+			if ($data['ContaPagar']['emissao'] == '')
+				$data['ContaPagar']['emissao'] = date('d/m/y');
 			if ($this->ContaPagar->save($this->request->data)) {
 				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                "link_text" => __('GO_TO'),
@@ -104,7 +109,12 @@ class ContasPagarController extends AppController {
 		$users = $this->ContaPagar->User->findAsCombo();
 		$tipos = $this->ContaPagar->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_id', 'Tipo.nome' => 'contapagar')));
 		$situacaos = $this->ContaPagar->Situacao->find('list', array('conditions' => array('Situacao.referencia' => 'situacao_id', 'Situacao.nome' => 'contapagar')));
-		$this->set(compact('contas', 'pessoas', 'formapgtos', 'users', 'situacaos', 'tipos'));
+
+        $this->ContaPagar->Formapgto->recursive = -1;
+        $formapgto_id = $this->ContaPagar->Formapgto->findByTipo('P');
+        if (isset($formapgto_id['Formapgto']))
+        	$formapgto_id = $formapgto_id['Formapgto']['id'];
+		$this->set(compact('contas', 'pessoas', 'formapgtos', 'users', 'situacaos', 'tipos', 'formapgto_id'));
 	}
 
 /**

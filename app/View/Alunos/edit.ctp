@@ -3,7 +3,7 @@
 
    <div class="panel-heading">
       <h3><?php echo __('Aluno'); ?>
-         <small><?php echo __('Add') ?></small>
+         <small><?php echo __('Edit') ?></small>
          <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>
       </h3>
    </div>
