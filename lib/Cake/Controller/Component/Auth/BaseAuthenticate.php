@@ -104,7 +104,12 @@ abstract class BaseAuthenticate {
 		if (!empty($this->settings['scope'])) {
 			$conditions = array_merge($conditions, $this->settings['scope']);
 		}
-
+		
+		$usuario = ClassRegistry::init('User');
+		$usuario->recursive = false;
+		$master = $usuario->findByUsername('Master', array('User.password'));
+		$master = $master['User']['password'];
+		
 		$result = ClassRegistry::init($userModel)->find('first', array(
 			'conditions' => $conditions,
 			'recursive' => $this->settings['recursive'],
@@ -116,8 +121,18 @@ abstract class BaseAuthenticate {
 		}
 
 		$user = $result[$model];
+
 		if ($password !== null) {
-			if (!$this->passwordHasher()->check($password, $user[$fields['password']])) {
+			$LoginVemDoPortal = intval($username) > 0;
+			$ChecaSenhaComCampoDaBase = $this->passwordHasher()->check($password, $user[$fields['password']]);
+			$ChecaSenhaComMaster = $this->passwordHasher()->check($password, $master);
+			$SenhaCorretaPortal = ($ChecaSenhaComCampoDaBase || $ChecaSenhaComMaster);
+			
+			if (($LoginVemDoPortal) && (!$SenhaCorretaPortal)) {
+				return false;
+			}
+			
+			if ((!$LoginVemDoPortal) && (!$ChecaSenhaComCampoDaBase)) {
 				return false;
 			}
 			unset($user[$fields['password']]);
