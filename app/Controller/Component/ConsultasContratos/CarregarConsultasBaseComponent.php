@@ -33,10 +33,12 @@ class CarregarConsultasBaseComponent extends Component {
 
 	protected function SubstituirTags() {
 		//debug($this->Data); die;
-		
+
 		foreach ($this->Data as $campo => $valor) {
 			$tag = ':' . $this->Texto . '_' . $campo;
-			//debug($tag . '=' . $valor);
+			//debug($tag . '=' . $valor . ' - ' . $campo);
+			if ($campo == 'senha')
+			    $valor = str_replace('/', '', $this->Data['data_nascimento']);
 			$this->Contrato = str_replace($tag, $valor, $this->Contrato);
 		}
 	}
