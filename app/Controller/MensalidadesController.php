@@ -1,5 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
+App::import('Controller/Component/ConsultasContratos', 
+	array('CarregarConsultasBaseComponent'));
 /**
  * Mensalidades Controller
  *
@@ -170,14 +172,30 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Mensalidade->save($this->request->data)) {
-				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
-               "link_text" => __('GO_TO'),
-               "link_url" => array(                  
-                  "action" => "view",
-                  $this->Mensalidade->id
-               )
-            ));
-				$this->redirect(array('action' => 'index'));
+				$mensalidade = $this->request->data;
+				setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+				
+				$aluno_id = $mensalidade['Mensalidade']['aluno_id'];
+				$aluno = $this->Mensalidade->Aluno->find('list', array('conditions' => array('Aluno.id' => $aluno_id)));
+				$mensalidade['Aluno']['nome'] = $aluno[$aluno_id]; 
+				$mensalidade['Mensalidade']['extenso'] = CarregarConsultasBaseComponent::ValorPorExtenso($mensalidade['Mensalidade']['liquido']);
+				$usuario = $this->Session->read('Auth');
+				$mensalidade['User']['assinatura'] = $usuario['User']['assinatura'];
+				$mensalidade['Pessoa']['razaosocial'] = $usuario['User']['Pessoa']['razaosocial'];
+			    $Cidade = $this->Mensalidade->Aluno->Cidade;
+				$Cidade->recursive = false;
+				$cidade = $Cidade->findById($usuario['User']['Pessoa']['cidade_id'], array('Cidade.nome', 'Estado.sigla'));
+				if (count($cidade) == 0)
+					$cidade = $this->Mensalidade->Aluno->Cidade->findById(1, array('Cidade.nome', 'Estado.sigla'));
+				$mensalidade['Cidade']['nome'] = $cidade['Cidade']['nome'];
+				$mensalidade['Estado']['sigla'] = $cidade['Estado']['sigla'];
+
+				$this->set(compact('mensalidade'));
+				$this->render('recibo');
+				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", 
+					array("link_text" => __('GO_TO'), "link_url" => 
+						array("action" => "view", $this->Mensalidade->id)));
+				//$this->redirect(array('action' => 'view', $id));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
@@ -261,6 +279,11 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 	      return $parametro->valor(12);
      }
 
+/**
+ * DadosBoleto method
+ *
+ * @return void
+ */
     public function DadosBoleto($id) {
     	$dados = array();
     	
@@ -342,9 +365,15 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		return $dados;
     }
 
+/**
+ * boleto method
+ *
+ * @return void
+ */
 	public function boleto($id){
 		$this->autoRender = false;
 		$dados = $this->DadosBoleto($id);
 		$this->BoletoHsbc->render($dados);
 	}
+
 }

@@ -46,8 +46,8 @@ class AlunosController extends AppController {
 			$this->Filter->setPaginate('conditions', $filtros['AND']);
 
 		$this->Aluno->recursive = 0;
-		$this->Aluno->unbindModel(array('belongsTo' => 
-			array('Naturalidade', 'EstadoCivil', 'Indicacao', 'Professor', 'Situacao', 'Responsavel')));
+//		$this->Aluno->unbindModel(array('belongsTo' => 
+//			array('Naturalidade', 'EstadoCivil', 'Indicacao', 'Professor', 'Situacao', 'Responsavel')));
 		$this->set('alunos', $this->paginate());
 
 	}
