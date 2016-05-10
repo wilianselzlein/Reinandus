@@ -21,7 +21,7 @@
 					</div><!-- .form-group -->
 					<div class="form-group">
 						<?php echo $this->Form->input('tipo', 
-				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'(B)ancaria - (M)anual</div> - (I)nativa - (P)adrão')
+				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'<br><br>(B)ancaria - (M)anual - (I)nativa - (P)adrão</div>')
 				); ?>
 					</div><!-- .form-group -->
 
