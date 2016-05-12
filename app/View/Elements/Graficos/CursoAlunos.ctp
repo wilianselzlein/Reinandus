@@ -10,7 +10,7 @@ $(function () {
             x: -20
         },
         xAxis: {
-            categories: ['2011', '2012', '2013', '2014', '2015']
+            categories: [<?php echo $aluno_por_curso_nome; ?>]
         },
         yAxis: {
             title: {
@@ -23,7 +23,7 @@ $(function () {
             }]
         },
         tooltip: {
-            valueSuffix: '°C'
+            valueSuffix: ''
         },
         legend: {
             layout: 'vertical',
@@ -34,19 +34,13 @@ $(function () {
         credits: {
             enabled: false
         },
-        series: [{
-            name: 'GE',
-            data: [10, 20, 30, 40, 50]
-        }, {
-            name: 'CF',
-            data: [20, 30, 40, 50, 60]
-        }, {
-            name: 'LOGO',
-            data: [10, 11, 12, 13, 10]
-        }, {
-            name: 'SI',
-            data: [0, 0, 5, 10, 15]
-        }]
+        series: [
+       <?php 
+            foreach ($aluno_por_curso_valores as $item) {
+                echo '{ name: ' . $item['valor'] . ", data: [" . $item['quant'] . "] }, ";
+            }
+        ?>
+        ]
     });
 });
 		</script>

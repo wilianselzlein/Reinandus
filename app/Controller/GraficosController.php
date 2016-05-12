@@ -101,4 +101,62 @@ SELECT s.*
         $valores = $consulta[0][0]['quant'];
     }
 
+    public function GerarDeAlunosPorCurso(&$nomes, &$valores) {
+        $consulta = $this->Grafico->query("
+select T.*, (ano1 + ano2 + ano3 + ano4) as Total
+from (select distinct c.sigla,
+  (select count(a1.id)
+     from aluno a1
+    inner join curso c1
+       on a1.curso_id = c1.id
+    where c1.sigla = c.sigla
+      and c1.turma =
+          (select max(ano.turma) from curso ano) - 0) as ano1,
+  (select count(a1.id)
+     from aluno a1
+    inner join curso c1
+       on a1.curso_id = c1.id
+    where c1.sigla = c.sigla
+      and c1.turma =
+          (select max(ano.turma) from curso ano) - 1) as ano2,
+  (select count(a1.id)
+     from aluno a1
+    inner join curso c1
+       on a1.curso_id = c1.id
+    where c1.sigla = c.sigla
+      and c1.turma =
+          (select max(ano.turma) from curso ano) - 2) as ano3,
+  (select count(a1.id)
+     from aluno a1
+    inner join curso c1
+       on a1.curso_id = c1.id
+    where c1.sigla = c.sigla
+      and c1.turma =
+          (select max(ano.turma) from curso ano) - 3) as ano4,
+  (select max(ano.turma) from curso ano) as maximo
+from curso c
+having ano1 > 0 or ano2 > 0 or ano3 > 0 or ano4 > 0) T
+ order by Total desc
+");
+        $nomes = [];
+        $valores = [];
+        foreach ($consulta as $item) {
+            //debug($item); die;
+            $valor = [];
+            $valor['valor'] = "'" . $item['T']['sigla'] . "'";
+            $valor['quant'] = $item['T']['ano1'] . ',' . $item['T']['ano2'] . ',' . $item['T']['ano3'] . ',' . $item['T']['ano4'];
+            $valores[] = $valor;
+        }
+
+        //debug($valores); die;
+        $maximo = ((integer) $item['T']['maximo']);
+        $nomes[] = "'" . $maximo . "'";
+        $nomes[] = "'" . ($maximo - 1) . "'";
+        $nomes[] = "'" . ($maximo - 2) . "'";
+        $nomes[] = "'" . ($maximo - 3) . "'";
+        $nomes[] = "'" . ($maximo - 4) . "'";
+        $nomes = implode(', ', $nomes);
+        //debug($nomes); die;
+    }
+
 }

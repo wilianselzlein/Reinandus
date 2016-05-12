@@ -92,5 +92,8 @@ class PagesController extends AppController {
 		
 		$Grafico->GerarPorSituacao($pendente_matricula, 15);
 		$this->set(compact('pendente_matricula'));
+		
+      	$Grafico->GerarDeAlunosPorCurso($aluno_por_curso_nome, $aluno_por_curso_valores);
+		$this->set(compact('aluno_por_curso_nome', 'aluno_por_curso_valores'));
 	}
 }
