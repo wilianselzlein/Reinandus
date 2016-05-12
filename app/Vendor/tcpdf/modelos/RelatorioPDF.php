@@ -268,6 +268,9 @@ class RelatorioPDF extends TCPDF {
          }
          .col-95{
            width:95%
+         }
+         .borda {
+            border: 1px solid #000;  
          }        
         </style>
         <br>
