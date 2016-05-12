@@ -7270,19 +7270,22 @@ button.close
   float: left; 
   height: 200px; 
 }
-
+.graficovertical {
+  float: left; 
+  height: 500px; 
+}
 .grafico30 {
   width: 29%;
 }
-
 .grafico70 {
   width: 69%;
 }
-
 .grafico33 {
   width: 33%;
 }
-
 .grafico50 {
   width: 49%;
+}
+.grafico100 {
+  width: 99%;
 }

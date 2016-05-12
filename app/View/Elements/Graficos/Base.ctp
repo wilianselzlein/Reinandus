@@ -26,9 +26,9 @@
 	  </div>
 	  <div class="panel-body">
 	    <?php echo $this->element('Graficos/CursoAlunos');?>
-	    <div id="GraficoCursoAlunos" class="grafico grafico50"></div>
+	    <div id="GraficoCursoAlunos" class="graficovertical grafico100"></div>
 	    <?php echo $this->element('Graficos/CursoRentavel');?>
-	    <div id="GraficoCursoRentavel" class="grafico grafico50"></div>
+	    <div id="GraficoCursoRentavel" class="graficovertical grafico100"></div>
 	  </div>
 	</div>
 
