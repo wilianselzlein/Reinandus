@@ -200,8 +200,8 @@ class ContasPagarController extends AppController {
                "link_url" => array(                  
                   "action" => "view",
                   $this->ContaPagar->id
-               )
-            ));
+               )));
+
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
@@ -214,7 +214,22 @@ ContaPagar.valor, ContaPagar.saldo, ContaPagar.juro, ContaPagar.multa, ContaPaga
 ContaPagar.conta_corrente, ContaPagar.liberado, ContaPagar.formapgto_id, ContaPagar.portador, */
 'ContaPagar.*', 'Conta.id', 'Conta.banco', 'Conta.conta', 'Tipo.id', 'Tipo.valor', 'User.id', 'User.username', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 
 'Situacao.id', 'Situacao.valor', 'Formapgto.id', 'Formapgto.nome'));
-			$this->request->data = $this->ContaPagar->find('first', $options);
+			$dados = $this->ContaPagar->find('first', $options);
+			if (! is_null($dados['ContaPagar']['pagamento'])) {
+				$this->Session->setFlash(__('Lançamento já pago!'), 'flash/error');
+				/*$this->Session->setFlash(__('Lançamento já pago!'), "flash/linked/success", 
+					array("link_text" => __('GO_TO'),"link_url" => array("action" => "view", $id)));
+				//throw new Exception(__('Lançamento já pago!'));*/
+				$this->redirect(array('action' => 'view', $id));
+			}
+			if ($dados['ContaPagar']['liberado'] == false) {
+				$this->Session->setFlash(__('Lançamento não liberado para pagamento!'), 'flash/error');
+				/*$this->Session->setFlash(__('Lançamento não liberado para pagamento!'), "flash/linked/success", 
+					array("link_text" => __('GO_TO'),"link_url" => array("action" => "view", $id)));
+				//throw new Exception(__('Lançamento não liberado para pagamento!'));*/
+				$this->redirect(array('action' => 'view', $id));
+			}
+			$this->request->data = $dados; 
 		}
 		//$contas = $this->ContaPagar->Conta->findAsCombo();
 		//$pessoa_id = $this->request->data['ContaPagar']['pessoa_id'];
