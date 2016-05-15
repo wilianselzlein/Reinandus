@@ -6,8 +6,7 @@ $relatorio_pdf->SetTitulo('Diário de Classe');
 
 $html = $relatorio_pdf->html;
 
-if (count($diario) > 0) {
-$curso = $diario[0]['curso']['curso'];
+$branco = (isset($branco) && ($branco == 'on'));
 
 $cabecalho = new Table();
 $___ = str_repeat('_', 50);
@@ -59,13 +58,23 @@ $rowHeader
   ->close();
 $table->addRow($rowHeader);
 
-//debug($diario); die;
-for ($index = 0; $index < count($diario); $index++) {
+for ($index = 0; (((! $branco) && ($index < count($diario))) || (($branco) && ($index < 36))); $index++) {
+
+   $aluno = '&nbsp;';
+   $sigla = '&nbsp;';
+   $turma = '&nbsp;';
+   
+   if (! $branco) {
+      $aluno = $diario[$index]['aluno']['id'] . ' ' . $diario[$index]['aluno']['aluno'];
+      $sigla = $diario[$index]['curso']['sigla'];
+      $turma = $diario[$index]['curso']['turma'];
+   }
+
    $rowData = new Row('last');
    $rowData
-      ->addColumn($diario[$index]['aluno']['id'] . ' ' . $diario[$index]['aluno']['aluno'], 'col-30 borda')
-      ->addColumn($diario[$index]['curso']['sigla'], 'col-10 borda')
-      ->addColumn($diario[$index]['curso']['turma'], 'col-6 borda')
+      ->addColumn($aluno, 'col-30 borda')
+      ->addColumn($sigla, 'col-10 borda')
+      ->addColumn($turma, 'col-6 borda')
       ->addColumn('&nbsp;', 'col-5 borda')
       ->addColumn('&nbsp;', 'col-5 borda')
       ->addColumn('&nbsp;', 'col-5 borda')
@@ -96,10 +105,10 @@ for ($index = 0; $index < 4; $index++) {
     $table->addRow($rowData);
 }
 
-$table->addCount(count($diario));
+if (! $branco)
+  $table->addCount(count($diario));
 $table->close();
 $html .= $table;
-}
 
 $relatorio_pdf->html = $html;
 $relatorio_pdf->Imprimir();

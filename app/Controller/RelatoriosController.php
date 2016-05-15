@@ -118,7 +118,7 @@ class RelatoriosController extends AppController {
                $tipoFiltro = $compositeKey[0];
                $campo = $compositeKey[1];
                 
-               if($campo == $filtro['campo']){
+               if (($campo == $filtro['campo']) || ($campo == '_')) {
                   switch($tipoFiltro){
                      case 1: //FAIXAS_NUMERACAO
                      {
@@ -168,7 +168,12 @@ class RelatoriosController extends AppController {
                      }
                     case 10: //BOOLEAN
                      {
-                        $filtros .= " AND ".str_replace("_",".", $campo)." = '".$compositeValue[0]."'";
+                        if ($campo == '_') {
+                            $branco = $compositeValue[0];
+                            $this->set(compact('branco'));
+                        }
+                        else
+                            $filtros .= " AND ".str_replace("_",".", $campo)." = '".$compositeValue[0]."'";
                         break;
                      }
                      case 11: //FAIXA_VALORES

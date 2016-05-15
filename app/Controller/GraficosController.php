@@ -97,46 +97,46 @@ SELECT s.*
     }
 
     public function GerarPorSituacao(&$valores, $situacao_id) {
-        $consulta = $this->Grafico->query("SELECT count(1) as quant from aluno where situacao_id = " . $situacao_id);
+        $consulta = $this->Grafico->query("SELECT count(1) as quant FROM aluno WHERE situacao_id = " . $situacao_id);
         $valores = $consulta[0][0]['quant'];
     }
 
     public function GerarDeAlunosPorCurso(&$nomes, &$valores) {
         $consulta = $this->Grafico->query("
-select T.*, (ano1 + ano2 + ano3 + ano4) as Total
-from (select distinct c.sigla,
-  (select count(a1.id)
-     from aluno a1
-    inner join curso c1
+SELECT T.*, (ano1 + ano2 + ano3 + ano4) as Total
+FROM (SELECT distinct c.sigla,
+  (SELECT count(a1.id)
+     FROM aluno a1
+    INNER join curso c1
        on a1.curso_id = c1.id
-    where c1.sigla = c.sigla
+    WHERE c1.sigla = c.sigla
       and c1.turma =
-          (select max(ano.turma) from curso ano) - 0) as ano1,
-  (select count(a1.id)
-     from aluno a1
-    inner join curso c1
+          (SELECT max(ano.turma) from curso ano) - 0) as ano1,
+  (SELECT count(a1.id)
+     FROM aluno a1
+    INNER join curso c1
        on a1.curso_id = c1.id
-    where c1.sigla = c.sigla
+    WHERE c1.sigla = c.sigla
       and c1.turma =
-          (select max(ano.turma) from curso ano) - 1) as ano2,
-  (select count(a1.id)
-     from aluno a1
-    inner join curso c1
+          (SELECT max(ano.turma) from curso ano) - 1) as ano2,
+  (SELECT count(a1.id)
+     FROM aluno a1
+    INNER join curso c1
        on a1.curso_id = c1.id
-    where c1.sigla = c.sigla
+    WHERE c1.sigla = c.sigla
       and c1.turma =
-          (select max(ano.turma) from curso ano) - 2) as ano3,
-  (select count(a1.id)
-     from aluno a1
-    inner join curso c1
+          (SELECT max(ano.turma) from curso ano) - 2) as ano3,
+  (SELECT count(a1.id)
+     FROM aluno a1
+    INNER join curso c1
        on a1.curso_id = c1.id
-    where c1.sigla = c.sigla
+    WHERE c1.sigla = c.sigla
       and c1.turma =
-          (select max(ano.turma) from curso ano) - 3) as ano4,
-  (select max(ano.turma) from curso ano) as maximo
-from curso c
-having ano1 > 0 or ano2 > 0 or ano3 > 0 or ano4 > 0) T
- order by Total desc
+          (SELECT max(ano.turma) from curso ano) - 3) as ano4,
+  (SELECT max(ano.turma) FROM curso ano) as maximo
+FROM curso c
+HAVING ano1 > 0 or ano2 > 0 or ano3 > 0 or ano4 > 0) T
+ ORDER BY Total desc
 ");
         $nomes = [];
         $valores = [];
