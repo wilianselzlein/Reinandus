@@ -8,7 +8,7 @@
 <?php foreach ($materiais as $material): ?>
   <li class="list-group-item">
     <h4 class="list-group-item-heading">
-      <?php echo $material['vavisos']['aviso_data']; ?>
+      <?php echo date('d/m/Y', strtotime($material['vavisos']['aviso_data'])); ?>
     </h4>
     <p class="list-group-item-text">
       <pre><?php echo $material['vavisos']['aviso_mensagem']; ?></pre>

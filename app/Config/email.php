@@ -41,27 +41,27 @@ class EmailConfig {
 
 	public $default = array(
 		'transport' => 'Mail',
-		'from' => 'secretaria@facet.br',
+		'from' => 'sistemapos@facet.br',
 		//'charset' => 'utf-8',
 		//'headerCharset' => 'utf-8',
 	);
 
 	public $smtp = array(
 		'transport' => 'Smtp',
-		'from' => array('secretaria@facet.br' => 'Facet'),
-		'host' => 'mail.facet.br',
-		'port' => 25,
+		'from' => array('sistemapos@facet.br' => 'Portal do Aluno'),
+		'host' => 'ssl://email-ssl.com.br',
+		'port' => 465,
 		'timeout' => 30,
-		'username' => 'secretaria@facet.br',
-		'password' => 'secret',
+		'username' => 'sistemapos@facet.br',
+		'password' => 'agmm36102',
 		'client' => null,
-		'log' => false,
+		'log' => true,
 		//'charset' => 'utf-8',
 		//'headerCharset' => 'utf-8',
 	);
 
 	public $fast = array(
-		'from' => 'secretaria@facet.br',
+		'from' => 'sistemapos@facet.br',
 		'sender' => null,
 		'to' => null,
 		'cc' => null,
@@ -80,11 +80,11 @@ class EmailConfig {
 		'attachments' => null,
 		'emailFormat' => null,
 		'transport' => 'Smtp',
-		'host' => 'mail.facet.br',
-		'port' => 25,
+		'host' => 'email-ssl.com.br',
+		'port' => 465,
 		'timeout' => 30,
-		'username' => 'secretaria@facet.br',
-		'password' => 'secret',
+		'username' => 'sistemapos@facet.br',
+		'password' => 'agmm36102',
 		'client' => null,
 		'log' => true,
 		//'charset' => 'utf-8',

@@ -77,6 +77,8 @@ class PortalController extends AppController {
 
    public function aluno_protocolo() {
         $this->SendEmail($this->request->data);
+        $this->Session->setFlash(__('Protocolo enviado.'), 'flash/success');
+        $this->redirect($this->referer());
    }
 
   private function SendEmail($dados) {
@@ -107,7 +109,8 @@ class PortalController extends AppController {
     private function CarregarDadosAvisos($tipo) {
       $grupo = $this->request->data;
       $grupo = $grupo['Post']['grupo'];
-      $avisos = $this->Portal->query('select * from vavisos where grupo_id = ' . $grupo . ' and aviso_tipo_id = ' . $tipo);
+      $avisos = $this->Portal->query('select * from vavisos where grupo_id = ' . $grupo . 
+        ' and aviso_tipo_id = ' . $tipo . ' order by aviso_data desc');
 
       return $avisos;
     }
