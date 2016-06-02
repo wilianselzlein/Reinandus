@@ -1,22 +1,22 @@
 <?php
 
 App::import('Vendor', 'PeDF/Table');
-App::import('Vendor','tcpdf/modelos/RelatorioPDF'); 
+App::import('Vendor', 'tcpdf/modelos/RelatorioPDF'); 
 $relatorio_pdf = new RelatorioPDF('L', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $relatorio_pdf->setTitulo('Relatório de Mensalidade/Curso');
 $html = $relatorio_pdf->html;
-//debug($mensalidade);
+
 $table = new Table();
 $rowHeader = new Row('header');
    $rowHeader
-      ->addColumn('Curso', 'col-25 text-centered')
-      ->addColumn('Vcto', 'col-15')
-      ->addColumn('(R$)Valor', 'col-10')
-      ->addColumn('(R$)Pago', 'col-10')
-      ->addColumn('(%)Acrés.', 'col-10')
-      ->addColumn('(%)Desc.', 'col-10')         
-      ->addColumn('(%)Bolsa', 'col-10')  
-      ->addColumn('(R$)Total', 'col-10')
+      ->addColumn('Curso', 'col-25')
+      ->addColumn('Vcto', 'col-5')
+      ->addColumn('Valor', 'col-15')
+      ->addColumn('Pago', 'col-10')
+      ->addColumn('Acrés.', 'col-10')
+      ->addColumn('Desc.', 'col-10')         
+      ->addColumn('Bolsa', 'col-10')  
+      ->addColumn('Total', 'col-15')
       ->close();
 $table->addRow($rowHeader);
 
@@ -26,17 +26,37 @@ for ($index = 0; $index < count($mensalidade); $index++) {
    $rowData = new Row(''.$even_class);
    $rowData
       ->addColumn($mensalidade[$index]['curso']['nome'], 'col-25 ')
-      ->addColumn($this->Time->i18nFormat($mensalidade[$index]['mensalidade']['vencimento'], $this->Html->__getDatePatternView()), 'col-15 date')
-      ->addColumn($mensalidade[$index]['mensalidade']['valor'],'col-10 ')
+      ->addColumn($mensalidade[$index]['curso']['vencimento'], 'col-5')
+      ->addColumn($this->Number->currency($mensalidade[$index]['0']['valor'], 'BRL'),'col-15')
       ->addColumn($this->Number->currency($mensalidade[$index]['0']['valor_pago'], 'BRL'), 'col-10 currency')
-      ->addColumn($this->Number->toPercentage($mensalidade[$index]['mensalidade']['acrescimo']), 'col-10 percentage')         
-      ->addColumn($this->Number->toPercentage($mensalidade[$index]['mensalidade']['desconto']), 'col-10 percentage') 
-      ->addColumn($this->Number->toPercentage($mensalidade[$index]['mensalidade']['bolsa']), 'col-10 percentage') 
-      ->addColumn($this->Number->currency($mensalidade[$index]['0']['total'], 'BRL'), 'col-10 currency')
+      ->addColumn($this->Number->currency($mensalidade[$index]['0']['acrescimo'], 'BRL'), 'col-10 currency')         
+      ->addColumn($this->Number->currency($mensalidade[$index]['0']['desconto'], 'BRL'), 'col-10 currency') 
+      ->addColumn($this->Number->currency($mensalidade[$index]['0']['bolsa'], 'BRL'), 'col-10 currency') 
+      ->addColumn($this->Number->currency($mensalidade[$index]['0']['total'], 'BRL'), 'col-15 currency')
       ->close();
    
    $table->addRow($rowData);
 }
+
+$valor = array_sum(array_column(array_column($mensalidade, 0), 'valor'));
+$pago  = array_sum(array_column(array_column($mensalidade, 0), 'valor_pago'));
+$acres = array_sum(array_column(array_column($mensalidade, 0), 'acrescimo'));
+$desco = array_sum(array_column(array_column($mensalidade, 0), 'desconto'));
+$bolsa = array_sum(array_column(array_column($mensalidade, 0), 'bolsa'));
+$total = array_sum(array_column(array_column($mensalidade, 0), 'total'));
+
+$rowData = new Row('summary');
+$rowData
+  ->addColumn('Total:', 'col-25')
+  ->addColumn('', 'col-5')
+  ->addColumn($this->Number->currency($valor, 'BRL'), 'currency col-15')
+  ->addColumn($this->Number->currency($pago,  'BRL'), 'currency col-10')
+  ->addColumn($this->Number->currency($acres, 'BRL'), 'currency col-10')
+  ->addColumn($this->Number->currency($desco, 'BRL'), 'currency col-10')
+  ->addColumn($this->Number->currency($bolsa, 'BRL'), 'currency col-10')
+  ->addColumn($this->Number->currency($total, 'BRL'), 'currency col-15')
+  ->close();
+$table->addRow($rowData);
 
 $table->addCount(count($mensalidade));
 $table->close();
