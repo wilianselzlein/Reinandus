@@ -286,7 +286,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
  */
     public function DadosBoleto($id) {
     	$dados = array();
-    	
+
 		$options = array('recursive' => -1, 'conditions' => array('Mensalidade.' . $this->Mensalidade->primaryKey => $id));
 		$mensalidade = $this->Mensalidade->find('first', $options);
 
@@ -296,16 +296,19 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$options = array('recursive' => -1, 'conditions' => array('Aluno.' . $this->Mensalidade->Aluno->primaryKey => $mensalidade['Mensalidade']['aluno_id']));
 		$aluno = $this->Mensalidade->Aluno->find('first', $options);
 
-		$options = array('recursive' => 1, 'conditions' => array('Cidade.' . $this->Mensalidade->Aluno->Cidade->primaryKey => $aluno['Aluno']['cidade_id']));
+		$options = array('recursive' => -1, 'conditions' => array('Cidade.' . $this->Mensalidade->Aluno->Cidade->primaryKey => $aluno['Aluno']['cidade_id']));
 		$cidade = $this->Mensalidade->Aluno->Cidade->find('first', $options);
 
+		$options = array('recursive' => -1, 'conditions' => array('Estado.' . $this->Mensalidade->Aluno->Cidade->Estado->primaryKey => $cidade['Cidade']['estado_id']));
+		$estado = $this->Mensalidade->Aluno->Cidade->Estado->find('first', $options);
+
 		$Instituto = ClassRegistry::init('Instituto');
-		$options = array('recursive' => 2, 'conditions' => array('Instituto.' . $Instituto->primaryKey => 1));
+		$options = array('recursive' => 1, 'conditions' => array('Instituto.' . $Instituto->primaryKey => 1));
 		$instituto = $Instituto->find('first', $options);
 
 		$dados['sacado'] = $aluno['Aluno']['nome'];
 		$dados['endereco1'] = $aluno['Aluno']['endereco'] . ' ' . $aluno['Aluno']['numero'] . ' ' . $aluno['Aluno']['bairro'];
-		$dados['endereco2'] = $cidade['Cidade']['nome'] . '/' . $cidade['Estado']['sigla'];
+		$dados['endereco2'] = $cidade['Cidade']['nome'] . '/' . $estado['Estado']['sigla'];
 		$dados['cpf_cnpj'] = $aluno['Aluno']['cpf'];
 		
 		$dados['valor_cobrado'] = $mensalidade['Mensalidade']['liquido'];
@@ -315,7 +318,11 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$dados["identificacao"] = $instituto['Empresa']['fantasia'];
 		$dados["cpf_cnpj"] = $instituto['Empresa']['cnpjcpf'];
 		$dados["endereco"] = $instituto['Empresa']['endereco'] . ' ' . $instituto['Empresa']['numero'] . ' ' . $instituto['Empresa']['bairro'] . ' ' . ' '  . $instituto['Empresa']['cep'];
-		$dados["cidade_uf"] = $instituto['Empresa']['Cidade']['nome'];
+
+		$options = array('recursive' => -1, 'conditions' => array('Cidade.' . $this->Mensalidade->Aluno->Cidade->primaryKey => $instituto['Empresa']['cidade_id']));
+		$cidade = $this->Mensalidade->Aluno->Cidade->find('first', $options);
+
+		$dados["cidade_uf"] =  $cidade['Cidade']['nome'];
 		$dados["cedente"] = $conta['Conta']['cedente'];
 
 		// Informações da sua conta 

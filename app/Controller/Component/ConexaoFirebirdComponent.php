@@ -37,7 +37,8 @@ class ConexaoFirebirdComponent extends Component {
 	{
 		if (! is_null($this->Consulta))
 			ibase_free_result($this->Consulta);
-		ibase_close($this->Conexao) or die("<br>" . __CLASS__ . " " . ibase_errmsg());
+		if (! is_null($this->Conexao))
+			ibase_close($this->Conexao) or die("<br>" . __CLASS__ . " " . ibase_errmsg());
 	}
 
 }

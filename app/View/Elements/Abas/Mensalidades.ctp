@@ -51,12 +51,12 @@ foreach ($mensalidades as $mensalidade):
 ?>
     <tr>
       <td><?php echo $mensalidade['vmensalidades']['mensalidade_numero']; ?> &nbsp;</td>
-      <td><?php echo h($mensalidade['vmensalidades']['mensalidade_vencimento']); ?> &nbsp;</td>
+      <td><?php echo date('d/m/Y', strtotime($mensalidade['vmensalidades']['mensalidade_vencimento'])); ?> &nbsp;</td>
       <td>
         <?php 
           $pagamento = $mensalidade['vmensalidades']['mensalidade_pagamento'];
           if (! is_null($pagamento))
-             echo h($pagamento);
+             echo date('d/m/Y', strtotime($pagamento));
           else  {
              echo $this->Html->link('<i class="fa fa-print"></i>', 
               array('action' => 'boleto', $mensalidade['vmensalidades']['mensalidade_id']), 
