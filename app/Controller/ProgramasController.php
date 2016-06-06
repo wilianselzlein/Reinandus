@@ -14,7 +14,7 @@ class ProgramasController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'TransformarArray');
 
 /**
  * index method
@@ -41,7 +41,14 @@ class ProgramasController extends AppController {
 		if (!$this->Programa->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('conditions' => array('Programa.' . $this->Programa->primaryKey => $id));
+		$options = array('recursive' => 0, 'conditions' => array('Permissao.programa_id' => $id), 'limit' => 200, 
+		'fields' => array(' Permissao.id', 'Permissao.user_id', 'Permissao.programa_id', 'Permissao.index', 'Permissao.view', 'Permissao.edit', 'Permissao.add', 'Permissao.delete', 'Programa.id', 'Programa.nome', 'User.id', 'User.username'));
+		//$this->User->Permissao->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
+		$permissoes = $this->Programa->Permissao->find('all', $options);
+		$permissoes = $this->TransformarArray->FindInContainable('Permissao', $permissoes);
+		$this->set(compact('permissoes'));
+
+		$options = array('recursive' => false, 'conditions' => array('Programa.' . $this->Programa->primaryKey => $id));
 		$this->set('programa', $this->Programa->find('first', $options));
 	}
 

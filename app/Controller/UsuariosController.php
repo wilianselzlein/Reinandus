@@ -42,7 +42,7 @@ class UsuariosController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('recursive' => 1, 'conditions' => array('User.' . $this->User->primaryKey => $id),
+		$options = array('recursive' => 0, 'conditions' => array('User.' . $this->User->primaryKey => $id),
 			'fields' => array('User.*', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 'Role.id', 'Role.nome'));
 /*
 User.id, User.username, User.password, User.pessoa_id, User.created, User.modified, User.role_id, User.assinatura, Pessoa.id, Pessoa.fantasia, Pessoa.razaosocial, Pessoa.endereco, Pessoa.numero, Pessoa.bairro, Pessoa.cidade_id, Pessoa.cep, Pessoa.fone, Pessoa.fax, Pessoa.celular, Pessoa.email, Pessoa.emailalt, Pessoa.site, Pessoa.cnpjcpf, Pessoa.resumo, Pessoa.obs, Pessoa.empresa, Pessoa.contato, Pessoa.ie, Pessoa.im, Pessoa.orgao, Pessoa.orgaonum, Pessoa.pessoa, Pessoa.ramo, Pessoa.secundario, Pessoa.fundacao, Pessoa.juntacomercial, Pessoa.created, Pessoa.modified, Pessoa.desconto, Role.id, Role.nome
@@ -50,6 +50,13 @@ FROM pedroescobar15.user AS User
 */
 		$this->User->unbindModel(array('hasMany' => array('Mensalidade', 'Aviso', 'ContaPagar')));
 		$this->set('usuario', $this->User->find('first', $options));
+
+		$options = array('recursive' => 0, 'conditions' => array('Permissao.user_id' => $id), 'limit' => 200, 
+		'fields' => array(' Permissao.id', 'Permissao.user_id', 'Permissao.programa_id', 'Permissao.index', 'Permissao.view', 'Permissao.edit', 'Permissao.add', 'Permissao.delete', 'Programa.id', 'Programa.nome', 'User.id', 'User.username'));
+		//$this->User->Permissao->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
+		$permissoes = $this->User->Permissao->find('all', $options);
+		$permissoes = $this->TransformarArray->FindInContainable('Permissao', $permissoes);
+		$this->set(compact('permissoes'));
 
 		$options = array('recursive' => 0, 'conditions' => array('Mensalidade.user_id' => $id), 'limit' => 200, 
 		'fields' => array('Mensalidade.id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Aluno.id', 'Aluno.nome'));
