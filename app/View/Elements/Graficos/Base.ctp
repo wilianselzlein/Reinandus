@@ -19,7 +19,7 @@
 	    <div id="GraficoAlunoTcc" class="grafico grafico30"></div> 
 	  </div>
 	</div>
-
+<?php /*
 	<div class="panel panel-default">
 	  <div class="panel-heading">
 	    <h3 class="panel-title">Cursos</h3>
@@ -75,7 +75,7 @@
 	    <div id="GraficoComparativoRecDespAno" class="grafico grafico50"></div>
 	  </div>
 	</div>
-
+*/ ?>
   </div>
 
 </div>
