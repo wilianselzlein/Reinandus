@@ -13,6 +13,7 @@ class ImportarMensalidadesComponent extends ImportadorBaseComponent {
 		$dados['vencimento'] = $parametro['MENVENCIMENTO'];
 		$dados['conta_id'] = $parametro['MENBANCO'];
 		$dados['valor'] = $parametro['MENVALOR'];
+		$dados['pago'] = $parametro['MENVALORPAGO'];
 		$dados['acrescimo'] = $parametro['MENACRESCIMO'];
 		$dados['desconto'] = $parametro['MENDESCONTO'];
 		$dados['pagamento'] = $parametro['MENDATAPAGAMENTO'];
