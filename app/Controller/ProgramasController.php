@@ -159,15 +159,15 @@ class ProgramasController extends AppController {
  	$this->AdicionarProgramaSeNaoExistir( 9, 'LancamentoContabil');
  	$this->AdicionarProgramaSeNaoExistir(10, 'Acesso');
  	$this->AdicionarProgramaSeNaoExistir(11, 'Parametro');
- 	$this->AdicionarProgramaSeNaoExistir(12, 'PlanoContas');
+ 	$this->AdicionarProgramaSeNaoExistir(12, 'PlanoConta');
  	$this->AdicionarProgramaSeNaoExistir(13, 'Professor');
  	$this->AdicionarProgramaSeNaoExistir(14, 'Programa');
  	$this->AdicionarProgramaSeNaoExistir(15, 'User');
  	$this->AdicionarProgramaSeNaoExistir(16, 'AlunoDisciplina');
  	$this->AdicionarProgramaSeNaoExistir(17, 'Relatorio');
  	$this->AdicionarProgramaSeNaoExistir(18, 'Formapgto');
- 	$this->AdicionarProgramaSeNaoExistir(19, 'ContasPagar');
- 	$this->AdicionarProgramaSeNaoExistir(20, 'Avisos');
+ 	$this->AdicionarProgramaSeNaoExistir(19, 'ContaPagar');
+ 	$this->AdicionarProgramaSeNaoExistir(20, 'Aviso');
  	$this->AdicionarProgramaSeNaoExistir(21, 'Grupo');
  	$this->AdicionarProgramaSeNaoExistir(22, 'Cabecalho');
  	$this->AdicionarProgramaSeNaoExistir(23, 'Contrato');
