@@ -8,7 +8,7 @@
    <div class="panel-heading">
       <h3>
          <span class="fa fa-print"></span> <?php echo __('RelatorioDataset');?> <small> <?php echo __('View');?></small>
-         <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>
+         <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action'], $this->params['pass'][0]); ?>
       </h3>
    </div>
 </div>
