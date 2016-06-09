@@ -206,4 +206,104 @@ class PermissoesController extends AppController {
 		}
 		//debug($programas); die;
 	}
+	
+	public function ConsultarPermissoesParaMontarOMenu() {
+		/*select pr.id, pr.nome, pe.index from programa pr left outer join permissao pe on pr.id = pe.programa_id and pe.user_id = 7*/
+		
+		$user_id = 7;
+		$options = array('recursive' => 0, 'fields' => array('Programa.id', 'Permissao.index'),
+			'join' => array('table' => 'Permissao', 'alias' => 'Permissao', 'type' => 'left', 
+				'conditions' => array('Programa.id = Permissao.programa_id and Permissao.user_id = ' . $user_id)));
+		$programas = $this->Permissao->find('list', $options);
+
+		$menu = [];
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Cadastro', 'Alunos', 1);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Cadastro', 'Professores', 13);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Cadastro', 'Cursos', 4);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Cadastro', 'Disciplinas', 5);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Cadastro', 'Empresas/Pessoas', 6);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Cadastro', 'Cidades', 3);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Cadastro', 'Contas', 2);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Cadastro', 'Formas de Pagamento', 18);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Cadastro', 'Grupos', 21);
+
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Secretaria', 'Avisos, Materiais e Notícias', 20);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Secretaria', 'Contrato Alunos', 23);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Secretaria', 'Contrato Professores', 23);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Secretaria', 'Notas e Frequências', 30);
+		
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Financeiro', 'Mensalidades', 34);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Financeiro', 'Contas a Pagar', 19);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Financeiro', 'Gerar Mensalidades', 34);
+		
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Controladoria', 'Histórico Padrão', 7);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Controladoria', 'Plano de Contas', 12);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Controladoria', 'Lançamentos', 9);
+		
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Configuracoes', 'Parâmetros', 11);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Configuracoes', 'Usuários', 15);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Configuracoes', 'Acessos de Alunos', 10);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Configuracoes', 'Permissões de Usuários', 31);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Configuracoes', 'Cabeçalhos', 22);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Configuracoes', 'Enumerados', 26);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Configuracoes', 'Estados', 27);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Configuracoes', 'Instituto', 8);
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Configuracoes', 'Programas', 14);
+
+		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Relatorios', 'Relatorios', 17);
+
+		return $menu;
+	}
+	
+	private function AdicionarMenuSeHabilitado(&$array, $programas, $menu, $caption, $programa_id) {
+		if (isset($programas[$programa_id]))
+			if (! $programas[$programa_id]) 
+				$array[$menu][$caption] = 0;
+	}
 }
+
+/*
+ /app/Controller/PermissoesController.php (line 255)
+
+array(
+	'Cadastro' => array(
+		'Alunos' => (int) 0,
+		'Professores' => (int) 0,
+		'Cursos' => (int) 0,
+		'Disciplinas' => (int) 0,
+		'Contas' => (int) 0,
+		'Formas de Pagamento' => (int) 0,
+		'Grupos' => (int) 0
+	),
+	'Secretaria' => array(
+		'Avisos, Materiais e NotÃ­cias' => (int) 0,
+		'Contrato Alunos' => (int) 0,
+		'Contrato Professores' => (int) 0,
+		'Notas e FrequÃªncias' => (int) 0
+	),
+	'Financeiro' => array(
+		'Mensalidades' => (int) 0,
+		'Contas a Pagar' => (int) 0,
+		'Gerar Mensalidades' => (int) 0
+	),
+	'Controladoria' => array(
+		'HistÃ³rico PadrÃ£o' => (int) 0,
+		'Plano de Contas' => (int) 0,
+		'LanÃ§amentos' => (int) 0
+	),
+	'Configuracoes' => array(
+		'ParÃ¢metros' => (int) 0,
+		'UsuÃ¡rios' => (int) 0,
+		'Acessos de Alunos' => (int) 0,
+		'PermissÃµes de UsuÃ¡rios' => (int) 0,
+		'CabeÃ§alhos' => (int) 0,
+		'Enumerados' => (int) 0,
+		'Estados' => (int) 0,
+		'Instituto' => (int) 0,
+		'Programas' => (int) 0
+	),
+	'Relatorios' => array(
+		'Relatorios' => (int) 0
+	)
+)
+*/
