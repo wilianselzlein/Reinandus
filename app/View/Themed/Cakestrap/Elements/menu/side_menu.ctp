@@ -1,4 +1,18 @@
 <ul class="nav navbar-nav side-nav">
+   <?php 
+      foreach ($permissoes as $pai => $menus) {
+         echo '<li>';
+         echo '<a href="javascript:;" data-toggle="collapse" data-target="#' . substr($pai,0,4) .'"><i class="fa fa-fw fa-arrows-v"></i>' . __($pai) . '<i class="fa fa-fw fa-caret-down"></i></a>';
+         echo '<ul id="' . substr($pai,0,4) .'" class="collapse">';
+         foreach ($menus as $menu => $controller) {
+               echo '<li>' . $this->Html->link(__($menu), array('controller'=> $controller, 'action' => 'index')) . '</li>';
+         }
+         echo '</ul>';
+         echo '</li>';
+      }
+   ?>
+
+   <?php if (false) { ?>
    <li>
       <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i><?php echo __('Cadastros');?><i class="fa fa-fw fa-caret-down"></i></a>
       <ul id="demo" class="collapse">
@@ -66,5 +80,7 @@
          <li><?php echo $this->Html->link(__('Gerencial'),                    array('controller'=>'Relatorios','action'=>'index'));?></li>
       </ul> */ ?>
       <?php echo $this->Html->link(__('Relatorios'), array('controller'=>'Relatorios','action'=>'index'));?>
-   </li>   
+   </li>
+   <?php } ?>   
+   
 </ul>

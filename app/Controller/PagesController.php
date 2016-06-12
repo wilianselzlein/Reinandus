@@ -101,9 +101,13 @@ class PagesController extends AppController {
 	}
 	
 	private function ConsultarPermissoesParaMontarOMenu() {
-		$Permissoes = new PermissoesController;
-      	$permissoes = $Permissoes->ConsultarPermissoesParaMontarOMenu();
 		
+        $dados = $this->Session->read('Auth');
+        $user_id = $dados['User']['id'];
+        
+		$Permissoes = new PermissoesController;
+      	$permissoes = $Permissoes->ConsultarPermissoesParaMontarOMenu($user_id);
+
 		$this->set(compact('permissoes'));
 	}
 }

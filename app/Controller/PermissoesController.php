@@ -8,13 +8,14 @@ App::uses('AppController', 'Controller');
  * @property SessionComponent $Session
  */
 class PermissoesController extends AppController {
+
    public $uses = array('Permissao');
 /**
  * Components
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'TransformarArray');
+	public $components = array('Paginator', 'Session', 'TransformarArray', 'Auth');
 
 /**
  * index method
@@ -207,58 +208,62 @@ class PermissoesController extends AppController {
 		//debug($programas); die;
 	}
 	
-	public function ConsultarPermissoesParaMontarOMenu() {
+	public function ConsultarPermissoesParaMontarOMenu($user_id) {
 		/*select pr.id, pr.nome, pe.index from programa pr left outer join permissao pe on pr.id = pe.programa_id and pe.user_id = 7*/
-		
-		$user_id = 7;
+
 		$options = array('recursive' => 0, 'fields' => array('Programa.id', 'Permissao.index'),
+			'join' => array('table' => 'Permissao', 'alias' => 'Permissao', 'type' => 'left', 
+				'conditions' => array('Programa.id = Permissao.programa_id and Permissao.user_id = ' . $user_id)));
+		$permissoes = $this->Permissao->find('list', $options);
+
+		$options = array('recursive' => 0, 'fields' => array('Programa.id', 'Programa.nome'),
 			'join' => array('table' => 'Permissao', 'alias' => 'Permissao', 'type' => 'left', 
 				'conditions' => array('Programa.id = Permissao.programa_id and Permissao.user_id = ' . $user_id)));
 		$programas = $this->Permissao->find('list', $options);
 
 		$menu = [];
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Cadastro', 'Alunos', 1);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Cadastro', 'Professores', 13);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Cadastro', 'Cursos', 4);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Cadastro', 'Disciplinas', 5);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Cadastro', 'Empresas/Pessoas', 6);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Cadastro', 'Cidades', 3);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Cadastro', 'Contas', 2);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Cadastro', 'Formas de Pagamento', 18);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Cadastro', 'Grupos', 21);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Cadastro', 'Alunos', 1);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Cadastro', 'Professores', 13);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Cadastro', 'Cursos', 4);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Cadastro', 'Disciplinas', 5);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Cadastro', 'Empresas/Pessoas', 6);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Cadastro', 'Cidades', 3);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Cadastro', 'Contas', 2);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Cadastro', 'Formas de Pagamento', 18);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Cadastro', 'Grupos', 21);
 
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Secretaria', 'Avisos, Materiais e Notícias', 20);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Secretaria', 'Contrato Alunos', 23);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Secretaria', 'Contrato Professores', 23);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Secretaria', 'Notas e Frequências', 30);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Secretaria', 'Avisos, Materiais e Notícias', 20);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Secretaria', 'Contrato Alunos', 23);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Secretaria', 'Contrato Professores', 23);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Secretaria', 'Notas e Frequências', 30);
 		
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Financeiro', 'Mensalidades', 34);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Financeiro', 'Contas a Pagar', 19);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Financeiro', 'Gerar Mensalidades', 34);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Financeiro', 'Mensalidades', 34);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Financeiro', 'Contas a Pagar', 19);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Financeiro', 'Gerar Mensalidades', 34);
 		
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Controladoria', 'Histórico Padrão', 7);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Controladoria', 'Plano de Contas', 12);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Controladoria', 'Lançamentos', 9);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Controladoria', 'Histórico Padrão', 7);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Controladoria', 'Plano de Contas', 12);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Controladoria', 'Lançamentos', 9);
 		
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Configuracoes', 'Parâmetros', 11);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Configuracoes', 'Usuários', 15);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Configuracoes', 'Acessos de Alunos', 10);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Configuracoes', 'Permissões de Usuários', 31);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Configuracoes', 'Cabeçalhos', 22);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Configuracoes', 'Enumerados', 26);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Configuracoes', 'Estados', 27);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Configuracoes', 'Instituto', 8);
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Configuracoes', 'Programas', 14);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Configuracoes', 'Parâmetros', 11);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Configuracoes', 'Usuários', 15);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Configuracoes', 'Acessos de Alunos', 10);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Configuracoes', 'Permissões de Usuários', 31);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Configuracoes', 'Cabeçalhos', 22);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Configuracoes', 'Enumerados', 26);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Configuracoes', 'Estados', 27);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Configuracoes', 'Instituto', 8);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Configuracoes', 'Programas', 14);
 
-		$this->AdicionarMenuSeHabilitado($menu, $programas, 'Relatorios', 'Relatorios', 17);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Relatorios', 'Relatorios', 17);
 
 		return $menu;
 	}
-	
-	private function AdicionarMenuSeHabilitado(&$array, $programas, $menu, $caption, $programa_id) {
-		if (isset($programas[$programa_id]))
-			if (! $programas[$programa_id]) 
-				$array[$menu][$caption] = 0;
+
+	private function AdicionarMenuSeHabilitado(&$array, $permissoes, $programas, $menu, $caption, $programa_id) {
+		if (isset($permissoes[$programa_id]))
+			if ($permissoes[$programa_id]) 
+				$array[$menu][$caption] = $programas[$programa_id];
 	}
 }
 
