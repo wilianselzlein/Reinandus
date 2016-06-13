@@ -5,7 +5,7 @@
          echo '<a href="javascript:;" data-toggle="collapse" data-target="#' . substr($pai,0,4) .'"><i class="fa fa-fw fa-arrows-v"></i>' . __($pai) . '<i class="fa fa-fw fa-caret-down"></i></a>';
          echo '<ul id="' . substr($pai,0,4) .'" class="collapse">';
          foreach ($menus as $menu => $controller) {
-               echo '<li>' . $this->Html->link(__($menu), array('controller'=> $controller, 'action' => 'index')) . '</li>';
+               echo '<li>' . $this->Html->link(__($menu), array('controller'=> $controller[1], 'action' => $controller[2])) . '</li>';
          }
          echo '</ul>';
          echo '</li>';

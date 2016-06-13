@@ -233,8 +233,8 @@ class PermissoesController extends AppController {
 		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Cadastro', 'Grupos', 21);
 
 		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Secretaria', 'Avisos, Materiais e Notícias', 20);
-		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Secretaria', 'Contrato Alunos', 23);
-		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Secretaria', 'Contrato Professores', 23);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Secretaria', 'Contrato Alunos', 23, 'Contratos', 'aluno');
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Secretaria', 'Contrato Professores', 23, 'Contratos', 'professor');
 		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Secretaria', 'Notas e Frequências', 30);
 		
 		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Financeiro', 'Mensalidades', 34);
@@ -260,10 +260,28 @@ class PermissoesController extends AppController {
 		return $menu;
 	}
 
-	private function AdicionarMenuSeHabilitado(&$array, $permissoes, $programas, $menu, $caption, $programa_id) {
+	private function AdicionarMenuSeHabilitado(&$array, $permissoes, $programas, $menu, $caption, $programa_id, $controller = null, $action = 'index') {
 		if (isset($permissoes[$programa_id]))
-			if ($permissoes[$programa_id]) 
-				$array[$menu][$caption] = $programas[$programa_id];
+			if ($permissoes[$programa_id]) {
+				$model = $programas[$programa_id];
+				if ($controller == null) 
+					$controller = $this->GetControllerByModel($model);
+				$array[$menu][$caption] = array($model, $controller, $action);
+			}
+	}
+
+	private function GetControllerByModel($model) {
+		$return = Inflector::camelize(Inflector::humanize(Inflector::pluralize($model)));
+		if (! strcasecmp($return, 'Conta')) 
+			$return = 'Contas';
+		if (! strcasecmp($return, 'Lancamentocontabil')) 
+			$return = 'LancamentoContabil';
+		if (! strcasecmp($return, 'Contaspagar')) 
+			$return = 'ContasPagar';
+		if (! strcasecmp($return, 'HistoricoPadraos')) 
+			$return = 'HistoricoPadrao';
+
+		return $return;
 	}
 }
 
