@@ -66,7 +66,6 @@ class PagesController extends AppController {
 		}
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
 		$this->GerarGraficos();
-		$this->ConsultarPermissoesParaMontarOMenu();
 		
 		try {
 			$this->render(implode('/', $path));
@@ -98,16 +97,5 @@ class PagesController extends AppController {
 		
       	$Grafico->GerarDeAlunosPorCurso($aluno_por_curso_nome, $aluno_por_curso_valores);
 		$this->set(compact('aluno_por_curso_nome', 'aluno_por_curso_valores'));
-	}
-	
-	private function ConsultarPermissoesParaMontarOMenu() {
-		
-        $dados = $this->Session->read('Auth');
-        $user_id = $dados['User']['id'];
-        
-		$Permissoes = new PermissoesController;
-      	$permissoes = $Permissoes->ConsultarPermissoesParaMontarOMenu($user_id);
-
-		$this->set(compact('permissoes'));
 	}
 }

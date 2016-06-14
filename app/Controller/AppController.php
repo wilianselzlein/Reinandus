@@ -20,6 +20,7 @@
     */
 
 App::uses('Controller', 'Controller');
+App::uses('PermissoesController', 'Controller');
 
 /**
     * Application Controller
@@ -165,6 +166,8 @@ class AppController extends Controller {
       if($this->name == 'CakeError') {
          $this->layout = null;
       }
+      
+		$this->MontarMenu();
    }
 
    public function isAuthorized($user){
@@ -244,5 +247,18 @@ class AppController extends Controller {
       }
       return $filtro;
   }
+
+	private function MontarMenu() {
+		
+      $dados = $this->Session->read('Auth');
+      if (isset($dados['User'])) {
+         $user_id = $dados['User']['id'];
+           
+         $Permissoes = new PermissoesController;
+         $permissoes = $Permissoes->ConsultarPermissoesParaMontarOMenu($user_id);
+   
+   		$this->set(compact('permissoes'));
+      }
+	}
 
 }
