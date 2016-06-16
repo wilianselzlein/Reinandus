@@ -205,21 +205,15 @@ class PermissoesController extends AppController {
 			$this->Permissao->create();
 			$this->Permissao->save($dados);
 		}
-		//debug($programas); die;
 	}
 	
 	public function ConsultarPermissoesParaMontarOMenu($user_id) {
-		/*select pr.id, pr.nome, pe.index from programa pr left outer join permissao pe on pr.id = pe.programa_id and pe.user_id = 7*/
+		/*select pr.id, pr.nome, pe.index from programa pr left outer join permissao pe on pr.id = pe.programa_id and pe.user_id = 1*/
+		$joins = array(array('table' => 'programa', 'alias' => 'Programa', 'type' => 'RIGHT',
+    				'conditions' => array('Programa.id = Permissao.programa_id and Permissao.user_id = ' . $user_id)));
 
-		$options = array('recursive' => 0, 'fields' => array('Programa.id', 'Permissao.index'),
-			'join' => array('table' => 'Permissao', 'alias' => 'Permissao', 'type' => 'left', 
-				'conditions' => array('Programa.id = Permissao.programa_id and Permissao.user_id = ' . $user_id)));
-		$permissoes = $this->Permissao->find('list', $options);
-
-		$options = array('recursive' => 0, 'fields' => array('Programa.id', 'Programa.nome'),
-			'join' => array('table' => 'Permissao', 'alias' => 'Permissao', 'type' => 'left', 
-				'conditions' => array('Programa.id = Permissao.programa_id and Permissao.user_id = ' . $user_id)));
-		$programas = $this->Permissao->find('list', $options);
+		$permissoes = $this->Permissao->find('list', array('recursive' => -1, 'fields' => array('Programa.id', 'Permissao.index'), 'joins' => $joins));
+		$programas = $this->Permissao->find('list', array('recursive' => -1, 'fields' => array('Programa.id', 'Programa.nome'), 'joins' => $joins));
 
 		$menu = [];
 		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Cadastro', 'Alunos', 1);
@@ -261,13 +255,12 @@ class PermissoesController extends AppController {
 	}
 
 	private function AdicionarMenuSeHabilitado(&$array, $permissoes, $programas, $menu, $caption, $programa_id, $controller = null, $action = 'index') {
-		if (isset($permissoes[$programa_id]))
-			if ($permissoes[$programa_id]) {
-				$model = $programas[$programa_id];
-				if ($controller == null) 
-					$controller = $this->GetControllerByModel($model);
-				$array[$menu][$caption] = array($model, $controller, $action);
-			}
+		if ((is_null($permissoes[$programa_id])) || ($permissoes[$programa_id])) {
+			$model = $programas[$programa_id];
+			if ($controller == null) 
+				$controller = $this->GetControllerByModel($model);
+			$array[$menu][$caption] = array($model, $controller, $action);
+		}
 	}
 
 	private function GetControllerByModel($model) {
@@ -284,49 +277,3 @@ class PermissoesController extends AppController {
 		return $return;
 	}
 }
-
-/*
- /app/Controller/PermissoesController.php (line 255)
-
-array(
-	'Cadastro' => array(
-		'Alunos' => (int) 0,
-		'Professores' => (int) 0,
-		'Cursos' => (int) 0,
-		'Disciplinas' => (int) 0,
-		'Contas' => (int) 0,
-		'Formas de Pagamento' => (int) 0,
-		'Grupos' => (int) 0
-	),
-	'Secretaria' => array(
-		'Avisos, Materiais e NotÃ­cias' => (int) 0,
-		'Contrato Alunos' => (int) 0,
-		'Contrato Professores' => (int) 0,
-		'Notas e FrequÃªncias' => (int) 0
-	),
-	'Financeiro' => array(
-		'Mensalidades' => (int) 0,
-		'Contas a Pagar' => (int) 0,
-		'Gerar Mensalidades' => (int) 0
-	),
-	'Controladoria' => array(
-		'HistÃ³rico PadrÃ£o' => (int) 0,
-		'Plano de Contas' => (int) 0,
-		'LanÃ§amentos' => (int) 0
-	),
-	'Configuracoes' => array(
-		'ParÃ¢metros' => (int) 0,
-		'UsuÃ¡rios' => (int) 0,
-		'Acessos de Alunos' => (int) 0,
-		'PermissÃµes de UsuÃ¡rios' => (int) 0,
-		'CabeÃ§alhos' => (int) 0,
-		'Enumerados' => (int) 0,
-		'Estados' => (int) 0,
-		'Instituto' => (int) 0,
-		'Programas' => (int) 0
-	),
-	'Relatorios' => array(
-		'Relatorios' => (int) 0
-	)
-)
-*/
