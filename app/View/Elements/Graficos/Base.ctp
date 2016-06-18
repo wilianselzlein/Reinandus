@@ -2,6 +2,7 @@
 <div class="panel panel-default">
 
   <div class="panel-body">  
+<?php /*	
 	<div class="panel panel-default">
 	  <div class="panel-heading">
 	     <h3 class="panel-title">Alunos</h3>
@@ -19,7 +20,6 @@
 	    <div id="GraficoAlunoTcc" class="grafico grafico30"></div> 
 	  </div>
 	</div>
-<?php /*
 	<div class="panel panel-default">
 	  <div class="panel-heading">
 	    <h3 class="panel-title">Cursos</h3>
