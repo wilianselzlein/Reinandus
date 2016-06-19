@@ -23,6 +23,11 @@ class ImportarMensalidadesComponent extends ImportadorBaseComponent {
 		//$dados['tipo_id'] = $parametro['MENTIPO'];
 		$dados['documento'] = $parametro['MENDOCUMENTO'];
 		$dados['obs'] = $this->FormatarValorEncode($parametro['MENOBS']);
+
+		$dados['lancamento_valor_id'] = $parametro['MENLCTOCONTABILMENSALIDADE'];
+		$dados['lancamento_desconto_id'] = $parametro['MENLCTOCONTABILDESCONTOS'];
+		$dados['lancamento_juro_id'] = $parametro['MENLCTOCONTABILJUROS'];
+
 		$this->SalvarDados($dados);
 	}
 

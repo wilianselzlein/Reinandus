@@ -16,7 +16,7 @@ class LancamentoContabilController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'TransformarArray');
 
 /**
  * index method
@@ -52,7 +52,20 @@ class LancamentoContabilController extends AppController {
 					'Credito.id', 'Credito.reduzido', 'Credito.analitico', 'Credito.descricao',
 					'HistoricoPadrao.id', 'HistoricoPadrao.nome')
 		);
-		$this->set('lancamentocontabil', $this->LancamentoContabil->find('first', $options));
+		$lancamentocontabil = $this->LancamentoContabil->find('first', $options);
+		$this->set('lancamentocontabil', $lancamentocontabil);
+
+		$options = array('recursive' => 0, 'conditions' =>  array('OR' => array(
+			'Mensalidade.lancamento_valor_id' => $lancamentocontabil['LancamentoContabil']['id'], 
+			'Mensalidade.lancamento_desconto_id' => $lancamentocontabil['LancamentoContabil']['id'], 
+			'Mensalidade.lancamento_juro_id' => $lancamentocontabil['LancamentoContabil']['id'])),
+		'fields' => array('Mensalidade.id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Aluno.id', 'Aluno.nome'));
+
+		$mensalidade = ClassRegistry::init('Mensalidade');
+		$mensalidade->unbindModel(array('belongsTo' => array('User', 'Conta', 'Formapgto')));
+		$mensalidades = $mensalidade->find('all', $options);
+		$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);
+		$this->set(compact('mensalidades'));
 	}
 
 /**

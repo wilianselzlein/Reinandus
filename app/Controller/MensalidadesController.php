@@ -16,7 +16,7 @@ class MensalidadesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Boletos.BoletoBb', 'Boletos.BoletoHsbc');
+	public $components = array('Paginator', 'Session', 'Boletos.BoletoBb', 'Boletos.BoletoHsbc', 'TransformarArray');
 
 /**
  * index method
@@ -66,7 +66,18 @@ Mensalidade.obs, Mensalidade.formapgto_id, Mensalidade.user_id, Mensalidade.bols
 Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade.aluno_id, */
 'Mensalidade.*', 'Conta.id', 'Conta.conta', 'Formapgto.id', 'Formapgto.nome', 'User.id', 'User.username',
 'Aluno.id', 'Aluno.nome'));
-		$this->set('mensalidade', $this->Mensalidade->find('first', $options));
+		$mensalidade = $this->Mensalidade->find('first', $options);
+		$this->set('mensalidade', $mensalidade);
+
+		$options = array('recursive' => 1, 'conditions' => array('LancamentoContabilValor.id' => 
+			array($mensalidade['Mensalidade']['lancamento_valor_id'], 
+				$mensalidade['Mensalidade']['lancamento_desconto_id'], 
+				$mensalidade['Mensalidade']['lancamento_juro_id'])));
+		$lancamentos = $this->Mensalidade->LancamentoContabilValor->find('all', $options);
+		$lancamentos = $this->TransformarArray->FindInContainable('LancamentoContabilValor', $lancamentos);
+		$lancamentos['LancamentoContabil'] = $lancamentos['LancamentoContabilValor'];
+		unset($lancamentos['LancamentoContabilValor']);
+		$this->set(compact('lancamentos'));
 	}
 
 /**
@@ -174,22 +185,8 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 			if ($this->Mensalidade->save($this->request->data)) {
 				$mensalidade = $this->request->data;
 				setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
-				
-				$aluno_id = $mensalidade['Mensalidade']['aluno_id'];
-				$aluno = $this->Mensalidade->Aluno->find('list', array('conditions' => array('Aluno.id' => $aluno_id)));
-				$mensalidade['Aluno']['nome'] = $aluno[$aluno_id]; 
-				$mensalidade['Mensalidade']['extenso'] = CarregarConsultasBaseComponent::ValorPorExtenso($mensalidade['Mensalidade']['liquido']);
-				$usuario = $this->Session->read('Auth');
-				$mensalidade['User']['assinatura'] = $usuario['User']['assinatura'];
-				$mensalidade['Pessoa']['razaosocial'] = $usuario['User']['Pessoa']['razaosocial'];
-			    $Cidade = $this->Mensalidade->Aluno->Cidade;
-				$Cidade->recursive = false;
-				$cidade = $Cidade->findById($usuario['User']['Pessoa']['cidade_id'], array('Cidade.nome', 'Estado.sigla'));
-				if (count($cidade) == 0)
-					$cidade = $this->Mensalidade->Aluno->Cidade->findById(1, array('Cidade.nome', 'Estado.sigla'));
-				$mensalidade['Cidade']['nome'] = $cidade['Cidade']['nome'];
-				$mensalidade['Estado']['sigla'] = $cidade['Estado']['sigla'];
-
+				$this->PrepararDadosRecibo($mensalidade);
+				$this->RealizarLancamentosContabeis($mensalidade);
 				$this->set(compact('mensalidade'));
 				$this->render('recibo');
 				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", 
@@ -374,7 +371,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 
 /**
  * boleto method
- *
+ * @param int $id
  * @return void
  */
 	public function boleto($id){
@@ -383,4 +380,75 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$this->BoletoHsbc->render($dados);
 	}
 
+/**
+ * PrepararDadosRecibo method
+ * @param array $mensalidade
+ * @return &$mensalidade
+ */
+	private function PrepararDadosRecibo(&$mensalidade) {
+		$aluno_id = $mensalidade['Mensalidade']['aluno_id'];
+		$aluno = $this->Mensalidade->Aluno->find('list', array('conditions' => array('Aluno.id' => $aluno_id)));
+		$mensalidade['Aluno']['nome'] = $aluno[$aluno_id]; 
+		$mensalidade['Mensalidade']['extenso'] = CarregarConsultasBaseComponent::ValorPorExtenso($mensalidade['Mensalidade']['liquido']);
+		$usuario = $this->Session->read('Auth');
+		$mensalidade['User']['assinatura'] = $usuario['User']['assinatura'];
+		$mensalidade['Pessoa']['razaosocial'] = $usuario['User']['Pessoa']['razaosocial'];
+	    $Cidade = $this->Mensalidade->Aluno->Cidade;
+		$Cidade->recursive = false;
+		$cidade = $Cidade->findById($usuario['User']['Pessoa']['cidade_id'], array('Cidade.nome', 'Estado.sigla'));
+		if (count($cidade) == 0)
+			$cidade = $this->Mensalidade->Aluno->Cidade->findById(1, array('Cidade.nome', 'Estado.sigla'));
+		$mensalidade['Cidade']['nome'] = $cidade['Cidade']['nome'];
+		$mensalidade['Estado']['sigla'] = $cidade['Estado']['sigla'];
+	}
+
+/**
+ * RealizarLancamentosContabeis method
+ * @param array $mensalidade
+ * @return void
+ */
+	private function RealizarLancamentosContabeis($mensalidade) {
+		$this->LancarContabil($mensalidade, 'lancamento_valor_id', 'MenValDeb','MenValCre','MenValHis', 'valor');
+		$this->LancarContabil($mensalidade, 'lancamento_desconto_id', 'MenDesDeb','MenDesCre','MenDesHis', 'desconto');
+		$this->LancarContabil($mensalidade, 'lancamento_juro_id', 'MenJurDeb','MenJurCre','MenJurHis', 'juro');
+	}
+
+/**
+ * LancarContabil method
+ * @param array $mensalidade, string[field] $campo, $debito, $credito, $historico, $valor
+ * @return void
+ */
+	private function LancarContabil($mensalidade, $campo, $debito, $credito, $historico, $valor) {
+		if ($mensalidade['Mensalidade'][$valor] <= 0) 
+			return;
+
+		$this->Mensalidade->Formapgto->recursive = false;
+		$forma = $this->Mensalidade->Formapgto->findById($mensalidade['Mensalidade']['formapgto_id'], array('id', $debito, $credito, $historico));
+
+		//if ((is_null($forma['Formapgto'][$debito])) || (is_null($forma['Formapgto'][$credito])) || (is_null($forma['Formapgto'][$historico])))
+		//	return;
+
+		$id = $mensalidade['Mensalidade'][$campo];
+        if ($id > 0)
+        	$lancamento['id'] = $id;
+        $lancamento['data'] = $mensalidade['Mensalidade']['pagamento'];
+        $lancamento['debito_id'] = $forma['Formapgto'][$debito];
+        $lancamento['credito_id'] = $forma['Formapgto'][$credito];
+        $lancamento['histpadrao_id'] = $forma['Formapgto'][$historico];
+        $lancamento['documento'] = $mensalidade['Mensalidade']['documento'];
+        $lancamento['complemento'] = $mensalidade['Aluno']['nome'] . '-' . $mensalidade['Mensalidade']['aluno_id'];
+		$lancamento['valor'] = $mensalidade['Mensalidade']['valor'];
+
+		$LancamentoContabil = ClassRegistry::init('LancamentoContabil');
+		$LancamentoContabil->save($lancamento);
+
+		if ($id = 0) {
+			$relacionamento = [];
+			$relacionamento['Mensalidade']['id'] = $mensalidade['Mensalidade']['id'];
+			$relacionamento['Mensalidade'][$campo] = $LancamentoContabil->getLastInsertID();
+			$this->Mensalidade->save($relacionamento);
+		}
+	}
+
 }
+	

@@ -273,6 +273,9 @@ class PermissoesController extends AppController {
 			$return = 'ContasPagar';
 		if (! strcasecmp($return, 'HistoricoPadraos')) 
 			$return = 'HistoricoPadrao';
+		if (! strcasecmp($return, 'Formapgto')) 
+			$return = 'FormasPagamentos';
+		
 
 		return $return;
 	}

@@ -12,6 +12,30 @@ class ImportarFormasDePagamentoComponent extends ImportadorBaseComponent {
 		$dados['tipo'] = $this->FormatarValorEncode($parametro['FORTIPO']);
 		$dados['nome'] = $this->FormatarValorEncode($parametro['FORNOME']);
 
+		$dados['MenValDeb'] = $parametro['FORCONTAVALORDEBITO'];
+		$dados['MenValCre'] = $parametro['FORCONTAVALORCREDITO'];
+		$dados['MenValHis'] = $parametro['FORHISTPADRAOVALOR'];
+		
+		$dados['MenDesDeb'] = $parametro['FORCONTADESCONTODEBITO'];
+		$dados['MenDesCre'] = $parametro['FORCONTADESCONTOCREDITO'];
+		$dados['MenDesHis'] = $parametro['FORHISTPADRAODESCONTO'];
+		
+		$dados['MenJurDeb'] = $parametro['FORCONTAJURODEBITO'];
+		$dados['MenJurCre'] = $parametro['FORCONTAJUROCREDITO'];
+		$dados['MenJurHis'] = $parametro['FORHISTPADRAOJURO'];
+
+		$dados['PagValDeb'] = $parametro['FORCONTAVALORDEBITOCTP'];
+		$dados['PagValCre'] = $parametro['FORCONTAVALORCREDITOCTP'];
+		$dados['PagValHis'] = $parametro['FORHISTPADRAOVALORCTP'];
+		
+		$dados['PagDesDeb'] = $parametro['FORCONTADESCONTODEBITOCTP'];
+		$dados['PagDesCre'] = $parametro['FORCONTADESCONTOCREDITOCTP'];
+		$dados['PagDesHis'] = $parametro['FORHISTPADRAODESCONTOCTP'];
+
+		$dados['PagJurDeb'] = $parametro['FORCONTAJUROCREDITOCTP'];
+		$dados['PagJurCre'] = $parametro['FORCONTAJURODEBITOCTP'];
+		$dados['PagJurHis'] = $parametro['FORHISTPADRAOJUROCTP'];
+
 		$this->SalvarDados($dados);
 	}
 
@@ -24,5 +48,3 @@ class ImportarFormasDePagamentoComponent extends ImportadorBaseComponent {
 }
 
 ?>
-
-
