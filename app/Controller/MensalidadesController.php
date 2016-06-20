@@ -410,7 +410,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 	private function RealizarLancamentosContabeis($mensalidade) {
 		$this->LancarContabil($mensalidade, 'lancamento_valor_id', 'MenValDeb','MenValCre','MenValHis', 'valor');
 		$this->LancarContabil($mensalidade, 'lancamento_desconto_id', 'MenDesDeb','MenDesCre','MenDesHis', 'desconto');
-		$this->LancarContabil($mensalidade, 'lancamento_juro_id', 'MenJurDeb','MenJurCre','MenJurHis', 'juro');
+		$this->LancarContabil($mensalidade, 'lancamento_juro_id', 'MenJurDeb','MenJurCre','MenJurHis', 'acrescimo');
 	}
 
 /**
@@ -425,10 +425,12 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$this->Mensalidade->Formapgto->recursive = false;
 		$forma = $this->Mensalidade->Formapgto->findById($mensalidade['Mensalidade']['formapgto_id'], array('id', $debito, $credito, $historico));
 
-		//if ((is_null($forma['Formapgto'][$debito])) || (is_null($forma['Formapgto'][$credito])) || (is_null($forma['Formapgto'][$historico])))
-		//	return;
+		if ((is_null($forma['Formapgto'][$debito])) || (is_null($forma['Formapgto'][$credito])) || (is_null($forma['Formapgto'][$historico])))
+			return;
 
-		$id = $mensalidade['Mensalidade'][$campo];
+		$id = 0;
+		if (isset($mensalidade['Mensalidade'][$campo]))
+			$id = $mensalidade['Mensalidade'][$campo];
         if ($id > 0)
         	$lancamento['id'] = $id;
         $lancamento['data'] = $mensalidade['Mensalidade']['pagamento'];
