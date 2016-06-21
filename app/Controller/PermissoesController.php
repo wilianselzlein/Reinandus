@@ -28,7 +28,7 @@ class PermissoesController extends AppController {
 		$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
 
 		$this->Permissao->recursive = 0;
-		$this->set('permissoes', $this->paginate());
+		$this->set('perms', $this->paginate());
 	}
 
 /**

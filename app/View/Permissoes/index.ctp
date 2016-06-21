@@ -22,21 +22,21 @@
 						</tr>
 					</thead>
 					<tbody>
-<?php foreach ($permissoes as $permissao): ?>
+<?php foreach ($perms as $perm): ?>
 	<tr>
-		<td><?php echo h($permissao['Permissao']['id']); ?>&nbsp;</td>
+		<td><?php echo h($perm['Permissao']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($permissao['User']['username'], array('controller' => 'users', 'action' => 'view', $permissao['User']['id'])); ?>
+			<?php echo $this->Html->link($perm['User']['username'], array('controller' => 'users', 'action' => 'view', $perm['User']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($permissao['Programa']['nome'], array('controller' => 'programas', 'action' => 'view', $permissao['Programa']['id'])); ?>
+			<?php echo $this->Html->link($perm['Programa']['nome'], array('controller' => 'programas', 'action' => 'view', $perm['Programa']['id'])); ?>
 		</td>
-		<td><i class="<?php echo ($permissao['Permissao']['index'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
-		<td><i class="<?php echo ($permissao['Permissao']['view'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
-		<td><i class="<?php echo ($permissao['Permissao']['edit'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>		
-		<td><i class="<?php echo ($permissao['Permissao']['add'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
-		<td><i class="<?php echo ($permissao['Permissao']['delete'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>		
-		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $permissao, 'model' => 'Permissao')); ?>
+		<td><i class="<?php echo ($perm['Permissao']['index'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
+		<td><i class="<?php echo ($perm['Permissao']['view'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
+		<td><i class="<?php echo ($perm['Permissao']['edit'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>		
+		<td><i class="<?php echo ($perm['Permissao']['add'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
+		<td><i class="<?php echo ($perm['Permissao']['delete'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>		
+		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $perm, 'model' => 'Permissao')); ?>
 	</tr>
 <?php endforeach; ?>
 					</tbody>
