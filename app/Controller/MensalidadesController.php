@@ -75,8 +75,10 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 				$mensalidade['Mensalidade']['lancamento_juro_id'])));
 		$lancamentos = $this->Mensalidade->LancamentoContabilValor->find('all', $options);
 		$lancamentos = $this->TransformarArray->FindInContainable('LancamentoContabilValor', $lancamentos);
-		$lancamentos['LancamentoContabil'] = $lancamentos['LancamentoContabilValor'];
-		unset($lancamentos['LancamentoContabilValor']);
+		if (isset($lancamentos['LancamentoContabilValor'])) {
+			$lancamentos['LancamentoContabil'] = $lancamentos['LancamentoContabilValor'];
+			unset($lancamentos['LancamentoContabilValor']);
+		}
 		$this->set(compact('lancamentos'));
 	}
 

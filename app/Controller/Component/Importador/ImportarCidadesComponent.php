@@ -35,7 +35,7 @@ class ImportarCidadesComponent extends ImportadorBaseComponent {
 		$this->setCheckBox('Cidades');
 
 		$Estado = ClassRegistry::init('Estado');
-		$this->Estados = $Estado->findAsCombo();	
+		$this->Estados = $Estado->find('list');	
 	}
 
 }
