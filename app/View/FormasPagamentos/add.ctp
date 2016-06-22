@@ -25,8 +25,8 @@
 				); ?>
 					</div><!-- .form-group -->
 
+					<?php echo $this->element('AbasCadFormaPagamento'); ?>
 					<?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
-
 				</fieldset>
 
 			<?php echo $this->Form->end(); ?>
