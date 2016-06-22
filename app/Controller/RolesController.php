@@ -154,6 +154,7 @@ class RolesController extends AppController {
  	$this->AdicionarRoleSeNaoExistir(4, 'Secretaria');
  	$this->AdicionarRoleSeNaoExistir(5, 'Professor');
  	$this->AdicionarRoleSeNaoExistir(6, 'Aluno');
+ 	$this->AdicionarRoleSeNaoExistir(7, 'Comercial');
  	
 	$this->Session->setFlash(__('Os cargos foram atualizados.'), 'flash/success');
  }
