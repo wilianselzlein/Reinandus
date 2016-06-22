@@ -98,5 +98,32 @@ class Formapgto extends AppModel {
 			'counterQuery' => ''
 		)
 	);
-
+/**
+ * belongsTo associations
+ *
+ * @var array
+ */
+	public $belongsTo = array(
+		'Debito' => array(
+			'className' => 'PlanoConta',
+			'foreignKey' => 'MenValDeb',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Credito' => array(
+			'className' => 'PlanoConta',
+			'foreignKey' => 'MenValCre',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'HistoricoPadrao' => array(
+			'className' => 'HistoricoPadrao',
+			'foreignKey' => 'MenValHis',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
 }

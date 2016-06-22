@@ -8,7 +8,9 @@ App::uses('AppController', 'Controller');
  * @property SessionComponent $Session
  */
 class FormasPagamentosController extends AppController {
+
    public $uses = array('Formapgto');
+
 /**
  * Components
  *
@@ -81,6 +83,11 @@ class FormasPagamentosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
+		$nivel = $this->PegarMaiorNivel();
+		$debitos = $this->Formapgto->Debito->findAsCombo('asc', 'Nivel = ' . $nivel);
+		$creditos = $this->Formapgto->Credito->findAsCombo('asc', 'Nivel = ' . $nivel);
+		$historicos = $this->Formapgto->HistoricoPadrao->findAsCombo();
+		$this->set(compact('debitos', 'creditos', 'historicos'));
 	}
 
 /**
@@ -112,6 +119,11 @@ class FormasPagamentosController extends AppController {
 			$options = array('recursive' => false, 'conditions' => array('Formapgto.' . $this->Formapgto->primaryKey => $id));
 			$this->request->data = $this->Formapgto->find('first', $options);
 		}
+		$nivel = $this->PegarMaiorNivel();
+		$debitos = $this->Formapgto->Debito->findAsCombo('asc', 'Nivel = ' . $nivel);
+		$creditos = $this->Formapgto->Credito->findAsCombo('asc', 'Nivel = ' . $nivel);
+		$historicos = $this->Formapgto->HistoricoPadrao->findAsCombo();
+		$this->set(compact('debitos', 'creditos', 'historicos'));
 	}
 
 /**
@@ -137,4 +149,20 @@ class FormasPagamentosController extends AppController {
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
 		$this->redirect(array('action' => 'index'));
 	}
+
+
+/**
+ * PegarMaiorNivel method
+ *
+ * @throws NotFoundException
+ * @throws MethodNotAllowedException
+ * @param string
+ * @return integer
+ */
+	public function PegarMaiorNivel() {
+		$options = array('recursive' => false, 'fields' => array('Max(Debito.Nivel) as Nivel'));
+		$nivel = $this->Formapgto->Debito->find('first', $options);
+		return $nivel[0]['Nivel'];
+	}
+
 }

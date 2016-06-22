@@ -29,7 +29,7 @@
 				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'<br><br>(B)ancaria - (M)anual - (I)nativa - (P)adrão</div>')
 				); ?>
 					</div><!-- .form-group -->
-
+					<?php echo $this->element('AbasCadFormaPagamento'); ?>
 					<?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
 
 				</fieldset>
