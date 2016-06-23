@@ -305,7 +305,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$options = array('recursive' => 1, 'conditions' => array('Instituto.' . $Instituto->primaryKey => 1));
 		$instituto = $Instituto->find('first', $options);
 
-		$dados['sacado'] = $aluno['Aluno']['nome'];
+		$dados['sacado'] = $aluno['Aluno']['nome'] . ' ' . $aluno['Aluno']['cpf'];
 		$dados['endereco1'] = $aluno['Aluno']['endereco'] . ' ' . $aluno['Aluno']['numero'] . ' ' . $aluno['Aluno']['bairro'];
 		$dados['endereco2'] = $cidade['Cidade']['nome'] . '/' . $estado['Estado']['sigla'];
 		$dados['cpf_cnpj'] = $aluno['Aluno']['cpf'];
@@ -322,12 +322,12 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$cidade = $this->Mensalidade->Aluno->Cidade->find('first', $options);
 
 		$dados["cidade_uf"] =  $cidade['Cidade']['nome'];
-		$dados["cedente"] = $conta['Conta']['cedente'];
+		$dados["cedente"] = $conta['Conta']['cedente']; //$instituto['Empresa']['fantasia'] . ' ' .$instituto['Empresa']['cnpjcpf'];
 
 		// Informações da sua conta 
-		//debug($conta); die;
 		$dados["agencia"] = $conta['Conta']['agencia']; // Num da agencia, sem digito
 		$dados["conta"] = $conta['Conta']['conta']; 	// Num da conta, sem digito
+		$dados["conta_dv"] = $conta['Conta']['conta_dig']; 	// Num da conta, sem digito
 
 		// Dados do contrato com o Banco
 		$dados["convenio"] = $conta['Conta']['cedente'];  // Num do convênio - REGRA: 6 ou 7 ou 8 dígitos
@@ -352,19 +352,23 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$dados["demonstrativo3"] = "";
 
 		// OPCIONAIS
-		$dados["quantidade"] = "1";
+		$dados["quantidade"] = "";
 		$dados["valor_unitario"] = "";
 
 		// Instruções ao caixa
 		$dados["instrucoes1"] = " CONCEDER DESCONTO DE R$ " . $mensalidade['Mensalidade']['desconto'] . " SE PAGO ATE O VENCIMENTO";
 		$dados["instrucoes2"] = " NAO RECEBER APOS O VENCIMENTO";
 		$dados["instrucoes3"] = "";
-		$dados["instrucoes4"] = "CURSO: " . $aluno['Aluno']['curso_id'];
+		
+		$options = array('recursive' => -1, 'fields' => array('Curso.nome'), 'conditions' => array('Curso.' . $this->Mensalidade->Aluno->Curso->primaryKey => $aluno['Aluno']['curso_id']));
+		$curso = $this->Mensalidade->Aluno->Curso->find('first', $options);
+		
+		$dados["instrucoes4"] = "CURSO: " . $curso['Curso']['nome'];
 
 		// MOEDA 
 		$dados["aceite"] = "N";
 		$dados["especie"] = "R$";
-		$dados["especie_doc"] = "DM";
+		$dados["especie_doc"] = "";
 
 		//debug($data); die;
 		

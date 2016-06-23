@@ -549,7 +549,7 @@
 						</tr>
 
 						<tr class="campos">
-							<td class="cedente"><?php echo $dadosboleto["cedente"]; ?>&nbsp;</td>
+							<td class="cedente"><?php echo $dadosboleto["identificacao"]; ?>&nbsp;</td>
 							<td class="ag_cod_cedente"><?php echo $dadosboleto["agencia_codigo"]?> &nbsp;</td>
 							<td class="especie"><?php echo $dadosboleto["especie"]?>&nbsp;</td>
 							<TD class="qtd"><?php echo $dadosboleto["quantidade"]?>&nbsp;</td>
@@ -651,8 +651,8 @@
 							<td class="ag_cod_cedente2">Ag&ecirc;ncia/C&oacute;digo cedente</td>
 						</tr>
 						<tr class="campos">
-							<td class="cedente2"><?php echo $dadosboleto["cedente"]?></td>
-							<td class="ag_cod_cedente2"><?php echo $dadosboleto["agencia_codigo"]?></td>
+							<td class="cedente2"><?php echo $dadosboleto["identificacao"]?></td>
+							<td class="ag_cod_cedente2"><?php echo $dadosboleto["agencia_codigo"]; ?></td>
 						</tr>
 					</tbody>
 				</table>

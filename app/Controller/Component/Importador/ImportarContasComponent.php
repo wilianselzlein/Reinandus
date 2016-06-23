@@ -12,8 +12,8 @@ class ImportarContasComponent extends ImportadorBaseComponent {
 		$dados['banco'] = $this->FormatarValorEncode($parametro['BANNOME']);
 		$dados['agencia'] = $this->FormatarValorEncode($parametro['BANAGENCIA']);
 		$dados['agencia_dig'] = $parametro['BANAGENCIADIGITO'];
-		$dados['conta'] = $this->FormatarValorEncode($parametro['BANCONTADIGITO']);
-		$dados['conta_dig'] = $parametro['BANAGENCIADIGITO'];
+		$dados['conta'] = $this->FormatarValorEncode($parametro['BANCONTA']);
+		$dados['conta_dig'] = $parametro['BANCONTADIGITO'];
 		$dados['contato'] = $this->FormatarValorEncode($parametro['BANCONTATO']);
 		$dados['fone'] = $parametro['BANFONE'];
 		$dados['fax'] = $parametro['BANFAX'];
