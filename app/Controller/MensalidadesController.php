@@ -310,8 +310,8 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$dados['endereco2'] = $cidade['Cidade']['nome'] . '/' . $estado['Estado']['sigla'];
 		$dados['cpf_cnpj'] = $aluno['Aluno']['cpf'];
 		
-		$dados['valor_cobrado'] = $mensalidade['Mensalidade']['liquido'];
-		$dados['pedido'] = 5; // Usado para gerar o número do documento e o nosso número.
+		$dados['valor_cobrado'] = $mensalidade['Mensalidade']['valor'];
+		$dados['pedido'] = $aluno['Aluno']['id']; // Usado para gerar o número do documento e o nosso número.
 
 		/* Seus Dados */
 		$dados["identificacao"] = $instituto['Empresa']['fantasia'];
@@ -341,14 +341,14 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 
 		// Vence em quantos dias? 
 		$dados['dias_vencimento'] = date('j', strtotime($mensalidade['Mensalidade']['vencimento']));
-		$dados['data_vencimento'] = date('d/m/Y', strtotime($mensalidade['Mensalidade']['vencimento']));
+		$dados['data_vencimento'] = date('m/d/Y', strtotime($mensalidade['Mensalidade']['vencimento']));
 
 		// Taxa do boleto
 		$dados['taxa'] = 0;
 
 		// Informações para o cliente
-		$dados["demonstrativo1"] = $instituto['Empresa']['fantasia'] . "<br />";
-		$dados["demonstrativo2"] = $aluno['Aluno']['nome'] . "<br />";
+		$dados["demonstrativo1"] = 'Endereço cedente:' . $instituto['Empresa']['endereco'] . ' Curitiba-PR ' . $instituto['Empresa']['cep'] . ' ' . $instituto['Empresa']['site']  . "<br />";
+		$dados["demonstrativo2"] = "<br />";
 		$dados["demonstrativo3"] = "";
 
 		// OPCIONAIS
@@ -356,10 +356,10 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$dados["valor_unitario"] = "";
 
 		// Instruções ao caixa
-		$dados["instrucoes1"] = " Sr. Caixa,";
-		$dados["instrucoes2"] = " Não receber após o vencimento.";
+		$dados["instrucoes1"] = " CONCEDER DESCONTO DE R$ " . $mensalidade['Mensalidade']['desconto'] . " SE PAGO ATE O VENCIMENTO";
+		$dados["instrucoes2"] = " NAO RECEBER APOS O VENCIMENTO";
 		$dados["instrucoes3"] = "";
-		$dados["instrucoes4"] = "";
+		$dados["instrucoes4"] = "CURSO: " . $aluno['Aluno']['curso_id'];
 
 		// MOEDA 
 		$dados["aceite"] = "N";

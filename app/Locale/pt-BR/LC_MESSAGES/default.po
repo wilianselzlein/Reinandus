@@ -358,6 +358,9 @@ msgstr "Conta Bancaria"
 msgid "Formapgtos"
 msgstr "Formas de Pagamento"
 
+msgid "Formaspagamentos"
+msgstr "Formas de Pagamento"
+
 msgid "Formapgto"
 msgstr "Forma de Pagamento"
 

@@ -142,7 +142,7 @@ class PermissoesController extends AppController {
 		//$this->VerificarUsuarioParaPermissao($id);
 		$this->IncluirPermissoesNoUsuario($user_id, true);
 		$this->Session->setFlash(__('Permissões adicionadas!'), 'flash/error');
-		$this->redirect(array('controller' => 'user', 'action' => 'view', $user_id));
+		$this->redirect(array('controller' => 'usuarios', 'action' => 'view', $user_id));
 	}
 
 /**
@@ -157,7 +157,7 @@ class PermissoesController extends AppController {
 		//$this->VerificarUsuarioParaPermissao($id);
 		$this->IncluirPermissoesNoUsuario($user_id, false);
 		$this->Session->setFlash(__('Permissões negadas!'), 'flash/error');
-		$this->redirect(array('controller' => 'user', 'action' => 'view', $user_id));
+		$this->redirect(array('controller' => 'usuarios', 'action' => 'view', $user_id));
 	}
 
 /**
