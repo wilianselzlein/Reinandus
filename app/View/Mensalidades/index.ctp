@@ -32,7 +32,7 @@
 		<td><?php echo $this->Number->currency($mensalidade['Mensalidade']['liquido'],'BRL'); ?>&nbsp;</td>
 		<td><font color="red"><?php echo h($mensalidade['Mensalidade']['pagamento']); ?>&nbsp;</font></td>
 		<td>
-			<?php echo $this->Html->link($mensalidade['Formapgto']['nome'], array('controller' => 'formaspagamentos', 'action' => 'view', $mensalidade['Formapgto']['id'])); ?>
+			<?php echo $this->Html->link($mensalidade['Formapgto']['nome'], array('controller' => 'FormasPagamentos', 'action' => 'view', $mensalidade['Formapgto']['id'])); ?>
 		</td>
 		<td class="actions text-center">
 

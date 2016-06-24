@@ -34,7 +34,7 @@
 		</td>
 </tr><tr>		<td><strong><?php echo __('Formapgto'); ?></strong></td>
 		<td>
-			<?php echo $this->Html->link($mensalidade['Formapgto']['nome'], array('controller' => 'formaspagamentos', 'action' => 'view', $mensalidade['Formapgto']['id']), array('class' => '')); ?>
+			<?php echo $this->Html->link($mensalidade['Formapgto']['nome'], array('controller' => 'FormasPagamentos', 'action' => 'view', $mensalidade['Formapgto']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Conta'); ?></strong></td>

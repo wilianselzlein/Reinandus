@@ -33,7 +33,7 @@
 		<td><?php echo h($contapagar['ContaPagar']['vencimento']); ?>&nbsp;</td>
 		<td><?php echo h($contapagar['ContaPagar']['pagamento']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($contapagar['Formapgto']['nome'], array('controller' => 'formaspagamentos', 'action' => 'view', $contapagar['Formapgto']['id'])); ?>
+			<?php echo $this->Html->link($contapagar['Formapgto']['nome'], array('controller' => 'FormasPagamentos', 'action' => 'view', $contapagar['Formapgto']['id'])); ?>
 		</td>
 		<td><i class="<?php echo ($contapagar['ContaPagar']['liberado'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
 		<td class="actions text-center">

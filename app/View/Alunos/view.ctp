@@ -208,7 +208,7 @@ else
                   <td><?php echo $mensalidade['Mensalidade']['vencimento']; ?></td>
                   <td><?php echo $this->Number->currency($mensalidade['Mensalidade']['liquido'], 'BRL'); ?></td>
                   <td><?php echo $mensalidade['Mensalidade']['pagamento']; ?></td>
-                  <td><?php echo $this->Html->link($mensalidade['Formapgto']['nome'], array('controller' => 'formaspagamentos', 'action' => 'view', $mensalidade['Formapgto']['id']), array('class' => '')); ?>
+                  <td><?php echo $this->Html->link($mensalidade['Formapgto']['nome'], array('controller' => 'FormasPagamentos', 'action' => 'view', $mensalidade['Formapgto']['id']), array('class' => '')); ?>
                      &nbsp;</td>
         		  <td class="actions text-center">
 						<?php echo $this->Html->link('<i class="fa fa-print"></i>', array('controller' => 'mensalidades', 'action' => 'boleto', $mensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Boleto'), 'data-toggle'=>'tooltip')); ?>
