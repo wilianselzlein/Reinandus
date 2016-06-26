@@ -27,7 +27,19 @@ class RelatoriosController extends AppController {
      */
     
     public function index() {
-        $options = array('order' => array('Relatorio.Tipo', 'Relatorio.Nome'));
+        $dados = $this->Session->read('Auth');
+        if (isset($dados['User']))
+            $user_id = $dados['User']['id'];
+
+        $options = array(
+            'conditions' => array('Permissao.User_id' => $user_id, 'Permissao.Index' => false),
+            'fields' => array('Permissao.Programa_id'));
+        $permissoes = ClassRegistry::init('Permissao');
+        $programas = $permissoes->find('list', $options);
+
+        $options = array(
+            'order' => array('Relatorio.Tipo', 'Relatorio.Nome'),
+            'conditions' => array('NOT' => array('Relatorio.programa_id' => $programas)));
         $this->Relatorio->unbindModel(array('hasMany' => array('RelatorioDataset')));
         $relatorios = $this->Relatorio->find('all', $options);
         $this->set(compact('relatorios'));
