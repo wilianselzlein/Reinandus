@@ -8,9 +8,7 @@ class Relatorio extends AppModel {
  * Use database config
  *
  * @var string
- */
-	
- 
+ */	
    
 /**
  * Display field
@@ -37,12 +35,28 @@ class Relatorio extends AppModel {
                       ),
 	);
 	
-        public $hasMany = array(		
-              'RelatorioDataset' => array(
-			'className' => 'RelatorioDataset',
-			'foreignKey' => 'relatorio_id',
-			'dependent' => true
-		)
+  public $hasMany = array(		
+      'RelatorioDataset' => array(
+          'className' => 'RelatorioDataset',
+          'foreignKey' => 'relatorio_id',
+          'dependent' => true
+		  )
 	);
+
+
+/**
+ * belongsTo associations
+ *
+ * @var array
+ */
+  public $belongsTo = array(
+    'Programa' => array(
+      'className' => 'Programa',
+      'foreignKey' => 'programa_id',
+      'conditions' => '',
+      'fields' => '',
+      'order' => ''
+    )
+  );
 
 }

@@ -21,6 +21,7 @@
 							<th><?php echo $this->Paginator->sort('nome'); ?></th>
                             <th><?php echo $this->Paginator->sort('tipo'); ?></th>
                             <th><?php echo $this->Paginator->sort('arquivo'); ?></th>
+                            <th><?php echo $this->Paginator->sort('programa_id'); ?></th>
                             <th><?php echo $this->Paginator->sort('icone'); ?></th>
 							<th class="actions"><?php echo __('Actions'); ?></th>
 						</tr>
@@ -32,6 +33,9 @@
 		<td><?php echo h($relatorio['Relatorio']['nome']); ?>&nbsp;</td>
                 <td><?php echo h($relatorio['Relatorio']['tipo']); ?>&nbsp;</td>
                 <td><?php echo h($relatorio['Relatorio']['arquivo']); ?>&nbsp;</td>
+				<td>
+					<?php echo $this->Html->link($relatorio['Programa']['nome'], array('controller' => 'programas', 'action' => 'view', $relatorio['Programa']['id'])); ?>
+				</td>
                 <td><i class="fa <?php echo h($relatorio['Relatorio']['icone']); ?> fa-2x"></i>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $relatorio['Relatorio']['id']), array('class' => 'btn btn-default btn-xs')); ?>

@@ -27,6 +27,9 @@
 						<?php echo $this->Form->input('arquivo', array('class' => 'form-control')); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
+		               <?php echo $this->Form->input('programa_id', array('class' => 'form-control combobox')); ?>
+		            </div><!-- .form-group -->
+					<div class="form-group">
 						<?php echo $this->Form->input('icone', array('class' => 'form-control')); ?>
 						<a href='http://fortawesome.github.io/Font-Awesome/icons/'>Mais ícones</a>
 					</div><!-- .form-group -->

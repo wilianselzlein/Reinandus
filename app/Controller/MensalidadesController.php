@@ -191,9 +191,9 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 				$this->RealizarLancamentosContabeis($mensalidade);
 				$this->set(compact('mensalidade'));
 				$this->render('recibo');
-				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", 
-					array("link_text" => __('GO_TO'), "link_url" => 
-						array("action" => "view", $this->Mensalidade->id)));
+				//$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", 
+				//	array("link_text" => __('GO_TO'), "link_url" => 
+				//		array("action" => "view", $this->Mensalidade->id)));
 				//$this->redirect(array('action' => 'view', $id));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
@@ -414,9 +414,11 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
  * @return void
  */
 	private function RealizarLancamentosContabeis($mensalidade) {
-		$this->LancarContabil($mensalidade, 'lancamento_valor_id', 'MenValDeb','MenValCre','MenValHis', 'valor');
-		$this->LancarContabil($mensalidade, 'lancamento_desconto_id', 'MenDesDeb','MenDesCre','MenDesHis', 'desconto');
-		$this->LancarContabil($mensalidade, 'lancamento_juro_id', 'MenJurDeb','MenJurCre','MenJurHis', 'acrescimo');
+
+		$this->LancarContabil($mensalidade, 2, 'lancamento_desconto_id', 'MenDesDeb','MenDesCre','MenDesHis', 'desconto');
+		$this->LancarContabil($mensalidade, 1, 'lancamento_valor_id', 'MenValDeb','MenValCre','MenValHis', 'pago');
+		$this->LancarContabil($mensalidade, 3, 'lancamento_juro_id', 'MenJurDeb','MenJurCre','MenJurHis', 'acrescimo');
+		//die;
 	}
 
 /**
@@ -424,7 +426,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
  * @param array $mensalidade, string[field] $campo, $debito, $credito, $historico, $valor
  * @return void
  */
-	private function LancarContabil($mensalidade, $campo, $debito, $credito, $historico, $valor) {
+	private function LancarContabil($mensalidade, $inc, $campo, $debito, $credito, $historico, $valor) {
 		if ($mensalidade['Mensalidade'][$valor] <= 0) 
 			return;
 
@@ -442,15 +444,16 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
         $lancamento['data'] = $mensalidade['Mensalidade']['pagamento'];
         $lancamento['debito_id'] = $forma['Formapgto'][$debito];
         $lancamento['credito_id'] = $forma['Formapgto'][$credito];
-        $lancamento['histpadrao_id'] = $forma['Formapgto'][$historico];
+        $lancamento['historico_padrao_id'] = $forma['Formapgto'][$historico];
         $lancamento['documento'] = $mensalidade['Mensalidade']['documento'];
         $lancamento['complemento'] = $mensalidade['Aluno']['nome'] . '-' . $mensalidade['Mensalidade']['aluno_id'];
-		$lancamento['valor'] = $mensalidade['Mensalidade']['valor'];
+		$lancamento['valor'] = $mensalidade['Mensalidade'][$valor];
 
 		$LancamentoContabil = ClassRegistry::init('LancamentoContabil');
+		$LancamentoContabil->create();
 		$LancamentoContabil->save($lancamento);
 
-		if ($id = 0) {
+		if ($id == 0) {
 			$relacionamento = [];
 			$relacionamento['Mensalidade']['id'] = $mensalidade['Mensalidade']['id'];
 			$relacionamento['Mensalidade'][$campo] = $LancamentoContabil->getLastInsertID();
@@ -458,5 +461,4 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		}
 	}
 
-}
-	
+}	

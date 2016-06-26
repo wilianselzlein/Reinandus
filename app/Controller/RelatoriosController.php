@@ -56,14 +56,14 @@ class RelatoriosController extends AppController {
 
     public function filter($id = null) {
         $this->Relatorio->id = $id;
-            if (!$this->Relatorio->exists($id)) {
-                throw new NotFoundException(__('The record could not be found.'));
-            }
-                $options = array('recursive'=>'2', 'conditions' => array('Relatorio.' . $this->Relatorio->primaryKey => $id));
-		$this->set('relatorio', $this->Relatorio->find('first', $options));
-                $this->set('relatorioFiltrosDisponiveis', 
-                    $this->RelatorioFiltro->find('all', array('conditions' => array('Relatorio_id' => $id), 'group'=>array('RelatorioFiltro.campo')))
-            );
+        if (!$this->Relatorio->exists($id)) {
+            throw new NotFoundException(__('The record could not be found.'));
+        }
+        $options = array('recursive'=>'2', 'conditions' => array('Relatorio.' . $this->Relatorio->primaryKey => $id));
+        $this->set('relatorio', $this->Relatorio->find('first', $options));
+        $this->set('relatorioFiltrosDisponiveis', 
+            $this->RelatorioFiltro->find('all', array('conditions' => array('Relatorio_id' => $id), 'group'=>array('RelatorioFiltro.campo')))
+        );
     }
    
     public function download($id = null){
@@ -213,6 +213,8 @@ class RelatoriosController extends AppController {
                 $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
             }
         }
+        $programas = $this->Relatorio->Programa->findAsCombo();
+        $this->set(compact('programas'));
     }  
     
     /**
@@ -238,6 +240,8 @@ class RelatoriosController extends AppController {
             $options = array('conditions' => array('Relatorio.' . $this->Relatorio->primaryKey => $id));
             $this->request->data = $this->Relatorio->find('first', $options);
         }
+        $programas = $this->Relatorio->Programa->findAsCombo();
+        $this->set(compact('programas'));
     }
     
 /**
