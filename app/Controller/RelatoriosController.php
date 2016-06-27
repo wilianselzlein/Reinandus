@@ -27,19 +27,9 @@ class RelatoriosController extends AppController {
      */
     
     public function index() {
-        $dados = $this->Session->read('Auth');
-        if (isset($dados['User']))
-            $user_id = $dados['User']['id'];
-
-        $options = array(
-            'conditions' => array('Permissao.User_id' => $user_id, 'Permissao.Index' => false),
-            'fields' => array('Permissao.Programa_id'));
-        $permissoes = ClassRegistry::init('Permissao');
-        $programas = $permissoes->find('list', $options);
-
         $options = array(
             'order' => array('Relatorio.Tipo', 'Relatorio.Nome'),
-            'conditions' => array('NOT' => array('Relatorio.programa_id' => $programas)));
+            'conditions' => array('NOT' => array('Relatorio.programa_id' => $this->PegarProgramasNaoPermitidosDoUsuarioLogado())));
         $this->Relatorio->unbindModel(array('hasMany' => array('RelatorioDataset')));
         $relatorios = $this->Relatorio->find('all', $options);
         $this->set(compact('relatorios'));
@@ -72,7 +62,16 @@ class RelatoriosController extends AppController {
             throw new NotFoundException(__('The record could not be found.'));
         }
         $options = array('recursive'=>'2', 'conditions' => array('Relatorio.' . $this->Relatorio->primaryKey => $id));
-        $this->set('relatorio', $this->Relatorio->find('first', $options));
+        $relatorio = $this->Relatorio->find('first', $options);
+        $programa = $relatorio['Relatorio']['programa_id'];
+        $programas = $this->PegarProgramasNaoPermitidosDoUsuarioLogado();
+        $localizou = array_search($programa, $programas);
+        if ($localizou) {
+            $this->Session->setFlash(__('__PERMISSAO'), 'flash/error');
+             $this->redirect($this->referer());
+            //throw new NotFoundException(__('__PERMISSAO'));
+        }
+        $this->set('relatorio', $relatorio);
         $this->set('relatorioFiltrosDisponiveis', 
             $this->RelatorioFiltro->find('all', array('conditions' => array('Relatorio_id' => $id), 'group'=>array('RelatorioFiltro.campo')))
         );
@@ -303,16 +302,34 @@ class RelatoriosController extends AppController {
  * @throws NotFoundException
  * @return void
  */
-function dados() {
-    //debug($this->params['data']['model']); die;
-    $modelo = $this->params['data']['model'];
-    $dados = array();
-    $this->layout = null;
+    function dados() {
+        //debug($this->params['data']['model']); die;
+        $modelo = $this->params['data']['model'];
+        $dados = array();
+        $this->layout = null;
 
-    $Class = ClassRegistry::init($modelo);
-    $dados = $Class->find('list', array('order' => array($Class->displayField)));
-    
-    $this->set(compact('dados'));
-}
+        $Class = ClassRegistry::init($modelo);
+        $dados = $Class->find('list', array('order' => array($Class->displayField)));
+        
+        $this->set(compact('dados'));
+    }
+
+/**
+ * dados method
+ *
+ * @throws PegarProgramasNaoPermitidosDoUsuarioLogado
+ * @return array
+ */
+    private function PegarProgramasNaoPermitidosDoUsuarioLogado() {
+        $dados = $this->Session->read('Auth');
+        if (isset($dados['User']))
+            $user_id = $dados['User']['id'];
+            
+        $options = array(
+            'conditions' => array('Permissao.User_id' => $user_id, 'Permissao.Index' => false),
+            'fields' => array('Permissao.Programa_id'));
+        $permissoes = ClassRegistry::init('Permissao');
+        return $permissoes->find('list', $options);
+    }
 
 }
