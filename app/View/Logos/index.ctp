@@ -64,7 +64,6 @@
 							<th><?php echo $this->Paginator->sort('id'); ?></th>
 							<th><?php echo $this->Paginator->sort('pessoa_id'); ?></th>
 							<th><?php echo $this->Paginator->sort('logo'); ?></th>
-							<th><?php echo $this->Paginator->sort('imagem'); ?></th>
 							<th class="actions text-center"><?php echo __('Actions'); ?></th>
 						</tr>
 					</thead>
@@ -80,7 +79,6 @@
             <?php echo $this->Html->image('logos/thumbs/'.$logo['Logo']['logo'], array('width'=>'100','height'=>'50')); ?>&nbsp;
          </a>
       </td>
-      <td><?php echo h($logo['Logo']['imagem']); ?>&nbsp;</td>
 		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $logo, 'model' => 'Logo')); ?>
 	</tr>
 <?php endforeach; ?>

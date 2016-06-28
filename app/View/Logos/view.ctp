@@ -25,12 +25,8 @@
 			<?php echo h($logo['Logo']['logo']); ?>
 			&nbsp;
 		</td>
-</tr><tr>		<td><strong><?php echo __('Imagem'); ?></strong></td>
-		<td>
-			<?php echo h($logo['Logo']['imagem']); ?>
-			&nbsp;
-		</td>
-</tr>					</tbody>
+</tr>
+					</tbody>
 				</table><!-- /.table table-striped table-bordered -->
 			</div><!-- /.table-responsive -->
 			
