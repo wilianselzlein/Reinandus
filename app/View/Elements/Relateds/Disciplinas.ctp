@@ -1,3 +1,4 @@
+<?php if (! $this->PermissaoRelated->Verificar(5)) return; ?>
 <?php if (!isset($model)) $model = 'Disciplina'; ?>
 <?php if (!isset($controller)) $controller = 'disciplinas'; ?>
 <div class="panel-footer">

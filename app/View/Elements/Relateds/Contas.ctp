@@ -1,3 +1,4 @@
+<?php if (! $this->PermissaoRelated->Verificar(2)) return; ?>
 <div class="panel-body">
 	<?php if (!empty($array['Contum'])): ?>
 		<div class="table-responsive">

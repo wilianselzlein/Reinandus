@@ -1,3 +1,4 @@
+<?php if (! $this->PermissaoRelated->Verificar(17)) return; ?>
 <?php if (!isset($model)) $model = 'Filtros'; ?>
 <div class="panel-footer">
       <h3><?php echo __('RelatorioFiltro').' ' ?> 

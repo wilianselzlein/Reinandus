@@ -1,3 +1,4 @@
+<?php if (! $this->PermissaoRelated->Verificar(34)) return; ?>
 <div class="panel-footer">
                 <h3><?php echo __('Mensalidades').' ' ?>
                     <small><?php echo __('Related') ?></small>

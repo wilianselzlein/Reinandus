@@ -1,3 +1,4 @@
+<?php if (! $this->PermissaoRelated->Verificar(20)) return; ?>
 <div class="panel-footer">
       <h3><?php echo __('Avisos').' ' ?> 
          <small><?php echo __('Related') ?></small>

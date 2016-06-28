@@ -1,3 +1,4 @@
+<?php if (! $this->PermissaoRelated->Verificar(4)) return; ?>
 <?php if (!isset($model)) $model = 'Curso'; ?>
 <div class="panel-footer">
                 <h3><?php echo __('Cursos').' ' ?> 

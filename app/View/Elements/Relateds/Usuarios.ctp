@@ -1,4 +1,5 @@
-<div class="panel-footer">
+<?php if (! $this->PermissaoRelated->Verificar(15)) return; ?>
+			<div class="panel-footer">
                 <h3><?php echo __('Users').' ' ?> 
                     <small><?php echo __('Related') ?></small>
                     <div class="btn-group pull-right">

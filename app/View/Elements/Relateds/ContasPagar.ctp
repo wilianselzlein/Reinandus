@@ -1,3 +1,4 @@
+<?php if (! $this->PermissaoRelated->Verificar(19)) return; ?>
 <div class="panel-footer">
     <h3><?php echo __('ContasPagar').' ' ?> 
         <small><?php echo __('Related') ?></small>
