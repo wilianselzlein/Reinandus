@@ -38,12 +38,12 @@ for ($index = 0; $index < count($mensalidade); $index++) {
    $table->addRow($rowData);
 }
 
-$valor = array_sum(array_column(array_column($mensalidade, 0), 'valor'));
-$pago  = array_sum(array_column(array_column($mensalidade, 0), 'valor_pago'));
-$acres = array_sum(array_column(array_column($mensalidade, 0), 'acrescimo'));
-$desco = array_sum(array_column(array_column($mensalidade, 0), 'desconto'));
-$bolsa = array_sum(array_column(array_column($mensalidade, 0), 'bolsa'));
-$total = array_sum(array_column(array_column($mensalidade, 0), 'total'));
+$valor = array_sum($table->array_column($table->array_column($mensalidade, 0), 'valor'));
+$pago  = array_sum($table->array_column($table->array_column($mensalidade, 0), 'valor_pago'));
+$acres = array_sum($table->array_column($table->array_column($mensalidade, 0), 'acrescimo'));
+$desco = array_sum($table->array_column($table->array_column($mensalidade, 0), 'desconto'));
+$bolsa = array_sum($table->array_column($table->array_column($mensalidade, 0), 'bolsa'));
+$total = array_sum($table->array_column($table->array_column($mensalidade, 0), 'total'));
 
 $rowData = new Row('summary');
 $rowData

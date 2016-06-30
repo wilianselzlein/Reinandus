@@ -14,7 +14,7 @@
       <pre><?php echo $material['vavisos']['aviso_mensagem']; ?></pre>
     </p>
     <br>
-    <a href="/arqs/<?php echo basename($material['vavisos']['aviso_caminho']); ?>">
+    <a href="/Reinandus/arqs/<?php echo basename($material['vavisos']['aviso_caminho']); ?>">
       <button type="button" class="btn btn-default btn-lg">
         <i class="fa fa-download"></i> Baixar 
       </button>
