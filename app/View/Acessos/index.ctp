@@ -16,6 +16,7 @@
                   <th><?php echo $this->Paginator->sort('id'); ?></th>
                   <th><?php echo $this->Paginator->sort('aluno_id'); ?></th>
                   <th><?php echo $this->Paginator->sort('datahora'); ?></th>
+                  <th><?php echo $this->Paginator->sort('aplicativo'); ?></th>
                   <th class="actions text-center"><?php echo __('Actions'); ?></th>
                </tr>
             </thead>
@@ -27,6 +28,7 @@
                      <?php echo $this->Html->link($acesso['Aluno']['nome'], array('controller' => 'alunos', 'action' => 'view', $acesso['Aluno']['id'])); ?>
                   </td>
                   <td><?php echo h($acesso['Acesso']['datahora']); ?>&nbsp;</td>
+                  <td><i class="<?php echo ($acesso['Acesso']['aplicativo'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
                   <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $acesso, 'model' => 'Acesso')); ?>
                </tr>
                <?php endforeach; ?>

@@ -26,7 +26,11 @@
 			<?php echo h($acesso['Acesso']['datahora']); ?>
 			&nbsp;
 		</td>
-</tr>					</tbody>
+</tr><tr>		<td><strong><?php echo __('Aplicativo'); ?></strong></td>
+		<td>
+			<i class="<?php echo ($acesso['Acesso']['aplicativo'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;
+		</td>
+</tr>						</tbody>
 				</table><!-- /.table table-striped table-bordered -->
 			</div><!-- /.table-responsive -->
 			
