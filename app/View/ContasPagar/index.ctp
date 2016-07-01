@@ -27,7 +27,7 @@
 		<td><?php echo h($contapagar['ContaPagar']['id']); ?>&nbsp;</td>
 		<td><?php echo h($contapagar['ContaPagar']['documento']) . '-' . h($contapagar['ContaPagar']['serie']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($contapagar['Pessoa']['fantasia'], array('controller' => 'pessoas', 'action' => 'view', $contapagar['Pessoa']['id'])); ?>
+			<?php echo $this->Html->link($contapagar['Pessoa']['razaosocial'], array('controller' => 'pessoas', 'action' => 'view', $contapagar['Pessoa']['id'])); ?>
 		</td>
 		<td><?php echo $this->Number->currency($contapagar['ContaPagar']['valor'],'BRL'); ?>&nbsp;</td>
 		<td><?php echo h($contapagar['ContaPagar']['vencimento']); ?>&nbsp;</td>
