@@ -237,7 +237,7 @@ ContaPagar.conta_corrente, ContaPagar.liberado, ContaPagar.formapgto_id, ContaPa
 		//$formapgtos = $this->ContaPagar->Formapgto->findAsCombo('asc', 'tipo <> "I"');
 		//$tipos = $this->ContaPagar->Tipo->findAsCombo();
 		$users = $this->ContaPagar->User->findAsCombo();
-		$situacaos = $this->ContaPagar->Situacao->findAsCombo();
+		$situacaos = $this->ContaPagar->Situacao->find('list', array('conditions' => array('Situacao.referencia' => 'situacao_id', 'Situacao.nome' => 'contapagar')));
 		$this->set(compact('contas', 'pessoas', 'formapgtos', 'users', 'situacaos', 'tipos'));
 	}
 

@@ -9,7 +9,7 @@
       <div class="ContaPagars form">
          <?php echo $this->Form->create('ContaPagar', array('role' => 'form', 'class'=>'form-horizontal')); ?>
          <fieldset>
-            <?php echo $this->element('FormContaPagar', array('add' => true)); ?>
+            <?php echo $this->element('FormContaPagar', array('add' => true, 'baixa' => false)); ?>
             <?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
          </fieldset>
          <?php echo $this->Form->end(); ?>

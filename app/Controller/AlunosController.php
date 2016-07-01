@@ -156,7 +156,7 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 		}
 		$estadoCivils = $this->Aluno->EstadoCivil->find('list', array('conditions' => array('EstadoCivil.referencia' => 'estado_civil_id')));
 		$indicacaos = $this->Aluno->Indicacao->find('list', array('conditions' => array('Indicacao.referencia' => 'indicacao_id')));
-		$situacaos = $this->Aluno->Situacao->find('list', array('conditions' => array('Situacao.referencia' => 'situacao_id')));
+		$situacaos = $this->Aluno->Situacao->find('list', array('conditions' => array('Situacao.referencia' => 'situacao_id', 'Situacao.nome' => 'aluno')));
 
 		$cursos = $this->Aluno->Curso->findAsCombo();
 		$professores = $this->Aluno->Professor->findAsCombo();
@@ -200,7 +200,7 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 		}
 		$estadoCivils = $this->Aluno->EstadoCivil->find('list', array('conditions' => array('EstadoCivil.referencia' => 'estado_civil_id')));
 		$indicacaos = $this->Aluno->Indicacao->find('list', array('conditions' => array('Indicacao.referencia' => 'indicacao_id')));
-		$situacaos = $this->Aluno->Situacao->find('list', array('conditions' => array('Situacao.referencia' => 'situacao_id')));
+		$situacaos = $this->Aluno->Situacao->find('list', array('conditions' => array('Situacao.referencia' => 'situacao_id', 'Situacao.nome' => 'aluno')));
 
 		$cursos = $this->Aluno->Curso->findAsCombo();
 		$professores = $this->Aluno->Professor->findAsCombo();
