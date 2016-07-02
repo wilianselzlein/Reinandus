@@ -208,7 +208,7 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 		$naturalidades = $cidades;
 		$responsavels = $this->Aluno->Responsavel->findAsCombo();
 		//$disciplinas = $this->Aluno->AlunoDisciplina->findAsCombo();
-		
+
 		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professores', 'cidades', 'naturalidades', 'responsavels', 'situacaos'));
 	}
 

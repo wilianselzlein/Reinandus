@@ -22,12 +22,14 @@ function CursoFim() {
                 <li>
                     <a href="#tabDocs" data-toggle="tab"><i class="fa fa-newspaper-o"></i></span>&nbsp;Documentos</a>
                 </li>
+                <?php if (! $novo) { ?>
                 <li>
                     <a href="#tabBloq" data-toggle="tab"><i class="fa fa-lock"></i></span>&nbsp;Bloqueio</a>
                 </li>
                 <li>
                     <a href="#tabMono" data-toggle="tab"><i class="fa fa-file-text-o"></i>&nbsp;Monografia</a>
                 </li>
+                <?php } ?>
         </ul>
     	<div class="panel panel-default">
 		  <div class="panel-body">
@@ -57,40 +59,45 @@ function CursoFim() {
 					   <?php echo $this->Form->input('indicacao_nome',
 					         array('class' => 'form-control', 'label'=>array('text' => 'Nome', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-6">', 'after'=>'</div>')); ?>
 						<?php echo $this->Form->label(__('Pago'), null, array('text' => 'Pago', 'class'=>'col-sm-1 control-label'));
-		                   echo $this->Form->input('indicacao_pago',
-		                            array('type' => 'checkbox', 'class' => 'form-control checkbox2',
-		                                  'before'=>'<div class="col-sm-2" align="right">',
-		                                  'after'=>'</div>', 'div'=>false, 'label'=>false, 'checked'=>true)); ?>
+							$options = array('type' => 'checkbox', 'class' => 'form-control checkbox2',
+								'before'=>'<div class="col-sm-2" align="right">',
+								'after'=>'</div>', 'div'=>false, 'label'=>false);
+							if ($novo) $options['checked'] = false;
+		                	echo $this->Form->input('indicacao_pago', $options); ?>
 					</div><!-- .form-group -->
                 </div>
                 <div class="tab-pane" id="tabDocs">
 		            <div class="form-group">
 						<?php echo $this->Form->label(__('entregou_diploma'), null,
 								array('class'=>'col-sm-1 control-label', 'style' => 'width: 250px;'));
-						   echo $this->Form->input('entregou_diploma',
-						            array('type' => 'checkbox', 'class' => 'form-control checkbox2',
-						                  'before'=>'<div class="col-sm-3" align="center" style="width: 50px;">',
-						                  'after'=>'</div>', 'div'=>false, 'label'=>false, 'checked'=>true)); ?>
+							$options = array('type' => 'checkbox', 'class' => 'form-control checkbox2',
+								'before'=>'<div class="col-sm-3" align="center" style="width: 50px;">',
+								'after'=>'</div>', 'div'=>false, 'label'=>false);
+							if ($novo) $options['checked'] = false;
+						   echo $this->Form->input('entregou_diploma', $options); ?>
 						<?php echo $this->Form->label(__('emitir_carteirinha'), null,
 								array('text' => 'Emitir Carteira', 'class'=>'col-sm-1 control-label', 'style' => 'width: 250px;'));
-						   echo $this->Form->input('emitir_carteirinha',
-						            array('type' => 'checkbox', 'class' => 'form-control checkbox2',
-						                  'before'=>'<div class="col-sm-3" align="center" style="width: 50px;">',
-						                  'after'=>'</div>', 'div'=>false, 'label'=>false, 'checked'=>true)); ?>
+							$option = array('type' => 'checkbox', 'class' => 'form-control checkbox2',
+								'before'=>'<div class="col-sm-3" align="center" style="width: 50px;">',
+								'after'=>'</div>', 'div'=>false, 'label'=>false);
+							if ($novo) $options['checked'] = false;
+						   echo $this->Form->input('emitir_carteirinha', $options); ?>
 		            </div><!-- .form-group -->
 					<div class="form-group">
 						<?php echo $this->Form->label(__('entregou_cpf'), null,
 								array('class'=>'col-sm-1 control-label', 'style' => 'width: 250px;'));
-						   echo $this->Form->input('entregou_cpf',
-						            array('type' => 'checkbox', 'class' => 'form-control checkbox2',
-						                  'before'=>'<div class="col-sm-3" align="center" style="width: 50px;">',
-						                  'after'=>'</div>', 'div'=>false, 'label'=>false, 'checked'=>true)); ?>
+							$option = array('type' => 'checkbox', 'class' => 'form-control checkbox2',
+								'before'=>'<div class="col-sm-3" align="center" style="width: 50px;">',
+								'after'=>'</div>', 'div'=>false, 'label'=>false);
+							if ($novo) $options['checked'] = false;
+						   echo $this->Form->input('entregou_cpf', $options); ?>
 						<?php echo $this->Form->label(__('entregou_rg'), null,
 								array('class'=>'col-sm-1 control-label', 'style' => 'width: 250px;'));
-						   echo $this->Form->input('entregou_rg',
-						            array('type' => 'checkbox', 'class' => 'form-control checkbox2',
-						                  'before'=>'<div class="col-sm-3" align="center" style="width: 50px;">',
-						                  'after'=>'</div>', 'div'=>false, 'label'=>false, 'checked'=>true)); ?>
+							$options = array('type' => 'checkbox', 'class' => 'form-control checkbox2',
+								'before'=>'<div class="col-sm-3" align="center" style="width: 50px;">',
+								'after'=>'</div>', 'div'=>false, 'label'=>false);
+							if ($novo) $options['checked'] = false;
+						   echo $this->Form->input('entregou_rg', $options); ?>
 					</div><!-- .form-group -->
 					<div class="panel panel-default">
 						<div class="panel-heading">Certificado:</div>
@@ -105,40 +112,42 @@ function CursoFim() {
 						</div>
 
 				</div>
-                <div class="tab-pane" id="tabBloq">
-		            <div class="form-group">
-		               <?php echo $this->Form->input('bloqueado_data',
-		                     array('type' => 'text', 'class' => 'form-control datepicker-start', 'label'=>array('text' => 'Data', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
-		            </div><!-- .form-group -->
-		            <div class="form-group">
-		             <?php echo $this->Form->label(__('bloqueado'), null, array('class'=>'col-sm-2 control-label'));
-		                   echo $this->Form->input('bloqueado',
-		                            array('type' => 'checkbox', 'class' => 'form-control checkbox2',
-		                                  'before'=>'<div class="col-sm-2">',
-		                                  'after'=>'</div>', 'div'=>false, 'label'=>false, 'checked'=>true)); ?>
-		            </div><!-- .form-group -->
-                </div>
-                <div class="tab-pane" id="tabMono">
-		            <div class="form-group">
-		               <?php echo $this->Form->input('professor_id',
-		                     array('class' => 'form-control combobox', 'label'=>array('text' => 'Coordenador', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
-		            </div><!-- .form-group -->
-					<div class="form-group">
-					   <?php echo $this->Form->input('mono_titulo',
-					         array('class' => 'form-control', 'label'=>array('text' => 'Título', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-					   <?php echo $this->Form->input('mono_data',
-					         array('type' => 'text', 'class' => 'form-control datepicker-start', 'label'=>array('text' => 'Data', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
-					   <?php echo $this->Form->input('mono_prazo',
-					         array('type' => 'text', 'class' => 'form-control datepicker-start', 'label'=>array('text' => 'Prazo', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
-					</div><!-- .form-group -->
-					<div class="form-group">
-					   <?php echo $this->Form->input('mono_nota',
-					         array('class' => 'form-control', 'label'=>array('text' => 'Nota', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
-					</div><!-- .form-group -->
+				<?php if (! $novo) { ?>
+	                <div class="tab-pane" id="tabBloq">
+			            <div class="form-group">
+			               <?php echo $this->Form->input('bloqueado_data',
+			                     array('type' => 'text', 'class' => 'form-control datepicker-start', 'label'=>array('text' => 'Data', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+			            </div><!-- .form-group -->
+			            <div class="form-group">
+			             <?php echo $this->Form->label(__('bloqueado'), null, array('class'=>'col-sm-2 control-label'));
+			                   echo $this->Form->input('bloqueado',
+			                            array('type' => 'checkbox', 'class' => 'form-control checkbox2',
+			                                  'before'=>'<div class="col-sm-2">',
+			                                  'after'=>'</div>', 'div'=>false, 'label'=>false, 'checked'=>true)); ?>
+			            </div><!-- .form-group -->
+	                </div>
+	                <div class="tab-pane" id="tabMono">
+			            <div class="form-group">
+			               <?php echo $this->Form->input('professor_id',
+			                     array('class' => 'form-control combobox', 'label'=>array('text' => 'Coordenador', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+			            </div><!-- .form-group -->
+						<div class="form-group">
+						   <?php echo $this->Form->input('mono_titulo',
+						         array('class' => 'form-control', 'label'=>array('text' => 'Título', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+						</div><!-- .form-group -->
+						<div class="form-group">
+						   <?php echo $this->Form->input('mono_data',
+						         array('type' => 'text', 'class' => 'form-control datepicker-start', 'label'=>array('text' => 'Data', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
+						   <?php echo $this->Form->input('mono_prazo',
+						         array('type' => 'text', 'class' => 'form-control datepicker-start', 'label'=>array('text' => 'Prazo', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
+						</div><!-- .form-group -->
+						<div class="form-group">
+						   <?php echo $this->Form->input('mono_nota',
+						         array('class' => 'form-control', 'label'=>array('text' => 'Nota', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+						</div><!-- .form-group -->
 
-                </div>
+	                </div>
+	            <?php } ?>
         	</div>
     	  </div>
         </div>
