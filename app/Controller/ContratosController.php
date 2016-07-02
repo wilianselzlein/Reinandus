@@ -49,6 +49,9 @@ class ContratosController extends AppController {
                 $arquivo = $data['Contrato']['professor_id'] . ' - ' . $data['Contrato']['modelo'];
 
             $fp = fopen($caminho . $arquivo, 'a');
+            if (! $fp) { //if (!is_writable($tempfile)) {
+                throw new Exception(__('PERMISSAO_ARQ'));
+            }
             $escreve = fwrite($fp, $contrato);
             fclose($fp);
 
