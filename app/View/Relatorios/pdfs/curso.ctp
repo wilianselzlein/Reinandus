@@ -18,7 +18,6 @@ $rowHeader = new Row('header');
       ->addColumn('Secretário', 'col-15')
       ->close();
 $table->addRow($rowHeader);
-
 for ($index = 0; $index < count($curso); $index++) {
    $even_class = $index % 2 == 0 ? ' highlighted' : '';
 

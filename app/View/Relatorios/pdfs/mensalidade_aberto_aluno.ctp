@@ -56,10 +56,10 @@ $rowData = new Row('summary');
 $rowData
   ->addColumn('', 'col-15')
   ->addColumn('', 'col-15')
-  ->addColumn('', 'col-10')
+  ->addColumn('', 'col-15')
   ->addColumn('Total:', 'col-15')
   ->addColumn($this->Number->currency($valor, 'BRL'), 'currency col-10')
-  ->addColumn($this->Number->currency($acres, 'BRL'), 'currency col-10')       
+  ->addColumn($this->Number->currency($acres, 'BRL'), 'currency col-5')       
   ->addColumn($this->Number->currency($desco, 'BRL'), 'currency col-10')
   ->addColumn($this->Number->currency($bolsa, 'BRL'), 'currency col-5')
   ->addColumn($this->Number->currency($liqui, 'BRL'), 'currency col-10')

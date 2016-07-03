@@ -10,10 +10,10 @@ $table = new Table();
  $rowHeader = new Row('header');
    $rowHeader
       ->addColumn('Cód.', 'col-5 text-centered')
-      ->addColumn('Aluno', 'col-20 text-centered')
-      ->addColumn('Curso', 'col-20 text-centered')
-      ->addColumn('Professor', 'col-20 text-centered')
-      ->addColumn('Disciplina', 'col-20 text-centered')         
+      ->addColumn('Aluno', 'col-20')
+      ->addColumn('Curso', 'col-20')
+      ->addColumn('Professor', 'col-20')
+      ->addColumn('Disciplina', 'col-20')         
       ->addColumn('Nota', 'col-5 text-centered')  
       ->addColumn('Freq.', 'col-10 text-centered')
       ->close();
@@ -26,10 +26,10 @@ for ($index = 0; $index < count($aluno_disciplinas); $index++) {
    $rowData = new Row('last'.$even_class);
    $rowData
       ->addColumn($aluno_disciplinas[$index]['aluno']['id'], 'col-5 text-centered')
-      ->addColumn($aluno_disciplinas[$index]['aluno']['nome'], 'col-20 text-centered')
-      ->addColumn($aluno_disciplinas[$index]['curso']['nome'], 'col-20 text-centered')
-      ->addColumn($aluno_disciplinas[$index]['professor']['nome'], 'col-20 text-centered')
-      ->addColumn($aluno_disciplinas[$index]['disciplina']['nome'], 'col-20 text-centered')         
+      ->addColumn($aluno_disciplinas[$index]['aluno']['nome'], 'col-20')
+      ->addColumn($aluno_disciplinas[$index]['curso']['nome'], 'col-20')
+      ->addColumn($aluno_disciplinas[$index]['professor']['nome'], 'col-20')
+      ->addColumn($aluno_disciplinas[$index]['disciplina']['nome'], 'col-20')         
       ->addColumn($aluno_disciplinas[$index]['aluno_disciplinas']['nota'], 'col-5 text-centered')  
       ->addColumn($this->Number->toPercentage($aluno_disciplinas[$index]['aluno_disciplinas']['frequencia']), 'col-10 percentage text-centered')
       ->close();
