@@ -63,11 +63,17 @@ echo $this->fetch('script');
             </div>
 
             <ul class="nav navbar-nav navbar-right">
-               <!--<li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-male"></i> <b class="caret"></b></a>
-
+               <li class="">
+                  <a href="<?php echo $manual; ?>" title="Manual do Aluno" data-toggle="tooltip">
+                     <i class="fa fa-book fa-2x"></i>
+                  </a>
                </li>
-               <li class="dropdown">
+               <li class="">
+                  <a href="https://www.facebook.com/PosFACET" title="Facebook" data-toggle="tooltip">
+                     <i class="fa fa-facebook fa-2x"></i>
+                  </a>
+               </li>
+               <!--<li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
 
                </li>

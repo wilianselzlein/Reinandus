@@ -11,9 +11,9 @@
     <li>
         <a href="#Mensalidades" data-toggle="tab" title="Controle de Mensalidades" data-tt="tooltip"><i class="fa fa-dollar fa-4x"></i>&nbsp;</a>
     </li>
-    <li>
+    <!--<li>
         <a href="#Manual" data-toggle="tab" title="Manual do Aluno" data-tt="tooltip"><i class="fa fa-book fa-4x"></i>&nbsp;</a>
-    </li>
+    </li>-->
     <li>
         <a href="#Convenios" data-toggle="tab" title="Convênios e Descontos" data-tt="tooltip"><i class="fa fa-thumbs-o-up fa-4x"></i>&nbsp;</a>
     </li>
@@ -37,9 +37,9 @@
             <a href="#Pesquisa" data-toggle="tab" title="Pesquisa" data-tt="tooltip"><i class="fa fa-star-half-o fa-4x"></i>&nbsp;</a>
         </li>
     <?php } ?>
-    <li>
+    <!--<li>
         <a href="#Facebook" data-toggle="tab" title="Facebook" data-tt="tooltip"><i class="fa fa-facebook fa-4x"></i>&nbsp;</a>
-    </li>
+    </li>-->
 </ul>
 <div class="panel panel-default">
   <div class="panel-body">
@@ -56,9 +56,9 @@
         <div class="tab-pane" id="Mensalidades">
 <?php echo $this->element('Abas/Mensalidades'); ?>
         </div>
-        <div class="tab-pane" id="Manual">
+        <!--<div class="tab-pane" id="Manual">
 <?php echo $this->element('Abas/Manual'); ?>
-        </div>
+        </div>-->
         <div class="tab-pane" id="Convenios">
 <?php echo $this->element('Abas/Convenios'); ?>
         </div>
@@ -68,9 +68,9 @@
         <div class="tab-pane" id="Protocolo">
 <?php echo $this->element('Abas/Protocolo'); ?>
         </div>
-        <div class="tab-pane" id="Tcc">
+        <!--<div class="tab-pane" id="Tcc">
 <?php echo $this->element('Abas/Tcc'); ?>
-        </div>
+        </div>-->
         <div class="tab-pane" id="Forum">
 <?php echo $this->element('Abas/Forum'); ?>
         </div>
@@ -80,9 +80,9 @@
         <div class="tab-pane" id="Calendario">
 <?php echo $this->element('Abas/Calendario'); ?>
         </div>
-        <div class="tab-pane" id="Facebook">
+        <!--<div class="tab-pane" id="Facebook">
 <?php echo $this->element('Abas/Facebook'); ?>
-        </div>
+        </div>-->
 	</div>
   </div>
 </div>

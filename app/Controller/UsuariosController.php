@@ -119,6 +119,8 @@ Aviso.id, Aviso.data, Aviso.user_id, Aviso.arquivo, Aviso.mensagem, Aviso.tipo_i
  * @return void
  */
 	public function edit($id = null) {
+		$this->EmitirExcecaoCasoMaster($id);
+
         $this->User->id = $id;
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.?>'));
@@ -155,6 +157,8 @@ Aviso.id, Aviso.data, Aviso.user_id, Aviso.arquivo, Aviso.mensagem, Aviso.tipo_i
  * @return void
  */
 	public function delete($id = null) {
+		$this->EmitirExcecaoCasoMaster($id);
+		
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}
@@ -192,5 +196,18 @@ Aviso.id, Aviso.data, Aviso.user_id, Aviso.arquivo, Aviso.mensagem, Aviso.tipo_i
         parent::beforeFilter();
         $this->Auth->allow('add', 'logout');
     }
+
+/**
+ * EmitirExcecaoCasoMaster method
+ *
+ * @throws Exception
+ * @param int $id
+ * @return void
+ */
+	private function EmitirExcecaoCasoMaster($id) {
+		if ($id == 1) {
+			throw new Exception(__('Impossível realizar essa ação com o usuário master!'));
+		}
+	}
 
 }
