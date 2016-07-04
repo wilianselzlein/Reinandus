@@ -163,6 +163,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		if (!$this->Mensalidade->exists()) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
+		$this->ExcluirLancamentosContabeis($id);
 		if ($this->Mensalidade->delete()) {
 			$this->Session->setFlash(__('Record deleted'), 'flash/success');
 			$this->redirect(array('action' => 'index'));
@@ -458,6 +459,24 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 			$relacionamento['Mensalidade']['id'] = $mensalidade['Mensalidade']['id'];
 			$relacionamento['Mensalidade'][$campo] = $LancamentoContabil->getLastInsertID();
 			$this->Mensalidade->save($relacionamento);
+		}
+	}
+
+/**
+ * ExcluirLancamentosContabeis method
+ * @param int $id
+ * @return void
+ */
+	private function ExcluirLancamentosContabeis($id) {
+		$this->Mensalidade->recursive = false;
+		$lancamentos = $this->Mensalidade->findById($id, array('lancamento_desconto_id', 'lancamento_valor_id', 'lancamento_juro_id'));
+		
+		$LancamentoContabil = ClassRegistry::init('LancamentoContabil');
+		foreach ($lancamentos['Mensalidade'] as $lancamento => $lancamento_id) {
+			if (! is_null($lancamento_id)) {
+				$LancamentoContabil->id = $lancamento_id;
+				$LancamentoContabil->delete();
+			}
 		}
 	}
 
