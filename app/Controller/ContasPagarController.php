@@ -294,8 +294,11 @@ ContaPagar.conta_corrente, ContaPagar.liberado, ContaPagar.formapgto_id, ContaPa
         $lancamento['debito_id'] = $forma['Formapgto'][$debito];
         $lancamento['credito_id'] = $forma['Formapgto'][$credito];
         $lancamento['historico_padrao_id'] = $forma['Formapgto'][$historico];
-        $lancamento['documento'] = $contapagar['ContaPagar']['numero'];
-        $lancamento['complemento'] = $contapagar['Pessoa']['razaosocial'] . '-' . $contapagar['ContaPagar']['pessoa_id'];
+        $lancamento['documento'] = $contapagar['ContaPagar']['documento'] . ' ' . $contapagar['ContaPagar']['serie'];
+
+		$pessoa_id = $this->request->data['ContaPagar']['pessoa_id'];
+		$pessoa = $this->ContaPagar->Pessoa->find('list', array('conditions' => array('Pessoa.id' => $pessoa_id)));
+        $lancamento['complemento'] = $contapagar['ContaPagar']['pessoa_id'] . ' ' . $pessoa[$pessoa_id];
 		$lancamento['valor'] = $contapagar['ContaPagar'][$valor];
 
 		$LancamentoContabil = ClassRegistry::init('LancamentoContabil');
