@@ -66,6 +66,18 @@ class LancamentoContabilController extends AppController {
 		$mensalidades = $mensalidade->find('all', $options);
 		$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);
 		$this->set(compact('mensalidades'));
+
+		$options = array('recursive' => 0, 'conditions' =>  array('OR' => array(
+			'ContaPagar.lancamento_valor_id' => $lancamentocontabil['LancamentoContabil']['id'], 
+			'ContaPagar.lancamento_desconto_id' => $lancamentocontabil['LancamentoContabil']['id'], 
+			'ContaPagar.lancamento_juro_id' => $lancamentocontabil['LancamentoContabil']['id'])),
+		'fields' => array('ContaPagar.id', 'ContaPagar.documento', 'ContaPagar.vencimento', 'ContaPagar.valor', 'ContaPagar.pagamento', 'Pessoa.id', 'Pessoa.razaosocial'));
+
+		$contapagar = ClassRegistry::init('ContaPagar');
+		$contapagar->unbindModel(array('belongsTo' => array('User', 'Conta', 'Formapgto')));
+		$contas = $contapagar->find('all', $options);
+		$contas = $this->TransformarArray->FindInContainable('ContaPagar', $contas);
+		$this->set(compact('contas'));
 	}
 
 /**

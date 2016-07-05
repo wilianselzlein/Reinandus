@@ -76,4 +76,5 @@
 			</div><!-- /.table-responsive -->
 			
 		</div><!-- /.view -->
+<?php echo $this->element('Relateds/LancamentosContabeis', array('array' => $lancamentos)); ?>
 </div><!-- /#page-container .row-fluid -->

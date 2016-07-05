@@ -62,4 +62,5 @@
 		</div><!-- /.view -->
 
 <?php echo $this->element('Relateds/Mensalidades', array('array' => $mensalidades)); ?>
+<?php echo $this->element('Relateds/ContasPagar', array('array' => $contas)); ?>
 </div><!-- /#page-container .row-fluid -->

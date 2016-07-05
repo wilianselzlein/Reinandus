@@ -111,6 +111,27 @@ public $belongsTo = array(
 		'conditions' => '',
 		'fields' => '',
 		'order' => ''
+		),
+	'LancamentoContabilValor' => array(
+		'className' => 'LancamentoContabil',
+		'foreignKey' => 'lancamento_valor_id',
+		'conditions' => '',
+		'fields' => '',
+		'order' => ''
+		),
+	'LancamentoContabilDesconto' => array(
+		'className' => 'LancamentoContabil',
+		'foreignKey' => 'lancamento_desconto_id',
+		'conditions' => '',
+		'fields' => '',
+		'order' => ''
+		),
+	'LancamentoContabilJuro' => array(
+		'className' => 'LancamentoContabil',
+		'foreignKey' => 'lancamento_juro_id',
+		'conditions' => '',
+		'fields' => '',
+		'order' => ''
 		)
 	);
 }
