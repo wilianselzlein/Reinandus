@@ -127,7 +127,8 @@ class ContasPagarController extends AppController {
         $formapgto_id = $this->ContaPagar->Formapgto->findByTipo('P');
         if (isset($formapgto_id['Formapgto']))
         	$formapgto_id = $formapgto_id['Formapgto']['id'];
-		$this->set(compact('contas', 'pessoas', 'formapgtos', 'users', 'situacaos', 'tipos', 'formapgto_id'));
+        $liberado = ! $this->VerificarUsuarioRoleRoot();
+		$this->set(compact('contas', 'pessoas', 'formapgtos', 'users', 'situacaos', 'tipos', 'formapgto_id', 'liberado'));
 	}
 
 /**
@@ -166,7 +167,8 @@ class ContasPagarController extends AppController {
 		$users = $this->ContaPagar->User->findAsCombo();
 		$tipos = $this->ContaPagar->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_id', 'Tipo.nome' => 'contapagar')));
 		$situacaos = $this->ContaPagar->Situacao->find('list', array('conditions' => array('Situacao.referencia' => 'situacao_id', 'Situacao.nome' => 'contapagar')));
-		$this->set(compact('contas', 'pessoas', 'formapgtos', 'users', 'situacaos', 'tipos'));
+		$liberado = ! $this->VerificarUsuarioRoleRoot();
+		$this->set(compact('contas', 'pessoas', 'formapgtos', 'users', 'situacaos', 'tipos', 'liberado'));
 	}
 
 /**
@@ -329,6 +331,16 @@ ContaPagar.conta_corrente, ContaPagar.liberado, ContaPagar.formapgto_id, ContaPa
 				$LancamentoContabil->delete();
 			}
 		}
+	}
+
+/**
+ * VerificarUsuarioRoleRoot method
+ * @return boolean
+ */
+	private function VerificarUsuarioRoleRoot() {
+        $dados = $this->Session->read('Auth');
+        $role_id = $dados['User']['role_id'];
+		return $role_id == 1;
 	}
 
 }
