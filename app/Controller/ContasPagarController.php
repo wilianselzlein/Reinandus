@@ -140,7 +140,7 @@ class ContasPagarController extends AppController {
 	public function edit($id = null) {
         $this->ContaPagar->id = $id;
 		if (!$this->ContaPagar->exists($id)) {
-			throw new NotFoundException(__('The record could not be found.?>'));
+			throw new NotFoundException(__('The record could not be found.'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->ContaPagar->save($this->request->data)) {
@@ -156,8 +156,8 @@ class ContasPagarController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('recursive' => 'false', 'conditions' => array('ContaPagar.' . $this->ContaPagar->primaryKey => $id));
-			$this->ContaPagar->unbindModel(array('belongsTo' => array('Conta', 'Tipo', 'User', 'Pessoa', 'Situacao')));
+			$options = array('recursive' => false, 'conditions' => array('ContaPagar.' . $this->ContaPagar->primaryKey => $id));
+			$this->ContaPagar->unbindModel(array('belongsTo' => array('Conta', 'Tipo', 'User', 'Pessoa', 'Situacao', 'Formapgto', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
 			$this->request->data = $this->ContaPagar->find('first', $options);
 		}
 		$contas = $this->ContaPagar->Conta->findAsCombo();

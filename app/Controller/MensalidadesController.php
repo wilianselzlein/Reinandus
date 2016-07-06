@@ -137,7 +137,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 			}
 		} else {
 			$options = array('conditions' => array('Mensalidade.' . $this->Mensalidade->primaryKey => $id));
-			$this->Mensalidade->unbindModel(array('belongsTo' => array('Conta', 'Formapgto', 'User', 'Aluno')));
+			$this->Mensalidade->unbindModel(array('belongsTo' => array('Conta', 'Formapgto', 'User', 'Aluno', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
 			$this->request->data = $this->Mensalidade->find('first', $options);
 		}
 		$contas = $this->Mensalidade->Conta->findAsCombo();
