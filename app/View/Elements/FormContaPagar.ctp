@@ -99,7 +99,7 @@ echo $this->Form->input('user_id',
      echo $this->Form->input('liberado',
           array('type' => 'checkbox', 'class' => 'form-control checkbox2',
           'before'=>'<div class="col-sm-10">',
-          'after'=>'</div>', 'div'=>false, 'label'=>false, 'checked'=>true)); ?>
+          'after'=>'</div>', 'div'=>false, 'label'=>false, 'disabled' => true)); ?>
      </div><!-- .form-group -->
 <?php } ?>
 <script>
