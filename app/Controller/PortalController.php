@@ -181,11 +181,15 @@ class PortalController extends AppController {
      * @return
      */
     function aluno_forgot_password() {
+
         if (!empty($this->data)) {
+            
             $aluno = $this->Portal->Aluno->findById($this->data['Aluno']['id']);
+            
             if (empty($aluno)) {
                 $this->Session->setflash('Registro não localizado.');
                 $this->redirect('/aluno/portal/forgot_password');
+                
             } else {
                 $aluno = $this->__generatePasswordToken($aluno);
 
@@ -202,32 +206,44 @@ class PortalController extends AppController {
      * @return
      */
     function aluno_reset_password_token($reset_password_token = null) {
+        $redirect = '/aluno/portal/logout';
         if (empty($this->request->data)) {
+
             $this->request->data = $this->Portal->Aluno->findByResetPasswordToken($reset_password_token);
-            if (!empty($this->request->data['Aluno']['reset_password_token']) && !empty($this->request->data['Aluno']['token_created_at']) &&
-            $this->__validToken($this->request->data['Aluno']['token_created_at'])) {
+            
+            if (!empty($this->request->data['Aluno']['reset_password_token']) && 
+                !empty($this->request->data['Aluno']['token_created_at']) &&
+                $this->__validToken($this->request->data['Aluno']['token_created_at'])) {
+                    
                 $this->request->data['Aluno']['id'] = null;
                 $_SESSION['token'] = $reset_password_token;
+                
             } else {
                 $this->Session->setflash('The password reset request has either expired or is invalid.');
-                $this->redirect('/aluno/portal/logout');
+                $this->redirect($redirect);
+                
             }
+
         } else {
+            
             if ($this->request->data['Aluno']['reset_password_token'] != $_SESSION['token']) {
                 $this->Session->setflash('The password reset request has either expired or is invalid.');
-                $this->redirect('/aluno/portal/logout');
+                $this->redirect($redirect);
             }
 
             $aluno = $this->Portal->Aluno->findByResetPasswordToken($this->request->data['Aluno']['reset_password_token']);
-
             $this->Portal->Aluno->id = $aluno['Aluno']['id'];
 
             if ($this->Portal->Aluno->save($this->request->data, array('validate' => 'only'))) {
+                
                 $this->request->data['Aluno']['reset_password_token'] = $this->request->data['Aluno']['token_created_at'] = null;
+
                 if ($this->Portal->Aluno->save($this->request->data) && $this->__sendPasswordChangedEmail($aluno['Aluno']['id'])) {
+
                     unset($_SESSION['token']);
                     $this->Session->setflash('Your password was changed successfully. Please login to continue.');
-                    $this->redirect('/aluno/portal/logout');
+                    $this->redirect($redirect);
+
                 }
             }
         }
@@ -306,8 +322,7 @@ class PortalController extends AppController {
               'Email: ' . $dados['Aluno']['email'] . '<br>' .
               '<br>'.
               $link .
-              '<br>'.
-              'Email automático, apenas leitura, favor não responder no mesmo.<br>');
+              '<br>');
 
             $this->set('Aluno', $dados);
 
@@ -324,7 +339,7 @@ class PortalController extends AppController {
     function __sendPasswordChangedEmail($id = null) {
         if (!empty($id)) {
             $this->Portal->Aluno->id = $id;
-            
+            $this->Portal->Aluno->recursive = -1;
             $dados = $this->Portal->Aluno->read();
             $emails = array($dados['Aluno']['email'], 'wilianselzlein@gmail.com');
 
@@ -334,7 +349,7 @@ class PortalController extends AppController {
             $Email->subject('Senha Alterada');
 
             $Email->send(
-              'Protocolo do Portal:<br>' .
+              'Sua senha foi alterada no sistema.<br>' .
               'Data: ' . Date('Y/m/d H:i') . '<br>' .
               'Aluno: ' . $dados['Aluno']['nome'] . '<br>' .
               'Matricula: ' . $dados['Aluno']['id'] . '<br>' .

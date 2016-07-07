@@ -2,7 +2,7 @@
 <div class="panel panel-default">
 
   <div class="panel-body">  
-<?php /*	
+  	<?php if (isset($permissoes['Cadastro']['Alunos'])) { ?>
 	<div class="panel panel-default">
 	  <div class="panel-heading">
 	     <h3 class="panel-title">Alunos</h3>
@@ -20,6 +20,7 @@
 	    <div id="GraficoAlunoTcc" class="grafico grafico30"></div> 
 	  </div>
 	</div>
+	<?php } if (isset($permissoes['Cadastro']['Cursos'])) { ?>
 	<div class="panel panel-default">
 	  <div class="panel-heading">
 	    <h3 class="panel-title">Cursos</h3>
@@ -31,7 +32,7 @@
 	    <div id="GraficoCursoRentavel" class="graficovertical grafico100"></div>
 	  </div>
 	</div>
-
+	<?php } /* if (isset($permissoes['Financeiro']['Mensalidades'])) { ?>
 	<div class="panel panel-default">
 	  <div class="panel-heading">
 	    <h3 class="panel-title">Mensalidade</h3>
@@ -45,7 +46,7 @@
 	    <div id="GraficoMensAbertaPagaAnual" class="grafico grafico33"></div> 
 	  </div>
 	</div>
-
+	<?php } if (isset($permissoes['Financeiro']['Contas a Pagar'])) { ?>
 	<div class="panel panel-default">
 	  <div class="panel-heading">
 	    <h3 class="panel-title">Contas a Pagar</h3>
@@ -59,7 +60,7 @@
 	    <div id="GraficoPagarAbertaPagaAnual" class="grafico grafico33"></div> 
 	  </div>
 	</div>
-
+	<?php } if ((isset($permissoes['Financeiro']['Contas a Pagar'])) && (isset($permissoes['Financeiro']['Mensalidades']))) { ?>
 	<div class="panel panel-default">
 	  <div class="panel-heading">
 	    <h3 class="panel-title">Comparativos</h3>
@@ -75,7 +76,7 @@
 	    <div id="GraficoComparativoRecDespAno" class="grafico grafico50"></div>
 	  </div>
 	</div>
-*/ ?>
+	<?php } */ ?>
   </div>
 
 </div>
