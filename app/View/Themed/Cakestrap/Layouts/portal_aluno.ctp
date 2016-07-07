@@ -63,11 +63,13 @@ echo $this->fetch('script');
             </div>
 
             <ul class="nav navbar-nav navbar-right">
+               <?php if (isset($manual)) { ?>
                <li class="">
                   <a href="<?php echo $manual; ?>" title="Manual do Aluno" data-toggle="tooltip">
                      <i class="fa fa-book fa-2x"></i>
                   </a>
                </li>
+               <?php } ?>
                <li class="">
                   <a href="https://www.facebook.com/PosFACET" title="Facebook" data-toggle="tooltip">
                      <i class="fa fa-facebook fa-2x"></i>
@@ -106,7 +108,7 @@ echo $this->fetch('script');
                            <div class="navbar-footer-content">
                               <div class="row">
                                  <div class="col-md-6">
-                                    <?php echo $this->Html->link(__('Alterar senha'), 	array('controller' => 'portal','action' => 'changePassword'), array('class'=>'btn btn-default btn-sm'));?>
+                                    <?php echo $this->Html->link(__('Alterar senha'), 	array('controller' => 'portal','action' => 'forgot_password'), array('class'=>'btn btn-default btn-sm'));?>
                                  </div>
                                  <div class="col-md-6">
                                     <?php echo $this->Html->link(__('Logout'), 	array('controller' => 'portal', 	'action' => 'logout'), array('class'=>'btn btn-default btn-sm pull-right'));?>

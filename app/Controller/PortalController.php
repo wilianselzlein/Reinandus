@@ -175,5 +175,177 @@ class PortalController extends AppController {
       $this->set(compact('dados', 'mensalidades'));
     }
 
+
+  /**
+     * Allow a user to request a password reset.
+     * @return
+     */
+    function aluno_forgot_password() {
+        if (!empty($this->data)) {
+            $aluno = $this->Portal->Aluno->findById($this->data['Aluno']['id']);
+            if (empty($aluno)) {
+                $this->Session->setflash('Registro não localizado.');
+                $this->redirect('/aluno/portal/forgot_password');
+            } else {
+                $aluno = $this->__generatePasswordToken($aluno);
+
+                if ($this->Portal->Aluno->save($aluno) && $this->__sendForgotPasswordEmail($aluno['Aluno']['id'])) {
+                    $this->Session->setflash('Foi enviado para seu email as instruções para troca da senha.');
+                    $this->redirect('/aluno/portal/logout');
+                }
+            }
+        }
+    }
+
+    /**
+     * Allow user to reset password if $token is valid.
+     * @return
+     */
+    function aluno_reset_password_token($reset_password_token = null) {
+        if (empty($this->request->data)) {
+            $this->request->data = $this->Portal->Aluno->findByResetPasswordToken($reset_password_token);
+            if (!empty($this->request->data['Aluno']['reset_password_token']) && !empty($this->request->data['Aluno']['token_created_at']) &&
+            $this->__validToken($this->request->data['Aluno']['token_created_at'])) {
+                $this->request->data['Aluno']['id'] = null;
+                $_SESSION['token'] = $reset_password_token;
+            } else {
+                $this->Session->setflash('The password reset request has either expired or is invalid.');
+                $this->redirect('/aluno/portal/logout');
+            }
+        } else {
+            if ($this->request->data['Aluno']['reset_password_token'] != $_SESSION['token']) {
+                $this->Session->setflash('The password reset request has either expired or is invalid.');
+                $this->redirect('/aluno/portal/logout');
+            }
+
+            $aluno = $this->Portal->Aluno->findByResetPasswordToken($this->request->data['Aluno']['reset_password_token']);
+
+            $this->Portal->Aluno->id = $aluno['Aluno']['id'];
+
+            if ($this->Portal->Aluno->save($this->request->data, array('validate' => 'only'))) {
+                $this->request->data['Aluno']['reset_password_token'] = $this->request->data['Aluno']['token_created_at'] = null;
+                if ($this->Portal->Aluno->save($this->request->data) && $this->__sendPasswordChangedEmail($aluno['Aluno']['id'])) {
+                    unset($_SESSION['token']);
+                    $this->Session->setflash('Your password was changed successfully. Please login to continue.');
+                    $this->redirect('/aluno/portal/logout');
+                }
+            }
+        }
+    }
+
+    /**
+     * Generate a unique hash / token.
+     * @param Object User
+     * @return Object User
+     */
+    function __generatePasswordToken($user) {
+        if (empty($user)) {
+            return null;
+        }
+
+        // Generate a random string 100 chars in length.
+        $token = "";
+        for ($i = 0; $i < 100; $i++) {
+            $d = rand(1, 100000) % 2;
+            $d ? $token .= chr(rand(33,79)) : $token .= chr(rand(80,126));
+        }
+
+        (rand(1, 100000) % 2) ? $token = strrev($token) : $token = $token;
+
+        // Generate hash of random string
+        $hash = Security::hash($token, 'sha256', true);;
+        for ($i = 0; $i < 20; $i++) {
+            $hash = Security::hash($hash, 'sha256', true);
+        }
+
+        $user['Aluno']['reset_password_token'] = $hash;
+        $user['Aluno']['token_created_at'] = date('Y-m-d H:i:s');
+
+        return $user;
+    }
+
+    /**
+     * Validate token created at time.
+     * @param String $token_created_at
+     * @return Boolean
+     */
+    function __validToken($token_created_at) {
+        $expired = strtotime($token_created_at) + 86400;
+        $time = strtotime("now");
+        if ($time < $expired) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Sends password reset email to user's email address.
+     * @param $id
+     * @return
+     */
+    function __sendForgotPasswordEmail($id = null) {
+        if (!empty($id)) {
+            $this->Portal->Aluno->id = $id;
+            $this->Portal->Aluno->recursive = -1;
+            $dados = $this->Portal->Aluno->read();
+            $emails = array($dados['Aluno']['email'], 'wilianselzlein@gmail.com');
+
+            $Email = new CakeEmail('smtp');
+            $Email->emailFormat('html');
+            $Email->to($emails);
+            $Email->subject('Resetar senha');
+
+            $link = 'http://' . env('SERVER_NAME') . '/Reinandus/aluno/portal/reset_password_token/' . 
+                $dados['Aluno']['reset_password_token'];
+
+            $Email->send(
+              'Protocolo do Portal:<br>' .
+              'Data: ' . Date('Y/m/d H:i') . '<br>' .
+              'Aluno: ' . $dados['Aluno']['nome'] . '<br>' .
+              'Matricula: ' . $dados['Aluno']['id'] . '<br>' .
+              'Email: ' . $dados['Aluno']['email'] . '<br>' .
+              '<br>'.
+              $link .
+              '<br>'.
+              'Email automático, apenas leitura, favor não responder no mesmo.<br>');
+
+            $this->set('Aluno', $dados);
+
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Notifies user their password has changed.
+     * @param $id
+     * @return
+     */
+    function __sendPasswordChangedEmail($id = null) {
+        if (!empty($id)) {
+            $this->Portal->Aluno->id = $id;
+            
+            $dados = $this->Portal->Aluno->read();
+            $emails = array($dados['Aluno']['email'], 'wilianselzlein@gmail.com');
+
+            $Email = new CakeEmail('smtp');
+            $Email->emailFormat('html');
+            $Email->to($emails);
+            $Email->subject('Senha Alterada');
+
+            $Email->send(
+              'Protocolo do Portal:<br>' .
+              'Data: ' . Date('Y/m/d H:i') . '<br>' .
+              'Aluno: ' . $dados['Aluno']['nome'] . '<br>' .
+              'Matricula: ' . $dados['Aluno']['id'] . '<br>' .
+              'Email: ' . $dados['Aluno']['email'] . '<br>' .
+              '<br>'.
+              'Email automático, apenas leitura, favor não responder no mesmo.<br>');
+
+            return true;
+        }
+        return false;
+    }
+
 }
   

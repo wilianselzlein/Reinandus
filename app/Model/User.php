@@ -145,4 +145,20 @@ class User extends AppModel {
       return true;
    }
 
+
+   /**
+    * Checks to see if the username is already taken.
+    * @return boolean
+    */
+   public function beforeValidate($options = array()) {
+       if (!$this->id) {
+           $num = $this->find('count', array('conditions' => 
+               array('User.username' => $this->data['User']['username'])));
+           if ($num > 0) {
+               $this->invalidate('username_unique');
+               return false;
+           }
+       }
+       return true;
+   }
 }
