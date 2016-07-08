@@ -64,8 +64,7 @@ class PagesController extends AppController {
 		if (!empty($path[$count - 1])) {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
 		}
-		$alunos = unserialize(CakeSession::read('Permissoes'));
-		$this->set(compact('page', 'subpage', 'title_for_layout', 'alunos'));
+		$this->set(compact('page', 'subpage', 'title_for_layout'));
 		$this->GerarGraficos();
 		
 		try {

@@ -10,6 +10,7 @@ class AvisosHelper extends AppHelper {
 		$conta = CakeSession::read('Avisos.' . $tipo);
 	    if ($conta == null) {
 			$mensalidade = ClassRegistry::init('Mensalidade');
+			$mensalidade->recursive = -1;
 			$mensalidade->unbindModel(array('belongsTo' => array('Conta', 'Formapgto', 'User', 'Aluno')));
 			$condicoes = array();
 			if ($tipo == 'Recebidas')
@@ -30,6 +31,7 @@ class AvisosHelper extends AppHelper {
 		$conta = CakeSession::read('Avisos.' . $tipo);
 	    if ($conta == null) {
 			$pagar = ClassRegistry::init('ContaPagar');
+			$pagar->recursive = -1;
 	        $pagar->unbindModel(array('belongsTo' => array('Conta', 'Formapgto', 'User', 'Aluno', 'Tipo', 'Pessoa', 'Situacao')));
 			$condicoes = array();
 			if ($tipo == 'Pagas')
