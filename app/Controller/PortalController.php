@@ -183,9 +183,9 @@ class PortalController extends AppController {
     function aluno_forgot_password() {
 
         if (!empty($this->data)) {
-            
+            $this->Portal->Aluno->recursive = -1;
             $aluno = $this->Portal->Aluno->findById($this->data['Aluno']['id']);
-            
+
             if (empty($aluno)) {
                 $this->Session->setflash('Registro não localizado.');
                 $this->redirect('/aluno/portal/forgot_password');
@@ -206,7 +206,8 @@ class PortalController extends AppController {
      * @return
      */
     function aluno_reset_password_token($reset_password_token = null) {
-        $redirect = '/aluno/portal/logout';
+        $redirect = '/aluno/portal/login';
+        $this->Portal->Aluno->recursive = -1;
         if (empty($this->request->data)) {
 
             $this->request->data = $this->Portal->Aluno->findByResetPasswordToken($reset_password_token);
@@ -219,18 +220,18 @@ class PortalController extends AppController {
                 $_SESSION['token'] = $reset_password_token;
                 
             } else {
-                $this->Session->setflash('The password reset request has either expired or is invalid.');
+                $this->Session->setflash('Token para trocar de senha inválido ou expirado.');
                 $this->redirect($redirect);
                 
             }
 
         } else {
-            
+
             if ($this->request->data['Aluno']['reset_password_token'] != $_SESSION['token']) {
-                $this->Session->setflash('The password reset request has either expired or is invalid.');
+                $this->Session->setflash('Token para trocar de senha inválido ou expirado. Dados não vazios.');
                 $this->redirect($redirect);
             }
-
+            $this->request->data['Aluno']['senha'] = $this->request->data['Aluno']['new_passwd'];
             $aluno = $this->Portal->Aluno->findByResetPasswordToken($this->request->data['Aluno']['reset_password_token']);
             $this->Portal->Aluno->id = $aluno['Aluno']['id'];
 
@@ -241,7 +242,7 @@ class PortalController extends AppController {
                 if ($this->Portal->Aluno->save($this->request->data) && $this->__sendPasswordChangedEmail($aluno['Aluno']['id'])) {
 
                     unset($_SESSION['token']);
-                    $this->Session->setflash('Your password was changed successfully. Please login to continue.');
+                    $this->Session->setflash('Senha alterada! Faça o login para voltar ao sistema.');
                     $this->redirect($redirect);
 
                 }
