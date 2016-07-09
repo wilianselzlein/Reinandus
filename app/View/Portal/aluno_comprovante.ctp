@@ -14,7 +14,7 @@
   	<tbody>
   		<tr>
 		    <td width="16%">
-<?php echo '<img src="' . '/img/uploads/' . $dados['vcabecalho']['cabecalho_logo'] . '" alt="" height="51" width="147">'; ?>
+<?php echo '<img src="' . '/Reinandus/img/uploads/' . $dados['vcabecalho']['cabecalho_logo'] . '" alt="" height="51" width="147">'; ?>
 		    </td>
 		    <td width="84%"><?php echo $dados['Instituicao']['empresa_razaosocial']; ?><br>
 		      CURSO DE PÓS-GRADUAÇÃO- Reconhecido pela Portaria M.E.C. nº. 1801- D.O.U. 14/07/2003<br>
@@ -27,9 +27,13 @@
 <p class="style1" align="center">C O M P R O V A N T E&nbsp;&nbsp;&nbsp;&nbsp;D E&nbsp;&nbsp;&nbsp;&nbsp;P A G A M E N T O</p>
 <p class="style2" align="center">SEGUNDA VIA</p>
 <p class="style2" align="justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A <?php echo $dados['Instituto']['empresa_razaosocial']; ?>, 
+<?php 
+App::import('Vendor', 'PeDF/Table');
+$table = new Table();
+?>
 <?php echo $dados['Instituto']['empresa_cpnjcpf']; ?>, gestora dos recursos financeiros da Pós-Graduação <?php echo $dados['Instituicao']['empresa_razaosocial']; ?>
 , declara para os devidos fins e a quem interessar possa que <?php echo $dados['Portal']['nome']; ?> 
-pagou o valor de R$ <?php echo array_sum(array_column(array_column($mensalidades, 'Mensalidade'), 'valor')); ?>,00 referente o curso de pós-graduação em <?php echo $dados['Portal']['curso_nome']; ?>.
+pagou o valor de R$ <?php echo array_sum($table->array_column($table->array_column($mensalidades, 'Mensalidade'), 'valor')); ?>,00 referente o curso de pós-graduação em <?php echo $dados['Portal']['curso_nome']; ?>.
 </p>
 
 <p class="style2" align="justify"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Abaixo apresenta-se o demonstrativo analítico dos pagamentos:</p>
