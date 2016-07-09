@@ -52,12 +52,21 @@ $usuario_logado = $this->Session->read('Auth.User');
    echo $this->Html->script('datetimepicker');
    echo $this->fetch('script');
    ?>
+   <script type="text/javascript">
+      function __loadMostra(){
+        var objLoader = document.getElementById("carregador_pai");
+        objLoader.style.display = "block";
+        objLoader.style.visibility = "visible";
+      }
+   </script>
 </head>
 
 <body>
-
+   <div id="carregador_pai" style="display: none; visibility: hidden;">
+      <br/><br/><br/>
+      <?php echo $this->Html->image('carregando.gif'); ?>
+   </div>
    <div id="wrapper">
-
       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
          <!-- Brand and toggle get grouped for better mobile display -->
          <div class="navbar-header">
@@ -147,7 +156,6 @@ $usuario_logado = $this->Session->read('Auth.User');
                <!-- /.navbar-collapse -->
             </nav>
 
-
             <div id="page-wrapper">
                <div  class="container-fluid">
                   <?php echo $this->Session->flash(); ?>
@@ -163,21 +171,21 @@ $usuario_logado = $this->Session->read('Auth.User');
             </div><!-- /#footer .container -->
 
    </div><!-- /#main-container -->
-         <script>
-            $(document).ready(function(){ 
-               $('[data-tt=tooltip]').tooltip();
-               $('[data-toggle=tooltip]').tooltip();
-            });
-            $("[data-tt=tooltip]").tooltip();
-            $(document).ready(function(){ $('.combobox').combobox(); });
-         </script>
-         <?php echo $this->Html->script('cfg-datepicker');?>
-         <?php echo $this->Html->script('cfg-currency');?>
-         <?php echo $this->Html->script('cfg-percentage');?>
-         <?php echo $this->Html->script('cfg-cep');?>
-         <?php echo $this->Html->script('cfg-cpf');?>
-         <?php echo $this->Html->script('cfg-cnpj');?>
-         <?php echo $this->Html->script('cfg-dddphone');?>
+   <script>
+      $(document).ready(function(){ 
+         $('[data-tt=tooltip]').tooltip();
+         $('[data-toggle=tooltip]').tooltip();
+      });
+      $("[data-tt=tooltip]").tooltip();
+      $(document).ready(function(){ $('.combobox').combobox(); });
+   </script>
+   <?php echo $this->Html->script('cfg-datepicker');?>
+   <?php echo $this->Html->script('cfg-currency');?>
+   <?php echo $this->Html->script('cfg-percentage');?>
+   <?php echo $this->Html->script('cfg-cep');?>
+   <?php echo $this->Html->script('cfg-cpf');?>
+   <?php echo $this->Html->script('cfg-cnpj');?>
+   <?php echo $this->Html->script('cfg-dddphone');?>
 </body>
 
 </html>
