@@ -39,6 +39,14 @@
                 			<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $ContasPagar, 'model' => '', 'controller' => 'ContasPagar')); ?>
                 		</tr>
                     <?php endforeach; ?>
+<?php App::import('Vendor', 'PeDF/Table');
+$table = new Table(); ?>
+    <tr>
+                  <td colspan="3">&nbsp;</td>
+                  <td><?php echo $this->Number->currency(
+                    array_sum($table->array_column($array['ContaPagar'], 'valor')), 'BRL'); ?></td>
+                  <td colspan="3">&nbsp;</td>
+    </tr>
 				</tbody>
 			</table><!-- /.table table-striped table-bordered -->
 		</div><!-- /.table-responsive -->

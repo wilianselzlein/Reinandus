@@ -14,7 +14,7 @@ class AlunosController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'TransformarArray');
 
 /**
  * index method
@@ -83,12 +83,15 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 			'fields' => array('AlunoDisciplina.id', 'AlunoDisciplina.frequencia', 'AlunoDisciplina.nota', 'AlunoDisciplina.horas_aula', 'AlunoDisciplina.data', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'));
 		$this->Aluno->AlunoDisciplina->unbindModel(array('belongsTo' => array('Aluno')));
 		$disciplinas = $this->Aluno->AlunoDisciplina->find('all', $options);
+		$disciplinas = $this->TransformarArray->FindInContainable('AlunoDisciplina', $disciplinas);
 		$this->set(compact('disciplinas'));
 
 		$options = array('recursive' => false, 'conditions' => array('Mensalidade.aluno_id' => $id), 'limit' => 200,
-			'fields' => array('Mensalidade.id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Formapgto.id', 'Formapgto.nome'));
+			'fields' => array('Mensalidade.id', 'Mensalidade.aluno_id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Formapgto.id', 'Formapgto.nome'));
 		$this->Aluno->Mensalidade->unbindModel(array('belongsTo' => array('Aluno', 'Conta', 'User')));
 		$mensalidades = $this->Aluno->Mensalidade->find('all', $options);
+		$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);
+
 		$this->set(compact('mensalidades'));
 
 		$dia = $this->ConsultarAcessos($id, '>=', '0 day');

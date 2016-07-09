@@ -42,6 +42,14 @@
 	</td>
 						</tr>
 					<?php endforeach; ?>
+<?php App::import('Vendor', 'PeDF/Table');
+$table = new Table(); ?>
+    <tr>
+                  <td colspan="4">&nbsp;</td>
+                  <td><?php echo $this->Number->currency(
+                    array_sum($table->array_column($array['LancamentoContabil' . $nome], 'valor')), 'BRL'); ?></td>
+                  <td colspan="1">&nbsp;</td>
+    </tr>
 				</tbody>
 			</table><!-- /.table table-striped table-bordered -->
 		</div><!-- /.table-responsive -->

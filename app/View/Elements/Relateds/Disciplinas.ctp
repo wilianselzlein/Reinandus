@@ -1,6 +1,7 @@
 <?php if (! $this->PermissaoRelated->Verificar(5)) return; ?>
 <?php if (!isset($model)) $model = 'Disciplina'; ?>
 <?php if (!isset($controller)) $controller = 'disciplinas'; ?>
+<?php if (!isset($aluno)) $aluno = false; ?>
 <div class="panel-footer">
       <h3><?php echo __('Disciplinas').' ' ?> 
          <small><?php echo __('Related') ?></small>
@@ -37,6 +38,11 @@
                      <th><?php echo __('Aluno'); ?></th>
                   <?php } ?>
                   <th><?php echo __('Horas Aula'); ?></th>
+                  <?php if ($aluno) { ?>
+                     <th><?php echo __('Frequencia'); ?></th>
+                     <th><?php echo __('Nota'); ?></th>
+                     <th><?php echo __('Data'); ?></th>
+                  <?php } ?>
                   <th class="actions text-center"><?php echo __('Actions'); ?></th>
                </tr>
             </thead>
@@ -53,6 +59,11 @@
                      <td><?php echo $this->DisplayField->MakeLink($disciplina, 'alunos', 'aluno_id'); ?></td>
                   <?php } ?>
                   <td><?php if (isset($disciplina['horas_aula'])) echo $disciplina['horas_aula']; ?></td>
+                  <?php if ($aluno) { ?>
+                     <td><?php echo $disciplina['frequencia']; ?></td>
+                     <td><?php echo $disciplina['nota']; ?></td>
+                     <td><?php echo $disciplina['data']; ?></td>
+                  <?php } ?>
                   <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $disciplina, 'model' => '', 'controller' => $controller)); ?>
                </tr>
                <?php endforeach; ?>
