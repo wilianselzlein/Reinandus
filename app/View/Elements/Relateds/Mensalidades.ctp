@@ -1,18 +1,21 @@
 <?php if (! $this->PermissaoRelated->Verificar(34)) return; ?>
 <?php if (!isset($model)) $model = 'Mensalidade'; ?>
-<div class="panel-footer">
-                <h3><?php echo __('Mensalidades').' ' ?>
-                    <small><?php echo __('Related') ?></small>
-                    <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <?php echo __('Actions'); ?> <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                                <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Mensalidade'), array('controller' => 'mensalidades', 'action' => 'add'), array('class' => '', 'escape' => false)); ?>                                </li>
-                            </ul>
-                    </div>
-                </h3>
+<?php if (!isset($id)) $id = 'divMensalidade'; ?>
+    <div class="panel-footer">
+        <h3><?php echo __('Mensalidades').' ' ?>
+            <small><?php echo __('Related') ?></small>
+            <div class="btn-group pull-right">
+                <?php echo $this->element('MostraEsconde', array('mostra' => 'Mostrar', 'esconde' => 'Fechar', 'id' => $id)); ?>
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <?php echo __('Actions'); ?> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                        <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Mensalidade'), array('controller' => 'mensalidades', 'action' => 'add'), array('class' => '', 'escape' => false)); ?>                                </li>
+                    </ul>
             </div>
+        </h3>
+    </div>
+    <div id="<?php echo $id; ?>">
 			<div class="panel-body">
 				<?php if (!empty($array['Mensalidade'])): ?>
 
@@ -59,5 +62,5 @@ $table = new Table(); ?>
 
 				<?php endif; ?>
 
-
 			</div><!-- /.related -->
+    </div>

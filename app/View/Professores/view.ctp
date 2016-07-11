@@ -146,15 +146,19 @@
 		</div><!-- /.view -->
 
 <?php echo $this->element('Relateds/Cursos', array('array' => $cursos)); ?>
+<br/>
 <?php echo $this->element('Relateds/Alunos', array('array' => $alunos));?>
+<br/>
 <div class="alert alert-info" role="alert">Disciplinas relacionadas ao cadastro do professor:</div>
 <?php echo $this->element('Relateds/Disciplinas', 
-	array('array' => $disciplinas, 'model' => 'DisciplinaProfessor', 'controller' => 'disciplina_professores')); ?>
+	array('array' => $disciplinas, 'model' => 'DisciplinaProfessor', 'controller' => 'disciplina_professores', 'id' => 'divDisciplinas1')); ?>
+<br/>
 <div class="alert alert-info" role="alert">Disciplinas em que o professor está relacionado nos cursos:</div>
 <?php echo $this->element('Relateds/Disciplinas', 
-	array('array' => $relacionadas, 'model' => 'CursoDisciplina', 'controller' => 'curso_disciplinas')); ?>
+	array('array' => $relacionadas, 'model' => 'CursoDisciplina', 'controller' => 'curso_disciplinas', 'id' => 'divDisciplinas2')); ?>
+<br/>
 <div class="alert alert-info" role="alert">Disciplinas em que o professor está relacionado nos alunos:</div>
 <?php echo $this->element('Relateds/Disciplinas', 
-	array('array' => $ministradas, 'model' => 'AlunoDisciplina', 'controller' => 'aluno_disciplinas')); ?>
+	array('array' => $ministradas, 'model' => 'AlunoDisciplina', 'controller' => 'aluno_disciplinas', 'id' => 'divDisciplinas3')); ?>
 
 </div><!-- /#page-container .row-fluid -->

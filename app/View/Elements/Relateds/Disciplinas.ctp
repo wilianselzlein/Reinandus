@@ -2,10 +2,12 @@
 <?php if (!isset($model)) $model = 'Disciplina'; ?>
 <?php if (!isset($controller)) $controller = 'disciplinas'; ?>
 <?php if (!isset($aluno)) $aluno = false; ?>
+<?php if (!isset($id)) $id = 'divDisciplinas'; ?>
 <div class="panel-footer">
       <h3><?php echo __('Disciplinas').' ' ?> 
          <small><?php echo __('Related') ?></small>
          <div class="btn-group pull-right">
+            <?php echo $this->element('MostraEsconde', array('mostra' => 'Mostrar', 'esconde' => 'Fechar', 'id' => $id)); ?>
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                <?php echo __('Actions'); ?> <span class="caret"></span>
             </button>
@@ -18,6 +20,7 @@
          </div>
       </h3>
    </div>
+<div id="<?php echo $id; ?>">
    <div class="panel-body">
       <?php if (!empty($array[$model])): ?>
       <?php 
@@ -74,3 +77,4 @@
       <?php endif; ?>
 
    </div><!-- /.related -->
+</div>
