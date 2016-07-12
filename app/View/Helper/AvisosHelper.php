@@ -11,7 +11,7 @@ class AvisosHelper extends AppHelper {
 	    if ($conta == null) {
 			$mensalidade = ClassRegistry::init('Mensalidade');
 			$mensalidade->recursive = -1;
-			$mensalidade->unbindModel(array('belongsTo' => array('Conta', 'Formapgto', 'User', 'Aluno')));
+			$mensalidade->unbindModel(array('belongsTo' => array('Conta', 'Formapgto', 'User', 'Aluno', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
 			$condicoes = array();
 			if ($tipo == 'Recebidas')
 				$condicoes['Mensalidade.pagamento'] = date('Y-m-d');
@@ -32,7 +32,7 @@ class AvisosHelper extends AppHelper {
 	    if ($conta == null) {
 			$pagar = ClassRegistry::init('ContaPagar');
 			$pagar->recursive = -1;
-	        $pagar->unbindModel(array('belongsTo' => array('Conta', 'Formapgto', 'User', 'Aluno', 'Tipo', 'Pessoa', 'Situacao')));
+	        $pagar->unbindModel(array('belongsTo' => array('Conta', 'Formapgto', 'User', 'Aluno', 'Tipo', 'Pessoa', 'Situacao', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
 			$condicoes = array();
 			if ($tipo == 'Pagas')
 				$condicoes['ContaPagar.pagamento'] = date('Y-m-d');

@@ -1,9 +1,11 @@
 <?php if (! $this->PermissaoRelated->Verificar(17)) return; ?>
 <?php if (!isset($model)) $model = 'Filtros'; ?>
+<?php if (!isset($id)) $id = 'divFitros'; ?>
 <div class="panel-footer">
       <h3><?php echo __('RelatorioFiltro').' ' ?> 
          <small><?php echo __('Related') ?></small>
          <div class="btn-group pull-right">
+            <?php echo $this->element('MostraEsconde', array('mostra' => 'Mostrar', 'esconde' => 'Fechar', 'id' => $id)); ?>
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                <?php echo __('Actions'); ?> <span class="caret"></span>
             </button>
@@ -16,6 +18,7 @@
          </div>
       </h3>
    </div>
+<div id="<?php echo $id; ?>">
    <div class="panel-body">
       <?php if (!empty($array[$model])): ?>
 
@@ -43,7 +46,6 @@
             </tbody>
          </table><!-- /.table table-striped table-bordered -->
       </div><!-- /.table-responsive -->
-
       <?php endif; ?>
-
    </div><!-- /.related -->
+</div>

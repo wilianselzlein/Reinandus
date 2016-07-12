@@ -60,7 +60,7 @@ FROM pedroescobar15.user AS User
 
 		$options = array('recursive' => 0, 'conditions' => array('Mensalidade.user_id' => $id), 'limit' => 200, 
 		'fields' => array('Mensalidade.id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Aluno.id', 'Aluno.nome'));
-		$this->User->Mensalidade->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
+		$this->User->Mensalidade->unbindModel(array('belongsTo' => array('Grupo', 'Tipo', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
 		$mensalidades = $this->User->Mensalidade->find('all', $options);
 		$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);
 		$this->set(compact('mensalidades'));

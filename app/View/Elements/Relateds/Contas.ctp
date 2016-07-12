@@ -1,4 +1,5 @@
 <?php if (! $this->PermissaoRelated->Verificar(2)) return; ?>
+<?php if (!isset($id)) $id = 'divContas'; ?>
 <div class="panel-body">
 	<?php if (!empty($array['Contum'])): ?>
 		<div class="table-responsive">
