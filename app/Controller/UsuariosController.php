@@ -189,6 +189,7 @@ Aviso.id, Aviso.data, Aviso.user_id, Aviso.arquivo, Aviso.mensagem, Aviso.tipo_i
     }
 
     public function logout() {
+    	$this->Session->destroy();
         $this->redirect($this->Auth->logout());
     }
    

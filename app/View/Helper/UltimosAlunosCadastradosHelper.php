@@ -12,7 +12,7 @@ class UltimosAlunosCadastradosHelper extends AppHelper {
 			$aluno = ClassRegistry::init('Aluno');
 			$aluno->unbindModel(array(
 				'belongsTo' => array('Naturalidade', 'Situacao', 'EstadoCivil', 'Indicacao', 'Professor', 'Responsavel'),
-				'hasMany' => array('Acesso', 'Detalhe', 'AlunoDisciplina', 'Mensalidade')));
+				'hasMany' => array('Acesso', 'AlunoDisciplina', 'Mensalidade')));
 			$aluno->bindModel(array('belongsTo' => array('Cidade', 'Curso')));
 			$alunos = $aluno->find('all', array('recursive' => 1, 'limit' => 5, 'order' => array('Aluno.created DESC') 
 				,'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.created', 'Cidade.nome', 'Curso.nome')
@@ -25,10 +25,15 @@ class UltimosAlunosCadastradosHelper extends AppHelper {
 		$return = '';
 		for ($i = 0; $i < count($alunos); $i++){
 
+			if ((isset($alunos[$i]['Detalhe'][0])) && ($alunos[$i]['Detalhe'][0]['foto'] != ''))
+				$imagem = $this->Html->image('detalhes/thumbs/'.$alunos[$i]['Detalhe'][0]['foto'], array('width'=>'50','height'=>'50')) . ' &nbsp; ';
+			else
+				$imagem = '<img class="media-object" src="http://placehold.it/50x50" alt="">';
+
 			$texto = 
 				'<div class="media">' .
 			      '<span class="pull-left">' .
-			         '<img class="media-object" src="http://placehold.it/50x50" alt="">' .
+			         $imagem .
 			      '</span>' . 
 			      '<div class="media-body">' .
 			         '<h5 class="media-heading"><strong>' . $alunos[$i]['Aluno']['nome'] . '</strong>' .
