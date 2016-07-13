@@ -168,7 +168,7 @@ class PortalController extends AppController {
       $filtro = $this->request->data['Portal']['ano'];
       $resultado = [];
       foreach($mensalidades as $mensalidade){
-         if (($mensalidade['vmensalidades']['mensalidade_ano'] == $filtro) && (isset($mensalidade['Mensalidade']['pagamento'])))
+         if (($mensalidade['vmensalidades']['mensalidade_ano'] == $filtro) && (! is_null($mensalidade['vmensalidades']['mensalidade_pagamento'])))
             $resultado[] = $mensalidade;
       }
       $mensalidades = $resultado;

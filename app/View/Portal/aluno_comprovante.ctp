@@ -33,7 +33,7 @@ $table = new Table();
 ?>
 <?php echo $dados['Instituto']['empresa_cpnjcpf']; ?>, gestora dos recursos financeiros da Pós-Graduação <?php echo $dados['Instituicao']['empresa_razaosocial']; ?>
 , declara para os devidos fins e a quem interessar possa que <?php echo $dados['Portal']['nome']; ?> 
-pagou o valor de R$ <?php echo array_sum($table->array_column($table->array_column($mensalidades, 'Mensalidade'), 'valor')); ?>,00 referente o curso de pós-graduação em <?php echo $dados['Portal']['curso_nome']; ?>.
+pagou o valor de R$ <?php echo array_sum($table->array_column($table->array_column($mensalidades, 'vmensalidades'), 'mensalidade_valor')); ?>,00 referente o curso de pós-graduação em <?php echo $dados['Portal']['curso_nome']; ?>.
 </p>
 
 <p class="style2" align="justify"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Abaixo apresenta-se o demonstrativo analítico dos pagamentos:</p>
@@ -51,15 +51,15 @@ $vl = 0;
 $de = 0;
 $li = 0;
 foreach ($mensalidades as $mensalidade):  
-  $vl += $mensalidade['Mensalidade']['valor'];
-  $de += $mensalidade['Mensalidade']['desconto']; 
-  $li += $mensalidade['Mensalidade']['liquido']; 
+  $vl += $mensalidade['vmensalidades']['mensalidade_valor'];
+  $de += $mensalidade['vmensalidades']['mensalidade_desconto']; 
+  $li += $mensalidade['vmensalidades']['mensalidade_liquido']; 
 ?>
     <tr>
-      <td><?php echo h($mensalidade['Mensalidade']['vencimento']); ?> &nbsp;</td>
-      <td><?php echo $this->Number->currency($mensalidade['Mensalidade']['valor'], 'BRL'); ?> &nbsp;</td>
-      <td><?php echo $this->Number->currency($mensalidade['Mensalidade']['desconto'], 'BRL'); ?> &nbsp;</td>
-      <td><?php echo $this->Number->currency($mensalidade['Mensalidade']['liquido'], 'BRL'); ?> &nbsp;</td>
+      <td><?php echo date('d/m/Y', strtotime($mensalidade['vmensalidades']['mensalidade_vencimento'])); ?> &nbsp;</td>
+      <td><?php echo $this->Number->currency($mensalidade['vmensalidades']['mensalidade_valor'], 'BRL'); ?> &nbsp;</td>
+      <td><?php echo $this->Number->currency($mensalidade['vmensalidades']['mensalidade_desconto'], 'BRL'); ?> &nbsp;</td>
+      <td><?php echo $this->Number->currency($mensalidade['vmensalidades']['mensalidade_liquido'], 'BRL'); ?> &nbsp;</td>
     </tr>
 <?php endforeach; ?>
     <tr>
