@@ -114,6 +114,7 @@ class ButtonsActionsHelper extends AppHelper {
 		$class = ClassRegistry::init($model);
 
 		return 
+		$this->VisualizacaoEnumerados() .
 '<div class="btn-group pull-right">' .
 	'<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' . __('Actions') . 
 		'<span class="caret"></span>' .
@@ -127,6 +128,10 @@ class ButtonsActionsHelper extends AppHelper {
 	'</ul>' .
 '</div>';
 
+	}
+
+	public function VisualizacaoEnumerados() {
+		return '';
 	}
 } 
 
