@@ -1,20 +1,49 @@
 <?php 
-App::uses('AppHelper', 'View/Helper');
 App::uses('ButtonsActionsHelper', 'View/Helper'); 
 
 class ButtonsActionsEnumeradosHelper extends ButtonsActionsHelper { 
     
-	public function VisualizacaoEnumerados() {
-	return
+	public function VisualizacaoEnumerados($model) {
+      $enumerados = ClassRegistry::init('Enumerado');
+      $options = array('recursive' => false, 'order' => 'Enumerado.referencia', 
+        'conditions' => array('Enumerado.nome' => $model, 'Enumerado.is_ativo' => true), 
+        'fields' => array('Enumerado.id', 'Enumerado.nome', 'Enumerado.referencia', 'Enumerado.valor'));
+      $enumerados = $enumerados->find('all', $options);
+      
+      if (is_null($enumerados))
+          return '';
+
+      $modelo = ClassRegistry::init($model);
+      $retorno =
         '<div class="btn-group pull-right">' .
-        	'<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' . __('Actions') . 
+        	'<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' . 
+            __('Visualizar') . 
         		'<span class="caret"></span>' .
         	'</button>' .
-              '<ul class="dropdown-menu">' .
-                 	'<li><a tabindex="-1" href="#">Regular link <span class="label label-warning">1</span> </a> </li>' .
-                 	'<li><a tabindex="-1" href="#">Regular link <span class="label label-success">2</span> </a> </li>' .
-              '</ul>' .
-        '</div>';
+              '<ul class="dropdown-menu">';
+
+      $ultimo = '';
+      foreach ($enumerados as $index => $enumerado) {
+          $referencia = $enumerado['Enumerado']['referencia'];
+          $id = $enumerado['Enumerado']['id'];
+
+          if (($ultimo !== '') && ($ultimo !== $referencia))
+            $retorno .= '<li class="divider"></li>';
+
+          $options = array('recursive' => -1, 'conditions' => array($model . '.' . $referencia => $id));
+          $conta = $modelo->find('count', $options);
+
+          $retorno .= 
+            '<li>' .
+              $this->Html->link('<span class="label label-info">' . $conta . '</span>'.' ' .
+                $enumerado['Enumerado']['valor'], array('controller' => 'enumerados', 
+                'action' => 'view',  $id), array('class' => '', 'escape'=>false)) .
+            '</li>';
+
+          $ultimo = $referencia;
+      }
+      $retorno .= '</ul>' . '</div>';
+      return $retorno;
 	}
 }
 

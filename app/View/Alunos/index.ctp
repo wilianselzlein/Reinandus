@@ -4,7 +4,7 @@
 	<div class="panel-heading">
 		<h3>
 			<span class="fa fa-male"></span> <?php echo __('Alunos'); ?>
-			<?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action'],
+			<?php echo $this->ButtonsActionsEnumerados->MakeButtons($this->params['controller'], $this->params['action'],
 			null, array(array('model' => 'Aluno', 'action' => 'emails'))); ?>
 		</h3>
 	</div>
