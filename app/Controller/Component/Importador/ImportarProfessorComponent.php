@@ -28,7 +28,7 @@ class ImportarProfessorComponent extends ImportadorBaseComponent {
 		$dados['titulacao'] = $this->FormatarValorEncode($parametro['PROTITULACAO']);
 		$dados['formacao'] = $this->FormatarValorEncode($parametro['PROFORMACAO']);
 		$dados['dadosfin'] = $this->FormatarValorEncode($parametro['PRODADOSFIN']);
-		$dados['resumotitulacao'] = $this->FormatarValorEncode($parametro['PRORESUMOTITULACAO']);
+		$dados['resumo_titulacao_id'] = $this->FormatarValorEncode($parametro['PRORESUMOTITULACAO']);
 		$dados['lattes'] = $this->FormatarValorEncode($parametro['PROCURRICULUMLATTES']);
 		$dados['vinculo'] = $parametro['PROVINCULO'];
 		$dados['rg'] = $this->FormatarValorEncode($parametro['PROIDENTIDADE']);

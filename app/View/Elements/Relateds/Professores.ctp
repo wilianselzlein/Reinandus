@@ -28,7 +28,6 @@
 							<th><?php echo __('Cidade'); ?></th>
 							<th><?php echo __('Celular'); ?></th>
 							<th><?php echo __('Email'); ?></th>
-							<th><?php echo __('Resumotitulacao'); ?></th>
 							<th class="actions text-center"><?php echo __('Actions'); ?></th>
 						</tr>
 					</thead>
@@ -40,7 +39,6 @@
 	<td><?php echo $this->DisplayField->MakeLink($professor, 'cidades', 'cidade_id'); ?></td>
 	<td><?php echo $professor['celular']; ?></td>
 	<td><?php echo $professor['email']; ?></td>
-	<td><?php echo $professor['resumotitulacao']; ?></td>
 	<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $professor, 'model' => '', 'controller' => 'professores')); ?>
 </tr>
 <?php endforeach; ?>

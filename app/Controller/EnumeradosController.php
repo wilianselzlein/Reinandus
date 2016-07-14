@@ -96,6 +96,16 @@ class EnumeradosController extends AppController {
 			$this->set(compact('contas'));
 		}
 
+		if ($enumerados['Enumerado']['nome'] == 'professor') {
+			$professores = ClassRegistry::init('Professor');
+			$professores = $professores->find('all', array('recursive' => 0, 'order' => array('Professor.nome'),
+				'conditions' => array('Professor.' . $enumerados['Enumerado']['referencia'] => $id),
+				'fields' => array('Professor.id', 'Professor.nome', 'Professor.celular', 'Professor.email', 'Cidade.id', 'Cidade.nome')
+				));
+			$professores = $this->TransformarArray->FindInContainable('Professor', $professores);
+			$this->set(compact('professores'));
+		}
+
 		//$this->AdicionarEnumeradoSeNaoExistir(32, 'instituto', 'tipo_id', 'Instituto');
 	}
 
@@ -266,6 +276,12 @@ class EnumeradosController extends AppController {
     $this->AdicionarEnumeradoSeNaoExistir(75, 'aluno', 'indicacao_id', 'TV');
     $this->AdicionarEnumeradoSeNaoExistir(76, 'aluno', 'indicacao_id', 'Outros');
 
+    $this->AdicionarEnumeradoSeNaoExistir(77, 'professor', 'resumo_titulacao_id', 'Graduado(a)');
+    $this->AdicionarEnumeradoSeNaoExistir(78, 'professor', 'resumo_titulacao_id', 'Mestre(a)');
+    $this->AdicionarEnumeradoSeNaoExistir(79, 'professor', 'resumo_titulacao_id', 'Doutor(a)');
+    $this->AdicionarEnumeradoSeNaoExistir(80, 'professor', 'resumo_titulacao_id', 'Pós-Doutor(a)');
+    $this->AdicionarEnumeradoSeNaoExistir(81, 'professor', 'resumo_titulacao_id', 'Especialista');
+    
 	$this->Session->setFlash(__('Os enumerados foram atualizados.'), 'flash/success');
  }
 

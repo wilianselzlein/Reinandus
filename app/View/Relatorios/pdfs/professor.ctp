@@ -33,7 +33,7 @@ for ($index = 0; $index < count($professor); $index++) {
       ->addColumn($professor[$index]['c']['cidade_nome'], 'col-10')
       ->addColumn($professor[$index]['p']['fone'], 'col-10')         
       ->addColumn($professor[$index]['p']['celular'], 'col-10')  
-      ->addColumn($professor[$index]['p']['resumotitulacao'], 'col-10')
+      ->addColumn($professor[$index]['e']['valor'], 'col-10')
       ->addColumn($professor[$index]['p']['formacao'], 'col-10')
       ->close();
     $table->addRow($rowData);

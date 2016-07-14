@@ -33,6 +33,8 @@
  		echo $this->element('Relateds/Filtros', array('array' => $filtros, 'model' => 'RelatoriosFiltros'));
  	if (isset($contas) && (count($contas) > 0))
  		echo $this->element('Relateds/ContasPagar', array('array' => $contas)); 
+ 	if (isset($professores) && (count($professores) > 0))
+ 		echo $this->element('Relateds/Professores', array('array' => $professores)); 
 ?>
 
 </div><!-- /#page-container .row-fluid -->

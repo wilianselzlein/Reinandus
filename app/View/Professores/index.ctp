@@ -1,7 +1,7 @@
 <div class="panel panel-default">
 
 	<div class="panel-heading"><h3><span class="fa fa-slideshare "></span> <?php echo __('Professores'); ?>
-	<?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action'],
+	<?php echo $this->ButtonsActionsEnumerados->MakeButtons($this->params['controller'], $this->params['action'],
       		 null, array(array('model' => 'Professor', 'action' => 'emails'))); ?>
             </h3></div>
 

@@ -67,6 +67,13 @@ class Professor extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Titulacao' => array(
+			'className' => 'Enumerado',
+			'foreignKey' => 'resumo_titulacao_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 

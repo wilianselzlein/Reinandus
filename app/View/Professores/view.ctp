@@ -101,7 +101,7 @@
 		</td>
 </tr><tr>		<td><strong><?php echo __('Resumotitulacao'); ?></strong></td>
 		<td>
-			<?php echo h($professor['Professor']['resumotitulacao']); ?>
+			<?php echo $this->Html->link($professor['Titulacao']['valor'], array('controller' => 'enumerados', 'action' => 'view', $professor['Professor']['resumo_titulacao_id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Lattes'); ?></strong></td>

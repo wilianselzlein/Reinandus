@@ -63,7 +63,7 @@ class CidadesController extends AppController {
 		$this->set(compact('pessoas'));
 
 		$options = array('conditions' => array('Professor.cidade_id' => $id), 'limit' => 200,
-		  'fields' => array('Professor.id', 'Professor.nome', 'Professor.celular', 'Professor.email', 'Professor.resumotitulacao', 'Cidade.id', 'Cidade.nome'));
+		  'fields' => array('Professor.id', 'Professor.nome', 'Professor.celular', 'Professor.email', 'Cidade.id', 'Cidade.nome'));
 		$this->Cidade->Professor->unbindModel(array('hasAndBelongsToMany' => array('Disciplina'), 'hasMany' => array('Aluno', 'AlunoDisciplina', 'Curso', 'CursoDisciplina', 'ProfessorDisciplina')));
 		$professores = $this->Cidade->Professor->find('all', $options);
 		$professores = $this->TransformarArray->FindInContainable('Professor', $professores);

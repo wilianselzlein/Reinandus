@@ -80,7 +80,7 @@ class DisciplinasController extends AppController {
 		if (empty($professores)) $professores[] = 0;
 		
 		$options = array('recursive' => false, 'conditions' => array('Professor.id >= ' => min($professores), 'Professor.id <= ' => max($professores), 'AND' => array('Professor.id' => $professores)), 
-			'fields' => array('Professor.id', 'Professor.nome', 'Professor.celular', 'Professor.email', 'Professor.resumotitulacao', 'Cidade.id', 'Cidade.nome'));
+			'fields' => array('Professor.id', 'Professor.nome', 'Professor.celular', 'Professor.email', 'Cidade.id', 'Cidade.nome'));
 		$professores = $this->Disciplina->Professor->find('all', $options);
 		$professores = $this->TransformarArray->FindInContainable('Professor', $professores);
 		$this->set(compact('professores'));

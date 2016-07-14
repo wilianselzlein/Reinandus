@@ -122,7 +122,8 @@ class ProfessoresController extends AppController {
 		}
 		$cidades = $this->Professor->Cidade->findAsCombo();
 		$disciplinas = $this->Professor->Disciplina->findAsCombo('asc', array('Disciplina.nome <> ""'));
-		$this->set(compact('cidades', 'disciplinas'));
+		$titulacoes = $this->Professor->Titulacao->find('list', array('conditions' => array('Titulacao.referencia' => 'resumo_titulacao_id', 'Titulacao.nome' => 'professor')));
+		$this->set(compact('cidades', 'disciplinas', 'titulacoes'));
 	}
 
 /**
@@ -156,7 +157,8 @@ class ProfessoresController extends AppController {
 		}
 		$cidades = $this->Professor->Cidade->findAsCombo();
 		$disciplinas = $this->Professor->Disciplina->findAsCombo('asc', array('Disciplina.nome <> ""'));
-		$this->set(compact('cidades', 'disciplinas'));
+		$titulacoes = $this->Professor->Titulacao->find('list', array('conditions' => array('Titulacao.referencia' => 'resumo_titulacao_id', 'Titulacao.nome' => 'professor')));
+		$this->set(compact('cidades', 'disciplinas', 'titulacoes'));
 	}
 
 /**
