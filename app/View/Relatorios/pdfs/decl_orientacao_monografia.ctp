@@ -6,7 +6,7 @@ $pdf->Sessao = $this->Session->read('Auth');
 
 for ($index = 0; $index < count($decl_orientacao_monografia); $index++) {
   $pdf->Ln(30);
-  $titulo = 'D E C L A R A Ç Ã O &nbsp; D E &nbsp; F R E Q U Ê N C I A';;
+  $titulo = 'O R I E N T A Ç Ã O &nbsp; D E &nbsp; M O N O G R A F I A';;
   $pdf->writeHTML('<h1>'.$titulo.'</h1>', true, false, true, false, 'C');
   $pdf->Ln(30);
 

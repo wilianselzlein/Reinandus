@@ -54,8 +54,8 @@
 
    </div><!-- /.view -->
 
-<?php 
-echo $this->element('Relateds/Permissoes', array('array' => $permissoes));
+<?php
+echo $this->element('Relateds/Permissoes', array('array' => $p_ermissoes));
 echo $this->element('Relateds/Mensalidades', array('array' => $mensalidades));
 echo $this->element('Relateds/Avisos', array('array' => $avisos));
 echo $this->element('Relateds/ContasPagar', array('array' => $pagar));

@@ -55,8 +55,8 @@ FROM pedroescobar15.user AS User
 		'fields' => array(' Permissao.id', 'Permissao.user_id', 'Permissao.programa_id', 'Permissao.index', 'Permissao.view', 'Permissao.edit', 'Permissao.add', 'Permissao.delete', 'Programa.id', 'Programa.nome', 'User.id', 'User.username'));
 		//$this->User->Permissao->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
 		$permissoes = $this->User->Permissao->find('all', $options);
-		$permissoes = $this->TransformarArray->FindInContainable('Permissao', $permissoes);
-		$this->set(compact('permissoes'));
+		$p_ermissoes = $this->TransformarArray->FindInContainable('Permissao', $permissoes);
+		$this->set(compact('p_ermissoes'));
 
 		$options = array('recursive' => 0, 'conditions' => array('Mensalidade.user_id' => $id), 'limit' => 200, 
 		'fields' => array('Mensalidade.id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Aluno.id', 'Aluno.nome'));
