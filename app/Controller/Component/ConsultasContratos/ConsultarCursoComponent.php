@@ -9,7 +9,9 @@ class ConsultarCursoComponent extends CarregarConsultasBaseComponent {
 		
 		$extenso = $this->ValorPorExtenso($this->Data['carga'], false, true);
 		$this->Contrato = str_replace(':curso_extenso_carga', $extenso, $this->Contrato);
-		$extenso = $this->ValorPorExtenso($this->Data['dia_vencimento'], false, true);
+		$extenso = '';
+		if (is_numeric($this->Data['dia_vencimento']))
+			$extenso = $this->ValorPorExtenso($this->Data['dia_vencimento'], false, true);
 		$this->Contrato = str_replace(':curso_extenso_dia_vencimento', $extenso, $this->Contrato);
 
 		parent::SubstituirTags();
