@@ -7295,43 +7295,10 @@ button.close
   height:100%;
   position: absolute;
   text-align: center;
-  background-color:#414141;
-  filter:alpha(opacity=90);
-  opacity:0.9;
   overflow: auto;
   top: 0;
   left: 0;
   z-index:2;
-}
-
-#carregador_fundo{
-  font-size: 1px;
-  left: 8px;
-  width: 113px;
-  position: relative;
-  top: 50px;
-  height: 7px;
-  background-color: #ebebe4
-}
-#carregador_posicao{
-  padding-top:20%;
-}
-#carregador{
-  border-right: #6a6a6a 1px solid;
-  padding: 0px 10px 0px 16px;
-  border-top: #6a6a6a 1px solid;
-  display: block;
-  font-size: 11px;
-  z-index: 2;
-  margin: 0px auto;
-  border-left: #6a6a6a 1px solid;
-  width: 250px;
-  height:70px;
-  color: #000000;
-  border-bottom: #6a6a6a 1px solid;
-  font-family: Tahoma, Helvetica, sans;
-  background-color: #ffffff;
-  text-align: left;
 }
 
 @media screen{
