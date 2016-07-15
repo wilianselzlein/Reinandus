@@ -28,13 +28,24 @@ class ImportarProfessorComponent extends ImportadorBaseComponent {
 		$dados['titulacao'] = $this->FormatarValorEncode($parametro['PROTITULACAO']);
 		$dados['formacao'] = $this->FormatarValorEncode($parametro['PROFORMACAO']);
 		$dados['dadosfin'] = $this->FormatarValorEncode($parametro['PRODADOSFIN']);
-		$dados['resumo_titulacao_id'] = $this->FormatarValorEncode($parametro['PRORESUMOTITULACAO']);
+		$dados['resumo_titulacao_id'] = $this->TratarTitulacao($this->FormatarValorEncode($parametro['PRORESUMOTITULACAO']));
 		$dados['lattes'] = $this->FormatarValorEncode($parametro['PROCURRICULUMLATTES']);
 		$dados['vinculo'] = $parametro['PROVINCULO'];
 		$dados['rg'] = $this->FormatarValorEncode($parametro['PROIDENTIDADE']);
 		$dados['senha'] = $dados['cpf'];
 		
 		$this->SalvarDados($dados);
+	}
+
+	private function TratarTitulacao($parametro) {
+		switch ($parametro) {
+			case 'Graduado(a)': return 77; break;
+			case 'Mestre(a)': return 78; break;
+			case 'Doutor(a)': return 79; break;
+			case 'Pós-Doutor(a)': return 80; break;
+			case 'Especialista': return 81; break;
+			default: return 78;
+		}
 	}
 
 	public function Configurar() {
