@@ -183,3 +183,34 @@ class ImportadorController extends AppController {
 	}
 
 }
+
+/*
+delete from acesso;
+delete from detalhe;
+delete from conta_pagar;
+delete from lancamento_contabil;
+delete from mensalidade;
+delete from disciplina_professor;
+delete from curso_disciplinas;
+delete from aviso_grupos;
+delete from aviso_cursos;
+delete from avisos;
+delete from aluno_disciplinas;
+delete from aluno;
+delete from curso;
+delete from professor;
+delete from pessoa;
+where id not in (select pessoa_id from user) 
+and id not in (select diretor_id from instituto)
+and id not in (select empresa_id from instituto);
+delete from cidade where id not in (select cidade_id from pessoa);
+
+ALTER TABLE acesso AUTO_INCREMENT = 1;
+ALTER TABLE detalhe AUTO_INCREMENT = 1;
+ALTER TABLE mensalidade AUTO_INCREMENT = 1;
+ALTER TABLE aluno_disciplinas AUTO_INCREMENT = 1;
+ALTER TABLE disciplina_professor AUTO_INCREMENT = 1;
+ALTER TABLE curso_disciplinas AUTO_INCREMENT = 1;
+ALTER TABLE aviso_grupos AUTO_INCREMENT = 1;
+ALTER TABLE aviso_cursos AUTO_INCREMENT = 1;
+*/

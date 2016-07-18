@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::import('Controller', 'Permissoes');
 /**
  * Users Controller
  *
@@ -210,5 +211,11 @@ Aviso.id, Aviso.data, Aviso.user_id, Aviso.arquivo, Aviso.mensagem, Aviso.tipo_i
 			throw new Exception(__('Impossível realizar essa ação com o usuário master!'));
 		}
 	}
+
+   public function beforeCopy($de_id, $para_id) {
+        parent::beforeCopy($de_id, $para_id);
+        $Permissao = new PermissoesController;
+        $Permissao->CopiarPermissoes($de_id, $para_id);
+    }
 
 }

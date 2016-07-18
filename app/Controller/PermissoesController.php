@@ -280,4 +280,20 @@ class PermissoesController extends AppController {
 
 		return $return;
 	}
+
+	public function CopiarPermissoes($de_id, $para_id) {
+		$this->Permissao->recursive = -1;
+		$p_ermissoes = $this->Permissao->find('all', array('conditions' => array('Permissao.user_id' => $de_id)));
+		foreach ($p_ermissoes as $permissao) {
+			$permissao['Permissao']['user_id'] = $para_id;
+			unset($permissao['Permissao']['id']);
+			unset($permissao['Permissao']['created']);
+			unset($permissao['Permissao']['modified']);
+
+			$this->Permissao->create();
+			$this->Permissao->save($permissao);
+		}
+
+	}
+
 }

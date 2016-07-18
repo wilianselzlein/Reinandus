@@ -261,4 +261,48 @@ class AppController extends Controller {
       }
 	}
 
+  public function copy($id) {
+
+      if (! $this->{$this->modelClass}->exists($id)) {
+          throw new NotFoundException(__('The record could not be found.'));
+      }
+
+      $options = array('recursive' => -1, 'conditions' => array($this->modelClass . '.' . $this->{$this->modelClass}->primaryKey => $id));
+
+
+      $registro = $this->{$this->modelClass}->find('first', $options);
+
+      unset($registro[$this->modelClass]['id']);
+      if (isset($registro[$this->modelClass]['created']))
+        unset($registro[$this->modelClass]['created']);
+      if (isset($registro[$this->modelClass]['modified']))
+        unset($registro[$this->modelClass]['modified']);
+      if (isset($registro[$this->modelClass]['username']))
+          $registro[$this->modelClass]['username'] = 'Copiado';
+
+      /*debug($this->name); 
+      debug($this->modelClass); 
+      debug($this->methods);
+      debug($this->request->params['pass'][0]);
+      debug($registro); die;*/
+
+      $this->{$this->modelClass}->create();
+      if ($this->{$this->modelClass}->save($registro)) {
+        $novo = $this->{$this->modelClass}->getLastInsertID();
+
+        $this->beforeCopy($id, $novo);
+        $this->Session->setFlash(__('The record has been saved'), "flash/success");
+        $this->redirect(array('action' => 'edit', $novo));  
+      } else {
+        $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
+        $this->redirect(array('action' => 'index'));
+      } 
+
+
+  }
+
+  public function beforeCopy($de_id, $para_id) {
+
+  }
+
 }
