@@ -46,7 +46,12 @@ $fr += $nota['vdisciplinas']['aluno_disciplina_frequencia'];
       <td><?php echo $nota['vdisciplinas']['disciplina_nome']; ?>&nbsp;</td>
       <td><?php echo $nota['vdisciplinas']['professor_nome']; ?>&nbsp;</td>
       <td><?php echo $nota['vdisciplinas']['professor_resumo_titulacao']; ?>&nbsp;</td>
-      <td><?php echo date('d/m/Y', strtotime($nota['vdisciplinas']['aluno_disciplina_data'])); ?>&nbsp;</td>
+      <?php 
+        $data = $nota['vdisciplinas']['aluno_disciplina_data'];
+        if ($data != '') 
+          $data = date('d/m/Y', strtotime($nota['vdisciplinas']['aluno_disciplina_data']));
+      ?>
+      <td><?php echo $data; ?>&nbsp;</td>
       <td><?php echo $nota['vdisciplinas']['aluno_disciplina_horas_aula']; ?>&nbsp;</td>
       <td><?php echo $nota['vdisciplinas']['aluno_disciplina_frequencia']; ?>&nbsp;</td>
       <td><?php echo $nota['vdisciplinas']['aluno_disciplina_nota']; ?>&nbsp;</td>
