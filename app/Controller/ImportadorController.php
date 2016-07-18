@@ -213,4 +213,7 @@ ALTER TABLE disciplina_professor AUTO_INCREMENT = 1;
 ALTER TABLE curso_disciplinas AUTO_INCREMENT = 1;
 ALTER TABLE aviso_grupos AUTO_INCREMENT = 1;
 ALTER TABLE aviso_cursos AUTO_INCREMENT = 1;
+
+update logo set logo = CONCAT('logo', pessoa_id, '.jpg');
+
 */
