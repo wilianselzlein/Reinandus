@@ -348,17 +348,17 @@ EOD;
    }
 
    public function AssinaturaUsuarioLogado() {
-      $this->Ln(10);
+      $this->Ln(20);
       $assinatura = $this->Sessao['User']['assinatura'];
       if ($assinatura != '') {
         $imgdata = base64_decode($assinatura);
         if ($imgdata != '')
-          $this->Image('@'.$imgdata, 90);
+          $this->Image('@'.$imgdata, 60);
       }
    }
 
    public function AssinaturaNomePessoaRelacionadaAoUsuario() {
-      $this->Ln(10);
+      $this->Ln(20);
       $secretario = $this->Sessao['User']['Pessoa']['razaosocial'];
       $texto = $secretario . ' 
         ' . 'Departamento da Pós-Graduação'; 

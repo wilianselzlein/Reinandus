@@ -6,7 +6,7 @@ $pdf->Sessao = $this->Session->read('Auth');
 
 for ($index = 0; $index < count($decl_reativacao); $index++) {
   $pdf->Ln(30);
-  $titulo = 'Declaração de Reativação de Matrícula de Monografia';
+  $titulo = 'Declaração de Reativação de Matrícula de TCC';
   $pdf->writeHTML('<h1>'.$titulo.'</h1>', true, false, true, false, 'C');
   $pdf->Ln(30);
 

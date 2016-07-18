@@ -6,7 +6,7 @@ $pdf->Sessao = $this->Session->read('Auth');
 
 for ($index = 0; $index < count($decl_orientacao_monografia); $index++) {
   $pdf->Ln(30);
-  $titulo = 'O R I E N T A Ç Ã O &nbsp; D E &nbsp; M O N O G R A F I A';;
+  $titulo = 'O R I E N T A Ç Ã O &nbsp; D E &nbsp; T C C';
   $pdf->writeHTML('<h1>'.$titulo.'</h1>', true, false, true, false, 'C');
   $pdf->Ln(30);
 
@@ -15,7 +15,7 @@ for ($index = 0; $index < count($decl_orientacao_monografia); $index++) {
   $titulo = $decl_orientacao_monografia[$index]['aluno']['titulo'];
   $nota = $decl_orientacao_monografia[$index]['aluno']['nota'];
   
-  $representante = 'Roberto Ari Guindani';
+  $representante = '';
   $professor = $decl_orientacao_monografia[$index]['professor']['orientador'];
 
   $texto = '    A FACET Faculdade, estabelecida na Rua Mal. Floriano Peixoto, 470, Curitiba, através do seu representante '.$representante.', declara que o(a) Prof(a) '.$professor.' orientou os Trabalhos de Conclusão de Curso dos alunos:';

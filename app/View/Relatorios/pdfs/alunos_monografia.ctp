@@ -3,7 +3,7 @@
 App::import('Vendor', 'PeDF/Table');
 App::import('Vendor','tcpdf/modelos/RelatorioPDF'); 
 $relatorio_pdf = new RelatorioPDF('L', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-$relatorio_pdf->setTitulo('Relatório de Alunos/Monografia');
+$relatorio_pdf->setTitulo('Relatório de Alunos/TCCs');
 $html = $relatorio_pdf->html;
 //debug($aluno);
 $table = new Table();
@@ -38,7 +38,7 @@ for ($index = 0; $index < count($aluno); $index++) {
    $rowSubheader
       ->addColumn('', 'col-5')
       ->addColumn('Orientador', 'col-25')  
-      ->addColumn('Monografia', 'col-40')
+      ->addColumn('TCC', 'col-40')
       ->addColumn('Data', 'col-10')
       ->addColumn('Prazo', 'col-10')
       ->addColumn('Nota', 'col-10')
