@@ -200,4 +200,28 @@ class ProfessoresController extends AppController {
 		$this->set('emails', $emails);
 	}
 
+/**
+ * beforeCopy method
+ *
+ * @throws Exception
+ * @param int $de_id $para_id
+ * @return void
+ */
+   public function beforeCopy($de_id, $para_id) {
+        parent::beforeCopy($de_id, $para_id);
+
+		$this->Professor->DisciplinaProfessor->recursive = -1;
+		$registros = $this->Professor->DisciplinaProfessor->find('all', array('conditions' => array('DisciplinaProfessor.professor_id' => $de_id)));
+		foreach ($registros as $registro) {
+			$registro['DisciplinaProfessor']['professor_id'] = $para_id;
+			unset($registro['DisciplinaProfessor']['id']);
+			unset($registro['DisciplinaProfessor']['created']);
+			unset($registro['DisciplinaProfessor']['modified']);
+
+			$this->Professor->DisciplinaProfessor->create();
+			$this->Professor->DisciplinaProfessor->save($registro);
+		}
+
+    }
+
 }

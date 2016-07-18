@@ -189,4 +189,29 @@ class CursosController extends AppController {
 		$this->set('disciplina', $this->CursoDisciplina->find('all', $options));
 	}
 
+
+/**
+ * beforeCopy method
+ *
+ * @throws Exception
+ * @param int $de_id $para_id
+ * @return void
+ */
+   public function beforeCopy($de_id, $para_id) {
+        parent::beforeCopy($de_id, $para_id);
+
+		$this->CursoDisciplina->recursive = -1;
+		$registros = $this->CursoDisciplina->find('all', array('conditions' => array('CursoDisciplina.curso_id' => $de_id)));
+		foreach ($registros as $registro) {
+			$registro['CursoDisciplina']['curso_id'] = $para_id;
+			unset($registro['CursoDisciplina']['id']);
+			unset($registro['CursoDisciplina']['created']);
+			unset($registro['CursoDisciplina']['modified']);
+
+			$this->CursoDisciplina->create();
+			$this->CursoDisciplina->save($registro);
+		}
+
+    }
+
 }

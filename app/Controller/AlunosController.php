@@ -334,4 +334,28 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 	    return $this->Aluno->find('list', $options);
 	}
 
+/**
+ * beforeCopy method
+ *
+ * @throws Exception
+ * @param int $de_id $para_id
+ * @return void
+ */
+   public function beforeCopy($de_id, $para_id) {
+        parent::beforeCopy($de_id, $para_id);
+
+		$this->Aluno->AlunoDisciplina->recursive = -1;
+		$registros = $this->Aluno->AlunoDisciplina->find('all', array('conditions' => array('AlunoDisciplina.aluno_id' => $de_id)));
+		foreach ($registros as $registro) {
+			$registro['AlunoDisciplina']['aluno_id'] = $para_id;
+			unset($registro['AlunoDisciplina']['id']);
+			unset($registro['AlunoDisciplina']['created']);
+			unset($registro['AlunoDisciplina']['modified']);
+
+			$this->Aluno->AlunoDisciplina->create();
+			$this->Aluno->AlunoDisciplina->save($registro);
+		}
+
+    }
+
 }

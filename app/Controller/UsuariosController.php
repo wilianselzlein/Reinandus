@@ -212,6 +212,13 @@ Aviso.id, Aviso.data, Aviso.user_id, Aviso.arquivo, Aviso.mensagem, Aviso.tipo_i
 		}
 	}
 
+/**
+ * beforeCopy method
+ *
+ * @throws Exception
+ * @param int $de_id $para_id
+ * @return void
+ */
    public function beforeCopy($de_id, $para_id) {
         parent::beforeCopy($de_id, $para_id);
         $Permissao = new PermissoesController;

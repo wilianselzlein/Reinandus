@@ -172,4 +172,41 @@ class AvisosController extends AppController {
 		$this->set('grupo', $this->AvisoGrupo->find('all', $options));
 	}
 
+
+/**
+ * beforeCopy method
+ *
+ * @throws Exception
+ * @param int $de_id $para_id
+ * @return void
+ */
+   public function beforeCopy($de_id, $para_id) {
+        parent::beforeCopy($de_id, $para_id);
+
+		$this->AvisoGrupo->recursive = -1;
+		$grupos = $this->AvisoGrupo->find('all', array('conditions' => array('AvisoGrupo.aviso_id' => $de_id)));
+		foreach ($grupos as $grupo) {
+			$grupo['AvisoGrupo']['aviso_id'] = $para_id;
+			unset($grupo['AvisoGrupo']['id']);
+			unset($grupo['AvisoGrupo']['created']);
+			unset($grupo['AvisoGrupo']['modified']);
+
+			$this->AvisoGrupo->create();
+			$this->AvisoGrupo->save($grupo);
+		}
+
+		$this->AvisoCurso->recursive = -1;
+		$cursos = $this->AvisoCurso->find('all', array('conditions' => array('AvisoCurso.aviso_id' => $de_id)));
+		foreach ($cursos as $curso) {
+			$curso['AvisoCurso']['aviso_id'] = $para_id;
+			unset($curso['AvisoCurso']['id']);
+			unset($curso['AvisoCurso']['created']);
+			unset($curso['AvisoCurso']['modified']);
+
+			$this->AvisoCurso->create();
+			$this->AvisoCurso->save($curso);
+		}
+
+    }
+
 }
