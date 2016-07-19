@@ -42,14 +42,14 @@ class ContasPagarController extends AppController {
 
 		$filtro = array();
 		$filtro['filter1'] = $filtros;	
-	$this->Filter->addFilters($filtro);
+		$this->Filter->addFilters($filtro);
 
 		$this->Filter->setPaginate('order', array('ContaPagar.id' => 'desc')); 
 		if (! isset($filtros['AND'])) 
 			$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
 		else
 			$this->Filter->setPaginate('conditions', $filtros['AND']);
-        $this->Filter->setPaginate('fields', array('ContaPagar.id', 'ContaPagar.documento', 'ContaPagar.serie', 'Pessoa.id', 'Pessoa.razaosocial', 'ContaPagar.vencimento', 'ContaPagar.valor', 'ContaPagar.pagamento',
+        $this->Filter->setPaginate('fields', array('ContaPagar.id', 'ContaPagar.documento', 'ContaPagar.serie', 'Pessoa.id', 'Pessoa.razaosocial', 'Professor.id', 'Professor.nome', 'ContaPagar.vencimento', 'ContaPagar.valor', 'ContaPagar.pagamento',
            'ContaPagar.liberado', 'Formapgto.id', 'Formapgto.nome'));
 
 		$this->ContaPagar->recursive = 0;
@@ -73,7 +73,7 @@ class ContasPagarController extends AppController {
 /*'ContaPagar.id', 'ContaPagar.pessoa_id', 'ContaPagar.tipo_id', 'ContaPagar.cadastro', 'ContaPagar.emissao', 'ContaPagar.vencimento', 'ContaPagar.pagamento', 'ContaPagar.documento', 'ContaPagar.serie', 
 'ContaPagar.conta_id', 'ContaPagar.valor', 'ContaPagar.saldo', 'ContaPagar.juro', 'ContaPagar.multa', 'ContaPagar.situacao_id', 'ContaPagar.observacao', 'ContaPagar.cheque', 'ContaPagar.agencia', 
 'ContaPagar.user_id', 'ContaPagar.banco_deposito', 'ContaPagar.conta_corrente', 'ContaPagar.liberado', 'ContaPagar.formapgto_id', 'ContaPagar.portador', */
-'ContaPagar.*', 'Conta.id', 'Conta.conta', 'Tipo.id', 'Tipo.valor', 'User.id', 'User.username', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 'Situacao.id', 'Situacao.valor', 'Formapgto.id', 'Formapgto.nome'));
+'ContaPagar.*', 'Conta.id', 'Conta.conta', 'Tipo.id', 'Tipo.valor', 'User.id', 'User.username', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 'Professor.id', 'Professor.nome', 'Situacao.id', 'Situacao.valor', 'Formapgto.id', 'Formapgto.nome'));
 		$contapagar = $this->ContaPagar->find('first', $options);
 		$this->set('contapagar', $contapagar);
 
@@ -118,6 +118,7 @@ class ContasPagarController extends AppController {
 		}
 		$contas = $this->ContaPagar->Conta->findAsCombo();
 		$pessoas = $this->ContaPagar->Pessoa->findAsCombo();
+		$professores = $this->ContaPagar->Professor->findAsCombo();
 		$formapgtos = $this->ContaPagar->Formapgto->findAsCombo('asc', 'tipo <> "I"');
 		$users = $this->ContaPagar->User->findAsCombo();
 		$tipos = $this->ContaPagar->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_id', 'Tipo.nome' => 'contapagar')));
@@ -128,7 +129,7 @@ class ContasPagarController extends AppController {
         if (isset($formapgto_id['Formapgto']))
         	$formapgto_id = $formapgto_id['Formapgto']['id'];
         $liberado = ! $this->VerificarUsuarioRoleRoot();
-		$this->set(compact('contas', 'pessoas', 'formapgtos', 'users', 'situacaos', 'tipos', 'formapgto_id', 'liberado'));
+		$this->set(compact('contas', 'pessoas', 'professores', 'formapgtos', 'users', 'situacaos', 'tipos', 'formapgto_id', 'liberado'));
 	}
 
 /**
@@ -158,17 +159,18 @@ class ContasPagarController extends AppController {
 			}
 		} else {
 			$options = array('recursive' => false, 'conditions' => array('ContaPagar.' . $this->ContaPagar->primaryKey => $id));
-			$this->ContaPagar->unbindModel(array('belongsTo' => array('Conta', 'Tipo', 'User', 'Pessoa', 'Situacao', 'Formapgto', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
+			$this->ContaPagar->unbindModel(array('belongsTo' => array('Conta', 'Tipo', 'User', 'Pessoa', 'Professor', 'Situacao', 'Formapgto', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
 			$this->request->data = $this->ContaPagar->find('first', $options);
 		}
 		$contas = $this->ContaPagar->Conta->findAsCombo();
 		$pessoas = $this->ContaPagar->Pessoa->findAsCombo();
+		$professores = $this->ContaPagar->Professor->findAsCombo();
 		$formapgtos = $this->ContaPagar->Formapgto->findAsCombo('asc', 'tipo <> "I"');
 		$users = $this->ContaPagar->User->findAsCombo();
 		$tipos = $this->ContaPagar->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_id', 'Tipo.nome' => 'contapagar')));
 		$situacaos = $this->ContaPagar->Situacao->find('list', array('conditions' => array('Situacao.referencia' => 'situacao_id', 'Situacao.nome' => 'contapagar')));
 		$liberado = ! $this->VerificarUsuarioRoleRoot();
-		$this->set(compact('contas', 'pessoas', 'formapgtos', 'users', 'situacaos', 'tipos', 'liberado'));
+		$this->set(compact('contas', 'pessoas', 'professores', 'formapgtos', 'users', 'situacaos', 'tipos', 'liberado'));
 	}
 
 /**
@@ -231,7 +233,7 @@ class ContasPagarController extends AppController {
 ContaPagar.valor, ContaPagar.saldo, ContaPagar.juro, ContaPagar.multa, ContaPagar.situacao_id, ContaPagar.observacao, ContaPagar.cheque, ContaPagar.agencia, ContaPagar.user_id, ContaPagar.banco_deposito, 
 ContaPagar.conta_corrente, ContaPagar.liberado, ContaPagar.formapgto_id, ContaPagar.portador, */
 'ContaPagar.*', 'Conta.id', 'Conta.banco', 'Conta.conta', 'Tipo.id', 'Tipo.valor', 'User.id', 'User.username', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 
-'Situacao.id', 'Situacao.valor', 'Formapgto.id', 'Formapgto.nome'));
+'Professor.id', 'Professor.nome', 'Situacao.id', 'Situacao.valor', 'Formapgto.id', 'Formapgto.nome'));
 			$dados = $this->ContaPagar->find('first', $options);
 			if (! is_null($dados['ContaPagar']['pagamento'])) {
 				$this->Session->setFlash(__('Lançamento já pago!'), 'flash/error');
@@ -251,12 +253,14 @@ ContaPagar.conta_corrente, ContaPagar.liberado, ContaPagar.formapgto_id, ContaPa
 		}
 		//$contas = $this->ContaPagar->Conta->findAsCombo();
 		$pessoa_id = $this->request->data['ContaPagar']['pessoa_id'];
+		$professor_id = $this->request->data['ContaPagar']['professor_id'];
 		$pessoas = $this->ContaPagar->Pessoa->find('list', array('conditions' => array('Pessoa.id' => $pessoa_id)));
+		$professores = $this->ContaPagar->Professor->find('list', array('conditions' => array('Professor.id' => $professor_id)));
 		$formapgtos = $this->ContaPagar->Formapgto->findAsCombo('asc', 'tipo <> "I"');
 		//$tipos = $this->ContaPagar->Tipo->findAsCombo();
 		$users = $this->ContaPagar->User->findAsCombo();
 		$situacaos = $this->ContaPagar->Situacao->find('list', array('conditions' => array('Situacao.referencia' => 'situacao_id', 'Situacao.nome' => 'contapagar')));
-		$this->set(compact('contas', 'pessoas', 'formapgtos', 'users', 'situacaos', 'tipos'));
+		$this->set(compact('contas', 'pessoas', 'professores', 'formapgtos', 'users', 'situacaos', 'tipos'));
 	}
 
 /**
@@ -299,8 +303,15 @@ ContaPagar.conta_corrente, ContaPagar.liberado, ContaPagar.formapgto_id, ContaPa
         $lancamento['documento'] = $contapagar['ContaPagar']['documento'] . ' ' . $contapagar['ContaPagar']['serie'];
 
 		$pessoa_id = $this->request->data['ContaPagar']['pessoa_id'];
-		$pessoa = $this->ContaPagar->Pessoa->find('list', array('conditions' => array('Pessoa.id' => $pessoa_id)));
-        $lancamento['complemento'] = $contapagar['ContaPagar']['pessoa_id'] . ' ' . $pessoa[$pessoa_id];
+		if ($pessoa_id > 0) {
+			$pessoa = $this->ContaPagar->Pessoa->find('list', array('conditions' => array('Pessoa.id' => $pessoa_id)));
+			$lancamento['complemento'] = $contapagar['ContaPagar']['pessoa_id'] . ' ' . $pessoa[$pessoa_id];
+		}
+		$professor_id = $this->request->data['ContaPagar']['professor_id'];
+		if ($professor_id > 0) {
+			$professor = $this->ContaPagar->Professor->find('list', array('conditions' => array('Professor.id' => $professor_id)));
+        	$lancamento['complemento'] = $contapagar['ContaPagar']['professor_id'] . ' ' . $professor[$professor_id];
+    	}
 		$lancamento['valor'] = $contapagar['ContaPagar'][$valor];
 
 		$LancamentoContabil = ClassRegistry::init('LancamentoContabil');

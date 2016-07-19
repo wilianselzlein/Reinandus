@@ -147,6 +147,8 @@
 
 <?php echo $this->element('Relateds/Cursos', array('array' => $cursos)); ?>
 <br/>
+<?php echo $this->element('Relateds/ContasPagar', array('array' => $pagar)); ?>
+<br/>
 <?php echo $this->element('Relateds/Alunos', array('array' => $alunos));?>
 <br/>
 <div class="alert alert-info" role="alert">Disciplinas relacionadas ao cadastro do professor:</div>

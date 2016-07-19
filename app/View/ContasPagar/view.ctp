@@ -18,6 +18,12 @@
 			&nbsp;
 		</td>
 </tr>
+<tr>		<td><strong><?php echo __('Professor'); ?></strong></td>
+		<td>
+			<?php echo $this->Html->link($contapagar['Professor']['nome'], array('controller' => 'professores', 'action' => 'view', $contapagar['Professor']['id']), array('class' => '')); ?>
+			&nbsp;
+		</td>
+</tr>
 <tr>		<td><strong><?php echo __('Tipo'); ?></strong></td>
 		<td>
 			<?php echo $this->Html->link($contapagar['Tipo']['valor'], array('controller' => 'enumerados', 'action' => 'view', $contapagar['Tipo']['id']), array('class' => '')); ?>

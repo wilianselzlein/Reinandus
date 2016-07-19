@@ -24,6 +24,7 @@
                       <th><?php echo __('Id'); ?></th>
                       <th><?php echo __('Documento'); ?></th>
                       <th><?php echo __('Empresa'); ?></th>
+                      <th><?php echo __('Professor'); ?></th>
                       <th><?php echo __('Valor'); ?></th>
                       <th><?php echo __('Vencimento'); ?></th>
                       <th><?php echo __('Pagamento'); ?></th>
@@ -36,6 +37,7 @@
                           <td><?php echo $ContasPagar['id']; ?></td>
                           <td><?php echo $ContasPagar['documento']; ?></td>
                           <td><?php echo $this->DisplayField->MakeLink($ContasPagar, 'pessoas', 'pessoa_id'); ?></td>
+                          <td><?php echo $this->DisplayField->MakeLink($ContasPagar, 'professores', 'professor_id'); ?></td>
                           <td><?php echo $this->Number->currency($ContasPagar['valor'], 'BRL'); ?></td>
                           <td><?php echo h($ContasPagar['vencimento']); ?></td>
                           <td><?php echo h($ContasPagar['pagamento']); ?></td>
@@ -45,7 +47,7 @@
 <?php App::import('Vendor', 'PeDF/Table');
 $table = new Table(); ?>
     <tr>
-                  <td colspan="3">&nbsp;</td>
+                  <td colspan="4">&nbsp;</td>
                   <td><?php echo $this->Number->currency(
                     array_sum($table->array_column($array['ContaPagar'], 'valor')), 'BRL'); ?></td>
                   <td colspan="3">&nbsp;</td>

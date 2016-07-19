@@ -13,6 +13,7 @@
 							<th><?php echo $this->Paginator->sort('id'); ?></th>
 							<th><?php echo $this->Paginator->sort('documento'); ?></th>
 							<th><?php echo $this->Paginator->sort('pessoa_id'); ?></th>
+							<th><?php echo $this->Paginator->sort('professor_id'); ?></th>
 							<th><?php echo $this->Paginator->sort('valor'); ?></th>
 							<th><?php echo $this->Paginator->sort('vencimento'); ?></th>
 							<th><?php echo $this->Paginator->sort('pagamento'); ?></th>
@@ -28,6 +29,9 @@
 		<td><?php echo h($contapagar['ContaPagar']['documento']) . '-' . h($contapagar['ContaPagar']['serie']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($contapagar['Pessoa']['razaosocial'], array('controller' => 'pessoas', 'action' => 'view', $contapagar['Pessoa']['id'])); ?>
+		</td>
+		<td>
+			<?php echo $this->Html->link($contapagar['Professor']['nome'], array('controller' => 'professores', 'action' => 'view', $contapagar['Professor']['id'])); ?>
 		</td>
 		<td><?php echo $this->Number->currency($contapagar['ContaPagar']['valor'],'BRL'); ?>&nbsp;</td>
 		<td><?php echo h($contapagar['ContaPagar']['vencimento']); ?>&nbsp;</td>

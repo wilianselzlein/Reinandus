@@ -55,7 +55,7 @@ class FormasPagamentosController extends AppController {
 		$this->set(compact('mensalidades'));
 
 		$options = array('recursive' => 0, 'conditions' => array('ContaPagar.formapgto_id' => $id), 'limit' => 200, 
-    		'fields' => array('ContaPagar.id', 'ContaPagar.documento', 'Pessoa.id', 'Pessoa.razaosocial', 'ContaPagar.valor', 'ContaPagar.vencimento', 'ContaPagar.pagamento'));
+			'fields' => array('ContaPagar.id', 'ContaPagar.documento', 'Professor.id', 'Professor.nome', 'Pessoa.id', 'Pessoa.razaosocial', 'ContaPagar.valor', 'ContaPagar.vencimento', 'ContaPagar.pagamento'));
 		$this->Formapgto->ContaPagar->unbindModel(array('belongsTo' => array('Conta', 'User', 'Formapgto', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
 		$pagar = $this->Formapgto->ContaPagar->find('all', $options);
 		$pagar = $this->TransformarArray->FindInContainable('ContaPagar', $pagar);

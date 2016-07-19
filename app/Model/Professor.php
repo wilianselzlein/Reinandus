@@ -122,6 +122,19 @@ class Professor extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
+		'ContaPagar' => array(
+			'className' => 'ContaPagar',
+			'foreignKey' => 'professor_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'CursoDisciplina' => array(
 			'className' => 'CursoDisciplina',
 			'foreignKey' => 'professor_id',

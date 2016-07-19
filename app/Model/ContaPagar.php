@@ -98,6 +98,13 @@ public $belongsTo = array(
 		'fields' => '',
 		'order' => ''
 		),
+	'Professor' => array(
+		'className' => 'Professor',
+		'foreignKey' => 'professor_id',
+		'conditions' => '',
+		'fields' => '',
+		'order' => ''
+		),
 	'Situacao' => array(
 		'className' => 'Enumerado',
 		'foreignKey' => 'situacao_id',

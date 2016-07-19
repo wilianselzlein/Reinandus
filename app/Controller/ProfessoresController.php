@@ -67,6 +67,13 @@ class ProfessoresController extends AppController {
 		$cursos = $this->TransformarArray->FindInContainable('Curso', $cursos);
 		$this->set(compact('cursos'));
 
+		$options = array('recursive' => 0, 'conditions' => array('ContaPagar.professor_id' => $id), 'limit' => 200, 
+			'fields' => array('ContaPagar.id', 'ContaPagar.documento', 'Professor.id', 'Professor.nome', 'Pessoa.id', 'Pessoa.razaosocial', 'ContaPagar.valor', 'ContaPagar.vencimento', 'ContaPagar.pagamento'));
+		$this->Professor->ContaPagar->unbindModel(array('belongsTo' => array('Conta', 'User', 'Formapgto', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
+		$pagar = $this->Professor->ContaPagar->find('all', $options);
+		$pagar = $this->TransformarArray->FindInContainable('ContaPagar', $pagar);
+		$this->set(compact('pagar'));
+
 		$options = array('conditions' => array('Aluno.professor_id' => $id), 'limit' => 200,
 		  'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.celular', 'Aluno.email', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Situacao.id', 'Situacao.valor'));
 		$this->Professor->Aluno->unbindModel(array(

@@ -17,6 +17,10 @@ if (! $baixa) {
      <?php echo $this->Form->input('pessoa_id',
           array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
      </div><!-- .form-group -->
+     <div class="form-group">
+     <?php echo $this->Form->input('professor_id',
+          array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+     </div><!-- .form-group -->
 <?php if (! $baixa) { ?>
      <div class="form-group cad-simplificado <?php echo $classe; ?>">
      <?php echo $this->Form->input('cadastro',

@@ -90,7 +90,7 @@ class EnumeradosController extends AppController {
 			$contas = ClassRegistry::init('ContaPagar');
 			$contas = $contas->find('all', array('recursive' => 0, 'order' => array('ContaPagar.vencimento'),
 				'conditions' => array('ContaPagar.' . $enumerados['Enumerado']['referencia'] => $id),
-				'fields' => array('ContaPagar.id', 'ContaPagar.documento', 'Pessoa.id', 'Pessoa.razaosocial', 'ContaPagar.valor', 'ContaPagar.vencimento', 'ContaPagar.pagamento')
+				'fields' => array('ContaPagar.id', 'ContaPagar.documento', 'Professor.id', 'Professor.nome', 'Pessoa.id', 'Pessoa.razaosocial', 'ContaPagar.valor', 'ContaPagar.vencimento', 'ContaPagar.pagamento')
 				));
 			$contas = $this->TransformarArray->FindInContainable('ContaPagar', $contas);
 			$this->set(compact('contas'));

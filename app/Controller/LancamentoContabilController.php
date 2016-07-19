@@ -71,7 +71,7 @@ class LancamentoContabilController extends AppController {
 			'ContaPagar.lancamento_valor_id' => $lancamentocontabil['LancamentoContabil']['id'], 
 			'ContaPagar.lancamento_desconto_id' => $lancamentocontabil['LancamentoContabil']['id'], 
 			'ContaPagar.lancamento_juro_id' => $lancamentocontabil['LancamentoContabil']['id'])),
-		'fields' => array('ContaPagar.id', 'ContaPagar.documento', 'ContaPagar.vencimento', 'ContaPagar.valor', 'ContaPagar.pagamento', 'Pessoa.id', 'Pessoa.razaosocial'));
+		'fields' => array('ContaPagar.id', 'ContaPagar.documento', 'ContaPagar.vencimento', 'ContaPagar.valor', 'ContaPagar.pagamento', 'Professor.id', 'Professor.nome', 'Pessoa.id', 'Pessoa.razaosocial'));
 
 		$contapagar = ClassRegistry::init('ContaPagar');
 		$contapagar->unbindModel(array('belongsTo' => array('User', 'Conta', 'Formapgto')));

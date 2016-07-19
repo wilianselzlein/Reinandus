@@ -76,7 +76,7 @@ Aviso.id, Aviso.data, Aviso.user_id, Aviso.arquivo, Aviso.mensagem, Aviso.tipo_i
 		$this->set(compact('avisos'));
 		
 		$options = array('recursive' => 0, 'conditions' => array('ContaPagar.user_id' => $id), 'limit' => 200, 
-    		'fields' => array('ContaPagar.id', 'ContaPagar.documento', 'Pessoa.id', 'Pessoa.razaosocial', 'ContaPagar.valor', 'ContaPagar.vencimento', 'ContaPagar.pagamento'));
+    		'fields' => array('ContaPagar.id', 'ContaPagar.documento', 'Professor.id', 'Professor.nome', 'Pessoa.id', 'Pessoa.razaosocial', 'ContaPagar.valor', 'ContaPagar.vencimento', 'ContaPagar.pagamento'));
 		$this->User->ContaPagar->unbindModel(array('belongsTo' => array('Conta', 'User', 'Formapgto')));
 		$pagar = $this->User->ContaPagar->find('all', $options);
 		$pagar = $this->TransformarArray->FindInContainable('ContaPagar', $pagar);
