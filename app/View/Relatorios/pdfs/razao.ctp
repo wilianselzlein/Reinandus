@@ -58,7 +58,7 @@ for ($index = 0; $index < count($razao); $index++) {
       ->addColumn($razao[$index]['razao']['descricao'], 'col-20')
       ->addColumn($razao[$index]['razao']['analitico'], 'col-15')
       ->addColumn($this->Time->i18nFormat($razao[$index]['razao']['data'], $this->Html->__getDatePatternView()), 'date col-15')
-      ->addColumn($razao[$index]['razao']['nome'], 'col-20')
+      ->addColumn($razao[$index]['razao']['nome'] . ' ' . $razao[$index]['razao']['complemento'], 'col-20')
       ->addColumn($razao[$index]['razao']['contrapartida'], 'col-5')
       ->addColumn($razao[$index]['razao']['documento'], 'col-5')
       ->addColumn($this->Number->currency($razao[$index]['razao']['debito'], 'BRL'), 'currency col-10')
