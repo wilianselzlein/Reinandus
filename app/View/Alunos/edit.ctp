@@ -31,7 +31,7 @@
             </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('responsavel_id',
-                     array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-7">', 'after'=>'</div>')); ?>
+                     array('class' => 'form-control combobox', 'value' => '0', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-7">', 'after'=>'</div>')); ?>
  				<?php echo $this->Form->input('sexo',
                      array('class' => 'form-control', 'options' => array('M' => 'M', 'F' => 'F'), 'label'=>array('class'=>'col-sm-1 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-2">', 'after'=>'</div>')); ?>
             </div><!-- .form-group -->

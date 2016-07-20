@@ -1,13 +1,14 @@
-<div class="panel panel-default">
-
+<?php if (count($emails) == 0) return; ?>
+<div class="panel panel-default" style="margin-bottom: 5px;">
 	<div class="panel-heading">
-		<h3>
+		<h4>
 			<span class="fa fa-list"></span> <?php echo (isset($titulo)) ? $titulo : 'Emails'; ?>
-        </h3>
+			<div class="btn-group pull-right">
+	        	<?php echo $this->element('MostraEsconde', array('mostra' => 'Mostrar', 'esconde' => 'Fechar', 'id' => $id)); ?>
+	        </div>
+        </h4>
     </div>
-    <?php /* echo $this->element('MostraEsconde', 
-   array('mostra' => 'Mostrar outros dados', 'esconde' => 'Fechar outros dados'); ?>*/ ?>
-	<div id="dados">
+	<div id="<?php echo $id; ?>">
 		<div class="panel-body">
 			<div class="table-responsive">
 				 <table class="table table-bordered table-hover table-condensed" >

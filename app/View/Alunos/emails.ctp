@@ -1,6 +1,6 @@
 <?php
 	foreach ($situacoes as $situacao) {
 		echo $this->element('emails', 
-			array("emails" => $situacao['Situacao']['emails'], "titulo" => $situacao['Situacao']['valor']));
+			array("emails" => $situacao['Situacao']['emails'], "titulo" => $situacao['Situacao']['valor'], "id" => 'sit' . $situacao['Situacao']['id']));
 	}
 ?>

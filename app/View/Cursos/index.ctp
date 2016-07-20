@@ -1,7 +1,8 @@
 <div class="panel panel-default">
 
    <div class="panel-heading"><h3><span class="fa fa-graduation-cap"></span> <?php echo __('Cursos'); ?>                
-      <?php echo $this->ButtonsActionsEnumerados->MakeButtons($this->params['controller'], $this->params['action']); ?>
+		<?php echo $this->ButtonsActionsEnumerados->MakeButtons($this->params['controller'], $this->params['action'],
+			null, array(array('model' => 'Curso', 'action' => 'emails'))); ?>
    </h3></div>
    <div class="panel-body">
       <?php echo $this->element('pesquisa/simples');?>

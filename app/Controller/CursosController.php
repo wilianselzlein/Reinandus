@@ -214,4 +214,38 @@ class CursosController extends AppController {
 
     }
 
+/**
+ * email method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function emails() {
+		$options = array('recursive' => -1, 'fields' => array('Curso.id', 'Curso.nome'), 'order' => array('Curso.nome'));
+		$cursos = $this->Curso->find('all', $options);
+
+		$i = 0;
+		foreach ($cursos as $curso) {
+			$cursos[$i]['Curso']['emails'] = $this->EmailPorCurso($curso['Curso']['id']);
+			$i++;
+		}
+		$this->set('cursos', $cursos);
+	}
+
+/**
+ * EmailPorCurso method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function EmailPorCurso($curso_id) {
+		$options = array('recursive' => -1, 'fields' => array('Aluno.email'),
+		'conditions' => array('Aluno.email <> ""', 'Aluno.curso_id' => $curso_id), 'order' => array('Aluno.email'));
+		$this->Curso->Aluno->unbindModel(array('belongsTo' => 
+				array('Naturalidade', 'EstadoCivil', 'Indicacao', 'Curso', 'Professor', 'Cidade', 'Responsavel')));
+	    return $this->Curso->Aluno->find('list', $options);
+	}
+
 }
