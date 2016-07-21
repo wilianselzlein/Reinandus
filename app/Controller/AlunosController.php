@@ -210,6 +210,7 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 		$cidades = $this->Aluno->Cidade->findAsCombo();
 		$naturalidades = $cidades;
 		$responsavels = $this->Aluno->Responsavel->findAsCombo();
+		//$responsavels[null] = '';
 		//$disciplinas = $this->Aluno->AlunoDisciplina->findAsCombo();
 
 		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professores', 'cidades', 'naturalidades', 'responsavels', 'situacaos'));
@@ -306,7 +307,7 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
  * @return void
  */
 	public function emails() {
-		$options = array('recursive' => 0, 'fields' => array('Situacao.id', 'Situacao.valor'),
+		$options = array('recursive' => -1, 'fields' => array('Situacao.id', 'Situacao.valor'),
 		'conditions' => array('Situacao.nome' => 'Aluno', 'Situacao.referencia' => 'situacao_id'));
 		$situacoes = $this->Aluno->Situacao->find('all', $options);
 
@@ -327,7 +328,7 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
  * @return void
  */
 	public function EmailPorSituacao($situacao) {
-		$options = array('recursive' => 0, 'fields' => array('Aluno.email'),
+		$options = array('recursive' => -1, 'fields' => array('Aluno.email'),
 		'conditions' => array('Aluno.email <> ""', 'Aluno.situacao_id' => $situacao), 'order' => array('Aluno.email'));
 		$this->Aluno->unbindModel(array('belongsTo' => 
 				array('Naturalidade', 'EstadoCivil', 'Indicacao', 'Curso', 'Professor', 'Cidade', 'Responsavel')));
