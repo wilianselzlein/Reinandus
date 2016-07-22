@@ -45,7 +45,7 @@ class CidadesController extends AppController {
 		$options = array('recursive' => false, 'conditions' => array('Cidade.' . $this->Cidade->primaryKey => $id));
 		$this->set('cidade', $this->Cidade->find('first', $options));
 
-		$options = array('conditions' => array('Aluno.cidade_id' => $id), 'limit' => 200,
+		$options = array('recursive' => false, 'conditions' => array('Aluno.cidade_id' => $id),
 		  'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.celular', 'Aluno.email', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Situacao.id', 'Situacao.valor'));
 		$this->Cidade->Aluno->unbindModel(array(
 			'hasMany' => array('Acesso', 'Detalhe', 'AlunoDisciplina', 'Mensalidade'),
@@ -54,7 +54,7 @@ class CidadesController extends AppController {
 		$alunos = $this->TransformarArray->FindInContainable('Aluno', $alunos);
 		$this->set(compact('alunos'));
 
-		$options = array('conditions' => array('Pessoa.cidade_id' => $id), 'limit' => 200, 
+		$options = array('recursive' => false, 'conditions' => array('Pessoa.cidade_id' => $id), 
 		  'fields' => array('Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 'Pessoa.endereco', 'Pessoa.numero', 'Pessoa.bairro', 'Pessoa.cep', 'Pessoa.fone',
 		  'Pessoa.email', 'Cidade.id', 'Cidade.nome'));
 		$this->Cidade->Pessoa->unbindModel(array('hasMany' => array('Curso', 'Detalhe', 'Usuario')));
@@ -62,9 +62,9 @@ class CidadesController extends AppController {
 		$pessoas = $this->TransformarArray->FindInContainable('Pessoa', $pessoas);
 		$this->set(compact('pessoas'));
 
-		$options = array('conditions' => array('Professor.cidade_id' => $id), 'limit' => 200,
+		$options = array('conditions' => array('Professor.cidade_id' => $id),
 		  'fields' => array('Professor.id', 'Professor.nome', 'Professor.celular', 'Professor.email', 'Cidade.id', 'Cidade.nome'));
-		$this->Cidade->Professor->unbindModel(array('hasAndBelongsToMany' => array('Disciplina'), 'hasMany' => array('Aluno', 'AlunoDisciplina', 'Curso', 'CursoDisciplina', 'ProfessorDisciplina')));
+		$this->Cidade->Professor->unbindModel(array('hasAndBelongsToMany' => array('Disciplina'), 'hasMany' => array('Aluno', 'AlunoDisciplina', 'Curso', 'CursoDisciplina', 'ProfessorDisciplina', 'ContaPagar')));
 		$professores = $this->Cidade->Professor->find('all', $options);
 		$professores = $this->TransformarArray->FindInContainable('Professor', $professores);
 		$this->set(compact('professores'));

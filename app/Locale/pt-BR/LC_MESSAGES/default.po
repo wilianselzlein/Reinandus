@@ -316,6 +316,9 @@ msgstr "Relatório"
 msgid "Relatorios"
 msgstr "Relatórios"
 
+msgid "Relatoriofiltro"
+msgstr "Filtro de Relatório"
+
 msgid "RelatorioFiltro"
 msgstr "Filtro de Relatório"
 

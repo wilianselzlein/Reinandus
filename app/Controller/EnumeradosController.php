@@ -48,7 +48,7 @@ class EnumeradosController extends AppController {
 
 		if ($enumerados['Enumerado']['nome'] == 'aluno') {
 			$alunos = ClassRegistry::init('Aluno');
-			$options = array('conditions' => array('Aluno.' . $enumerados['Enumerado']['referencia'] => $id), 'limit' => 200,
+			$options = array('conditions' => array('Aluno.' . $enumerados['Enumerado']['referencia'] => $id),
 			  'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.celular', 'Aluno.email', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Situacao.id', 'Situacao.valor'));
 			$alunos->unbindModel(array(
 				'hasMany' => array('Acesso', 'Detalhe', 'AlunoDisciplina', 'Mensalidade'),

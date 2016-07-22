@@ -46,7 +46,7 @@ class DisciplinasController extends AppController {
 		$this->set('disciplina', $this->Disciplina->find('first', $options));
 
 
-		$options = array('fields' => array('AlunoDisciplina.aluno_id'), 'conditions' => array('AlunoDisciplina.disciplina_id = ' => $id), 'limit' => 200);
+		$options = array('fields' => array('AlunoDisciplina.aluno_id'), 'conditions' => array('AlunoDisciplina.disciplina_id = ' => $id));
 		$alunos = $this->Disciplina->AlunoDisciplina->find('list', $options);
 		sort($alunos);
 		if (empty($alunos)) $alunos[] = 0;
@@ -61,7 +61,7 @@ class DisciplinasController extends AppController {
 		$this->set(compact('alunos'));
 
 
-		$options = array('fields' => array('CursoDisciplina.curso_id'), 'conditions' => array('CursoDisciplina.disciplina_id = ' => $id), 'limit' => 200);
+		$options = array('fields' => array('CursoDisciplina.curso_id'), 'conditions' => array('CursoDisciplina.disciplina_id = ' => $id));
 		$cursos = $this->Disciplina->CursoDisciplina->find('list', $options);
 		sort($cursos);
 		if (empty($cursos)) $cursos[] = 0;
@@ -74,7 +74,7 @@ class DisciplinasController extends AppController {
 		$this->set(compact('cursos'));
 
 
-		$options = array('fields' => array('professor_id'), 'conditions' => array('DisciplinaProfessor.disciplina_id = ' => $id), 'limit' => 200);
+		$options = array('fields' => array('professor_id'), 'conditions' => array('DisciplinaProfessor.disciplina_id = ' => $id));
 		$professores = $this->Disciplina->DisciplinaProfessor->find('list', $options);
 		sort($professores);
 		if (empty($professores)) $professores[] = 0;

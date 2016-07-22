@@ -79,19 +79,14 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
  'Cidade.id', 'Cidade.nome', 'Responsavel.id', 'Responsavel.fantasia', 'Responsavel.razaosocial'));
 		$this->set('aluno', $this->Aluno->find('first', $options));
 
-		$options = array('recursive' => false, 'conditions' => array('AlunoDisciplina.aluno_id' => $id), 'limit' => 200,
+		$options = array('recursive' => false, 'conditions' => array('AlunoDisciplina.aluno_id' => $id),
 			'fields' => array('AlunoDisciplina.id', 'AlunoDisciplina.frequencia', 'AlunoDisciplina.nota', 'AlunoDisciplina.horas_aula', 'AlunoDisciplina.data', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'));
 		$this->Aluno->AlunoDisciplina->unbindModel(array('belongsTo' => array('Aluno')));
 		$disciplinas = $this->Aluno->AlunoDisciplina->find('all', $options);
 		$disciplinas = $this->TransformarArray->FindInContainable('AlunoDisciplina', $disciplinas);
 		$this->set(compact('disciplinas'));
 
-		$options = array('recursive' => false, 'conditions' => array('Mensalidade.aluno_id' => $id), 'limit' => 200,
-			'fields' => array('Mensalidade.id', 'Mensalidade.aluno_id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Formapgto.id', 'Formapgto.nome', 'Aluno.id', 'Aluno.nome'));
-		$this->Aluno->Mensalidade->unbindModel(array('belongsTo' => array('Conta', 'User', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
-		$mensalidades = $this->Aluno->Mensalidade->find('all', $options);
-		$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);
-
+		$mensalidades = $this->ConsultarMensalidades($id);
 		$this->set(compact('mensalidades'));
 
 		$dia = $this->ConsultarAcessos($id, '>=', '0 day');
@@ -212,6 +207,9 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 		$responsavels = $this->Aluno->Responsavel->findAsCombo();
 		//$responsavels[null] = '';
 		//$disciplinas = $this->Aluno->AlunoDisciplina->findAsCombo();
+
+		$mensalidades = $this->ConsultarMensalidades($id);
+		$this->set(compact('mensalidades'));
 
 		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professores', 'cidades', 'naturalidades', 'responsavels', 'situacaos'));
 	}
@@ -359,4 +357,18 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 
     }
 
+/**
+ * ConsultarMensalidades method
+ *
+ * @param int $id
+ * @return void
+ */
+   public function ConsultarMensalidades($id) {
+		$options = array('recursive' => false, 'conditions' => array('Mensalidade.aluno_id' => $id),
+			'fields' => array('Mensalidade.id', 'Mensalidade.aluno_id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Formapgto.id', 'Formapgto.nome', 'Aluno.id', 'Aluno.nome'));
+		$this->Aluno->Mensalidade->unbindModel(array('belongsTo' => array('Conta', 'User', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
+		$mensalidades = $this->Aluno->Mensalidade->find('all', $options);
+		$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);
+		return $mensalidades;
+	}
 }

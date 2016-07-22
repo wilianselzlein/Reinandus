@@ -54,7 +54,7 @@ $table = new Table(); ?>
               <td colspan="3">&nbsp;</td>
               <td><?php echo $this->Number->currency(
                 array_sum($table->array_column($array['Mensalidade'], 'liquido')), 'BRL'); ?></td>
-              <td colspan="3">&nbsp;</td>
+              <td colspan="4">&nbsp;</td>
 </tr>
 
 					</tbody>
