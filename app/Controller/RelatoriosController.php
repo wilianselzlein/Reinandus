@@ -309,8 +309,8 @@ class RelatoriosController extends AppController {
         $this->layout = null;
 
         $Class = ClassRegistry::init($modelo);
-        $dados = $Class->find('list', array('order' => array($Class->displayField)));
-        
+        $dados = $Class->find('list', array('recursive' => -1, 'order' => array($Class->displayField)));
+
         $this->set(compact('dados'));
     }
 
