@@ -55,10 +55,10 @@ class CursosController extends AppController {
 		$this->set('curso', $this->Curso->find('first', $options));
 
 		$options = array('conditions' => array('Aluno.curso_id' => $id), 'limit' => 200,
-		  'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.celular', 'Aluno.email', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Situacao.id', 'Situacao.valor'));
+		  'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.celular', 'Aluno.email', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Situacao.id', 'Situacao.valor', 'Curso.id', 'Curso.nome'));
 		$this->Curso->Aluno->unbindModel(array(
 			'hasMany' => array('Acesso', 'Detalhe', 'AlunoDisciplina', 'Mensalidade'),
-			'belongsTo' => array('Naturalidade', 'EstadoCivil', 'Indicacao', 'Curso', 'Professor', 'Cidade', 'Responsavel')));
+			'belongsTo' => array('Naturalidade', 'EstadoCivil', 'Indicacao', 'Professor', 'Cidade', 'Responsavel')));
 		$alunos = $this->Curso->Aluno->find('all', $options);
 		$alunos = $this->TransformarArray->FindInContainable('Aluno', $alunos);
 		$this->set(compact('alunos'));
@@ -221,16 +221,21 @@ class CursosController extends AppController {
  * @param string $id
  * @return void
  */
-	public function emails() {
+	public function emails($situacao_id = null) {
 		$options = array('recursive' => -1, 'fields' => array('Curso.id', 'Curso.nome'), 'order' => array('Curso.nome'));
 		$cursos = $this->Curso->find('all', $options);
 
 		$i = 0;
 		foreach ($cursos as $curso) {
-			$cursos[$i]['Curso']['emails'] = $this->EmailPorCurso($curso['Curso']['id']);
+			$cursos[$i]['Curso']['emails'] = $this->EmailPorCurso($curso['Curso']['id'], $situacao_id);
 			$i++;
 		}
 		$this->set('cursos', $cursos);
+
+		$options = array('recursive' => -1, 'fields' => array('Situacao.id', 'Situacao.valor'),
+			'conditions' => array('Situacao.nome' => 'Aluno', 'Situacao.referencia' => 'situacao_id'));
+		$situacoes = $this->Curso->Aluno->Situacao->find('all', $options);
+		$this->set('situacoes', $situacoes);		
 	}
 
 /**
@@ -240,9 +245,15 @@ class CursosController extends AppController {
  * @param string $id
  * @return void
  */
-	public function EmailPorCurso($curso_id) {
+	public function EmailPorCurso($curso_id, $situacao_id = null) {
+		$conditions = array();
+		$conditions[] = array('Aluno.email <> ""');
+		$conditions[] = array('Aluno.curso_id' => $curso_id);
+		if ($situacao_id != null)
+			$conditions[] = array('Aluno.situacao_id' => $situacao_id);
+
 		$options = array('recursive' => -1, 'fields' => array('Aluno.email'),
-		'conditions' => array('Aluno.email <> ""', 'Aluno.curso_id' => $curso_id), 'order' => array('Aluno.email'));
+		'conditions' => $conditions, 'order' => array('Aluno.email'));
 		$this->Curso->Aluno->unbindModel(array('belongsTo' => 
 				array('Naturalidade', 'EstadoCivil', 'Indicacao', 'Curso', 'Professor', 'Cidade', 'Responsavel')));
 	    return $this->Curso->Aluno->find('list', $options);
