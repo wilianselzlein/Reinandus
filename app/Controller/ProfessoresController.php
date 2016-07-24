@@ -75,10 +75,10 @@ class ProfessoresController extends AppController {
 		$this->set(compact('pagar'));
 
 		$options = array('conditions' => array('Aluno.professor_id' => $id),
-		  'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.celular', 'Aluno.email', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Situacao.id', 'Situacao.valor'));
+		  'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.celular', 'Aluno.email', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Situacao.id', 'Situacao.valor', 'Curso.id', 'Curso.nome'));
 		$this->Professor->Aluno->unbindModel(array(
 			'hasMany' => array('Acesso', 'Detalhe', 'AlunoDisciplina', 'Mensalidade'),
-			'belongsTo' => array('Naturalidade', 'EstadoCivil', 'Indicacao', 'Curso', 'Professor', 'Cidade', 'Responsavel')));
+			'belongsTo' => array('Naturalidade', 'EstadoCivil', 'Indicacao', 'Professor', 'Cidade', 'Responsavel')));
 		$alunos = $this->Professor->Aluno->find('all', $options);
 		$alunos = $this->TransformarArray->FindInContainable('Aluno', $alunos);
 		$this->set(compact('alunos'));

@@ -10,7 +10,9 @@
                <?php echo __('Actions'); ?> <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Aluno'), array('controller' => 'alunos', 'action' => 'add'), array('class' => '', 'escape' => false)); ?>                                </li>
+               <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__('Aluno'), 
+                        array('controller' => 'alunos', 'action' => 'add'), array('class' => '', 'escape' => false)); ?>
+               </li>
             </ul>       
          </div>
       </h3>
@@ -24,7 +26,8 @@
                <tr class="active">
                   <th><?php echo __('Id'); ?></th>
                   <th><?php echo __('Nome'); ?></th>
-                  <th><?php echo __('Situacao Id'); ?></th>
+                  <th><?php echo __('Situacao'); ?></th>
+                  <th><?php echo __('Curso'); ?></th>
                   <th><?php echo __('Tel Celular'); ?></th>
                   <th><?php echo __('Email'); ?></th>
                   <th><?php echo __('Curso Início'); ?></th>
@@ -38,6 +41,7 @@
                   <td><?php echo $aluno['id']; ?></td>
                   <td><?php echo $aluno['nome']; ?></td>
                   <td><?php echo $this->DisplayField->MakeLink($aluno, 'Situacao', 'situacao_id'); ?></td>
+                  <td><?php echo $this->DisplayField->MakeLink($aluno, 'Cursos', 'curso_id'); ?></td>
                   <td><?php echo $aluno['celular']; ?></td>
                   <td><?php echo $aluno['email']; ?></td>
                   <td><?php echo h($aluno['curso_inicio']); ?></td>
