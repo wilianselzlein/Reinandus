@@ -12,22 +12,22 @@ class ImportarMensalidadesComponent extends ImportadorBaseComponent {
 		$dados['numero'] = $parametro['MENNUMERO'];
 		$dados['vencimento'] = $parametro['MENVENCIMENTO'];
 		$dados['conta_id'] = $parametro['MENBANCO'];
-		$dados['valor'] = $parametro['MENVALOR'];
-		$dados['pago'] = $parametro['MENVALORPAGO'];
-		$dados['acrescimo'] = $parametro['MENACRESCIMO'];
-		$dados['desconto'] = $parametro['MENDESCONTO'];
+		$dados['valor'] = $this->FormatarValorNumerico($parametro['MENVALOR']);
+		$dados['pago'] = $this->FormatarValorNumerico($parametro['MENVALORPAGO']);
+		$dados['acrescimo'] = $this->FormatarValorNumerico($parametro['MENACRESCIMO']);
+		$dados['desconto'] = $this->FormatarValorNumerico($parametro['MENDESCONTO']);
 		$dados['pagamento'] = $parametro['MENDATAPAGAMENTO'];
 		$dados['formapgto_id'] = $parametro['MENFORMAPGTO'];
-		$dados['bolsa'] = $parametro['MENBOLSA'];
-		$dados['liquido'] = $parametro['MENLIQUIDO'];
+		$dados['bolsa'] = $this->FormatarValorNumerico($parametro['MENBOLSA']);
+		$dados['liquido'] = $this->FormatarValorNumerico($parametro['MENLIQUIDO']);
 		//$dados['tipo_id'] = $parametro['MENTIPO'];
 		$dados['documento'] = $parametro['MENDOCUMENTO'];
 		$dados['obs'] = $this->FormatarValorEncode($parametro['MENOBS']);
 
-		$dados['lancamento_valor_id'] = $parametro['MENLCTOCONTABILMENSALIDADE'];
-		$dados['lancamento_desconto_id'] = $parametro['MENLCTOCONTABILDESCONTOS'];
-		$dados['lancamento_juro_id'] = $parametro['MENLCTOCONTABILJUROS'];
-
+//		$dados['lancamento_valor_id'] = $parametro['MENLCTOCONTABILMENSALIDADE'];
+//		$dados['lancamento_desconto_id'] = $parametro['MENLCTOCONTABILDESCONTOS'];
+//		$dados['lancamento_juro_id'] = $parametro['MENLCTOCONTABILJUROS'];
+//debug($parametro); debug($dados); die;
 		$this->SalvarDados($dados);
 	}
 

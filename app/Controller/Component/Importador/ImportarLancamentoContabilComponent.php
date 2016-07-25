@@ -17,7 +17,7 @@ class ImportarLancamentoContabilComponent extends ImportadorBaseComponent {
 		$dados['documento'] = $parametro['LCTDOCUMENTO'];
 		if (is_null($dados['documento'])) 
 			$dados['documento'] = '0';
-		$dados['valor'] = $parametro['LCTVALOR'];
+		$dados['valor'] = $this->FormatarValorNumerico($parametro['LCTVALOR']);
 		$dados['complemento'] = $this->FormatarValorEncode($parametro['COMPLEMENTO']);
 		$dados['numero'] = $parametro['LCTNUMERO'];
 		$this->SalvarDados($dados);

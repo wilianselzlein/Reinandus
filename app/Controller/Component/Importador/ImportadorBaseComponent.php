@@ -160,6 +160,11 @@ abstract class ImportadorBaseComponent extends Component {
 		else
 			return $tabela;
 	}
+
+	public function FormatarValorNumerico($parametro){
+		return str_replace('.', ',', $parametro);
+	}
+
 }
 
 ?>
