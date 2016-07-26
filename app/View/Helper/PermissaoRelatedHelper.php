@@ -10,7 +10,7 @@ class PermissaoRelatedHelper extends AppHelper {
         $user_id = CakeSession::read('Auth.User');
         $user_id = $user_id['id'];
         
-        $options = array('conditions' => array('Permissao.User_id' => $user_id, 'Permissao.Index' => false, 'Permissao.programa_id' => $programa));
+        $options = array('conditions' => array('Permissao.User_id' => $user_id, 'Permissao.Index' => true, 'Permissao.programa_id' => $programa));
         $permissoes = ClassRegistry::init('Permissao');
         $conta = $permissoes->find('count', $options);
 
