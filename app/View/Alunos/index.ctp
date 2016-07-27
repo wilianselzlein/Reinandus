@@ -19,6 +19,7 @@
 						<th><?php echo $this->Paginator->sort('id'); ?></th>
 						<th><?php echo $this->Paginator->sort('nome'); ?></th>
 						<th><?php echo $this->Paginator->sort('curso_id'); ?></th>
+						<th><?php echo $this->Paginator->sort('situacao_id'); ?></th>
 						<th><?php echo $this->Paginator->sort('endereco'); ?></th>
 						<th><?php echo $this->Paginator->sort('cidade_id'); ?></th>
 						<th><?php echo $this->Paginator->sort('celular'); ?></th>
@@ -33,6 +34,9 @@
 							<td><?php echo h($aluno['Aluno']['nome']); ?>&nbsp;</td>
 							<td>
 								<?php echo $this->Html->link($aluno['Curso']['nome'], array('controller' => 'cursos', 'action' => 'view', $aluno['Curso']['id'])); ?>
+							</td>
+							<td>
+								<?php echo $this->Html->link($aluno['Situacao']['valor'], array('controller' => 'enumerados', 'action' => 'view', $aluno['Situacao']['id'])); ?>
 							</td>
 							<td>
 								<?php echo h($aluno['Aluno']['endereco']); ?>&nbsp;
