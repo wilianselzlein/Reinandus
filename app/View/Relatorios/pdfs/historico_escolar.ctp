@@ -16,12 +16,12 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
     $ultimo = $atual;
 
     $curso = $historico_escolar[$index]['curso']['curso'];
-
+    $margem = 'style="margin-top: 1px; margin-bottom: 1px;"';
     $html .= 
     '<div align="center">'
-    . '<h1>Histórico Escolar</h1>'
-    . '<h2>Pós-Graduação - Lato Sensu</h2>'
-    . '<h3>' . $curso . '</h3>'
+    . '<b>Histórico Escolar</b><br/>'
+    . '<b>Pós-Graduação - Lato Sensu</b><br/>'
+    . '<big>' . $curso . '</big><br/><br/>'
     .'</div>';
 
     $cabecalho = new Table();

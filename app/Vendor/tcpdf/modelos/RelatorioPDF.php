@@ -273,7 +273,6 @@ class RelatorioPDF extends TCPDF {
             border: 1px solid #000;  
          }        
         </style>
-        <br>
 EOD;
 
    }
