@@ -37,8 +37,10 @@ class AppModel extends Model {
 		return ($valor >= 0) && ($valor <= $max);
 	}
 
-	public function findAsCombo($order = 'asc', $conditions = array()) {
-		$list = $this->find('combo', 
+	public function findAsCombo($order = 'asc', $conditions = array(), $add_null = true) {
+		if ($add_null)
+			$list[''] = '';
+		$list[] = $this->find('combo', 
 			array('order' => $this->displayField . ' ' . $order, 'conditions' => $conditions));
 		return $list;
 	}
