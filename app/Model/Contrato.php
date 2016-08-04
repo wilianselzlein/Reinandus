@@ -9,6 +9,8 @@ App::uses('AppModel', 'Model');
  */
 class Contrato extends AppModel {
 
+var $actsAs = array('NumberFormat', 'DateFormat');
+
 /**
  * Use table
  *

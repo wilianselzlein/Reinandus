@@ -17,7 +17,7 @@ App::uses('AppModel', 'Model');
  */
 class Aluno extends AppModel {
 
-var $actsAs = array('DateFormat');
+var $actsAs = array('NumberFormat', 'DateFormat');
 
 /**
  * Use table

@@ -13,7 +13,9 @@ App::uses('AppModel', 'Model');
  * @property Disciplina $Disciplina
  */
 class Curso extends AppModel {
-	var $actsAs = array('DateFormat');
+
+var $actsAs = array('NumberFormat', 'DateFormat');
+
 /**
  * Use table
  *
@@ -43,7 +45,7 @@ class Curso extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		)/*,
+		),/*,
 		'turma' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
@@ -54,17 +56,17 @@ class Curso extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		/*'valor' => array(
+		'valor' => array(
 			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				'message' => 'VALIDATE_BLANK',
+				'rule' => array('numeric'),
+				'message' => 'VALIDADE_NUMERIC',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'sigla' => array(
+		/*'sigla' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				'message' => 'VALIDATE_BLANK',
