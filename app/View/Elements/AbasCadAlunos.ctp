@@ -27,7 +27,7 @@ function CursoFim() {
                     <a href="#tabBloq" data-toggle="tab"><i class="fa fa-lock"></i></span>&nbsp;Bloqueio</a>
                 </li>
                 <li>
-                    <a href="#tabMono" data-toggle="tab"><i class="fa fa-file-text-o"></i>&nbsp;Monografia</a>
+                    <a href="#tabMono" data-toggle="tab"><i class="fa fa-file-text-o"></i>&nbsp;TCC</a>
                 </li>
                 <?php } ?>
         </ul>

@@ -432,7 +432,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$this->Mensalidade->Formapgto->recursive = false;
 		$forma = $this->Mensalidade->Formapgto->findById($mensalidade['Mensalidade']['formapgto_id'], array('id', $debito, $credito, $historico));
 
-		if ((is_null($forma['Formapgto'][$debito])) || (is_null($forma['Formapgto'][$credito])) || (is_null($forma['Formapgto'][$historico])))
+		if ((! isset($forma['Formapgto'])) || (is_null($forma['Formapgto'][$debito])) || (is_null($forma['Formapgto'][$credito])) || (is_null($forma['Formapgto'][$historico])))
 			return;
 
 		$id = 0;

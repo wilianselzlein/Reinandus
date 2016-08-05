@@ -23,7 +23,7 @@ class AlunosController extends AppController {
  */
 	public function index($tipo = null) {
 
-		$filtros = array();
+/*		$filtros = array();
 		$filtros['OR'] = $this->AdicionarFiltrosLike($this->Aluno, 
 			['is_ativo', 'emitir_carteirinha', 'entregou_cpf', 'cert_entrega', 'created', 
 			'modified', 'cert_solicitado', 'curso_fim', 'curso_inicio', 'entregou_diploma', 
@@ -35,6 +35,15 @@ class AlunosController extends AppController {
 		$filtro = array();
 		$filtro['filter1'] = $filtros;
 		$this->Filter->addFilters($filtro);
+*/
+        $this->Filter->addFilters(
+                array('filter1' => array('OR' => array(                           
+                        'Aluno.id' => array('operator' => 'LIKE'),
+                        'Aluno.nome' => array('operator' => 'LIKE'),
+                        )
+                    )
+                )
+        );
 
 		$this->Filter->setPaginate('order', array('Aluno.id' => 'desc')); 
 		$this->Filter->setPaginate('fields', array('Aluno.id', 'Aluno.nome', 'Curso.id', 'Curso.nome', 'Aluno.endereco', 'Aluno.numero', 'Aluno.bairro', 'Aluno.cep',

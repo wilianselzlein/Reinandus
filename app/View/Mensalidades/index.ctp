@@ -26,7 +26,7 @@
 		<td><?php echo h($mensalidade['Mensalidade']['id']); ?>&nbsp;</td>
 		<td><?php echo h($mensalidade['Mensalidade']['numero']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($mensalidade['Aluno']['nome'], array('controller' => 'alunos', 'action' => 'view', $mensalidade['Aluno']['id'])); ?>
+			<?php echo $this->Html->link($mensalidade['Aluno']['id'] . ' - ' . $mensalidade['Aluno']['nome'], array('controller' => 'alunos', 'action' => 'view', $mensalidade['Aluno']['id'])); ?>
 		</td>
 		<td><?php echo h($mensalidade['Mensalidade']['vencimento']); ?>&nbsp;</td>
 		<td><?php echo $this->Number->currency($mensalidade['Mensalidade']['liquido'],'BRL'); ?>&nbsp;</td>

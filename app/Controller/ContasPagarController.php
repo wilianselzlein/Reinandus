@@ -44,7 +44,7 @@ class ContasPagarController extends AppController {
 		$filtro['filter1'] = $filtros;	
 		$this->Filter->addFilters($filtro);
 
-		$this->Filter->setPaginate('order', array('ContaPagar.id' => 'desc')); 
+		$this->Filter->setPaginate('order', array('ContaPagar.vencimento' => 'desc')); 
 		if (! isset($filtros['AND'])) 
 			$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
 		else

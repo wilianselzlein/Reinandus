@@ -41,18 +41,18 @@ class RelatoriosController extends AppController {
  * @return void
  */
 	public function configurar() {
-                $this->Filter->addFilters(
-                        array('filter1' => array('OR' => array(                           
-                                'Relatorio.id' => array('operator' => 'LIKE'),
-                                'Relatorio.nome' => array('operator' => 'LIKE'),
-                                'Relatorio.tipo' => array('operator' => 'LIKE'),
-                                'Relatorio.arquivo' => array('operator' => 'LIKE')
-                                )
-                            )
+        $this->Filter->addFilters(
+                array('filter1' => array('OR' => array(                           
+                        'Relatorio.id' => array('operator' => 'LIKE'),
+                        'Relatorio.nome' => array('operator' => 'LIKE'),
+                        'Relatorio.tipo' => array('operator' => 'LIKE'),
+                        'Relatorio.arquivo' => array('operator' => 'LIKE')
                         )
-                );
-                $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
-                $this->Relatorio->recursive = 0;
+                    )
+                )
+        );
+        $this->Filter->setPaginate('conditions', $this->Filter->getConditions());
+        $this->Relatorio->recursive = 0;
 		$this->set('relatorios', $this->paginate());
 	}
 
