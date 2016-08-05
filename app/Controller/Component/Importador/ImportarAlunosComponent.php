@@ -155,4 +155,45 @@ class ImportarAlunosComponent extends ImportadorBaseComponent {
 	}
 }
 
+/*
+
+select id, nome, email, emailalt,
+(left(email, locate(';', email) - 1)) as email1,
+trim(right(email, length(email) - locate(';', email))) as email2
+from aluno
+where email like '%@%@%'
+order by nome
+
+select id, nome, email, emailalt,
+(left(email, locate(';', email) - 1)) as email1,
+trim(right(email, length(email) - locate(';', email))) as email2
+from aluno
+where email like '%@%@%'
+and email like '%;%'
+order by nome
+
+update aluno set emailalt = trim(right(email, length(email) - locate(';', email)))
+where email like '%@%@%'
+and email like '%;%'
+
+update aluno set email = (left(email, locate(';', email) - 1)) 
+where email like '%@%@%'
+and email like '%;%'
+
+update aluno set emailalt = trim(right(email, length(email) - locate(',', email)))
+where email like '%@%@%'
+and email like '%,%'
+
+update aluno set email = (left(email, locate(',', email) - 1)) 
+where email like '%@%@%'
+and email like '%,%'
+
+update aluno set emailalt = trim(right(email, length(email) - locate('-', email)))
+where email like '%@%@%'
+and email like '%-%'
+
+update aluno set email = (left(email, locate('-', email) - 1)) 
+where email like '%@%@%'
+and email like '%-%'
+*/
 ?>
