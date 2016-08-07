@@ -100,6 +100,11 @@
 			<?php echo $this->Html->link($contum['Formapgto']['nome'], array('controller' => 'FormasPagamentos', 'action' => 'view', $contum['Formapgto']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
+</tr><tr>		<td><strong><?php echo __('Tipo'); ?></strong></td>
+		<td>
+			<?php echo h($contum['Contum']['tipo']); ?>
+			&nbsp;
+		</td>
 </tr>					</tbody>
 				</table><!-- /.table table-striped table-bordered -->
 			</div><!-- /.table-responsive -->

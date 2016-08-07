@@ -210,10 +210,8 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 
         $dados = $this->Session->read('Auth');
         $user_id = $dados['User']['id'];
-        $this->Mensalidade->Formapgto->recursive = -1;
-        $formapgto_id = $this->Mensalidade->Formapgto->findByTipo('P');
-        if (isset($formapgto_id['Formapgto']))
-        	$formapgto_id = $formapgto_id['Formapgto']['id'];
+
+		$formapgto_id = $this->ConsultarFormaPgtoPadrao();
 		$this->set(compact('contas', 'formapgtos', 'users', 'alunos', 'user_id', 'formapgto_id'));
 	}
 
@@ -263,8 +261,10 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$contas = $this->Mensalidade->Conta->findAsCombo();
 		$alunos = $this->Mensalidade->Aluno->findAsComboCampo('Aluno.id', $aluno_id);
 		$formapgtos = $this->Mensalidade->Formapgto->findAsCombo('asc', 'tipo <> "I"');
+		$formapgto_id = $this->ConsultarFormaPgtoPadrao();
+		$conta_id = $this->ConsultarContaPadrao();
 		$users = $this->Mensalidade->User->findAsCombo();
-		$this->set(compact('contas', 'formapgtos', 'users', 'alunos', 'aluno_id', 'curso'));
+		$this->set(compact('contas', 'formapgtos', 'users', 'alunos', 'aluno_id', 'curso', 'formapgto_id', 'conta_id'));
 	}
 
 /**
@@ -478,4 +478,31 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		}
 	}
 
-}	
+/**
+ * ConsultarFormaPgtoPadrao method
+ * @param int $id
+ * @return void
+ */
+	private function ConsultarFormaPgtoPadrao() {
+		$this->Mensalidade->Formapgto->recursive = -1;
+		$formapgto_id = $this->Mensalidade->Formapgto->findByTipo('P');
+		if (isset($formapgto_id['Formapgto']))
+			$formapgto_id = $formapgto_id['Formapgto']['id'];
+		return $formapgto_id;
+	}
+
+
+/**
+ * ConsultarContaPadrao method
+ * @param int $id
+ * @return void
+ */
+	private function ConsultarContaPadrao() {
+		$this->Mensalidade->Conta->recursive = -1;
+		$conta_id = $this->Mensalidade->Conta->findByTipo('P');
+		if (isset($conta_id['Conta']))
+			$conta_id = $conta_id['Conta']['id'];
+		return $conta_id;
+	}
+
+}

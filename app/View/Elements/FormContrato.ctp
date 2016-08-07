@@ -13,9 +13,13 @@
           <?php if (! $contrato) { ?>
                <div class="form-group">
                <?php echo $this->Form->input('formapgto_id',
-                    array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
+                    array('class' => 'form-control combobox', 'value' => (isset($formapgto_id) ? $formapgto_id : ''),
+                         'label'=>array('class'=>'col-sm-2 control-label'), 
+                         'div'=>true, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
                <?php echo $this->Form->input('conta_id',
-                    array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-1 control-label', 'style' => 'padding-left: 0px;'), 'div'=>true, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
+                    array('class' => 'form-control combobox', 'value' => (isset($conta_id) ? $conta_id : ''),
+                         'label'=>array('class'=>'col-sm-1 control-label', 'style' => 'padding-left: 0px;'), 
+                         'div'=>true, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
                </div><!-- .form-group -->
                <div class="form-group">
                <?php echo $this->Form->input('obs',
