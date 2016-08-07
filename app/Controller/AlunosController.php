@@ -115,10 +115,8 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 
 		$antes = $this->ConsultarAcessos($id, '<', '-1 year');
 		$this->set(compact('antes'));
-		
-		$options = array('recursive' => false, 'conditions' => array('Detalhe.aluno_id' => $id));
-		$this->Aluno->Detalhe->unbindModel(array('belongsTo' => array('Aluno')));
-		$detalhes = $this->Aluno->Detalhe->find('all', $options);
+
+		$detalhes = $this->ConsultarDetalhes($id);
 		$this->set(compact('detalhes'));
 	}
 	
@@ -219,6 +217,9 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 
 		$mensalidades = $this->ConsultarMensalidades($id);
 		$this->set(compact('mensalidades'));
+
+		$detalhes = $this->ConsultarDetalhes($id);
+		$this->set(compact('detalhes'));
 
 		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professores', 'cidades', 'naturalidades', 'responsavels', 'situacaos'));
 	}
@@ -379,5 +380,18 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 		$mensalidades = $this->Aluno->Mensalidade->find('all', $options);
 		$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);
 		return $mensalidades;
+	}
+
+/**
+ * ConsultarDetalhes method
+ *
+ * @param int $id
+ * @return void
+ */
+   public function ConsultarDetalhes($id) {
+		$options = array('recursive' => false, 'conditions' => array('Detalhe.aluno_id' => $id));
+		$this->Aluno->Detalhe->unbindModel(array('belongsTo' => array('Aluno')));
+		$detalhes = $this->Aluno->Detalhe->find('all', $options);
+		return $detalhes;
 	}
 }
