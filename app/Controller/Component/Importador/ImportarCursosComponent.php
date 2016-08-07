@@ -32,7 +32,7 @@ class ImportarCursosComponent extends ImportadorBaseComponent {
 		$dados['horario'] = $this->FormatarValorEncode($parametro['CURHORARIO']);
 		$dados['num_turma'] = $this->FormatarValorEncode($parametro['CURNUMTURMA']);
 		$dados['grupo_id'] =  $parametro['CURGRUPO'];
-		$dados['tipo_id'] = 25; //$parametro['CURTIPO'];
+		$dados['tipo_id'] = 26; //$parametro['CURTIPO'];
 
 		$this->SalvarDados($dados);
 	}

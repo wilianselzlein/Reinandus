@@ -39,7 +39,7 @@
 		</td>
 </tr><tr>		<td><strong><?php echo __('Conta'); ?></strong></td>
 		<td>
-			<?php echo $this->Html->link($mensalidade['Conta']['conta'], array('controller' => 'contas', 'action' => 'view', $mensalidade['Conta']['id']), array('class' => '')); ?>
+			<?php echo $this->Html->link($mensalidade['Conta']['banco'], array('controller' => 'contas', 'action' => 'view', $mensalidade['Conta']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
 </tr><tr>		<td><strong><?php echo __('Recebido por'); ?></strong></td>

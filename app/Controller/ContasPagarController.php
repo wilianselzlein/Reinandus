@@ -53,7 +53,6 @@ class ContasPagarController extends AppController {
            'ContaPagar.liberado', 'Formapgto.id', 'Formapgto.nome'));
 
 		$this->ContaPagar->recursive = 0;
-		$this->ContaPagar->unbindModel(array('belongsTo' => array('Conta', 'Tipo', 'User', 'Situacao')));
 		$this->set('contaspagar', $this->paginate());
 	}
 

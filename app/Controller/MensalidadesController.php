@@ -64,7 +64,7 @@ class MensalidadesController extends AppController {
 Mensalidade.desconto, Mensalidade.acrescimo, Mensalidade.liquido, Mensalidade.pago, Mensalidade.pagamento,
 Mensalidade.obs, Mensalidade.formapgto_id, Mensalidade.user_id, Mensalidade.bolsa, Mensalidade.documento, 
 Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade.aluno_id, */
-'Mensalidade.*', 'Conta.id', 'Conta.conta', 'Formapgto.id', 'Formapgto.nome', 'User.id', 'User.username',
+'Mensalidade.*', 'Conta.id', 'Conta.banco', 'Formapgto.id', 'Formapgto.nome', 'User.id', 'User.username',
 'Aluno.id', 'Aluno.nome'));
 		$mensalidade = $this->Mensalidade->find('first', $options);
 		$this->set('mensalidade', $mensalidade);
