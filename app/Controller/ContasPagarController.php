@@ -97,20 +97,16 @@ class ContasPagarController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->ContaPagar->create();
-			$data = $this->request->data;	
+			$data = $this->request->data;
 			if ($data['ContaPagar']['cadastro'] == '')
-				$data['ContaPagar']['cadastro'] = date('d/m/y');
+				$data['ContaPagar']['cadastro'] = date('m/d/y');
 			if ($data['ContaPagar']['emissao'] == '')
-				$data['ContaPagar']['emissao'] = date('d/m/y');
-			if ($this->ContaPagar->save($this->request->data)) {
+				$data['ContaPagar']['emissao'] = date('m/d/y');
+			$this->ContaPagar->create();
+			if ($this->ContaPagar->save($data)) {
 				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
-               "link_text" => __('GO_TO'),
-               "link_url" => array(                  
-                  "action" => "view",
-                  $this->ContaPagar->id
-               )
-            ));
+				"link_text" => __('GO_TO'),
+				"link_url" => array("action" => "view", $this->ContaPagar->id)));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
