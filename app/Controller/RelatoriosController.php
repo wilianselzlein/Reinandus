@@ -141,6 +141,7 @@ class RelatoriosController extends AppController {
                      }
                      case 2: //FAIXAS_STRING
                      {
+                        AQUI
                         $filtros .= " AND " . str_replace("_",".", $campo) ." BETWEEN '".$compositeValue[0]."'' AND '".$compositeValue[1]."'";
                         break;
                      }
@@ -306,6 +307,10 @@ class RelatoriosController extends AppController {
  * @return void
  */
     function dados() {
+        //$Class = ClassRegistry::init('Sigla');
+        //$dados = $Class->find('list', array('recursive' => -1, 'order' => array($Class->displayField)));
+        //debug($dados); die;
+
         //debug($this->params['data']['model']); die;
         $modelo = $this->params['data']['model'];
         $dados = array();
