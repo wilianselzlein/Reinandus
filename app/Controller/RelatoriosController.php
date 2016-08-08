@@ -312,7 +312,11 @@ class RelatoriosController extends AppController {
         $this->layout = null;
 
         $Class = ClassRegistry::init($modelo);
-        $dados = $Class->find('list', array('recursive' => -1, 'order' => array($Class->displayField)));
+        $options = [];
+        if ($modelo == 'Enumerado')
+            $options = array('Enumerado.referencia' => 'situacao_id', 'Enumerado.nome' => 'aluno');
+        $dados = $Class->find('list', array('recursive' => -1, 'conditions' => $options, 
+            'order' => array($Class->displayField)));
 
         $this->set(compact('dados'));
     }
