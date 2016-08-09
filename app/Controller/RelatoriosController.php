@@ -128,12 +128,6 @@ class RelatoriosController extends AppController {
                $compositeKey = explode(",", $key);
                $compositeValue = explode(",", $value);
 
-               foreach ($compositeValue as $item => $valor){
-                    if (! is_numeric($valor))
-                        $compositeValue[$item] = "'" . $valor . "'";
-               }
-               //debug($compositeValue); die;
-
                $tipoFiltro = $compositeKey[0];
                $campo = $compositeKey[1];
                 
@@ -151,6 +145,10 @@ class RelatoriosController extends AppController {
                      }
                      case 3: //OPCOES_FINITAS
                      {
+                        foreach ($compositeValue as $item => $valor){
+                            if (! is_numeric($valor))
+                                $compositeValue[$item] = "'" . $valor . "'";
+                        }
                         $in = implode(",", $compositeValue);
                         $filtros .= " AND ".str_replace("_",".", $campo)." in (".$in.")";
                         break;
