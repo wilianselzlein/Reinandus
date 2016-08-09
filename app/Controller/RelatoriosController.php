@@ -90,7 +90,6 @@ class RelatoriosController extends AppController {
 	
           foreach ($relatorio['RelatorioDataset'] as $dataset){                          
              $sql = $dataset['sql'];
-             //debug($dataset); //die;
              foreach ($dataset['RelatorioFiltro'] as $filtro){    
                $sql .= $this->appendFilters($filtro);
              }
@@ -124,11 +123,17 @@ class RelatoriosController extends AppController {
       $filtros = "";
       
       if (isset($this->request->data)) {             
-            foreach ($this->request->data as $key => $value){                    
+            foreach ($this->request->data as $key => $value){
                $originalValue = $value;
                $compositeKey = explode(",", $key);
                $compositeValue = explode(",", $value);
-               
+
+               foreach ($compositeValue as $item => $valor){
+                    if (! is_numeric($valor))
+                        $compositeValue[$item] = "'" . $valor . "'";
+               }
+               //debug($compositeValue); die;
+
                $tipoFiltro = $compositeKey[0];
                $campo = $compositeKey[1];
                 
@@ -141,13 +146,13 @@ class RelatoriosController extends AppController {
                      }
                      case 2: //FAIXAS_STRING
                      {
-                        AQUI
                         $filtros .= " AND " . str_replace("_",".", $campo) ." BETWEEN '".$compositeValue[0]."'' AND '".$compositeValue[1]."'";
                         break;
                      }
                      case 3: //OPCOES_FINITAS
                      {
-                        $filtros .= " AND ".str_replace("_",".", $campo)." in (".$originalValue.")";
+                        $in = implode(",", $compositeValue);
+                        $filtros .= " AND ".str_replace("_",".", $campo)." in (".$in.")";
                         break;
                      }
                      case 4: //FAIXA_CODIGO_CAMPO_ADICIONAL

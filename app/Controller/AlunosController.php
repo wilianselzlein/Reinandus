@@ -39,7 +39,7 @@ class AlunosController extends AppController {
         $this->Filter->addFilters(
                 array('filter1' => array('OR' => array(                           
                         'Aluno.id' => array('operator' => 'LIKE'),
-                        'Aluno.nome' => array('operator' => 'LIKE'),
+                        'Aluno.nome' => array('operator' => 'LIKE', 'explode'  => false),
                         )
                     )
                 )
