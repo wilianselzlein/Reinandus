@@ -11,7 +11,6 @@ class DateFormatBehavior extends ModelBehavior {
      parent::setup($model, $settings);
      //$this->fields = $settings;
      $columns = $model->getColumnTypes();
-     //debug($columns);
      foreach($columns as $column => $type){
         if(($type != 'date') && ($type != 'datetime')) unset($columns[$column]);
      }

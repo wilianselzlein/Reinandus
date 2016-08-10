@@ -87,12 +87,14 @@ class NumberFormatBehavior extends ModelBehavior {
 
 		$numberFields = array();
 		$schema = $Model->schema();
-		foreach ($schema as $key => $values) {
-			if (isset($values['type']) && !in_array($key, $this->settings[$Model->alias]['fields']) && in_array($values['type'], $this->settings[$Model->alias]['observedTypes'])) {
-				array_push($numberFields, $key);
+		if (! is_null($schema)) {
+			foreach ($schema as $key => $values) {
+				if (isset($values['type']) && !in_array($key, $this->settings[$Model->alias]['fields']) && in_array($values['type'], $this->settings[$Model->alias]['observedTypes'])) {
+					array_push($numberFields, $key);
+				}
 			}
+			$this->settings[$Model->alias]['fields'] = array_merge($this->settings[$Model->alias]['fields'], $numberFields);
 		}
-		$this->settings[$Model->alias]['fields'] = array_merge($this->settings[$Model->alias]['fields'], $numberFields);
 	}
 
 	public function beforeValidate(Model $Model, $options = array()) {

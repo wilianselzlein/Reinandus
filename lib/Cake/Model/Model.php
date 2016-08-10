@@ -1392,15 +1392,16 @@ class Model extends Object implements CakeEventListener {
  */
 	public function getColumnTypes() {
 		$columns = $this->schema();
-		if (empty($columns)) {
-			trigger_error(__d('cake_dev', '(Model::getColumnTypes) Unable to build model field data. If you are using a model without a database table, try implementing schema()'), E_USER_WARNING);
-		}
+		//if (empty($columns)) {
+		//	trigger_error(__d('cake_dev', '(Model::getColumnTypes) Unable to build model field data. If you are using a model without a database table, try implementing schema()'), E_USER_WARNING);
+		//}
 
 		$cols = array();
-		foreach ($columns as $field => $values) {
-			$cols[$field] = $values['type'];
+		if (! is_null($columns)) {
+			foreach ($columns as $field => $values) {
+				$cols[$field] = $values['type'];
+			}
 		}
-
 		return $cols;
 	}
 
