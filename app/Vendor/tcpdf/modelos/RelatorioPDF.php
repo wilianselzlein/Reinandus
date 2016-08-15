@@ -352,12 +352,12 @@ EOD;
       if ($assinatura != '') {
         $imgdata = base64_decode($assinatura);
         if ($imgdata != '')
-          $this->Image('@'.$imgdata, 60);
+          $this->Image('@'.$imgdata, 50);
       }
    }
 
    public function AssinaturaNomePessoaRelacionadaAoUsuario() {
-      $this->Ln(20);
+      $this->Ln(25);
       $secretario = $this->Sessao['User']['Pessoa']['razaosocial'];
       $texto = $secretario . ' 
         ' . 'Departamento da Pós-Graduação'; 

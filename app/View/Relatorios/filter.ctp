@@ -99,7 +99,8 @@ $campoObrigatorioPrefix = $isObrigatorio == 'true' ? '* ' : '';
                var camposObrigatoriosPreenchidos = true;
 
                for(var i = 0, len = _filtrosObrigatorios.length; i < len; ++i) {
-                  if(jQuery.inArray( _filtrosObrigatorios[i] , _filtrosSelecionados ) > -1){                                      //camposObrigatoriosPreenchidos = true;
+                  if(jQuery.inArray( _filtrosObrigatorios[i] , _filtrosSelecionados ) > -1){
+                     //camposObrigatoriosPreenchidos = true;
                      //alert(_filtrosObrigatorios[i]);                  
                   }
                   else

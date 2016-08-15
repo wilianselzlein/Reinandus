@@ -26,6 +26,23 @@ var $actsAs = array('NumberFormat', 'DateFormat');
 //	public $displayField = 'numero';
 
 /**
+ * Schema getColumnsName();
+ *
+ * $_schema
+ * /
+	public $_schema = array(
+        'horas_aula' => array(
+            'type' => 'integer',
+            'null' => false,
+        ),
+        'valor_aula' => array(
+            'type' => 'double',
+            'null' => false,
+        ),
+    );
+*/
+
+/**
  * Validation rules
  *
  * @var array

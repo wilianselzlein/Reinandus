@@ -5,7 +5,7 @@
 		<h3>
 			<span class="fa fa-male"></span> <?php echo __('Alunos'); ?>
 			<?php echo $this->ButtonsActionsEnumerados->MakeButtons($this->params['controller'], $this->params['action'],
-			null, array(array('model' => 'Aluno', 'action' => 'emails'))); ?>
+			null, array(array('model' => 'Aluno', 'action' => 'emails')), array('indicacao_id', 'estado_civil_id')); ?>
 		</h3>
 	</div>
 

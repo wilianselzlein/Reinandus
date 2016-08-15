@@ -108,13 +108,13 @@ class ButtonsActionsHelper extends AppHelper {
 		return $buttons;
 	}
 
-	public function MakeButtons($controller, $action, $id = null, $array = null) { 
+	public function MakeButtons($controller, $action, $id = null, $array = null, $ignorados = null) { 
 
 		$model = $this->GetModelByController($controller);
 		$class = ClassRegistry::init($model);
 
 		return 
-		$this->VisualizacaoEnumerados($model) .
+		$this->VisualizacaoEnumerados($model, $ignorados) .
 '<div class="btn-group pull-right">' .
 	'<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' . __('Actions') . 
 		'<span class="caret"></span>' .
@@ -130,7 +130,7 @@ class ButtonsActionsHelper extends AppHelper {
 
 	}
 
-	public function VisualizacaoEnumerados($model) {
+	public function VisualizacaoEnumerados($model, $ignorados) {
 		return '';
 	}
 } 

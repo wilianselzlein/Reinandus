@@ -88,11 +88,7 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
  'Cidade.id', 'Cidade.nome', 'Responsavel.id', 'Responsavel.fantasia', 'Responsavel.razaosocial'));
 		$this->set('aluno', $this->Aluno->find('first', $options));
 
-		$options = array('recursive' => false, 'conditions' => array('AlunoDisciplina.aluno_id' => $id),
-			'fields' => array('AlunoDisciplina.id', 'AlunoDisciplina.frequencia', 'AlunoDisciplina.nota', 'AlunoDisciplina.horas_aula', 'AlunoDisciplina.data', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'));
-		$this->Aluno->AlunoDisciplina->unbindModel(array('belongsTo' => array('Aluno')));
-		$disciplinas = $this->Aluno->AlunoDisciplina->find('all', $options);
-		$disciplinas = $this->TransformarArray->FindInContainable('AlunoDisciplina', $disciplinas);
+		$disciplinas = $this->ConsultarDisciplinas($id);
 		$this->set(compact('disciplinas'));
 
 		$mensalidades = $this->ConsultarMensalidades($id);
@@ -215,6 +211,9 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 		//$responsavels[null] = '';
 		//$disciplinas = $this->Aluno->AlunoDisciplina->findAsCombo();
 
+		$disciplinas = $this->ConsultarDisciplinas($id);
+		$this->set(compact('disciplinas'));
+		
 		$mensalidades = $this->ConsultarMensalidades($id);
 		$this->set(compact('mensalidades'));
 
@@ -394,4 +393,20 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 		$detalhes = $this->Aluno->Detalhe->find('all', $options);
 		return $detalhes;
 	}
+	
+/**
+ * ConsultarDetalhes method
+ *
+ * @param int $id
+ * @return void
+ */
+   public function ConsultarDisciplinas($id) {
+		$options = array('recursive' => false, 'conditions' => array('AlunoDisciplina.aluno_id' => $id),
+			'fields' => array('AlunoDisciplina.id', 'AlunoDisciplina.frequencia', 'AlunoDisciplina.nota', 'AlunoDisciplina.horas_aula', 'AlunoDisciplina.data', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'));
+		$this->Aluno->AlunoDisciplina->unbindModel(array('belongsTo' => array('Aluno')));
+		$disciplinas = $this->Aluno->AlunoDisciplina->find('all', $options);
+		$disciplinas = $this->TransformarArray->FindInContainable('AlunoDisciplina', $disciplinas);
+		return $disciplinas;
+   }
+
 }

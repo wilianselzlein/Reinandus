@@ -231,7 +231,7 @@ class EnumeradosController extends AppController {
  	$this->AdicionarEnumeradoSeNaoExistir(25, 'aviso', 'tipo_id', 'Descontos');
  	$this->AdicionarEnumeradoSeNaoExistir(26, 'curso', 'tipo_id', 'Pós');
  	$this->AdicionarEnumeradoSeNaoExistir(27, 'curso', 'tipo_id', 'Extensão');
-	$this->AdicionarEnumeradoSeNaoExistir(28, 'curso', 'periodo_id', 'Manhã');
+	$this->AdicionarEnumeradoSeNaoExistir(28, 'curso', 'periodo_id', 'Sabado');
 	$this->AdicionarEnumeradoSeNaoExistir(29, 'curso', 'periodo_id', 'Tarde');
 	$this->AdicionarEnumeradoSeNaoExistir(30, 'curso', 'periodo_id', 'Vespertino');
 	$this->AdicionarEnumeradoSeNaoExistir(31, 'curso', 'periodo_id', 'Noite');

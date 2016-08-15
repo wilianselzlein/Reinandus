@@ -3,10 +3,10 @@ App::uses('ButtonsActionsHelper', 'View/Helper');
 
 class ButtonsActionsEnumeradosHelper extends ButtonsActionsHelper { 
     
-	public function VisualizacaoEnumerados($model) {
+	public function VisualizacaoEnumerados($model, $ignorados) {
       $enumerados = ClassRegistry::init('Enumerado');
       $options = array('recursive' => false, 'order' => 'Enumerado.referencia', 
-        'conditions' => array('Enumerado.nome' => $model, 'Enumerado.is_ativo' => true), 
+        'conditions' => array('Enumerado.nome' => $model, 'Enumerado.is_ativo' => true, array('NOT' => array('Enumerado.referencia' => $ignorados))), 
         'fields' => array('Enumerado.id', 'Enumerado.nome', 'Enumerado.referencia', 'Enumerado.valor'));
       $enumerados = $enumerados->find('all', $options);
       

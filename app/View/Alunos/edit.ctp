@@ -123,6 +123,7 @@
    </div><!-- /#page-content .col-sm-9 -->
 
    <?php echo $this->element('Relateds/Mensalidades', array('array' => $mensalidades)); ?>
+   <?php echo $this->element('Relateds/Disciplinas', array('array' => $disciplinas, 'model' => 'AlunoDisciplina', 'controller' => 'aluno_disciplinas', 'aluno' => true));?>
    <?php echo $this->element('Relateds/Detalhes', array('array' => $detalhes)); ?>
 
 </div><!-- /#page-container .row-fluid -->
