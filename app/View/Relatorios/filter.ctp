@@ -76,7 +76,7 @@ $campoObrigatorioPrefix = $isObrigatorio == 'true' ? '* ' : '';
                <!--<php endforeach; ?>-->
                <?php endforeach; ?>
             </select>
-
+            <br><i>Filtros com * são obrigatórios.</i>
          </div>
          <script>
             function checkForm(){
