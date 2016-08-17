@@ -49,7 +49,8 @@ class EnumeradosController extends AppController {
 		if ($enumerados['Enumerado']['nome'] == 'aluno') {
 			$alunos = ClassRegistry::init('Aluno');
 			$options = array('conditions' => array('Aluno.' . $enumerados['Enumerado']['referencia'] => $id),
-			  'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.celular', 'Aluno.email', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Situacao.id', 'Situacao.valor', 'Curso.id', 'Curso.nome'));
+			  'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.celular', 'Aluno.email', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Situacao.id', 'Situacao.valor', 'Curso.id', 'Curso.nome'),
+			  'order' => array('Aluno.nome'));
 			$alunos->unbindModel(array(
 				'hasMany' => array('Acesso', 'Detalhe', 'AlunoDisciplina', 'Mensalidade'),
 				'belongsTo' => array('Naturalidade', 'EstadoCivil', 'Indicacao', 'Professor', 'Cidade', 'Responsavel')));
@@ -73,7 +74,8 @@ class EnumeradosController extends AppController {
 			$cursos->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
 			$cursos = $cursos->find('all', array('recursive' => 0, 
 				'conditions' => array('Curso.' . $enumerados['Enumerado']['referencia'] => $id),
-				'fields' => array('Curso.id', 'Curso.nome', 'Curso.turma', 'Curso.carga', 'Curso.sigla', 'Curso.num_turma', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 'Professor.id', 'Professor.nome', 'Periodo.id', 'Periodo.valor')));
+				'fields' => array('Curso.id', 'Curso.nome', 'Curso.turma', 'Curso.carga', 'Curso.sigla', 'Curso.num_turma', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 'Professor.id', 'Professor.nome', 'Periodo.id', 'Periodo.valor'),
+				'order' => array('Curso.nome')));
 			$cursos = $this->TransformarArray->FindInContainable('Curso', $cursos);
 			$this->set(compact('cursos'));
 		}
@@ -100,7 +102,8 @@ class EnumeradosController extends AppController {
 			$professores = ClassRegistry::init('Professor');
 			$professores = $professores->find('all', array('recursive' => 0, 'order' => array('Professor.nome'),
 				'conditions' => array('Professor.' . $enumerados['Enumerado']['referencia'] => $id),
-				'fields' => array('Professor.id', 'Professor.nome', 'Professor.celular', 'Professor.email', 'Cidade.id', 'Cidade.nome')
+				'fields' => array('Professor.id', 'Professor.nome', 'Professor.celular', 'Professor.email', 'Cidade.id', 'Cidade.nome'),
+				'order' => array('Professor.nome')
 				));
 			$professores = $this->TransformarArray->FindInContainable('Professor', $professores);
 			$this->set(compact('professores'));

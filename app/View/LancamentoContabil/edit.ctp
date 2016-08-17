@@ -2,7 +2,7 @@
 
    <div class="panel-heading">
       <h3><?php echo __('LancamentoContabil'); ?>
-         <small><?php echo __('Add') ?></small>
+         <small><?php echo __('Edit') ?></small>
 <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action'], $this->params['pass'][0]); ?>
       </h3>
    </div>

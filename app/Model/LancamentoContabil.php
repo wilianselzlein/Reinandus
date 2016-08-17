@@ -13,7 +13,8 @@ App::uses('AppModel', 'Model');
  * @property Disciplina $Disciplina
  */
 class LancamentoContabil extends AppModel {
-	var $actsAs = array('DateFormat');
+
+	var $actsAs = array('NumberFormat', 'DateFormat');
 /**
  * Use table
  *
