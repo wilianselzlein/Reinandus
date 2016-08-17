@@ -12,7 +12,8 @@ for ($index = 0; $index < count($decl_matricula); $index++) {
 
   $aluno = $decl_matricula[$index]['aluno']['aluno'];
   $curso = $decl_matricula[$index]['curso']['curso'];
-  $periodo = '[CLIQUE PARA DIGITAR O PERÍODO]';
+  $periodo = $this->Time->i18nFormat(strtotime($decl_matricula[$index]['aluno']['curso_inicio']), '%d/%m/%Y') . ' a ' .
+   $this->Time->i18nFormat(strtotime($decl_matricula[$index]['aluno']['curso_fim']), '%d/%m/%Y');
 
   $texto = '    Declaramos para os devidos fins que ' . $aluno . ' é aluno(a) matriculado(a) no Curso de Pós-Graduação em ' . $curso . ' desta instituição de ensino, no período de ' . $periodo . '.';
   $pdf->TextField('Texto' . $index, 170, 30, array('multiline'=>true, 'lineWidth'=>0, 'borderStyle'=>'none'), array('v'=>$texto));
