@@ -30,6 +30,7 @@
               <th><?php echo __('Líquido'); ?></th>
               <th><?php echo __('Pagamento'); ?></th>
               <th><?php echo __('Aluno'); ?></th>
+              <th><?php echo __('Situacao'); ?></th>
 							<th class="actions text-center" colspan="2"><?php echo __('Actions'); ?></th>
 						</tr>
 					</thead>
@@ -42,8 +43,10 @@
               <td><?php echo $this->Number->currency($mensalidade['liquido'], 'BRL'); ?></td>
               <td><?php echo $mensalidade['pagamento']; ?></td>
               <td><?php echo $this->DisplayField->MakeLink($mensalidade, 'alunos', 'aluno_id'); ?></td>
+              <td><?php echo $this->DisplayField->MakeLink($mensalidade, 'Situacao', 'situacao_id'); ?></td>
               <td class="actions text-center">
-                <?php echo $this->Html->link('<i class="fa fa-print"></i>', array('controller' => 'mensalidades', 'action' => 'boleto', $mensalidade['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Boleto'), 'data-toggle'=>'tooltip')); ?>
+                <?php echo $this->Html->link('<i class="fa fa-print"></i>', array('controller' => 'mensalidades', 'action' => 'boleto', $mensalidade['id']), 
+                    array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Boleto'), 'data-toggle'=>'tooltip')); ?>
               </td>
 	<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $mensalidade, 'model' => '', 'controller' => 'mensalidades')); ?>
 </tr>

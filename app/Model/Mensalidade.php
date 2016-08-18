@@ -120,6 +120,13 @@ var $actsAs = array('NumberFormat', 'DateFormat');
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Situacao' => array(
+			'className' => 'Enumerado',
+			'foreignKey' => 'situacao_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 }

@@ -1,7 +1,7 @@
 <div class="panel panel-default">
 
 <div class="panel-heading"><h3><span class="fa fa-money"></span> <?php echo __('Mensalidades'); ?>
-<?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>
+<?php echo $this->ButtonsActionsEnumerados->MakeButtons($this->params['controller'], $this->params['action']); ?>
         </h3></div>
 
 <div class="panel-body">
@@ -17,6 +17,7 @@
 						<th><?php echo $this->Paginator->sort('liquido'); ?></th>
 						<th><?php echo $this->Paginator->sort('pagamento'); ?></th>
 						<th><?php echo $this->Paginator->sort('formapgto_id'); ?></th>
+						<th><?php echo $this->Paginator->sort('situacao_id'); ?></th>
 						<th class="actions text-center" colspan="2"><?php echo __('Actions'); ?></th>
 					</tr>
 				</thead>
@@ -34,8 +35,10 @@
 		<td>
 			<?php echo $this->Html->link($mensalidade['Formapgto']['nome'], array('controller' => 'FormasPagamentos', 'action' => 'view', $mensalidade['Formapgto']['id'])); ?>
 		</td>
+		<td>
+			<?php echo $this->Html->link($mensalidade['Situacao']['valor'], array('controller' => 'enumerados', 'action' => 'view', $mensalidade['Situacao']['id'])); ?>
+		</td>
 		<td class="actions text-center">
-
 			<?php echo $this->Html->link('<i class="fa fa-credit-card"></i>', array('action' => 'baixar', $mensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Baixar'), 'data-toggle'=>'tooltip')); ?>
 			<?php echo $this->Html->link('<i class="fa fa-print"></i>', array('action' => 'boleto', $mensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Boleto'), 'data-toggle'=>'tooltip')); ?>
 		</td>

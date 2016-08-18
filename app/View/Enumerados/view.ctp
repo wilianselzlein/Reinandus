@@ -34,7 +34,9 @@
  	if (isset($contas) && (count($contas) > 0))
  		echo $this->element('Relateds/ContasPagar', array('array' => $contas)); 
  	if (isset($professores) && (count($professores) > 0))
- 		echo $this->element('Relateds/Professores', array('array' => $professores)); 
+ 		echo $this->element('Relateds/Professores', array('array' => $professores));
+ 	if (isset($mensalidades) && (count($mensalidades) > 0))
+ 		echo $this->element('Relateds/Mensalidades', array('array' => $mensalidades)); 
 ?>
 
 </div><!-- /#page-container .row-fluid -->
