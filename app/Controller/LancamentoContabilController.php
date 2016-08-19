@@ -59,7 +59,7 @@ class LancamentoContabilController extends AppController {
 			'Mensalidade.lancamento_valor_id' => $lancamentocontabil['LancamentoContabil']['id'], 
 			'Mensalidade.lancamento_desconto_id' => $lancamentocontabil['LancamentoContabil']['id'], 
 			'Mensalidade.lancamento_juro_id' => $lancamentocontabil['LancamentoContabil']['id'])),
-		'fields' => array('Mensalidade.id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Aluno.id', 'Aluno.nome'));
+		'fields' => array('Mensalidade.id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Aluno.id', 'Aluno.nome', 'Situacao.id', 'Situacao.valor'));
 
 		$mensalidade = ClassRegistry::init('Mensalidade');
 		$mensalidade->unbindModel(array('belongsTo' => array('User', 'Conta', 'Formapgto')));

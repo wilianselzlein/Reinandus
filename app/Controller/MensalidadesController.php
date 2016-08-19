@@ -49,7 +49,7 @@ class MensalidadesController extends AppController {
 		else
 			$this->Filter->setPaginate('conditions', $filtros['AND']);
 		$this->Filter->setPaginate('fields', array('Mensalidade.id', 'Mensalidade.numero', 'Aluno.id', 'Aluno.nome', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento',
-           'Formapgto.id', 'Formapgto.nome'));
+           'Formapgto.id', 'Formapgto.nome', 'Situacao.id', 'Situacao.valor'));
 
 		$this->Mensalidade->recursive = 0;
 		$this->set('mensalidades', $this->paginate());
@@ -73,7 +73,7 @@ Mensalidade.desconto, Mensalidade.acrescimo, Mensalidade.liquido, Mensalidade.pa
 Mensalidade.obs, Mensalidade.formapgto_id, Mensalidade.user_id, Mensalidade.bolsa, Mensalidade.documento, 
 Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade.aluno_id, */
 'Mensalidade.*', 'Conta.id', 'Conta.banco', 'Formapgto.id', 'Formapgto.nome', 'User.id', 'User.username',
-'Aluno.id', 'Aluno.nome'));
+'Aluno.id', 'Aluno.nome', 'Situacao.id', 'Situacao.valor'));
 		$mensalidade = $this->Mensalidade->find('first', $options);
 		$this->set('mensalidade', $mensalidade);
 
@@ -98,6 +98,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Mensalidade->create();
+			$this->request->data['Mensalidade']['situacao_id'] = $this->PegarSituacaoAberto();
 			if ($this->Mensalidade->save($this->request->data)) {
 				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                "link_text" => __('GO_TO'),
@@ -188,6 +189,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 			throw new NotFoundException(__('The record could not be found.'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
+			$this->request->data['Mensalidade']['situacao_id'] = $this->PegarSituacaoFechado();
 			if ($this->Mensalidade->save($this->request->data)) {
 				$mensalidade = $this->request->data;
 				setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
@@ -254,7 +256,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 	    			$vencimento = strtotime($vencimento);
 					$vencimento = date("Y-m-d", strtotime("+" . ($numero - 1) . " month", $vencimento));
 					$mensalidade['vencimento'] = $vencimento;
-
+					$mensalidade['situacao_id'] = $this->PegarSituacaoAberto();
 	                $this->Mensalidade->create();
 	                if (! $this->Mensalidade->save($mensalidade)) { 
 	                	 debug($mensalidade); debug($this->validationErrors); die();
@@ -511,6 +513,22 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		if (isset($conta_id['Conta']))
 			$conta_id = $conta_id['Conta']['id'];
 		return $conta_id;
+	}
+
+/**
+ * PegarSituacaoAberto method
+ * @return int $situacao_id
+ */
+	private function PegarSituacaoAberto() {
+		return 85;
+	}
+
+/**
+ * PegarSituacaoFechado method
+ * @return int $situacao_id
+ */
+	private function PegarSituacaoFechado() {
+		return 86;
 	}
 
 }

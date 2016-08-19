@@ -374,7 +374,7 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
  */
    public function ConsultarMensalidades($id) {
 		$options = array('recursive' => false, 'conditions' => array('Mensalidade.aluno_id' => $id),
-			'fields' => array('Mensalidade.id', 'Mensalidade.aluno_id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Formapgto.id', 'Formapgto.nome', 'Aluno.id', 'Aluno.nome'));
+			'fields' => array('Mensalidade.id', 'Mensalidade.aluno_id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Formapgto.id', 'Formapgto.nome', 'Aluno.id', 'Aluno.nome', 'Situacao.id', 'Situacao.valor'));
 		$this->Aluno->Mensalidade->unbindModel(array('belongsTo' => array('Conta', 'User', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
 		$mensalidades = $this->Aluno->Mensalidade->find('all', $options);
 		$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);

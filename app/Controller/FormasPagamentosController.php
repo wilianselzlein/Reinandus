@@ -47,7 +47,7 @@ class FormasPagamentosController extends AppController {
 		$this->set('formapgto', $this->Formapgto->find('first', $options));
 
 		$options = array('recursive' => 0, 'conditions' => array('Mensalidade.formapgto_id' => $id), 'limit' => 200, 
-		'fields' => array('Mensalidade.id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Aluno.id', 'Aluno.nome'));
+		'fields' => array('Mensalidade.id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Aluno.id', 'Aluno.nome', 'Situacao.id', 'Situacao.valor'));
 
 		$this->Formapgto->Mensalidade->unbindModel(array('belongsTo' => array('User', 'Conta', 'Formapgto', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
 		$mensalidades = $this->Formapgto->Mensalidade->find('all', $options);

@@ -46,7 +46,7 @@ class ContasController extends AppController {
 		$this->set('contum', $this->Contum->find('first', $options));
 		
 		$options = array('recursive' => 0, 'conditions' => array('Mensalidade.conta_id' => $id), 'limit' => 200, 
-		'fields' => array('Mensalidade.id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Aluno.id', 'Aluno.nome'));
+		'fields' => array('Mensalidade.id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Aluno.id', 'Aluno.nome', 'Situacao.id', 'Situacao.valor'));
 		$this->Contum->Mensalidade->unbindModel(array('belongsTo' => array('Grupo', 'Tipo', 'User', 'Formapgto', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
 		$mensalidades = $this->Contum->Mensalidade->find('all', $options);
 		$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);
