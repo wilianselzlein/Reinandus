@@ -323,6 +323,8 @@ class RelatoriosController extends AppController {
         $options = [];
         if ($modelo == 'Enumerado')
             $options = array('Enumerado.referencia' => 'situacao_id', 'Enumerado.nome' => 'aluno');
+        if ($modelo == 'EnumeradoSituacaoMen')
+            $options = array('Enumerado.referencia' => 'situacao_id', 'Enumerado.nome' => 'mensalidade');
         $dados = $Class->find('list', array('recursive' => -1, 'conditions' => $options, 
             'order' => array($Class->displayField)));
 
