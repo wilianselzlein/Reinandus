@@ -76,7 +76,9 @@ class AvisosController extends AppController {
 		$users = $this->Aviso->User->findAsCombo();
 		$tipos = $this->Aviso->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_id', 'Tipo.nome' => 'aviso')));
 		$cursos = $this->Aviso->Curso->findAsCombo();
+		array_shift($cursos);
 		$grupos = $this->Aviso->Grupo->findAsCombo();
+		array_shift($grupos);
 		$this->set(compact('users', 'tipos', 'cursos', 'grupos'));
 	}
 

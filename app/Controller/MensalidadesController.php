@@ -24,7 +24,7 @@ class MensalidadesController extends AppController {
  * @return void
  */
 	public function index($tipo = null) {
-		$filtros = array();
+		/*$filtros = array();
 		$filtros['OR'] = $this->AdicionarFiltrosLike($this->Mensalidade);
 		if ($tipo == 'Recebidas')
 			$filtros['AND'] = array('Mensalidade.pagamento' => array('value' => date('Y-m-d')));
@@ -33,7 +33,15 @@ class MensalidadesController extends AppController {
 
 		$filtro = array();
 		$filtro['filter1'] = $filtros;
-		$this->Filter->addFilters($filtro);
+		$this->Filter->addFilters($filtro);*/
+        $this->Filter->addFilters(
+                array('filter1' => array('OR' => array(                           
+                        'Aluno.id' => array('operator' => 'LIKE'),
+                        'Aluno.nome' => array('operator' => 'LIKE', 'explode'  => false),
+                        )
+                    )
+                )
+        );
 
 		$this->Filter->setPaginate('order', array('Mensalidade.id' => 'desc')); 
 		if (! isset($filtros['AND'])) 
