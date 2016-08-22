@@ -318,8 +318,11 @@ class RelatoriosController extends AppController {
         $modelo = $this->params['data']['model'];
         $dados = array();
         $this->layout = null;
+        if ($modelo == 'EnumeradoSituacaoMen')
+            $Class = ClassRegistry::init('Enumerado');
+        else
+            $Class = ClassRegistry::init($modelo);
 
-        $Class = ClassRegistry::init($modelo);
         $options = [];
         if ($modelo == 'Enumerado')
             $options = array('Enumerado.referencia' => 'situacao_id', 'Enumerado.nome' => 'aluno');
