@@ -22,11 +22,7 @@ for ($index = 0; $index < count($decl_orientacao_monografia); $index++) {
 
   $pdf->TextField('Texto' . $index, 170, 30, array('multiline'=>true, 'lineWidth'=>0, 'borderStyle'=>'none'), array('v'=>$texto));
   $pdf->Ln(30);
-   
-   //Curso:Gestão Empresarial - 2011
-   //Aluno:Wilian Ivo Selzlein
-   //Título:Sistema de Gestão de Pós-Graduação (IEPG)
-   //Nota:10
+
    $pdf->MultiCell(150, 5, 'Curso: '.$curso, 0, 'L', 0, 1, '', '', true);
    $pdf->MultiCell(150, 5, 'Aluno: '.$aluno, 0, 'L', 0, 1, '', '', true);
    $pdf->MultiCell(150, 5, 'Título: '.$titulo, 0, 'L', 0, 1, '', '', true);
@@ -40,7 +36,7 @@ for ($index = 0; $index < count($decl_orientacao_monografia); $index++) {
   $pdf->Ln(20);
   $cidade = $decl_orientacao_monografia[$index]['cidade']['cidade'];
   $uf = $decl_orientacao_monografia[$index]['estado']['sigla'];
-  $data = $this->Time->i18nFormat(date('m/d/Y'), '%d de %B de %Y');
+  $data = $pdf->DataPorExtenso();
   $texto = $cidade . '/' . $uf . ', ' . $data . '.'; 
   $pdf->MultiCell(170, 5, $texto, 0, 'C', 0, 0, '', '', true);
 

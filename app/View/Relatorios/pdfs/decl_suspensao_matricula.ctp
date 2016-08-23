@@ -26,7 +26,7 @@ for ($index = 0; $index < count($decl_suspensao_matricula); $index++) {
   $pdf->Ln(20);
   $cidade = $decl_suspensao_matricula[$index]['cidade']['cidade'];
   $uf = $decl_suspensao_matricula[$index]['estado']['sigla'];
-  $data = $this->Time->i18nFormat(date('m/d/Y'), '%d de %B de %Y');
+  $data = $pdf->DataPorExtenso();
   $texto = $cidade . '/' . $uf . ', ' . $data . '.'; 
   $pdf->MultiCell(170, 5, $texto, 0, 'C', 0, 0, '', '', true);
 
