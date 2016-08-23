@@ -39,7 +39,7 @@
 <br>
 <br>
 Referente a pagamento número <?php echo $mensalidade['Mensalidade']['numero']; ?> 
-do mês de <?php echo $this->Time->i18nFormat(date('m/d/Y'), '%B'); ?> de 
+do mês de <?php echo __($this->Time->i18nFormat(date('m/d/Y'), '%B')); ?> de 
 <?php echo date('Y'); ?>.
 <br>
 <br>
@@ -60,7 +60,7 @@ Valor Pago:&nbsp;<?php echo $this->Number->currency($mensalidade['Mensalidade'][
 <?php
   $cidade = $mensalidade['Cidade']['nome'];
   $uf = $mensalidade['Estado']['sigla'];
-  $data = $this->Time->i18nFormat(date('m/d/Y'), '%d de %B de %Y');
+  $data = $this->Time->i18nFormat(date('m/d/Y'), '%d/%m/%Y');
   $texto = $cidade . '/' . $uf . ', ' . $data . '.';
   echo $texto; 
 ?>

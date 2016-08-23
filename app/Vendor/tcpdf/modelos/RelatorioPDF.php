@@ -1,5 +1,6 @@
 <?php
-App::import('Vendor','tcpdf/tcpdf'); 
+App::import('Vendor','tcpdf/tcpdf');
+App::uses('CakeTime', 'Utility');
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -362,5 +363,12 @@ EOD;
       $texto = $secretario . ' 
         ' . 'Departamento da Pós-Graduação'; 
       $this->MultiCell(170, 15, $texto, 0, 'C', 0, 0, '', '', true);
-   }   
-} 
+   }  
+
+   public function DataPorExtenso() {
+      $data = date('m/d/Y');
+      $data = strtotime($data);
+      return date('d',$data) . ' de ' . __(date('F', $data)) . ' de ' . date('Y', $data);
+    }
+
+}

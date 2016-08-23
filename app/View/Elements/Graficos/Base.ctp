@@ -32,7 +32,7 @@
 	    <div id="GraficoCursoRentavel" class="graficovertical grafico100"></div>
 	  </div>
 	</div>
-	<?php } /* if (isset($permissoes['Financeiro']['Mensalidades'])) { ?>
+	<?php } if (isset($permissoes['Financeiro']['Mensalidades'])) { ?>
 	<div class="panel panel-default">
 	  <div class="panel-heading">
 	    <h3 class="panel-title">Mensalidade</h3>
@@ -76,7 +76,7 @@
 	    <div id="GraficoComparativoRecDespAno" class="grafico grafico50"></div>
 	  </div>
 	</div>
-	<?php } */ ?>
+	<?php } ?>
   </div>
 
 </div>
