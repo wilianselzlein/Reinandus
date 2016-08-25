@@ -3,7 +3,7 @@
 App::uses('Component', 'Controller');
 App::uses('CakeTime', 'Utility');
 App::import('Controller/Component/ConsultasContratos', 
-	array('CarregarConsultasBaseComponent', 'ConsultarCursoComponent', 'ConsultarInstitutoComponent'));
+	array('CarregarConsultasBaseComponent', 'ConsultarCursoComponent', 'ConsultarAlunoComponent', 'ConsultarInstitutoComponent'));
 
 class GeraContratoComponent extends Component {
 
@@ -24,9 +24,9 @@ class GeraContratoComponent extends Component {
         $this->SetarNoContratoCamposBasicosDaTelaDeFiltro($s);
 
 		$Instituto = new ConsultarInstitutoComponent($s, 1, 'instituto');
+
 		if (isset($this->Data['aluno_id'])) {
-        	$Aluno = new CarregarConsultasBaseComponent($s, $this->Data['aluno_id'], 'aluno'); //new ComponentCollection()
-	
+        	$Aluno = new ConsultarAlunoComponent($s, $this->Data['aluno_id'], 'aluno'); //new ComponentCollection()
 	        if ($Aluno->PegarValorCampo('id') > 0) {
 				$Curso = new ConsultarCursoComponent($s, $Aluno->PegarValorCampo('curso_id'), 'curso');
 				$Cidade = new CarregarConsultasBaseComponent($s, $Aluno->PegarValorCampo('cidade_id'), 'cidade');
@@ -41,7 +41,7 @@ class GeraContratoComponent extends Component {
 				$Estado = new CarregarConsultasBaseComponent($s, $Cidade->PegarValorCampo('estado_id'), 'estado');
 			}
 		}
-
+		//$s = utf8_encode($s);
         return $s;
 	}
 
@@ -69,29 +69,29 @@ class GeraContratoComponent extends Component {
 		}
 		if ($IsSetValor)
 		{
-			$contrato = str_replace(':valor', $this->Data['valor'], $contrato);
-			$contrato = str_replace(':extensovalor', CarregarConsultasBaseComponent::ValorPorExtenso($this->Data['valor']), $contrato);
+			$contrato = str_replace(':valor', $this->Data['valor'] * 1, $contrato);
+			$contrato = str_replace(':extensovalor', CarregarConsultasBaseComponent::ValorPorExtenso($this->Data['valor'] * 1), $contrato);
 		}
 		if ($IsSetQuant)
 			$contrato = str_replace(':parcelas', $this->Data['quantidade'], $contrato);
 		if ($IsSetLiqui) {
-			$contrato = str_replace(':liquido', $this->Data['liquido'], $contrato);
-			$contrato = str_replace(':extensoliquido', CarregarConsultasBaseComponent::ValorPorExtenso($this->Data['liquido']), $contrato);
+			$contrato = str_replace(':liquido', $this->Data['liquido'] * 1, $contrato);
+			$contrato = str_replace(':extensoliquido', CarregarConsultasBaseComponent::ValorPorExtenso($this->Data['liquido'] * 1), $contrato);
 		}
 		if ($IsSetBolsa) {
-			$contrato = str_replace(':bolsa', $this->Data['bolsa'], $contrato);
-			$contrato = str_replace(':extensobolsa', CarregarConsultasBaseComponent::ValorPorExtenso($this->Data['bolsa']), $contrato);
+			$contrato = str_replace(':bolsa', $this->Data['bolsa'] * 1, $contrato);
+			$contrato = str_replace(':extensobolsa', CarregarConsultasBaseComponent::ValorPorExtenso($this->Data['bolsa'] * 1), $contrato);
 		}		
 		if ($IsSetDesco) {
-			$contrato = str_replace(':desconto', $this->Data['desconto'], $contrato);
-			$contrato = str_replace(':extensodesconto', CarregarConsultasBaseComponent::ValorPorExtenso($this->Data['desconto']), $contrato);
+			$contrato = str_replace(':desconto', $this->Data['desconto'] * 1, $contrato);
+			$contrato = str_replace(':extensodesconto', CarregarConsultasBaseComponent::ValorPorExtenso($this->Data['desconto'] * 1), $contrato);
 		}
 		if ($IsSetVncto)
 			$contrato = str_replace(':vctoini', $this->Data['vencimento'], $contrato);
 		if ($IsSetVlAul)
 		{
-			$contrato = str_replace(':valor', $this->Data['valor_aula'], $contrato);
-			$contrato = str_replace(':extensovalor', CarregarConsultasBaseComponent::ValorPorExtenso($this->Data['valor_aula']), $contrato);
+			$contrato = str_replace(':valor', $this->Data['valor_aula'] * 1, $contrato);
+			$contrato = str_replace(':extensovalor', CarregarConsultasBaseComponent::ValorPorExtenso($this->Data['valor_aula'] * 1), $contrato);
 		}
 
 		//disciplina
@@ -120,9 +120,13 @@ class GeraContratoComponent extends Component {
 	}
 
 	private function CorrigirParametroNumerico($campo) {
-		if (isset($this->Data[$campo]))
+		if (isset($this->Data[$campo])) {
+			$this->Data[$campo] = str_replace('.', '', $this->Data[$campo]);
+			$this->Data[$campo] = str_replace(',', '.', $this->Data[$campo]);
+
 			if (! is_numeric($this->Data[$campo]))
 				$this->Data[$campo] = 0.00;
+		}
 	}
 
 

@@ -16,19 +16,19 @@ class CarregarConsultasBaseComponent extends Component {
 		$this->Contrato = $contrato;
 		$this->Id = $id;
 		$this->Texto = $model;
-		$this->Data = [];
-		if ($this->VerificarConsultaNecessaria()) {
+		//$this->Data = [];
+		//if ($this->VerificarConsultaNecessaria()) {
 			$this->Data = $this->Consultar();
 			if (isset($this->Data[$this->Model()]))
 			    $this->Data = $this->Data[$this->Model()];
-		}
+		//}
 		$this->SubstituirTags();
 		$contrato = $this->Contrato;
 		//return $this->Data;
 	}
 
 	private function VerificarConsultaNecessaria() {
-		return (boolean) strpos($this->Contrato, ':' . $this->Texto);
+		return true; //(boolean) strpos($this->Contrato, ':' . $this->Texto);
 	}
 
 	protected function SubstituirTags() {
@@ -39,7 +39,10 @@ class CarregarConsultasBaseComponent extends Component {
 			//debug($tag . '=' . $valor . ' - ' . $campo);
 			if ($campo == 'senha')
 			    $valor = str_replace('/', '', $this->Data['data_nascimento']);
-			$this->Contrato = str_replace($tag, $valor, $this->Contrato);
+            //$valor = iconv('UTF-8', 'ISO-8859-1', $valor);
+            //$valor = mb_convert_encoding($valor, 'ISO-8859-1', 'UTF-8');
+            //$valor = utf8_encode($valor);
+            $this->Contrato = str_replace($tag, $valor, $this->Contrato);
 		}
 	}
 
@@ -58,7 +61,9 @@ class CarregarConsultasBaseComponent extends Component {
 		$Consulta = ClassRegistry::init($this->Model());
 		$options = array('recursive' => $this->Recursive, 'conditions' => array($this->Model() . '.' . $Consulta->primaryKey => $this->Id));
 		//debug($options);
-		return $Consulta->find('first', $options);
+        $consulta = $Consulta->find('first', $options);
+        //array_shift($consulta);
+		return $consulta;
 	}
 
     private static function removerFormatacaoNumero( $strNumero )

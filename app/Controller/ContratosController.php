@@ -41,7 +41,7 @@ class ContratosController extends AppController {
             //header('Content-Disposition: inline, filename=Contrato.rtf');
 
             $contrato = $this->GeraContrato->Gerar();
-            
+
             $caminho = 'arqs/';
             if (isset($data['Contrato']['aluno_id'])) 
                 $arquivo = $data['Contrato']['aluno_id'] . ' - ' . $data['Contrato']['modelo'];

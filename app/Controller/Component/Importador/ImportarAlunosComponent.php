@@ -24,7 +24,7 @@ class ImportarAlunosComponent extends ImportadorBaseComponent {
 		$dados['email'] = $this->FormatarValorEncode($parametro['ALUEMAIL']);
 		$dados['email_alt'] = $this->FormatarValorEncode($parametro['ALUEMAILALT']);
 		$dados['cpf'] = $this->FormatarValorEncode($parametro['ALUCPF']);
-		$dados['rg'] = $this->FormatarValorEncode($parametro['ALUIDENTIDADE']);
+		$dados['identidade'] = $this->FormatarValorEncode($parametro['ALUIDENTIDADE']);
 		$dados['emitir_carteirinha'] = $this->FormatarValorEncode($parametro['ALUCARTEIRA']);
 		$dados['nacionalidade'] = $this->FormatarValorEncode($parametro['ALUNACIONALIDADE']);
 		$dados['data_nascimento'] = $parametro['ALUNASCIMENTO'];
