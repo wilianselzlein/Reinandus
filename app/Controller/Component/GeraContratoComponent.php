@@ -59,6 +59,9 @@ class GeraContratoComponent extends Component {
 		$IsSetData1 = isset($this->Data['data1']);
 		$IsSetData2 = isset($this->Data['data2']);
 		$IsSetData3 = isset($this->Data['data3']);
+		$IsSetData4 = isset($this->Data['data4']);
+		$IsSetData5 = isset($this->Data['data5']);
+		$IsSetData6 = isset($this->Data['data6']);
 
 		$this->CorrigirParametrosNumericos();
 		
@@ -105,6 +108,12 @@ class GeraContratoComponent extends Component {
 			$contrato = str_replace(':data2', $this->Data['data2'], $contrato);
 		if ($IsSetData3)
 			$contrato = str_replace(':data3', $this->Data['data3'], $contrato);
+		if ($IsSetData4)
+			$contrato = str_replace(':data4', $this->Data['data4'], $contrato);
+		if ($IsSetData5)
+			$contrato = str_replace(':data5', $this->Data['data5'], $contrato);
+		if ($IsSetData6)
+			$contrato = str_replace(':data6', $this->Data['data6'], $contrato);
 
 		$contrato = str_replace(':data', CakeTime::i18nFormat(date('m/d/Y'), '%d de %B de %Y'), $contrato);
 	}

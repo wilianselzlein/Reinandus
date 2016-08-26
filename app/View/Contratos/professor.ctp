@@ -38,6 +38,18 @@
      array('class' => 'form-control datepicker-start', 'label'=>array('text' => 'Terceira Aula', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
 </div><!-- .form-group -->
 <div class="form-group">
+<?php echo $this->Form->input('data4', 
+     array('class' => 'form-control datepicker-start', 'label'=>array('text' => 'Quarta Aula', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+</div><!-- .form-group -->
+<div class="form-group">
+<?php echo $this->Form->input('data5', 
+     array('class' => 'form-control datepicker-start', 'label'=>array('text' => 'Quinta Aula', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+</div><!-- .form-group -->
+<div class="form-group">
+<?php echo $this->Form->input('data6', 
+     array('class' => 'form-control datepicker-start', 'label'=>array('text' => 'Sexta Aula', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+</div><!-- .form-group -->
+<div class="form-group">
 <?php 
 $modelos = $this->Contratos->PegarArquivosDeModelos('Professor');
 echo $this->Form->input('modelo', array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>', 'options' => $modelos));

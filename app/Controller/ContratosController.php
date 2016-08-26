@@ -30,7 +30,7 @@ class ContratosController extends AppController {
         //$this->layout = false; 
         $data = $this->request->data;
 
-        if ($aluno_id == null) {
+        if (($aluno_id == null) && (isset($data['Contrato']['aluno_id']))) {
             $aluno_id = $data['Contrato']['aluno_id'];
         }
 
