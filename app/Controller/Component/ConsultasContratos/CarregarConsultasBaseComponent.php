@@ -39,9 +39,20 @@ class CarregarConsultasBaseComponent extends Component {
 			//debug($tag . '=' . $valor . ' - ' . $campo);
 			if ($campo == 'senha')
 			    $valor = str_replace('/', '', $this->Data['data_nascimento']);
+            
+            ini_set('default_charset', 'UTF-8');
+            
             //$valor = iconv('UTF-8', 'ISO-8859-1', $valor);
             //$valor = mb_convert_encoding($valor, 'ISO-8859-1', 'UTF-8');
             //$valor = utf8_encode($valor);
+            //$valor = utf8_decode($valor);
+            //$valor = $this->my_ucwords($valor);
+            //$valor = mb_convert_encoding($valor, 'UTF-8');
+
+            $valor = mb_convert_encoding($valor, 'HTML-ENTITIES', 'UTF-8');
+            $valor = html_entity_decode($valor, ENT_COMPAT, 'UTF-8');
+            //debug($valor);
+            
             $this->Contrato = str_replace($tag, $valor, $this->Contrato);
 		}
 	}
@@ -181,8 +192,51 @@ class CarregarConsultasBaseComponent extends Component {
         return($rt ? trim( $rt ) : "zero");
  
     }
+    
+    function my_ucwords($str) {
+        mb_internal_encoding('UTF-8');
+        $string = $str;
+        return $this->ucwords_specific( mb_strtolower($string, 'UTF-8'), "-'");
+    }
+
+    function ucwords_specific ($string, $delimiters = '', $encoding = NULL) {
+        if ($encoding === NULL) { 
+            $encoding = mb_internal_encoding();
+        }
+        
+        if (is_string($delimiters)) {
+            $delimiters = str_split( str_replace(' ', '', $delimiters));
+        }
+        
+        $delimiters_pattern1 = array();
+        $delimiters_replace1 = array();
+        $delimiters_pattern2 = array();
+        $delimiters_replace2 = array();
+        foreach ($delimiters as $delimiter) {
+            $uniqid = uniqid();
+            $delimiters_pattern1[] = '/'. preg_quote($delimiter) .'/';
+            $delimiters_replace1[] = $delimiter.$uniqid.' ';
+            $delimiters_pattern2[] = '/'. preg_quote($delimiter.$uniqid.' ') .'/';
+            $delimiters_replace2[] = $delimiter;
+        }
+        
+        // $return_string = mb_strtolower($string, $encoding);
+        $return_string = $string;
+        $return_string = preg_replace($delimiters_pattern1, $delimiters_replace1, $return_string);
+        
+        $words = explode(' ', $return_string);
+        
+        foreach ($words as $index => $word) {
+            $words[$index] = mb_strtoupper(mb_substr($word, 0, 1, $encoding), $encoding).mb_substr($word, 1, mb_strlen($word, $encoding), $encoding);
+        }
+        
+        $return_string = implode(' ', $words);
+        
+        $return_string = preg_replace($delimiters_pattern2, $delimiters_replace2, $return_string);
+        
+        return $return_string;
+    }
+
 }
 
 ?>
-
-

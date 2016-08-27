@@ -11,7 +11,6 @@ class ConsultarAlunoComponent extends CarregarConsultasBaseComponent {
 		$this->Contrato = str_replace(':aluno_identidade', $this->Data['identidade'], $this->Contrato);
 
 		parent::SubstituirTags();
-
 	}
 
 }
