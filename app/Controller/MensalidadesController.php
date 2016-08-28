@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('CakeTime', 'Utility');
 App::import('Controller/Component/ConsultasContratos', 
 	array('CarregarConsultasBaseComponent'));
 /**

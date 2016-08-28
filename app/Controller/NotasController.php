@@ -23,8 +23,11 @@ class NotasController extends AppController {
  */
 	public function index() {
 		$cursos = $this->Nota->Curso->findAsCombo();
+		array_shift($cursos);
 		$disciplinas = $this->Nota->Disciplina->findAsCombo();
+		array_shift($disciplinas);
 		$professores = $this->Nota->Professor->findAsCombo();
+		array_shift($professores);
 		$this->set(compact('cursos', 'disciplinas', 'professores'));
 	}
 

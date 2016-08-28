@@ -39,8 +39,7 @@
 <br>
 <br>
 Referente a pagamento número <?php echo $mensalidade['Mensalidade']['numero']; ?> 
-do mês de <?php echo __($this->Time->i18nFormat(date('m/d/Y'), '%B')); ?> de 
-<?php echo date('Y'); ?>.
+do mês de <?php echo __($this->Time->i18nFormat(date('Y-m-d', strtotime(str_replace("/", "-", $mensalidade['Mensalidade']['vencimento']))), '%B de %Y')); ?>.
 <br>
 <br>
 Valor:&nbsp;<?php echo $this->Number->currency($mensalidade['Mensalidade']['valor'],'BRL'); ?>

@@ -35,7 +35,9 @@ class GeraContratoComponent extends Component {
 		}
 		if (isset($this->Data['professor_id'])) {
         	$Professor = new CarregarConsultasBaseComponent($s, $this->Data['professor_id'], 'professor');  //new ComponentCollection()
-	
+
+			$Disciplina = new CarregarConsultasBaseComponent($s, $this->Data['disciplina_id'], 'disciplina');
+
 	        if ($Professor->PegarValorCampo('id') > 0) {
 	        	$Cidade = new CarregarConsultasBaseComponent($s, $Professor->PegarValorCampo('cidade_id'), 'cidade');
 				$Estado = new CarregarConsultasBaseComponent($s, $Cidade->PegarValorCampo('estado_id'), 'estado');
@@ -56,12 +58,7 @@ class GeraContratoComponent extends Component {
 		$IsSetVncto = isset($this->Data['vencimento']);
 		$IsSetVlAul = isset($this->Data['valor_aula']);
 		$IsSetHoras = isset($this->Data['horas_aula']);
-		$IsSetData1 = isset($this->Data['data1']);
-		$IsSetData2 = isset($this->Data['data2']);
-		$IsSetData3 = isset($this->Data['data3']);
-		$IsSetData4 = isset($this->Data['data4']);
-		$IsSetData5 = isset($this->Data['data5']);
-		$IsSetData6 = isset($this->Data['data6']);
+		$IsSetDatas = isset($this->Data['datas']);
 
 		$this->CorrigirParametrosNumericos();
 		
@@ -97,23 +94,12 @@ class GeraContratoComponent extends Component {
 			$contrato = str_replace(':extensovalor', CarregarConsultasBaseComponent::ValorPorExtenso($this->Data['valor_aula'] * 1), $contrato);
 		}
 
-		//disciplina
 		if ($IsSetHoras) {
 			$contrato = str_replace(':ha', $this->Data['horas_aula'], $contrato);
 			$contrato = str_replace(':extensoha', CarregarConsultasBaseComponent::ValorPorExtenso($this->Data['horas_aula'], false), $contrato);
 		}
-		if ($IsSetData1)
-			$contrato = str_replace(':data1', $this->Data['data1'], $contrato);
-		if ($IsSetData2)
-			$contrato = str_replace(':data2', $this->Data['data2'], $contrato);
-		if ($IsSetData3)
-			$contrato = str_replace(':data3', $this->Data['data3'], $contrato);
-		if ($IsSetData4)
-			$contrato = str_replace(':data4', $this->Data['data4'], $contrato);
-		if ($IsSetData5)
-			$contrato = str_replace(':data5', $this->Data['data5'], $contrato);
-		if ($IsSetData6)
-			$contrato = str_replace(':data6', $this->Data['data6'], $contrato);
+		if ($IsSetDatas)
+			$contrato = str_replace(':datas', $this->Data['datas'], $contrato);
 
 		$contrato = str_replace(':data', CakeTime::i18nFormat(date('m/d/Y'), '%d de %B de %Y'), $contrato);
 	}

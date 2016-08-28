@@ -26,28 +26,8 @@
      array('class' => 'form-control currency', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false,'wrap'=>false, 'between'=>'<div class="col-sm-10"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div></div>')); ?>
 </div><!-- .form-group -->
 <div class="form-group">
-<?php echo $this->Form->input('data1', 
-     array('class' => 'form-control datepicker-start', 'label'=>array('text' => 'Primeira Aula', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
-</div><!-- .form-group -->
-<div class="form-group">
-<?php echo $this->Form->input('data2', 
-     array('class' => 'form-control datepicker-start', 'label'=>array('text' => 'Segunda Aula', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
-</div><!-- .form-group -->
-<div class="form-group">
-<?php echo $this->Form->input('data3', 
-     array('class' => 'form-control datepicker-start', 'label'=>array('text' => 'Terceira Aula', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
-</div><!-- .form-group -->
-<div class="form-group">
-<?php echo $this->Form->input('data4', 
-     array('class' => 'form-control datepicker-start', 'label'=>array('text' => 'Quarta Aula', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
-</div><!-- .form-group -->
-<div class="form-group">
-<?php echo $this->Form->input('data5', 
-     array('class' => 'form-control datepicker-start', 'label'=>array('text' => 'Quinta Aula', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
-</div><!-- .form-group -->
-<div class="form-group">
-<?php echo $this->Form->input('data6', 
-     array('class' => 'form-control datepicker-start', 'label'=>array('text' => 'Sexta Aula', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+<?php echo $this->Form->input('datas', 
+     array('class' => 'form-control', 'label'=>array('text' => 'Data(s)', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
 </div><!-- .form-group -->
 <div class="form-group">
 <?php 

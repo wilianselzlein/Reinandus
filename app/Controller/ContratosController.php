@@ -48,6 +48,9 @@ class ContratosController extends AppController {
             else
                 $arquivo = $data['Contrato']['professor_id'] . ' - ' . $data['Contrato']['modelo'];
 
+            if (file_exists($caminho . $arquivo))
+                unlink($caminho . $arquivo);
+
             $fp = fopen($caminho . $arquivo, 'a');
             if (! $fp) { //if (!is_writable($tempfile)) {
                 throw new Exception(__('PERMISSAO_ARQ'));
