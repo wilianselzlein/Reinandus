@@ -409,4 +409,38 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 		return $disciplinas;
    }
 
+/**
+ * ConsultarDetalhes method
+ *
+ * @param int $id
+ * @return void
+ */
+   public function Trocar() {
+		
+		if ($this->request->is('post') || $this->request->is('put')) {
+			
+			$de = $this->request->data['Aluno']['de'];
+			$para = $this->request->data['Aluno']['para'];
+			
+			//$this->Aluno->id = $de;
+			if (! $this->Aluno->exists($de)) {
+				$this->Session->setFlash(__("Aluno $de não existe"), 'flash/error');
+				$this->redirect($this->referer());
+			}
+			
+			//$this->Aluno->id = $para;
+			if ($this->Aluno->exists($para)) {
+				$this->Session->setFlash(__("Aluno $para já existe."), "flash/linked/error",
+				array("link_text" => __('GO_TO'), "link_url" => array("action" => "view", $para)));
+
+				$this->redirect($this->referer());
+			}
+			
+			$sql = "update aluno set id = $para where id = $de";
+			$this->Aluno->query($sql);
+
+			$this->Session->setFlash(__("Código do aluno alterado de $de para $para."), 'flash/success');
+			$this->redirect(array('action' => 'view', $para));
+		}	
+   }
 }
