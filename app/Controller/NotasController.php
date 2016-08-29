@@ -49,7 +49,7 @@ class NotasController extends AppController {
 				'AlunoDisciplina.nota', 'AlunoDisciplina.horas_aula', 'AlunoDisciplina.data', 'Aluno.id', 'Aluno.nome', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome')));
 
 		$professores = $this->Nota->Professor->findAsCombo();
-		$this->set(compact('notas', 'professores'));
+		$this->set(compact('notas', 'professores', 'professor', 'cursos', 'disciplinas'));
 	}
 
 /**

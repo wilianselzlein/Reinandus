@@ -6,6 +6,12 @@
          <?php echo $this->ButtonsActions->MakeButtons('Alunos', 'index'); ?>
       </h3>
    </div>
+   
+   <ul class="list-group">
+     <li class="list-group-item">Professor:&nbsp;<?php echo $professor; ?></li>
+     <li class="list-group-item">Curso(s):&nbsp;<?php echo implode(",", $cursos); ?></li>
+     <li class="list-group-item">Disciplina(s):&nbsp;<?php echo implode(",", $disciplinas); ?></li>
+   </ul>
 
    <div class="panel-body">
       <?php echo $this->Form->create('Notas', array('role' => 'form', 'class'=>'form-horizontal', 'action' => 'gravar')); ?>
