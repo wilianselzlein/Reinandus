@@ -22,12 +22,12 @@
 		               <?php echo $this->Form->input('Disciplina',array('multiple' => 'checkbox', 'class' => 'col-sm-10', 'label'=>array('text' => 'Disciplinas', 'class'=>'col-sm-1 control-label'), 'div'=>true, 'between'=>'<div class="	">', 'after'=>'</div>')
 		                                            );?>
 		            </div><!-- .form-group -->
-					<div class="form-group">
+					<?php /*<div class="form-group">
 						<?php echo $this->Form->input('professor_id', 
 				array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-1 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 				); ?>
 					</div><!-- .form-group -->
-					
+					*/ ?>
 					<?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Consultar'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
 
 				</fieldset>

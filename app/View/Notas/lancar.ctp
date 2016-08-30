@@ -8,7 +8,7 @@
    </div>
    
    <ul class="list-group">
-     <li class="list-group-item">Professor:&nbsp;<?php echo $professor; ?></li>
+     <?php // <li class="list-group-item">Professor:&nbsp; echo $professor; </li> ?>
      <li class="list-group-item">Curso(s):&nbsp;<?php echo implode(",", $cursos); ?></li>
      <li class="list-group-item">Disciplina(s):&nbsp;<?php echo implode(",", $disciplinas); ?></li>
    </ul>
