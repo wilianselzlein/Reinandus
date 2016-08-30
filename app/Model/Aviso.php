@@ -131,8 +131,15 @@ public function beforeSave($options = array())
      * @param Array $imagem
      * @param String $data
     */ 
-    public function upload($imagem = array(), $dir = 'arqs')
-    {
+    public function upload($imagem = array(), $dir = 'arqs')  {
+
+		/*
+		ini_set('upload_max_filesize', '200M');
+		ini_set('post_max_size', '200M');
+		ini_set('max_input_time', 300);
+		ini_set('max_execution_time', 300);
+		*/
+
         $dir = WWW_ROOT.$dir.DS;
  
         if(($imagem['error']!=0) and ($imagem['size']==0)) {
