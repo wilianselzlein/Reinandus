@@ -70,5 +70,32 @@ $table->addCount(count($mensalidade_aberto_aluno));
 $table->close();
 $html .= $table;
 
+$html .= '<br><br>';
+
+$tableMail = new Table();
+
+$rowHeaderMail = new Row('header');
+$rowHeaderMail
+  ->addColumn('Emails', 'col-100')
+  ->close();
+$tableMail->addRow($rowHeaderMail);
+
+for ($index = 0; $index < count($mensalidade_aberto_aluno); $index++) {
+   $even_class = $index % 2 == 0 ? ' highlighted' : '';
+
+   $rowDataMail = new Row(''.$even_class);
+   $rowDataMail
+      ->addColumn(
+        $mensalidade_aberto_aluno[$index]['aluno']['email'] . ' ' .
+        $mensalidade_aberto_aluno[$index]['aluno']['emailalt'], 'col-100')
+      ->close();
+    $tableMail->addRow($rowDataMail);
+
+}
+
+$tableMail->close();
+$html .= $tableMail;
+
 $relatorio_pdf->html = $html;
 $relatorio_pdf->Imprimir();
+
