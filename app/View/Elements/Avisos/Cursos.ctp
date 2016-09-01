@@ -27,13 +27,29 @@
 			</thead>
 			<tbody>
 				<?php foreach ($array as $avisocurso): ?>
-				<tr>
-					<td><?php echo $avisocurso['AvisoCurso']['id']; ?></td>
-					<td><?php echo $this->Html->link($avisocurso['nome'], array('controller' => 'cursos', 'action' => 'view', $avisocurso['AvisoCurso']['curso_id']), array('class' => '')); ?>
+				<?php $id = $avisocurso['AvisoCurso']['id']; ?>
+				<tr id="post<?php echo $id; ?>">
+					<td><?php echo $id; ?></td>
+					<td><?php echo $this->Html->link($avisocurso['nome'], array('controller' => 'cursos', 'action' => 'view', $id), array('class' => '')); ?>
 						&nbsp;
 					</td>
 					<td class="actions text-center">
-						<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'aviso_cursos', 'action' => 'delete', $avisocurso['AvisoCurso']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $avisocurso['AvisoCurso']	['id'])); ?>
+						<?php
+                			$nome = 'delete';																																	
+							echo $this->Ajax->link('<i class="fa fa-times"></i>', 
+	    						array('controller' => 'aviso_cursos', 'action' => $nome, $id), 
+		    					array('id' => $nome . 'jx' . $id, 
+		    							//'update' => 'post' . $id, 
+		    							'indicator' => 'loading',
+		    							'class' => 'btn btn-default btn-xs', 'escape'=> false, 
+		    							'confirm' => 'Confirma exclusao?',
+		    							'title'=>__('Delete'), 'data-toggle'=>'tooltip',
+		    							'before' => '$("#carregador_pai").css("display", "block").css("visibility", "visible")',
+		    							'complete' => 
+		    								 '$("#carregador_pai").css("display", "none").css("visibility", "hidden");
+						    				  $("#post' . $id . '").css("display", "none");')
+	    						);
+                    ?>
 					</td>
 				</tr>
 				<?php endforeach; ?>
