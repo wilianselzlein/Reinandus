@@ -46,7 +46,8 @@ class NotasController extends AppController {
 		$notas = $this->Nota->AlunoDisciplina->find('all', array('recursive' => false, 'conditions' =>
 			array(/*'AlunoDisciplina.professor_id' => $professor,*/ 'Aluno.curso_id' => $cursos, 'AlunoDisciplina.disciplina_id' => $disciplinas),
 			'fields' => array('AlunoDisciplina.id', 'AlunoDisciplina.aluno_id', 'AlunoDisciplina.disciplina_id', 'AlunoDisciplina.professor_id', 'AlunoDisciplina.frequencia', 
-				'AlunoDisciplina.nota', 'AlunoDisciplina.horas_aula', 'AlunoDisciplina.data', 'Aluno.id', 'Aluno.nome', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome')));
+				'AlunoDisciplina.nota', 'AlunoDisciplina.horas_aula', 'AlunoDisciplina.data', 'Aluno.id', 'Aluno.nome', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'),
+				'order' => array('Aluno.Nome')));
 
 		$professores = $this->Nota->Professor->findAsCombo();
 		$this->set(compact('notas', 'professores', 'cursos', 'disciplinas')); //'professor',
