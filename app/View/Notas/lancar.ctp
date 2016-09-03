@@ -9,6 +9,7 @@
    
    <ul class="list-group">
      <?php // <li class="list-group-item">Professor:&nbsp; echo $professor; </li> ?>
+     <li class="list-group-item">Apenas alunos ativos.</li>
      <li class="list-group-item">Curso(s):&nbsp;<?php echo implode(",", $cursos); ?></li>
      <li class="list-group-item">Disciplina(s):&nbsp;<?php echo implode(",", $disciplinas); ?></li>
    </ul>

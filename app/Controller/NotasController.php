@@ -43,8 +43,10 @@ class NotasController extends AppController {
 		$cursos = $data['Curso'];
 		$disciplinas = $data['Disciplina'];
 
+		$ativos_id = 8;
+
 		$notas = $this->Nota->AlunoDisciplina->find('all', array('recursive' => false, 'conditions' =>
-			array(/*'AlunoDisciplina.professor_id' => $professor,*/ 'Aluno.curso_id' => $cursos, 'AlunoDisciplina.disciplina_id' => $disciplinas),
+			array(/*'AlunoDisciplina.professor_id' => $professor,*/ 'Aluno.curso_id' => $cursos, 'AlunoDisciplina.disciplina_id' => $disciplinas, 'Aluno.situacao_id' => $ativos_id),
 			'fields' => array('AlunoDisciplina.id', 'AlunoDisciplina.aluno_id', 'AlunoDisciplina.disciplina_id', 'AlunoDisciplina.professor_id', 'AlunoDisciplina.frequencia', 
 				'AlunoDisciplina.nota', 'AlunoDisciplina.horas_aula', 'AlunoDisciplina.data', 'Aluno.id', 'Aluno.nome', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'),
 				'order' => array('Aluno.Nome')));

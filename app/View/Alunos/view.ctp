@@ -113,7 +113,7 @@ else
  */ ?>
    <?php echo $this->element('Relateds/Disciplinas', array('array' => $disciplinas, 'model' => 'AlunoDisciplina', 'controller' => 'aluno_disciplinas', 'aluno' => true));?>
    <?php echo $this->element('Relateds/Mensalidades', array('array' => $mensalidades)); ?>
-   <?php echo $this->element('Relateds/Detalhes', array('array' => $detalhes)); ?>
+   <?php echo $this->element('Relateds/Detalhes', array('array' => $detalhes, 'aluno' => $aluno['Aluno']['id'])); ?>
 	<div class="panel-footer">
 	      <h3><?php echo __('Acessos').' ' ?> 
 	         <small><?php echo __('do aluno') ?></small>

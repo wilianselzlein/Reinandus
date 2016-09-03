@@ -6,7 +6,7 @@
            <?php echo __('Actions'); ?> <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">  
-           <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '.__('Detalhe'), array('controller' => 'detalhes', 'action' => 'add', $detalhes[0]['Detalhe']['aluno_id']), array('escape'=>false)); ?>   </li>
+           <li><?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New')  .' '.__('Detalhe'), array('controller' => 'detalhes', 'action' => 'add', (isset($aluno) ? $aluno : $detalhes[0]['Detalhe']['aluno_id'])), array('escape'=>false)); ?>   </li>
            <?php if (! empty($detalhes[0])): ?>
            <li><?php echo $this->Html->link('<i class="fa fa-list-alt"></i>'.' '   .__('Edit') .' '.__('Detalhe'), array('controller' => 'detalhes', 'action' => 'edit', $detalhes[0]['Detalhe']['id']), array('escape'=>false)); ?>   </li>
            <li>

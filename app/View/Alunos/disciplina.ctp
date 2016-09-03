@@ -21,9 +21,12 @@
 			<?php echo $this->Html->link('<i class="fa fa-graduation-cap"></i>', array('controller' => 'aluno_disciplinas', 'action' => 'adddocurso', $aluno_id), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Add Disciplinas do Curso'), 'data-toggle'=>'tooltip')); ?>
 		</th>
 	</tr>
-	<?php foreach($disciplina AS $AlunoDisciplina): ?>
-	<tr>
-		<td><?php echo h($AlunoDisciplina['Disciplina']['id']); ?>&nbsp;</td>
+	<?php 
+		foreach($disciplina AS $AlunoDisciplina): 
+		$id = $AlunoDisciplina['AlunoDisciplina']['id'];
+	?>
+	<tr id="disciplina<?php echo $id; ?>">
+		<td><?php echo h($id); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($AlunoDisciplina['Disciplina']['nome'], array('controller' => 'disciplinas', 'action' => 'view', $AlunoDisciplina['Disciplina']['id'])); ?>
 		</td>
@@ -35,8 +38,9 @@
 		<td><?php echo h($AlunoDisciplina['AlunoDisciplina']['horas_aula']); ?>&nbsp;</td>
 		<td><?php echo h($AlunoDisciplina['AlunoDisciplina']['data']); ?>&nbsp;</td>
 		<td width="10%">
-			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('controller' => 'aluno_disciplinas', 'action' => 'edit', $AlunoDisciplina['AlunoDisciplina']['id'], 'modal'), array('class' => 'btn btn-default btn-xs','escape'=>false, 'data-toggle'=>'modal', 'data-target'=>'#modal-dialog', 'title'=>__('Edit'))); ?>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'aluno_disciplinas', 'action' => 'delete', $AlunoDisciplina['AlunoDisciplina']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $AlunoDisciplina['AlunoDisciplina']['id'])); ?>
+			<?php echo $this->Html->link('<i class="fa fa-pencil"></i>', array('controller' => 'aluno_disciplinas', 'action' => 'edit', $id, 'modal'), array('class' => 'btn btn-default btn-xs','escape'=>false, 'data-toggle'=>'modal', 'data-target'=>'#modal-dialog', 'title'=>__('Edit'))); ?>
+			<?php echo $this->element('BotaoDeleteAjax', 
+				array("controller" => "aluno_disciplinas", "nome" => "disciplina", "id" => $id)); ?>
 		</td>
 	</tr>
 	<?php endforeach; ?>

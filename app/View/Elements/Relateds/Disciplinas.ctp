@@ -51,7 +51,7 @@
             </thead>
             <tbody>
                <?php foreach ($array[$model] as $disciplina): ?>
-               <tr>
+               <tr id="<?php echo $controller . $disciplina['id']; ?>">
                   <td><?php echo $disciplina['id']; ?></td>
                   <td><?php echo $this->DisplayField->MakeLink($disciplina, 'disciplinas', 'id'); ?></td>
                   <td><?php echo $this->DisplayField->MakeLink($disciplina, 'professores', 'professor_id'); ?></td>
@@ -67,14 +67,12 @@
                      <td><?php echo $disciplina['nota']; ?></td>
                      <td><?php echo $disciplina['data']; ?></td>
                   <?php } ?>
-                  <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $disciplina, 'model' => '', 'controller' => $controller)); ?>
+                  <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $disciplina, 'model' => '', 'controller' => $controller, 'DeleteAjax' => 'true')); ?>
                </tr>
                <?php endforeach; ?>
             </tbody>
          </table><!-- /.table table-striped table-bordered -->
       </div><!-- /.table-responsive -->
-
       <?php endif; ?>
-
    </div><!-- /.related -->
 </div>
