@@ -38,6 +38,8 @@ class NotasController extends AppController {
  */
 	public function lancar() {
 		$data = $this->request->data;
+		if (! isset($data['Nota']))
+			$this->redirect(array('action' => 'index'));
 		$data = $data['Nota'];
 		//$professor = $data['professor_id'];
 		$cursos = $data['Curso'];
