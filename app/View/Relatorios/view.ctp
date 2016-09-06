@@ -95,6 +95,8 @@
 													<th><?php echo __('Campo'); ?></th>
 													<th><?php echo __('campo_alias'); ?></th>
 													<th><?php echo __('tipo_filtro'); ?></th>
+													<th><?php echo __('modelo'); ?></th>
+													<th><?php echo __('is_obrigatorio', 'Obrigatório'); ?></th>
 													<th class="actions"><?php echo __('Actions'); ?></th>
 												</tr>
 											</thead>
@@ -105,6 +107,8 @@
 													<td><?php echo $filtro['campo']; ?></td>
 													<td><?php echo $filtro['campo_alias']; ?></td>
 													<td><?php echo $this->DisplayField->MakeLink($filtro, 'enumerados', 'tipo_filtro'); ?></td>
+													<td><?php echo $filtro['modelo']; ?></td>
+													<td><i class="<?php echo ($filtro['is_obrigatorio'] == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;</td>
 													<td class="actions">
 														<?php echo $this->Html->link(__('View'), array('controller' => 'RelatorioFiltros', 'action' => 'view', $filtro['id']), array('class' => 'btn btn-default btn-xs')); ?>
 														<?php echo $this->Html->link(__('Edit'), array('controller' => 'RelatorioFiltros', 'action' => 'edit', $filtro['id']), array('class' => 'btn btn-default btn-xs')); ?>
