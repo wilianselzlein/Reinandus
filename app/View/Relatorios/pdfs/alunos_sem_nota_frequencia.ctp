@@ -4,6 +4,7 @@ App::import('Vendor', 'PeDF/Table');
 App::import('Vendor','tcpdf/modelos/RelatorioPDF'); 
 $relatorio_pdf = new RelatorioPDF('L', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $relatorio_pdf->setTitulo('Relatório de Alunos S/ Nota e Frequência');
+$relatorio_pdf->setFiltros($filtros);
 $html = $relatorio_pdf->html;
 //debug($aluno_disciplinas);
 $table = new Table();

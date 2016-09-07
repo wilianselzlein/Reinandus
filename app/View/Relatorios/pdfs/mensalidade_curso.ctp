@@ -4,6 +4,7 @@ App::import('Vendor', 'PeDF/Table');
 App::import('Vendor', 'tcpdf/modelos/RelatorioPDF'); 
 $relatorio_pdf = new RelatorioPDF('L', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $relatorio_pdf->setTitulo('Relatório de Mensalidade/Curso');
+$relatorio_pdf->setFiltros($filtros);
 $html = $relatorio_pdf->html;
 
 $table = new Table();
@@ -14,10 +15,10 @@ $rowHeader = new Row('header');
       ->addColumn('Valor', 'col-10')
       ->addColumn('Pago', 'col-10')
       ->addColumn('Acrés.', 'col-10')
-      ->addColumn('Desc.', 'col-10')         
-      ->addColumn('Bolsa', 'col-10')  
-      ->addColumn('Pagtos', 'col-10')
+      ->addColumn('Desc.', 'col-10')
+      ->addColumn('Bolsa', 'col-10')
       ->addColumn('Total', 'col-10')
+      ->addColumn('Pagtos', 'col-10')
       ->close();
 $table->addRow($rowHeader);
 

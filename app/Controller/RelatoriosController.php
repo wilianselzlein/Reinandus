@@ -372,9 +372,10 @@ class RelatoriosController extends AppController {
                     $isFiltro = $compositeKey[0];
                     //$tipoFiltro = $compositeKey[1];
                     //$campo = $compositeKey[2];
-
+                    
                     if ($isFiltro == 'Filtros')
-                        $filtros .= $compositeValue[0];
+                        $filtros .= implode("", $compositeValue);
+                    //debug($filtros); die;
                 }
             }
           }

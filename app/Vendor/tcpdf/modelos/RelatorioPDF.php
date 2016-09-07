@@ -373,7 +373,6 @@ EOD;
     }
 
    public function setFiltros($filtros){
-      
       $this->writeHTML('<h5>'.$filtros.'</h5>', true, false, true, false, 'C');
    }
 }
