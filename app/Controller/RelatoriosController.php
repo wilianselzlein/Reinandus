@@ -79,6 +79,7 @@ class RelatoriosController extends AppController {
    
     public function download($id = null){
        if ($this->request->is('post') || $this->request->is('put')) {
+
           $this->Relatorio->id = $id;
 		    if (!$this->Relatorio->exists($id)) {
 			   throw new NotFoundException(__('The record could not be found.'));
@@ -87,13 +88,14 @@ class RelatoriosController extends AppController {
           $options = array('recursive' => '2','conditions' => array('Relatorio.' . $this->Relatorio->primaryKey => $id));
           $relatorio = $this->Relatorio->find('first', $options);   
           $this->set(compact('relatorio'));
-	
+	      $filtros = '';
           foreach ($relatorio['RelatorioDataset'] as $dataset){                          
              $sql = $dataset['sql'];
              foreach ($dataset['RelatorioFiltro'] as $filtro){    
                $sql .= $this->appendFilters($filtro);
+               
              }
-
+             $filtros .= $this->PegarDescricaoFiltros();
              $sql .= ' ' . $dataset['order'];
              $queryResult = $this->Relatorio->query($sql); 
              
@@ -104,8 +106,9 @@ class RelatoriosController extends AppController {
              }
 
              $this->set($dataset['nome'], $queryResult);  
-             
+             $this->set('filtros', $filtros);
           }
+
           $this->layout = '/pdf/default';
           $this->render('/Relatorios/pdfs/'.$relatorio['Relatorio']['arquivo']);
        } else {
@@ -351,5 +354,31 @@ class RelatoriosController extends AppController {
         $permissoes = ClassRegistry::init('Permissao');
         return $permissoes->find('list', $options);
     }
+
+
+/**
+ * PegarDescricaoFiltros method
+ *
+ * @return string
+ */
+   function PegarDescricaoFiltros(){
+      $filtros = '';
+      if (isset($this->request->data)) {             
+            foreach ($this->request->data as $key => $value){
+               $originalValue = $value;
+               $compositeKey = explode(",", $key);
+               $compositeValue = explode(",", $value);
+                if (count($compositeKey) == 3) { 
+                    $isFiltro = $compositeKey[0];
+                    //$tipoFiltro = $compositeKey[1];
+                    //$campo = $compositeKey[2];
+
+                    if ($isFiltro == 'Filtros')
+                        $filtros .= $compositeValue[0];
+                }
+            }
+          }
+      return $filtros;
+   }
 
 }

@@ -242,7 +242,14 @@ $(document).ready(function() {
    }
 
    function draw_row(_values, _text, _filterId) {
-      var row = '<tr>' + '<td>' + _text + '<input id="' + _filterId + '" name="' + _filterId + '" type="hidden" value="' + _values + '">' + '</td>' + '<td><a href="#" class="fa fa-remove btn-del-row" ></a></td>' + '</tr>';
+      var row = 
+      '<tr>' + 
+         '<td>' + _text + 
+            '<input id="' + _filterId + '" name="' + _filterId + '" type="hidden" value="' + _values + '">' + 
+            '<input id="Filtros,' + _filterId + '" name="Filtros,' + _filterId +'" type="hidden" value="' + _text + '">' + 
+         '</td>' + 
+         '<td><a href="#" class="fa fa-remove btn-del-row" ></a></td>' + 
+      '</tr>';
       //row+= '<input id="' + _filterId + '" name="' + _filterId + '" type="hidden" value="' + _values + '">';
       return row;
    }

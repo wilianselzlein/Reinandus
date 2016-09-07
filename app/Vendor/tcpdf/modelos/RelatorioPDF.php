@@ -99,6 +99,7 @@ class RelatorioPDF extends TCPDF {
       $this->titulo = $titulo;
       $this->writeHTML('<h1>'.$titulo.'</h1>', true, false, true, false, 'C');
    }
+
    public function getTitulo(){
       return $this->titulo;
    }
@@ -371,4 +372,8 @@ EOD;
       return date('d',$data) . ' de ' . __(date('F', $data)) . ' de ' . date('Y', $data);
     }
 
+   public function setFiltros($filtros){
+      
+      $this->writeHTML('<h5>'.$filtros.'</h5>', true, false, true, false, 'C');
+   }
 }
