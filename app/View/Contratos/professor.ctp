@@ -23,7 +23,7 @@
 </div><!-- .form-group -->
 <div class="form-group">
 <?php echo $this->Form->input('valor_aula', 
-     array('class' => 'form-control currency', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false,'wrap'=>false, 'between'=>'<div class="col-sm-10"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div></div>')); ?>
+     array('class' => 'form-control currency', 'label'=>array('class'=>'col-sm-2 control-label', 'text' => 'Valor Módulo'), 'div'=>false,'wrap'=>false, 'between'=>'<div class="col-sm-10"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div></div>')); ?>
 </div><!-- .form-group -->
 <div class="form-group">
 <?php echo $this->Form->input('datas', 
