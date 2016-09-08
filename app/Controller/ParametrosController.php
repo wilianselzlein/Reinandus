@@ -193,4 +193,25 @@ class ParametrosController extends AppController {
 		}
  	}
 
+/**
+ * valor method
+ *
+ * @return void
+ */
+	public function valor() {
+		if (!empty($this->request->data)) {
+			$this->request->data['valor'] = $this->request->data['value'];
+			if ($this->Parametro->save($this->request->data)) {
+				//$thisId=$this->Parametro->id;
+				//debug($this->request->data); die;
+				$this->header("Content-Type: application/json");
+				echo $this->request->data['value'];
+				exit;
+			} else {
+				return 'Fail';
+			}
+		}
+		$this->Autorender = FALSE;
+		exit;
+	}
 }

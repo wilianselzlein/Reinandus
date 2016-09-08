@@ -17,11 +17,27 @@
 						</tr>
 					</thead>
 					<tbody>
-<?php foreach ($parametros as $parametro): ?>
+<?php foreach ($parametros as $parametro): $id = $parametro['Parametro']['id']; ?>
 	<tr>
-		<td><?php echo h($parametro['Parametro']['id']); ?>&nbsp;</td>
+		<td><?php echo h($id); ?>&nbsp;</td>
 		<td><?php echo h($parametro['Parametro']['nome']); ?>&nbsp;</td>
-		<td><?php echo h($parametro['Parametro']['valor']); ?>&nbsp;</td>
+		<td><div class="edit" id="valor<?php echo $id; ?>"><?php echo h($parametro['Parametro']['valor']); ?></div></td>
+			<?php
+			echo $this->Ajax->editor(
+			    "valor" . $id, 
+			    array( 
+				'controller' => 'Parametros', 
+				'action' => 'valor',
+			    ), 
+			    array(
+				'indicator' => '<img src="/Reinandus/img/carregando.gif">',
+				'submit' => '<img src="/Reinandus/img/test-pass-icon.png">',
+				'style' => 'inherit',
+				'submitdata' => array('id'=> h($id)),
+				'tooltip'   => 'Clique para editar'
+				)
+			);
+			?> 
 		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $parametro, 'model' => 'Parametro')); ?>
 	</tr>
 <?php endforeach; ?>
