@@ -47,6 +47,7 @@ $usuario_logado = $this->Session->read('Auth.User');
    echo $this->Html->script('libs/locales/bootstrap-datetimepicker.pt-BR');
    echo $this->Html->script('libs/locales/bootstrap-datepicker.pt-BR');
    echo $this->Html->script('libs/jquery.mask');
+   echo $this->Html->script('libs/jquery.jeditable.mini');
    echo $this->Html->script('libs/bootstrap-combobox');
    echo $this->Html->script('libs/datetimepicker');
    echo $this->Html->script('datetimepicker');

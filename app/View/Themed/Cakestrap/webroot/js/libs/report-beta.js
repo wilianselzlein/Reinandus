@@ -60,6 +60,7 @@ $(document).ready(function() {
          }
       });*/
    });
+   $(DYNAMIC_LIST).trigger("click");
    /* FILTERS => Selected */
    $(BUTTON_ADD).click(function() {
       var alert = '<div id="alert-formulario" class="alert alert-danger fade in" role="alert">' + '<button type="button" class="close" data-dismiss="alert">' + '<span aria-hidden="true">×</span><span class="sr-only">Close</span></button>' + '<strong>Este filtro já está adicionado.'

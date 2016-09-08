@@ -44,22 +44,12 @@
             <h2 class="panel-title"><?php echo __('Filtros Disponiveis:');?></h2>
          </div>
          <div class="panel-body">
-            <?php 
-
-//foreach ($relatorioFiltrosDisponiveis as $filtro){
-//   debug($filtro['RelatorioFiltro']['campo_alias']);
-//}
-//debug($relatorioFiltrosDisponiveis);
-            ?>
             <select id="dynamic-list" class="form-control">
-               <!--<php foreach ($relatorio['RelatorioDataset'] as $dataset): ?>-->
                <?php foreach ($relatorioFiltrosDisponiveis as $filtro): 
-$tipo = $filtro['RelatorioFiltro']['tipo_filtro'] - 50;
-$isObrigatorio = $filtro['RelatorioFiltro']['is_obrigatorio'] == '1' ? 'true' : 'false';
-$campoObrigatorioPrefix = $isObrigatorio == 'true' ? '* ' : '';
+                  $tipo = $filtro['RelatorioFiltro']['tipo_filtro'] - 50;
+                  $isObrigatorio = $filtro['RelatorioFiltro']['is_obrigatorio'] == '1' ? 'true' : 'false';
+                  $campoObrigatorioPrefix = $isObrigatorio == 'true' ? '* ' : '';
                ?>
-               <!--@foreach (var filtro in Model.RelatorioFiltro.ToList())
-{-->
                <option value='
                               <?php
                                  echo "{";
@@ -71,9 +61,8 @@ $campoObrigatorioPrefix = $isObrigatorio == 'true' ? '* ' : '';
                                  echo '"Obrigatorio":'.'"'.$isObrigatorio.'"'; 
                                  echo "}";
                               ?>'>
-                  <?php echo h($campoObrigatorioPrefix.$filtro['RelatorioFiltro']['campo_alias']); ?>
+                  <?php echo h($campoObrigatorioPrefix . $filtro['RelatorioFiltro']['campo_alias']); ?>
                </option>
-               <!--<php endforeach; ?>-->
                <?php endforeach; ?>
             </select>
             <br><i>Filtros com * são obrigatórios.</i>
@@ -102,16 +91,14 @@ $campoObrigatorioPrefix = $isObrigatorio == 'true' ? '* ' : '';
                   if(jQuery.inArray( _filtrosObrigatorios[i] , _filtrosSelecionados ) > -1){
                      //camposObrigatoriosPreenchidos = true;
                      //alert(_filtrosObrigatorios[i]);                  
-                  }
-                  else
-                  {
+                  } else {
                      camposObrigatoriosPreenchidos = false;
                   }
 
-                  if(!camposObrigatoriosPreenchidos){
+                  if (!camposObrigatoriosPreenchidos){
                      alert('Campos obrigatórios não preenchidos!');
                      return false;
-                  }else{
+                  } else {
                      //alert('Filtros Ok!');
                   }
                }               
@@ -156,14 +143,6 @@ $campoObrigatorioPrefix = $isObrigatorio == 'true' ? '* ' : '';
 <button type="submit" class="btn btn-default" formtarget="_blank">
    <i class="fa fa-eye"></i> Visualizar
 </button>
-<?php /*<div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <button type="submit" class="btn btn-default" formtarget="_blank">
-                <i class="glyphicon glyphicon-search"></i>Visualizar
-            </button>            
-        </div>
-        <br/>
-    </div>*/?>
 
 <?php echo $this->Form->end(); ?>
 <?php 

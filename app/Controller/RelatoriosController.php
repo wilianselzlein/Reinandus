@@ -73,7 +73,8 @@ class RelatoriosController extends AppController {
         }
         $this->set('relatorio', $relatorio);
         $this->set('relatorioFiltrosDisponiveis', 
-            $this->RelatorioFiltro->find('all', array('conditions' => array('Relatorio_id' => $id)))
+            $this->RelatorioFiltro->find('all', array('conditions' => array('Relatorio_id' => $id), 
+                'order' => array('is_obrigatorio desc', 'campo_alias')))
         );
     }
    
