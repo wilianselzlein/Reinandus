@@ -3,6 +3,7 @@
    <div class="panel-footer">
       <h3><?php echo __('Permissoes').' ' ?> 
          <small><?php echo __('Related') ?></small>
+         <span class="badge"><?php echo (isset($array['Permissao']) ? count($array['Permissao']) : '0'); ?></span>
          <div class="btn-group pull-right">
             <?php echo $this->element('MostraEsconde', array('mostra' => 'Mostrar', 'esconde' => 'Fechar', 'id' => $id)); ?>
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">

@@ -4,6 +4,7 @@
 <div class="panel-footer">
       <h3><?php echo __('RelatorioFiltro').' ' ?> 
          <small><?php echo __('Related') ?></small>
+         <span class="badge"><?php echo (isset($array[$model]) ? count($array[$model]) : '0'); ?></span>
          <div class="btn-group pull-right">
             <?php echo $this->element('MostraEsconde', array('mostra' => 'Mostrar', 'esconde' => 'Fechar', 'id' => $id)); ?>
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
