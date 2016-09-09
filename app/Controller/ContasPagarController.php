@@ -54,6 +54,8 @@ class ContasPagarController extends AppController {
 
 		$this->ContaPagar->recursive = 0;
 		$this->set('contaspagar', $this->paginate());
+		$permissao = ! $this->VerificarUsuarioRoleRoot();
+		$this->set('permissao', $permissao);
 	}
 
 /**
