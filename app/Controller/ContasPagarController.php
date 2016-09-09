@@ -351,4 +351,50 @@ ContaPagar.conta_corrente, ContaPagar.liberado, ContaPagar.formapgto_id, ContaPa
 		return $role_id == 1;
 	}
 
+
+/**
+ * liberar method
+ *
+ * @return void
+ */
+	public function liberar($id) {
+		$this->TrocarSituacao($id, true);
+	}
+
+/**
+ * bloquear method
+ *
+ * @return void
+ */
+	public function bloquear($id) {
+		$this->TrocarSituacao($id, false);
+	}
+
+
+/**
+ * TrocarSituacao method
+ * @param int $id
+ * @param boolean $liberado
+ * @return void
+ */
+	private function TrocarSituacao($id, $liberado) {
+		//debug($id); die;
+
+		$this->ContaPagar->id = $id;
+		if (!$this->ContaPagar->exists($id)) {
+			throw new NotFoundException(__('The record could not be found.'));
+		}
+		$data['ContaPagar']['id'] = $id;
+		$data['ContaPagar']['liberado'] = $liberado;
+		if ($this->ContaPagar->save($data)) {
+			$this->header("Content-Type: application/json");
+			//echo $id;
+			exit;
+		} else {
+			return 'Fail';
+		}
+		$this->Autorender = FALSE;
+		exit;
+	}
+
 }
