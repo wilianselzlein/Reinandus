@@ -40,8 +40,7 @@ class RelatorioPDF extends TCPDF {
 
    function Header() 
    { 
-      $class = ClassRegistry::init('Cabecalho');
-      $data = $class->find('first');
+      $data = $this->ConsultarCabecalho();
       //debug($data);
       /*
       $this->headerlogo = 'uploads/'.$data['Cabecalho']['logo'];
@@ -73,8 +72,7 @@ class RelatorioPDF extends TCPDF {
     */ 
    function Footer() 
    { 
-      $class = ClassRegistry::init('Cabecalho');
-      $data = $class->find('first');
+      $data = $this->ConsultarCabecalho();
       //$year = date('Y'); 
       //$footertext = sprintf($this->xfootertext, $year); 
       //$this->SetY(-20); 
@@ -93,9 +91,6 @@ class RelatorioPDF extends TCPDF {
    } 
 
    public function setTitulo($titulo){
-      $class = ClassRegistry::init('Cabecalho');
-      $data = $class->find('first');
-
       $this->titulo = $titulo;
       $this->writeHTML('<h1>'.$titulo.'</h1>', true, false, true, false, 'C');
    }
@@ -104,13 +99,18 @@ class RelatorioPDF extends TCPDF {
       return $this->titulo;
    }
 
-   public function configuraCabecalho(){
-      $class = ClassRegistry::init('Cabecalho');
-      $data = $class->find('first');
-      //debug($data);
-      $this->headerlogo = $data['Cabecalho']['logo'];
-      $this->headertext = $data['Cabecalho']['cabecalho'];
+   private function ConsultarCabecalho(){
 
+      $cabecalho = CakeSession::read('Relatorios.Cabecalho');
+      
+      if ($cabecalho == null) {
+        $class = ClassRegistry::init('Cabecalho');
+        $cabecalho = $class->find('first');
+        $cabecalho = serialize($cabecalho);
+        CakeSession::write('Relatorios.Cabecalho', $cabecalho);
+      }
+      $cabecalho = unserialize($cabecalho);
+      return $cabecalho;
    }
 
    public function __construct($orientation='P') {

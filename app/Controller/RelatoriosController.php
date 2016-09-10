@@ -30,7 +30,7 @@ class RelatoriosController extends AppController {
         $options = array(
             'order' => array('Relatorio.Tipo', 'Relatorio.Nome'),
             'conditions' => array('NOT' => array('Relatorio.programa_id' => $this->PegarProgramasNaoPermitidosDoUsuarioLogado())));
-        $this->Relatorio->unbindModel(array('hasMany' => array('RelatorioDataset')));
+        $this->Relatorio->unbindModel(array('belongsTo' => array('Programa'), 'hasMany' => array('RelatorioDataset')));
         $relatorios = $this->Relatorio->find('all', $options);
         $this->set(compact('relatorios'));
     }
@@ -61,8 +61,10 @@ class RelatoriosController extends AppController {
         if (!$this->Relatorio->exists($id)) {
             throw new NotFoundException(__('The record could not be found.'));
         }
-        $options = array('recursive'=>'2', 'conditions' => array('Relatorio.' . $this->Relatorio->primaryKey => $id));
+        $options = array('recursive' => false, 'conditions' => array('Relatorio.' . $this->Relatorio->primaryKey => $id));
+        $this->Relatorio->unbindModel(array('belongsTo' => array('Programa')));
         $relatorio = $this->Relatorio->find('first', $options);
+        
         $programa = $relatorio['Relatorio']['programa_id'];
         $programas = $this->PegarProgramasNaoPermitidosDoUsuarioLogado();
         $localizou = array_search($programa, $programas);
@@ -71,11 +73,16 @@ class RelatoriosController extends AppController {
              $this->redirect($this->referer());
             //throw new NotFoundException(__('__PERMISSAO'));
         }
+
+        $options = array('recursive' => false, 
+            'conditions' => array('Relatorio_id' => $id),
+            'fields' => array('id', 'campo', 'campo_alias', 'modelo', 'tipo_filtro', 'is_obrigatorio', ),
+            'order' => array('is_obrigatorio desc', 'campo_alias'));
+        $this->RelatorioFiltro->unbindModel(array('belongsTo' => array('Tipo')));
+        $relatorioFiltrosDisponiveis =  $this->RelatorioFiltro->find('all', $options);
+
         $this->set('relatorio', $relatorio);
-        $this->set('relatorioFiltrosDisponiveis', 
-            $this->RelatorioFiltro->find('all', array('conditions' => array('Relatorio_id' => $id), 
-                'order' => array('is_obrigatorio desc', 'campo_alias')))
-        );
+        $this->set('relatorioFiltrosDisponiveis', $relatorioFiltrosDisponiveis);
     }
    
     public function download($id = null){
