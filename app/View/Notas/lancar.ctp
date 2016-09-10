@@ -10,8 +10,8 @@
    <ul class="list-group">
      <?php // <li class="list-group-item">Professor:&nbsp; echo $professor; </li> ?>
      <li class="list-group-item">Apenas alunos ativos.</li>
-     <li class="list-group-item">Curso(s):&nbsp;<?php if (count($cursos) > 0) echo implode(",", $cursos); ?></li>
-     <li class="list-group-item">Disciplina(s):&nbsp;<?php if (count($disciplinas) > 0) echo implode(",", $disciplinas); ?></li>
+     <li class="list-group-item">Curso(s):&nbsp;<?php if (is_array($cursos)) echo implode(",", $cursos); ?></li>
+     <li class="list-group-item">Disciplina(s):&nbsp;<?php if (is_array($disciplinas)) echo implode(",", $disciplinas); ?></li>
    </ul>
 
    <div class="panel-body">
