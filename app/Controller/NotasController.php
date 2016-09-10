@@ -45,14 +45,18 @@ class NotasController extends AppController {
 		$cursos = $data['Curso'];
 		$disciplinas = $data['Disciplina'];
 
-		$ativos_id = 8;
+		$ativos_id = 7;
 
 		$notas = $this->Nota->AlunoDisciplina->find('all', array('recursive' => false, 'conditions' =>
 			array(/*'AlunoDisciplina.professor_id' => $professor,*/ 'Aluno.curso_id' => $cursos, 'AlunoDisciplina.disciplina_id' => $disciplinas, 'Aluno.situacao_id' => $ativos_id),
 			'fields' => array('AlunoDisciplina.id', 'AlunoDisciplina.aluno_id', 'AlunoDisciplina.disciplina_id', 'AlunoDisciplina.professor_id', 'AlunoDisciplina.frequencia', 
 				'AlunoDisciplina.nota', 'AlunoDisciplina.horas_aula', 'AlunoDisciplina.data', 'Aluno.id', 'Aluno.nome', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'),
 				'order' => array('Aluno.Nome')));
-
+		if (count($notas) == 0) {
+			$this->Session->setFlash(
+				__('Nenhum aluno ativo para a(s) disciplina(s) e curso(s) selecionado(s).'), 'flash/error');
+			$this->redirect(array('action' => 'index'));
+		}
 		$professores = $this->Nota->Professor->findAsCombo();
 		$this->set(compact('notas', 'professores', 'cursos', 'disciplinas')); //'professor',
 	}
