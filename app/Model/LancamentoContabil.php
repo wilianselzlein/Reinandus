@@ -47,7 +47,7 @@ class LancamentoContabil extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		)/*,
+		),
 		'credito_id' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
@@ -97,7 +97,7 @@ class LancamentoContabil extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),*/
+		)
 	);
 /**
  * belongsTo associations

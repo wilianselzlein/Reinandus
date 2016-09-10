@@ -30,16 +30,6 @@ public $displayField = 'numero';
  */
 
 public $validate = array(
-	/*'documento' => array(
-		'notEmpty' => array(
-			'rule' => array('notEmpty'),
-			'message' => 'VALIDATE_BLANK',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 	'vencimento' => array(
 		'notEmpty' => array(
 			'rule' => array('notEmpty'),
@@ -49,7 +39,7 @@ public $validate = array(
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),*/
+		),
 	'valor' => array(
 		'notEmpty' => array(
 			'rule' => array('notEmpty'),

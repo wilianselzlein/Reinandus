@@ -82,6 +82,6 @@ class Cabecalho extends AppModel {
          )
       )
    )
-                         );
+   );
 
 }

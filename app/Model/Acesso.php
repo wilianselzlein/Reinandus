@@ -33,7 +33,7 @@ var $actsAs = array('DateFormat');
  * @var array
  */
 	public $validate = array(
-		/*'aluno_id' => array(
+		'aluno_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				'message' => 'VALIDADE_NUMERIC',
@@ -52,7 +52,7 @@ var $actsAs = array('DateFormat');
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		)*/
+		)
 	);
 
 /**
