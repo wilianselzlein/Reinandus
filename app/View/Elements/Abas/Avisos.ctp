@@ -12,7 +12,7 @@
     <?php echo $this->Form->end() ?>
   </div>
 </div>
-<?php echo $this->element('BarraDeProgresso', array('nome' => 'barra_avisos')); ?>
+<i id="barra_avisos" class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
 
 <div id="div_avisos" class="list-group">
 </div>

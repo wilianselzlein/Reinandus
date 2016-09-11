@@ -2,11 +2,13 @@
 		array('controller' => $controller, 'action' => $nome, $id), 
 		array('id' => $nome . 'jx' . $id, 
 			'update' => $nome . 'td' . $id, 
-			'indicator' => 'loading',
+			//'indicator' => 'loading',
 			'class' => 'btn btn-default btn-xs','escape'=>false, 
 			'title'=>__('Mostrar ' . $nome . 's'), 'data-toggle'=>'tooltip',
+			'before' => '$("#carregador_pai").css("display", "block").css("visibility", "visible")',
 			'complete' => 
-				'document.getElementById("' .$nome . 'bt' . $id . '").style.display= ""; 
+				'$("#carregador_pai").css("display", "none").css("visibility", "hidden");
+				 document.getElementById("' .$nome . 'bt' . $id . '").style.display= ""; 
 				 document.getElementById("' .$nome . 'jx' . $id . '").style.display= "none";')
 	); ?>
 <a href="#" 
