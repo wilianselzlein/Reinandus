@@ -411,9 +411,9 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$mensalidade['Pessoa']['razaosocial'] = $usuario['User']['Pessoa']['razaosocial'];
 	    $Cidade = $this->Mensalidade->Aluno->Cidade;
 		$Cidade->recursive = false;
-		$cidade = $Cidade->findById($usuario['User']['Pessoa']['cidade_id'], array('Cidade.nome', 'Estado.sigla'));
-		if (count($cidade) == 0)
-			$cidade = $this->Mensalidade->Aluno->Cidade->findById(1, array('Cidade.nome', 'Estado.sigla'));
+		//$cidade = $Cidade->findById($usuario['User']['Pessoa']['cidade_id'], array('Cidade.nome', 'Estado.sigla'));
+		//if (count($cidade) == 0)
+		$cidade = $this->Mensalidade->Aluno->Cidade->findById(1, array('Cidade.nome', 'Estado.sigla'));
 		$mensalidade['Cidade']['nome'] = $cidade['Cidade']['nome'];
 		$mensalidade['Estado']['sigla'] = $cidade['Estado']['sigla'];
 	}
