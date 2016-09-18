@@ -14,11 +14,13 @@
 			<?php echo $this->Form->create('Nota', array('role' => 'form', 'class'=>'form-horizontal', 'action' => 'lancar')); ?>
 
 				<fieldset>
-		            <div class="form-group">
+					<?php echo $this->element('MostraEsconde', array('mostra' => 'Mostrar cursos', 'esconde' => 'Fechar cursos', 'id' => 'cursos')); ?>
+		            <div class="form-group" id="cursos">
 		               <?php echo $this->Form->input('Curso',array('multiple' => 'checkbox', 'class' => 'col-sm-10', 'label'=>array('text' => 'Cursos', 'class'=>'col-sm-1 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 		                                            );?>
 		            </div><!-- .form-group -->
-		            <div class="form-group">
+					<?php echo $this->element('MostraEsconde', array('mostra' => 'Mostrar disciplinas', 'esconde' => 'Fechar disciplinas', 'id' => 'disciplinas')); ?>
+		            <div class="form-group" id="disciplinas">
 		               <?php echo $this->Form->input('Disciplina',array('multiple' => 'checkbox', 'class' => 'col-sm-10', 'label'=>array('text' => 'Disciplinas', 'class'=>'col-sm-1 control-label'), 'div'=>true, 'between'=>'<div class="	">', 'after'=>'</div>')
 		                                            );?>
 		            </div><!-- .form-group -->
