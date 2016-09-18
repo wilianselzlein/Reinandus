@@ -18,7 +18,7 @@ $rowHeader = new Row('header');
       ->addColumn('Desc.', 'col-10')
       ->addColumn('Bolsa', 'col-10')
       ->addColumn('Total', 'col-10')
-      ->addColumn('Pagtos', 'col-10')
+      ->addColumn('Quant.', 'col-10')
       ->close();
 $table->addRow($rowHeader);
 

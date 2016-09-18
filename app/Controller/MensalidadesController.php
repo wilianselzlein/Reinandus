@@ -198,9 +198,9 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 				$this->RealizarLancamentosContabeis($mensalidade);
 				$this->set(compact('mensalidade'));
 				
-				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", 
-					array("link_text" => __('GO_TO'), "link_url" => 
-						array("action" => "view", $this->Mensalidade->id)));
+				//$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", 
+				//	array("link_text" => __('GO_TO'), "link_url" => 
+				//		array("action" => "view", $this->Mensalidade->id)));
 
 				$this->render('recibo');
 
@@ -406,6 +406,13 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$aluno = $this->Mensalidade->Aluno->find('list', array('conditions' => array('Aluno.id' => $aluno_id)));
 		$mensalidade['Aluno']['nome'] = $aluno[$aluno_id]; 
 		$mensalidade['Mensalidade']['extenso'] = CarregarConsultasBaseComponent::ValorPorExtenso($mensalidade['Mensalidade']['liquido']);
+
+		$mensalidade['Mensalidade']['liquido'] = $this->CorrigirParametroNumerico($mensalidade['Mensalidade']['liquido']);
+		$mensalidade['Mensalidade']['valor'] = $this->CorrigirParametroNumerico($mensalidade['Mensalidade']['valor']);
+		$mensalidade['Mensalidade']['desconto'] = $this->CorrigirParametroNumerico($mensalidade['Mensalidade']['desconto']);
+		$mensalidade['Mensalidade']['pago'] = $this->CorrigirParametroNumerico($mensalidade['Mensalidade']['pago']);
+		$mensalidade['Mensalidade']['acrescimo'] = $this->CorrigirParametroNumerico($mensalidade['Mensalidade']['acrescimo']);
+
 		$usuario = $this->Session->read('Auth');
 		$mensalidade['User']['assinatura'] = $usuario['User']['assinatura'];
 		$mensalidade['Pessoa']['razaosocial'] = $usuario['User']['Pessoa']['razaosocial'];
@@ -532,4 +539,18 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		return 86;
 	}
 
+/**
+ * CorrigirParametroNumerico method
+ * @param double $id
+ * @return double $valor
+ */
+	private function CorrigirParametroNumerico($valor) {
+		$valor = str_replace('.', '', $valor);
+		$valor = str_replace(',', '.', $valor);
+
+		if (! is_numeric($valor))
+			$valor = 0.00;
+
+		return $valor;
+	}
 }
