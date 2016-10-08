@@ -52,7 +52,7 @@
 
 	$visivel = $contapagar['ContaPagar']['liberado'] == true ? '' : ' invisible hide';
 	echo $this->Ajax->link('<i class="' . $liberado . '"></i>', 
-		array('controller' => 'contaspagar', 'action' => 'bloquear', $id), 
+		array('controller' => 'ContasPagar', 'action' => 'bloquear', $id), 
 		array('id' => 'bloquear_' . $id, 
 			//'update' => 'post' . $id, 
 			//'indicator' => 'loading',
@@ -66,7 +66,7 @@
 
 	$visivel = $contapagar['ContaPagar']['liberado'] == true ? ' invisible hide' : '';
 	echo $this->Ajax->link('<i class="' . $bloqueado . '"></i>', 
-		array('controller' => 'contaspagar', 'action' => 'liberar', $id), 
+		array('controller' => 'ContasPagar', 'action' => 'liberar', $id), 
 		array('id' => 'liberar_' . $id, 
 			//'update' => 'post' . $id, 
 			//'indicator' => 'loading',
