@@ -15,7 +15,7 @@ class BoletosController extends AppController {
  *
  * @var array
  */
-	public $components = array('Session');
+	public $components = array('Session', 'GeraArquivoIntegracaoBancaria');
 
 /**
  * index method
@@ -32,29 +32,22 @@ class BoletosController extends AppController {
  *
  * @return void
  */
-	public function remessa() {
-		/*$data = $this->request->data;
-		if (! isset($data['Nota']))
-			$this->redirect(array('action' => 'index'));
-		$data = $data['Nota'];
-		//$professor = $data['professor_id'];
-		$cursos = $data['Curso'];
-		$disciplinas = $data['Disciplina'];
+	public function remessa($remessa) {
 
-		$ativos_id = 7;
+        $caminho = 'arqs/';
+        $arquivo = 'NOME.TST';
 
-		$notas = $this->Nota->AlunoDisciplina->find('all', array('recursive' => false, 'conditions' =>
-			array('Aluno.curso_id' => $cursos, 'AlunoDisciplina.disciplina_id' => $disciplinas, 'Aluno.situacao_id' => $ativos_id),
-			'fields' => array('AlunoDisciplina.id', 'AlunoDisciplina.aluno_id', 'AlunoDisciplina.disciplina_id', 'AlunoDisciplina.professor_id', 'AlunoDisciplina.frequencia', 
-				'AlunoDisciplina.nota', 'AlunoDisciplina.horas_aula', 'AlunoDisciplina.data', 'Aluno.id', 'Aluno.nome', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'),
-				'order' => array('Aluno.Nome')));
-		if (count($notas) == 0) {
-			$this->Session->setFlash(
-				__('Nenhum aluno ativo para a(s) disciplina(s) e curso(s) selecionado(s).'), 'flash/error');
-			$this->redirect(array('action' => 'index'));
-		}
-		$professores = $this->Nota->Professor->findAsCombo();
-		$this->set(compact('notas', 'professores', 'cursos', 'disciplinas')); //'professor',*/
+        if (file_exists($caminho . $arquivo))
+            unlink($caminho . $arquivo);
+
+        $fp = fopen($caminho . $arquivo, 'a');
+        if (! $fp) { //if (!is_writable($tempfile)) {
+            throw new Exception(__('PERMISSAO_ARQ'));
+        }
+        $escreve = fwrite($fp, $remessa);
+        fclose($fp);
+
+        $this->download($caminho, $arquivo);
 	}
 
 /**
@@ -79,6 +72,10 @@ class BoletosController extends AppController {
 				__('Nenhuma mensalidade para o período informado.'), 'flash/error');
 			$this->redirect(array('action' => 'index'));
 		}
+
+		$this->GeraArquivoIntegracaoBancaria->setData($mensalidades);
+		$remessa = $this->GeraArquivoIntegracaoBancaria->gerar();
+		$this->remessa($remessa);
 
 		$this->Session->setFlash(__('Arquivo gerado com sucesso! ' . count($mensalidades) . ' mensalidade(s).'), 
 			'flash/success');
