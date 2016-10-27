@@ -26,36 +26,26 @@ class Boleto extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'curso_id' => array(
+		'vencimento_inicial' => array(
 			'numeric' => array(
-				'rule' => array('numeric'),
-				'message' => 'VALIDADE_NUMERIC',
+				'rule' => array('notEmpty'),
+				'message' => 'VALIDATE_BLANK',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'disciplina_id' => array(
+		'vencimento_final' => array(
 			'numeric' => array(
-				'rule' => array('numeric'),
-				'message' => 'VALIDADE_NUMERIC',
+				'rule' => array('notEmpty'),
+				'message' => 'VALIDATE_BLANK',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
-		'professor_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				'message' => 'VALIDADE_NUMERIC',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+		)
 	);
 
 
@@ -67,37 +57,9 @@ class Boleto extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Curso' => array(
-			'className' => 'Curso',
-			'foreignKey' => 'curso_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Aluno' => array(
-			'className' => 'Aluno',
-			'foreignKey' => 'aluno_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'AlunoDisciplina' => array(
-			'className' => 'AlunoDisciplina',
+		'Mensalidade' => array(
+			'className' => 'Mensalidade',
 			'foreignKey' => '',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Professor' => array(
-			'className' => 'Professor',
-			'foreignKey' => 'professor_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Disciplina' => array(
-			'className' => 'Disciplina',
-			'foreignKey' => 'disciplina_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

@@ -24,12 +24,7 @@ class BoletosController extends AppController {
  */
 	public function index() {
 		/*$cursos = $this->Nota->Curso->findAsCombo();
-		array_shift($cursos);
-		$disciplinas = $this->Nota->Disciplina->findAsCombo();
-		array_shift($disciplinas);
-		$professores = $this->Nota->Professor->findAsCombo();
-		array_shift($professores);
-		$this->set(compact('cursos', 'disciplinas', 'professores'));*/
+		$this->set(compact('cursos', ''));*/
 	}
 
 /**
@@ -68,18 +63,25 @@ class BoletosController extends AppController {
  * @return void
  */
 	public function gerar() {
-		if ($this->request->is('post') || $this->request->is('put')) {
+		$data = $this->request->data;
+		//debug($data); die;
 
-			$data = $this->request->data;
-			/*//debug($data); die;
-			foreach ($data as $item) {
-				//debug($item['AlunoDisciplina']); die;
-				$this->Nota->AlunoDisciplina->create();
-				$this->Nota->AlunoDisciplina->save($item['AlunoDisciplina']);
+		if (! isset($data['Boleto']))
+			$this->redirect(array('action' => 'index'));
 
-				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
-			}*/
-		} 
+		$mensalidades = $this->Boleto->Mensalidade->find('all', array('recursive' => false, 
+			'conditions' =>	array('Mensalidade.vencimento >= ' => $data['Boleto']['vencimento_inicial'], 'Mensalidade.vencimento <= ' => $data['Boleto']['vencimento_final'], 'Mensalidade.pago' => 0.00),
+			'fields' => array('Mensalidade.id', 'Aluno.id', 'Aluno.nome'),
+			'order' => array('Mensalidade.Id')));
+
+		if (count($mensalidades) == 0) {
+			$this->Session->setFlash(
+				__('Nenhuma mensalidade para o período informado.'), 'flash/error');
+			$this->redirect(array('action' => 'index'));
+		}
+
+		$this->Session->setFlash(__('Arquivo gerado com sucesso! ' . count($mensalidades) . ' mensalidade(s).'), 
+			'flash/success');
 		$this->redirect(array('action' => 'index'));
 	}
 
