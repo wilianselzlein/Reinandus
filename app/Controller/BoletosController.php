@@ -23,8 +23,8 @@ class BoletosController extends AppController {
  * @return void
  */
 	public function index() {
-		/*$cursos = $this->Nota->Curso->findAsCombo();
-		$this->set(compact('cursos', ''));*/
+		$contas = $this->Boleto->Conta->findAsCombo('asc', 'num_banco > 0');
+		$this->set(compact('contas', ''));
 	}
 
 /**
@@ -62,9 +62,14 @@ class BoletosController extends AppController {
 		if (! isset($data['Boleto']))
 			$this->redirect(array('action' => 'index'));
 
-		$mensalidades = $this->Boleto->Mensalidade->find('all', array('recursive' => false, 
-			'conditions' =>	array('Mensalidade.vencimento >= ' => $data['Boleto']['vencimento_inicial'], 'Mensalidade.vencimento <= ' => $data['Boleto']['vencimento_final'], 'Mensalidade.pago' => 0.00),
-			'fields' => array('Mensalidade.id', 'Aluno.id', 'Aluno.nome'),
+		$this->Boleto->Mensalidade->unbindModel(array('belongsTo' => array('Formapgto', 'User', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
+		$mensalidades = $this->Boleto->Mensalidade->find('all', array('recursive' => 0, 
+			'conditions' =>	array('Mensalidade.vencimento >= ' => $data['Boleto']['vencimento_inicial'], 'Mensalidade.vencimento <= ' => $data['Boleto']['vencimento_final'], 'Mensalidade.pago' => 0.00, 'Mensalidade.conta_id' => $data['Boleto']['conta_id']),
+			'joins' => array(array('table' => 'pessoa', 'alias' => 'Responsavel', 'type' => 'LEFT','conditions' => array('Aluno.responsavel_id = Responsavel.id'))),
+			'fields' => array('Mensalidade.id', 'Mensalidade.vencimento', 'Mensalidade.valor', 'Mensalidade.desconto',
+				'Aluno.id', 'Aluno.nome', 'Aluno.cpf', 'Aluno.endereco', 'Aluno.bairro', 'Aluno.cep', 'Aluno.complemento', 'Aluno.numero',
+				'Responsavel.Id', 'Responsavel.razaosocial', 'Responsavel.cnpjcpf', 'Responsavel.endereco', 'Responsavel.bairro', 'Responsavel.cep', 'Responsavel.numero',
+				'Conta.cedente', 'Conta.cedente_dig', 'Conta.agencia', 'Conta.conta', 'Conta.nome_no_banco', 'Conta.num_banco', 'Conta.agencia_dig', 'Conta.conta_dig', 'Conta.carteira', 'Conta.Mensagem', 'Conta.dia_emissao'),
 			'order' => array('Mensalidade.Id')));
 
 		if (count($mensalidades) == 0) {

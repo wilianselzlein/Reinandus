@@ -63,6 +63,13 @@ class Boleto extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Conta' => array(
+			'className' => 'Contum',
+			'foreignKey' => '',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 }

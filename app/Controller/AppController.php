@@ -305,4 +305,14 @@ class AppController extends Controller {
 
   }
 
+/**
+ * download method
+ *
+ * @return void
+ */
+  public function download($caminho, $arquivo) {
+        $this->response->file($caminho . $arquivo, array('download' => true, 'name' => $arquivo));
+        return $this->response;
+  }
+
 }

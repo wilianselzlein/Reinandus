@@ -2,8 +2,8 @@
 
 App::uses('Component', 'Controller');
 App::uses('CakeTime', 'Utility');
-//App::import('Controller/Component/ConsultasContratos', 
-//	array('CarregarConsultasBaseComponent', 'ConsultarCursoComponent', 'ConsultarAlunoComponent', 'ConsultarInstitutoComponent'));
+App::import('Controller/Component/IntegracaoBancaria', 
+	array('IntegracaoBaseComponent', 'IntegracaoBradescoComponent'));
 
 class GeraArquivoIntegracaoBancariaComponent extends Component {
 
@@ -15,15 +15,12 @@ class GeraArquivoIntegracaoBancariaComponent extends Component {
     }
 
 	public function Gerar() {
-	    $s = '';
+	    if ($this->Data[0]['Conta']['num_banco'] == 237)
+	    	$Integracao = new IntegracaoBradescoComponent($this->Data);
+	    else
+	    	throw new NotFoundException(__('Número do banco não configurado no cadastro da conta.'));
 
-	    $s .= $this->Cabecalho();
-	    $s .= $this->Mensalidades();
-	    $s .= $this->Totalizadores();
-		
-		$s = utf8_encode($s);
-		
-        return $s;
+	    return $Integracao->GerarArquivo();
 	}
 
 }
