@@ -69,14 +69,20 @@
 						array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 						); ?>
 				</div>
-				<!-- .form-group -->
 				<div class="form-group">
-					<?php echo $this->Form->input('cedente',
-						array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-8">', 'after'=>'</div>')
+					<?php echo $this->Form->input('num_banco',
+						array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 						); ?>
-					<?php echo $this->Form->input('cedente_dig', array('class' => 'form-control', 'label'=>false, 'div'=>false, 'between'=>'<div class="col-sm-2">', 'after'=>'</div>')); ?>
 				</div>
-				<!-- .form-group -->
+				<div class="form-group">
+					<?php
+						$insideCendenteDigito =  $this->Form->input('cedente_dig', array('class' => 'form-control', 'label'=>false, 'div'=>false, 'wrap' => false,'between'=>'<div class="col-sm-2">', 'after'=>'</div>' ));
+						$insideCendenteDigito .= '</div>';
+						
+						echo $this->Form->input('cedente',
+							array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'wrap' =>array('class'=>'col-sm-8'), 'between'=>'<div class="col-sm-10">', 'after'=>$insideCendenteDigito)
+							);  ?>
+				</div>
 				<div class="form-group">
 					<?php echo $this->Form->input('carteira',
 						array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')

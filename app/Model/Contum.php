@@ -50,6 +50,16 @@ class Contum extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+		),
+		'num_banco' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				'message' => 'VALIDADE_NUMERIC',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
 		)
 	);
 

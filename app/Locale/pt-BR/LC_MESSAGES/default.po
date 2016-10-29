@@ -696,3 +696,6 @@ msgstr "Novembro"
 
 msgid  "December"
 msgstr "Dezembro"
+
+msgid  "Num Banco"
+msgstr "Número do Banco"
