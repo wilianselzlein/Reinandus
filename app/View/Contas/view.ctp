@@ -65,6 +65,11 @@
 			<?php echo h($contum['Contum']['num_banco']); ?>
 			&nbsp;
 		</td>
+</tr><tr>		<td><strong><?php echo __('Sequencial da Remessa'); ?></strong></td>
+		<td>
+			<?php echo h($contum['Contum']['seq_remessa']); ?>
+			&nbsp;
+		</td>
 </tr><tr>		<td><strong><?php echo __('Cedente'); ?></strong></td>
 		<td>
 			<?php echo h($contum['Contum']['cedente'] . '-' . $contum['Contum']['cedente_dig']); ?>

@@ -119,6 +119,11 @@
 						array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 						); ?>
 				</div>
+				<div class="form-group">
+					<?php echo $this->Form->input('mensagem1',
+						array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+						); ?>
+				</div>
 				<!-- .form-group -->
 				<div class="form-group">
 					<?php echo $this->Form->input('formapgto_id',
@@ -130,8 +135,12 @@
 						<?php echo $this->Form->input('tipo', 
 				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'<br><br>(N)ormal - (I)nativa - (P)adrão</div>')
 				); ?>
-				</div><!-- .form-group -->
-				<!-- .form-group -->
+				</div>
+				<div class="form-group">
+						<?php echo $this->Form->input('sequencial_remessa', 
+				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'<br><br>(N)ormal - (I)nativa - (P)adrão</div>')
+				); ?>
+				</div>
 				<?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
 			</fieldset>
 			<?php echo $this->Form->end(); ?>
