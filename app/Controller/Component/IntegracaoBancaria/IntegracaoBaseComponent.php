@@ -5,6 +5,7 @@ App::uses('Component', 'Controller');
 abstract class IntegracaoBaseComponent extends Component {
 
 	var $Data;
+	var $Seq;
 
 	abstract public function Cabecalho();
 	abstract public function Mensalidades();
@@ -14,6 +15,7 @@ abstract class IntegracaoBaseComponent extends Component {
 	public function __construct($data) {
 		$this->setData($data);
 		set_time_limit(0);
+		$this->Seq = 0;
 	}
 
 	public function setData($parametro) {
@@ -37,6 +39,11 @@ abstract class IntegracaoBaseComponent extends Component {
 		$s = $this->Cabecalho() . $this->Mensalidades() . $this->Totalizadores();
 		$s = utf8_encode($s);
 		return $s;
+	}
+
+	protected function SequencialDoRegistro() {
+		$this->Seq++;
+		return $this->FormatarNumero($this->Seq, 6);
 	}
 
 }

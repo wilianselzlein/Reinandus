@@ -6,15 +6,25 @@ App::import('Controller/Component/IntegracaoBancaria', 'IntegracaoBaseComponent'
 class IntegracaoBradescoComponent extends IntegracaoBaseComponent {
 
 	public function Cabecalho() {
-		return '';
+		$s = '1';
+		$s .= $this->SequencialDoRegistro();
+		$s .= PHP_EOL; 
+		return $s;
 	}
 
 	public function Mensalidades() {
-		return '';
+		$s = '0';
+		$s .= $this->SequencialDoRegistro();
+		$s .= PHP_EOL;
+		return $s;
 	}
 
 	public function Totalizadores() {
-		return '';
+		$s = '9';
+		$s .= $this->FormatarTexto('', 393);
+		$s .= $this->SequencialDoRegistro();
+		$s .= PHP_EOL;
+		return $s;
 	}
 
 	public function NomeDoArquivo() {
