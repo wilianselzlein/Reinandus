@@ -18,7 +18,8 @@ class IntegracaoBradescoComponent extends IntegracaoBaseComponent {
 	}
 
 	public function NomeDoArquivo() {
-		$seq = '01';
+		$seq = $this->Data[0]['Conta']['seq_remessa'];
+		$seq = $this->FormatarNumero($seq, 2);
 		return 'CB' . date('d') . date('m') . $seq . '.TST'; //REM
 	}
 }

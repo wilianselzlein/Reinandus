@@ -39,7 +39,9 @@ class BoletosController extends AppController {
         if (file_exists($caminho . $arquivo))
             unlink($caminho . $arquivo);
 
-        $fp = fopen($caminho . $arquivo, 'a');
+		//chmod($caminho, 0777);
+
+        $fp = fopen($caminho . $arquivo, 'w+');
         if (! $fp) { //if (!is_writable($tempfile)) {
             throw new Exception(__('PERMISSAO_ARQ'));
         }
@@ -73,6 +75,7 @@ class BoletosController extends AppController {
 		$remessa = $this->GeraArquivoIntegracaoBancaria->gerar();
 		$nome = $this->GeraArquivoIntegracaoBancaria->nome();
 		$this->remessa($remessa, $nome);
+		$this->IncrementarSequencialDaRemessaNaConta($mensalidades);
 
 		$this->Session->setFlash(__('Arquivo gerado com sucesso! ' . count($mensalidades) . ' mensalidade(s).'), 
 			'flash/success');
@@ -145,9 +148,37 @@ class BoletosController extends AppController {
 			'fields' => array('Mensalidade.id', 'Mensalidade.vencimento', 'Mensalidade.valor', 'Mensalidade.desconto',
 				'Aluno.id', 'Aluno.nome', 'Aluno.cpf', 'Aluno.endereco', 'Aluno.bairro', 'Aluno.cep', 'Aluno.complemento', 'Aluno.numero',
 				'Responsavel.Id', 'Responsavel.razaosocial', 'Responsavel.cnpjcpf', 'Responsavel.endereco', 'Responsavel.bairro', 'Responsavel.cep', 'Responsavel.numero',
-				'Conta.cedente', 'Conta.cedente_dig', 'Conta.agencia', 'Conta.conta', 'Conta.nome_no_banco', 'Conta.num_banco', 'Conta.agencia_dig', 'Conta.conta_dig', 'Conta.carteira', 'Conta.Mensagem', 'Conta.dia_emissao'),
+				'Conta.id', 'Conta.cedente', 'Conta.cedente_dig', 'Conta.agencia', 'Conta.conta', 'Conta.nome_no_banco', 'Conta.num_banco', 'Conta.agencia_dig', 'Conta.conta_dig', 'Conta.carteira', 'Conta.Mensagem', 'Conta.dia_emissao', 'Conta.seq_remessa'),
 			'order' => array('Mensalidade.Id')));
 		return $mensalidades;
 	}
+
+/**
+ * IncrementarSequencialDaRemessaNaConta method
+ * input array
+ * @return void
+ */
+	private function IncrementarSequencialDaRemessaNaConta($data) {
+
+		if (! isset($data[0]['Conta']['id']))
+			return;
+
+		$id = $data[0]['Conta']['id'];
+		$this->Boleto->Conta->id = $id;
+
+		if (! $this->Boleto->Conta->exists($id)) {
+			throw new NotFoundException(__('The record could not be found.') . 
+				'Conta Bancária.');
+		}
+
+		$seq = $data[0]['Conta']['seq_remessa'] + 1;
+
+		$data = [];	
+		$data['Conta']['id'] = $id;
+		$data['Conta']['seq_remessa'] = $seq;
+
+		$this->Boleto->Conta->save($data);
+	}
+
 }
 

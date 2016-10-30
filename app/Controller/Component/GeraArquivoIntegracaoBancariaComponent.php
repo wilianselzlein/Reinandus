@@ -21,12 +21,12 @@ class GeraArquivoIntegracaoBancariaComponent extends Component {
 	    else
 	    	throw new NotFoundException(__('Número do banco não configurado no cadastro da conta.'));
 
-	    $this->$NomeDoArquivo = $Integracao->NomeDoArquivo();
+	    $this->NomeDoArquivo = $Integracao->NomeDoArquivo();
 	    return $Integracao->GerarArquivo();
 	}
 
 	public function Nome() {
-	    return $this->$NomeDoArquivo;
+	    return $this->NomeDoArquivo;
 	}
 
 }
