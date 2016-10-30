@@ -9,6 +9,7 @@ abstract class IntegracaoBaseComponent extends Component {
 	abstract public function Cabecalho();
 	abstract public function Mensalidades();
 	abstract public function Totalizadores();
+	abstract public function NomeDoArquivo();
 
 	public function __construct($data) {
 		$this->setData($data);
@@ -32,5 +33,3 @@ abstract class IntegracaoBaseComponent extends Component {
 }
 
 ?>
-
-

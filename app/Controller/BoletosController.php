@@ -32,10 +32,9 @@ class BoletosController extends AppController {
  *
  * @return void
  */
-	public function remessa($remessa) {
+	public function remessa($remessa, $arquivo) {
 
-        $caminho = 'arqs/';
-        $arquivo = 'NOME.TST';
+        $caminho = 'remessa/';
 
         if (file_exists($caminho . $arquivo))
             unlink($caminho . $arquivo);
@@ -62,15 +61,7 @@ class BoletosController extends AppController {
 		if (! isset($data['Boleto']))
 			$this->redirect(array('action' => 'index'));
 
-		$this->Boleto->Mensalidade->unbindModel(array('belongsTo' => array('Formapgto', 'User', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
-		$mensalidades = $this->Boleto->Mensalidade->find('all', array('recursive' => 0, 
-			'conditions' =>	array('Mensalidade.vencimento >= ' => $data['Boleto']['vencimento_inicial'], 'Mensalidade.vencimento <= ' => $data['Boleto']['vencimento_final'], 'Mensalidade.pago' => 0.00, 'Mensalidade.conta_id' => $data['Boleto']['conta_id']),
-			'joins' => array(array('table' => 'pessoa', 'alias' => 'Responsavel', 'type' => 'LEFT','conditions' => array('Aluno.responsavel_id = Responsavel.id'))),
-			'fields' => array('Mensalidade.id', 'Mensalidade.vencimento', 'Mensalidade.valor', 'Mensalidade.desconto',
-				'Aluno.id', 'Aluno.nome', 'Aluno.cpf', 'Aluno.endereco', 'Aluno.bairro', 'Aluno.cep', 'Aluno.complemento', 'Aluno.numero',
-				'Responsavel.Id', 'Responsavel.razaosocial', 'Responsavel.cnpjcpf', 'Responsavel.endereco', 'Responsavel.bairro', 'Responsavel.cep', 'Responsavel.numero',
-				'Conta.cedente', 'Conta.cedente_dig', 'Conta.agencia', 'Conta.conta', 'Conta.nome_no_banco', 'Conta.num_banco', 'Conta.agencia_dig', 'Conta.conta_dig', 'Conta.carteira', 'Conta.Mensagem', 'Conta.dia_emissao'),
-			'order' => array('Mensalidade.Id')));
+		$mensalidades = $this->ConsultarMensalidades($data);
 
 		if (count($mensalidades) == 0) {
 			$this->Session->setFlash(
@@ -80,7 +71,8 @@ class BoletosController extends AppController {
 
 		$this->GeraArquivoIntegracaoBancaria->setData($mensalidades);
 		$remessa = $this->GeraArquivoIntegracaoBancaria->gerar();
-		$this->remessa($remessa);
+		$nome = $this->GeraArquivoIntegracaoBancaria->nome();
+		$this->remessa($remessa, $nome);
 
 		$this->Session->setFlash(__('Arquivo gerado com sucesso! ' . count($mensalidades) . ' mensalidade(s).'), 
 			'flash/success');
@@ -139,5 +131,23 @@ class BoletosController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 
+/**
+ * ConsultaMenslidades method
+ * input array
+ * @return array
+ */
+
+	private function ConsultarMensalidades($data) {
+		$this->Boleto->Mensalidade->unbindModel(array('belongsTo' => array('Formapgto', 'User', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
+		$mensalidades = $this->Boleto->Mensalidade->find('all', array('recursive' => 0, 
+			'conditions' =>	array('Mensalidade.vencimento >= ' => $data['Boleto']['vencimento_inicial'], 'Mensalidade.vencimento <= ' => $data['Boleto']['vencimento_final'], 'Mensalidade.pago' => 0.00, 'Mensalidade.conta_id' => $data['Boleto']['conta_id']),
+			'joins' => array(array('table' => 'pessoa', 'alias' => 'Responsavel', 'type' => 'LEFT','conditions' => array('Aluno.responsavel_id = Responsavel.id'))),
+			'fields' => array('Mensalidade.id', 'Mensalidade.vencimento', 'Mensalidade.valor', 'Mensalidade.desconto',
+				'Aluno.id', 'Aluno.nome', 'Aluno.cpf', 'Aluno.endereco', 'Aluno.bairro', 'Aluno.cep', 'Aluno.complemento', 'Aluno.numero',
+				'Responsavel.Id', 'Responsavel.razaosocial', 'Responsavel.cnpjcpf', 'Responsavel.endereco', 'Responsavel.bairro', 'Responsavel.cep', 'Responsavel.numero',
+				'Conta.cedente', 'Conta.cedente_dig', 'Conta.agencia', 'Conta.conta', 'Conta.nome_no_banco', 'Conta.num_banco', 'Conta.agencia_dig', 'Conta.conta_dig', 'Conta.carteira', 'Conta.Mensagem', 'Conta.dia_emissao'),
+			'order' => array('Mensalidade.Id')));
+		return $mensalidades;
+	}
 }
 

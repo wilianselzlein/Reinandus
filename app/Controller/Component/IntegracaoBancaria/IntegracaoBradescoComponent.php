@@ -17,6 +17,10 @@ class IntegracaoBradescoComponent extends IntegracaoBaseComponent {
 		return '';
 	}
 
+	public function NomeDoArquivo() {
+		$seq = '01';
+		return 'CB' . date('d') . date('m') . $seq . '.TST'; //REM
+	}
 }
 
 ?>
