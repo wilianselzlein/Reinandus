@@ -5,6 +5,7 @@ App::uses('Component', 'Controller');
 abstract class IntegracaoBaseComponent extends Component {
 
 	var $Data;
+	var $Empresa;
 	var $Seq;
 
 	abstract public function Cabecalho();
@@ -16,6 +17,7 @@ abstract class IntegracaoBaseComponent extends Component {
 		$this->setData($data);
 		set_time_limit(0);
 		$this->Seq = 0;
+		$this->CarregarDadosDaEmpresa();
 	}
 
 	public function setData($parametro) {
@@ -46,6 +48,19 @@ abstract class IntegracaoBaseComponent extends Component {
 		return $this->FormatarNumero($this->Seq, 6);
 	}
 
+	protected function CarregarDadosDaEmpresa() {
+		$Consulta = ClassRegistry::init('instituto');
+		$options = array('recursive' => $this->Recursive, 'conditions' => 
+			array('instituto' . '.' . $Consulta->primaryKey => 1));
+		//debug($options);
+        $consulta = $Consulta->find('first', $options);
+
+		$Empresa = ClassRegistry::init('Pessoa');
+		$options = array('recursive' => 1, 'conditions' => 
+			array('Pessoa.' . $Empresa->primaryKey => $consulta['Empresa']['id']));
+		$this->Empresa = $Empresa->find('first', $options);
+		//$cidade = $consulta['Cidade']['nome'];
+	}
 }
 
 ?>
