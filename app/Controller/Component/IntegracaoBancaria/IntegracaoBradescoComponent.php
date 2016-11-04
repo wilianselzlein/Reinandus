@@ -26,7 +26,17 @@ class IntegracaoBradescoComponent extends IntegracaoBaseComponent {
 	}
 
 	public function Mensalidades() {
-		$s = '0';
+		$i = 0;
+
+		$s = '1';
+		$s .= $this->FormatarNumero('', 5); //agencia de debito
+		$s .= $this->FormatarTexto('', 1); //digito agencia de debito
+		$s .= $this->FormatarNumero('', 5); //razao da conta corrente
+		$s .= $this->FormatarNumero('', 7); //conta corrente
+		$s .= $this->FormatarTexto('', 1); //digito da conta corrente
+		$s .= $this->FormatarNumero('0' . $this->Data[$i]['Conta']['agencia'] . $this->Data[0]['Conta']['conta'], 17); //identificacao da empresa
+		$s .= $this->FormatarTexto($this->Data[$i]['Mensalidade']['id'], 1); //num controle participante
+		$s .= $this->FormatarTexto('', ); //
 		$s .= $this->SequencialDoRegistro();
 		$s .= PHP_EOL;
 		return $s;
