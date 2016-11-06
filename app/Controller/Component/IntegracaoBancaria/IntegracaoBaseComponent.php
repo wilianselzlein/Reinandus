@@ -33,9 +33,20 @@ abstract class IntegracaoBaseComponent extends Component {
 	}
 
 	public function FormatarTexto($texto, $tamanho){
+		$texto = utf8_decode($texto);
+		$texto = $this->TirarAcento($texto);
 		$texto = $this->VerificarTamanhoMaiorQueOCampo($texto, $tamanho);
 		$texto = str_pad($texto, $tamanho, ' ', STR_PAD_RIGHT);
 		$texto = strtoupper($texto);
+		//$texto = iconv('UTF-8', 'ISO-8859-1', $texto);
+		//$texto = mb_convert_encoding($texto, 'ISO-8859-1', 'UTF-8');
+		//$texto = utf8_encode($texto);
+		//$texto = utf8_decode($texto);
+		//$texto = $this->my_ucwords($texto);
+		//$texto = mb_convert_encoding($texto, 'UTF-8');
+		//$texto = mb_convert_encoding($texto, 'HTML-ENTITIES', 'UTF-8');
+		//$texto = html_entity_decode($texto, ENT_COMPAT, 'UTF-8');
+		//debug($texto); die;
 		return $texto;
 	}
 
@@ -69,6 +80,60 @@ abstract class IntegracaoBaseComponent extends Component {
 			return substr($texto, $tamanho);
 		else
 			return $texto;
+	}
+
+	protected function modulo_11($num, $base=7, $r=0) {
+		$soma = 0;
+		$fator = 2; 
+		for ($i = strlen($num); $i > 0; $i--) {
+			$numeros[$i] = substr($num,$i-1,1);
+			$parcial[$i] = $numeros[$i] * $fator;
+			$soma += $parcial[$i];
+			if ($fator == $base) {
+				$fator = 1;
+			}
+			$fator++;
+		}
+		if ($r == 0) {
+			$soma *= 10;
+			$digito = $soma % 11;
+			
+			if ($digito == 10) {
+				$digito = "X";
+			}
+			
+			if (strlen($num) == "43") {
+				if ($digito == "0" or $digito == "X" or $digito > 9) {
+						$digito = 1;
+				}
+			}
+			return $digito;
+		} 
+		elseif ($r == 1){
+			$resto = $soma % 11;
+			return $resto;
+		}
+	}
+
+	protected function FormatarCNPJ($cnpj) {
+		$cnpj = str_replace('/', '', $cnpj);
+		$cnpj = str_replace('.', '', $cnpj);
+		return $this->FormatarNumero($cnpj,14);
+	}
+
+	protected function FormatarCPF($cpf) {
+		$cpf = str_replace('.', '', $cpf);
+		$cpf = str_replace('-', '', $cpf);
+		return $this->FormatarNumero($cpf,14);
+	}
+
+	private function TirarAcento($texto) {
+		//return preg_replace( '/[`^~\'"]/', null, iconv( 'UTF-8', 'ASCII//TRANSLIT', $texto ) );
+
+		$map = array('á' => 'a','à' => 'a','ã' => 'a','â' => 'a','é' => 'e','ê' => 'e','í' => 'i','ó' => 'o','ô' => 'o','õ' => 'o','ú' => 'u','ü' => 'u','ç' => 'c','Á' => 'A','À' => 'A','Ã' => 'A','Â' => 'A','É' => 'E','Ê' => 'E','Í' => 'I','Ó' => 'O','Ô' => 'O','Õ' => 'O','Ú' => 'U','Ü' => 'U','Ç' => 'C');
+
+		return  strtr($texto, $map);
+		//return preg_replace("/&([a-z])[a-z]+;/i", "$1", htmlentities($texto));
 	}
 
 }
