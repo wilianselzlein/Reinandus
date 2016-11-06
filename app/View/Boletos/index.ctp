@@ -39,7 +39,7 @@
 											'label'=>array('class'=>'col-sm-3 control-label', 'text' => 'Vencimento Final'), 'div'=>true, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
 									</div>
 									<!-- .form-group -->
-									<?php echo $this->Form->button('<i class="fa fa-envelope"></i>'.' '.__('Gerar'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
+									<?php echo $this->Form->button('<i class="fa fa-envelope"></i>'.' '.__('Gerar'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit', 'onclick' => '__loadMostra();','escape' => false)); ?>
 								</fieldset>
 								<?php echo $this->Form->end(); ?>
 							</div>
