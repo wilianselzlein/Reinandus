@@ -68,16 +68,19 @@ abstract class IntegracaoBaseComponent extends Component {
 		//debug($options);
         $consulta = $Consulta->find('first', $options);
 
+        $this->Empresa = $consulta['Empresa'];
+        /*
 		$Empresa = ClassRegistry::init('Pessoa');
 		$options = array('recursive' => 1, 'conditions' => 
 			array('Pessoa.' . $Empresa->primaryKey => $consulta['Empresa']['id']));
 		$this->Empresa = $Empresa->find('first', $options);
-		//$cidade = $consulta['Cidade']['nome'];
+		debug($this->Empresa); die;
+		//$cidade = $consulta['Cidade']['nome'];*/
 	}
 	
 	private function VerificarTamanhoMaiorQueOCampo($texto, $tamanho) {
 		if (strlen($texto) > $tamanho)
-			return substr($texto, $tamanho);
+			return substr($texto, 0, $tamanho);
 		else
 			return $texto;
 	}

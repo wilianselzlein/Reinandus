@@ -11,8 +11,8 @@ class IntegracaoBradescoComponent extends IntegracaoBaseComponent {
 		$s .= 'REMESSA';
 		$s .= '01'; //codigo do servico 
 		$s .= $this->FormatarTexto('COBRANCA', 15);
-		$s .= $this->FormatarTexto($this->Data[0]['Conta']['cedente'], 20);
-		$s .= $this->FormatarTexto($this->Empresa['Pessoa']['razaosocial'], 30);
+		$s .= $this->FormatarNumero($this->Data[0]['Conta']['cedente'], 20);
+		$s .= $this->FormatarTexto($this->Empresa['razaosocial'], 30);
 		$s .= '237'; //numero do bradesco
 		$s .= $this->FormatarTexto('Bradesco', 15);
 		$s .= date('d') . date('m') . date('y'); //data gravacao do arquivo
@@ -39,7 +39,7 @@ class IntegracaoBradescoComponent extends IntegracaoBaseComponent {
 			$s .= $this->FormatarTexto('', 1); //digito da conta corrente
 			$carteira = $this->Data[$i]['Conta']['carteira'];
 			$s .= $this->FormatarNumero('0', 1) . $this->FormatarNumero($carteira, 3) . $this->FormatarNumero($this->Data[$i]['Conta']['agencia'], 5) . $this->FormatarNumero($this->Data[$i]['Conta']['conta'], 7) . $this->FormatarNumero($this->Data[$i]['Conta']['conta_dig'], 1); //identificacao da empresa
-			$s .= $this->FormatarNumero($this->Data[$i]['Mensalidade']['id'], 25); //num controle participante
+			$s .= $this->FormatarTexto($this->Data[$i]['Mensalidade']['id'], 25); //num controle participante
 			$s .= $this->FormatarTexto('237', 3); //código do banco
 			$s .= $this->FormatarTexto('2', 1); //2 = multa 0 = sem multa
 			$s .= $this->FormatarTexto('0200', 4); //2% multa
@@ -61,11 +61,11 @@ class IntegracaoBradescoComponent extends IntegracaoBaseComponent {
 			$s .= $this->FormatarNumero('0', 5); //Agência Depositária
 			$s .= $this->FormatarTexto('01', 2); //Especie de Titulo - Duplicata
 			$s .= $this->FormatarTexto('N', 1); //Identificacao Sempre N
-			$s .= $this->FormatarTexto($this->Data[$i]['Conta']['dia_emissao'], 2) . date('m') . date('y'); //data emissao
+			$s .= $this->FormatarNumero($this->Data[$i]['Conta']['dia_emissao'], 2) . date('m') . date('y'); //data emissao
 			$s .= $this->FormatarNumero('0', 2); //1ª instrução
 			$s .= $this->FormatarNumero('0', 2); //2ª instrução
 			$s .= $this->FormatarNumero('0', 13); //Mora por Dia de Atraso
-			$s .= $this->FormatarTexto($this->Data[$i]['Conta']['dia_desconto'], 2) . date('m') . date('y'); //data limite desconto
+			$s .= $this->FormatarNumero($this->Data[$i]['Conta']['dia_desconto'], 2) . date('m') . date('y'); //data limite desconto
 			$s .= $this->FormatarNumero($this->Data[$i]['Mensalidade']['desconto'], 13); //Valor descont
 			$s .= $this->FormatarNumero('0', 13); //IOF
 			$s .= $this->FormatarNumero('0', 13); //Abatimento
