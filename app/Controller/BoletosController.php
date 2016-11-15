@@ -75,6 +75,7 @@ class BoletosController extends AppController {
 		$remessa = $this->GeraArquivoIntegracaoBancaria->gerar();
 		$nome = $this->GeraArquivoIntegracaoBancaria->nome();
 		$this->remessa($remessa, $nome);
+		$this->MarcarMensalidadesComoEnviadas($mensalidades);
 		$this->IncrementarSequencialDaRemessaNaConta($mensalidades);
 
 		$this->Session->setFlash(__('Arquivo gerado com sucesso! ' . count($mensalidades) . ' mensalidade(s).'), 
@@ -184,6 +185,29 @@ class BoletosController extends AppController {
 		$data['Conta']['seq_remessa'] = $seq;
 
 		$this->Boleto->Conta->save($data);
+	}
+
+/**
+ * MarcarMensalidadesComoEnviadas method
+ * input array
+ * @return void
+ */
+	private function MarcarMensalidadesComoEnviadas($data) {
+		if (count($data) == 0)
+			return;
+
+		$ids = array_column($data, 'Mensalidade');
+		$ids = array_column($ids, 'id');
+
+		sort($ids);
+		if (empty($ids)) $ids[] = 0;
+
+		$this->Boleto->Mensalidade->unbindModel(array('belongsTo' => array('Conta', 'Aluno', 'Situacao', 'Formapgto', 'User', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
+
+		$this->Boleto->Mensalidade->updateAll(
+    		array('Mensalidade.remessa' => true),
+			array('Mensalidade.id >= ' => min($ids), 'Mensalidade.id <= ' => max($ids), 
+				'AND' => array('Mensalidade.id' => $ids)));
 	}
 
 }
