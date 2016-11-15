@@ -39,7 +39,7 @@
      echo $this->Form->input('renegociacao',
      	array('type' => 'checkbox', 'class' => 'form-control checkbox2',
      	'before'=>'<div class="col-sm-2">',
-     	'after'=>'</div>', 'div'=>false, 'label'=>false, 'checked'=>true)); ?>
+     	'after'=>'</div>', 'div'=>false, 'label'=>false)); ?>
      </div><!-- .form-group -->
 <?php } ?>
 <div class="form-group">
@@ -61,6 +61,13 @@
 <?php if (! $baixa) { ?>
      <div class="form-group">
      <?php echo $this->Form->input('obs',
-          array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+          array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-7">', 'after'=>'</div>')); ?>
+     </div><!-- .form-group -->
+     <div class="form-group">
+     <?php echo $this->Form->label('remessa', null, array('text' => 'Remessa Enviada', 'class'=>'col-sm-2 control-label'));
+          echo $this->Form->input('remessa',
+               array('type' => 'checkbox', 'class' => 'form-control checkbox2',
+                    'before'=>'<div class="col-sm-1">',
+                    'after'=>'</div>Desmarque para (re)enviar a remessa.', 'div'=>false, 'label'=>false)); ?>
      </div><!-- .form-group -->
 <?php } ?>

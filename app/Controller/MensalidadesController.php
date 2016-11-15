@@ -390,7 +390,11 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
  * @param int $id
  * @return void
  */
-	public function boleto($id){
+	public function boleto($id = null){
+		if (is_null($id)) {
+			$this->redirect(array('action' => 'index'));
+			return;
+		}
 		$this->autoRender = false;
 		$dados = $this->DadosBoleto($id);
 		$this->BoletoHsbc->render($dados);

@@ -27,7 +27,7 @@
 										array('class' => 'form-control combobox',
 										'label'=>array('class'=>'col-sm-3 control-label', 'style' => 'padding-left: 0px;'), 
 										'div'=>true, 'between'=>'<div class="col-sm-8">', 'after'=>'</div>')); ?>
-									</div><!-- .form-group -->
+									</div>
 									<div class="form-group">
 										<?php echo $this->Form->input('vencimento_inicial',
 										array('type' => 'text', 'class' => 'form-control datepicker-start', 
@@ -38,7 +38,11 @@
 										array('type' => 'text', 'class' => 'form-control datepicker-end', 
 											'label'=>array('class'=>'col-sm-3 control-label', 'text' => 'Vencimento Final'), 'div'=>true, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
 									</div>
-									<!-- .form-group -->
+									<div class="form-group">
+									<?php
+										$modelos = array(0 => 'Não enviadas', 1 => 'Enviadas', 2 => 'Todas');
+										echo $this->Form->input('envio', array('class' => 'form-control', 'label'=>array('class'=>'col-sm-3 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-8">', 'after'=>'</div>', 'options' => $modelos)); ?>
+									</div>
 									<?php echo $this->Form->button('<i class="fa fa-envelope"></i>'.' '.__('Gerar'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit', 'onclick' => '__loadMostra();','escape' => false)); ?>
 								</fieldset>
 								<?php echo $this->Form->end(); ?>
