@@ -55,10 +55,10 @@
     <div id="restrict-area-login">
         <?php echo $this->Form->create('User', array('class'=>'form-signin', 'role' => 'form'));?>
         <?php echo $this->Session->flash(); ?>        
-        <h4>Informe seus dados de autenticação.</h4>
+        <h4>Informe a autenticação.</h4>
         <div class="input-group input-group">
             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-            <?php echo $this->Form->input('username', array('class' => 'form-control non-rounded', 'placeholder'=>"Usuário", "label"=>false,  'div' => array('class' => 'control-group')));?>            
+            <?php echo $this->Form->input('username', array('class' => 'form-control non-rounded', 'placeholder'=>"Usuário", "label"=>false,  'div' => array('class' => 'control-group')));?>
         </div>
         <br>
         <div class="input-group input-group">
@@ -66,8 +66,11 @@
             <?php echo $this->Form->input('password', array('class' => 'form-control non-rounded', 'placeholder'=>"Senha", "label"=>false,  'div' => array('class' => 'control-group')));?>
         </div>
         <br>
-        <?php echo $this->Form->submit(__('Acessar'), array('class' => 'btn btn-lg btn-default btn-block non-rounded'));?>    
+        <?php echo $this->Form->submit(__('Acessar'), array('class' => 'btn btn-lg btn-default btn-block non-rounded'));?>
         <?php echo $this->Form->end(); ?>
+        <br>
+        <?php echo $this->Html->link('<i class="fa fa-fw fa-male"></i>'.' Ir para o espaço dos '.__('Alunos'), 
+        array('controller' => 'aluno', 'action' => 'portal'), array('class' => '', 'escape'=>false)); ?>
     </div>
     <script>
         $(function(){

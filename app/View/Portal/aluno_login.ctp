@@ -63,7 +63,7 @@ body {
       
         <?php echo $this->Session->flash(); ?>        
         <h4>        
-        Informe seus dados de autenticação.
+        Aluno, informe sua matrícula e senha.
         </h4>
 
         <div class="input-group input-group">
