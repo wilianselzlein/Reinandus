@@ -333,11 +333,14 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 
 		$dados["cidade_uf"] =  $cidade['Cidade']['nome'];
 		$dados["cedente"] = $conta['Conta']['cedente']; //$instituto['Empresa']['fantasia'] . ' ' .$instituto['Empresa']['cnpjcpf'];
+		$dados["conta_cedente"] = $dados["cedente"];
+		$dados["conta_cedente_dv"] = $conta['Conta']['cedente_dig'];
 
 		// Informações da sua conta 
 		$dados["agencia"] = $conta['Conta']['agencia']; // Num da agencia, sem digito
+		$dados["agencia_dv"] = $conta['Conta']['agencia_dig']; 
 		$dados["conta"] = $conta['Conta']['conta']; 	// Num da conta, sem digito
-		$dados["conta_dv"] = $conta['Conta']['conta_dig']; 	// Num da conta, sem digito
+		$dados["conta_dv"] = $conta['Conta']['conta_dig'];
 
 		// Dados do contrato com o Banco
 		$dados["convenio"] = $conta['Conta']['cedente'];  // Num do convênio - REGRA: 6 ou 7 ou 8 dígitos
