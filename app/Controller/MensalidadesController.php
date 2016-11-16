@@ -315,6 +315,10 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$options = array('recursive' => 1, 'conditions' => array('Instituto.' . $Instituto->primaryKey => 1));
 		$instituto = $Instituto->find('first', $options);
 
+		$Cabecalho = ClassRegistry::init('Cabecalho');
+		$cabecalho = $Cabecalho->find('first');
+		$dados['logo'] = $cabecalho['Cabecalho']['logo'];
+		
 		$dados['sacado'] = $aluno['Aluno']['nome'] . ' ' . $aluno['Aluno']['cpf'];
 		$dados['endereco1'] = $aluno['Aluno']['endereco'] . ' ' . $aluno['Aluno']['numero'] . ' ' . $aluno['Aluno']['bairro'];
 		$dados['endereco2'] = $cidade['Cidade']['nome'] . '/' . $estado['Estado']['sigla'];
