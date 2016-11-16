@@ -17,7 +17,7 @@ class MensalidadesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Boletos.BoletoBb', 'Boletos.BoletoHsbc', 'TransformarArray');
+	public $components = array('Paginator', 'Session', 'Boletos.BoletoBb', 'Boletos.BoletoHsbc', 'Boletos.BoletoBradesco', 'TransformarArray');
 
 /**
  * index method
@@ -397,7 +397,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		}
 		$this->autoRender = false;
 		$dados = $this->DadosBoleto($id);
-		$this->BoletoHsbc->render($dados);
+	$this->BoletoBradesco->render($dados);
 	}
 
 /**

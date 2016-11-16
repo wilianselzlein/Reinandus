@@ -35,7 +35,7 @@ class PortalController extends AppController {
       $vagas = $this->Portal->query('select * from vvagas');
       $convenios = $this->Portal->query('select * from vconvenios');
       $notas = $this->Portal->query('select * from vdisciplinas where aluno_disciplina_aluno_id = ' . $id);
-      $mensalidades = $this->Portal->query('select * from vmensalidades where mensalidade_aluno_id = ' . $id);
+      $mensalidades = $this->Portal->query('select * from vmensalidades where mensalidade_aluno_id = ' . $id . ' order by mensalidade_vencimento');
       $anos = $this->PegarOsAnosDasMensalidades($mensalidades);
       $grupos = $this->Portal->query('select * from vgrupos');
       $grupos = Set::combine($grupos, '{n}.vgrupos.grupo_id', '{n}.vgrupos.grupo_nome');
@@ -154,11 +154,15 @@ class PortalController extends AppController {
       return $anos;
     }
 
-    public function aluno_Boleto($id) {
+    public function aluno_Boleto($id = null) {
+      if (is_null($id)) {
+        $this->redirect(array('action' => 'index'));
+        return;
+      }
       $Mensalidade = new MensalidadesController;
       $dados = $Mensalidade->DadosBoleto($id);
       $this->autoRender = false;
-      $this->BoletoHsbc->render($dados);
+      $this->BoletoBradesco->render($dados);
     }
 
     public function aluno_comprovante() {
