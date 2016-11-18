@@ -33,6 +33,7 @@ abstract class IntegracaoBaseComponent extends Component {
 	}
 
 	public function FormatarTexto($texto, $tamanho){
+		$texto = utf8_encode($texto);
 		$texto = utf8_decode($texto);
 		$texto = $this->TirarAcento($texto);
 		$texto = $this->VerificarTamanhoMaiorQueOCampo($texto, $tamanho);
@@ -62,9 +63,10 @@ abstract class IntegracaoBaseComponent extends Component {
 	}
 
 	protected function CarregarDadosDaEmpresa() {
-		$Consulta = ClassRegistry::init('instituto');
+		$Consulta = ClassRegistry::init('Instituto');
+		$Consulta->unbindModel(array('belongsTo' => array('Diretor', 'Tipo')));
 		$options = array('recursive' => $this->Recursive, 'conditions' => 
-			array('instituto' . '.' . $Consulta->primaryKey => 1));
+			array('Instituto' . '.' . $Consulta->primaryKey => 1));
 		//debug($options);
         $consulta = $Consulta->find('first', $options);
 
