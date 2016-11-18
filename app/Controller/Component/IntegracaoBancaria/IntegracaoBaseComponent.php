@@ -27,6 +27,7 @@ abstract class IntegracaoBaseComponent extends Component {
 	public function FormatarNumero($numero, $tamanho){
 		$numero = str_replace('.', '', $numero);
 		$numero = str_replace(',', '', $numero);
+		$numero = trim($numero);
 		$numero = $this->VerificarTamanhoMaiorQueOCampo($numero, $tamanho);
 		$numero = str_pad($numero, $tamanho, '0', STR_PAD_LEFT);
 		return $numero;
@@ -36,6 +37,7 @@ abstract class IntegracaoBaseComponent extends Component {
 		$texto = utf8_encode($texto);
 		$texto = utf8_decode($texto);
 		$texto = $this->TirarAcento($texto);
+		$texto = trim($texto);
 		$texto = $this->VerificarTamanhoMaiorQueOCampo($texto, $tamanho);
 		$texto = str_pad($texto, $tamanho, ' ', STR_PAD_RIGHT);
 		$texto = strtoupper($texto);
@@ -123,6 +125,7 @@ abstract class IntegracaoBaseComponent extends Component {
 	protected function FormatarCNPJ($cnpj) {
 		$cnpj = str_replace('/', '', $cnpj);
 		$cnpj = str_replace('.', '', $cnpj);
+		$cnpj = str_replace('-', '', $cnpj);
 		return $this->FormatarNumero($cnpj,14);
 	}
 
