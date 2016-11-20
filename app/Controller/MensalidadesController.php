@@ -442,7 +442,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
  * @param array $mensalidade
  * @return void
  */
-	private function RealizarLancamentosContabeis($mensalidade) {
+	public function RealizarLancamentosContabeis($mensalidade) {
 
 		$this->LancarContabil($mensalidade, 2, 'lancamento_desconto_id', 'MenDesDeb','MenDesCre','MenDesHis', 'desconto');
 		$this->LancarContabil($mensalidade, 1, 'lancamento_valor_id', 'MenValDeb','MenValCre','MenValHis', 'pago');
