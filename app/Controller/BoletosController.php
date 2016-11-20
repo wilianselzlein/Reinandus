@@ -100,16 +100,16 @@ class BoletosController extends AppController {
 			
 			switch (substr($linha, 0, 1)) {
 				case 0:
-					$this->RetornoArquivoIntegracaoBancaria->ProcessarCabecalho();
+					$this->RetornoArquivoIntegracaoBancaria->Cabecalho();
 					break;
 				case 1:
-					$this->RetornoArquivoIntegracaoBancaria->ProcessarMensalidade();
+					$this->RetornoArquivoIntegracaoBancaria->Mensalidade();
 					break;
 				case 3:
-					$this->RetornoArquivoIntegracaoBancaria->ProcessarRateio();
+					$this->RetornoArquivoIntegracaoBancaria->Rateio();
 					break;
 				case 9:
-					$this->RetornoArquivoIntegracaoBancaria->ProcessarTotalizadores();
+					$this->RetornoArquivoIntegracaoBancaria->Totalizadores();
 					break;
 			}
 		}
