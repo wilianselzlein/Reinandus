@@ -111,7 +111,7 @@ class ContasController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
-			$options = array('recursive' => false, 'conditions' => array('Contum.' . $this->Contum->primaryKey => $id));
+			$options = array('recursive' => -1, 'conditions' => array('Contum.' . $this->Contum->primaryKey => $id));
 			$this->request->data = $this->Contum->find('first', $options);
 		}
 		$formapgtos = $this->Contum->Formapgto->findAsCombo();

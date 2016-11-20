@@ -61,8 +61,12 @@ $dv = digitoVerificador_barra("$codigobanco$nummoeda$fator_vencimento$valor$agen
 $linha = "$codigobanco$nummoeda$dv$fator_vencimento$valor$agencia$nnum$conta_cedente"."0";
 
 $nossonumero = substr($nnum,0,2).'/'.substr($nnum,2).'-'.$dv_nosso_numero;
-$agencia_codigo = $agencia."-".$dadosboleto["agencia_dv"]." / ". $conta_cedente ."-". $conta_cedente_dv;
-
+$agencia_codigo = $agencia;
+if ($dadosboleto["agencia_dv"] != "")
+  $agencia_codigo .= "-".$dadosboleto["agencia_dv"];
+$agencia_codigo .= " / ". $conta_cedente;
+if ($dadosboleto["agencia_dv"] != "")
+  $agencia_codigo .= "-". $conta_cedente_dv;
 
 $dadosboleto["codigo_barras"] = $linha;
 $dadosboleto["linha_digitavel"] = monta_linha_digitavel($linha);

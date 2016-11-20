@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::import('Vendor', 'PeDF/Table');
 
 /**
  * Boletos Controller
@@ -196,8 +197,9 @@ class BoletosController extends AppController {
 		if (count($data) == 0)
 			return;
 
-		$ids = array_column($data, 'Mensalidade');
-		$ids = array_column($ids, 'id');
+		$table = new Table();
+		$ids = $table->array_column($data, 'Mensalidade');
+		$ids = $table->array_column($ids, 'id');
 
 		sort($ids);
 		if (empty($ids)) $ids[] = 0;

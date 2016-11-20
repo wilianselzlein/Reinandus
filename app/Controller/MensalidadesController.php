@@ -322,10 +322,10 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$dados['sacado'] = $aluno['Aluno']['nome'] . ' ' . $aluno['Aluno']['cpf'];
 		$dados['endereco1'] = $aluno['Aluno']['endereco'] . ' ' . $aluno['Aluno']['numero'] . ' ' . $aluno['Aluno']['bairro'];
 		$dados['endereco2'] = $cidade['Cidade']['nome'] . '/' . $estado['Estado']['sigla'];
-		$dados['cpf_cnpj'] = $aluno['Aluno']['cpf'];
+		//$dados['cpf_cnpj'] = $aluno['Aluno']['cpf'];
 		
 		$dados['valor_cobrado'] = $mensalidade['Mensalidade']['valor'];
-		$dados['pedido'] = $aluno['Aluno']['id']; // Usado para gerar o número do documento e o nosso número.
+		$dados['pedido'] = str_pad($mensalidade['Mensalidade']['id'], 11, '0', STR_PAD_RIGHT); //$aluno['Aluno']['id']; // Usado para gerar o número do documento e o nosso número.
 
 		/* Seus Dados */
 		$dados["identificacao"] = $instituto['Empresa']['fantasia'];
@@ -336,7 +336,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$cidade = $this->Mensalidade->Aluno->Cidade->find('first', $options);
 
 		$dados["cidade_uf"] =  $cidade['Cidade']['nome'];
-		$dados["cedente"] = $conta['Conta']['cedente']; //$instituto['Empresa']['fantasia'] . ' ' .$instituto['Empresa']['cnpjcpf'];
+		$dados["cedente"] = $conta['Conta']['cedente'];
 		$dados["conta_cedente"] = $dados["cedente"];
 		$dados["conta_cedente_dv"] = $conta['Conta']['cedente_dig'];
 
@@ -349,8 +349,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		// Dados do contrato com o Banco
 		$dados["convenio"] = $conta['Conta']['cedente'];  // Num do convênio - REGRA: 6 ou 7 ou 8 dígitos
 		$dados["contrato"] = $conta['Conta']['cedente']; // Num do seu contrato
-		$dados["carteira"] = "18";
-		//$dados["variacao_carteira"] = "-019";  // Variação da Carteira, com traço (opcional)
+		$dados["carteira"] = $conta['Conta']['carteira']; // Variação da Carteira, com traço (opcional)
 
 		// Tipo do Boleto
 		$dados["formatacao_convenio"] = "7"; // REGRA: 8 p/ Convênio c/ 8 dígitos, 7 p/ Convênio c/ 7 dígitos, ou 6 se Convênio c/ 6 dígitos
@@ -358,7 +357,9 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 
 		// Vence em quantos dias? 
 		$dados['dias_vencimento'] = date('j', strtotime($mensalidade['Mensalidade']['vencimento']));
-		$dados['data_vencimento'] = date('m/d/Y', strtotime($mensalidade['Mensalidade']['vencimento']));
+		//$dados['data_vencimento'] = date('m/d/Y', strtotime($mensalidade['Mensalidade']['vencimento']));
+		//$dados['data_vencimento'] = date('d/m/Y', strtotime($mensalidade['Mensalidade']['vencimento']));
+		$dados['data_vencimento'] = $mensalidade['Mensalidade']['vencimento'];
 
 		// Taxa do boleto
 		$dados['taxa'] = 0;
