@@ -90,29 +90,33 @@ class BoletosController extends AppController {
  *
  * @return void
  */
-	public function retorno() {
-		/*$data = $this->request->data;
-		if (! isset($data['Nota']))
-			$this->redirect(array('action' => 'index'));
-		$data = $data['Nota'];
-		//$professor = $data['professor_id'];
-		$cursos = $data['Curso'];
-		$disciplinas = $data['Disciplina'];
+	public function retorno($arquivo) {
 
-		$ativos_id = 7;
+		$arquivo = fopen($arquivo, "r") or die('PERMISSAO_ARQ');
 
-		$notas = $this->Nota->AlunoDisciplina->find('all', array('recursive' => false, 'conditions' =>
-			array('Aluno.curso_id' => $cursos, 'AlunoDisciplina.disciplina_id' => $disciplinas, 'Aluno.situacao_id' => $ativos_id),
-			'fields' => array('AlunoDisciplina.id', 'AlunoDisciplina.aluno_id', 'AlunoDisciplina.disciplina_id', 'AlunoDisciplina.professor_id', 'AlunoDisciplina.frequencia', 
-				'AlunoDisciplina.nota', 'AlunoDisciplina.horas_aula', 'AlunoDisciplina.data', 'Aluno.id', 'Aluno.nome', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'),
-				'order' => array('Aluno.Nome')));
-		if (count($notas) == 0) {
-			$this->Session->setFlash(
-				__('Nenhum aluno ativo para a(s) disciplina(s) e curso(s) selecionado(s).'), 'flash/error');
-			$this->redirect(array('action' => 'index'));
+		while(!feof($arquivo)) {
+ 			$linha = fgets($arquivo);
+ 			$this->RetornoArquivoIntegracaoBancaria->setLinha($linha);
+			
+			switch (substr($linha, 0, 1)) {
+				case 0:
+					$this->RetornoArquivoIntegracaoBancaria->ProcessarCabecalho();
+					break;
+				case 1:
+					$this->RetornoArquivoIntegracaoBancaria->ProcessarMensalidade();
+					break;
+				case 3:
+					$this->RetornoArquivoIntegracaoBancaria->ProcessarRateio();
+					break;
+				case 9:
+					$this->RetornoArquivoIntegracaoBancaria->ProcessarTotalizadores();
+					break;
+			}
 		}
-		$professores = $this->Nota->Professor->findAsCombo();
-		$this->set(compact('notas', 'professores', 'cursos', 'disciplinas')); //'professor',*/
+		fclose($arquivo);
+
+		$this->Session->setFlash(__('Mensalidades baixadas com sucesso.'), 'flash/success');
+		$this->redirect(array('action' => 'index'));
 	}
 
 /**
@@ -123,15 +127,27 @@ class BoletosController extends AppController {
 	public function processar() {
 		if ($this->request->is('post') || $this->request->is('put')) {
 
+/*
+	'Boleto' => array(
+		'retorno' => array(
+			'name' => 'test.php',
+			'type' => 'text/php',
+			'tmp_name' => '/Applications/XAMPP/xamppfiles/temp/phpxvajou',
+			'error' => (int) 0,
+			'size' => (int) 3005
+*/
+			$caminho = 'retorno/';
 			$data = $this->request->data;
-			/*//debug($data); die;
-			foreach ($data as $item) {
-				//debug($item['AlunoDisciplina']); die;
-				$this->Nota->AlunoDisciplina->create();
-				$this->Nota->AlunoDisciplina->save($item['AlunoDisciplina']);
+			$tmp = $data['Boleto']['retorno']['tmp_name'];
+			$arquivo = basename($data['Boleto']['retorno']['name']);
 
-				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
-			}*/
+			if (! move_uploaded_file($tmp, $caminho . $arquivo))
+				throw new Exception(__('PERMISSAO_ARQ'));
+
+	        if (! file_exists($caminho . $arquivo))
+	            throw new Exception(__('PERMISSAO_ARQ'));
+			
+			$this->retorno($caminho . $arquivo);
 		} 
 		$this->redirect(array('action' => 'index'));
 	}

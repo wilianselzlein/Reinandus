@@ -51,7 +51,7 @@
 						</div>
 						<div class="tab-pane" id="tabRet">
 							<div class="Boletos form">
-								<?php echo $this->Form->create('Boleto', array('role' => 'form', 'class'=>'form-horizontal', 'action' => 'retorno', 'url' => '/Boletos/retorno')); ?>
+								<?php echo $this->Form->create('Boleto', array('role' => 'form', 'class'=>'form-horizontal', 'action' => 'processar', 'url' => '/Boletos/processar', 'enctype' => 'multipart/form-data')); ?>
 								<fieldset>
 									<div class="form-group">
 										<?php echo $this->Form->input('retorno',
