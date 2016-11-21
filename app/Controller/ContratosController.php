@@ -58,7 +58,7 @@ class ContratosController extends AppController {
             $escreve = fwrite($fp, $contrato);
             fclose($fp);
 
-            $this->download($caminho, $arquivo);
+            $this->downloadarq($caminho, $arquivo);
             //echo $contrato; 
             //die;
         }

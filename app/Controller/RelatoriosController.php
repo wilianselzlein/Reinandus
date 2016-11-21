@@ -224,7 +224,7 @@ class RelatoriosController extends AppController {
                }
             }
           }
-      return $filtros;
+      return $filtros . " ";
    }
    
     /**

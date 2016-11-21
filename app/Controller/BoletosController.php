@@ -16,7 +16,7 @@ class BoletosController extends AppController {
  *
  * @var array
  */
-	public $components = array('Session', 'GeraArquivoIntegracaoBancaria');
+	public $components = array('Session', 'RetornoArquivoIntegracaoBancaria');
 
 /**
  * index method
@@ -49,7 +49,7 @@ class BoletosController extends AppController {
         $escreve = fwrite($fp, $remessa);
         fclose($fp);
 
-        $this->download($caminho, $arquivo);
+        $this->downloadarq($caminho, $arquivo);
 	}
 
 /**

@@ -699,3 +699,6 @@ msgstr "Dezembro"
 
 msgid  "Num Banco"
 msgstr "Número do Banco"
+
+msgid  "is_obrigatorio"
+msgstr "Obrigatório"

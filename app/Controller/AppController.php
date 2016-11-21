@@ -306,11 +306,11 @@ class AppController extends Controller {
   }
 
 /**
- * download method
+ * downloadarq method
  *
  * @return void
  */
-  public function download($caminho, $arquivo) {
+  public function downloadarq($caminho, $arquivo) {
         $this->response->file($caminho . $arquivo, array('download' => true, 'name' => $arquivo));
         return $this->response;
   }
