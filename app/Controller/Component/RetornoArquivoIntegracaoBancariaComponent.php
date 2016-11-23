@@ -14,16 +14,17 @@ class RetornoArquivoIntegracaoBancariaComponent extends Component {
     }
 
 	public function Cabecalho() {
-	    if (substr($this->Linha, 77, 3) == 237)
+		$banco = substr($this->Linha, 76, 3);
+	    if ($banco == 237)
 	    	$this->Integracao = new RetornoBradescoComponent($this->Linha);
 	    else
 	    	throw new NotFoundException(__('Número do banco não configurado no arquivo de retorno.'));
 
-	    return $this->Integracao->Cabecalho();
+	    //return $this->Integracao->Cabecalho();
 	}
 
 	public function Mensalidade() {
-	    return $this->Integracao->Mensalidade();
+	    return $this->Integracao->Mensalidades();
 	}
 
 	public function Rateio() {
