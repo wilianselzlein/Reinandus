@@ -16,7 +16,7 @@ class BoletosController extends AppController {
  *
  * @var array
  */
-	public $components = array('Session', 'RetornoArquivoIntegracaoBancaria');
+	public $components = array('Session', 'GeraArquivoIntegracaoBancaria', 'RetornoArquivoIntegracaoBancaria');
 
 /**
  * index method
@@ -71,7 +71,7 @@ class BoletosController extends AppController {
 				__('Nenhuma mensalidade para o período informado.'), 'flash/error');
 			$this->redirect(array('action' => 'index'));
 		}
-
+//debug($mensalidades); die;
 		$this->GeraArquivoIntegracaoBancaria->setData($mensalidades);
 		$remessa = $this->GeraArquivoIntegracaoBancaria->gerar();
 		$nome = $this->GeraArquivoIntegracaoBancaria->nome();

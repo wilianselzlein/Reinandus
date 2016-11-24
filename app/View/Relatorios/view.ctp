@@ -140,7 +140,7 @@
 			<?php endif; ?>
 			<div class="actions">
 				<?php echo $this->Html->link('<i class="icon-plus icon-white"></i> '.__('New').' '.__('RelatorioDatasets'), 
-					array('controller' => 'relatoriodatasets', 'action' => 'add'), array('class' => 'btn btn-primary', 'escape' => false)); ?>
+					array('controller' => 'RelatorioDatasets', 'action' => 'add'), array('class' => 'btn btn-primary', 'escape' => false)); ?>
 			</div>
 			<!-- /.actions -->
 		</div>
