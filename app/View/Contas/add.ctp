@@ -137,7 +137,7 @@
 				); ?>
 				</div>
 				<div class="form-group">
-						<?php echo $this->Form->input('sequencial_remessa', 
+						<?php echo $this->Form->input('seq_remessa', 
 				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 				); ?>
 				</div>

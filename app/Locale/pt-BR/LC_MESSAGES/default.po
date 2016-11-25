@@ -702,3 +702,6 @@ msgstr "Número do Banco"
 
 msgid  "is_obrigatorio"
 msgstr "Obrigatório"
+
+msgid  "Seq Remessa"
+msgstr "Sequencial da Remessa"

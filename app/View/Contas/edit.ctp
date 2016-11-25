@@ -135,7 +135,11 @@
 						array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
 						); ?>
 				</div>
-				<!-- .form-group -->
+				<div class="form-group">
+						<?php echo $this->Form->input('seq_remessa', 
+				array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+				); ?>
+				</div>
 				<?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
 			</fieldset>
 			<?php echo $this->Form->end(); ?>
