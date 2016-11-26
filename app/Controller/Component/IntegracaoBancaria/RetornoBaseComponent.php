@@ -8,6 +8,10 @@ abstract class RetornoBaseComponent extends Component {
 	var $Linha;
 	var $Mensalidade;
 	var $IdsPagos;
+	var $FormaPgto_Id;
+	var $Arquivo;
+
+	protected static $SituacaoFechada = 86; 
 
 	abstract public function Mensalidades();
 
@@ -16,10 +20,15 @@ abstract class RetornoBaseComponent extends Component {
 		set_time_limit(0);
 		$this->Mensalidade = new MensalidadesController;
 		$this->IdsPagos = [];
+		$this->FormaPgto_Id = $this->Mensalidade->ConsultarFormaPgtoPadrao();
 	}
 
 	public function setLinha($linha) {
 		$this->Linha = $linha;
+	}
+
+	public function setArquivo($arquivo) {
+		$this->Arquivo = $arquivo;
 	}
 
 	protected function ConsultarMensalidade($id) {
@@ -32,9 +41,10 @@ abstract class RetornoBaseComponent extends Component {
 
 	protected function FormatarData($data) {
 		$dia = substr($data, 0, 2);
-		$mes = substr($data, 4, 2);
-		$ano = substr($data, 6, 4);
-		$time = strtotime($dia . '/' . $mes . '/' . $ano);
+		$mes = substr($data, 3, 2);
+		$ano = substr($data, 4, 2);
+		$time = $mes . '/' . $dia . '/' . $ano;
+		$time = strtotime($time);
 		return date('d/m/y', $time);
 	}
 

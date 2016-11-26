@@ -90,8 +90,9 @@ class BoletosController extends AppController {
  *
  * @return void
  */
-	public function retorno($arquivo) {
-
+	public function retorno($caminho, $arquivo) {
+		$nome_arquivo = $arquivo;
+		$arquivo = $caminho . $arquivo;
 		$arquivo = fopen($arquivo, "r") or die('PERMISSAO_ARQ');
 
 		while(!feof($arquivo)) {
@@ -101,6 +102,7 @@ class BoletosController extends AppController {
 			switch (substr($linha, 0, 1)) {
 				case 0:
 					$this->RetornoArquivoIntegracaoBancaria->Cabecalho();
+					$this->RetornoArquivoIntegracaoBancaria->SetArquivo($nome_arquivo);
 					break;
 				case 1:
 					$this->RetornoArquivoIntegracaoBancaria->Mensalidade();
@@ -114,9 +116,6 @@ class BoletosController extends AppController {
 			}
 		}
 		fclose($arquivo);
-
-		$this->Session->setFlash(__('Mensalidades baixadas com sucesso.'), 'flash/success');
-		$this->redirect(array('action' => 'index'));
 	}
 
 /**
@@ -147,9 +146,9 @@ class BoletosController extends AppController {
 	        if (! file_exists($caminho . $arquivo))
 	            throw new Exception(__('PERMISSAO_ARQ'));
 			
-			$this->retorno($caminho . $arquivo);
-		} 
-		$this->redirect(array('action' => 'index'));
+			$this->retorno($caminho, $arquivo);
+			$this->redirect(array('controller' => 'relatorios', 'action' => 'download', 29));
+		}
 	}
 
 /**

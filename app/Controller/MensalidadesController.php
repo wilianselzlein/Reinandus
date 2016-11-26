@@ -513,7 +513,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
  * @param int $id
  * @return void
  */
-	private function ConsultarFormaPgtoPadrao() {
+	public function ConsultarFormaPgtoPadrao() {
 		$this->Mensalidade->Formapgto->recursive = -1;
 		$formapgto_id = $this->Mensalidade->Formapgto->findByTipo('P');
 		if (isset($formapgto_id['Formapgto']))
