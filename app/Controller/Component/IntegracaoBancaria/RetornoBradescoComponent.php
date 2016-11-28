@@ -23,7 +23,6 @@ class RetornoBradescoComponent extends RetornoBaseComponent {
 		$mensalidade['Mensalidade']['documento'] = $this->Arquivo;
 		$mensalidade['Mensalidade']['situacao_id'] = self::$SituacaoFechada;
 
-$this->IdsPagos[] = (int) $mensalidade_id;
 //debug($mensalidade); die;
 		/*if ($this->Mensalidade->save($mensalidade)) {
 			$this->Mensalidade->RealizarLancamentosContabeis($mensalidade);

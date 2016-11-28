@@ -116,6 +116,7 @@ class BoletosController extends AppController {
 			}
 		}
 		fclose($arquivo);
+		$this->Session->setFlash(__('Mensalidades baixadas, utilize o filtro do arquivo: ' . $nome_arquivo . ' para gerar o relatório.'), 'flash/success');
 	}
 
 /**
@@ -147,7 +148,7 @@ class BoletosController extends AppController {
 	            throw new Exception(__('PERMISSAO_ARQ'));
 			
 			$this->retorno($caminho, $arquivo);
-			$this->redirect(array('controller' => 'relatorios', 'action' => 'download', 29));
+			$this->redirect(array('controller' => 'relatorios', 'action' => 'filter', 29));
 		}
 	}
 
