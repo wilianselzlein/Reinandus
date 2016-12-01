@@ -37,7 +37,7 @@ $valor = formata_numero($dadosboleto["valor_boleto"],10,0,"valor");
 //agencia é 4 digitos
 $agencia = formata_numero($dadosboleto["agencia"],4,0);
 //conta é 6 digitos
-$conta = formata_numero($dadosboleto["conta"],6,0);
+$conta = formata_numero($dadosboleto["conta"],7,0);
 //dv da conta
 $conta_dv = formata_numero($dadosboleto["conta_dv"],1,0);
 //carteira é 2 caracteres
@@ -56,10 +56,9 @@ $conta_cedente_dv = formata_numero($dadosboleto["conta_cedente_dv"],1,0);
 //$ag_contacedente = $agencia . $conta_cedente;
 
 // 43 numeros para o calculo do digito verificador do codigo de barras
-$dv = digitoVerificador_barra("$codigobanco$nummoeda$fator_vencimento$valor$agencia$nnum$conta_cedente".'0', 9, 0);
+$dv = digitoVerificador_barra("$codigobanco$nummoeda$fator_vencimento$valor$agencia$nnum$conta".'0', 9, 0);
 // Numero para o codigo de barras com 44 digitos
-$linha = "$codigobanco$nummoeda$dv$fator_vencimento$valor$agencia$nnum$conta_cedente"."0";
-
+$linha = "$codigobanco$nummoeda$dv$fator_vencimento$valor$agencia$nnum$conta"."0";
 $nossonumero = substr($nnum,0,2).'/'.substr($nnum,2).'-'.$dv_nosso_numero;
 $agencia_codigo = $agencia;
 if ($dadosboleto["agencia_dv"] != "")
