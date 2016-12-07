@@ -39,8 +39,8 @@ $valor_cobrado = str_replace(",", ".",$valor_cobrado);
 $valor_boleto=number_format($valor_cobrado+$taxa_boleto, 2, ',', '');
 
 $dadosboleto["nosso_numero"] = $dadosboleto['pedido'];  // Nosso numero - REGRA: M?ximo de 8 caracteres!
-$dadosboleto["numero_documento"] = $dadosboleto["nosso_numero"];;	// Num do pedido ou nosso numero
-$dadosboleto["data_vencimento"] = $data_venc; // Data de Vencimento do Boleto - REGRA: Formato DD/MM/AAAA
+$dadosboleto["numero_documento"] = $dadosboleto["nosso_numero"]; // Num do pedido ou nosso numero
+//$dadosboleto["data_vencimento"] = $data_venc; // Data de Vencimento do Boleto - REGRA: Formato DD/MM/AAAA
 $dadosboleto["data_documento"] = date("d/m/Y"); // Data de emiss?o do Boleto
 $dadosboleto["data_processamento"] = date("d/m/Y"); // Data de processamento do boleto (opcional)
 $dadosboleto["valor_boleto"] = $valor_boleto; 	// Valor do Boleto - REGRA: Com v?rgula e sempre com duas casas depois da virgula

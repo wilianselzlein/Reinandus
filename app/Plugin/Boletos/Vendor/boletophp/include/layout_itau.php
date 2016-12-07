@@ -62,7 +62,7 @@ de Impressão</DIV></TD></TR><TR><TD valign=top class=cp><DIV ALIGN="left">
 do Sacado</b></div></TD></tr></tbody></table><table width=666 cellspacing=5 cellpadding=0 border=0><tr><td width=41></TD></tr></table>
 <table width=666 cellspacing=5 cellpadding=0 border=0 align=Default>
   <tr>
-    <td width=41><IMG SRC="img/logo_empresa.png"></td>
+    <td width=41><IMG SRC="<?php echo $dadosboleto["logo"]; ?>"></td>
     <td class=ti width=455><?php echo $dadosboleto["identificacao"]; ?> <?php echo isset($dadosboleto["cpf_cnpj"]) ? "<br>".$dadosboleto["cpf_cnpj"] : '' ?><br>
 	<?php echo $dadosboleto["endereco"]; ?><br>
 	<?php echo $dadosboleto["cidade_uf"]; ?><br>
@@ -81,7 +81,7 @@ do Sacado</b></div></TD></tr></tbody></table><table width=666 cellspacing=5 cell
 </tr><tbody><tr><td colspan=5><img height=2 src=img/2.png width=666 border=0></td></tr></tbody></table><table cellspacing=0 cellpadding=0 border=0><tbody><tr><td class=ct valign=top width=7 height=13><img height=13 src=img/1.png width=1 border=0></td><td class=ct valign=top width=298 height=13>Cedente</td><td class=ct valign=top width=7 height=13><img height=13 src=img/1.png width=1 border=0></td><td class=ct valign=top width=126 height=13>Agência/Código
 do Cedente</td><td class=ct valign=top width=7 height=13><img height=13 src=img/1.png width=1 border=0></td><td class=ct valign=top width=34 height=13>Espécie</td><td class=ct valign=top width=7 height=13><img height=13 src=img/1.png width=1 border=0></td><td class=ct valign=top width=53 height=13>Quantidade</td><td class=ct valign=top width=7 height=13><img height=13 src=img/1.png width=1 border=0></td><td class=ct valign=top width=120 height=13>Nosso
 número</td></tr><tr><td class=cp valign=top width=7 height=12><img height=12 src=img/1.png width=1 border=0></td><td class=cp valign=top width=298 height=12>
-  <span class="campo"><?php echo $dadosboleto["cedente"]; ?></span></td>
+  <span class="campo"><?php echo $dadosboleto["identificacao"]; ?></span></td>
 <td class=cp valign=top width=7 height=12><img height=12 src=img/1.png width=1 border=0></td><td class=cp valign=top width=126 height=12>
   <span class="campo">
   <?php echo $dadosboleto["agencia_codigo"]?>
@@ -152,7 +152,7 @@ em qualquer Banco até o vencimento</td><td class=cp valign=top width=7 height=1
 </tr><tr><td valign=top width=7 height=1><img height=1 src=img/2.png width=7 border=0></td><td valign=top width=472 height=1><img height=1 src=img/2.png width=472 border=0></td><td valign=top width=7 height=1><img height=1 src=img/2.png width=7 border=0></td><td valign=top width=180 height=1><img height=1 src=img/2.png width=180 border=0></td></tr></tbody></table><table cellspacing=0 cellpadding=0 border=0><tbody><tr><td class=ct valign=top width=7 height=13><img height=13 src=img/1.png width=1 border=0></td><td class=ct valign=top width=472 height=13>Cedente</td><td class=ct valign=top width=7 height=13><img height=13 src=img/1.png width=1 border=0></td><td class=ct valign=top width=180 height=13>Agência/Código
 cedente</td></tr><tr><td class=cp valign=top width=7 height=12><img height=12 src=img/1.png width=1 border=0></td><td class=cp valign=top width=472 height=12>
   <span class="campo">
-  <?php echo $dadosboleto["cedente"]?>
+  <?php echo $dadosboleto["identificacao"]?> <?php echo isset($dadosboleto["cpf_cnpj"]) ? $dadosboleto["cpf_cnpj"] : '' ?>
   </span></td>
 <td class=cp valign=top width=7 height=12><img height=12 src=img/1.png width=1 border=0></td><td class=cp valign=top align=right width=180 height=12>
   <span class="campo">
