@@ -17,7 +17,11 @@
 	<?php echo $this->Form->button('<i class="fa fa-print"></i>'.' '.__('Imprimir Comprovante de Pagamentos'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit', 'id' => 'btncomprovante')); ?>
 </div>
 <?php echo $this->Form->end(); ?>
-<br/><br/>
+<br/>
+<br/>
+<div class="alert alert-danger" role="alert">
+	Favor solicitar o boleto pelo email <b>financeiro@facet.br</b>
+</div>
 <div class="panel panel-default">
 	<table class="table">
 		<thead>
