@@ -31,7 +31,30 @@ class IntegracaoItauComponent extends IntegracaoBaseComponent {
 
 		for ($i=0; $i < count($this->Data); $i++) { 
 		
+			$carteira = $this->Data[$i]['Conta']['carteira'];
+
 			$s .= '1';
+			$s .= $this->FormatarNumero('02', 2); //CNPJ
+			$s .= $this->FormatarCNPJ($this->Empresa['cnpj'], 14); //CNPJ
+			$s .= $this->FormatarNumero($this->Data[$i]['Conta']['agencia'], 4);
+			$s .= $this->FormatarNumero('00', 2); //Zeros
+			$s .= $this->FormatarNumero($this->Data[$i]['Conta']['conta'], 5);
+			$s .= $this->FormatarNumero($this->Data[$i]['Conta']['conta_dig'], 1);
+			$s .= $this->FormatarTexto('', 4); //Brancos
+			$s .= $this->FormatarNumero('0', 4); //Alegacao a ser cancelada
+			$s .= $this->FormatarTexto($this->Data[$i]['Mensalidade']['id'], 25); //num controle participante
+			$s .= $this->FormatarNumero($this->Data[$i]['Mensalidade']['id'], 8); //Numero do Documento
+			$s .= $this->FormatarNumero('0', 4); //Quantidade
+			$s .= $this->FormatarNumero('10'. $carteira, 3); //carteira
+			$s .= $this->FormatarTexto('', 21); //Brancos
+			$s .= $this->FormatarNumero($carteira, 1); //carteira
+			$s .= $this->FormatarTexto('01', 2); //Identificação da Ocorrencia
+			$s .= $this->FormatarNumero($this->Data[$i]['Mensalidade']['id'], 10); //Numero do Documento
+			$s .= $this->FormatarTexto(date('ddmmyy', strtotime($this->Data[$i]['Mensalidade']['vencimento'])), 6);
+			$s .= $this->FormatarTexto('01', 2); //Identificação da Ocorrencia - Duplicata
+			$s .= $this->FormatarTexto('N', 1); //Aceite
+
+			//---------------------
 			$s .= $this->FormatarNumero('', 5); //agencia de debito
 			$s .= $this->FormatarTexto('', 1); //digito agencia de debito
 			$s .= $this->FormatarNumero('', 5); //razao da conta corrente
@@ -39,7 +62,7 @@ class IntegracaoItauComponent extends IntegracaoBaseComponent {
 			$s .= $this->FormatarTexto('', 1); //digito da conta corrente
 			$carteira = $this->Data[$i]['Conta']['carteira'];
 			$s .= $this->FormatarNumero('0', 1) . $this->FormatarNumero($carteira, 3) . $this->FormatarNumero($this->Data[$i]['Conta']['agencia'], 5) . $this->FormatarNumero($this->Data[$i]['Conta']['conta'], 7) . $this->FormatarNumero($this->Data[$i]['Conta']['conta_dig'], 1); //identificacao da empresa
-			$s .= $this->FormatarTexto($this->Data[$i]['Mensalidade']['id'], 25); //num controle participante
+			
 			$s .= $this->FormatarTexto('237', 3); //código do banco
 			$s .= $this->FormatarTexto('2', 1); //2 = multa 0 = sem multa
 			$s .= $this->FormatarTexto('0200', 4); //2% multa
