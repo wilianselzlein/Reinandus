@@ -11,15 +11,16 @@ class IntegracaoItauComponent extends IntegracaoBaseComponent {
 		$s .= 'REMESSA';
 		$s .= '01'; //codigo do servico 
 		$s .= $this->FormatarTexto('COBRANCA', 15);
-		$s .= $this->FormatarNumero($this->Data[0]['Conta']['cedente'], 20);
+		$s .= $this->FormatarNumero($this->Data[0]['Conta']['agencia'], 4); //Agencia
+		$s .= '00'; //Complemento
+		$s .= $this->FormatarNumero($this->Data[0]['Conta']['conta'], 5); //Conta
+		$s .= $this->FormatarNumero($this->Data[0]['Conta']['conta_dig'], 5); //Conta Digito
+		$s .= $this->FormatarTexto('', 8); //brancos
 		$s .= $this->FormatarTexto($this->Empresa['razaosocial'], 30);
 		$s .= '341'; //numero do itau
-		$s .= $this->FormatarTexto('Itau', 15);
+		$s .= $this->FormatarTexto('Banco Itau SA', 15);
 		$s .= date('d') . date('m') . date('y'); //data gravacao do arquivo
-		$s .= $this->FormatarTexto('', 8); //brancos
-		$s .= 'MX'; //identificacao do sistema
-		$s .= $this->FormatarNumero($this->Data[0]['Conta']['seq_remessa'], 7);
-		$s .= $this->FormatarTexto('', 277); //brancos
+		$s .= $this->FormatarTexto('', 294); //brancos
 		$s .= $this->SequencialDoRegistro();
 		$s .= PHP_EOL; 
 		return $s;

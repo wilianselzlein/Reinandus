@@ -169,7 +169,7 @@ class BoletosController extends AppController {
 			$envio = array(0 , 1);
 
 		$mensalidades = $this->Boleto->Mensalidade->find('all', array('recursive' => 0, 
-			'conditions' =>	array('Mensalidade.vencimento >= ' => $data['Boleto']['vencimento_inicial'], 'Mensalidade.vencimento <= ' => $data['Boleto']['vencimento_final'], 'Mensalidade.pago' => 0.00, 'Mensalidade.conta_id' => $data['Boleto']['conta_id'], 'Mensalidade.remessa' => $envio),
+			'conditions' =>	array('Mensalidade.vencimento >= ' => $data['Boleto']['vencimento_inicial'], 'Mensalidade.vencimento <= ' => $data['Boleto']['vencimento_final'], 'COALESCE(Mensalidade.pago,0)' => 0.00, 'Mensalidade.conta_id' => $data['Boleto']['conta_id'], 'Mensalidade.remessa' => $envio),
 			'joins' => array(array('table' => 'pessoa', 'alias' => 'Responsavel', 'type' => 'LEFT','conditions' => array('Aluno.responsavel_id = Responsavel.id'))),
 			'fields' => array('Mensalidade.id', 'Mensalidade.vencimento', 'Mensalidade.valor', 'Mensalidade.desconto',
 				'Aluno.id', 'Aluno.nome', 'Aluno.cpf', 'Aluno.endereco', 'Aluno.bairro', 'Aluno.cep', 'Aluno.complemento', 'Aluno.numero',
