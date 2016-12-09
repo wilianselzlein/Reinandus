@@ -54,6 +54,33 @@ class IntegracaoItauComponent extends IntegracaoBaseComponent {
 			$s .= $this->FormatarTexto(date('ddmmyy', strtotime($this->Data[$i]['Mensalidade']['vencimento'])), 6);
 			$s .= $this->FormatarTexto('01', 2); //Identificação da Ocorrencia - Duplicata
 			$s .= $this->FormatarTexto('N', 1); //Aceite
+			$s .= $this->FormatarNumero($this->Data[$i]['Conta']['dia_emissao'], 2) . date('m') . date('y'); //data emissao
+			if ($this->Data[$i]['Responsavel']['Id'] > 0) {//Tipo Inscricao Pagador 01 - CPF 02 - CNPJ 03 - PIS/PASEP 98 - Não tem 99 - Outros X
+				$s .= $this->FormatarNumero('02', 2); //CNPJ
+				$s .= $this->FormatarCNPJ($this->Data[$i]['Responsavel']['cnpjcpf'], 15); //CNPJ
+				$s .= $this->FormatarTexto($this->Data[$i]['Responsavel']['razaosocial'], 30); //Nome do Pagador
+				$s .= $this->FormatarTexto('', 9); //Brancos
+				$s .= $this->FormatarTexto($this->Data[$i]['Responsavel']['endereco'] . ' ' . $this->Data[$i]['Responsavel']['numero'], 40); //Endereco Pagador
+				$s .= $this->FormatarTexto($this->Data[$i]['Responsavel']['bairro'], 12);
+				$s .= $this->FormatarNumero(substr($this->Data[$i]['Responsavel']['cep'], 0, 5), 5); //CEP
+				$s .= $this->FormatarNumero(substr($this->Data[$i]['Responsavel']['cep'], -3), 3); //Sufixo CEP
+				$s .= $this->FormatarTexto($this->Data[$i]['Cidade']['nome'], 15);
+				$s .= $this->FormatarTexto($this->Data[$i]['Estado']['sigla'], 2);
+				$s .= $this->FormatarTexto('', 30); //Avalista
+			} else {
+				$s .= $this->FormatarNumero('01', 2); //CPF
+				$s .= $this->FormatarCPF($this->Data[$i]['Aluno']['cpf'], 15); //CPF
+				$s .= $this->FormatarTexto($this->Data[$i]['Aluno']['nome'], 30); //Nome do Pagador
+				$s .= $this->FormatarTexto('', 9); //Brancos
+				$s .= $this->FormatarTexto($this->Data[$i]['Aluno']['endereco'] . ' ' . $this->Data[$i]['Aluno']['numero'], 40); //Endereco Pagador
+				$s .= $this->FormatarTexto($this->Data[$i]['Aluno']['bairro'], 12);
+				$s .= $this->FormatarNumero(substr($this->Data[$i]['Aluno']['cep'], 0, 5), 5); //CEP
+				$s .= $this->FormatarNumero(substr($this->Data[$i]['Aluno']['cep'], -3), 3); //Sufixo CEP
+				$s .= $this->FormatarTexto($this->Data[$i]['Cidade']['nome'], 15);
+				$s .= $this->FormatarTexto($this->Data[$i]['Estado']['sigla'], 2);
+				$s .= $this->FormatarTexto('', 30); //Avalista
+			}
+			$s .= $this->FormatarNumero('', 4);	//brancos
 
 			//---------------------
 			$s .= $this->FormatarNumero('', 5); //agencia de debito
@@ -85,7 +112,7 @@ class IntegracaoItauComponent extends IntegracaoBaseComponent {
 			$s .= $this->FormatarNumero('0', 5); //Agência Depositária
 			$s .= $this->FormatarTexto('01', 2); //Especie de Titulo - Duplicata
 			$s .= $this->FormatarTexto('N', 1); //Identificacao Sempre N
-			$s .= $this->FormatarNumero($this->Data[$i]['Conta']['dia_emissao'], 2) . date('m') . date('y'); //data emissao
+			
 			$s .= $this->FormatarNumero('0', 2); //1ª instrução
 			$s .= $this->FormatarNumero('0', 2); //2ª instrução
 			$s .= $this->FormatarNumero('0', 13); //Mora por Dia de Atraso
