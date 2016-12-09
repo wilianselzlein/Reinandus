@@ -36,7 +36,7 @@ class IntegracaoItauComponent extends IntegracaoBaseComponent {
 
 			$s .= '1';
 			$s .= $this->FormatarNumero('02', 2); //CNPJ
-			$s .= $this->FormatarCNPJ($this->Empresa['cnpj'], 14); //CNPJ
+			$s .= $this->FormatarCNPJ($this->Empresa['cnpjcpf'], 14); //CNPJ
 			$s .= $this->FormatarNumero($this->Data[$i]['Conta']['agencia'], 4);
 			$s .= $this->FormatarNumero('00', 2); //Zeros
 			$s .= $this->FormatarNumero($this->Data[$i]['Conta']['conta'], 5);

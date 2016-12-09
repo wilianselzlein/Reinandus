@@ -170,9 +170,13 @@ class BoletosController extends AppController {
 
 		$mensalidades = $this->Boleto->Mensalidade->find('all', array('recursive' => 0, 
 			'conditions' =>	array('Mensalidade.vencimento >= ' => $data['Boleto']['vencimento_inicial'], 'Mensalidade.vencimento <= ' => $data['Boleto']['vencimento_final'], 'COALESCE(Mensalidade.pago,0)' => 0.00, 'Mensalidade.conta_id' => $data['Boleto']['conta_id'], 'Mensalidade.remessa' => $envio),
-			'joins' => array(array('table' => 'pessoa', 'alias' => 'Responsavel', 'type' => 'LEFT','conditions' => array('Aluno.responsavel_id = Responsavel.id'))),
+			'joins' => 
+				array(
+					array('table' => 'pessoa', 'alias' => 'Responsavel', 'type' => 'LEFT','conditions' => array('Aluno.responsavel_id = Responsavel.id')),
+					array('table' => 'cidade', 'alias' => 'Cidade', 'type' => 'LEFT','conditions' => array('coalesce(Aluno.cidade_id, Responsavel.cidade_id, 1) = Cidade.id')),
+					array('table' => 'estado', 'alias' => 'Estado', 'type' => 'LEFT','conditions' => array('Cidade.estado_id = Estado.id'))),
 			'fields' => array('Mensalidade.id', 'Mensalidade.vencimento', 'Mensalidade.valor', 'Mensalidade.desconto',
-				'Aluno.id', 'Aluno.nome', 'Aluno.cpf', 'Aluno.endereco', 'Aluno.bairro', 'Aluno.cep', 'Aluno.complemento', 'Aluno.numero',
+				'Aluno.id', 'Aluno.nome', 'Aluno.cpf', 'Aluno.endereco', 'Aluno.bairro', 'Aluno.cep', 'Aluno.complemento', 'Aluno.numero', 'Cidade.nome', 'Estado.sigla',
 				'Responsavel.Id', 'Responsavel.razaosocial', 'Responsavel.cnpjcpf', 'Responsavel.endereco', 'Responsavel.bairro', 'Responsavel.cep', 'Responsavel.numero',
 				'Conta.id', 'Conta.cedente', 'Conta.cedente_dig', 'Conta.agencia', 'Conta.conta', 'Conta.nome_no_banco', 'Conta.num_banco', 'Conta.agencia_dig', 'Conta.conta_dig', 'Conta.carteira', 'Conta.Mensagem', 'Conta.dia_emissao', 'Conta.seq_remessa', 'Conta.dia_desconto'),
 			'order' => array('Mensalidade.Id')));
