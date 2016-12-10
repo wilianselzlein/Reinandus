@@ -33,6 +33,7 @@ App::uses('PermissoesController', 'Controller');
     */
 class AppController extends Controller {
    public $theme = "Cakestrap";
+   protected static $LIMITE_VIEW = 2050;
 
    public $helpers = array('Form' => array('className' => 'Bs3Helpers.Bs3Form'),
                            'Wysiwyg.Wysiwyg' => array('_editor' => 'Ck'),

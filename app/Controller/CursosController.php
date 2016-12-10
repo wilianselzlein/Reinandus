@@ -54,7 +54,7 @@ class CursosController extends AppController {
  'Grupo.id', 'Grupo.nome', 'Tipo.id', 'Tipo.valor', 'Periodo.id', 'Periodo.valor'));
 		$this->set('curso', $this->Curso->find('first', $options));
 
-		$options = array('conditions' => array('Aluno.curso_id' => $id), 'limit' => 200,
+		$options = array('conditions' => array('Aluno.curso_id' => $id), 'limit' => Self::$LIMITE_VIEW,
 		  'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.celular', 'Aluno.email', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Situacao.id', 'Situacao.valor', 'Curso.id', 'Curso.nome'));
 		$this->Curso->Aluno->unbindModel(array(
 			'hasMany' => array('Acesso', 'Detalhe', 'AlunoDisciplina', 'Mensalidade'),
@@ -74,7 +74,7 @@ class CursosController extends AppController {
 		$avisos = $this->TransformarArray->FindInContainable('Aviso', $avisos);
 		$this->set(compact('avisos'));
 
-		$options = array('recursive' => false, 'conditions' => array('CursoDisciplina.curso_id' => $id), 'limit' => 200,
+		$options = array('recursive' => false, 'conditions' => array('CursoDisciplina.curso_id' => $id), 'limit' => Self::$LIMITE_VIEW,
 			'fields' => array('CursoDisciplina.id', 'CursoDisciplina.disciplina_id', 'CursoDisciplina.horas_aula', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'));
 		$this->Curso->CursoDisciplina->unbindModel(array('belongsTo' => array('Curso')));
 		$disciplinas = $this->Curso->CursoDisciplina->find('all', $options);

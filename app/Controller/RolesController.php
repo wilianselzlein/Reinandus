@@ -44,7 +44,7 @@ class RolesController extends AppController {
 		$options = array('recursive' => false, 'conditions' => array('Role.' . $this->Role->primaryKey => $id));
 		$this->set('role', $this->Role->find('first', $options));
 		
-		$options = array('recursive' => 0, 'conditions' => array('Usuario.role_id' => $id), 'limit' => 200,
+		$options = array('recursive' => 0, 'conditions' => array('Usuario.role_id' => $id), 'limit' => Self::$LIMITE_VIEW,
 		 'fields' => array('Usuario.id', 'Usuario.username', 'Usuario.created', 'Usuario.modified', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial'));
         //$this->Pessoa->User->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
 		$usuarios = $this->Role->Usuario->find('all', $options);

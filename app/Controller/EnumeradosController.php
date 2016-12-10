@@ -114,9 +114,9 @@ class EnumeradosController extends AppController {
 		if ($enumerados['Enumerado']['nome'] == 'mensalidade') {
 			$mensalidades = ClassRegistry::init('Mensalidade');
 
-			$options = array('recursive' => 0, 'conditions' => array('Mensalidade.' . $enumerados['Enumerado']['referencia'] => $id), 'limit' => 2000, 
+			$options = array('recursive' => 0, 'conditions' => array('Mensalidade.' . $enumerados['Enumerado']['referencia'] => $id), 'limit' => Self::$LIMITE_VIEW,
 			'fields' => array('Mensalidade.id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Mensalidade.situacao_id', 'Aluno.id', 'Aluno.nome', 'Situacao.id', 'Situacao.valor'),
-				'order' => array('Mensalidade.id desc')
+				'order' => array('Mensalidade.vencimento')
 			);
 	
 			$mensalidades->unbindModel(array('belongsTo' => array('User', 'Conta', 'Formapgto', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));

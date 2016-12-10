@@ -41,7 +41,7 @@ class ProgramasController extends AppController {
 		if (!$this->Programa->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$options = array('recursive' => 0, 'conditions' => array('Permissao.programa_id' => $id), 'limit' => 200, 
+		$options = array('recursive' => 0, 'conditions' => array('Permissao.programa_id' => $id), 'limit' => Self::$LIMITE_VIEW, 
 		'fields' => array(' Permissao.id', 'Permissao.user_id', 'Permissao.programa_id', 'Permissao.index', 'Permissao.view', 'Permissao.edit', 'Permissao.add', 'Permissao.delete', 'Programa.id', 'Programa.nome', 'User.id', 'User.username'));
 		//$this->User->Permissao->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
 		$permissoes = $this->Programa->Permissao->find('all', $options);

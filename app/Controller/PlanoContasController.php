@@ -46,12 +46,12 @@ class PlanoContasController extends AppController {
 
 		$LancamentoContabil = ClassRegistry::init('LancamentoContabil');
 
-		$options = array('recursive' => 1, 'conditions' => array('LancamentoContabil.debito_id' => $id), 'limit' => 200);
+		$options = array('recursive' => 1, 'conditions' => array('LancamentoContabil.debito_id' => $id), 'limit' => Self::$LIMITE_VIEW);
 		$debitos = $LancamentoContabil->find('all', $options);
 		$debitos = $this->TransformarArray->FindInContainable('LancamentoContabil', $debitos);
 		$this->set(compact('debitos'));
 
-		$options = array('recursive' => 1, 'conditions' => array('LancamentoContabil.credito_id' => $id), 'limit' => 200);
+		$options = array('recursive' => 1, 'conditions' => array('LancamentoContabil.credito_id' => $id), 'limit' => Self::$LIMITE_VIEW);
 		$creditos = $LancamentoContabil->find('all', $options);
 		$creditos = $this->TransformarArray->FindInContainable('LancamentoContabil', $creditos);
 		$this->set(compact('creditos'));

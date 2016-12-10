@@ -45,7 +45,7 @@ class CidadesController extends AppController {
 		$options = array('recursive' => false, 'conditions' => array('Cidade.' . $this->Cidade->primaryKey => $id));
 		$this->set('cidade', $this->Cidade->find('first', $options));
 
-		$options = array('recursive' => false, 'conditions' => array('Aluno.cidade_id' => $id),
+		$options = array('recursive' => false, 'conditions' => array('Aluno.cidade_id' => $id), 'limit' => Self::$LIMITE_VIEW,
 		  'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.celular', 'Aluno.email', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Situacao.id', 'Situacao.valor', 'Curso.id', 'Curso.nome'));
 		$this->Cidade->Aluno->unbindModel(array(
 			'hasMany' => array('Acesso', 'Detalhe', 'AlunoDisciplina', 'Mensalidade'),

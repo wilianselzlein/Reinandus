@@ -52,21 +52,21 @@ FROM pedroescobar15.user AS User
 		$this->User->unbindModel(array('hasMany' => array('Mensalidade', 'Aviso', 'ContaPagar')));
 		$this->set('usuario', $this->User->find('first', $options));
 
-		$options = array('recursive' => 0, 'conditions' => array('Permissao.user_id' => $id), 'limit' => 200, 
+		$options = array('recursive' => 0, 'conditions' => array('Permissao.user_id' => $id), 'limit' => Self::$LIMITE_VIEW, 
 		'fields' => array(' Permissao.id', 'Permissao.user_id', 'Permissao.programa_id', 'Permissao.index', 'Permissao.view', 'Permissao.edit', 'Permissao.add', 'Permissao.delete', 'Programa.id', 'Programa.nome', 'User.id', 'User.username'));
 		//$this->User->Permissao->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
 		$permissoes = $this->User->Permissao->find('all', $options);
 		$p_ermissoes = $this->TransformarArray->FindInContainable('Permissao', $permissoes);
 		$this->set(compact('p_ermissoes'));
 
-		$options = array('recursive' => 0, 'conditions' => array('Mensalidade.user_id' => $id), 'limit' => 200, 
+		$options = array('recursive' => 0, 'conditions' => array('Mensalidade.user_id' => $id), 'limit' => Self::$LIMITE_VIEW, 
 		'fields' => array('Mensalidade.id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Aluno.id', 'Aluno.nome', 'Situacao.id', 'Situacao.valor'));
 		$this->User->Mensalidade->unbindModel(array('belongsTo' => array('Grupo', 'Tipo', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
 		$mensalidades = $this->User->Mensalidade->find('all', $options);
 		$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);
 		$this->set(compact('mensalidades'));
 
-		$options = array('recursive' => 0, 'conditions' => array('Aviso.user_id' => $id), 'limit' => 200,
+		$options = array('recursive' => 0, 'conditions' => array('Aviso.user_id' => $id), 'limit' => Self::$LIMITE_VIEW,
 			'fields' => array('Aviso.*', 'User.id', 'User.username', 'Tipo.id', 'Tipo.valor'));
 /*
 Aviso.id, Aviso.data, Aviso.user_id, Aviso.arquivo, Aviso.mensagem, Aviso.tipo_id, Aviso.caminho, Aviso.tipo, Aviso.tamanho, User.id, User.username, User.password, User.pessoa_id, User.created, User.modified, User.role_id, User.assinatura, Tipo.id, Tipo.nome, Tipo.referencia, Tipo.valor
@@ -75,7 +75,7 @@ Aviso.id, Aviso.data, Aviso.user_id, Aviso.arquivo, Aviso.mensagem, Aviso.tipo_i
 		$avisos = $this->TransformarArray->FindInContainable('Aviso', $avisos);
 		$this->set(compact('avisos'));
 		
-		$options = array('recursive' => 0, 'conditions' => array('ContaPagar.user_id' => $id), 'limit' => 200, 
+		$options = array('recursive' => 0, 'conditions' => array('ContaPagar.user_id' => $id), 'limit' => Self::$LIMITE_VIEW, 
     		'fields' => array('ContaPagar.id', 'ContaPagar.documento', 'Professor.id', 'Professor.nome', 'Pessoa.id', 'Pessoa.razaosocial', 'ContaPagar.valor', 'ContaPagar.vencimento', 'ContaPagar.pagamento'));
 		$this->User->ContaPagar->unbindModel(array('belongsTo' => array('Conta', 'User', 'Formapgto')));
 		$pagar = $this->User->ContaPagar->find('all', $options);
