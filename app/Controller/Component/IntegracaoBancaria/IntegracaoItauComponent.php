@@ -14,7 +14,7 @@ class IntegracaoItauComponent extends IntegracaoBaseComponent {
 		$s .= $this->FormatarNumero($this->Data[0]['Conta']['agencia'], 4); //Agencia
 		$s .= '00'; //Complemento
 		$s .= $this->FormatarNumero($this->Data[0]['Conta']['conta'], 5); //Conta
-		$s .= $this->FormatarNumero($this->Data[0]['Conta']['conta_dig'], 5); //Conta Digito
+		$s .= $this->FormatarNumero($this->Data[0]['Conta']['conta_dig'], 1); //Conta Digito
 		$s .= $this->FormatarTexto('', 8); //brancos
 		$s .= $this->FormatarTexto($this->Empresa['razaosocial'], 30);
 		$s .= '341'; //numero do itau
@@ -45,21 +45,33 @@ class IntegracaoItauComponent extends IntegracaoBaseComponent {
 			$s .= $this->FormatarNumero('0', 4); //Alegacao a ser cancelada
 			$s .= $this->FormatarTexto($this->Data[$i]['Mensalidade']['id'], 25); //num controle participante
 			$s .= $this->FormatarNumero($this->Data[$i]['Mensalidade']['id'], 8); //Numero do Documento
-			$s .= $this->FormatarNumero('0', 4); //Quantidade
+			$s .= $this->FormatarNumero('0', 13); //Quantidade
 			$s .= $this->FormatarNumero('10'. $carteira, 3); //carteira
 			$s .= $this->FormatarTexto('', 21); //Brancos
 			$s .= $this->FormatarNumero($carteira, 1); //carteira
 			$s .= $this->FormatarTexto('01', 2); //Identificação da Ocorrencia
 			$s .= $this->FormatarNumero($this->Data[$i]['Mensalidade']['id'], 10); //Numero do Documento
 			$s .= $this->FormatarTexto(date('ddmmyy', strtotime($this->Data[$i]['Mensalidade']['vencimento'])), 6);
-			$s .= $this->FormatarTexto('01', 2); //Identificação da Ocorrencia - Duplicata
-			$s .= $this->FormatarTexto('N', 1); //Aceite
+			$s .= $this->FormatarNumero($this->Data[$i]['Mensalidade']['valor'], 13); //Valor
+			$s .= $this->FormatarTexto('341', 3); //Banco
+			$s .= $this->FormatarTexto('0', 5); //Agencia onde sera cobrado
+			$s .= $this->FormatarTexto('01', 2); //Especie de Titulo - Duplicata
+			$s .= $this->FormatarTexto('N', 1); //Aceita
 			$s .= $this->FormatarNumero($this->Data[$i]['Conta']['dia_emissao'], 2) . date('m') . date('y'); //data emissao
+			$s .= $this->FormatarTexto('40', 2); //Instrucao de Cobranca 1
+			$s .= $this->FormatarTexto('39', 2); //Instrucao de Cobranca 2
+
+			$s .= $this->FormatarNumero('0', 13); //Mora por Dia de Atraso
+			$s .= $this->FormatarNumero($this->Data[$i]['Conta']['dia_desconto'], 2) . date('m') . date('y'); //data limite desconto
+			$s .= $this->FormatarNumero($this->Data[$i]['Mensalidade']['desconto'], 13); //Valor descont
+			$s .= $this->FormatarNumero('0', 13); //IOF
+			$s .= $this->FormatarNumero('0', 13); //Abatimento
+
 			if ($this->Data[$i]['Responsavel']['Id'] > 0) {//Tipo Inscricao Pagador 01 - CPF 02 - CNPJ 03 - PIS/PASEP 98 - Não tem 99 - Outros X
 				$s .= $this->FormatarNumero('02', 2); //CNPJ
 				$s .= $this->FormatarCNPJ($this->Data[$i]['Responsavel']['cnpjcpf'], 15); //CNPJ
 				$s .= $this->FormatarTexto($this->Data[$i]['Responsavel']['razaosocial'], 30); //Nome do Pagador
-				$s .= $this->FormatarTexto('', 9); //Brancos
+				$s .= $this->FormatarTexto('', 10); //Brancos
 				$s .= $this->FormatarTexto($this->Data[$i]['Responsavel']['endereco'] . ' ' . $this->Data[$i]['Responsavel']['numero'], 40); //Endereco Pagador
 				$s .= $this->FormatarTexto($this->Data[$i]['Responsavel']['bairro'], 12);
 				$s .= $this->FormatarNumero(substr($this->Data[$i]['Responsavel']['cep'], 0, 5), 5); //CEP
@@ -71,7 +83,7 @@ class IntegracaoItauComponent extends IntegracaoBaseComponent {
 				$s .= $this->FormatarNumero('01', 2); //CPF
 				$s .= $this->FormatarCPF($this->Data[$i]['Aluno']['cpf'], 15); //CPF
 				$s .= $this->FormatarTexto($this->Data[$i]['Aluno']['nome'], 30); //Nome do Pagador
-				$s .= $this->FormatarTexto('', 9); //Brancos
+				$s .= $this->FormatarTexto('', 10); //Brancos
 				$s .= $this->FormatarTexto($this->Data[$i]['Aluno']['endereco'] . ' ' . $this->Data[$i]['Aluno']['numero'], 40); //Endereco Pagador
 				$s .= $this->FormatarTexto($this->Data[$i]['Aluno']['bairro'], 12);
 				$s .= $this->FormatarNumero(substr($this->Data[$i]['Aluno']['cep'], 0, 5), 5); //CEP
@@ -87,13 +99,13 @@ class IntegracaoItauComponent extends IntegracaoBaseComponent {
 			$s .= $this->SequencialDoRegistro();
 			$s .= PHP_EOL;
 
-			$s .= '2';
+			/*$s .= '2';
 			$s .= $this->FormatarTexto('2', 1); //2 = multa em % 1 = multa em R$ 0 = sem multa
 			$s .= $this->FormatarTexto(date('ddmmyy', strtotime($this->Data[$i]['Mensalidade']['vencimento'])), 6); //data multa
 			$s .= $this->FormatarTexto('2', 13); //2% multa
 			$s .= $this->FormatarNumero('', 370); //brancos
 			$s .= $this->SequencialDoRegistro();
-			$s .= PHP_EOL;
+			$s .= PHP_EOL;*/
 		}
 		return $s;
 	}
