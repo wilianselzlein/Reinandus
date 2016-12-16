@@ -43,7 +43,7 @@ class IntegracaoBradescoComponent extends IntegracaoBaseComponent {
 			$s .= $this->FormatarTexto('237', 3); //código do banco
 			$s .= $this->FormatarTexto('2', 1); //2 = multa 0 = sem multa
 			$s .= $this->FormatarTexto('0200', 4); //2% multa
-			$num = $this->FormatarNumero($this->Data[$i]['Mensalidade']['id'], 10);
+			$num = $this->FormatarNumero($carteira,1) . $this->FormatarNumero($this->Data[$i]['Mensalidade']['id'], 9);
 			$s .= $num . $this->FormatarNumero($this->modulo_11($carteira . $num), 1); //Identificação do Titulo no Banco
 			$s .= $this->FormatarNumero('', 1); //digito auto conferencia do numero bancario
 			$s .= $this->FormatarNumero('0', 10); //Desconto bonificação Dia
