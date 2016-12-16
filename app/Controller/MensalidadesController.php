@@ -345,6 +345,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$dados["agencia_dv"] = $conta['Conta']['agencia_dig']; 
 		$dados["conta"] = $conta['Conta']['conta']; 	// Num da conta, sem digito
 		$dados["conta_dv"] = $conta['Conta']['conta_dig'];
+		$dados["num_banco"] = $conta['Conta']['num_banco']; 	// Num da conta, sem digito
 
 		// Dados do contrato com o Banco
 		$dados["convenio"] = $conta['Conta']['cedente'];  // Num do convênio - REGRA: 6 ou 7 ou 8 dígitos
@@ -405,8 +406,14 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		}
 		$this->autoRender = false;
 		$dados = $this->DadosBoleto($id);
-		//$this->BoletoBradesco->render($dados);
-		$this->BoletoItau->render($dados);
+
+		$banco = $dados["num_banco"];
+		if ($banco == 237)
+			$this->BoletoBradesco->render($dados);
+		else if ($banco == 341)
+			$this->BoletoItau->render($dados);
+		else
+			throw new NotFoundException(__('Número do banco não configurado no arquivo de retorno.'));
 	}
 
 /**

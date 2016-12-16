@@ -114,6 +114,8 @@ abstract class IntegracaoBaseComponent extends Component {
 						$digito = 1;
 				}
 			}
+			if ($digito == "X")
+				$digito = 1;
 			return $digito;
 		} 
 		elseif ($r == 1){
