@@ -120,7 +120,10 @@ class CidadesController extends AppController {
 			$this->redirect(array('action' => 'index'));
 
 			} else {
-				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
+				if (isset($this->Cidade->validationErrors['JA_ALTERADO']))
+					$this->Session->setFlash(__('JA_ALTERADO'), 'flash/error');
+				else
+					$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		} else {
 			$options = array('recursive' => false, 'conditions' => array('Cidade.' . $this->Cidade->primaryKey => $id));

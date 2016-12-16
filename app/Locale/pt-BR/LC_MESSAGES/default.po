@@ -705,3 +705,6 @@ msgstr "Obrigatório"
 
 msgid  "Seq Remessa"
 msgstr "Sequencial da Remessa"
+
+msgid  "JA_ALTERADO"
+msgstr "Registro alterado por outro usuario, atualize e tente novamente."
