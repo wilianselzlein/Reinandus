@@ -1,7 +1,7 @@
 <div class="panel panel-default">
 
    <div class="panel-heading">
-      <h3><?php debug($this->data); echo __('Cidade'); ?>
+      <h3><?php echo __('Cidade'); ?>
          <small><?php echo __('Edit') ?></small>
          <?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action'], $this->params['pass'][0]); ?>
       </h3>
@@ -35,11 +35,7 @@
                                              array('class' => 'form-control cep', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
-            <div class="form-group">
-               <?php echo $this->Form->input('modified2',
-                                             array('type' => 'text', 'value' => $this->data['Cidade']['modified'], 'class' => 'form-control date', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
-                                            ); ?>
-            </div><!-- .form-group -->
+            <?php echo $this->element('CampoModified'); ?>
             <?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
 
          </fieldset>

@@ -116,34 +116,4 @@ class Cidade extends AppModel {
 		)
 	);
 
-/*
-   public function beforeSave($options = array()) {
-      if ((isset($this->data[$this->alias]['password'])) && (strlen($this->data[$this->alias]['password']) <= 20)) {
-         $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
-      }
-      return true;
-   }
-
-
-   /**
-    * Checks to see if the username is already taken.
-    * @return boolean
-    */
-   public function beforeValidate($options = array()) {
-   		$modificado = $this->data[$this->alias]['modified2'];
-   		$modificado = strtotime($modificado);
-       if ($this->id > 0) {
-           $datahora = $this->find('first', array('recursive' => -1, 'conditions' => 
-           		array($this->alias . '.id' => $this->data[$this->alias]['id']),
-           		'fields' => array($this->alias . '.modified')));
-           $datahora = $datahora['Cidade']['modified'];
-           $datahora = strtotime($datahora);
-           if ($datahora > $modificado) {
-               $this->invalidate('JA_ALTERADO');
-               return false;
-            }
-       }
-       return true;
-   }
-
 }

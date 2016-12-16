@@ -53,4 +53,28 @@ class AppModel extends Model {
 		return $list;
 	}
 
+	/**
+	* Verificar se não foi alterado por outro usuário
+	* @return boolean
+	*/
+	public function beforeValidate($options = array()) {
+		if (! isset($this->data[$this->alias]['modified2']))
+			return true;
+
+		$modificado = $this->data[$this->alias]['modified2'];
+		$modificado = strtotime($modificado);
+	 	if ($this->id > 0) {
+			$datahora = $this->find('first', array('recursive' => -1, 'conditions' => 
+				array($this->alias . '.id' => $this->data[$this->alias]['id']),
+				'fields' => array($this->alias . '.modified')));
+			$datahora = $datahora[$this->alias]['modified'];
+			$datahora = strtotime($datahora);
+			if ($datahora > $modificado) {
+				$this->invalidate('JA_ALTERADO');
+				return false;
+			}
+		}
+		return true;
+	}
+
 }
