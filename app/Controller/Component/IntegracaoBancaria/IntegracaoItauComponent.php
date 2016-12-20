@@ -48,13 +48,13 @@ class IntegracaoItauComponent extends IntegracaoBaseComponent {
 			$s .= $this->FormatarNumero('0', 13); //Quantidade
 			$s .= $this->FormatarNumero('10'. $carteira, 3); //carteira
 			$s .= $this->FormatarTexto('', 21); //Brancos
-			$s .= $this->FormatarNumero($carteira, 1); //carteira
+			$s .= $this->FormatarTexto('D', 1); //carteira
 			$s .= $this->FormatarTexto('01', 2); //Identificação da Ocorrencia
 			$s .= $this->FormatarNumero($this->Data[$i]['Mensalidade']['id'], 10); //Numero do Documento
 			$s .= $this->FormatarTexto(date('ddmmyy', strtotime($this->Data[$i]['Mensalidade']['vencimento'])), 6);
 			$s .= $this->FormatarNumero($this->Data[$i]['Mensalidade']['valor'], 13); //Valor
 			$s .= $this->FormatarTexto('341', 3); //Banco
-			$s .= $this->FormatarTexto('0', 5); //Agencia onde sera cobrado
+			$s .= $this->FormatarNumero('0', 5); //Agencia onde sera cobrado
 			$s .= $this->FormatarTexto('01', 2); //Especie de Titulo - Duplicata
 			$s .= $this->FormatarTexto('N', 1); //Aceita
 			$s .= $this->FormatarNumero($this->Data[$i]['Conta']['dia_emissao'], 2) . date('m') . date('y'); //data emissao
@@ -92,10 +92,10 @@ class IntegracaoItauComponent extends IntegracaoBaseComponent {
 				$s .= $this->FormatarTexto($this->Data[$i]['Estado']['sigla'], 2);
 				$s .= $this->FormatarTexto('', 30); //Avalista
 			}
-			$s .= $this->FormatarNumero('', 4);	//brancos
+			$s .= $this->FormatarTexto('', 4);	//brancos
 			$s .= $this->FormatarNumero($this->Data[$i]['Conta']['dia_desconto'], 2) . date('m') . date('y'); //data de Mora 
 			$s .= $this->FormatarNumero($this->Data[$i]['Conta']['dia_desconto'], 2); //Prazo de Dias
-			$s .= $this->FormatarNumero('', 1);	//brancos
+			$s .= $this->FormatarTexto('', 1);	//brancos
 			$s .= $this->SequencialDoRegistro();
 			$s .= PHP_EOL;
 
