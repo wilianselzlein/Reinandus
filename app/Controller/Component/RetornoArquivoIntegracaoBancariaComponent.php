@@ -1,6 +1,6 @@
 <?php
 App::import('Controller/Component/IntegracaoBancaria', 
-	array('RetornoBaseComponent', 'RetornoBradescoComponent'));
+	array('RetornoBaseComponent', 'RetornoBradescoComponent', 'RetornoItauComponent'));
 
 class RetornoArquivoIntegracaoBancariaComponent extends Component {
 
@@ -34,6 +34,10 @@ class RetornoArquivoIntegracaoBancariaComponent extends Component {
 
 	public function Mensalidade() {
 	    return $this->Integracao->Mensalidades();
+	}
+
+	public function Validar(&$validacoes) {
+	    return $this->Integracao->Validar(&$validacoes);
 	}
 
 	public function Rateio() {

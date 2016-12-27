@@ -92,11 +92,11 @@ class BoletosController extends AppController {
  *
  * @return void
  */
-	public function retorno($caminho, $arquivo) {
+	public function retorno($caminho, $arquivo, $validar) {
 		$nome_arquivo = $arquivo;
 		$arquivo = $caminho . $arquivo;
 		$arquivo = fopen($arquivo, "r") or die('PERMISSAO_ARQ');
-
+		$validacoes = [];
 		while(!feof($arquivo)) {
  			$linha = fgets($arquivo);
  			$this->RetornoArquivoIntegracaoBancaria->setLinha($linha);
@@ -107,7 +107,10 @@ class BoletosController extends AppController {
 					$this->RetornoArquivoIntegracaoBancaria->SetArquivo($nome_arquivo);
 					break;
 				case 1:
-					$this->RetornoArquivoIntegracaoBancaria->Mensalidade();
+					if ($validar)
+						$this->RetornoArquivoIntegracaoBancaria->Validar($validacoes);
+					else
+						$this->RetornoArquivoIntegracaoBancaria->Mensalidade();
 					break;
 				case 3:
 					$this->RetornoArquivoIntegracaoBancaria->Rateio();
@@ -118,7 +121,10 @@ class BoletosController extends AppController {
 			}
 		}
 		fclose($arquivo);
-		$this->Session->setFlash(__('Mensalidades baixadas, utilize o filtro do arquivo: ' . $nome_arquivo . ' para gerar o relatório.'), 'flash/success');
+		if ($validar)
+			debug($validacoes);
+		else
+			$this->Session->setFlash(__('Mensalidades baixadas, utilize o filtro do arquivo: ' . $nome_arquivo . ' para gerar o relatório.'), 'flash/success');
 	}
 
 /**
@@ -126,7 +132,9 @@ class BoletosController extends AppController {
  *
  * @return void
  */
-	public function processar() {
+	public function processar($validar = false) {
+		$validar = (bool) $validar;
+
 		if ($this->request->is('post') || $this->request->is('put')) {
 
 /*
@@ -149,7 +157,7 @@ class BoletosController extends AppController {
 	        if (! file_exists($caminho . $arquivo))
 	            throw new Exception(__('PERMISSAO_ARQ'));
 			
-			$this->retorno($caminho, $arquivo);
+			$this->retorno($caminho, $arquivo, $validar);
 			$this->redirect(array('controller' => 'relatorios', 'action' => 'filter', 29));
 		}
 	}
