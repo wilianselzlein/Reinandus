@@ -1,0 +1,7 @@
+/* acessibilidade */
+.acessibilidade {}
+.acessibilidade ul {padding:20px; width: 940px;height:100%;margin: 0 auto;text-align:left;position: relative;}
+.acessibilidade li {display: inline-block; float: left;margin-right:1px;}
+.acessibilidade li a { color:#fff; font-size:1.4em;padding:10px;background: #333;vertical-align: middle;display: block; height:auto;
+-moz-border-radius: 8px; -webkit-border-radius: 8px; -khtml-border-radius: 8px;border-radius: 8px;}
+.acessibilidade li a:hover {background: #4F4F4F;
