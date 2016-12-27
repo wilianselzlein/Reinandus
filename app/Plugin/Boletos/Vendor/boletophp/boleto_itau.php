@@ -61,7 +61,7 @@ $dadosboleto["valor_unitario"] = $valor_boleto;
 $dadosboleto["aceite"] = "";		
 $dadosboleto["especie"] = "R$";
 $dadosboleto["especie_doc"] = "";
-
+$dadosboleto["carteira"] = '157'; //'10' . $dadosboleto['carteira']; // Variação da Carteira, com traço (opcional)
 
 // N?O ALTERAR!
 include("include/funcoes_itau.php"); 

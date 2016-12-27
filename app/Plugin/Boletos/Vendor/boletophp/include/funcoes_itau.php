@@ -311,15 +311,20 @@ function monta_linha_digitavel($codigo) {
 		$ddnnum   = substr($codigo,22,2);
 		$dv1      = modulo_10($banco.$moeda.$ccc.$ddnnum);
 		// campo 2
-		$resnnum  = substr($codigo,24,6);
+		$resnnum  = substr($codigo,24,5);
+    $resnnum2  = substr($codigo,30,1);
 		$dac1     = substr($codigo,30,1);//modulo_10($agencia.$conta.$carteira.$nnum);
-		$dddag    = substr($codigo,31,3);
-		$dv2      = modulo_10($resnnum.$dac1.$dddag);
+		$dddag    = substr($codigo,34,3);
+    $dddag2   = substr($codigo,37,1);
+
+		$dv2      = modulo_10($resnnum.$resnnum2.$dac1.$dddag);
+    
 		// campo 3
-		$resag    = substr($codigo,34,1);
-		$contadac = substr($codigo,35,6); //substr($codigo,35,5).modulo_10(substr($codigo,35,5));
-		$zeros    = substr($codigo,41,3);
+		$resag    = substr($codigo,37,1);
+		$contadac = substr($codigo,38,6); //substr($codigo,35,5).modulo_10(substr($codigo,35,5));
+		$zeros    = substr($codigo,44,3);
 		$dv3      = modulo_10($resag.$contadac.$zeros);
+
 		// campo 4
 		$dv4      = substr($codigo,4,1);
 		// campo 5
@@ -327,7 +332,7 @@ function monta_linha_digitavel($codigo) {
         $valor    = substr($codigo,9,10);
 		
         $campo1 = substr($banco.$moeda.$ccc.$ddnnum.$dv1,0,5) . '.' . substr($banco.$moeda.$ccc.$ddnnum.$dv1,5,5);
-        $campo2 = substr($resnnum.$dac1.$dddag.$dv2,0,5) . '.' . substr($resnnum.$dac1.$dddag.$dv2,5,6);
+        $campo2 = substr($resnnum.$dac1.$dddag.$dv2,0,5) . '.' . substr($resnnum2.$dac1.$dddag.$dv2,0,6);
         $campo3 = substr($resag.$contadac.$zeros.$dv3,0,5) . '.' . substr($resag.$contadac.$zeros.$dv3,5,6);
         $campo4 = $dv4;
         $campo5 = $fator.$valor;
