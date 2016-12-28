@@ -121,9 +121,9 @@ class BoletosController extends AppController {
 			}
 		}
 		fclose($arquivo);
-		if ($validar)
-			debug($validacoes);
-		else
+		if ($validar) {
+			debug($validacoes); die;
+		} else
 			$this->Session->setFlash(__('Mensalidades baixadas, utilize o filtro do arquivo: ' . $nome_arquivo . ' para gerar o relatório.'), 'flash/success');
 	}
 

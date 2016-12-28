@@ -6,7 +6,7 @@ App::import('Controller/Component/IntegracaoBancaria', 'RetornoBaseComponent');
 class RetornoBradescoComponent extends RetornoBaseComponent {
 
 	public function Mensalidades() {
-		$mensalidade_id = substr($this->Linha, 38, 24);
+		$mensalidade_id = substr($this->Linha, 37, 24);
 		$mensalidade_id = trim($mensalidade_id);
 
 		if ($mensalidade_id == '')
@@ -49,7 +49,7 @@ class RetornoBradescoComponent extends RetornoBaseComponent {
 		$linha = [];
 		
 		$linha['linha'] = $this->Linha;
-		$linha['id'] = substr($this->Linha, 38, 24);
+		$linha['id'] = substr($this->Linha, 37, 24);
 		$linha['pagamento'] = $this->Pagamento();
 		$linha['acrescimo'] = $this->FormatarValor(substr($this->Linha, 189, 13)) + $this->FormatarValor(substr($this->Linha, 202, 13)) + $this->FormatarValor(substr($this->Linha, 267, 13));
 		$linha['desconto'] = $this->FormatarValor(substr($this->Linha, 241, 13));
@@ -57,7 +57,7 @@ class RetornoBradescoComponent extends RetornoBaseComponent {
 		$linha['formapgto_id'] = $this->FormaPgto_Id;
 		$linha['documento'] = $this->Arquivo;
 
-		debug($linha); die;
+		
 		$validacoes[] = $linha;
 	}
 }

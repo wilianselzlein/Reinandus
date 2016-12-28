@@ -15,8 +15,8 @@
 // +----------------------------------------------------------------------+
 // | Originado do Projeto BBBoletoFree que tiveram colabora??es de Daniel |
 // | William Schultz e Leandro Maniezo que por sua vez foi derivado do	  |
-// | PHPBoleto de Jo?o Prado Maia e Pablo Martins F. Costa				        |
-// | 														                                   			  |
+// | PHPBoleto de Jo?o Prado Maia e Pablo Martins F. Costa				  |
+// | 														              |
 // | Se vc quer colaborar, nos ajude a desenvolver p/ os demais bancos :-)|
 // | Acesse o site do Projeto BoletoPhp: www.boletophp.com.br             |
 // +----------------------------------------------------------------------+
@@ -61,9 +61,9 @@ $dadosboleto["valor_unitario"] = $valor_boleto;
 $dadosboleto["aceite"] = "";		
 $dadosboleto["especie"] = "R$";
 $dadosboleto["especie_doc"] = "";
-$dadosboleto["carteira"] = '157'; //'10' . $dadosboleto['carteira']; // Variação da Carteira, com traço (opcional)
+$dadosboleto["carteira"] = '10' . $dadosboleto['carteira']; // Variação da Carteira, com traço (opcional)
 
-// N?O ALTERAR!
+// NAO ALTERAR!
 include("include/funcoes_itau.php"); 
 include("include/layout_itau.php");
 ?>

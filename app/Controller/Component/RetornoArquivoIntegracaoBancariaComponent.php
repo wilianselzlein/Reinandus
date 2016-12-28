@@ -22,6 +22,7 @@ class RetornoArquivoIntegracaoBancariaComponent extends Component {
 
 	public function Cabecalho() {
 		$banco = substr($this->Linha, 76, 3);
+		debug($banco); die;
 		if ($banco == 237)
 			$this->Integracao = new RetornoBradescoComponent($this->Linha);
 		else if ($banco == 341)
@@ -37,7 +38,7 @@ class RetornoArquivoIntegracaoBancariaComponent extends Component {
 	}
 
 	public function Validar(&$validacoes) {
-	    return $this->Integracao->Validar(&$validacoes);
+	    return $this->Integracao->Validar($validacoes);
 	}
 
 	public function Rateio() {

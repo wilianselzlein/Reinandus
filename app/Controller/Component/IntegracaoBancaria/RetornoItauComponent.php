@@ -44,6 +44,23 @@ class RetornoItauComponent extends RetornoBaseComponent {
 		return $pagamento;
 	} 	
 
+	public function Validar(&$validacoes) {
+
+		$linha = [];
+		
+		$linha['linha'] = $this->Linha;
+		$linha['id'] = substr($this->Linha, 38, 24);
+		$linha['pagamento'] = $this->Pagamento();
+		$linha['acrescimo'] = $this->FormatarValor(substr($this->Linha, 189, 13)) + $this->FormatarValor(substr($this->Linha, 202, 13)) + $this->FormatarValor(substr($this->Linha, 267, 13));
+		$linha['desconto'] = $this->FormatarValor(substr($this->Linha, 241, 13));
+		$linha['pago'] = $this->FormatarValor(substr($this->Linha, 254, 13));
+		$linha['formapgto_id'] = $this->FormaPgto_Id;
+		$linha['documento'] = $this->Arquivo;
+
+		debug($linha); die;
+		$validacoes[] = $linha;
+	}
+
 }
 
 ?>
