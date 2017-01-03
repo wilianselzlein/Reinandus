@@ -34,9 +34,9 @@ $fator_vencimento = fator_vencimento($dadosboleto["data_vencimento"]);
 
 //valor tem 10 digitos, sem virgula
 $valor = formata_numero($dadosboleto["valor_boleto"],10,0,"valor");
-//agencia � 4 digitos
+//agencia  4 digitos
 $agencia = formata_numero($dadosboleto["agencia"],4,0);
-//conta � 5 digitos + 1 do dv
+//conta  5 digitos + 1 do dv
 $conta = formata_numero($dadosboleto["conta"],5,0);
 $conta_dv = formata_numero($dadosboleto["conta_dv"],1,0);
 //carteira 175
