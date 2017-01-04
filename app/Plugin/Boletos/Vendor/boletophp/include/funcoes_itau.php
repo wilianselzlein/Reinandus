@@ -39,13 +39,19 @@ $agencia = formata_numero($dadosboleto["agencia"],4,0);
 //conta  5 digitos + 1 do dv
 $conta = formata_numero($dadosboleto["conta"],5,0);
 $conta_dv = formata_numero($dadosboleto["conta_dv"],1,0);
-//carteira 175
+
 $carteira = $dadosboleto["carteira"];
+$carteira = 157;
+
 //nosso_numero no maximo 8 digitos
 $nnum = formata_numero($dadosboleto["nosso_numero"],8,0);
+$nnum = 48115957000;
+$fator_vencimento = 7020;
+$valor = '0000000222';
 
 $codigo_barras = $codigobanco.$nummoeda.$fator_vencimento.$valor.$carteira.$nnum.modulo_10($agencia.$conta.$carteira.substr($nnum,0,8)).$agencia.$conta.modulo_10($agencia.$conta).'000';
 // 43 numeros para o calculo do digito verificador
+
 $dv = digitoVerificador_barra($codigo_barras);
 // Numero para o codigo de barras com 44 digitos
 $linha = substr($codigo_barras,0,4).$dv.substr($codigo_barras,4,43);
@@ -64,7 +70,7 @@ $dadosboleto["codigo_banco_com_dv"] = $codigo_banco_com_dv;
 // Algumas foram retiradas do Projeto PhpBoleto e modificadas para atender as particularidades de cada banco
 
 function digitoVerificador_barra($numero) {
-	$resto2 = modulo_11($numero, 9, 1);
+	$resto2 = modulo_11($numero);
 	$digito = 11 - $resto2;
      if ($digito == 0 || $digito == 1 || $digito == 10  || $digito == 11) {
         $dv = 1;
@@ -311,10 +317,10 @@ function monta_linha_digitavel($codigo) {
 		$dv1      = modulo_10($banco.$moeda.$ccc.$ddnnum);
 		// campo 2
 		$resnnum  = substr($codigo,24,5);
-    $resnnum2  = substr($codigo,30,1);
-		$dac1     = substr($codigo,30,1);//modulo_10($agencia.$conta.$carteira.$nnum);
+		$resnnum2 = substr($codigo,29,1);
+        $dac1     = substr($codigo,33,1);//modulo_10($agencia.$conta.$carteira.$nnum);
 		$dddag    = substr($codigo,34,3);
-    $dddag2   = substr($codigo,37,1);
+        $dddag2   = substr($codigo,37,1);
 
 		$dv2      = modulo_10($resnnum.$resnnum2.$dac1.$dddag);
     
