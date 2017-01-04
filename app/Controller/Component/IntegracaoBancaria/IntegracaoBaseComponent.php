@@ -88,7 +88,6 @@ abstract class IntegracaoBaseComponent extends Component {
 		else
 			return $texto;
 	}
-
 	protected function modulo_11($num, $base=7, $r=0) {
 		$soma = 0;
 		$fator = 2; 
@@ -102,20 +101,15 @@ abstract class IntegracaoBaseComponent extends Component {
 			$fator++;
 		}
 		if ($r == 0) {
-			$soma *= 10;
+			//$soma *= 10;
 			$digito = $soma % 11;
-			
+			if ($digito > 0)
+				$digito = 11 - $digito;
+
 			if ($digito == 10) {
-				$digito = "X";
+				$digito = "P";
 			}
-			
-			if (strlen($num) == "43") {
-				if ($digito == "0" or $digito == "X" or $digito > 9) {
-						$digito = 1;
-				}
-			}
-			if ($digito == "X")
-				$digito = 1;
+
 			return $digito;
 		} 
 		elseif ($r == 1){
