@@ -41,18 +41,30 @@ $conta = formata_numero($dadosboleto["conta"],5,0);
 $conta_dv = formata_numero($dadosboleto["conta_dv"],1,0);
 
 $carteira = $dadosboleto["carteira"];
-$carteira = 157;
+//$carteira = 157;
 
 //nosso_numero no maximo 8 digitos
 $nnum = formata_numero($dadosboleto["nosso_numero"],8,0);
-$nnum = 48115957000;
-$fator_vencimento = 7020;
-$valor = '0000000222';
-
-$codigo_barras = $codigobanco.$nummoeda.$fator_vencimento.$valor.$carteira.$nnum.modulo_10($agencia.$conta.$carteira.substr($nnum,0,8)).$agencia.$conta.modulo_10($agencia.$conta).'000';
+//$nnum = 48115957000;
+//$fator_vencimento = 7020;
+//$valor = '0000000222';
+$dac1 = modulo_10($carteira.$nnum);
+//debug(substr($nnum,0,8));
+//$dac1 = modulo_10($carteira.substr($nnum,0,8));
+//debug($dac1);
+$dac2 = modulo_10($agencia.$conta);
+//debug($dac2); //die;
+$codigo_barras = $codigobanco.$nummoeda.$fator_vencimento.$valor.$carteira.substr($nnum,0,8).$dac1.$agencia.$conta.$dac2.'000';
 // 43 numeros para o calculo do digito verificador
+//debug($codigo_barras);
+//$codigo_barras = '3419166700000123451101234567880057123457000';
+//$codigo_barras = '3419702000000002221574811595718616271717000';
+
 
 $dv = digitoVerificador_barra($codigo_barras);
+//debug($dv); //die;
+$codigo_barras = $codigobanco.$nummoeda.$fator_vencimento.$valor.$carteira.$nnum.$dac1.$agencia.$conta.$dac2.'000';
+
 // Numero para o codigo de barras com 44 digitos
 $linha = substr($codigo_barras,0,4).$dv.substr($codigo_barras,4,43);
 
@@ -295,7 +307,7 @@ function modulo_11($num, $base=9, $r=0)  {
 
     /* Calculo do modulo 11 */
     if ($r == 0) {
-        $soma *= 10;
+        //$soma *= 10;
         $digito = $soma % 11;
         if ($digito == 10) {
             $digito = 0;
