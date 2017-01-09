@@ -51,8 +51,8 @@ class IntegracaoItauComponent extends IntegracaoBaseComponent {
 			$s .= $this->FormatarTexto('I', 1); //carteira
 			$s .= $this->FormatarTexto('01', 2); //Identificação da Ocorrencia
 			$s .= $this->FormatarNumero($this->Data[$i]['Mensalidade']['id'], 10); //Numero do Documento
-			//$s .= $this->FormatarTexto(date('dmy', strtotime(str_replace("/", "-", $this->Data[$i]['Mensalidade']['vencimento']))), 6);
-			$s .= $this->FormatarTexto(date('dmy', strtotime($this->Data[$i]['Mensalidade']['vencimento'])), 6);
+			$s .= $this->FormatarTexto(date('dmy', strtotime(str_replace("/", "-", $this->Data[$i]['Mensalidade']['vencimento']))), 6);
+			//$s .= $this->FormatarTexto(date('dmy', strtotime($this->Data[$i]['Mensalidade']['vencimento'])), 6);
 			$s .= $this->FormatarNumero($this->Data[$i]['Mensalidade']['valor'], 13); //Valor
 			$s .= $this->FormatarTexto('341', 3); //Banco
 			$s .= $this->FormatarNumero('0', 5); //Agencia onde sera cobrado
