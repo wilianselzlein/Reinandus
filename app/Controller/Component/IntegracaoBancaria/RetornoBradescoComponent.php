@@ -56,8 +56,8 @@ class RetornoBradescoComponent extends RetornoBaseComponent {
 		$linha['pago'] = $this->FormatarValor(substr($this->Linha, 254, 13));
 		$linha['formapgto_id'] = $this->FormaPgto_Id;
 		$linha['documento'] = $this->Arquivo;
-		$linha['retorno'] = substr($this->Linha, 109, 2);
-		$linha['motivos'] = MotivosRejeite(substr($this->Linha, 319, 2)) . '|' . MotivosRejeite(substr($this->Linha, 321, 2)) . '|' . MotivosRejeite(substr($this->Linha, 323, 2));
+		$linha['retorno'] = substr($this->Linha, 108, 2);
+		$linha['motivos'] = $this->MotivosRejeite(substr($this->Linha, 318, 2)) . '|' . $this->MotivosRejeite(substr($this->Linha, 320, 2)) . '|' . $this->MotivosRejeite(substr($this->Linha, 322, 2));
 		
 		$validacoes[] = $linha;
 	}
@@ -75,7 +75,7 @@ class RetornoBradescoComponent extends RetornoBaseComponent {
 	        case 09: $retorno = 'Nosso número duplicado'; break;
 	        case 10: $retorno = 'Carteira inválida'; break;
 	        case 13: $retorno = 'Identificação da emissão do bloqueto inválida (Novo)'; break;
-	        case 16: $retorno = 'Data de vencimento inválida'; break;
+	        case 16: $retorno = 'Data de vencimento invalida'; break;
 	        case 18: $retorno = 'Vencimento fora do prazo de operação'; break;
 	        case 20: $retorno = 'Valor do Título inválido'; break;
 	        case 21: $retorno = 'Espécie do Título inválida'; break;
@@ -101,6 +101,7 @@ class RetornoBradescoComponent extends RetornoBaseComponent {
 	        case 74: $retorno = 'Débito não agendado - Conforme seu pedido, Título não registrado'; break;
 	        case 75: $retorno = 'Débito não agendado – Tipo de número de inscrição do debitado inválido'; break;
 		}
+		return $retorno;
 	}
 }
 

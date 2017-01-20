@@ -325,7 +325,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		//$dados['cpf_cnpj'] = $aluno['Aluno']['cpf'];
 		
 		$dados['valor_cobrado'] = $mensalidade['Mensalidade']['valor'];
-		$dados['pedido'] = str_pad($mensalidade['Mensalidade']['id'], 11, '0', STR_PAD_RIGHT); //$aluno['Aluno']['id']; // Usado para gerar o número do documento e o nosso número.
+		$dados['pedido'] = str_pad($mensalidade['Mensalidade']['id'], 8, '0', STR_PAD_LEFT) . '000'; //$aluno['Aluno']['id']; // Usado para gerar o número do documento e o nosso número.
 
 		/* Seus Dados */
 		$dados["identificacao"] = $instituto['Empresa']['fantasia'];
