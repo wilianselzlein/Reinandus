@@ -54,7 +54,8 @@ class IntegracaoBradescoComponent extends IntegracaoBaseComponent {
 			$s .= $this->FormatarTexto('', 2); //Brancos
 			$s .= $this->FormatarTexto('01', 2); //Identificação da Ocorrencia - Remessa
 			$s .= $this->FormatarNumero($this->Data[$i]['Mensalidade']['id'], 10); //Numero do Documento
-			$s .= $this->FormatarTexto(date('ddmmyy', strtotime($this->Data[$i]['Mensalidade']['vencimento'])), 6); //Vencimento
+			$s .= $this->FormatarTexto(date('dmy', strtotime(str_replace("/", "-", $this->Data[$i]['Mensalidade']['vencimento']))), 6);
+			//$s .= $this->FormatarTexto(date('ddmmyy', strtotime($this->Data[$i]['Mensalidade']['vencimento'])), 6); //Vencimento
 			$s .= $this->FormatarNumero($this->Data[$i]['Mensalidade']['valor'], 13); //Valor
 			$s .= $this->FormatarNumero('0', 3); //Banco Encarregado Cobrança
 			$s .= $this->FormatarNumero('0', 5); //Agência Depositária
