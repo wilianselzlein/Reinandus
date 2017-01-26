@@ -64,15 +64,15 @@ class RetornoBradescoComponent extends RetornoBaseComponent {
 
 	private function MotivosRejeite($codigo) {
 		$retorno = '';
-		switch ($codigo) {
-		    case 00: $retorno = 'Retorno zero'; break;
-		    case 02: $retorno = 'Código do registro detalhe inválido'; break;
-		    case 03: $retorno = 'Código da ocorrência inválida'; break;
-	        case 04: $retorno = 'Código de ocorrência não permitida para a carteira'; break;
-	        case 05: $retorno = 'Código de ocorrência não numérico'; break;
-	        case 07: $retorno = 'Agência/conta/Digito Inválido'; break;
-	        case 08: $retorno = 'Nosso número inválido'; break;
-	        case 09: $retorno = 'Nosso número duplicado'; break;
+		switch ((int) $codigo) {
+		    case 0:  $retorno = 'Retorno zero'; break;
+		    case 2:  $retorno = 'Código do registro detalhe inválido'; break;
+		    case 3:  $retorno = 'Código da ocorrência inválida'; break;
+	        case 4:  $retorno = 'Código de ocorrência não permitida para a carteira'; break;
+	        case 5:  $retorno = 'Código de ocorrência não numérico'; break;
+	        case 7:  $retorno = 'Agência/conta/Digito Inválido'; break;
+	        case 8:  $retorno = 'Nosso número inválido'; break;
+	        case 9:  $retorno = 'Nosso número duplicado'; break;
 	        case 10: $retorno = 'Carteira inválida'; break;
 	        case 13: $retorno = 'Identificação da emissão do bloqueto inválida (Novo)'; break;
 	        case 16: $retorno = 'Data de vencimento invalida'; break;
