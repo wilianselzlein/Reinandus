@@ -46,7 +46,7 @@ class AlunosController extends AppController {
         );
 
 		$this->Filter->setPaginate('order', array('Aluno.id' => 'desc')); 
-		$this->Filter->setPaginate('fields', array('Aluno.id', 'Aluno.nome', 'Curso.id', 'Curso.nome', 'Aluno.endereco', 'Aluno.numero', 'Aluno.bairro', 'Aluno.cep',
+		$this->Filter->setPaginate('fields', array('Aluno.id', 'Aluno.nome', 'Curso.id', 'Curso.nome', 'Aluno.endereco', 'Aluno.numero', 'Aluno.bairro', 'Aluno.cep', 'Aluno.cpf',
 'Cidade.id', 'Cidade.nome', 'Aluno.celular', 'Aluno.email', 'Situacao.id', 'Situacao.valor'));
 
 		if (! isset($filtros['AND'])) 
