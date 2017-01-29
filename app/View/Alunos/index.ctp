@@ -49,12 +49,17 @@
 							<td><?php echo h($aluno['Aluno']['celular']); ?>&nbsp;</td>
 							<td><?php echo h($aluno['Aluno']['email']); ?>&nbsp;</td>
 							<td class="actions text-center">
-								<?php echo $this->element('BotaoAjax', array("controller" => "Alunos", "nome" => "mensalidade", "id" => h($aluno['Aluno']['id']), "icone" => "money")); ?>
+								<?php 
+								if (isset($permissoes['Financeiro']['Mensalidade']))
+									echo $this->element('BotaoAjax', array("controller" => "Alunos", "nome" => "mensalidade", "id" => h($aluno['Aluno']['id']), "icone" => "money")); ?>
 								<?php echo $this->element('BotaoAjax', array("controller" => "Alunos", "nome" => "disciplina", "id" => h($aluno['Aluno']['id']), "icone" => "puzzle-piece")); ?>
 							</td>
 							<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $aluno, 'model' => 'Aluno')); ?>
 						</tr>
-						<?php echo $this->element('LinhaTabelaParaAjax', array("nome" => "mensalidade", "id" => h($aluno['Aluno']['id']), "colspan" => 11)); ?>
+						<?php 
+							if (isset($permissoes['Financeiro']['Mensalidade']))
+								echo $this->element('LinhaTabelaParaAjax', array("nome" => "mensalidade", "id" => h($aluno['Aluno']['id']), "colspan" => 11)); 
+						?>
 						<?php echo $this->element('LinhaTabelaParaAjax', array("nome" => "disciplina", "id" => h($aluno['Aluno']['id']), "colspan" => 11)); ?>
 					<?php endforeach; ?>
 				</tbody>
