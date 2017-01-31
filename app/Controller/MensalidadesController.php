@@ -133,6 +133,10 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 			throw new NotFoundException(__('The record could not be found.?>'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
+
+			if (($this->request->data['Mensalidade']['pago'] == 0.00) && ($this->request->data['Mensalidade']['pagamento'] == '')) {
+				$this->request->data['Mensalidade']['situacao_id'] = $this->PegarSituacaoAberto();
+			}
 			if ($this->Mensalidade->save($this->request->data)) {
 				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", 
 					array("link_text" => __('GO_TO'), "link_url" => array("action" => "view", $this->Mensalidade->id)));

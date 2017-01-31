@@ -20,7 +20,7 @@
 <br/>
 <br/>
 <div class="alert alert-danger" role="alert">
-	Favor solicitar o boleto pelo email <b>pos@facet.br</b>
+	Favor solicitar o boleto pelo email <b>financeiro@facet.br</b>
 </div>
 <div class="panel panel-default">
 	<table class="table">
