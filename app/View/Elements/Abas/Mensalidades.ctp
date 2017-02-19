@@ -61,16 +61,16 @@
 						$pagamento = $mensalidade['vmensalidades']['mensalidade_pagamento'];
 						$remessa = $mensalidade['vmensalidades']['mensalidade_remessa'];
 						
-						
 						if (! is_null($pagamento))
 							echo date('d/m/Y', strtotime($pagamento));
-						else  {
-						    	if ($remessa) {
-						       echo $this->Html->link('<i class="fa fa-print"></i>', 
-						        array('action' => 'boleto', $mensalidade['vmensalidades']['mensalidade_id']), 
-						        array('class' => 'btn btn-default btn-xs', 'escape' => false, 'title' => __('Imprimir Boleto'), 'data-toggle' => 'tooltip', 'target' => '_blank'));
-						     } 
-						  } ?> 
+						else {
+							if ($remessa) {
+								echo $this->Html->link('<i class="fa fa-print"></i>', 
+								array('action' => 'boleto', $mensalidade['vmensalidades']['mensalidade_id']), 
+								array('class' => 'btn btn-default btn-xs', 'escape' => false, 'title' => __('Imprimir Boleto'), 'data-toggle' => 'tooltip', 'target' => '_blank'));
+							}
+						}
+					?>
 					&nbsp;
 				</td>
 				<td><?php echo $this->Number->currency($mensalidade['vmensalidades']['mensalidade_valor'], 'BRL'); ?> &nbsp;</td>
