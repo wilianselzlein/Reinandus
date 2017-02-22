@@ -21,7 +21,7 @@ class PortalController extends AppController {
  *
  * @var array
  */
-  public $components = array('Session', 'Boletos.BoletoHsbc');
+  public $components = array('Session', 'Boletos.BoletoHsbc', 'Boletos.BoletoBb', 'Boletos.BoletoBradesco', 'Boletos.BoletoItau');
 
    public function aluno_index() {
       $dados = $this->Session->read('Auth');
@@ -162,7 +162,14 @@ class PortalController extends AppController {
       $Mensalidade = new MensalidadesController;
       $dados = $Mensalidade->DadosBoleto($id);
       $this->autoRender = false;
-      $this->BoletoBradesco->render($dados);
+      
+		$banco = $dados["num_banco"];
+		if ($banco == 237)
+			$this->BoletoBradesco->render($dados);
+		else if ($banco == 341)
+			$this->BoletoItau->render($dados);
+		else
+			throw new NotFoundException(__('Número do banco não configurado no arquivo de retorno.'));
     }
 
     public function aluno_comprovante() {
