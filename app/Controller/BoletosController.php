@@ -36,7 +36,6 @@ class BoletosController extends AppController {
 	public function remessa($remessa, $arquivo) {
 
         $caminho = 'remessa/';
-        $caminho = 'Reinandus/remessa/';
 
         if (file_exists($caminho . $arquivo))
             unlink($caminho . $arquivo);
