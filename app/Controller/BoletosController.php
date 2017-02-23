@@ -73,7 +73,7 @@ class BoletosController extends AppController {
 				__('Nenhuma mensalidade para o período informado.'), 'flash/error');
 			$this->redirect(array('action' => 'index'));
 		}
-//debug($mensalidades); die;
+
 		$this->GeraArquivoIntegracaoBancaria->setData($mensalidades);
 		$remessa = $this->GeraArquivoIntegracaoBancaria->gerar();
 		$nome = $this->GeraArquivoIntegracaoBancaria->nome();
@@ -81,9 +81,11 @@ class BoletosController extends AppController {
 		$this->MarcarMensalidadesComoEnviadas($mensalidades);
 		$this->IncrementarSequencialDaRemessaNaConta($mensalidades);
 
-		$this->Session->setFlash(__('Arquivo gerado com sucesso! ' . count($mensalidades) . ' mensalidade(s).'), 
-			'flash/success');
-		$this->redirect(array('action' => 'index'));
+		//$this->Session->setFlash(__('Arquivo gerado com sucesso! ' . count($mensalidades) . ' mensalidade(s).'), 
+		//	'flash/success');
+		//$this->Session->setFlash(__('Arquivo gerado com sucesso! '), 'flash/linked/success',
+		//	array('link_text' => __('Arquivo'), 'link_url' => array('/remessa/' . $nome)));
+		//$this->redirect(array('action' => 'index'));
 	}
 
 

@@ -46,7 +46,7 @@
 										$modelos = array(0 => 'Não enviadas', 1 => 'Enviadas', 2 => 'Todas');
 										echo $this->Form->input('envio', array('class' => 'form-control', 'label'=>array('class'=>'col-sm-3 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-8">', 'after'=>'</div>', 'options' => $modelos)); ?>
 									</div>
-									<?php echo $this->Form->button('<i class="fa fa-envelope"></i>'.' '.__('Gerar'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit', 'onclick' => '__loadMostra();','escape' => false)); ?>
+									<?php echo $this->Form->button('<i class="fa fa-envelope"></i>'.' '.__('Gerar'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit','escape' => false)); ?>
 								</fieldset>
 								<?php echo $this->Form->end(); ?>
 							</div>
