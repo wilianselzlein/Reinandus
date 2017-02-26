@@ -215,9 +215,14 @@ class RelatoriosController extends AppController {
                         $filtros .= " AND ".str_replace("_",".", $campo)." = ".$compositeValue[0];
                         break;
                      }
-                     case 13; //VALOR_PERCENTUAL
+                     case 13; //CONJUNTO = IN
                      {
-                        $filtros .= " AND ".str_replace("_",".", $campo)." = ".$compositeValue[0];
+                        $in = '0';
+                        foreach ($compositeValue as $item => $valor){
+                            if (is_numeric($valor))
+                                $in .= ", " . $valor;
+                        }
+                        $filtros .= " AND ".str_replace("_",".", $campo)." IN (".$in . ") ";
                         break;
                      }
                   }  

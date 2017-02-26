@@ -6,9 +6,10 @@ $relatorio_pdf->SetTitulo('Relatório de Frequência');
 
 $html = $relatorio_pdf->html;
 
+$table = new Table();
 if (count($frequencia) > 0) {
-$curso = $frequencia[0]['curso']['curso'];
 
+$curso = $table->array_unique($frequencia,'curso');
 $cabecalho = new Table();
 
 $rowData = new Row('');
@@ -39,7 +40,6 @@ $cabecalho->addRow($rowData);
 $cabecalho->close();
 $html .= $cabecalho . '<br><br>';
 
-$table = new Table();
 $rowHeader = new Row('header');
 $rowHeader
   ->addColumn('Aluno', 'col-50')

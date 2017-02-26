@@ -55,6 +55,19 @@ class Table{
      return $result;
    }
 
+   public function array_unique(array $array, $columnKey, $indexKey = null)
+   {
+
+      $result = $this->array_column($array,$columnKey);
+      $nomes = [];
+      foreach ($result as $coluna => $valor) {
+        $nomes[] = $valor[$columnKey];
+      }
+      $result = array_unique($nomes);
+      $result = implode('<br>', $result);
+      return $result;
+   }
+
 }
 
 class Row{

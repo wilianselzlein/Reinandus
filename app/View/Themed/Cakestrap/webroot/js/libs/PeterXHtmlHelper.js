@@ -29,6 +29,9 @@ function Draw(id, type, field, alias, modelo) {
       if(typeof labelAlias == "undefined" || labelAlias == "") labelAlias = this.alias;
       component += "<label for='" + this.type + "_string'>" + labelAlias + "</label>";
    }
+   this.labelex = function() {
+      component += "<small><label for='" + this.type + "_string'>Separado por ','. Exemplo: 1,2,3,4 </label></small>";
+   }
    this.space = function(){
       component += "<br>";
    }
@@ -197,10 +200,12 @@ function Draw(id, type, field, alias, modelo) {
       return component;
    }
    //VALOR_PERCENTUAL: 13
-   this.getValorPercentual = function() {
+   this.getConjuntoDeVal = function() {
       this.openDiv();
       this.label();
-      this.inputNumber();
+      this.space();
+      this.labelex();
+      this.inputText();
       this.closeDiv();
       return component;
    } 

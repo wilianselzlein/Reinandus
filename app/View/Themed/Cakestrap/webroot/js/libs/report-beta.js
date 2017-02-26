@@ -207,7 +207,7 @@ $(document).ready(function() {
                   selected_component += "<br>";
                   break;
                }
-            case TipoFiltro.VALOR_PERCENTUAL:
+            case TipoFiltro.CONJUNTO_DE_VAL:
                {
                   selected_component += _filter.fields[i].label + ": " + _filter.fields[i].value;
                   selected_component += "<br>";
@@ -300,8 +300,8 @@ function selectStringComponent(selectedField) {
          return component.getFaixaValores();
       case TipoFiltro.VALOR_QTD:
          return component.getValorQtd();
-      case TipoFiltro.VALOR_PERCENTUAL:
-         return component.getValorPercentual();
+      case TipoFiltro.CONJUNTO_DE_VAL:
+         return component.getConjuntoDeVal();
       case TipoFiltro.FAIXA_DATAS:
          return component.getFaixaDatas();
       case TipoFiltro.BOOLEAN:
@@ -339,6 +339,6 @@ var TipoFiltro = {
    FAIXA_VALORES: 11,
    //[Display(Name = "Valor moeda ou quantidade")]
    VALOR_QTD: 12,
-   //[Display(Name = "Valor percentual")]
-   VALOR_PERCENTUAL: 13,
+   //[Display(Name = "Conjunto de VALO")]
+   CONJUNTO_DE_VAL: 13,
 }

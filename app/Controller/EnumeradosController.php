@@ -279,7 +279,7 @@ class EnumeradosController extends AppController {
 	$this->AdicionarEnumeradoSeNaoExistir(60, 'relatorios_filtros', 'tipo_filtro', 'Boolean');
 	$this->AdicionarEnumeradoSeNaoExistir(61, 'relatorios_filtros', 'tipo_filtro', 'Faixa de valores moeda ou quantidade');
 	$this->AdicionarEnumeradoSeNaoExistir(62, 'relatorios_filtros', 'tipo_filtro', 'Valor moeda ou quantidade');
-	$this->AdicionarEnumeradoSeNaoExistir(63, 'relatorios_filtros', 'tipo_filtro', 'Valor percentual');
+	$this->AdicionarEnumeradoSeNaoExistir(63, 'relatorios_filtros', 'tipo_filtro', 'Conjunto de Valores');
 	//--
     $this->AdicionarEnumeradoSeNaoExistir(64, 'aluno', 'indicacao_id', 'Convênio');
     $this->AdicionarEnumeradoSeNaoExistir(65, 'aluno', 'indicacao_id', 'Envio SMS');
