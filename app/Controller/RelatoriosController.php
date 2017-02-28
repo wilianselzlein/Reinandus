@@ -201,6 +201,9 @@ class RelatoriosController extends AppController {
                             $branco = $compositeValue[0];
                             $this->set(compact('branco'));
                         }
+                        elseif ($campo == 'semnota') {
+                            $filtros .= " AND (ad.frequencia is null or ad.frequencia = 0) and (ad.nota is null or ad.nota = 0) ";
+                        }                       
                         else
                             $filtros .= " AND ".str_replace("_",".", $campo)." = '".$compositeValue[0]."'";
                         break;

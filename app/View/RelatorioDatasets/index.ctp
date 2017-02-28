@@ -33,7 +33,7 @@
                     <?php echo $this->Html->link($dataset['Relatorio']['nome'], array('controller' => 'RelatorioDatasets', 'action' => 'view', $dataset['Relatorio']['id'])); ?>
 		</td>
                 <td><?php echo h($dataset['RelatorioDataset']['nome']); ?>&nbsp;</td>
-                <td><?php echo h($dataset['RelatorioDataset']['sql']); ?>&nbsp;</td>
+                <td><pre><?php echo h($dataset['RelatorioDataset']['sql']); ?>&nbsp;</pre></td>
                 <td><?php echo h($dataset['RelatorioDataset']['order']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $dataset['RelatorioDataset']['id']), array('class' => 'btn btn-default btn-xs')); ?>
