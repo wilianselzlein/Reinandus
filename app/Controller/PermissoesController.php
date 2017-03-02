@@ -255,6 +255,7 @@ class PermissoesController extends AppController {
 	}
 
 	private function AdicionarMenuSeHabilitado(&$array, $permissoes, $programas, $menu, $caption, $programa_id, $controller = null, $action = 'index') {
+		if (count($permissoes) > 0) 
 		if ((is_null($permissoes[$programa_id])) || ($permissoes[$programa_id])) {
 			$model = $programas[$programa_id];
 			if ($controller == null) 

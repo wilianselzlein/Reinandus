@@ -149,7 +149,9 @@ HAVING ano1 > 0 or ano2 > 0 or ano3 > 0 or ano4 > 0) T
         }
 
         //debug($valores); die;
-        $maximo = ((integer) $item['T']['maximo']);
+        $maximo = 2017;
+        if (isset($item))
+          $maximo = ((integer) $item['T']['maximo']);
         $nomes[] = "'" . $maximo . "'";
         $nomes[] = "'" . ($maximo - 1) . "'";
         $nomes[] = "'" . ($maximo - 2) . "'";
