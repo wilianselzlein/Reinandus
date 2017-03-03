@@ -61,7 +61,7 @@ echo $this->fetch('script');
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                </button>
-               <?php echo $this->Html->Link('Sistema Pós-Graduação', array('controller' => 'portal', 'action' => 'index', 'aluno' => true ), arraY('class' => 'navbar-brand')); ?>
+               <?php echo $this->Html->Link('Portal do Aluno', array('controller' => 'portal', 'action' => 'index', 'aluno' => true ), arraY('class' => 'navbar-brand')); ?>
             </div>
             <ul class="nav navbar-nav navbar-right">
                <li class="">

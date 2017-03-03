@@ -77,7 +77,7 @@ $usuario_logado = $this->Session->read('Auth.User');
                <span class="icon-bar"></span>
                <span class="icon-bar"></span>
             </button>
-            <?php echo $this->Html->Link('Sistema Pós-Graduação', array('controller' => 'Pages', 'action' => 'display'), arraY('class' => 'navbar-brand')); ?>
+            <?php echo $this->Html->Link($nome_sistema, array('controller' => 'Pages', 'action' => 'display'), arraY('class' => 'navbar-brand')); ?>
          </div>
          <!-- Top Menu Items -->
          <ul class="nav navbar-right top-nav">

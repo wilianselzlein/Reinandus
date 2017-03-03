@@ -11,7 +11,7 @@ endif;*/
 
 App::uses('Debugger', 'Utility');
 ?>
-<h2><span class="fa fa-dashboard"></span>&nbsp;<?php echo __d('cake_dev', 'Sistema Reinandus de Gestao - %s.', Configure::version()); ?></h2>
+<h2><span class="fa fa-dashboard"></span>&nbsp;<?php echo __d('cake_dev', $nome_sistema . ' - %s.', Configure::version()); ?></h2>
 <?php
 if (Configure::read('debug') > 0):
 	Debugger::checkSecurityKeys();

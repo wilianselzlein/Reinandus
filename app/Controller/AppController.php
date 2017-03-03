@@ -259,6 +259,9 @@ class AppController extends Controller {
          $permissoes = $Permissoes->ConsultarPermissoesParaMontarOMenu($user_id);
    
    		$this->set(compact('permissoes'));
+
+      $nome_sistema = $this->NomeDoSistemaVindoDoParametro();
+      $this->set(compact('nome_sistema'));
       }
 	}
 
@@ -314,6 +317,17 @@ class AppController extends Controller {
   public function downloadarq($caminho, $arquivo) {
         $this->response->file($caminho . $arquivo, array('download' => true, 'name' => $arquivo));
         return $this->response;
+  }
+
+  private function NomeDoSistemaVindoDoParametro() {
+      $variavel = 'NomeSistema';
+      $nomesistema = CakeSession::read($variavel);
+      if ($nomesistema == null) {
+          $parametro = ClassRegistry::init('Parametro');
+          $nomesistema = $parametro->valor(7);
+          CakeSession::write($variavel, $nomesistema);
+      }
+      return $nomesistema;
   }
 
 }
