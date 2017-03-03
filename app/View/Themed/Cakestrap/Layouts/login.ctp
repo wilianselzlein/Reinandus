@@ -6,8 +6,8 @@
  * @package       app.View.Layouts
  * @since         CakePHP(tm) v 0.10.0.1076
  */
-$cakeDescription = __d('cake_dev', 'Sistema de Pós-Graduação');
-$copyright = 'GuildSoft';
+$cakeDescription = __d('cake_dev', 'Sistema');
+$copyright = '';
 ?>
 <?php echo $this->Html->docType('html5'); ?> 
 <!DOCTYPE html>
