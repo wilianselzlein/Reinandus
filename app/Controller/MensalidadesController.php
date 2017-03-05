@@ -338,8 +338,9 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 
 		$options = array('recursive' => -1, 'conditions' => array('Cidade.' . $this->Mensalidade->Aluno->Cidade->primaryKey => $instituto['Empresa']['cidade_id']));
 		$cidade = $this->Mensalidade->Aluno->Cidade->find('first', $options);
-
-		$dados["cidade_uf"] =  $cidade['Cidade']['nome'];
+		$dados["cidade_uf"] = '';
+		if (isset($cidade['Cidade']))
+			$dados["cidade_uf"] = $cidade['Cidade']['nome'];
 		$dados["cedente"] = $conta['Conta']['cedente'];
 		$dados["conta_cedente"] = $dados["cedente"];
 		$dados["conta_cedente_dv"] = $conta['Conta']['cedente_dig'];
