@@ -4,7 +4,7 @@
       <span aria-hidden="true">&times;</span><span class="sr-only"><?php echo __('Close');?></span>
    </button>   
 
-   <h5 class="modal-title" id="myModalLabel"><?php $echo nome_sistema; ?> &nbsp;
+   <h5 class="modal-title" id="myModalLabel"><?php echo $nome_sistema; ?> &nbsp;
       <button type="button" class="form-reset btn btn-default btn-xs" data-toggle="tooltip" data-original-title="Limpar campos">
          <i class="fa fa-fw fa-recycle"></i>
       </button>

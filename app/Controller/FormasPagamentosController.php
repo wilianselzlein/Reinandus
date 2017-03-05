@@ -162,7 +162,11 @@ class FormasPagamentosController extends AppController {
 	public function PegarMaiorNivel() {
 		$options = array('recursive' => false, 'fields' => array('Max(Debito.Nivel) as Nivel'));
 		$nivel = $this->Formapgto->Debito->find('first', $options);
-		return $nivel[0]['Nivel'];
+		if (! is_null($nivel[0]['Nivel']))
+			$nivel = $nivel[0]['Nivel'];
+		else
+			$nivel = 1;
+		return $nivel;
 	}
 
 }
