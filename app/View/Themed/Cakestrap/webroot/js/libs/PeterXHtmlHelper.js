@@ -30,7 +30,7 @@ function Draw(id, type, field, alias, modelo) {
       component += "<label for='" + this.type + "_string'>" + labelAlias + "</label>";
    }
    this.labelex = function() {
-      component += "<small><label for='" + this.type + "_string'>Separado por ','. Exemplo: 1,2,3,4 </label></small>";
+      component += "<small><label for='" + this.type + "_string'>Separado por VIRGULA. Exemplo: <b>1,2,3,4</b> </label></small>";
    }
    this.space = function(){
       component += "<br>";
