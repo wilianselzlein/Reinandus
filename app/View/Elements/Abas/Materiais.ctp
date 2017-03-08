@@ -12,7 +12,7 @@
     <?php echo $this->Form->end() ?>
   </div>
 </div>
-<i id="barra_avisos" class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
+<i id="barra_materiais" class="fa fa-refresh fa-spin fa-2x fa-fw"></i>
 
 <div id="div_materiais" class="list-group">
 </div>
