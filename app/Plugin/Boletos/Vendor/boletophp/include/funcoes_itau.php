@@ -56,22 +56,42 @@ $dac2 = modulo_10($agencia.$conta);
 //debug($dac2); //die;
 $codigo_barras = $codigobanco.$nummoeda.$fator_vencimento.$valor.$carteira.substr($nnum,0,8).$dac1.$agencia.$conta.$dac2.'000';
 // 43 numeros para o calculo do digito verificador
-//debug($codigo_barras);
 //$codigo_barras = '3419166700000123451101234567880057123457000';
 //$codigo_barras = '3419702000000002221574811595718616271717000';
 
 
 $dv = digitoVerificador_barra($codigo_barras);
-//debug($dv); //die;
-$codigo_barras = $codigobanco.$nummoeda.$fator_vencimento.$valor.$carteira.$nnum.$dac1.$agencia.$conta.$dac2.'000';
 
+$codigo_barras = $codigobanco.$nummoeda.$fator_vencimento.$valor.$carteira.$nnum.$dac1.$agencia.$conta.$dac2.'000';
+$codigo_barras1 = $codigobanco.$nummoeda.$dv.$fator_vencimento.$valor.$carteira.substr($nnum,0,8).$dac1.$agencia.$conta.$dac2.'000';
 // Numero para o codigo de barras com 44 digitos
 $linha = substr($codigo_barras,0,4).$dv.substr($codigo_barras,4,43);
 
+//debug($codigo_barras1); 
+
+/*3419X[7184]0000043750|109|00061720|1|8616|271717|000
+34194718400000437501090006172018616271717000
+34194718400000437501090006172000018616271717000
+
+34191.09008 06172.018613 62717.170005 4 71840000043750
+
+-01 a 03 03 9(03) Código do Banco na Câmara de Compensação = '341'
+-04 a 04 01 9(01) Código da Moeda = '9'
+05 a 05 01 9(01) DAC código de Barras (Anexo 2)
+--06 a 09 04 9(04) Fator de Vencimento (Anexo 6)
+--10 a 19 10 9(08)V(2) Valor
+--20 a 22 03 9(03) Carteira
+--23 a 30 08 9(08) Nosso Número
+31 a 31 01 9(01) DAC [Agência /Conta/Carteira/Nosso Número] (Anexo 4)
+32 a 35 04 9(04) N.º da Agência BENEFICIÁRIO
+36 a 40 05 9(05) N.º da Conta Corrente
+41 a 41 01 9(01) DAC [Agência/Conta Corrente] (Anexo 3)
+42 a 44 03 9(03) Zeros
+*/
 $nossonumero = $carteira.'/'.$nnum.'-'.modulo_10($agencia.$conta.$carteira.substr($nnum,0,8));
 $agencia_codigo = $agencia." / ". $conta."-".modulo_10($agencia.$conta);
 
-$dadosboleto["codigo_barras"] = $linha;
+$dadosboleto["codigo_barras"] = $codigo_barras1;
 $dadosboleto["linha_digitavel"] = monta_linha_digitavel($linha); // verificar
 $dadosboleto["agencia_codigo"] = $agencia_codigo ;
 $dadosboleto["nosso_numero"] = $nossonumero;
