@@ -33,11 +33,11 @@ class RetornoItauComponent extends RetornoBaseComponent {
 	}
 
 	private function Pagamento() {
-		$pagamento = substr($this->Linha, 296, 6); 
+		$pagamento = substr($this->Linha, 295, 6); 
 		$pagamento = trim($pagamento);
 		
 		if ($pagamento == '') {
-			$pagamento = substr($this->Linha, 110, 6);
+			$pagamento = substr($this->Linha, 108, 6);
 			$pagamento = trim($pagamento);
 		}
 		$pagamento = $this->FormatarData($pagamento);
@@ -48,13 +48,13 @@ class RetornoItauComponent extends RetornoBaseComponent {
 
 		$linha = [];
 		
-		$linha['linha'] = $this->Linha;
+		//$linha['linha'] = $this->Linha;
 		$linha['id'] = trim(substr($this->Linha, 37, 24));
 		$linha['confirmado'] = trim(substr($this->Linha, 108, 2));
 		$linha['pagamento'] = $this->Pagamento();
 		$linha['acrescimo'] = $this->FormatarValor(substr($this->Linha, 189, 13)) + $this->FormatarValor(substr($this->Linha, 202, 13)) + $this->FormatarValor(substr($this->Linha, 267, 13));
-		$linha['desconto'] = $this->FormatarValor(substr($this->Linha, 241, 13));
-		$linha['pago'] = $this->FormatarValor(substr($this->Linha, 254, 13));
+		$linha['desconto'] = $this->FormatarValor(substr($this->Linha, 242, 13)) / 100;
+		$linha['pago'] = $this->FormatarValor(substr($this->Linha, 255, 13)) / 100;
 		$linha['formapgto_id'] = $this->FormaPgto_Id;
 		$linha['documento'] = $this->Arquivo;
 		$linha['aluno'] = trim(substr($this->Linha, 324, 30));

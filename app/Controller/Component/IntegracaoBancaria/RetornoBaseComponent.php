@@ -41,7 +41,7 @@ abstract class RetornoBaseComponent extends Component {
 
 	protected function FormatarData($data) {
 		$dia = substr($data, 0, 2);
-		$mes = substr($data, 3, 2);
+		$mes = substr($data, 2, 2);
 		$ano = substr($data, 4, 2);
 		$time = $mes . '/' . $dia . '/' . $ano;
 		$time = strtotime($time);
