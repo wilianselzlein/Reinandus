@@ -45,7 +45,7 @@ abstract class RetornoBaseComponent extends Component {
 		$ano = substr($data, 4, 2);
 		$time = $mes . '/' . $dia . '/' . $ano;
 		$time = strtotime($time);
-		return date('d/m/y', $time);
+		return date('y-m-d', $time);
 	}
 
 	protected function FormatarValor($valor) {

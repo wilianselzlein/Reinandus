@@ -156,6 +156,23 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
 	}
 
+
+/**
+ * edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function BaixarPeloRetorno($id, $data = null) {
+		$this->Mensalidade->id = $id;
+		//debug($id); debug($data); die;
+		if (!$this->Mensalidade->exists($id)) {
+			return false;
+		}
+		return $this->Mensalidade->save($data);
+	}
+
 /**
  * delete method
  *
