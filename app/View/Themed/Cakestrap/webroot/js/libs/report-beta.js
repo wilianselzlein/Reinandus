@@ -22,7 +22,7 @@ $(document).ready(function() {
    //------------------------------
    VAR_SELECTED_FIELDS = [];
    /* FILTERS => Available */
-   $(DYNAMIC_LIST).click(function() {
+   $(DYNAMIC_LIST).change(function() {
       selectedValue = $(this).val();
       toBeRendered = selectStringComponent(selectedValue);
       $(DYNAMIC_CONTENT).html(toBeRendered);
@@ -73,7 +73,7 @@ $(document).ready(function() {
          } else {
             var alert = '<div id="alert-formulario" class="alert alert-danger fade in" role="alert">' + '<button type="button" class="close" data-dismiss="alert">' + '<span aria-hidden="true">×</span><span class="sr-only">Close</span></button>' + '<strong>Este filtro já está adicionado.'
             '</div>';
-            $(DYNAMIC_CONTENT).html(alert);;
+            $(DYNAMIC_CONTENT).html(alert);
             window.setTimeout(function() {
                $("#alert-formulario").alert('close');
             }, 2000);
@@ -81,7 +81,7 @@ $(document).ready(function() {
       } else {
          var alert = '<div id="alert-formulario" class="alert alert-warning fade in" role="alert">' + '<button type="button" class="close" data-dismiss="alert">' + '<span aria-hidden="true">×</span><span class="sr-only">Close</span></button>' + '<strong>Nenhum filtro selecionado'
          '</div>';
-         $(DYNAMIC_CONTENT).html(alert);;
+         $(DYNAMIC_CONTENT).html(alert);
          window.setTimeout(function() {
             $("#alert-formulario").alert('close');
          }, 2000);
