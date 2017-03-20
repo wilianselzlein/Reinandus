@@ -14,30 +14,39 @@ class RetornoItauComponent extends RetornoBaseComponent {
 
 		$mensalidade = $this->ConsultarMensalidade($mensalidade_id);
 		$mensalidade['Mensalidade']['id'] = $mensalidade_id;
-		$mensalidade['Mensalidade']['pagamento'] = $this->Pagamento();
-		$mensalidade['Mensalidade']['acrescimo'] = $this->FormatarValor(substr($this->Linha, 189, 13)) + $this->FormatarValor(substr($this->Linha, 202, 13)) + $this->FormatarValor(substr($this->Linha, 267, 13));
-		$mensalidade['Mensalidade']['desconto'] = $this->FormatarValor(substr($this->Linha, 241, 12));
-		$mensalidade['Mensalidade']['pago'] = $this->FormatarValor(substr($this->Linha, 254, 12));
-		$mensalidade['Mensalidade']['remessa'] = true;
-		$mensalidade['Mensalidade']['formapgto_id'] = $this->FormaPgto_Id;
-		$mensalidade['Mensalidade']['documento'] = $this->Arquivo;
-		$mensalidade['Mensalidade']['situacao_id'] = self::$SituacaoFechada;
-
-//debug($mensalidade); die;
-		if ($this->Mensalidade->BaixarPeloRetorno($mensalidade_id, $mensalidade)) {
-			$this->Mensalidade->RealizarLancamentosContabeis($mensalidade);
-			$this->IdsPagos[] = (int) $mensalidade_id;
+		
+		if ($this->PegarCodigoConfirmado() == '02') {
+			$mensalidade['Mensalidade']['remessa'] = true;
+			$mensalidade['Mensalidade']['documento'] = $this->Arquivo;
+			if (! $this->Mensalidade->BaixarPeloRetorno($mensalidade_id, $mensalidade)) {
+				throw new NotFoundException(__('The record could not be found.'));
+			}
 		} else {
-			throw new NotFoundException(__('The record could not be found.'));
+			$mensalidade['Mensalidade']['pagamento'] = $this->Pagamento();
+			$mensalidade['Mensalidade']['acrescimo'] = $this->FormatarValor(substr($this->Linha, 189, 13)) + $this->FormatarValor(substr($this->Linha, 202, 13)) + $this->FormatarValor(substr($this->Linha, 267, 13));
+			$mensalidade['Mensalidade']['desconto'] = $this->FormatarValor(substr($this->Linha, 241, 12));
+			$taxa_banco = $this->FormatarValor(substr($this->Linha, 176, 12));
+			$mensalidade['Mensalidade']['pago'] = $this->FormatarValor(substr($this->Linha, 254, 12)) + $taxa_banco;
+
+			if ($this->FormaPgto_Id > 0)
+				$mensalidade['Mensalidade']['formapgto_id'] = $this->FormaPgto_Id;
+			$mensalidade['Mensalidade']['documento'] = $this->Arquivo;
+			$mensalidade['Mensalidade']['situacao_id'] = self::$SituacaoFechada;
+
+			if ($this->Mensalidade->BaixarPeloRetorno($mensalidade_id, $mensalidade)) {
+				$this->Mensalidade->RealizarLancamentosContabeis($mensalidade);
+				$this->IdsPagos[] = (int) $mensalidade_id;
+			} else {
+				throw new NotFoundException(__('The record could not be found.'));
+			}
 		}
 	}
 
 	private function Pagamento() {
-		$pagamento = substr($this->Linha, 295, 6); 
+		$pagamento = substr($this->Linha, 110, 6); 
 		$pagamento = trim($pagamento);
-		
 		if ($pagamento == '') {
-			$pagamento = substr($this->Linha, 108, 6);
+			$pagamento = substr($this->Linha, 295, 6);
 			$pagamento = trim($pagamento);
 		}
 		$pagamento = $this->FormatarData($pagamento);
@@ -50,11 +59,12 @@ class RetornoItauComponent extends RetornoBaseComponent {
 		
 		//$linha['linha'] = $this->Linha;
 		$linha['id'] = trim(substr($this->Linha, 37, 24));
-		$linha['confirmado'] = trim(substr($this->Linha, 108, 2));
+		$linha['confirmado'] = $this->PegarCodigoConfirmado();
 		$linha['pagamento'] = $this->Pagamento();
 		$linha['acrescimo'] = $this->FormatarValor(substr($this->Linha, 189, 13)) + $this->FormatarValor(substr($this->Linha, 202, 13)) + $this->FormatarValor(substr($this->Linha, 267, 13));
 		$linha['desconto'] = $this->FormatarValor(substr($this->Linha, 242, 13)) / 100;
-		$linha['pago'] = $this->FormatarValor(substr($this->Linha, 255, 13)) / 100;
+		$taxa_banco = $this->FormatarValor(substr($this->Linha, 176, 12));
+		$linha['pago'] = ($this->FormatarValor(substr($this->Linha, 254, 12)) + $taxa_banco);
 		$linha['formapgto_id'] = $this->FormaPgto_Id;
 		$linha['documento'] = $this->Arquivo;
 		$linha['aluno'] = trim(substr($this->Linha, 324, 30));
@@ -94,6 +104,10 @@ class RetornoItauComponent extends RetornoBaseComponent {
 
 		}
 		return $retorno;
+	}
+
+	private function PegarCodigoConfirmado() {
+		return trim(substr($this->Linha, 108, 2));
 	}
 
 }

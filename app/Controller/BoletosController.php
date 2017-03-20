@@ -78,7 +78,7 @@ class BoletosController extends AppController {
 		$remessa = $this->GeraArquivoIntegracaoBancaria->gerar();
 		$nome = $this->GeraArquivoIntegracaoBancaria->nome();
 		$this->remessa($remessa, $nome);
-		$this->MarcarMensalidadesComoEnviadas($mensalidades);
+		//$this->MarcarMensalidadesComoEnviadas($mensalidades);
 		$this->IncrementarSequencialDaRemessaNaConta($mensalidades);
 
 		//$this->Session->setFlash(__('Arquivo gerado com sucesso! ' . count($mensalidades) . ' mensalidade(s).'), 
@@ -126,7 +126,7 @@ class BoletosController extends AppController {
 		if ($validar) {
 			debug($validacoes); die;
 		} else
-			$this->Session->setFlash(__('Mensalidades baixadas, utilize o filtro do arquivo: ' . $nome_arquivo . ' para gerar o relatório.'), 'flash/success');
+			$this->Session->setFlash(__('Mensalidades baixadas ou liberadas para pagamento, utilize o filtro do arquivo: ' . $nome_arquivo . ' para gerar o relatório.'), 'flash/success');
 	}
 
 /**

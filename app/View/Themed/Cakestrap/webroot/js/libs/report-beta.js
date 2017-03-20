@@ -65,9 +65,29 @@ $(document).ready(function() {
    $(BUTTON_ADD).click(function() {
       var alert = '<div id="alert-formulario" class="alert alert-danger fade in" role="alert">' + '<button type="button" class="close" data-dismiss="alert">' + '<span aria-hidden="true">×</span><span class="sr-only">Close</span></button>' + '<strong>Este filtro já está adicionado.'
       '</div>';
+
       if($(DYNAMIC_CONTENT).children(DYNAMIC_CONTENT_FORM).length > 0) {
+
          if(!isSelectdField()) {
             var filtro = new Filter($(DYNAMIC_CONTENT));
+            if (filtro.fields[0].label.indexOf("Código") == 0) {
+               var valor = filtro.fields[0];
+               if (! (valor.value % 1 == 0)) {  //lista 1,2,3 ex
+                  if (valor.value.indexOf(",") <= 0) {
+                     var alert = '<div id="alert-formulario" class="alert alert-danger fade in" role="alert">' + '<button type="button" class="close" data-dismiss="alert">' + '<span aria-hidden="true">×</span><span class="sr-only">Close</span></button>' + '<strong>Valor inválido, não separado por vírgula.'
+                     '</div>';
+                     $(DYNAMIC_CONTENT).html(alert);
+                     window.setTimeout(function() {
+                        $("#alert-formulario").alert('close');
+                     }, 4000);
+                     return;
+                     //var er = /^-?[0-9]+$/;
+                     //console.log(er.test(valor.value));
+                     //console.log(valor.value);
+                  }
+               }
+            }
+
             $(DYNAMIC_CONTENT).empty();
             $(DYNAMIC_CONTENT_SELECTED + " table tbody").html(draw(filtro, VAR_SELECTED_FIELDS));
          } else {

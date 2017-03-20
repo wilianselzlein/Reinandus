@@ -3,7 +3,7 @@
 App::import('Vendor', 'PeDF/Table');
 App::import('Vendor','tcpdf/modelos/RelatorioPDF'); 
 $relatorio_pdf = new RelatorioPDF('L', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-$relatorio_pdf->setTitulo('Relatório Mensalidade em Pagas');
+$relatorio_pdf->setTitulo('Relatório Mensalidade Pagas');
 $relatorio_pdf->setFiltros($filtros);
 $html = $relatorio_pdf->html;
 $table = new Table();
@@ -26,8 +26,11 @@ for ($index = 0; $index < count($mensalidade_paga); $index++) {
    $even_class = $index % 2 == 0 ? ' highlighted' : '';
 
    $rowData = new Row(''.$even_class);
+   $remessa = $mensalidade_paga[$index]['mens']['remessa'] == 1 ? ' value="1" checked="checked" ' : '';
+   $remessa = '<input type="checkbox" name="rem' . $mensalidade_paga[$index]['mens']['id'] . '"' . $remessa . '/>';
+
    $rowData
-      ->addColumn($mensalidade_paga[$index]['aluno']['aluno'], 'col-15')
+      ->addColumn($remessa . $mensalidade_paga[$index]['aluno']['aluno'], 'col-15')
       ->addColumn($mensalidade_paga[$index]['curso']['curso'], 'col-15')
       ->addColumn($this->Time->i18nFormat($mensalidade_paga[$index]['mens']['vencimento'], $this->Html->__getDatePatternView()), 'col-10 date text-centered')
       ->addColumn($this->Time->i18nFormat($mensalidade_paga[$index]['mens']['pagamento'], $this->Html->__getDatePatternView()), 'col-10 date text-centered')

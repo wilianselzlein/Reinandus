@@ -75,7 +75,7 @@
 							<td>
 								<pre><?php echo $dataset['sql']; ?></pre>
 							</td>
-							<td><?php echo $dataset['order']; ?></td>
+							<td><pre><?php echo $dataset['order']; ?></pre></td>
 							<td class="actions">
 								<?php echo $this->Html->link(__('View'), array('controller' => 'RelatorioDatasets', 'action' => 'view', $dataset['id']), array('class' => 'btn btn-default btn-xs')); ?>
 								<?php echo $this->Html->link(__('Edit'), array('controller' => 'RelatorioDatasets', 'action' => 'edit', $dataset['id']), array('class' => 'btn btn-default btn-xs')); ?>
