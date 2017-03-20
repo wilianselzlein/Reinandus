@@ -51,6 +51,12 @@ class ContratosController extends AppController {
             if (file_exists($caminho . $arquivo))
                 unlink($caminho . $arquivo);
 
+            $files = glob($caminho . '/*.rtf'); //get all file names
+            foreach($files as $file){
+                if(is_file($file))
+                unlink($file); //delete file
+            }
+
             $fp = fopen($caminho . $arquivo, 'a');
             if (! $fp) { //if (!is_writable($tempfile)) {
                 throw new Exception(__('PERMISSAO_ARQ'));
