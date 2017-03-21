@@ -22,7 +22,7 @@ class IntegracaoItauComponent extends IntegracaoBaseComponent {
 		$s .= date('d') . date('m') . date('y'); //data gravacao do arquivo
 		$s .= $this->FormatarTexto('', 294); //brancos
 		$s .= $this->SequencialDoRegistro();
-		$s .= PHP_EOL; 
+		$s .= "\r\n"; // PHP_EOL; 
 		return $s;
 	}
 
@@ -98,7 +98,7 @@ class IntegracaoItauComponent extends IntegracaoBaseComponent {
 			$s .= $this->FormatarNumero($this->Data[$i]['Conta']['dia_desconto'], 2); //Prazo de Dias
 			$s .= $this->FormatarTexto('', 1);	//brancos
 			$s .= $this->SequencialDoRegistro();
-			$s .= PHP_EOL;
+			$s .= "\r\n";
 
 			/*$s .= '2';
 			$s .= $this->FormatarTexto('2', 1); //2 = multa em % 1 = multa em R$ 0 = sem multa
@@ -115,7 +115,7 @@ class IntegracaoItauComponent extends IntegracaoBaseComponent {
 		$s = '9';
 		$s .= $this->FormatarTexto('', 393);
 		$s .= $this->SequencialDoRegistro();
-		$s .= PHP_EOL;
+		$s .= "\r\n";
 		return $s;
 	}
 
