@@ -61,7 +61,6 @@ class PessoasController extends AppController {
 		$usuarios = $this->TransformarArray->FindInContainable('Usuario', $usuarios);
 		$this->set(compact('usuarios'));
 
-
 		$options = array('conditions' => array('Aluno.responsavel_id' => $id), 'limit' => Self::$LIMITE_VIEW,
 		  'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.celular', 'Aluno.email', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Situacao.id', 'Situacao.valor', 'Curso.id', 'Curso.nome'));
 		$this->Pessoa->Aluno->unbindModel(array(
@@ -78,6 +77,12 @@ class PessoasController extends AppController {
 		//$logos = $this->TransformarArray->FindInContainable('Logo', $logos);
 		$this->set(compact('logos'));
 
+		$options = array('recursive' => 0, 'conditions' => array('ContaPagar.pessoa_id' => $id), 'limit' => Self::$LIMITE_VIEW, 
+			'fields' => array('ContaPagar.id', 'ContaPagar.documento', 'Professor.id', 'Professor.nome', 'Pessoa.id', 'Pessoa.razaosocial', 'ContaPagar.valor', 'ContaPagar.vencimento', 'ContaPagar.pagamento'));
+		$this->Pessoa->ContaPagar->unbindModel(array('belongsTo' => array('Conta', 'User', 'Formapgto', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
+		$pagar = $this->Pessoa->ContaPagar->find('all', $options);
+		$pagar = $this->TransformarArray->FindInContainable('ContaPagar', $pagar);
+		$this->set(compact('pagar'));
 	}
 
 /**

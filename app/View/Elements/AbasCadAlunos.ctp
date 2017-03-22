@@ -43,7 +43,7 @@ function CursoFim() {
 					   <?php echo $this->Form->input('curso_inicio',
 					         array('type' => 'text', 'class' => 'form-control datepicker-start', 'onblur' => 'CursoFim()', 'label'=>array('text' => 'Início', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
 					   <?php echo $this->Form->input('curso_fim',
-					         array('type' => 'text', 'class' => 'form-control', 'label'=>array('text' => 'Fim', 'class'=>'col-sm-1 control-label', 'style' => 'padding-left: 0px;'), 'div'=>false, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
+					         array('type' => 'text', 'class' => 'form-control datepicker-end', 'label'=>array('text' => 'Fim', 'class'=>'col-sm-1 control-label', 'style' => 'padding-left: 0px;'), 'div'=>false, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
 					</div><!-- .form-group -->
 
 				</div>
