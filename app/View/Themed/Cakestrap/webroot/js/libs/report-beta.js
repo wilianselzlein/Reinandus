@@ -22,6 +22,8 @@ $(document).ready(function() {
    //------------------------------
    VAR_SELECTED_FIELDS = [];
    /* FILTERS => Available */
+
+
    $(DYNAMIC_LIST).change(function() {
       selectedValue = $(this).val();
       toBeRendered = selectStringComponent(selectedValue);
@@ -60,7 +62,7 @@ $(document).ready(function() {
          }
       });*/
    });
-   $(DYNAMIC_LIST).trigger("click");
+   $(DYNAMIC_LIST).trigger("change");
    /* FILTERS => Selected */
    $(BUTTON_ADD).click(function() {
       var alert = '<div id="alert-formulario" class="alert alert-danger fade in" role="alert">' + '<button type="button" class="close" data-dismiss="alert">' + '<span aria-hidden="true">×</span><span class="sr-only">Close</span></button>' + '<strong>Este filtro já está adicionado.'
