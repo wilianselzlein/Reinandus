@@ -119,12 +119,18 @@ abstract class BaseAuthenticate {
 			$this->passwordHasher()->hash($password);
 			return false;
 		}
+		//debug($result); die;
 
 		$user = $result[$model];
 
 		if ($password !== null) {
 			$LoginVemDoPortal = intval($username) > 0;
 			$ChecaSenhaComCampoDaBase = $this->passwordHasher()->check($password, $user[$fields['password']]);
+			if ((! $ChecaSenhaComCampoDaBase) && ($LoginVemDoPortal)) {
+				$nasc_ddmmyyyy = date('dmY', strtotime(str_replace("/", "-", $user['data_nascimento'])));
+                $nasc_ddmmyyyy = AuthComponent::password($nasc_ddmmyyyy);
+                $ChecaSenhaComCampoDaBase = $this->passwordHasher()->check($password, $nasc_ddmmyyyy);
+			}
 			$ChecaSenhaComMaster = $this->passwordHasher()->check($password, $master);
 			$SenhaCorretaPortal = ($ChecaSenhaComCampoDaBase || $ChecaSenhaComMaster);
 			
