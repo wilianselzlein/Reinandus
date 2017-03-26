@@ -45,6 +45,16 @@ class Boleto extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+		),
+		'vencimento_final' => array(
+			'numeric' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'VALIDATE_BLANK',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
 		)
 	);
 
@@ -66,6 +76,13 @@ class Boleto extends AppModel {
 		),
 		'Conta' => array(
 			'className' => 'Contum',
+			'foreignKey' => '',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Aluno' => array(
+			'className' => 'Aluno',
 			'foreignKey' => '',
 			'conditions' => '',
 			'fields' => '',

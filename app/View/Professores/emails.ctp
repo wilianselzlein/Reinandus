@@ -1,1 +1,1 @@
-<?php echo $this->element('emails', array("emails" => $emails)); ?>
+<?php echo $this->element('emails', array("emails" => $emails, "id" => 'emails')); ?>

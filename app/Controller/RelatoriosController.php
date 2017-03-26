@@ -203,8 +203,10 @@ class RelatoriosController extends AppController {
                         }
                         elseif ($campo == 'semnota') {
                             $filtros .= " AND (ad.frequencia is null or ad.frequencia = 0) and (ad.nota is null or ad.nota = 0) ";
-                        }                       
-                        else
+                        }                    
+                        elseif ($campo == 'prazoexp') {
+                            $filtros .= " AND (aluno.curso_fim  <= CURDATE()) ";
+                        }else
                             $filtros .= " AND ".str_replace("_",".", $campo)." = '".$compositeValue[0]."'";
                         break;
                      }

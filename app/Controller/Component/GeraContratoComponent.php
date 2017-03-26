@@ -101,7 +101,7 @@ class GeraContratoComponent extends Component {
 		if ($IsSetDatas)
 			$contrato = str_replace(':datas', $this->Data['datas'], $contrato);
 
-		$contrato = str_replace(':data', CakeTime::i18nFormat(date('m/d/Y'), '%d de %B de %Y'), $contrato);
+		$contrato = str_replace(':data', $this->FormatarDataExtenso(), $contrato);
 	}
 
 	private function CorrigirParametrosNumericos() {
@@ -124,7 +124,13 @@ class GeraContratoComponent extends Component {
 		}
 	}
 
-
+	private function FormatarDataExtenso() {
+		$data = CakeTime::i18nFormat(date('m/d/Y'), '%d de %B de %Y');
+		$data = utf8_decode($data);
+		$data = CarregarConsultasBaseComponent::TirarAcento($data);
+		return $data;
+	}
+	
 }
 
 ?>

@@ -3,6 +3,10 @@
 App::uses('Component', 'Controller/Component');
 App::import('Controller/Component/IntegracaoBancaria', 'RetornoBaseComponent');
 
+const CONFIRMADO = '02';
+const REJEITADO = '03';
+const BAIXA_SIMPLES = '09';
+
 class RetornoItauComponent extends RetornoBaseComponent {
 
 	public function Mensalidades() {
@@ -15,8 +19,11 @@ class RetornoItauComponent extends RetornoBaseComponent {
 		$mensalidade = $this->ConsultarMensalidade($mensalidade_id);
 		$mensalidade['Mensalidade']['id'] = $mensalidade_id;
 		
-		if ($this->PegarCodigoConfirmado() == '02') {
-			$mensalidade['Mensalidade']['remessa'] = true;
+		if (($this->PegarCodigoConfirmacao() == CONFIRMADO) || 
+			($this->PegarCodigoConfirmacao() == REJEITADO) || 
+			($this->PegarCodigoConfirmacao() == BAIXA_SIMPLES) ) 
+		{ 
+			$mensalidade['Mensalidade']['remessa'] = ($this->PegarCodigoConfirmacao() == CONFIRMADO);
 			$mensalidade['Mensalidade']['documento'] = $this->Arquivo;
 			if (! $this->Mensalidade->BaixarPeloRetorno($mensalidade_id, $mensalidade)) {
 				throw new NotFoundException(__('The record could not be found.'));
@@ -55,11 +62,21 @@ class RetornoItauComponent extends RetornoBaseComponent {
 
 	public function Validar(&$validacoes) {
 
-		$linha = [];
+		if (count($validacoes) == 0) {
+			$linha = [];
+			$linha['Legenda'] = 'Retorno';
+			$linha['02'] = 'CONFIRMADO';
+			$linha['03'] = 'REJEITADO';
+			$linha['09'] = 'BAIXA_SIMPLES';
+			$linha['Cod. Rejeite'] = 'Nota (20) do Manual';
+			$validacoes[] = $linha;
+		}
 		
+		$linha = [];
 		//$linha['linha'] = $this->Linha;
 		$linha['id'] = trim(substr($this->Linha, 37, 24));
-		$linha['confirmado'] = $this->PegarCodigoConfirmado();
+		$linha['retorno'] = $this->PegarCodigoConfirmacao();
+		$linha['rejeite'] = trim(substr($this->Linha, 377, 2));
 		$linha['pagamento'] = $this->Pagamento();
 		$linha['acrescimo'] = $this->FormatarValor(substr($this->Linha, 189, 13)) + $this->FormatarValor(substr($this->Linha, 202, 13)) + $this->FormatarValor(substr($this->Linha, 267, 13));
 		$linha['desconto'] = $this->FormatarValor(substr($this->Linha, 242, 13)) / 100;
@@ -106,7 +123,7 @@ class RetornoItauComponent extends RetornoBaseComponent {
 		return $retorno;
 	}
 
-	private function PegarCodigoConfirmado() {
+	private function PegarCodigoConfirmacao() {
 		return trim(substr($this->Linha, 108, 2));
 	}
 

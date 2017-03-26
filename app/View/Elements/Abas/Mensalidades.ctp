@@ -19,9 +19,6 @@
 <?php echo $this->Form->end(); ?>
 <br/>
 <br/>
-<div class="alert alert-danger" role="alert">
-	Favor solicitar o boleto pelo email <b>financeiro@facet.br</b>
-</div>
 <div class="panel panel-default">
 	<table class="table">
 		<thead>

@@ -32,6 +32,12 @@
 										'div'=>true, 'between'=>'<div class="col-sm-8">', 'after'=>'</div>')); ?>
 									</div>
 									<div class="form-group">
+										<?php echo $this->Form->input('aluno_id',
+										array('class' => 'form-control combobox',
+										'label'=>array('class'=>'col-sm-3 control-label', 'style' => 'padding-left: 0px;'), 
+										'div'=>true, 'between'=>'<div class="col-sm-8">', 'after'=>'</div>')); ?>
+									</div>
+									<div class="form-group">
 										<?php echo $this->Form->input('vencimento_inicial',
 										array('type' => 'text', 'class' => 'form-control datepicker-start', 
 											'label'=>array('class'=>'col-sm-3 control-label', 'text' => 'Vencimento Inicial'), 'div'=>true, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>

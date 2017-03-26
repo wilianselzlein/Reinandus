@@ -25,7 +25,11 @@ class BoletosController extends AppController {
  */
 	public function index() {
 		$contas = $this->Boleto->Conta->findAsCombo('asc', 'num_banco > 0');
-		$this->set(compact('contas', ''));
+		$alunos = $this->Boleto->Aluno->findAsCombo('asc', 'Aluno.id in ' . 
+			'(select m.aluno_id 
+			from mensalidade m 
+			where coalesce(m.pago, 0.00) = 0.00)');
+		$this->set(compact('contas', 'alunos'));
 	}
 
 /**
@@ -178,8 +182,18 @@ class BoletosController extends AppController {
 		if ($envio == $ENVIAR_TODAS) 
 			$envio = array(0 , 1);
 
+		$conditions = [];
+		$conditions['Mensalidade.vencimento >= '] =  $data['Boleto']['vencimento_inicial'];
+		$conditions['Mensalidade.vencimento <= '] =  $data['Boleto']['vencimento_final'];
+		$conditions['COALESCE(Mensalidade.pago,0)'] = 0.00;
+		$conditions['Mensalidade.conta_id'] = $data['Boleto']['conta_id'];
+		$conditions['Mensalidade.remessa'] = $envio;
+		$aluno_id = $data['Boleto']['aluno_id'];
+		if ($aluno_id > 0)
+			$conditions['Mensalidade.aluno_id'] = $aluno_id;
+
 		$mensalidades = $this->Boleto->Mensalidade->find('all', array('recursive' => 0, 
-			'conditions' =>	array('Mensalidade.vencimento >= ' => $data['Boleto']['vencimento_inicial'], 'Mensalidade.vencimento <= ' => $data['Boleto']['vencimento_final'], 'COALESCE(Mensalidade.pago,0)' => 0.00, 'Mensalidade.conta_id' => $data['Boleto']['conta_id'], 'Mensalidade.remessa' => $envio),
+			'conditions' =>	$conditions,
 			'joins' => 
 				array(
 					array('table' => 'pessoa', 'alias' => 'Responsavel', 'type' => 'LEFT','conditions' => array('Aluno.responsavel_id = Responsavel.id')),

@@ -236,12 +236,12 @@ class CarregarConsultasBaseComponent extends Component {
         return $return_string;
     }
 
-    private function TirarAcento($texto) {
+    public function TirarAcento($texto) {
         //return preg_replace( '/[`^~\'"]/', null, iconv( 'UTF-8', 'ASCII//TRANSLIT', $texto ) );
 
         $map = array('á' => 'a','à' => 'a','ã' => 'a','â' => 'a','é' => 'e','ê' => 'e','í' => 'i','ó' => 'o','ô' => 'o','õ' => 'o','ú' => 'u','ü' => 'u','ç' => 'c','Á' => 'A','À' => 'A','Ã' => 'A','Â' => 'A','É' => 'E','Ê' => 'E','Í' => 'I','Ó' => 'O','Ô' => 'O','Õ' => 'O','Ú' => 'U','Ü' => 'U','Ç' => 'C');
 
-        return  strtr($texto, $map);
+        return strtr($texto, $map);
         //return preg_replace("/&([a-z])[a-z]+;/i", "$1", htmlentities($texto));
     }
 

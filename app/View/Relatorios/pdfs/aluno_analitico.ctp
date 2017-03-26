@@ -47,7 +47,7 @@ for ($index = 0; $index < count($aluno); $index++) {
       ->addColumn($aluno[$index]['aluno']['bairro'], 'col-25')
       ->addColumn('CPF', 'col-10 totais-label')
       ->addColumn($aluno[$index]['aluno']['cpf'], 'col-25')
-      ->addColumn('Responsável', 'col-10 totais-label')
+      ->addColumn('Respons.', 'col-10 totais-label')
       ->addColumn($aluno[$index]['pessoa']['razaosocial'], 'col-25')
       ->close();
     $table->addRow($rowData);
@@ -100,9 +100,9 @@ for ($index = 0; $index < count($aluno); $index++) {
    $rowData
       ->addColumn('Residencial', 'col-10 totais-label')
       ->addColumn($aluno[$index]['aluno']['residencial'], 'col-25')
-      ->addColumn('Naturalidade', 'col-10 totais-label')
+      ->addColumn('Naturalid.', 'col-10 totais-label')
       ->addColumn($aluno[$index]['naturalidade']['naturalidade'], 'col-25')
-      ->addColumn('Coordenador', 'col-10 totais-label')
+      ->addColumn('Orientador', 'col-10 totais-label')
       ->addColumn($aluno[$index]['professor']['professor'], 'col-25')
       ->close();
     $table->addRow($rowData);
@@ -118,24 +118,26 @@ for ($index = 0; $index < count($aluno); $index++) {
       ->close();
     $table->addRow($rowData);
 
-   $rowData = new Row(''.$even_class);
-   $rowData
-      ->addColumn('Monografia', 'col-10 totais-label')
-      ->addColumn($aluno[$index]['aluno']['mono_titulo'], 'col-95 date')
-      ->close();
-    $table->addRow($rowData);
+   $mono = $aluno[$index]['aluno']['mono_titulo'];
+   if ($mono != '') {
+     $rowData = new Row(''.$even_class);
+     $rowData
+        ->addColumn('Monografia', 'col-10 totais-label')
+        ->addColumn($mono, 'col-95 date')
+        ->close();
+      $table->addRow($rowData);
 
-   $rowData = new Row(''.$even_class);
-   $rowData
-      ->addColumn('Data', 'col-10 totais-label')
-      ->addColumn($this->Time->i18nFormat($aluno[$index]['aluno']['mono_data'], $this->Html->__getDatePatternView()), 'col-25 date')
-      ->addColumn('Prazo', 'col-10 totais-label')
-      ->addColumn($this->Time->i18nFormat($aluno[$index]['aluno']['mono_prazo'], $this->Html->__getDatePatternView()), 'col-25 date')
-      ->addColumn('Nota', 'col-10 totais-label')
-      ->addColumn($aluno[$index]['aluno']['mono_nota'], 'col-25')
-      ->close();
-    $table->addRow($rowData);
-
+     $rowData = new Row(''.$even_class);
+     $rowData
+        ->addColumn('Data', 'col-10 totais-label')
+        ->addColumn($this->Time->i18nFormat($aluno[$index]['aluno']['mono_data'], $this->Html->__getDatePatternView()), 'col-25 date')
+        ->addColumn('Prazo', 'col-10 totais-label')
+        ->addColumn($this->Time->i18nFormat($aluno[$index]['aluno']['mono_prazo'], $this->Html->__getDatePatternView()), 'col-25 date')
+        ->addColumn('Nota', 'col-10 totais-label')
+        ->addColumn($aluno[$index]['aluno']['mono_nota'], 'col-25')
+        ->close();
+      $table->addRow($rowData);
+    }
 }
 
 $table->addCount(count($aluno));
