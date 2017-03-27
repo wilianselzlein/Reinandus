@@ -177,32 +177,10 @@ class BoletosController extends AppController {
 	private function ConsultarMensalidades($data) {
 		$this->Boleto->Mensalidade->unbindModel(array('belongsTo' => array('Formapgto', 'User', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
 
-		$ENVIAR_TODAS = 2;
-		$envio = $data['Boleto']['envio'];
-		if ($envio == $ENVIAR_TODAS) 
-			$envio = array(0 , 1);
-
-		$conditions = [];
-		$conditions['Mensalidade.vencimento >= '] =  $data['Boleto']['vencimento_inicial'];
-		$conditions['Mensalidade.vencimento <= '] =  $data['Boleto']['vencimento_final'];
-		$conditions['COALESCE(Mensalidade.pago,0)'] = 0.00;
-		$conditions['Mensalidade.conta_id'] = $data['Boleto']['conta_id'];
-		$conditions['Mensalidade.remessa'] = $envio;
-		$aluno_id = $data['Boleto']['aluno_id'];
-		if ($aluno_id > 0)
-			$conditions['Mensalidade.aluno_id'] = $aluno_id;
-
 		$mensalidades = $this->Boleto->Mensalidade->find('all', array('recursive' => 0, 
-			'conditions' =>	$conditions,
-			'joins' => 
-				array(
-					array('table' => 'pessoa', 'alias' => 'Responsavel', 'type' => 'LEFT','conditions' => array('Aluno.responsavel_id = Responsavel.id')),
-					array('table' => 'cidade', 'alias' => 'Cidade', 'type' => 'LEFT','conditions' => array('coalesce(Aluno.cidade_id, Responsavel.cidade_id, 1) = Cidade.id')),
-					array('table' => 'estado', 'alias' => 'Estado', 'type' => 'LEFT','conditions' => array('Cidade.estado_id = Estado.id'))),
-			'fields' => array('Mensalidade.id', 'Mensalidade.vencimento', 'Mensalidade.valor', 'Mensalidade.desconto',
-				'Aluno.id', 'Aluno.nome', 'Aluno.cpf', 'Aluno.endereco', 'Aluno.bairro', 'Aluno.cep', 'Aluno.complemento', 'Aluno.numero', 'Cidade.nome', 'Estado.sigla',
-				'Responsavel.Id', 'Responsavel.razaosocial', 'Responsavel.cnpjcpf', 'Responsavel.endereco', 'Responsavel.bairro', 'Responsavel.cep', 'Responsavel.numero',
-				'Conta.id', 'Conta.cedente', 'Conta.cedente_dig', 'Conta.agencia', 'Conta.conta', 'Conta.nome_no_banco', 'Conta.num_banco', 'Conta.agencia_dig', 'Conta.conta_dig', 'Conta.carteira', 'Conta.Mensagem', 'Conta.dia_emissao', 'Conta.seq_remessa', 'Conta.dia_desconto'),
+			'conditions' =>	$this->CondicoesParaConsultarMensalidade($data),
+			'joins' => $this->JoinsParaConsultarMensalidade(),
+			'fields' => $this->FieldsParaConsultarMensalidade(),
 			'order' => array('Mensalidade.Id')));
 		return $mensalidades;
 	}
@@ -256,6 +234,56 @@ class BoletosController extends AppController {
     		array('Mensalidade.remessa' => true),
 			array('Mensalidade.id >= ' => min($ids), 'Mensalidade.id <= ' => max($ids), 
 				'AND' => array('Mensalidade.id' => $ids)));
+	}
+
+/**
+ * CondicoesParaConsultarMensalidade method
+ * input array
+ * @return array
+ */
+	private function CondicoesParaConsultarMensalidade($data) {
+
+		$ENVIAR_TODAS = 2;
+		$envio = $data['Boleto']['envio'];
+		if ($envio == $ENVIAR_TODAS) 
+			$envio = array(0 , 1);
+
+		$conditions = [];
+		$conditions['Mensalidade.vencimento >= '] =  $data['Boleto']['vencimento_inicial'];
+		$conditions['Mensalidade.vencimento <= '] =  $data['Boleto']['vencimento_final'];
+		$conditions['COALESCE(Mensalidade.pago,0)'] = 0.00;
+		$conditions['Mensalidade.conta_id'] = $data['Boleto']['conta_id'];
+		$conditions['Mensalidade.remessa'] = $envio;
+		$aluno_id = $data['Boleto']['aluno_id'];
+		if ($aluno_id > 0)
+			$conditions['Mensalidade.aluno_id'] = $aluno_id;
+
+		return $conditions;
+	}
+
+/**
+ * JoinsParaConsultarMensalidade method
+ * input void
+ * @return array
+ */
+	private function JoinsParaConsultarMensalidade() {
+		return array(
+			array('table' => 'pessoa', 'alias' => 'Responsavel', 'type' => 'LEFT','conditions' => array('Aluno.responsavel_id = Responsavel.id')),
+			array('table' => 'cidade', 'alias' => 'Cidade', 'type' => 'LEFT','conditions' => array('coalesce(Aluno.cidade_id, Responsavel.cidade_id, 1) = Cidade.id')),
+			array('table' => 'estado', 'alias' => 'Estado', 'type' => 'LEFT','conditions' => array('Cidade.estado_id = Estado.id')));
+	}
+
+/**
+ * FieldsParaConsultarMensalidade method
+ * input void
+ * @return array
+ */
+	private function FieldsParaConsultarMensalidade() {
+		return
+			array('Mensalidade.id', 'Mensalidade.vencimento', 'Mensalidade.valor', 'Mensalidade.desconto',
+					'Aluno.id', 'Aluno.nome', 'Aluno.cpf', 'Aluno.endereco', 'Aluno.bairro', 'Aluno.cep', 'Aluno.complemento', 'Aluno.numero', 'Cidade.nome', 'Estado.sigla',
+					'Responsavel.Id', 'Responsavel.razaosocial', 'Responsavel.cnpjcpf', 'Responsavel.endereco', 'Responsavel.bairro', 'Responsavel.cep', 'Responsavel.numero',
+					'Conta.id', 'Conta.cedente', 'Conta.cedente_dig', 'Conta.agencia', 'Conta.conta', 'Conta.nome_no_banco', 'Conta.num_banco', 'Conta.agencia_dig', 'Conta.conta_dig', 'Conta.carteira', 'Conta.Mensagem', 'Conta.dia_emissao', 'Conta.seq_remessa', 'Conta.dia_desconto');
 	}
 
 }
