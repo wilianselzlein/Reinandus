@@ -10,3 +10,11 @@
 	<br>
 	<span class="label label-info">Verifique se o endereço digitado está correto.</span> 
 </div>
+<?php
+if (Configure::read('debug') > 0):
+	printf(__d('cake', 'The requested address %s was not found on this server.'),
+		"<strong>'{$url}'</strong>");
+	
+	echo $this->element('exception_stack_trace');
+endif;
+?>

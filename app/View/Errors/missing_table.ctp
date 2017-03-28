@@ -7,7 +7,7 @@
 
 <div  class="jumbotron">
 	<div class="menu"><h2>Ooops...deu erro!</h2>
-   <h4>Erro de banco de dados.</h4></div>
+   <h4>Erro de banco de dados. Falta de tabela.</h4></div>
 	<div class="conteudo"><i class="fa fa-frown-o fa-3x"></i></div>
 	<br>
 	<br>

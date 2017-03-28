@@ -14,16 +14,27 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 ?>
-<h2><?php echo $message; ?></h2>
-<p class="error">
-	<strong><?php echo __d('cake', 'Error'); ?>: </strong>
-	<?php printf(
-		__d('cake', 'The requested address %s was not found on this server.'),
-		"<strong>'{$url}'</strong>"
-	); ?>
-</p>
+
+<style rel="stylesheet" type="text/css">
+	.menu { float: left; width: 80%; }
+	.conteudo { margin-left: 90%; margin-top: 20px;}
+</style>
+
+<div  class="jumbotron">
+	<div class="menu"><h2>Ooops...deu erro!</h2></div>
+	<div class="conteudo"><i class="fa fa-frown-o fa-3x"></i></div>
+	<br>
+	<h4><?php echo $message; ?></h4>
+	<span class="label label-info">Volte para a tela anterior e tente novamente (400).</span>
+	<br>
+	<br>
+</div>
 <?php
 if (Configure::read('debug') > 0):
+	printf(__d('cake', 'The requested address %s was not found on this server.'),
+		"<strong>'{$url}'</strong>");
+	
 	echo $this->element('exception_stack_trace');
 endif;
 ?>
+
