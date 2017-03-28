@@ -164,9 +164,9 @@ class AppController extends Controller {
    }
 
    function beforeRender() {
-      if($this->name == 'CakeError') {
+      /*if($this->name == 'CakeError') {
          $this->layout = null;
-      }
+      }*/
       
 		$this->MontarMenu();
    }
