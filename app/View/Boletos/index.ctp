@@ -12,10 +12,10 @@
 					<a href="#tabRem" data-toggle="tab"><i class="fa fa-share"></i> Remessa</a>
 				</li>
 				<li>
-					<a href="#tabRet" data-toggle="tab"><i class="fa fa-reply"></i> Retorno</a>
+					<a href="#tabVal" data-toggle="tab"><i class="fa fa-cogs "></i> Validar</a>
 				</li>
 				<li>
-					<a href="#tabVal" data-toggle="tab"><i class="fa fa-cogs "></i> Validar</a>
+					<a href="#tabRet" data-toggle="tab"><i class="fa fa-reply"></i> Retorno</a>
 				</li>
 			</ul>
 			<div class="panel panel-default">
@@ -75,13 +75,13 @@
 						</div>
 						<div class="tab-pane" id="tabVal">
 							<div class="Boletos form">
+
 								<?php echo $this->Form->create('Boleto', array('role' => 'form', 'class'=>'form-horizontal', 'action' => 'validar', 'url' => '/Boletos/processar/1', 'enctype' => 'multipart/form-data')); ?>
 								<fieldset>
 									<div class="form-group">
 										<?php echo $this->Form->input('retorno',
 										array('type' => 'file','class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
 									</div>
-									<!-- .form-group -->
 									<?php echo $this->Form->button('<i class="fa fa-cog fa-spin fa-fw"></i>'.' '.__('Validar'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
 								</fieldset>
 								<?php echo $this->Form->end(); ?>

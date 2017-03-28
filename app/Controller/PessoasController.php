@@ -72,8 +72,12 @@ class PessoasController extends AppController {
 
 		$options = array('recursive' => 0, 'conditions' => array('Logo.pessoa_id' => $id), 'limit' => Self::$LIMITE_VIEW,
 		 'fields' => array('Logo.id', 'Logo.logo', 'Logo.pessoa_id'));
-        $this->Pessoa->Logo->unbindModel(array('belongsTo' => array('Pessoa')));
-		$logos = $this->Pessoa->Logo->find('all', $options);
+        try {
+        	$this->Pessoa->Logo->unbindModel(array('belongsTo' => array('Pessoa')));
+			$logos = $this->Pessoa->Logo->find('all', $options);
+		} catch (Exception $e) {
+			$logos = [];
+		}
 		//$logos = $this->TransformarArray->FindInContainable('Logo', $logos);
 		$this->set(compact('logos'));
 

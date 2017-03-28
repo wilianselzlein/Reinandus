@@ -98,7 +98,7 @@ class BoletosController extends AppController {
  *
  * @return void
  */
-	public function retorno($caminho, $arquivo, $validar) {
+	public function retorno($caminho, $arquivo, $validar, &$validacoes) {
 		$nome_arquivo = $arquivo;
 		$arquivo = $caminho . $arquivo;
 		$arquivo = fopen($arquivo, "r") or die('PERMISSAO_ARQ');
@@ -127,9 +127,7 @@ class BoletosController extends AppController {
 			}
 		}
 		fclose($arquivo);
-		if ($validar) {
-			debug($validacoes); die;
-		} else
+		if (! $validar)
 			$this->Session->setFlash(__('Mensalidades baixadas ou liberadas para pagamento, utilize o filtro do arquivo: ' . $nome_arquivo . ' para gerar o relatório.'), 'flash/success');
 	}
 
@@ -162,9 +160,14 @@ class BoletosController extends AppController {
 
 	        if (! file_exists($caminho . $arquivo))
 	            throw new Exception(__('PERMISSAO_ARQ'));
-			
-			$this->retorno($caminho, $arquivo, $validar);
-			$this->redirect(array('controller' => 'relatorios', 'action' => 'filter', 29));
+
+			$validacoes = '';
+			$this->retorno($caminho, $arquivo, $validar, $validacoes);
+
+			if ($validar)
+				$this->set(compact('validacoes'));
+			else
+				$this->redirect(array('controller' => 'relatorios', 'action' => 'filter', 29));
 		}
 	}
 

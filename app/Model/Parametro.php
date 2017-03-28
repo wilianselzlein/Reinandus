@@ -20,6 +20,8 @@ class Parametro extends AppModel {
  */
 	public $displayField = 'nome';
 
+const SEM_FLASH = false;
+
 /**
  * Validation rules
  *
@@ -62,7 +64,12 @@ class Parametro extends AppModel {
 			$valor = null;
 		if ($valor == null) {
 			if (!$this->exists($id)) {
-				throw new NotFoundException(__('The record could not be found.') . ' - Parametro ');
+				App::import('Controller', 'Parametros');
+				$Parametros = new ParametrosController();
+
+				$Parametros->AdicionarPararametrosSeNecessario(SEM_FLASH);
+				if (!$this->exists($id)) 
+					throw new NotFoundException(__('The record could not be found.') . ' - Parametro ');
 			}
 			$options = array('conditions' => array('Parametro.' . $this->primaryKey => $id));
 			$parametro = $this->find('first', $options);

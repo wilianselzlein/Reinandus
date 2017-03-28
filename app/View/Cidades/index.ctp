@@ -2,17 +2,17 @@
 
 	<div class="panel-heading">
 		<h3>
-			<span class="fa fa-map-marker"></span> <?php echo __('Cidades'); ?>                
+			<span class="fa fa-map-marker"></span> <?php echo __('Cidades'); ?>
 			<?php echo $this->ButtonsActions->MakeButtons($this->params['controller'], $this->params['action']); ?>
-        </h3>
-    </div>
+		</h3>
+	</div>
 
 <div class="panel-body">
 <?php echo $this->element('pesquisa/simples');?>
 			<div class="table-responsive">
-				 <table class="table table-bordered table-hover table-condensed" >
-                <thead>
-                    <tr class="active">
+				<table class="table table-bordered table-hover table-condensed" >
+				<thead>
+					<tr class="active">
 							<th><?php echo $this->Paginator->sort('id'); ?></th>
 							<th><?php echo $this->Paginator->sort('estado_id'); ?></th>
 							<th><?php echo $this->Paginator->sort('nome'); ?></th>
@@ -38,5 +38,5 @@
 			</div><!-- /.table-responsive -->
 
 </div>
-<?php echo $this->element('Paginator'); ?>	
+<?php echo $this->element('Paginator'); ?>
 </div>

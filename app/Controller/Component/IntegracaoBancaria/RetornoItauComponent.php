@@ -62,7 +62,7 @@ class RetornoItauComponent extends RetornoBaseComponent {
 
 	public function Validar(&$validacoes) {
 
-		if (count($validacoes) == 0) {
+		/*if (count($validacoes) == 0) {
 			$linha = [];
 			$linha['Legenda'] = 'Retorno';
 			$linha['02'] = 'CONFIRMADO';
@@ -70,13 +70,19 @@ class RetornoItauComponent extends RetornoBaseComponent {
 			$linha['09'] = 'BAIXA_SIMPLES';
 			$linha['Cod. Rejeite'] = 'Nota (20) do Manual';
 			$validacoes[] = $linha;
-		}
-		
+		}*/
+
 		$linha = [];
-		//$linha['linha'] = $this->Linha;
+		$linha['linha'] = $this->Linha;
 		$linha['id'] = trim(substr($this->Linha, 37, 24));
 		$linha['retorno'] = $this->PegarCodigoConfirmacao();
 		$linha['rejeite'] = trim(substr($this->Linha, 377, 2));
+		switch ($linha['retorno']) {
+			case CONFIRMADO: $linha['retorno'] .= ' Confirmado'; break;
+			case REJEITADO: $linha['retorno'] .= ' Rejeitado ' . $linha['rejeite']; break;
+			case BAIXA_SIMPLES: $linha['retorno'] .= ' Baixa Simples'; break;
+			default: $linha['retorno'] .= ' NÃO TRATADO'; 
+		}
 		$linha['pagamento'] = $this->Pagamento();
 		$linha['acrescimo'] = $this->FormatarValor(substr($this->Linha, 189, 13)) + $this->FormatarValor(substr($this->Linha, 202, 13)) + $this->FormatarValor(substr($this->Linha, 267, 13));
 		$linha['desconto'] = $this->FormatarValor(substr($this->Linha, 242, 13)) / 100;
@@ -118,7 +124,6 @@ class RetornoItauComponent extends RetornoBaseComponent {
 			case 'Q0': $retorno = 'AGENDAMENTO – PAGAMENTO AGENDADO VIA BANKLINE OU OUTRO CANAL ELETRÔNICO E LIQUIDADO NA DATA INDICADA DISPONÍVEL'; break;
 			case 'RA': $retorno = 'DIGITAÇÃO – REALIMENTAÇÃO AUTOMÁTICA DISPONÍVEL'; break;
 			case 'ST': $retorno = 'PAGAMENTO VIA SELTEC** DISPONÍVEL'; break;
-
 		}
 		return $retorno;
 	}

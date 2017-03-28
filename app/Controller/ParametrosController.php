@@ -138,7 +138,7 @@ class ParametrosController extends AppController {
  *
  * @return void
  */
- private function AdicionarPararametrosSeNecessario() {
+ public function AdicionarPararametrosSeNecessario($flash = true) {
  	$this->AdicionarParametroSeNaoExistir(1, 'Bloquear Alunos Com Codigo Menores', '0');
  	$this->AdicionarParametroSeNaoExistir(2, 'Bloq Alteracoes Antes Da Data', '01/01/2016');
  	$this->AdicionarParametroSeNaoExistir(3, 'Dia Limite Desconto', '12');

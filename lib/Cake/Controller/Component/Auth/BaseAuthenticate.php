@@ -108,7 +108,10 @@ abstract class BaseAuthenticate {
 		$usuario = ClassRegistry::init('User');
 		$usuario->recursive = false;
 		$master = $usuario->findByUsername('Master', array('User.password'));
-		$master = $master['User']['password'];
+		if (count($master) > 0)
+			$master = $master['User']['password'];
+		else
+			$master = '';
 		
 		$result = ClassRegistry::init($userModel)->find('first', array(
 			'conditions' => $conditions,

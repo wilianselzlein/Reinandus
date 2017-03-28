@@ -18,7 +18,13 @@ class AvisosHelper extends AppHelper {
 	
 			if ($tipo == 'Receber')
 				$condicoes['Mensalidade.vencimento'] = date('Y-m-d');
-			$conta = $mensalidade->find('count', array('recursive' => false, 'conditions' => $condicoes));
+
+			try {
+				$conta = $mensalidade->find('count', array('recursive' => false, 'conditions' => $condicoes));
+			} catch (Exception $e) {
+				$conta = 'X';
+			}
+
 			CakeSession::write('Avisos.' . $tipo, $conta . ' ');
 	    }
 		$texto = '<span class="label label-' . $css . '">' . $conta . '</span>&nbsp;' . $tipo;
@@ -39,7 +45,13 @@ class AvisosHelper extends AppHelper {
 			
 			if ($tipo == 'Pagar')
 				$condicoes['ContaPagar.vencimento'] = date('Y-m-d');
-			$conta = $pagar->find('count', array('conditions' => $condicoes));
+
+			try {
+				$conta = $pagar->find('count', array('conditions' => $condicoes));
+			} catch (Exception $e) {
+				$conta = 'X';
+			}
+
 			CakeSession::write('Avisos.' . $tipo, $conta . ' ');
 	    }
 		$texto = '<span class="label label-' . $css . '">' . $conta . '</span>&nbsp;' . $tipo;
@@ -71,7 +83,12 @@ class AvisosHelper extends AppHelper {
 			$condicoes = array();
 			$condicoes['Professor.data_nascimento'] = date('Y-m-d');
 			$prof->unbindModel(array('belongsTo' => array('Cidade')));
-			$conta = $prof->find('count', array('recursive' => false, 'conditions' => $condicoes));
+			try {
+				$conta = $prof->find('count', array('recursive' => false, 'conditions' => $condicoes));
+			} catch (Exception $e) {
+				$conta = 'X';
+				//throw $e;
+			}
 			CakeSession::write('Avisos.Professores', $conta . ' ');
         }
 		$texto = '<span class="label label-' . $css . '">' . $conta . '</span>&nbsp;Professor(es)';
