@@ -56,6 +56,11 @@ class PlanoContasController extends AppController {
 		$creditos = $this->TransformarArray->FindInContainable('LancamentoContabil', $creditos);
 		$this->set(compact('creditos'));
 
+		$options = array('conditions' => array('Orcamento.plano_conta_id' => $id),
+		  'fields' => array('Orcamento.id', 'Orcamento.data', 'Orcamento.valor', 'Orcamento.complemento', 'Orcamento.plano_conta_id', 'Orcamento.historico_padrao_id', 'PlanoConta.id', 'PlanoConta.descricao', 'PlanoConta.reduzido', 'PlanoConta.analitico', 'HistoricoPadrao.id', 'HistoricoPadrao.nome'));
+		$orcamentos = $this->PlanoConta->Orcamento->find('all', $options);
+		$orcamentos = $this->TransformarArray->FindInContainable('Orcamento', $orcamentos);
+		$this->set(compact('orcamentos'));
 	}
 
 /**

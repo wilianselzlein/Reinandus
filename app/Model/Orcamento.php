@@ -1,13 +1,12 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * LancamentoContabil Model
+ * Orcamento Model
  *
- * @property Debito $PlanoConta
- * @property Credito $PlanoConta
- * @property HistPadrao $HistoricoPadrao
+ * @property PlanoConta $PlanoConta
+ * @property HistoricoPadrao $HistoricoPadrao
  */
-class LancamentoContabil extends AppModel {
+class Orcamento extends AppModel {
 
 	var $actsAs = array('NumberFormat', 'DateFormat');
 /**
@@ -15,14 +14,14 @@ class LancamentoContabil extends AppModel {
  *
  * @var mixed False or table name
  */
-	public $useTable = 'lancamento_contabil';
+	public $useTable = 'orcamento';
 
 /**
  * Display field
  *
  * @var string
  */
-	public $displayField = 'numero';
+	public $displayField = 'complemento';
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -43,17 +42,7 @@ class LancamentoContabil extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'credito_id' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'debito_id' => array(
+		'plano_conta_id' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
@@ -64,16 +53,6 @@ class LancamentoContabil extends AppModel {
 			),
 		),
 		'historico_padrao_id' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'documento' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
@@ -100,16 +79,9 @@ class LancamentoContabil extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Debito' => array(
+		'PlanoConta' => array(
 			'className' => 'PlanoConta',
-			'foreignKey' => 'debito_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Credito' => array(
-			'className' => 'PlanoConta',
-			'foreignKey' => 'credito_id',
+			'foreignKey' => 'plano_conta_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

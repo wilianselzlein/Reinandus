@@ -48,8 +48,13 @@ class HistoricoPadraoController extends AppController {
 		$options = array('recursive' => 1, 'conditions' => array('LancamentoContabil.historico_padrao_id' => $id), 'limit' => Self::$LIMITE_VIEW);
 		$lancamentos = $LancamentoContabil->find('all', $options);
 		$lancamentos = $this->TransformarArray->FindInContainable('LancamentoContabil', $lancamentos);
-
 		$this->set(compact('lancamentos'));
+
+		$options = array('conditions' => array('Orcamento.historico_padrao_id' => $id),
+		  'fields' => array('Orcamento.id', 'Orcamento.data', 'Orcamento.valor', 'Orcamento.complemento', 'Orcamento.plano_conta_id', 'Orcamento.historico_padrao_id', 'PlanoConta.id', 'PlanoConta.descricao', 'PlanoConta.reduzido', 'PlanoConta.analitico', 'HistoricoPadrao.id', 'HistoricoPadrao.nome'));
+		$orcamentos = $this->HistoricoPadrao->Orcamento->find('all', $options);
+		$orcamentos = $this->TransformarArray->FindInContainable('Orcamento', $orcamentos);
+		$this->set(compact('orcamentos'));
 	}
 
 /**

@@ -41,8 +41,22 @@ class ContasPagarController extends AppController {
 			$filtros['AND'] = array('ContaPagar.vencimento' => array('value' => date('Y-m-d')));
 
 		$filtro = array();
-		$filtro['filter1'] = $filtros;	
+		$filtro['filter1'] = $filtros;
 		$this->Filter->addFilters($filtro);
+
+		$this->Filter->addFilters(
+			array('filter2' => array(
+					'ContaPagar.pagamento' => array(
+						'operator' => 'between',
+						'between' => array( 'text' => __(' e ', true), 'date' => true))
+					),
+				'filter3' => array(
+					'ContaPagar.vencimento' => array(
+						'operator' => 'between',
+						'between' => array('text' => __(' e ', true), 'date' => true))
+					)
+				)
+			);
 
 		$this->Filter->setPaginate('order', array('ContaPagar.vencimento' => 'desc')); 
 		if (! isset($filtros['AND'])) 

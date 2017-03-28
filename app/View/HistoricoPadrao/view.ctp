@@ -26,4 +26,5 @@
 		</div><!-- /.view -->
 			
 <?php echo $this->element('Relateds/LancamentosContabeis', array('array' => $lancamentos)); ?>
+<?php echo $this->element('Relateds/Orcamentos', array('array' => $orcamentos)); ?>
 </div><!-- /#page-container .row-fluid -->

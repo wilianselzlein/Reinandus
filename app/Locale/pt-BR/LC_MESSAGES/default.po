@@ -568,6 +568,12 @@ msgstr "Plano de Contas"
 msgid "PlanoConta"
 msgstr "Plano de Conta"
 
+msgid "Planocontas"
+msgstr "Plano de Contas"
+
+msgid "Planoconta"
+msgstr "Plano de Conta"
+
 msgid "Analitico"
 msgstr "Analítico"
 
@@ -708,3 +714,9 @@ msgstr "Sequencial da Remessa"
 
 msgid  "JA_ALTERADO"
 msgstr "Registro alterado por outro usuario, atualize e tente novamente."
+
+msgid  "Orcamento"
+msgstr "Orçamento"
+
+msgid  "Orcamentos"
+msgstr "Orçamentos"

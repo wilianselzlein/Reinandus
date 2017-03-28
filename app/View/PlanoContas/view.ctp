@@ -37,4 +37,5 @@
 	
 	<?php echo $this->element('LancamentosContabeisViewPlanoContas', array('array' => $debitos, "nome" => "")); ?>
 	<?php echo $this->element('LancamentosContabeisViewPlanoContas', array('array' => $creditos, "nome" => "")); ?>
+	<?php echo $this->element('Relateds/Orcamentos', array('array' => $orcamentos)); ?>
 </div>

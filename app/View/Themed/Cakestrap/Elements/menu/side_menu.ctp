@@ -52,7 +52,7 @@
          <li><?php echo $this->Html->link(__('Histórico Padrão'),              array('controller'=>'HistoricoPadrao','action'=>'index'));?></li>
          <li><?php echo $this->Html->link(__('Plano de Contas'),              array('controller'=>'PlanoContas','action'=>'index'));?></li>
          <li><?php echo $this->Html->link(__('Lançamentos'),                  array('controller'=>'LancamentoContabil','action'=>'index'));?></li>
-
+         <li><?php echo $this->Html->link(__('Orcamento'),                    array('controller'=>'Orcamentos','action'=>'index'));?></li>
       </ul>
    </li>
    <li>

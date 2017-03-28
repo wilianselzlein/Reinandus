@@ -5,7 +5,61 @@
 		</h3>
 	</div>
 	<div class="panel-body">
-		<?php echo $this->element('pesquisa/simples');?>
+		<?php //echo $this->element('pesquisa/simples');?>
+
+
+<div class="form-group">
+<?php echo $this->Search->create();?> 
+
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapsePagamento" aria-expanded="false" aria-controls="collapsePagamento">
+	Filtrar Pagamento
+</button>
+
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseVencimento" aria-expanded="false" aria-controls="collapseVencimento">
+	Filtrar Vencimento
+</button>
+<br>
+<br>
+<div class="collapse" id="collapsePagamento">
+	<div class="well">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Pagamento:
+			</div>
+			<div class="panel-body">
+				<?php echo $this->Search->input('filter3', 
+				array('class'=>'form-control', 'id' => 'data1', 'label' => array('text' => 'Início:')), 
+				array('class'=>'form-control', 'id' => 'data2', 'label' => array('text' => 'Fim:'))); ?>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="collapse" id="collapseVencimento">
+	<div class="well">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Vencimento:
+			</div>
+			<div class="panel-body">
+				<?php echo $this->Search->input('filter2', 
+				array('class'=>'form-control', 'id' => 'data3', 'label' => array('text' => 'Início:')), 
+				array('class'=>'form-control', 'id' => 'data4', 'label' => array('text' => 'Fim:'))); ?>
+			</div>
+		</div>
+	</div>
+</div>
+
+<?php 
+echo $this->Search->input('filter1', array('class'=>'form-control', 'style'=>'width:90%;display: inline !important;'));
+echo $this->Search->submit(__('Buscar'), array('class'=>'btn btn-large btn-primary', 'type'=>'submit', 
+                                               'style'=>'margin: 0 0 0 1%; display:inline; '));
+echo $this->Search->end();
+echo "<br>";
+   ?>
+
+</div>
+
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover table-condensed" >
 				<thead>
