@@ -1,7 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
-//App::import('Vendor', 'Classes/PHPExcel');
-App::import('Vendor', 'PHPExcel');
+
 /**
  * Enumerados Controller
  *
@@ -339,12 +338,6 @@ class EnumeradosController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
  	}
-
-  public function excel (){
- 	$this->layout='excel';
-	$this->Enumerado->recursive = 0;
-    $this->set('posts', $this->Enumerado->find('all'));
-}
 
 }
 

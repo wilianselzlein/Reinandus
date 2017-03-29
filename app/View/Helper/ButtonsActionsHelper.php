@@ -51,7 +51,9 @@ class ButtonsActionsHelper extends AppHelper {
 			if ((! strcasecmp($action, 'index')) || (! strcasecmp($action, 'view')))
 				$return .= 
 					'<li>' . $this->Html->link('<i class="fa fa-plus-circle"></i>'.' '.__('New').' '.__($model), 
-					array('action' => 'add'), array('class' => '', 'escape'=>false)) . '</li>';
+					array('action' => 'add'), array('class' => '', 'escape'=>false)) . '</li>' . 
+					'<li>' . $this->Html->link('<i class="fa fa-file-excel-o"></i>'.' '.__('Exportar Planilha'), 
+					array('action' => 'excel'), array('class' => '', 'escape'=>false)) . '</li>';
 			if ((! strcasecmp($action, 'edit')) || (! strcasecmp($action, 'view')))
 				$return .= 
 					'<li>' . $this->Form->postLink('<i class="fa fa-times"></i>'.' '.__('Delete').' '.__($model), array('action' => 'delete', $id), array('escape'=>false), __('Are you sure you want to delete # %s?', $id)) . '</li>';

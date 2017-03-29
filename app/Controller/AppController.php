@@ -21,7 +21,8 @@
 
 App::uses('Controller', 'Controller');
 App::uses('PermissoesController', 'Controller');
-
+//App::import('Vendor', 'Classes/PHPExcel');
+App::import('Vendor', 'PHPExcel');
 /**
     * Application Controller
     *
@@ -328,6 +329,13 @@ class AppController extends Controller {
           CakeSession::write($variavel, $nomesistema);
       }
       return $nomesistema;
+  }
+
+  public function excel (){
+    $this->layout='excel';
+    $this->{$this->modelClass}->recursive = -1;
+    $posts = $this->{$this->modelClass}->find('all');
+    $this->set('posts', $posts);
   }
 
 }
