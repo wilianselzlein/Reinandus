@@ -7,6 +7,12 @@
 	<div class="panel-body">
 		<?php //echo $this->element('pesquisa/simples');?>
 
+<style type="text/css"> 
+.submit{
+    margin: 0 0 0 1%;
+    display: inline;
+}
+</style>
 
 <div class="form-group">
 <?php echo $this->Search->create();?> 
@@ -27,9 +33,9 @@
 				Pagamento:
 			</div>
 			<div class="panel-body">
-				<?php echo $this->Search->input('filter3', 
-				array('class'=>'form-control', 'id' => 'data1', 'label' => array('text' => 'Início:')), 
-				array('class'=>'form-control', 'id' => 'data2', 'label' => array('text' => 'Fim:'))); ?>
+				<?php echo $this->Search->input('filterPgto', 
+				array('class'=>'form-control datepicker-start', 'id' => 'data1', 'label' => array('text' => 'Início:')), 
+				array('class'=>'form-control datepicker-start', 'id' => 'data2', 'label' => array('text' => 'Fim:'))); ?>
 			</div>
 		</div>
 	</div>
@@ -42,18 +48,17 @@
 				Vencimento:
 			</div>
 			<div class="panel-body">
-				<?php echo $this->Search->input('filter2', 
-				array('class'=>'form-control', 'id' => 'data3', 'label' => array('text' => 'Início:')), 
-				array('class'=>'form-control', 'id' => 'data4', 'label' => array('text' => 'Fim:'))); ?>
+				<?php echo $this->Search->input('filterVcto', 
+				array('class'=>'form-control datepicker-start', 'id' => 'data3', 'label' => array('text' => 'Início:')), 
+				array('class'=>'form-control datepicker-start', 'id' => 'data4', 'label' => array('text' => 'Fim:'))); ?>
 			</div>
 		</div>
 	</div>
 </div>
 
 <?php 
-echo $this->Search->input('filter1', array('class'=>'form-control', 'style'=>'width:90%;display: inline !important;'));
-echo $this->Search->submit(__('Buscar'), array('class'=>'btn btn-large btn-primary', 'type'=>'submit', 
-                                               'style'=>'margin: 0 0 0 1%; display:inline; '));
+echo $this->Search->input('filter1', array('class'=>'form-control', 'autofocus' => 'autofocus', 'style'=>'width:90%;display: inline !important;'));
+echo $this->Search->submit(__('Buscar'), array('class'=>'btn btn-large btn-primary', 'type'=>'submit'));
 echo $this->Search->end();
 echo "<br>";
    ?>

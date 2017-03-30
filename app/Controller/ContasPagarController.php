@@ -45,12 +45,12 @@ class ContasPagarController extends AppController {
 		$this->Filter->addFilters($filtro);
 
 		$this->Filter->addFilters(
-			array('filter2' => array(
+			array('filterPgto' => array(
 					'ContaPagar.pagamento' => array(
 						'operator' => 'between',
 						'between' => array( 'text' => __(' e ', true), 'date' => true))
 					),
-				'filter3' => array(
+				'filterVcto' => array(
 					'ContaPagar.vencimento' => array(
 						'operator' => 'between',
 						'between' => array('text' => __(' e ', true), 'date' => true))
