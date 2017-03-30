@@ -15,7 +15,7 @@
          <fieldset>
             <div class="form-group">
                <?php echo $this->Form->input('pessoa',
-                                             array('class' => 'form-control', 'options' => array('F' => 'Fisica', 'J' => 'Juridica'), 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
+                                             array('class' => 'form-control', 'autofocus' => 'autofocus', 'options' => array('F' => 'Fisica', 'J' => 'Juridica'), 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group pessoa-juridica hidden">

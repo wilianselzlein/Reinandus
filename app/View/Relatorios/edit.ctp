@@ -22,7 +22,7 @@
 						<?php echo $this->Form->input('id', array('class' => 'form-control')); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
-						<?php echo $this->Form->input('nome', array('class' => 'form-control')); ?>
+						<?php echo $this->Form->input('nome', array('class' => 'form-control', 'autofocus' => 'autofocus')); ?>
 					</div><!-- .form-group -->
                                         <div class="form-group">
 						<?php echo $this->Form->input('tipo', array('class' => 'form-control')); ?>

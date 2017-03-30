@@ -10,7 +10,7 @@ if (! $baixa) {
                array('type' => 'checkbox', 'class' => 'form-control checkbox2',
                'before'=>'<div class="col-sm-10">',
                'after'=>'</div>', 'div'=>false, 'checked'=>true));*/
-          echo $this->Form->input('simplificado', array('type' => 'checkbox', 'checked'=>true)); ?>
+          echo $this->Form->input('simplificado', array('autofocus' => 'autofocus', 'type' => 'checkbox', 'checked'=>true)); ?>
      </div><!-- .form-group -->
 <?php } ?>
      <div class="form-group">

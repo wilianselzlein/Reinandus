@@ -21,7 +21,7 @@
 						<?php echo $this->Form->input('relatorio_id', array('class' => 'form-control', 'options' => $relatorios)); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
-						<?php echo $this->Form->input('nome', array('class' => 'form-control')); ?>
+						<?php echo $this->Form->input('nome', array('class' => 'form-control', 'autofocus' => 'autofocus')); ?>
 					</div><!-- .form-group -->
 					<div class="form-group">
 						<?php echo $this->Form->input('sql', array('class' => 'form-control')); ?>

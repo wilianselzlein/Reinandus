@@ -28,7 +28,7 @@
           <?php } ?>
           <div class="form-group">
           <?php echo $this->Form->input('valor',
-               array('class' => 'form-control currency calc', 'type'=>'text', 'label'=>array('class'=>'col-sm-2 control-label'),'div'=>false, 'wrap'=>false, 'between'=>'<div class="col-sm-4"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div></div>', 'value' => $this->Number->currency($curso['valor'],''))); ?>
+               array('class' => 'form-control currency calc', 'autofocus' => 'autofocus', 'type'=>'text', 'label'=>array('class'=>'col-sm-2 control-label'),'div'=>false, 'wrap'=>false, 'between'=>'<div class="col-sm-4"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div></div>', 'value' => $this->Number->currency($curso['valor'],''))); ?>
           <?php echo $this->Form->input('desconto',
                array('class' => 'form-control currency calc', 'type'=>'text', 'label'=>array('class'=>'col-sm-1 control-label', 'style' => 'padding-left: 0px;'), 'div'=>false,'wrap'=>false, 'between'=>'<div class="col-sm-4"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div></div>', 'value' => $this->Number->currency($curso['desconto'], ''))); ?>
           </div><!-- .form-group -->
