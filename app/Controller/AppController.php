@@ -35,6 +35,7 @@ App::import('Vendor', 'PHPExcel');
 class AppController extends Controller {
    public $theme = "Cakestrap";
    protected static $LIMITE_VIEW = 2050;
+   protected static $fields_excel = [];
 
    public $helpers = array('Form' => array('className' => 'Bs3Helpers.Bs3Form'),
                            'Wysiwyg.Wysiwyg' => array('_editor' => 'Ck'),
@@ -320,6 +321,12 @@ class AppController extends Controller {
         return $this->response;
   }
 
+/**
+ * NomeDoSistemaVindoDoParametro method
+ *
+ * @param void
+ * @return string
+ */
   private function NomeDoSistemaVindoDoParametro() {
       $variavel = 'NomeSistema';
       $nomesistema = CakeSession::read($variavel);
@@ -331,11 +338,26 @@ class AppController extends Controller {
       return $nomesistema;
   }
 
+/**
+ * excel method
+ *
+ * @throws FatalErrorException
+ * @param void
+ * @return file
+ */
   public function excel (){
+    ini_set("memory_limit", "1G");
+    set_time_limit(0);
+
     $this->layout='excel';
     $this->{$this->modelClass}->recursive = -1;
-    $posts = $this->{$this->modelClass}->find('all');
-    $this->set('posts', $posts);
+
+    if (count(Self::$fields_excel) > 0 )
+      $posts = $this->{$this->modelClass}->find('all', array('fields' => Self::$fields_excel));
+    else
+      $posts = $this->{$this->modelClass}->find('all');
+
+    $this->set(compact('posts'));
   }
 
 }

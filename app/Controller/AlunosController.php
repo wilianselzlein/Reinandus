@@ -415,7 +415,7 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
  * @param int $id
  * @return void
  */
-   public function Trocar() {
+	public function Trocar() {
 		
 		if ($this->request->is('post') || $this->request->is('put')) {
 			
@@ -442,5 +442,18 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 			$this->Session->setFlash(__("Código do aluno alterado de $de para $para."), 'flash/success');
 			$this->redirect(array('action' => 'view', $para));
 		}	
-   }
+	}
+
+/**
+ * excel method
+ *
+ * @throws FatalErrorException
+ * @param void
+ * @return file
+ */
+	public function excel (){
+		//Self::$fields_excel = array('Aluno.id', 'Aluno.nome', ...);
+		parent::excel();
+	}
+
 }
