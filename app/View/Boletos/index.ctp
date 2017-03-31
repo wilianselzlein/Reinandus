@@ -52,7 +52,22 @@
 										$modelos = array(0 => 'Não enviadas', 1 => 'Enviadas', 2 => 'Todas');
 										echo $this->Form->input('envio', array('class' => 'form-control', 'label'=>array('class'=>'col-sm-3 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-8">', 'after'=>'</div>', 'options' => $modelos)); ?>
 									</div>
-									<?php echo $this->Form->button('<i class="fa fa-envelope"></i>'.' '.__('Gerar'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit','escape' => false)); ?>
+
+									<?php echo $this->ajax->submit('Consultar Mensalidades', array(
+										'id' => 'ConsultarRemessa',
+										'class' => 'btn btn-large btn-primary',
+										'url'=> array('controller'=>'Boletos', 'action'=>'consultar'), 
+										'update' => 'ConsultaRemessa',
+										//'condition' => '$("#BoletoVencimentoInicial").val().length > 0',
+										'indicator' => 'CarregandoRemessa',
+										'before' => '$("#GerarRemessa").show(); ' //$("#ConsultarRemessa").hide();
+										)); ?>
+
+									<?php echo $this->Html->image('carregando.gif', array('id' => 'CarregandoRemessa',  'style' => 'display: none')); ?>
+									<br>
+									<div id="ConsultaRemessa"></div>
+									
+									<?php echo $this->Form->button('<i class="fa fa-envelope"></i>'.' '.__('Gerar'), array('id' => 'GerarRemessa', 'class' => 'btn btn-large btn-primary', 'type'=>'submit','escape' => false)); ?>
 								</fieldset>
 								<?php echo $this->Form->end(); ?>
 							</div>
@@ -99,5 +114,6 @@
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 	    $('#tabs').tab();
+	    $("#GerarRemessa").hide();
 	});
 </script>

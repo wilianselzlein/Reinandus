@@ -16,7 +16,7 @@ class BoletosController extends AppController {
  *
  * @var array
  */
-	public $components = array('Session', 'GeraArquivoIntegracaoBancaria', 'RetornoArquivoIntegracaoBancaria');
+	public $components = array('Paginator', 'Session', 'GeraArquivoIntegracaoBancaria', 'RetornoArquivoIntegracaoBancaria');
 
 /**
  * index method
@@ -287,6 +287,17 @@ class BoletosController extends AppController {
 					'Aluno.id', 'Aluno.nome', 'Aluno.cpf', 'Aluno.endereco', 'Aluno.bairro', 'Aluno.cep', 'Aluno.complemento', 'Aluno.numero', 'Cidade.nome', 'Estado.sigla',
 					'Responsavel.Id', 'Responsavel.razaosocial', 'Responsavel.cnpjcpf', 'Responsavel.endereco', 'Responsavel.bairro', 'Responsavel.cep', 'Responsavel.numero',
 					'Conta.id', 'Conta.cedente', 'Conta.cedente_dig', 'Conta.agencia', 'Conta.conta', 'Conta.nome_no_banco', 'Conta.num_banco', 'Conta.agencia_dig', 'Conta.conta_dig', 'Conta.carteira', 'Conta.Mensagem', 'Conta.dia_emissao', 'Conta.seq_remessa', 'Conta.dia_desconto');
+	}
+
+/**
+ * consultar method
+ *
+ * @return void
+ */
+	public function consultar() {
+		$data = $this->request->data;
+		$mensalidades = $this->ConsultarMensalidades($data);
+		$this->set(compact('mensalidades'));
 	}
 
 }

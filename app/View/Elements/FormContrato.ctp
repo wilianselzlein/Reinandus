@@ -59,4 +59,9 @@
      </fieldset>
 <?php echo $this->Form->end(); ?>
 
-<?php echo $this->Html->script('Contrato-Calc');?>
+<?php 
+     if ($contrato)
+          echo $this->Html->script('Contrato-Calc');
+     else
+         echo $this->Html->script('Mensalidade-Calc');
+?>
