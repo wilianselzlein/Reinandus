@@ -63,7 +63,8 @@ class IntegracaoItauComponent extends IntegracaoBaseComponent {
 			$s .= $this->FormatarTexto('39', 2); //Instrucao de Cobranca 2
 
 			$s .= $this->FormatarNumero('0', 13); //Mora por Dia de Atraso
-			$s .= $this->FormatarNumero($this->Data[$i]['Conta']['dia_desconto'], 2) . date('m') . date('y'); //data limite desconto
+			$s .= $this->FormatarTexto(date('dmy', strtotime(str_replace("/", "-", $this->Data[$i]['Mensalidade']['vencimento']))), 6);
+			//$s .= $this->FormatarNumero($this->Data[$i]['Conta']['dia_desconto'], 2) . date('m') . date('y'); //data limite desconto
 			$s .= $this->FormatarNumero($this->Data[$i]['Mensalidade']['desconto'], 13); //Valor descont
 			$s .= $this->FormatarNumero('0', 13); //IOF
 			$s .= $this->FormatarNumero('0', 13); //Abatimento

@@ -7,14 +7,14 @@
       border:0px solid red;
       -moz-transition:-moz-transform 0.2s ease-in; 
       -webkit-transition:-webkit-transform 0.2s ease-in; 
-      -o-transition:-o-transform 0.2s ease-in;           
-   }                
+      -o-transition:-o-transform 0.2s ease-in;
+   }
    .dashboard-icon img, .dashboard-icon span
    {
       width:100%;
       text-align: center;
       display: block;
-   }        
+   }
    .dashboard-icon:hover
    {
       -moz-transform:scale(2); 
@@ -70,12 +70,12 @@
          <script>
             function checkForm(){
                //var options = jQuery.parseJSON($('#dynamic-list option').e());
-               var _filtrosObrigatorios = [];                
+               var _filtrosObrigatorios = [];
 
                $('#dynamic-list option').each(function(){
                   var testeCampo = jQuery.parseJSON($(this).val());
                   if(testeCampo.Obrigatorio == "true"){
-                     _filtrosObrigatorios.push(testeCampo.Tipo+','+testeCampo.Field);              
+                     _filtrosObrigatorios.push(testeCampo.Tipo+','+testeCampo.Field);
                   }
                });
 
@@ -85,12 +85,18 @@
                   _filtrosSelecionados.push($(this).attr('name'));
                });
 
+               if (_filtrosSelecionados.length == 0) {
+                  var r = confirm("Voce não selecionou nenhum filtro, deseja continuar?");
+                  if (r == false) {
+                      return false;
+                  }
+               }
                var camposObrigatoriosPreenchidos = true;
 
                for(var i = 0, len = _filtrosObrigatorios.length; i < len; ++i) {
                   if(jQuery.inArray( _filtrosObrigatorios[i] , _filtrosSelecionados ) > -1){
                      //camposObrigatoriosPreenchidos = true;
-                     //alert(_filtrosObrigatorios[i]);                  
+                     //alert(_filtrosObrigatorios[i]);
                   } else {
                      camposObrigatoriosPreenchidos = false;
                   }
@@ -98,10 +104,8 @@
                   if (!camposObrigatoriosPreenchidos){
                      alert('Campos obrigatórios não preenchidos!');
                      return false;
-                  } else {
-                     //alert('Filtros Ok!');
                   }
-               }               
+               }
             }
 
             //$('#my-form').valid();
