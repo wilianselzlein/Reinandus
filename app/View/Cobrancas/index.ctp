@@ -33,9 +33,10 @@
 								'indicator' => 'CarregandoAlunos',
 								)); ?>
 
+							<div id="ConsultaAlunos"></div>
+
 							<?php echo $this->Html->image('carregando.gif', array('id' => 'CarregandoAlunos',  'style' => 'display: none')); ?>
 							<br>
-							<div id="ConsultaAlunos"></div>
 						</fieldset>
 						<?php echo $this->Form->end(); ?>
 					</div>
