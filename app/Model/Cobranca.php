@@ -1,10 +1,10 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Boleto Model
+ * Cobranca Model
  *
  */
-class Boleto extends AppModel {
+class Cobranca extends AppModel {
 
 /**
  * Use table
@@ -24,7 +24,7 @@ class Boleto extends AppModel {
  * Validation rules
  *
  * @var array
- */
+ * /
 	public $validate = array(
 		'vencimento_inicial' => array(
 			'numeric' => array(
@@ -59,13 +59,6 @@ class Boleto extends AppModel {
 	public $belongsTo = array(
 		'Mensalidade' => array(
 			'className' => 'Mensalidade',
-			'foreignKey' => '',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Conta' => array(
-			'className' => 'Contum',
 			'foreignKey' => '',
 			'conditions' => '',
 			'fields' => '',

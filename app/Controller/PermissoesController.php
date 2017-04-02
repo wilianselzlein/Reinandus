@@ -235,6 +235,7 @@ class PermissoesController extends AppController {
 		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Financeiro', 'Contas a Pagar', 19);
 		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Financeiro', 'Gerar Mensalidades', 34, 'Mensalidades', 'Gerar');
 		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Financeiro', 'Remessa/Retorno', 35, 'Boletos');
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Financeiro', 'Cobrança', 37);
 
 		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Controladoria', 'Histórico Padrão', 7);
 		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Controladoria', 'Plano de Contas', 12);

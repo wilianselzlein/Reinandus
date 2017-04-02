@@ -44,6 +44,7 @@
          <li><?php echo $this->Html->link(__('Contas a Pagar'),               array('controller'=>'ContasPagar','action'=>'index'));?></li>
          <li><?php echo $this->Html->link(__('Gerar Mensalidades'),           array('controller'=>'Mensalidades','action'=>'gerar'));?></li>
          <li><?php echo $this->Html->link(__('Remessa/Retorno'),              array('controller'=>'Boletos','action'=>'index'));?></li>
+         <li><?php echo $this->Html->link(__('Cobranca'),                     array('controller'=>'Cobrancas','action'=>'index'));?></li>
       </ul>
    </li>
    <li>

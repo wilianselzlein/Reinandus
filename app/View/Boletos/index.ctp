@@ -53,7 +53,7 @@
 										echo $this->Form->input('envio', array('class' => 'form-control', 'label'=>array('class'=>'col-sm-3 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-8">', 'after'=>'</div>', 'options' => $modelos)); ?>
 									</div>
 
-									<?php echo $this->ajax->submit('Consultar Mensalidades', array(
+									<?php echo $this->Ajax->submit('Consultar Mensalidades', array(
 										'id' => 'ConsultarRemessa',
 										'class' => 'btn btn-large btn-primary',
 										'url'=> array('controller'=>'Boletos', 'action'=>'consultar'), 
