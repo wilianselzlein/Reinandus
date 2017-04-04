@@ -6,6 +6,7 @@ App::import('Controller/Component/IntegracaoBancaria', 'RetornoBaseComponent');
 const CONFIRMADO = '02';
 const REJEITADO = '03';
 const BAIXA_SIMPLES = '09';
+const LIQUIDACAO_NORMAL = '06';
 
 class RetornoItauComponent extends RetornoBaseComponent {
 
@@ -17,6 +18,9 @@ class RetornoItauComponent extends RetornoBaseComponent {
 			return;
 
 		$mensalidade = $this->ConsultarMensalidade($mensalidade_id);
+		if (count($mensalidade) == 0) 
+			return;
+
 		$mensalidade['Mensalidade']['id'] = $mensalidade_id;
 		
 		if (($this->PegarCodigoConfirmacao() == CONFIRMADO) || 
@@ -26,7 +30,7 @@ class RetornoItauComponent extends RetornoBaseComponent {
 			$mensalidade['Mensalidade']['remessa'] = ($this->PegarCodigoConfirmacao() == CONFIRMADO);
 			$mensalidade['Mensalidade']['documento'] = $this->Arquivo;
 			if (! $this->Mensalidade->BaixarPeloRetorno($mensalidade_id, $mensalidade)) {
-				throw new NotFoundException(__('The record could not be found.'));
+				throw new NotFoundException('"' . $mensalidade_id . '" ' . __('The record could not be found.'));
 			}
 		} else {
 			$mensalidade['Mensalidade']['pagamento'] = $this->Pagamento();
@@ -44,7 +48,7 @@ class RetornoItauComponent extends RetornoBaseComponent {
 				$this->Mensalidade->RealizarLancamentosContabeis($mensalidade);
 				$this->IdsPagos[] = (int) $mensalidade_id;
 			} else {
-				throw new NotFoundException(__('The record could not be found.'));
+				throw new NotFoundException('"' . $mensalidade_id . '"' . __(' The record could not be found.'));
 			}
 		}
 	}
@@ -67,6 +71,7 @@ class RetornoItauComponent extends RetornoBaseComponent {
 			$linha['Legenda'] = 'Retorno';
 			$linha['02'] = 'CONFIRMADO';
 			$linha['03'] = 'REJEITADO';
+			$linha['06'] = 'LIQUIDACAO_NORMAL';
 			$linha['09'] = 'BAIXA_SIMPLES';
 			$linha['Cod. Rejeite'] = 'Nota (20) do Manual';
 			$validacoes[] = $linha;
@@ -81,6 +86,7 @@ class RetornoItauComponent extends RetornoBaseComponent {
 			case CONFIRMADO: $linha['retorno'] .= ' Confirmado'; break;
 			case REJEITADO: $linha['retorno'] .= ' Rejeitado ' . $linha['rejeite']; break;
 			case BAIXA_SIMPLES: $linha['retorno'] .= ' Baixa Simples'; break;
+			case LIQUIDACAO_NORMAL: $linha['retorno'] .= ' Liquidação Normal'; break;
 			default: $linha['retorno'] .= ' NÃO TRATADO'; 
 		}
 		$linha['pagamento'] = $this->Pagamento();
