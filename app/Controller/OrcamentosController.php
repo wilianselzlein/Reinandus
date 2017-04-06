@@ -16,7 +16,7 @@ class OrcamentosController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'TransformarArray');
+	public $components = array('Paginator', 'Session', 'TransformarArray', 'Funcoes');
 
 /**
  * index method
@@ -75,7 +75,7 @@ class OrcamentosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$nivel = $this->PegarMaiorNivel();
+		$nivel = $this->Funcoes->PegarMaiorNivel();
 		$plano_conta = $this->Orcamento->PlanoConta->findAsCombo('asc', 'Nivel = ' . $nivel);
 		$historico_padrao = $this->Orcamento->HistoricoPadrao->findAsCombo();
 		$this->set(compact('plano_conta', 'historico_padrao'));
@@ -133,20 +133,6 @@ class OrcamentosController extends AppController {
 		}
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
 		$this->redirect(array('action' => 'index'));
-	}
-
-/**
- * PegarMaiorNivel method
- *
- * @throws NotFoundException
- * @throws MethodNotAllowedException
- * @param string
- * @return integer
- */
-	public function PegarMaiorNivel() {
-		$options = array('recursive' => false, 'fields' => array('Max(PlanoConta.Nivel) as Nivel'));
-		$nivel = $this->Orcamento->PlanoConta->find('first', $options);
-		return $nivel[0]['Nivel'];
 	}
 	
 }

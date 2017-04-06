@@ -16,7 +16,7 @@ class LancamentoContabilController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'TransformarArray');
+	public $components = array('Paginator', 'Session', 'TransformarArray', 'Funcoes');
 
 /**
  * index method
@@ -95,7 +95,7 @@ class LancamentoContabilController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-		$nivel = $this->PegarMaiorNivel();
+		$nivel = $this->Funcoes->PegarMaiorNivel();
 		$debitos = $this->LancamentoContabil->Debito->findAsCombo('asc', 'Nivel = ' . $nivel);
 		$creditos = $this->LancamentoContabil->Credito->findAsCombo('asc', 'Nivel = ' . $nivel);
 		$historico_padrao = $this->LancamentoContabil->HistoricoPadrao->findAsCombo();
@@ -129,7 +129,7 @@ class LancamentoContabilController extends AppController {
 			$this->LancamentoContabil->unbindModel(array('belongsTo' => array('Debito', 'Credito', 'HistoricoPadrao')));
 			$this->request->data = $this->LancamentoContabil->find('first', $options);
 		}
-		$nivel = $this->PegarMaiorNivel();
+		$nivel = $this->Funcoes->PegarMaiorNivel();
 		$debitos = $this->LancamentoContabil->Debito->findAsCombo('asc', 'Nivel = ' . $nivel);
 		$creditos = $this->LancamentoContabil->Credito->findAsCombo('asc', 'Nivel = ' . $nivel);
 		$historico_padrao = $this->LancamentoContabil->HistoricoPadrao->findAsCombo();
@@ -158,20 +158,6 @@ class LancamentoContabilController extends AppController {
 		}
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
 		$this->redirect(array('action' => 'index'));
-	}
-
-/**
- * PegarMaiorNivel method
- *
- * @throws NotFoundException
- * @throws MethodNotAllowedException
- * @param string
- * @return integer
- */
-	public function PegarMaiorNivel() {
-		$options = array('recursive' => false, 'fields' => array('Max(Debito.Nivel) as Nivel'));
-		$nivel = $this->LancamentoContabil->Debito->find('first', $options);
-		return $nivel[0]['Nivel'];
 	}
 
 /**
