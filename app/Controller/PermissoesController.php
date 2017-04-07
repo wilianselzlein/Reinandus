@@ -1,5 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('ButtonsActionsHelper', 'View/Helper');
+
 /**
  * Permissaos Controller
  *
@@ -269,21 +271,8 @@ class PermissoesController extends AppController {
 	}
 
 	private function GetControllerByModel($model) {
-		$return = Inflector::camelize(Inflector::humanize(Inflector::pluralize($model)));
-		if (! strcasecmp($return, 'Conta')) 
-			$return = 'Contas';
-		if (! strcasecmp($return, 'Lancamentocontabil')) 
-			$return = 'LancamentoContabil';
-		if (! strcasecmp($return, 'Contaspagar')) 
-			$return = 'ContasPagar';
-		if (! strcasecmp($return, 'HistoricoPadraos')) 
-			$return = 'HistoricoPadrao';
-		if (! strcasecmp($return, 'Formapgtos')) 
-			$return = 'FormasPagamentos';
-		if (! strcasecmp($return, 'Institutos')) 
-			$return = 'Instituto';
-
-		return $return;
+		$Hack = new ButtonsActionsHelper(new View());
+		$Hack->GetControllerByModel($model);
 	}
 
 	public function CopiarPermissoes($de_id, $para_id) {

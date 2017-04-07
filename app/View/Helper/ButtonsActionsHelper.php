@@ -15,7 +15,7 @@ class ButtonsActionsHelper extends AppHelper {
 
 	}
 
-	function GetControllerByModel($model) {
+	public function GetControllerByModel($model) {
 		$return = Inflector::camelize(Inflector::humanize(Inflector::pluralize($model)));
 		if (! strcasecmp($return, 'Conta')) 
 			$return = 'Contas';
@@ -25,6 +25,10 @@ class ButtonsActionsHelper extends AppHelper {
 			$return = 'ContasPagar';
 		if (! strcasecmp($return, 'HistoricoPadraos')) 
 			$return = 'HistoricoPadrao';
+		if (! strcasecmp($return, 'Formapgtos')) 
+			$return = 'FormasPagamentos';
+		if (! strcasecmp($return, 'Institutos')) 
+			$return = 'Instituto';
 
 		return $return;
 	}
