@@ -22,11 +22,13 @@ class RetornoItauComponent extends RetornoBaseComponent {
 			return;
 
 		$mensalidade['Mensalidade']['id'] = $mensalidade_id;
-		
+
 		if (($this->PegarCodigoConfirmacao() == CONFIRMADO) || 
 			($this->PegarCodigoConfirmacao() == REJEITADO) || 
 			($this->PegarCodigoConfirmacao() == BAIXA_SIMPLES) ) 
 		{ 
+			$mensalidade = [];
+			$mensalidade['Mensalidade']['id'] = $mensalidade_id;
 			$mensalidade['Mensalidade']['remessa'] = ($this->PegarCodigoConfirmacao() == CONFIRMADO);
 			$mensalidade['Mensalidade']['documento'] = $this->Arquivo;
 			if (! $this->Mensalidade->BaixarPeloRetorno($mensalidade_id, $mensalidade)) {
@@ -35,9 +37,9 @@ class RetornoItauComponent extends RetornoBaseComponent {
 		} else {
 			$mensalidade['Mensalidade']['pagamento'] = $this->Pagamento();
 			$mensalidade['Mensalidade']['acrescimo'] = $this->FormatarValor(substr($this->Linha, 189, 13)) + $this->FormatarValor(substr($this->Linha, 202, 13)) + $this->FormatarValor(substr($this->Linha, 267, 13));
-			$mensalidade['Mensalidade']['desconto'] = $this->FormatarValor(substr($this->Linha, 241, 12)) / 100;
+			$mensalidade['Mensalidade']['desconto'] = $this->FormatarValor(substr($this->Linha, 241, 12));
 			$taxa_banco = $this->FormatarValor(substr($this->Linha, 176, 12));
-			$mensalidade['Mensalidade']['pago'] = ($this->FormatarValor(substr($this->Linha, 254, 12)) + $taxa_banco) / 100;
+			$mensalidade['Mensalidade']['pago'] = ($this->FormatarValor(substr($this->Linha, 254, 12)) + $taxa_banco);
 
 			if ($this->FormaPgto_Id > 0)
 				$mensalidade['Mensalidade']['formapgto_id'] = $this->FormaPgto_Id;
@@ -91,7 +93,7 @@ class RetornoItauComponent extends RetornoBaseComponent {
 		}
 		$linha['pagamento'] = $this->Pagamento();
 		$linha['acrescimo'] = $this->FormatarValor(substr($this->Linha, 189, 13)) + $this->FormatarValor(substr($this->Linha, 202, 13)) + $this->FormatarValor(substr($this->Linha, 267, 13));
-		$linha['desconto'] = $this->FormatarValor(substr($this->Linha, 242, 13)) / 100;
+		$linha['desconto'] = $this->FormatarValor(substr($this->Linha, 242, 13));
 		$taxa_banco = $this->FormatarValor(substr($this->Linha, 176, 12));
 		$linha['pago'] = ($this->FormatarValor(substr($this->Linha, 254, 12)) + $taxa_banco);
 		$linha['formapgto_id'] = $this->FormaPgto_Id;

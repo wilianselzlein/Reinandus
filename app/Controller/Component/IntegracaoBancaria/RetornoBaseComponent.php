@@ -49,7 +49,10 @@ abstract class RetornoBaseComponent extends Component {
 	}
 
 	protected function FormatarValor($valor) {
-		return (float) $valor / 100;
+		$valor = $valor / 100;
+		$valor = str_replace(',', '', $valor);
+		$valor = str_replace('.', ',', $valor);
+		return $valor; //(float) 
 	}
 
 	public function Totalizadores() {
