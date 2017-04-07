@@ -1,5 +1,5 @@
-<p>Dear <?php echo $User['User']['email']; ?>,</p>
+<p>Caro(a) <?php echo $User['User']['email']; ?>,</p>
 
-<p>Your password has been changed successfully.</p>
-<p>If you did not change your password, please contact us immediately.</p>
-<p>Thanks and have a nice day!</p>
+<p>Sua senha foi alterada com sucesso.</p>
+<p>Se não foi voê que solicitou a troca da senha, entre em contato imediatamente.</p>
+<p>Obrigado e tenha um bom dia!</p>
