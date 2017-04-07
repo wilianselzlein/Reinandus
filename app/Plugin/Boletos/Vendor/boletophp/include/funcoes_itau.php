@@ -48,8 +48,7 @@ $nnum = formata_numero($dadosboleto["nosso_numero"],8,0);
 //$nnum = 48115957000;
 //$fator_vencimento = 7020;
 //$valor = '0000000222';
-$dac1 = modulo_10($agencia.$conta.$carteira.$nnum);
-
+$dac1 = modulo_10($agencia.$conta.$carteira.substr($nnum,0,8));
 //debug(substr($nnum,0,8));
 //$dac1 = modulo_10($carteira.substr($nnum,0,8));
 //debug($dac1);
