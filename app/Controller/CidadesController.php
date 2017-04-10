@@ -105,7 +105,7 @@ class CidadesController extends AppController {
 	public function edit($id = null) {
         $this->Cidade->id = $id;
 		if (!$this->Cidade->exists($id)) {
-			throw new NotFoundException(__('The record could not be found.?>'));
+			throw new NotFoundException(__('The record could not be found.'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Cidade->save($this->request->data)) {
