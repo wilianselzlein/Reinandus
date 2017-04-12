@@ -272,7 +272,7 @@ class PermissoesController extends AppController {
 
 	private function GetControllerByModel($model) {
 		$Hack = new ButtonsActionsHelper(new View());
-		$Hack->GetControllerByModel($model);
+		return $Hack->GetControllerByModel($model);
 	}
 
 	public function CopiarPermissoes($de_id, $para_id) {

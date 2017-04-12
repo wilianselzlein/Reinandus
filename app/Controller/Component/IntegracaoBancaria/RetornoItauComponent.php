@@ -31,6 +31,8 @@ class RetornoItauComponent extends RetornoBaseComponent {
 			$mensalidade['Mensalidade']['id'] = $mensalidade_id;
 			$mensalidade['Mensalidade']['remessa'] = ($this->PegarCodigoConfirmacao() == CONFIRMADO);
 			$mensalidade['Mensalidade']['documento'] = $this->Arquivo;
+			if (($this->PegarCodigoConfirmacao() == BAIXA_SIMPLES) && ($this->FormaPgto_Id > 0))
+				$mensalidade['Mensalidade']['formapgto_id'] = $this->FormaPgto_Id;
 			if (! $this->Mensalidade->BaixarPeloRetorno($mensalidade_id, $mensalidade)) {
 				throw new NotFoundException('"' . $mensalidade_id . '" ' . __('The record could not be found.'));
 			}

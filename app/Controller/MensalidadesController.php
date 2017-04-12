@@ -510,7 +510,10 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 
 		$LancamentoContabil = ClassRegistry::init('LancamentoContabil');
 		$LancamentoContabil->create();
-		$LancamentoContabil->save($lancamento);
+		
+		if (! $LancamentoContabil->save($lancamento)) {
+			throw new NotFoundException(__('Erro ao salvar o lançamento contábil!'));
+		}
 
 		if ($id == 0) {
 			$relacionamento = [];
