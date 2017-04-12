@@ -44,24 +44,26 @@ class PessoasController extends AppController {
 		if (!$this->Pessoa->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
+		$limite = Self::$LIMITE_VIEW;
+		
 		$options = array('recursive' => 0, 'conditions' => array('Pessoa.' . $this->Pessoa->primaryKey => $id));
 		$this->set('pessoa', $this->Pessoa->find('first', $options));
 
-		$options = array('recursive' => 0, 'conditions' => array('Curso.pessoa_id' => $id), 'limit' => Self::$LIMITE_VIEW,
+		$options = array('recursive' => 0, 'conditions' => array('Curso.pessoa_id' => $id), 'limit' => $limite,
 		 'fields' => array('Curso.id', 'Curso.nome', 'Curso.turma', 'Curso.carga', 'Curso.sigla', 'Curso.num_turma', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 'Professor.id', 'Professor.nome', 'Periodo.id', 'Periodo.valor'));
 		$this->Pessoa->Curso->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
 		$cursos = $this->Pessoa->Curso->find('all', $options);
 		$cursos = $this->TransformarArray->FindInContainable('Curso', $cursos);
 		$this->set(compact('cursos'));
 
-		$options = array('recursive' => 0, 'conditions' => array('Usuario.pessoa_id' => $id), 'limit' => Self::$LIMITE_VIEW,
+		$options = array('recursive' => 0, 'conditions' => array('Usuario.pessoa_id' => $id), 'limit' => $limite,
 		 'fields' => array('Usuario.id', 'Usuario.username', 'Usuario.created', 'Usuario.modified', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial'));
         //$this->Pessoa->User->unbindModel(array('belongsTo' => array('Grupo', 'Tipo')));
 		$usuarios = $this->Pessoa->Usuario->find('all', $options);
 		$usuarios = $this->TransformarArray->FindInContainable('Usuario', $usuarios);
 		$this->set(compact('usuarios'));
 
-		$options = array('conditions' => array('Aluno.responsavel_id' => $id), 'limit' => Self::$LIMITE_VIEW,
+		$options = array('conditions' => array('Aluno.responsavel_id' => $id), 'limit' => $limite,
 		  'fields' => array('Aluno.id', 'Aluno.nome', 'Aluno.celular', 'Aluno.email', 'Aluno.curso_inicio', 'Aluno.curso_fim', 'Situacao.id', 'Situacao.valor', 'Curso.id', 'Curso.nome'));
 		$this->Pessoa->Aluno->unbindModel(array(
 			'hasMany' => array('Acesso', 'Detalhe', 'AlunoDisciplina', 'Mensalidade'),
@@ -70,7 +72,7 @@ class PessoasController extends AppController {
 		$alunos = $this->TransformarArray->FindInContainable('Aluno', $alunos);
 		$this->set(compact('alunos'));
 
-		$options = array('recursive' => 0, 'conditions' => array('Logo.pessoa_id' => $id), 'limit' => Self::$LIMITE_VIEW,
+		$options = array('recursive' => 0, 'conditions' => array('Logo.pessoa_id' => $id), 'limit' => $limite,
 		 'fields' => array('Logo.id', 'Logo.logo', 'Logo.pessoa_id'));
         try {
         	$this->Pessoa->Logo->unbindModel(array('belongsTo' => array('Pessoa')));
@@ -81,7 +83,7 @@ class PessoasController extends AppController {
 		//$logos = $this->TransformarArray->FindInContainable('Logo', $logos);
 		$this->set(compact('logos'));
 
-		$options = array('recursive' => 0, 'conditions' => array('ContaPagar.pessoa_id' => $id), 'limit' => Self::$LIMITE_VIEW, 
+		$options = array('recursive' => 0, 'conditions' => array('ContaPagar.pessoa_id' => $id), 'limit' => $limite,
 			'fields' => array('ContaPagar.id', 'ContaPagar.documento', 'Professor.id', 'Professor.nome', 'Pessoa.id', 'Pessoa.razaosocial', 'ContaPagar.valor', 'ContaPagar.vencimento', 'ContaPagar.pagamento'));
 		$this->Pessoa->ContaPagar->unbindModel(array('belongsTo' => array('Conta', 'User', 'Formapgto', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
 		$pagar = $this->Pessoa->ContaPagar->find('all', $options);
