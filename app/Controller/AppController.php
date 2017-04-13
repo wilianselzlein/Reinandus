@@ -360,4 +360,14 @@ class AppController extends Controller {
     $this->set(compact('posts'));
   }
 
+/**
+ * LimiteView method
+ *
+ * @param void
+ * @return integer
+ */
+  public function LimiteView() {
+     return Self::$LIMITE_VIEW;
+  }
+
 }
