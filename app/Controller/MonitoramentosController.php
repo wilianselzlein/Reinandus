@@ -15,7 +15,7 @@ class MonitoramentosController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'Monitoramento');
 
 /**
  * index method
@@ -23,11 +23,9 @@ class MonitoramentosController extends AppController {
  * @return void
  */
 	public function index() {
-		$consultas = [];
-		$consultas[1] = 'Mensalidades valor maior que 1000';
+		$consultas = $this->Monitoramento->PegarConsultasDisponiveis();
 		$this->set('consultas', $consultas);
 	}
-
 
 /**
  * consultar method
@@ -36,7 +34,8 @@ class MonitoramentosController extends AppController {
  */
 	public function consultar() {
 	    $data = $this->request->data;
-		debug($data);
+	    $consulta = $this->Monitoramento->RetornarConsulta($data);
+		debug($consulta);
 		die;
 	}
 }
