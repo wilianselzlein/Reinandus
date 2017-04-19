@@ -504,14 +504,17 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
         $lancamento['debito_id'] = $forma['Formapgto'][$debito];
         $lancamento['credito_id'] = $forma['Formapgto'][$credito];
         $lancamento['historico_padrao_id'] = $forma['Formapgto'][$historico];
-        $lancamento['documento'] = $mensalidade['Mensalidade']['documento'];
+        $lancamento['documento'] = $mensalidade['Mensalidade']['documento'] . ' ' . $mensalidade['Mensalidade']['id'];
         $lancamento['complemento'] = $mensalidade['Aluno']['nome'] . '-' . $mensalidade['Mensalidade']['aluno_id'];
-		$lancamento['valor'] = $mensalidade['Mensalidade'][$valor];
+		$lancamento['valor'] = $this->CorrigirParametroNumerico($mensalidade['Mensalidade'][$valor]) / 100;
 
 		$LancamentoContabil = ClassRegistry::init('LancamentoContabil');
 		$LancamentoContabil->create();
 		
 		if (! $LancamentoContabil->save($lancamento)) {
+			debug($lancamento);
+			debug($LancamentoContabil->validationErrors);
+			debug($LancamentoContabil->invalidFields());
 			throw new NotFoundException(__('Erro ao salvar o lançamento contábil!'));
 		}
 

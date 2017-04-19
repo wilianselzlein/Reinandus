@@ -31,7 +31,11 @@ class MonitoramentoComponent extends Component {
 			case MENS_MAIOR_QUE_1000: $consulta = new MensalidadesValorMaiorQue1000(); break;
 			default: throw new NotFoundException(__('Consulta não configurada.')); break;
 		}
-		return $consulta->PegarSql();
+		$sql = $consulta->PegarSql();
+		
+		$db = ConnectionManager::getDataSource('default');
+        $sql = $db->fetchAll($sql);
+        return $sql;
 	}
 
 }

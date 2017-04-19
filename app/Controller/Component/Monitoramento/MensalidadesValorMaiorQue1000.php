@@ -6,7 +6,7 @@ class MensalidadesValorMaiorQue1000 implements InterfaceMonitoramento
 {
 	public function PegarSql(){
 
-        $sql = 'MensalidadesValorMaiorQue1000';
+        $sql = 'select * from mensalidade where valor > 10000 or desconto > 1000';
         return $sql;
 
     }
