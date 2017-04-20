@@ -1,12 +1,29 @@
 <?php
 
 App::uses('Component', 'Controller');
-App::import('Controller/Component/Monitoramento', 
-	array('MensalidadesValorMaiorQue1000'));
 
-const MENS_MAIOR_QUE_1000 = 1;
-	
 class MonitoramentoComponent extends Component {
+
+var $MONITORAMENTOS = array(
+		0 => 'MensalidadesValorMaiorQue1000', 
+		1 => 'AlunoSemDisciplina', 
+		2 => 'CursoSemDisciplina', 
+		3 => 'AlunoFreqMaiorQue100',
+		4 => 'NotaMaiorQue100', 
+		5 => 'AlunoSemCidade',
+		6 => 'AlunoComProblemaNoEmail',
+		7 => 'AlunoComProblemaNoEmailAlt'
+	);
+
+/**
+ * initialize method
+ * input Controller
+ * @return array
+ */
+	function initialize(Controller $controller) {
+		foreach ($this->MONITORAMENTOS as $monitoramento)
+			App::import('Controller/Component/Monitoramento', $monitoramento);
+    }
 
 /**
  * PegarConsultasDisponiveis method
@@ -15,10 +32,13 @@ class MonitoramentoComponent extends Component {
  */
 	public function PegarConsultasDisponiveis() {
 		$consultas = [];
-		$consultas[MENS_MAIOR_QUE_1000] = 'Mensalidades valor maior que 1000';
+		foreach ($this->MONITORAMENTOS as $monitoramento) {
+			$consulta = new $monitoramento();
+			$consultas[] = $consulta->PegarDescricao();
+		}
 		return $consultas;
 	}
-	
+
 /**
  * RetornarConsulta method
  * input integer
@@ -26,13 +46,9 @@ class MonitoramentoComponent extends Component {
  */
 	public function RetornarConsulta($id) {
 	    $id = $id['Monitoramento']['consulta'];
-	    $consulta = '';
-		switch ($id) {
-			case MENS_MAIOR_QUE_1000: $consulta = new MensalidadesValorMaiorQue1000(); break;
-			default: throw new NotFoundException(__('Consulta não configurada.')); break;
-		}
+	    $consulta = $this->MONITORAMENTOS[$id];
+	    $consulta = new $consulta();
 		$sql = $consulta->PegarSql();
-		
 		$db = ConnectionManager::getDataSource('default');
         $sql = $db->fetchAll($sql);
         return $sql;
