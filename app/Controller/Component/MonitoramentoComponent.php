@@ -13,7 +13,10 @@ var $MONITORAMENTOS = array(
 		5 => 'AlunoSemCidade',
 		6 => 'AlunoComProblemaNoEmail',
 		7 => 'AlunoComProblemaNoEmailAlt',
-		8 => 'RemessaPorPeriodo'
+		8 => 'RemessaPorPeriodo',
+		9 => 'MensalidadeSituacaoPagaMasPagamentoNulo',
+		10 => 'MensalidadeSituacaoAbertaMasPagamentoNaoNulo',
+		11 => 'MensalidadeValorIgualDesconto'
 	);
 
 /**
