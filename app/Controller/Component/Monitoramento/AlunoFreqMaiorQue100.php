@@ -17,5 +17,9 @@ class AlunoFreqMaiorQue100 implements InterfaceMonitoramento
 
     }
 
+    public function PegarDescricao() {
+        return 'Alunos com frequencia maior que 100';
+    }
+
 }
 ?>

@@ -12,7 +12,8 @@ var $MONITORAMENTOS = array(
 		4 => 'NotaMaiorQue100', 
 		5 => 'AlunoSemCidade',
 		6 => 'AlunoComProblemaNoEmail',
-		7 => 'AlunoComProblemaNoEmailAlt'
+		7 => 'AlunoComProblemaNoEmailAlt',
+		8 => 'RemessaPorPeriodo'
 	);
 
 /**

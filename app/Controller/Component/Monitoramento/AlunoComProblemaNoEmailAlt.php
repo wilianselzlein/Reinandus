@@ -14,5 +14,9 @@ class AlunoComProblemaNoEmailAlt implements InterfaceMonitoramento
 
     }
 
+	public function PegarDescricao() {
+		return 'Alunos com problema no email alternativo';
+	}
+
 }
 ?>

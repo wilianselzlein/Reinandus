@@ -15,5 +15,9 @@ class AlunoSemDisciplina implements InterfaceMonitoramento
 
     }
 
+	public function PegarDescricao() {
+		return 'Alunos sem disciplina';
+	}
+
 }
 ?>

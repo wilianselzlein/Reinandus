@@ -15,5 +15,9 @@ class CursoSemDisciplina implements InterfaceMonitoramento
 
     }
 
+	public function PegarDescricao() {
+		return 'Curso sem disciplina';
+	}
+
 }
 ?>

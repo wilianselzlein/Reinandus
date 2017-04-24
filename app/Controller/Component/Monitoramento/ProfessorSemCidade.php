@@ -14,5 +14,9 @@ class ProfessorSemCidade implements InterfaceMonitoramento
 
     }
 
+	public function PegarDescricao() {
+		return 'Professor sem cidade';
+	}
+
 }
 ?>

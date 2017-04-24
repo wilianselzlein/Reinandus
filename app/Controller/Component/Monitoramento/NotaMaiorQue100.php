@@ -17,5 +17,9 @@ class NotaMaiorQue100 implements InterfaceMonitoramento
 
     }
 
+    public function PegarDescricao() {
+        return 'Alunos com nota maior que 100';
+    }
+
 }
 ?>
