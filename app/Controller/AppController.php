@@ -197,7 +197,10 @@ class AppController extends Controller {
 
       $user_id = $this->Auth->user('id');
       $model = $this->modelClass;
+      $model = $this->request->params['controller'];
+      $model = Inflector::classify($model);
       $view = $this->view;
+
       if (($user_id != '') && ($this->VerificarParametroPermissoesEstaHabilitado()) &&
           (($model != 'Page') && ($view != 'display')) &&
           (($model != 'User') && ($view != 'logout')) &&
