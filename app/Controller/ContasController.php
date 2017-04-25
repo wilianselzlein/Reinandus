@@ -45,14 +45,14 @@ class ContasController extends AppController {
 		$options = array('recursive' => false, 'conditions' => array('Contum.' . $this->Contum->primaryKey => $id));
 		$this->set('contum', $this->Contum->find('first', $options));
 		
-		$options = array('recursive' => 0, 'conditions' => array('Mensalidade.conta_id' => $id), 'limit' => Self::$LIMITE_VIEW, 
+		$options = array('recursive' => 0, 'conditions' => array('Mensalidade.conta_id' => $id), 'limit' => self::$LIMITE_VIEW, 
 		'fields' => array('Mensalidade.id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Aluno.id', 'Aluno.nome', 'Situacao.id', 'Situacao.valor'));
 		$this->Contum->Mensalidade->unbindModel(array('belongsTo' => array('Grupo', 'Tipo', 'User', 'Formapgto', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
 		$mensalidades = $this->Contum->Mensalidade->find('all', $options);
 		$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);
 		$this->set(compact('mensalidades'));
 		
-		$options = array('recursive' => 0, 'conditions' => array('ContaPagar.conta_id' => $id), 'limit' => Self::$LIMITE_VIEW, 
+		$options = array('recursive' => 0, 'conditions' => array('ContaPagar.conta_id' => $id), 'limit' => self::$LIMITE_VIEW, 
     		'fields' => array('ContaPagar.id', 'ContaPagar.documento', 'Professor.id', 'Professor.nome', 'Pessoa.id', 'Pessoa.razaosocial', 'ContaPagar.valor', 'ContaPagar.vencimento', 'ContaPagar.pagamento'));
 		$this->Contum->ContaPagar->unbindModel(array('belongsTo' => array('Conta', 'User', 'Formapgto', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
 		$pagar = $this->Contum->ContaPagar->find('all', $options);

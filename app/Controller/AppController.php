@@ -32,10 +32,11 @@ App::import('Vendor', 'PHPExcel');
     * @package		app.Controller
     * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
     */
+
 class AppController extends Controller {
    public $theme = "Cakestrap";
-   protected static $LIMITE_VIEW = 2050;
    protected static $fields_excel = [];
+   protected static $LIMITE_VIEW = 2050;
 
    public $helpers = array('Form' => array('className' => 'Bs3Helpers.Bs3Form'),
                            'Wysiwyg.Wysiwyg' => array('_editor' => 'Ck'),
@@ -358,16 +359,6 @@ class AppController extends Controller {
       $posts = $this->{$this->modelClass}->find('all');
 
     $this->set(compact('posts'));
-  }
-
-/**
- * LimiteView method
- *
- * @param void
- * @return integer
- */
-  public function LimiteView() {
-     return Self::$LIMITE_VIEW;
   }
 
 }

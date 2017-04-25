@@ -45,7 +45,7 @@ class HistoricoPadraoController extends AppController {
 		$this->set('historicopadrao', $this->HistoricoPadrao->find('first', $options));
 
 		$LancamentoContabil = ClassRegistry::init('LancamentoContabil');
-		$options = array('recursive' => 1, 'conditions' => array('LancamentoContabil.historico_padrao_id' => $id), 'limit' => Self::$LIMITE_VIEW);
+		$options = array('recursive' => 1, 'conditions' => array('LancamentoContabil.historico_padrao_id' => $id), 'limit' => self::$LIMITE_VIEW);
 		$lancamentos = $LancamentoContabil->find('all', $options);
 		$lancamentos = $this->TransformarArray->FindInContainable('LancamentoContabil', $lancamentos);
 		$this->set(compact('lancamentos'));

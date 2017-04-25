@@ -44,7 +44,7 @@ class PessoasController extends AppController {
 		if (!$this->Pessoa->exists($id)) {
 			throw new NotFoundException(__('The record could not be found.'));
 		}
-		$limite = Self::$LIMITE_VIEW;
+		$limite = self::$LIMITE_VIEW;
 		
 		$options = array('recursive' => 0, 'conditions' => array('Pessoa.' . $this->Pessoa->primaryKey => $id));
 		$this->set('pessoa', $this->Pessoa->find('first', $options));

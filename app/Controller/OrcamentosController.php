@@ -54,7 +54,7 @@ class OrcamentosController extends AppController {
 		$this->set('orcamento', $orcamento);
 
 		$LancamentoContabil = ClassRegistry::init('LancamentoContabil');
-		$options = array('recursive' => 1, 'conditions' => array('LancamentoContabil.debito_id' => $orcamento['Orcamento']['plano_conta_id']), 'limit' => Self::$LIMITE_VIEW);
+		$options = array('recursive' => 1, 'conditions' => array('LancamentoContabil.debito_id' => $orcamento['Orcamento']['plano_conta_id']), 'limit' => self::$LIMITE_VIEW);
 		$LancamentosContabeis = $LancamentoContabil->find('all', $options);
 		$LancamentosContabeis = $this->TransformarArray->FindInContainable('LancamentoContabil', $LancamentosContabeis);
 		$this->set(compact('LancamentosContabeis'));

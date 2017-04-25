@@ -57,7 +57,7 @@ class GruposController extends AppController {
 		$avisos = $this->TransformarArray->FindInContainable('Aviso', $avisos);
 		$this->set(compact('avisos'));
 
-		$options = array('recursive' => 0, 'conditions' => array('Curso.grupo_id' => $id), 'limit' => Self::$LIMITE_VIEW,
+		$options = array('recursive' => 0, 'conditions' => array('Curso.grupo_id' => $id), 'limit' => self::$LIMITE_VIEW,
           'fields' => array('Curso.id', 'Curso.nome', 'Curso.turma', 'Curso.carga', 'Curso.sigla', 'Curso.num_turma', 'Pessoa.id', 'Pessoa.fantasia', 'Pessoa.razaosocial', 'Professor.id', 'Professor.nome', 'Periodo.id', 'Periodo.valor'));
 		$this->Grupo->Curso->unbindModel(array(
 			'belongsTo' => array('Grupo', 'Tipo')));
