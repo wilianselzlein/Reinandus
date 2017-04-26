@@ -16,7 +16,9 @@ var $MONITORAMENTOS = array(
 		8 => 'RemessaPorPeriodo',
 		9 => 'MensalidadeSituacaoPagaMasPagamentoNulo',
 		10 => 'MensalidadeSituacaoAbertaMasPagamentoNaoNulo',
-		11 => 'MensalidadeValorIgualDesconto'
+		11 => 'MensalidadeValorIgualDesconto',
+		12 => 'AlunoComProblemaNoCPF',
+		13 => 'MensalidadeLancContabilValorDiferente'
 	);
 
 /**
