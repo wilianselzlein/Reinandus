@@ -18,7 +18,8 @@ var $MONITORAMENTOS = array(
 		10 => 'MensalidadeSituacaoAbertaMasPagamentoNaoNulo',
 		11 => 'MensalidadeValorIgualDesconto',
 		12 => 'AlunoComProblemaNoCPF',
-		13 => 'MensalidadeLancContabilValorDiferente'
+		13 => 'MensalidadeLancContabilValorDiferente',
+		14 => 'LancamentoContabilUltimos30DiasValorMaior1000'
 	);
 
 /**
