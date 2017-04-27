@@ -77,10 +77,21 @@ $usuario_logado = $this->Session->read('Auth.User');
                <span class="icon-bar"></span>
                <span class="icon-bar"></span>
             </button>
-            <?php echo $this->Html->Link($nome_sistema, array('controller' => 'Pages', 'action' => 'display'), arraY('class' => 'navbar-brand')); ?>
+            <?php if (isset($nome_sistema)) echo $this->Html->Link($nome_sistema, array('controller' => 'Pages', 'action' => 'display'), arraY('class' => 'navbar-brand')); ?>
          </div>
          <!-- Top Menu Items -->
          <ul class="nav navbar-right top-nav">
+            <?php if ($usuario_logado['username'] == 'Master') { ?>
+            <li class="dropdown">
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Monitoramento"><i class="fa fa-bug"></i> <b class="caret"></b></a>
+               <ul class="dropdown-menu message-dropdown">
+                  <li class="message-footer">
+                     <?php echo $this->Html->link('<i class="fa fa-fw fa-bug"></i>'.' Monitoramento', 
+                     array('controller' => 'Monitoramentos', 'action' => 'index'), array('class' => '', 'escape'=>false)); ?>
+                  </li>
+               </ul>
+            </li>
+            <?php } ?>
             <li class="dropdown">
                <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Últimos alunos cadastrados"><i class="fa fa-male"></i> <b class="caret"></b></a>
                <ul class="dropdown-menu message-dropdown">
