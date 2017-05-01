@@ -15,7 +15,7 @@ class MonitoramentosController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Monitoramento');
+	public $components = array('Paginator', 'Session', 'Monitoramento', 'Funcoes');
 
 /**
  * index method
@@ -34,8 +34,20 @@ class MonitoramentosController extends AppController {
  */
 	public function consultar() {
 	    $data = $this->request->data;
-	    $consulta = $this->Monitoramento->RetornarConsulta($data);
-		debug($consulta);
-		die;
+	    $registros = $this->Monitoramento->RetornarConsulta($data);
+	    $this->set('registros', $registros);
+	    
+	    $model = '';
+	    $colunas = '';
+	    $controller = '';
+	    //debug($registros); die;
+	    if (count($registros) > 0) {
+			$model = array_keys($registros[0])[0];
+			$colunas = array_keys($registros[0][$model]);
+			$controller = $this->Funcoes->GetControllerByModel($model);
+		}
+		$this->set('model', $model);
+		$this->set('colunas', $colunas);
+		$this->set('controller', $controller);
 	}
 }
