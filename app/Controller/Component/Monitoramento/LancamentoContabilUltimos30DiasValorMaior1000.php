@@ -6,8 +6,8 @@ class LancamentoContabilUltimos30DiasValorMaior1000 implements InterfaceMonitora
 {
 	public function PegarSql(){
 
-        $sql = 'select id, data, valor, documento
-                from lancamento_contabil 
+        $sql = 'select LancamentoContabil.id, LancamentoContabil.data, LancamentoContabil.valor, LancamentoContabil.documento
+                from lancamento_contabil LancamentoContabil
                 where DATEDIFF(curdate(), modified) < 30
                 and valor > 1000
                 order by valor desc'; //and documento like "%.RET"

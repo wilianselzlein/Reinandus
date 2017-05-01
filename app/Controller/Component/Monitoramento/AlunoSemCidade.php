@@ -6,10 +6,10 @@ class AlunoSemCidade implements InterfaceMonitoramento
 {
 	public function PegarSql(){
 
-        $sql = 'select a.id, a.nome
-                from aluno a 
-                where a.cidade_id is null 
-                order by a.nome';
+        $sql = 'select aluno.id, aluno.nome
+                from aluno aluno 
+                where aluno.cidade_id is null 
+                order by aluno.nome';
         return $sql;
 
     }

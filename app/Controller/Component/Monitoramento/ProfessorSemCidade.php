@@ -6,10 +6,10 @@ class ProfessorSemCidade implements InterfaceMonitoramento
 {
 	public function PegarSql(){
 
-        $sql = 'select p.id, p.nome
-                from professor p 
-                where p.cidade_id is null 
-                order by p.nome';
+        $sql = 'select id, nome
+                from professor 
+                where cidade_id is null 
+                order by nome';
         return $sql;
 
     }

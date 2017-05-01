@@ -6,11 +6,11 @@ class MensalidadeLancContabilValorDiferente implements InterfaceMonitoramento
 {
 	public function PegarSql(){
 
-        $sql = 'select m.id, m.vencimento, m.lancamento_valor_id, m.valor - m.desconto as valor, lv.valor, 	m.lancamento_desconto_id, m.desconto, ld.valor
-				from mensalidade m
-				join lancamento_contabil lv on m.lancamento_valor_id = lv.id
-				join lancamento_contabil ld on m.lancamento_desconto_id = ld.id
-				where m.valor - m.desconto <> lv.valor or m.desconto <> ld.valor';
+        $sql = 'select mensalidade.id, mensalidade.vencimento, mensalidade.lancamento_valor_id, mensalidade.valor - mensalidade.desconto as valor, lv.valor, mensalidade.lancamento_desconto_id, mensalidade.desconto, ld.valor
+				from mensalidade mensalidade
+				join lancamento_contabil lv on mensalidade.lancamento_valor_id = lv.id
+				join lancamento_contabil ld on mensalidade.lancamento_desconto_id = ld.id
+				where mensalidade.valor - mensalidade.desconto <> lv.valor or mensalidade.desconto <> ld.valor';
         return $sql;
 
     }

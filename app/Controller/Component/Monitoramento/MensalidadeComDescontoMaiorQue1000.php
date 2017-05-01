@@ -6,7 +6,9 @@ class MensalidadeComDescontoMaiorQue1000 implements InterfaceMonitoramento
 {
 	public function PegarSql(){
 
-        $sql = 'select * from mensalidade where  desconto > 1000';
+        $sql = 'select mensalidade.id, mensalidade.valor, mensalidade.pago, mensalidade.desconto 
+                from mensalidade 
+                where desconto > 1000';
         return $sql;
 
     }

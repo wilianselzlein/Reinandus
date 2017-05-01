@@ -6,10 +6,10 @@ class AlunoComProblemaNoEmail implements InterfaceMonitoramento
 {
 	public function PegarSql(){
 
-        $sql = 'select a.id, a.nome, a.email
-                from aluno a 
-                where a.email like "%@%@%"
-                order by a.nome';
+        $sql = 'select aluno.id, aluno.nome, aluno.email
+                from aluno aluno 
+                where aluno.email like "%@%@%"
+                order by aluno.nome';
         return $sql;
 
     }
