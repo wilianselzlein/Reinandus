@@ -33,13 +33,13 @@
 				</thead>
 				<tbody>
 					<?php foreach ($array['LancamentoContabil'] as $lctocontabil): ?>
-						<tr>
+						<tr id="<?php echo 'LancamentoContabil' . $lctocontabil['id']; ?>">
 	<td><?php echo $lctocontabil['id']; ?></td>
 	<td><?php echo h($lctocontabil['data']); ?></td>
 	<td><?php echo $this->DisplayField->MakeLink($lctocontabil, 'debito', 'debito_id'); ?></td>
 	<td><?php echo $this->DisplayField->MakeLink($lctocontabil, 'credito', 'credito_id'); ?></td>
 	<td><?php echo $this->Number->currency($lctocontabil['valor'],'BRL');?></td>
-	<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $lctocontabil, 'model' => '', 'controller' => 'LancamentoContabil')); ?>
+	<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $lctocontabil, 'model' => '', 'controller' => 'LancamentoContabil', 'DeleteAjax' => 'true')); ?>
 						</tr>
 					<?php endforeach; ?>
 <?php App::import('Vendor', 'PeDF/Table');
