@@ -1,6 +1,7 @@
 <?php
 
 App::uses('Component', 'Controller');
+App::uses('ButtonsActionsHelper', 'View/Helper');
 
 class FuncoesComponent extends Component {
 
@@ -25,6 +26,17 @@ class FuncoesComponent extends Component {
 			$nivel = 1;
 
 		return $nivel;
+	}
+
+/**
+ * GetControllerByModel method
+ *
+ * @param string -> model
+ * @return string -> controller
+ */
+	public function GetControllerByModel($model) {
+		$Hack = new ButtonsActionsHelper(new View());
+		return $Hack->GetControllerByModel($model);
 	}
 
 }

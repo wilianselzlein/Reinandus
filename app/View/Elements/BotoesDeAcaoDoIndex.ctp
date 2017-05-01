@@ -6,7 +6,7 @@ if (! isset($DeleteAjax)) $DeleteAjax = false;
 	else
 		$id = $objeto[$model]['id'];
 
-$desabilitar = array('Instituto', 'Cabecalhos', 'Permissoes', 'Acessos', 'Parametros', 'Mensalidades', 'ContasPagar', 'Boletos');
+$desabilitar = array('Instituto', 'Cabecalhos', 'Permissoes', 'Acessos', 'Parametros', 'Mensalidades', 'ContasPagar', 'Boletos', 'Monitoramentos');
 $exibir_botao_duplicar = ! in_array($this->name, $desabilitar);
 
 ?>
