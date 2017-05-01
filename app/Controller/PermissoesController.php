@@ -1,6 +1,5 @@
 <?php
 App::uses('AppController', 'Controller');
-App::uses('ButtonsActionsHelper', 'View/Helper');
 
 /**
  * Permissaos Controller
@@ -17,7 +16,7 @@ class PermissoesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'TransformarArray', 'Auth');
+	public $components = array('Paginator', 'Session', 'TransformarArray', 'Auth', 'Funcoes');
 
 /**
  * index method
@@ -264,15 +263,10 @@ class PermissoesController extends AppController {
 			if ((is_null($permissoes[$programa_id])) || ($permissoes[$programa_id])) {
 				$model = $programas[$programa_id];
 				if ($controller == null) 
-					$controller = $this->GetControllerByModel($model);
+					$controller = $this->Funcoes->GetControllerByModel($model);
 				$array[$menu][$caption] = array($model, $controller, $action);
 			}
 		}
-	}
-
-	private function GetControllerByModel($model) {
-		$Hack = new ButtonsActionsHelper(new View());
-		return $Hack->GetControllerByModel($model);
 	}
 
 	public function CopiarPermissoes($de_id, $para_id) {
@@ -289,5 +283,10 @@ class PermissoesController extends AppController {
 		}
 
 	}
+
+	public function __construct(){
+		parent::__construct(); 
+		$this->Funcoes = $this->Components->load('Funcoes');
+   }
 
 }
