@@ -1,4 +1,5 @@
-<ul class="nav navbar-nav side-nav">
+
+<div id="sidemenu"><ul class="nav navbar-nav side-nav">
    <?php 
       foreach ($permissoes as $pai => $menus) {
          echo '<li>';
@@ -86,3 +87,23 @@
    <?php } ?>   
    
 </ul>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	   $('#mostrar_menu').hide();
+		$('#fechar_menu').click(function(){
+			$('#sidemenu').hide('slow');
+			$("#wrapper").css("padding-left","12px")
+			$('#mostrar_menu').show();
+			$('#fechar_menu').hide();
+		});
+		$('#mostrar_menu').click(function(){
+			$('#sidemenu').show('slow');
+			$("#wrapper").css("padding-left","225px")
+			$('#mostrar_menu').hide();
+			$('#fechar_menu').show();
+		});
+	});
+</script>
+
+</div>

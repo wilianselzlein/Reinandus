@@ -71,19 +71,21 @@ $usuario_logado = $this->Session->read('Auth.User');
       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
          <!-- Brand and toggle get grouped for better mobile display -->
          <div class="navbar-header">
+            <a href="#" class="navbar-brand" id="fechar_menu" title="Esconder menu" data-tt="tooltip" data-placement="right"><b>&larr;</b></a>
+            <a href="#" class="navbar-brand" id="mostrar_menu" title="Mostrar menu" data-tt="tooltip" data-placement="right"><b>&rarr;</b></a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                <span class="sr-only">Toggle navigation</span>
                <span class="icon-bar"></span>
                <span class="icon-bar"></span>
                <span class="icon-bar"></span>
             </button>
-            <?php if (isset($nome_sistema)) echo $this->Html->Link($nome_sistema, array('controller' => 'Pages', 'action' => 'display'), arraY('class' => 'navbar-brand')); ?>
+            <?php if (isset($nome_sistema)) echo $this->Html->Link($nome_sistema, array('controller' => 'Pages', 'action' => 'display'), array('class' => 'navbar-brand')); ?>
          </div>
          <!-- Top Menu Items -->
          <ul class="nav navbar-right top-nav">
             <?php if ($usuario_logado['username'] == 'Master') { ?>
             <li class="dropdown">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Monitoramento"><i class="fa fa-bug"></i> <b class="caret"></b></a>
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Monitoramento" data-tt="tooltip" data-placement="left"><i class="fa fa-bug"></i> <b class="caret"></b></a>
                <ul class="dropdown-menu message-dropdown">
                   <li class="message-footer">
                      <?php echo $this->Html->link('<i class="fa fa-fw fa-bug"></i>'.' Monitoramento', 
@@ -93,7 +95,7 @@ $usuario_logado = $this->Session->read('Auth.User');
             </li>
             <?php } ?>
             <li class="dropdown">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Últimos alunos cadastrados"><i class="fa fa-male"></i> <b class="caret"></b></a>
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Últimos alunos cadastrados" data-tt="tooltip" data-placement="down"><i class="fa fa-male"></i> <b class="caret"></b></a>
                <ul class="dropdown-menu message-dropdown">
                   <li class="message-preview">
                      <?php echo $this->Html->link('<i class="fa fa-fw fa-male"></i>'.' Ir para o espaço dos '.__('Alunos'), 
@@ -103,7 +105,7 @@ $usuario_logado = $this->Session->read('Auth.User');
                </ul>
             </li>
             <li class="dropdown">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Recados internos"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Recados internos" data-tt="tooltip" data-placement="left"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
                <ul class="dropdown-menu message-dropdown">
                   <?php echo $this->UltimosAvisosDoUsuario->GerarLista($usuario_logado['id']); ?>
                   <li class="message-footer">
@@ -112,7 +114,7 @@ $usuario_logado = $this->Session->read('Auth.User');
                   </ul>
                </li>
                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Notificações"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Notificações" data-tt="tooltip" data-placement="left"><i class="fa fa-bell"></i> <b class="caret"></b></a>
                   <ul class="dropdown-menu alert-dropdown">
                      <li>
                         <?php echo $this->Avisos->Alunos('default'); ?>
@@ -136,7 +138,7 @@ $usuario_logado = $this->Session->read('Auth.User');
                   </ul>
                </li>
                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Perfil"><i class="fa fa-user"></i> 
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Perfil" data-tt="tooltip" data-placement="left"><i class="fa fa-user"></i> 
                      <?php echo $usuario_logado['username']; ?>
                      <b class="caret"></b>
                   </a>
