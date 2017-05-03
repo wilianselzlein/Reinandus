@@ -1,5 +1,8 @@
 <?php if (count($registros) > 0) { ?>
 <div class="panel panel-default">
+	<span class="badge">
+		<?php echo count($registros); ?> registro(s).
+	</span>
 	<div class="panel-body">
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover table-condensed" >

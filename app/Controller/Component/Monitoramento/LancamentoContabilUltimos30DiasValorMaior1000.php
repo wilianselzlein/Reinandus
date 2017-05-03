@@ -10,7 +10,8 @@ class LancamentoContabilUltimos30DiasValorMaior1000 implements InterfaceMonitora
                 from lancamento_contabil LancamentoContabil
                 where DATEDIFF(curdate(), modified) < 30
                 and valor > 1000
-                order by valor desc'; //and documento like "%.RET"
+                order by valor desc
+                limit 200'; //and documento like "%.RET"
         return $sql;
 
     }
