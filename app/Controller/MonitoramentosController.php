@@ -40,10 +40,16 @@ class MonitoramentosController extends AppController {
 	    $model = '';
 	    $colunas = '';
 	    $controller = '';
-	    //debug($registros); die;
 	    if (count($registros) > 0) {
 			$model = array_keys($registros[0])[0];
-			$colunas = array_keys($registros[0][$model]);
+
+			$colunas = [];
+			$cabecalhos = array_keys($registros[0]);
+			foreach ($cabecalhos as $coluna) {
+				$cabecalho = array_keys($registros[0][$coluna]);
+				$colunas[] = array($coluna, $cabecalho);
+			}
+debug($colunas); die;
 			$controller = $this->Funcoes->GetControllerByModel($model);
 		}
 		$this->set('model', $model);
