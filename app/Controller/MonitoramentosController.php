@@ -47,9 +47,8 @@ class MonitoramentosController extends AppController {
 			$cabecalhos = array_keys($registros[0]);
 			foreach ($cabecalhos as $coluna) {
 				$cabecalho = array_keys($registros[0][$coluna]);
-				$colunas[] = array($coluna, $cabecalho);
+				$colunas[$coluna] = $cabecalho;
 			}
-debug($colunas); die;
 			$controller = $this->Funcoes->GetControllerByModel($model);
 		}
 		$this->set('model', $model);
