@@ -19,10 +19,11 @@ var $MONITORAMENTOS = array(
 		11 => 'MensalidadeSituacaoAbertaMasPagamentoNaoNulo',
 		12 => 'MensalidadeValorIgualDesconto',
 		13 => 'MensalidadeLancContabilValorDiferente',
-		14 => 'MensalidadeComDescontoMaiorQue1000',
-		15 => 'MensalidadeSemLancamentoContabil',
-		16 => 'RemessaPorPeriodo',
-		17 => 'ProfessorSemCidade'
+		14 => 'MensalidadeLancContabilDescontoDiferente',
+		15 => 'MensalidadeComDescontoMaiorQue1000',
+		16 => 'MensalidadeSemLancamentoContabil',
+		17 => 'RemessaPorPeriodo',
+		18 => 'ProfessorSemCidade'
 	);
 
 /**
@@ -72,7 +73,9 @@ var $MONITORAMENTOS = array(
 		$consulta = new $consulta();
 		$sql = $consulta->Correcao($id);
 		$db = ConnectionManager::getDataSource('default');
+		debug($sql); die;
 		$sql = $db->fetchAll($sql);
+
 	}
 
 }
