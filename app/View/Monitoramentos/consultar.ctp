@@ -3,6 +3,7 @@
 	<span class="badge">
 		<?php echo count($registros); ?> registro(s).
 	</span>
+	<div id="retorno"><div>
 	<div class="panel-body">
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover table-condensed" >
@@ -34,17 +35,15 @@
 		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $registro, 'controller' => $controller)); ?>
 		<td>
 			<?php /*echo $this->Html->link('<i class="fa fa-eraser"></i>', array('action' => 'corrigir', $componente, $id), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Corrigir'), 'data-toggle'=>'tooltip')); */ ?>
-
+			<i class="fa fa-refresh fa-spin fa-1x fa-fw" id="<?php echo 'Indicador' . $id; ?>" style="display: none"></i>
 			<?php echo $this->Ajax->submit('Corrigir', array(
 						'id' => 'Corrigir' . $id,
-						'class' => 'btn btn-large btn-primary',
 						'url'=> array('controller'=>'Monitoramentos', 'action'=>'corrigir' , $componente, $id), 
-						//'update' => 'Consulta',
-						//'condition' => '$("#BoletoVencimentoInicial").val().length > 0',
-						//'indicator' => '<i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>',
-						'before' => '$("#Corrigir' . $id . '").attr("disabled", true); $("#Registro' .  $id. '").hide();'
+						//'update' => 'retorno',
+						'indicator' => 'Indicador' . $id,
+						'before' => '$("#Corrigir' . $id . '").attr("disabled", true); $("#Corrigir' . $id . '").hide()' //$("#Registro' .  $id. '").hide();'; 
 						)); ?>
-			&nbsp;</td>
+		</td>
 	</tr>
 <?php endforeach; ?>
 				</tbody>

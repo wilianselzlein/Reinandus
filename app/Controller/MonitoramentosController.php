@@ -64,7 +64,8 @@ class MonitoramentosController extends AppController {
  * @return void
  */
 	public function corrigir($componente, $id = null) {
-		$this->Monitoramento->Corrigir($componente, $id);
+		$retorno = $this->Monitoramento->Corrigir($componente, $id);
+		$this->set('retorno', $retorno);
 	}
 
 }

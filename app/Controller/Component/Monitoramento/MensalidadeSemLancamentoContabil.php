@@ -1,6 +1,7 @@
 <?php
 
 App::import('Controller/Component/Monitoramento', 'InterfaceMonitoramento');
+App::uses('MensalidadesController', 'Controller');
 
 class MensalidadeSemLancamentoContabil implements InterfaceMonitoramento
 {
@@ -13,7 +14,7 @@ class MensalidadeSemLancamentoContabil implements InterfaceMonitoramento
                 where ((mensalidade.pago > 0) or (mensalidade.pagamento is not null))
                 and (mensalidade.lancamento_valor_id is null)
                 and year(mensalidade.vencimento) >= 2016
-                order by mensalidade.pagamento, aluno.nome
+                order by mensalidade.pagamento desc, aluno.nome
                 limit 200;';
         return $sql;
 
@@ -23,8 +24,13 @@ class MensalidadeSemLancamentoContabil implements InterfaceMonitoramento
 		return 'Mensalidade sem lançamento contábil';
 	}
 
-    public function Correcao() {
-        //gerar o lançamento contábil
+    public function Correcao($id = null) {
+        $Mensalidade = ClassRegistry::init('Mensalidade');
+		$options = array('recursive' => 0, 'conditions' => array('Mensalidade.id' => $id));
+		$mensalidade = $Mensalidade->find('first', $options);
+		
+		$Mensalidades = new MensalidadesController;
+        $Mensalidades->RealizarLancamentosContabeis($mensalidade);
     }
 
 }

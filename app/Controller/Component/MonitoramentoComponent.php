@@ -73,8 +73,10 @@ var $MONITORAMENTOS = array(
 		$consulta = $this->MONITORAMENTOS[$componente];
 		$consulta = new $consulta();
 		$sql = $consulta->Correcao($id);
-		$db = ConnectionManager::getDataSource('default');
-		$sql = $db->fetchAll($sql);
+		if ($sql != '') {
+			$db = ConnectionManager::getDataSource('default');
+			$sql = $db->fetchAll($sql);
+		}
 	}
 
 }
