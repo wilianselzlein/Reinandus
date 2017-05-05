@@ -6,7 +6,7 @@ class LancamentoContabilUltimos30DiasValorMaior1000 implements InterfaceMonitora
 {
 	public function PegarSql(){
 
-        $sql = 'select LancamentoContabil.id, LancamentoContabil.data, LancamentoContabil.valor, LancamentoContabil.documento
+        $sql = 'select LancamentoContabil.id, LancamentoContabil.data, LancamentoContabil.valor, LancamentoContabil.documento, LancamentoContabil.identificador, LancamentoContabil.complemento
                 from lancamento_contabil LancamentoContabil
                 where DATEDIFF(curdate(), modified) < 90
                 and valor > 1000
@@ -20,10 +20,14 @@ class LancamentoContabilUltimos30DiasValorMaior1000 implements InterfaceMonitora
 		return 'Lançamento contabil últimos 60 dias com valor > 1.000,00';
 	}
 
-    public function Correcao() {
-        $sql = 'update lancamento_contabil set valor = valor / 100
-                where DATEDIFF(curdate(), modified) < 90
-                and valor > 1000'; //and documento like "%.RET"
+    public function Correcao($id = null) {
+        if ($id == null)
+            $sql = 'update lancamento_contabil set valor = valor / 100
+                    where DATEDIFF(curdate(), modified) < 90
+                    and valor > 1000'; //and documento like "%.RET"
+        else
+            $sql = 'update lancamento_contabil set valor = valor / 10
+                    where id = ' . $id; //and documento like "%.RET"
         return $sql;
     }
     
