@@ -21,10 +21,11 @@ class MensalidadeLancContabilDescontoDiferente implements InterfaceMonitoramento
     public function Correcao($id = null) {
         $sql = 'update lancamento_contabil set valor = 
         		(select m.desconto 
-    			from mensalidade m 
-    			where m.lancamento_desconto_id = '. $id . ')
+        		from mensalidade m 
+        		where m.lancamento_desconto_id = '. $id . ')
                 where id = ' . $id;
         return $sql;
     }
+
 }
 ?>

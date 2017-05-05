@@ -41,7 +41,7 @@
 						'url'=> array('controller'=>'Monitoramentos', 'action'=>'corrigir' , $componente, $id), 
 						//'update' => 'Consulta',
 						//'condition' => '$("#BoletoVencimentoInicial").val().length > 0',
-						'indicator' => '<i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>',
+						//'indicator' => '<i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>',
 						'before' => '$("#Corrigir' . $id . '").attr("disabled", true); $("#Registro' .  $id. '").hide();'
 						)); ?>
 			&nbsp;</td>

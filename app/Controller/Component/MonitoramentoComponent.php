@@ -67,15 +67,14 @@ var $MONITORAMENTOS = array(
 /**
  * Corrigir method
  * input integer
+ * input integer 
  */
 	public function Corrigir($componente, $id = null) {
 		$consulta = $this->MONITORAMENTOS[$componente];
 		$consulta = new $consulta();
 		$sql = $consulta->Correcao($id);
 		$db = ConnectionManager::getDataSource('default');
-		debug($sql); die;
 		$sql = $db->fetchAll($sql);
-
 	}
 
 }
