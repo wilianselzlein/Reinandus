@@ -23,7 +23,7 @@
 				<tbody>
 <?php foreach ($registros as $registro): ?>
 	<?php $id = $registro[$model]['id']; ?>
-	<tr>
+	<tr id="<?php echo 'Registro' . $id; ?>">
 		<?php foreach ($registro as $coluna => $chave):
 				if (is_array($chave)) {
 					foreach ($chave as $subcoluna):
@@ -33,7 +33,18 @@
 			endforeach; ?>
 		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $registro, 'controller' => $controller)); ?>
 		<td>
-			<?php echo $this->Html->link('<i class="fa fa-eraser"></i>', array('action' => 'corrigir', $id), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Corrigir'), 'data-toggle'=>'tooltip')); ?> &nbsp;</td>
+			<?php /*echo $this->Html->link('<i class="fa fa-eraser"></i>', array('action' => 'corrigir', $componente, $id), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Corrigir'), 'data-toggle'=>'tooltip')); */ ?>
+
+			<?php echo $this->Ajax->submit('Corrigir', array(
+						'id' => 'Corrigir' . $id,
+						'class' => 'btn btn-large btn-primary',
+						'url'=> array('controller'=>'Monitoramentos', 'action'=>'corrigir' , $componente, $id), 
+						//'update' => 'Consulta',
+						//'condition' => '$("#BoletoVencimentoInicial").val().length > 0',
+						'indicator' => '<i class="fa fa-refresh fa-spin fa-2x fa-fw"></i>',
+						'before' => '$("#Corrigir' . $id . '").attr("disabled", true); $("#Registro' .  $id. '").hide();'
+						)); ?>
+			&nbsp;</td>
 	</tr>
 <?php endforeach; ?>
 				</tbody>

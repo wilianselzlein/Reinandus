@@ -55,13 +55,24 @@ var $MONITORAMENTOS = array(
  * @return array
  */
 	public function RetornarConsulta($id) {
-	    $id = $id['Monitoramento']['consulta'];
-	    $consulta = $this->MONITORAMENTOS[$id];
-	    $consulta = new $consulta();
+		$consulta = $this->MONITORAMENTOS[$id];
+		$consulta = new $consulta();
 		$sql = $consulta->PegarSql();
 		$db = ConnectionManager::getDataSource('default');
-        $sql = $db->fetchAll($sql);
-        return $sql;
+		$sql = $db->fetchAll($sql);
+		return $sql;
+	}
+
+/**
+ * Corrigir method
+ * input integer
+ */
+	public function Corrigir($componente, $id = null) {
+		$consulta = $this->MONITORAMENTOS[$componente];
+		$consulta = new $consulta();
+		$sql = $consulta->Correcao($id);
+		$db = ConnectionManager::getDataSource('default');
+		$sql = $db->fetchAll($sql);
 	}
 
 }

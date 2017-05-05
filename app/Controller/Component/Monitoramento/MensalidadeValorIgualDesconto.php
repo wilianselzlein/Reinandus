@@ -6,7 +6,7 @@ class MensalidadeValorIgualDesconto implements InterfaceMonitoramento
 {
 	public function PegarSql(){
 
-        $sql = 'select id, aluno_id, valor, desconto
+        $sql = 'select id, aluno_id, valor, desconto, vencimento, pagamento
                 from mensalidade 
                 where valor = desconto';
         return $sql;

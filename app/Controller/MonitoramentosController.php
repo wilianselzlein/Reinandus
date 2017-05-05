@@ -34,7 +34,8 @@ class MonitoramentosController extends AppController {
  */
 	public function consultar() {
 	    $data = $this->request->data;
-	    $registros = $this->Monitoramento->RetornarConsulta($data);
+		$id = $data['Monitoramento']['consulta'];
+	    $registros = $this->Monitoramento->RetornarConsulta($id);
 	    $this->set('registros', $registros);
 	    
 	    $model = '';
@@ -54,5 +55,16 @@ class MonitoramentosController extends AppController {
 		$this->set('model', $model);
 		$this->set('colunas', $colunas);
 		$this->set('controller', $controller);
+		$this->set('componente', $id);
 	}
+
+/**
+ * corrigir method
+ *
+ * @return void
+ */
+	public function corrigir($componente, $id = null) {
+		$this->Monitoramento->Corrigir($componente, $id);
+	}
+
 }
