@@ -16,14 +16,15 @@ var $MONITORAMENTOS = array(
 		8 => 'LancamentoContabilUltimos30DiasValorMaior1000',
 		9 => 'MensalidadesValorMaiorQue1000', 
 		10 => 'MensalidadeSituacaoPagaMasPagamentoNulo',
-		11 => 'MensalidadeSituacaoAbertaMasPagamentoNaoNulo',
-		12 => 'MensalidadeValorIgualDesconto',
-		13 => 'MensalidadeLancContabilValorDiferente',
-		14 => 'MensalidadeLancContabilDescontoDiferente',
-		15 => 'MensalidadeComDescontoMaiorQue1000',
-		16 => 'MensalidadeSemLancamentoContabil',
-		17 => 'RemessaPorPeriodo',
-		18 => 'ProfessorSemCidade'
+		11 => 'MensalidadeSituacaoPagaMasValorPagoZero',
+		12 => 'MensalidadeSituacaoAbertaMasPagamentoNaoNulo',
+		13 => 'MensalidadeValorIgualDesconto',
+		14 => 'MensalidadeLancContabilValorDiferente',
+		15 => 'MensalidadeLancContabilDescontoDiferente',
+		16 => 'MensalidadeComDescontoMaiorQue1000',
+		17 => 'MensalidadeSemLancamentoContabil',
+		18 => 'RemessaPorPeriodo',
+		19 => 'ProfessorSemCidade'
 	);
 
 /**

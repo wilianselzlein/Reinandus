@@ -1,5 +1,9 @@
 <?php if (count($registros) > 0) { ?>
 <div class="panel panel-default">
+	<div class="progress" id="progressdiv">
+		<div class="progress-bar" role="progressbar" style="width: 0%;" id="progress">
+		</div>
+	</div>
 	<span class="badge" id="counter">
 		<?php echo count($registros); ?>
 	</span>  registro(s).
@@ -61,19 +65,25 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	var count = $("#counter").html();
+	var progress = 0; 
 
 	(function ($) {
-	  $.each(['show', 'hide'], function (i, ev) {
-	    var el = $.fn[ev];
-	    $.fn[ev] = function () {
-	      this.trigger(ev);
-	      return el.apply(this, arguments);
-	    };
-	  });
+		$.each(['show', 'hide'], function (i, ev) {
+		var el = $.fn[ev];
+		$.fn[ev] = function () {
+			this.trigger(ev);
+			return el.apply(this, arguments);
+		};
+	});
 	})(jQuery);
+
+	$("#progressdiv").hide();
 
 	$("#CorrigirTodos").click(function() {
 		count = $("#counter").html();
+		total = count;
+		progress = 0;
+		$("#progressdiv").show();
 		$("#CorrigirTodos").hide();
 		$(".Corrigir").trigger("click");
 	})
@@ -82,7 +92,15 @@ $(document).ready(function() {
 		//console.log(this);
 		if($(this).is(':visible')){
 			count--;
+			if (count == 0) {
+				window.setTimeout(function() {
+					$("#progressdiv").hide();
+				}, 2000);
+			}
+			progress++;
 			$("#counter").html(count);
+			progresso = (progress / total * 100);
+			$("#progress").width(progresso + '%');
 			this.remove();
 		}
 	});
