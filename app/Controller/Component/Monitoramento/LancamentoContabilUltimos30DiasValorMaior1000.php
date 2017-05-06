@@ -26,7 +26,9 @@ class LancamentoContabilUltimos30DiasValorMaior1000 implements InterfaceMonitora
                     where DATEDIFF(curdate(), modified) < 90
                     and valor > 1000'; //and documento like "%.RET"
         else
-            $sql = 'update lancamento_contabil set valor = valor / 10
+            $sql = 'update lancamento_contabil set 
+                    valor = valor / 10,
+                    modified = now()
                     where id = ' . $id; //and documento like "%.RET"
         return $sql;
     }

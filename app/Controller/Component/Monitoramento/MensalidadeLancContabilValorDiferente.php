@@ -22,7 +22,8 @@ class MensalidadeLancContabilValorDiferente implements InterfaceMonitoramento
         $sql = 'update lancamento_contabil set valor = 
         		(select m.valor - m.desconto
         		from mensalidade m 
-        		where m.lancamento_valor_id = '. $id . ')
+        		where m.lancamento_valor_id = '. $id . '),
+                modified = now()
                 where id = ' . $id;
         return $sql;
     }

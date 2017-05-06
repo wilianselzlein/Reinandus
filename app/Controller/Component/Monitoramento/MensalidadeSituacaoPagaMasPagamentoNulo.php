@@ -20,7 +20,8 @@ class MensalidadeSituacaoPagaMasPagamentoNulo implements InterfaceMonitoramento
 
     public function Correcao() {
         $sql = 'update mensalidade 
-                set situacao_id = 85 
+                set situacao_id = 85,
+                modified = now() 
                 where situacao_id = 86 
                 and pagamento is null;';
         return $sql;

@@ -19,7 +19,8 @@ class MensalidadeComDescontoMaiorQue1000 implements InterfaceMonitoramento
 
     public function Correcao() {
         $sql = 'update mensalidade 
-                set desconto = desconto / 100 
+                set desconto = desconto / 100,
+                modified = now()
                 where desconto > 1000';
         return $sql;
     }
