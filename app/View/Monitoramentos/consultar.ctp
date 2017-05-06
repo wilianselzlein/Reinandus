@@ -1,8 +1,8 @@
 <?php if (count($registros) > 0) { ?>
 <div class="panel panel-default">
-	<span class="badge">
-		<?php echo count($registros); ?> registro(s).
-	</span>
+	<span class="badge" id="counter">
+		<?php echo count($registros); ?>
+	</span>  registro(s).
 	<div id="retorno"><div>
 	<div class="panel-body">
 		<div class="table-responsive">
@@ -39,6 +39,7 @@
 			<?php echo $this->Ajax->submit('Corrigir', array(
 						'id' => 'Corrigir' . $id,
 						'url'=> array('controller'=>'Monitoramentos', 'action'=>'corrigir' , $componente, $id), 
+						'class' => 'Corrigir',
 						//'update' => 'retorno',
 						'indicator' => 'Indicador' . $id,
 						'before' => '$("#Corrigir' . $id . '").attr("disabled", true); $("#Corrigir' . $id . '").hide()' //$("#Registro' .  $id. '").hide();'; 
@@ -54,3 +55,12 @@
 <?php } else {?>
 <div class="alert alert-success" role="alert">Nenhum registro encontrado.</div>
 <?php } ?>
+<script type="text/javascript">
+$(document).ready(function() {
+	var count = $("#counter").html();
+	$(".Corrigir").click(function() {
+		count--;
+		$("#counter").html(count);
+	})
+});
+</script>
