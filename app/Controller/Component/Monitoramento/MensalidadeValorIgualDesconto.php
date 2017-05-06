@@ -17,5 +17,13 @@ class MensalidadeValorIgualDesconto implements InterfaceMonitoramento
 		return 'Mensalidade com valor igual desconto';
 	}
 
+    public function Correcao($id = null) {
+        $sql = 'update mensalidade 
+                set desconto = 0,
+                modified = now() 
+                where id = ' . $id;
+        return $sql;
+    }
+
 }
 ?>

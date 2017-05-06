@@ -14,8 +14,7 @@ class MensalidadeSemLancamentoContabil implements InterfaceMonitoramento
                 where ((mensalidade.pago > 0) or (mensalidade.pagamento is not null))
                 and (mensalidade.lancamento_valor_id is null)
                 and year(mensalidade.vencimento) >= 2016
-                order by mensalidade.pagamento desc, aluno.nome
-                limit 200;';
+                order by mensalidade.pagamento desc, aluno.nome';
         return $sql;
 
     }
