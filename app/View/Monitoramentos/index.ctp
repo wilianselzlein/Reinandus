@@ -5,6 +5,14 @@
         </h3>
     </div>
 	<div class="panel-body">
+	<ul class="list-group">
+	<?php foreach ($resumos as $resumo => $texto): ?>
+		<li class="list-group-item">
+			<span class="badge"><?php echo $texto; ?></span>
+			<?php echo $resumo; ?>
+		</li>
+	<?php endforeach; ?>
+	</ul>
 		<div class="notas form">
 			<?php echo $this->Form->create('Monitoramento', array('role' => 'form', 'class'=>'form-horizontal', 'action' => 'consultar')); ?>
 				<fieldset>

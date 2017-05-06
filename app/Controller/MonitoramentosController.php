@@ -25,6 +25,11 @@ class MonitoramentosController extends AppController {
 	public function index() {
 		$consultas = $this->Monitoramento->PegarConsultasDisponiveis();
 		$this->set('consultas', $consultas);
+		$resumos = [];
+		for ($i=0; $i < count($consultas); $i++) { 
+			$resumos[$consultas[$i]] = count($this->Monitoramento->RetornarConsulta($i));
+		}
+		$this->set('resumos', $resumos);
 	}
 
 /**
