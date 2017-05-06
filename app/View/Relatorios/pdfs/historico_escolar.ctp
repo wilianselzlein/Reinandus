@@ -17,10 +17,12 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
 
     $curso = $historico_escolar[$index]['curso']['curso'];
     $margem = 'style="margin-top: 1px; margin-bottom: 1px;"';
+    $tipo = $historico_escolar[$index]['tipo']['tipo'];
+
     $html .= 
     '<div align="center">'
     . '<b>Histórico Escolar</b><br/>'
-    . '<b>Pós-Graduação - Lato Sensu</b><br/>'
+    . '<b>' . $tipo . '</b><br/>'
     . '<big>' . $curso . '</big><br/><br/>'
     .'</div>';
 
@@ -142,7 +144,7 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
     $table->close();
     $html .= $table;
 
-    $html .= 'Declaramos para os devidos fins que o curso de Pós-Graduação em ' . $curso . ' cumpriu todas as disposições da Resolução MEC/CES-CNE nº 1, de 8 de junho de 2007. <br> <div align="center">' . 
+    $html .= 'Declaramos para os devidos fins que o curso de ' . $tipo . ' em ' . $curso . ' cumpriu todas as disposições da Resolução MEC/CES-CNE nº 1, de 8 de junho de 2007. <br> <div align="center">' . 
       $historico_escolar[$index]['matriz']['matriz'] . ', ' . 
       $this->Time->i18nFormat(date('m/d/Y'), '%d de %B de %Y') . '<br><br>' .
       $historico_escolar[$index]['pessoa']['razaosocial'] . '<br>Secretaria</div>';
