@@ -3,6 +3,7 @@
 	<span class="badge" id="counter">
 		<?php echo count($registros); ?>
 	</span>  registro(s).
+	<input id="CorrigirTodos" value="Corrigir Todos" onclick="return false;" type="button">
 	<div id="retorno"><div>
 	<div class="panel-body">
 		<div class="table-responsive">
@@ -61,6 +62,10 @@ $(document).ready(function() {
 	$(".Corrigir").click(function() {
 		count--;
 		$("#counter").html(count);
+	})
+	$("#CorrigirTodos").click(function() {
+		$(".Corrigir").trigger("click");
+		$("#CorrigirTodos").hide();
 	})
 });
 </script>
