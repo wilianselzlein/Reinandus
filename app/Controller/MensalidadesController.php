@@ -473,7 +473,6 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
  * @return void
  */
 	public function RealizarLancamentosContabeis($mensalidade) {
-
 		$this->LancarContabil($mensalidade, 2, 'lancamento_desconto_id', 'MenDesDeb','MenDesCre','MenDesHis', 'desconto');
 		$this->LancarContabil($mensalidade, 1, 'lancamento_valor_id', 'MenValDeb','MenValCre','MenValHis', 'pago');
 		$this->LancarContabil($mensalidade, 3, 'lancamento_juro_id', 'MenJurDeb','MenJurCre','MenJurHis', 'acrescimo');
@@ -608,8 +607,8 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
  * @return double $valor
  */
 	private function CorrigirParametroNumericoAmericano($valor) {
-		$valor = str_replace(',', '', $valor);
-		$valor = str_replace('.', ',', $valor);
+		//$valor = str_replace('.', '', $valor);
+		//$valor = str_replace(',', '.', $valor);
 
 		return $valor;
 	}

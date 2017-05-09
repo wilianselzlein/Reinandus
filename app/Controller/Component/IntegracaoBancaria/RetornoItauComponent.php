@@ -40,8 +40,8 @@ class RetornoItauComponent extends RetornoBaseComponent {
 			$mensalidade['Mensalidade']['pagamento'] = $this->Pagamento();
 			$mensalidade['Mensalidade']['acrescimo'] = $this->FormatarValor(substr($this->Linha, 189, 13)) + $this->FormatarValor(substr($this->Linha, 202, 13)) + $this->FormatarValor(substr($this->Linha, 267, 13));
 			$mensalidade['Mensalidade']['desconto'] = $this->FormatarValor(substr($this->Linha, 241, 12));
-			$taxa_banco = $this->FormatarValor(substr($this->Linha, 176, 12));
-			$mensalidade['Mensalidade']['pago'] = ($this->FormatarValor(substr($this->Linha, 254, 12)) + $taxa_banco);
+			$taxa_banco = substr($this->Linha, 176, 12);
+			$mensalidade['Mensalidade']['pago'] = $this->FormatarValor(substr($this->Linha, 254, 12) + $taxa_banco);
 
 			if ($this->FormaPgto_Id > 0)
 				$mensalidade['Mensalidade']['formapgto_id'] = $this->FormaPgto_Id;
