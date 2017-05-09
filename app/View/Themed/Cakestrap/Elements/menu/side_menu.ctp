@@ -1,6 +1,7 @@
 
 <div id="sidemenu"><ul class="nav navbar-nav side-nav">
    <?php 
+   if (isset($permissoes)) {
       foreach ($permissoes as $pai => $menus) {
          echo '<li>';
          echo '<a href="javascript:;" data-toggle="collapse" data-target="#' . substr($pai,0,4) .'"><i class="fa fa-fw fa-arrows-v"></i>' . __($pai) . '<i class="fa fa-fw fa-caret-down"></i></a>';
@@ -11,6 +12,7 @@
          echo '</ul>';
          echo '</li>';
       }
+   }
    ?>
 
    <?php if (false) { ?>
