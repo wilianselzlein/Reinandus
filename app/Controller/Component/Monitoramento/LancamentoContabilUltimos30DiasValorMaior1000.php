@@ -9,7 +9,11 @@ class LancamentoContabilUltimos30DiasValorMaior1000 implements InterfaceMonitora
         $sql = 'select LancamentoContabil.id, LancamentoContabil.data, LancamentoContabil.valor, LancamentoContabil.documento, LancamentoContabil.identificador, LancamentoContabil.complemento
                 from lancamento_contabil LancamentoContabil
                 where DATEDIFF(curdate(), modified) < 90
-                and valor > 1000
+                and valor > 1000 
+                and valor <> 
+                    (coalesce(
+                     (select m.valor from mensalidade m where m.lancamento_valor_id = LancamentoContabil.id), 
+                     (select m.desconto from mensalidade m where m.lancamento_desconto_id = LancamentoContabil.id)))
                 and exists 
                     (select m.id from mensalidade m where m.lancamento_valor_id = LancamentoContabil.id
                     union 

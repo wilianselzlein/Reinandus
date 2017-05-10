@@ -6,7 +6,7 @@ class MensalidadeLancContabilDescontoDiferente implements InterfaceMonitoramento
 {
 	public function PegarSql(){
 
-        $sql = 'select Lancamento_Contabil.id, mensalidade.id as Mensalidade_Id, mensalidade.vencimento, mensalidade.desconto, Lancamento_Contabil.valor as Lancamento_Desconto
+        $sql = 'select Lancamento_Contabil.id, mensalidade.id as Mensalidade_Id, mensalidade.vencimento, mensalidade.desconto, mensalidade.documento, Lancamento_Contabil.valor as Lancamento_Desconto
 				from mensalidade mensalidade
 				join lancamento_contabil Lancamento_Contabil on mensalidade.lancamento_desconto_id = Lancamento_Contabil.id
 				where mensalidade.desconto <> Lancamento_Contabil.valor';
