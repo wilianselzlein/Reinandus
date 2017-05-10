@@ -47,7 +47,7 @@ class RetornoItauComponent extends RetornoBaseComponent {
 				$mensalidade['Mensalidade']['formapgto_id'] = $this->FormaPgto_Id;
 			$mensalidade['Mensalidade']['documento'] = $this->Arquivo;
 			$mensalidade['Mensalidade']['situacao_id'] = self::$SituacaoFechada;
-
+			$mensalidade['Mensalidade']['retorno'] = true;
 			if ($this->Mensalidade->BaixarPeloRetorno($mensalidade_id, $mensalidade)) {
 				$this->Mensalidade->RealizarLancamentosContabeis($mensalidade);
 				$this->IdsPagos[] = (int) $mensalidade_id;

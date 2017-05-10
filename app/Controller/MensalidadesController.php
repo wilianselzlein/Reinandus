@@ -505,8 +505,11 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
         $lancamento['historico_padrao_id'] = $forma['Formapgto'][$historico];
         $lancamento['documento'] = $mensalidade['Mensalidade']['documento'] . ' ' . $mensalidade['Mensalidade']['id'];
         $lancamento['complemento'] = $mensalidade['Aluno']['nome'] . '-' . $mensalidade['Mensalidade']['aluno_id'];
-		$lancamento['valor'] = $this->CorrigirParametroNumericoAmericano($mensalidade['Mensalidade'][$valor]);
-//debug($lancamento); die;
+        if (isset($mensalidade['Mensalidade']['retorno']))
+			$lancamento['valor'] = $mensalidade['Mensalidade'][$valor];
+		else
+			$lancamento['valor'] = $this->CorrigirParametroNumericoAmericano($mensalidade['Mensalidade'][$valor]);
+//debug($mensalidade); debug($lancamento); die;
 		$LancamentoContabil = ClassRegistry::init('LancamentoContabil');
 		$LancamentoContabil->create();
 		
@@ -607,9 +610,8 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
  * @return double $valor
  */
 	private function CorrigirParametroNumericoAmericano($valor) {
-		//$valor = str_replace('.', '', $valor);
-		//$valor = str_replace(',', '.', $valor);
-
+		$valor = str_replace(',', '', $valor);
+		$valor = str_replace('.', ',', $valor);
 		return $valor;
 	}
 }
