@@ -19,7 +19,8 @@ class AlunoSemCidade implements InterfaceMonitoramento
 	}
 
     public function Correcao($id = null) {
-        $sql = 'update aluno set cidade_id = 1,
+        $sql = 'update aluno 
+                set cidade_id = 1,
                 modified = now()
                 where id = ' . $id;
         return $sql;

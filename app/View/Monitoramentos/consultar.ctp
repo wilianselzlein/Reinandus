@@ -65,7 +65,8 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	var count = $("#counter").html();
-	var progress = 0; 
+	var progress = 0;
+	var total;
 
 	(function ($) {
 		$.each(['show', 'hide'], function (i, ev) {

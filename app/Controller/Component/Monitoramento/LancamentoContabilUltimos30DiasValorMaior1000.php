@@ -12,7 +12,7 @@ class LancamentoContabilUltimos30DiasValorMaior1000 implements InterfaceMonitora
                 and valor > 1000 
                 and valor <> 
                     (coalesce(
-                     (select m.valor from mensalidade m where m.lancamento_valor_id = LancamentoContabil.id), 
+                     (select m.liquido from mensalidade m where m.lancamento_valor_id = LancamentoContabil.id), 
                      (select m.desconto from mensalidade m where m.lancamento_desconto_id = LancamentoContabil.id)))
                 and exists 
                     (select m.id from mensalidade m where m.lancamento_valor_id = LancamentoContabil.id
@@ -31,7 +31,7 @@ class LancamentoContabilUltimos30DiasValorMaior1000 implements InterfaceMonitora
 		return 'Lançamento contabil últimos 60 dias com valor > 1.000,00';
 	}
 
-    public function Correcao($id = null) {
+    /*public function Correcao($id = null) {
         if ($id == null)
             $sql = 'update lancamento_contabil set valor = valor / 100
                     where DATEDIFF(curdate(), modified) < 90
@@ -42,7 +42,7 @@ class LancamentoContabilUltimos30DiasValorMaior1000 implements InterfaceMonitora
                     modified = now()
                     where id = ' . $id; //and documento like "%.RET"
         return $sql;
-    }
+    }*/
     
 }
 ?>

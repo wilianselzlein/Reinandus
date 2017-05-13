@@ -18,5 +18,13 @@ class ProfessorSemCidade implements InterfaceMonitoramento
 		return 'Professor sem cidade';
 	}
 
+    public function Correcao($id = null) {
+        $sql = 'update professor
+                set cidade_id = 1,
+                modified = now()  
+                where id = ' . $id; 
+        return $sql;
+    }
+
 }
 ?>

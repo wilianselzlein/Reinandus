@@ -5,26 +5,28 @@ App::uses('Component', 'Controller');
 class MonitoramentoComponent extends Component {
 
 var $MONITORAMENTOS = array(
-		0 => 'AlunoSemDisciplina', 
-		1 => 'AlunoSemCidade',
-		2 => 'AlunoComProblemaNoEmail',
-		3 => 'AlunoComProblemaNoEmailAlt',
-		4 => 'AlunoFreqMaiorQue100',
-		5 => 'AlunoComProblemaNoCPF',
-		6 => 'NotaMaiorQue100', 
-		7 => 'CursoSemDisciplina', 
-		8 => 'LancamentoContabilUltimos30DiasValorMaior1000',
-		9 => 'MensalidadesValorMaiorQue1000', 
-		10 => 'MensalidadeSituacaoPagaMasPagamentoNulo',
-		11 => 'MensalidadeSituacaoPagaMasValorPagoZero',
-		12 => 'MensalidadeSituacaoAbertaMasPagamentoNaoNulo',
-		13 => 'MensalidadeValorIgualDesconto',
-		14 => 'MensalidadeLancContabilValorDiferente',
-		15 => 'MensalidadeLancContabilDescontoDiferente',
-		16 => 'MensalidadeComDescontoMaiorQue1000',
-		17 => 'MensalidadeSemLancamentoContabil',
-		18 => 'RemessaPorPeriodo',
-		19 => 'ProfessorSemCidade'
+		0 => 'AlunoSemDisciplina',
+		1 => 'AlunoSemProfessorDisciplina', 
+		2 => 'AlunoSemCidade',
+		3 => 'AlunoComProblemaNoEmail',
+		4 => 'AlunoComProblemaNoEmailAlt',
+		5 => 'AlunoFreqMaiorQue100',
+		6 => 'AlunoComProblemaNoCPF',
+		7 => 'NotaMaiorQue100', 
+		8 => 'CursoSemDisciplina', 
+		9 => 'LancamentoContabilUltimos30DiasValorMaior1000',
+		10 => 'LancamentoContabilSemMensalidade',
+		11 => 'MensalidadesValorMaiorQue1000', 
+		12 => 'MensalidadeSituacaoPagaMasPagamentoNulo',
+		13 => 'MensalidadeSituacaoPagaMasValorPagoZero',
+		14 => 'MensalidadeSituacaoAbertaMasPagamentoNaoNulo',
+		15 => 'MensalidadeValorIgualDesconto',
+		16 => 'MensalidadeLancContabilValorDiferente',
+		17 => 'MensalidadeLancContabilDescontoDiferente',
+		18 => 'MensalidadeComDescontoMaiorQue1000',
+		19 => 'MensalidadeSemLancamentoContabil',
+		20 => 'ProfessorSemCidade'
+		//21 => 'RemessaPorPeriodo'
 	);
 
 /**
