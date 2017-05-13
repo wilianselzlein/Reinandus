@@ -40,6 +40,11 @@ class MonitoramentosController extends AppController {
 	public function consultar() {
 	    $data = $this->request->data;
 		$id = $data['Monitoramento']['consulta'];
+		//debug($id); die;
+		if ($id == '') {
+			die;
+		}
+
 	    $registros = $this->Monitoramento->RetornarConsulta($id);
 	    $this->set('registros', $registros);
 	    

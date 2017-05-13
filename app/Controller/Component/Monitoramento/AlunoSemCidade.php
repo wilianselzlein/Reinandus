@@ -18,5 +18,11 @@ class AlunoSemCidade implements InterfaceMonitoramento
 		return 'Alunos sem cidade';
 	}
 
+    public function Correcao($id = null) {
+        $sql = 'update aluno set cidade_id = 1,
+                modified = now()
+                where id = ' . $id;
+        return $sql;
+    }
 }
 ?>
