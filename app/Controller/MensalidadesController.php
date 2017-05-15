@@ -49,7 +49,7 @@ class MensalidadesController extends AppController {
 			$this->Filter->setPaginate('conditions', $this->Filter->getConditions());
 		else
 			$this->Filter->setPaginate('conditions', $filtros['AND']);
-		$this->Filter->setPaginate('fields', array('Mensalidade.id', 'Mensalidade.numero', 'Aluno.id', 'Aluno.nome', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento',
+		$this->Filter->setPaginate('fields', array('Mensalidade.id', 'Mensalidade.numero', 'Aluno.id', 'Aluno.nome', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Mensalidade.pago',
            'Formapgto.id', 'Formapgto.nome', 'Situacao.id', 'Situacao.valor'));
 
 		$this->Mensalidade->recursive = 0;

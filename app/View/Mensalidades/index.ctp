@@ -15,6 +15,7 @@
 						<th><?php echo $this->Paginator->sort('aluno'); ?></th>
 						<th><?php echo $this->Paginator->sort('vencimento'); ?></th>
 						<th><?php echo $this->Paginator->sort('liquido'); ?></th>
+						<th><?php echo $this->Paginator->sort('pago'); ?></th>
 						<th><?php echo $this->Paginator->sort('pagamento'); ?></th>
 						<th><?php echo $this->Paginator->sort('formapgto_id'); ?></th>
 						<th><?php echo $this->Paginator->sort('situacao_id'); ?></th>
@@ -31,6 +32,7 @@
 						</td>
 						<td><?php echo h($mensalidade['Mensalidade']['vencimento']); ?>&nbsp;</td>
 						<td><?php echo $this->Number->currency($mensalidade['Mensalidade']['liquido'],'BRL'); ?>&nbsp;</td>
+						<td><?php echo $this->Number->currency($mensalidade['Mensalidade']['pago'],'BRL'); ?>&nbsp;</td>
 						<td><font color="red"><?php echo h($mensalidade['Mensalidade']['pagamento']); ?>&nbsp;</font></td>
 						<td>
 							<?php echo $this->Html->link($mensalidade['Formapgto']['nome'], array('controller' => 'FormasPagamentos', 'action' => 'view', $mensalidade['Formapgto']['id'])); ?>
