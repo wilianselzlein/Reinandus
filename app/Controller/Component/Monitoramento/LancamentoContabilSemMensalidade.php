@@ -10,16 +10,19 @@ class LancamentoContabilSemMensalidade implements InterfaceMonitoramento
         $sql = 'select ' . $lancamento_contabil . ' from 
         		(select ' . $lancamento_contabil . ', 
     				mensalidade_valor.id as mensalidade_valor_id, 
-    				mensalidade_desconto.id as mensalidade_desconto_id  
+    				mensalidade_desconto.id as mensalidade_desconto_id,
+    				mensalidade_juro.id as mensalidade_juro_id
         		from lancamento_contabil LancamentoContabil
         		join aluno on LancamentoContabil.complemento = 
         			concat(aluno.nome, "-", aluno.id) 
         		left join mensalidade mensalidade_valor on LancamentoContabil.id = mensalidade_valor.lancamento_valor_id
         		left join mensalidade mensalidade_desconto on LancamentoContabil.id = mensalidade_desconto.lancamento_desconto_id
+        		left join mensalidade mensalidade_juro on LancamentoContabil.id = mensalidade_desconto.lancamento_juro_id
 				where LancamentoContabil.data > "2015.01.01") as LancamentoContabil
 				where LancamentoContabil.mensalidade_valor_id is null
 				and LancamentoContabil.mensalidade_desconto_id is null
-				limit 100;'; 
+				and LancamentoContabil.mensalidade_juro_id is null
+				limit 100;';
         return $sql;
 
     }

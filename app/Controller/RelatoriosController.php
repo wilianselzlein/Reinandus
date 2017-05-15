@@ -206,8 +206,11 @@ class RelatoriosController extends AppController {
                         }                    
                         elseif ($campo == 'prazoexp') {
                             $filtros .= " AND (aluno.curso_fim  <= CURDATE()) ";
-                        }else
-                            $filtros .= " AND ".str_replace("_",".", $campo)." = '".$compositeValue[0]."'";
+                        }
+                        elseif ($campo == 'aluno_mono_pago') {
+                            $filtros .= " AND aluno.mono_paga = '".$compositeValue[0]."'";
+                        } else
+                            $filtros .= " AND ".str_replace("_",".", $campo, $conta)." = '".$compositeValue[0]."'";
                         break;
                      }
                      case 11: //FAIXA_VALORES
