@@ -290,4 +290,49 @@ class PermissoesController extends AppController {
 		$this->Funcoes = $this->Components->load('Funcoes');
 	}
 
+/**
+ * liberar method
+ *
+ * @return void
+ */
+	public function liberar($coluna, $id) {
+		$this->TrocarSituacao($coluna, $id, true);
+	}
+
+/**
+ * bloquear method
+ *
+ * @return void
+ */
+	public function bloquear($coluna, $id) {
+		$this->TrocarSituacao($coluna, $id, false);
+	}
+
+/**
+ * TrocarSituacao method
+ * @param int $coluna
+ * @param int $id
+ * @param boolean $liberado
+ * @return void
+ */
+	private function TrocarSituacao($coluna, $id, $liberado) {
+		//debug($id); die;
+
+		$this->Permissao->id = $id;
+		if (!$this->Permissao->exists($id)) {
+			throw new NotFoundException(__('The record could not be found.'));
+		}
+		$data['Permissao']['id'] = $id;
+		$data['Permissao'][$coluna] = $liberado;
+		if ($this->Permissao->save($data)) {
+			$this->header("Content-Type: application/json");
+			//echo $id;
+			exit;
+		} else {
+			return 'Fail';
+		}
+		$this->Autorender = FALSE;
+		exit;
+	}
+
 }

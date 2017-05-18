@@ -75,9 +75,9 @@ echo "<br>";
 						<th><?php echo $this->Paginator->sort('professor_id'); ?></th>
 						<th><?php echo $this->Paginator->sort('valor'); ?></th>
 						<th><?php echo $this->Paginator->sort('vencimento'); ?></th>
+						<th><?php echo $this->Paginator->sort('liberado'); ?></th>
 						<th><?php echo $this->Paginator->sort('pagamento'); ?></th>
 						<th><?php echo $this->Paginator->sort('formapgto_id'); ?></th>
-						<th><?php echo $this->Paginator->sort('liberado'); ?></th>
 						<th class="actions text-center" colspan="2"><?php echo __('Actions'); ?></th>
 					</tr>
 				</thead>
@@ -95,11 +95,7 @@ echo "<br>";
 						</td>
 						<td><?php echo $this->Number->currency($contapagar['ContaPagar']['valor'],'BRL'); ?>&nbsp;</td>
 						<td><?php echo h($contapagar['ContaPagar']['vencimento']); ?>&nbsp;</td>
-						<td><?php echo h($contapagar['ContaPagar']['pagamento']); ?>&nbsp;</td>
-						<td>
-							<?php echo $this->Html->link($contapagar['Formapgto']['nome'], array('controller' => 'FormasPagamentos', 'action' => 'view', $contapagar['Formapgto']['id'])); ?>
-						</td>
-						<td>
+<td>
 							<?php 
 								$liberado = 'fa fa-check-square-o';
 								$bloqueado = 'fa fa-square-o';
@@ -140,6 +136,10 @@ echo "<br>";
 								endif;
 								 	?>
 							&nbsp;
+						</td>
+						<td><?php echo h($contapagar['ContaPagar']['pagamento']); ?>&nbsp;</td>
+						<td>
+							<?php echo $this->Html->link($contapagar['Formapgto']['nome'], array('controller' => 'FormasPagamentos', 'action' => 'view', $contapagar['Formapgto']['id'])); ?>
 						</td>
 						<td class="actions text-center">
 							<?php echo $this->Html->link('<i class="fa fa-credit-card"></i>', array('action' => 'baixar', $id), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Baixar'), 'data-toggle'=>'tooltip')); ?>
