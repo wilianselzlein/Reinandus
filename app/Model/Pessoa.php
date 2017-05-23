@@ -130,6 +130,20 @@ class Pessoa extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		)
+		,
+		'Mensalidade' => array(
+			'className' => 'Mensalidade',
+			'foreignKey' => 'pessoa_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
 	);
 
 }

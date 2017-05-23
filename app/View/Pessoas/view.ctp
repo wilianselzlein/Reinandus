@@ -210,7 +210,7 @@ if($pessoa['Pessoa']['pessoa'] == 'F'){
 <?php echo $this->element('Relateds/Usuarios', array('array' => $usuarios));?>
 <?php echo $this->element('Relateds/Alunos', array('array' => $alunos));?>
 <?php echo $this->element('Relateds/ContasPagar', array('array' => $pagar));?>
-
+<?php echo $this->element('Relateds/Mensalidades', array('array' => $mensalidades)); ?>
 <div class="panel-body">
   	<?php if (!empty($logos)): ?>
 		<?php foreach ($logos as $logo): ?>

@@ -89,6 +89,13 @@ class PessoasController extends AppController {
 		$pagar = $this->Pessoa->ContaPagar->find('all', $options);
 		$pagar = $this->TransformarArray->FindInContainable('ContaPagar', $pagar);
 		$this->set(compact('pagar'));
+
+		$options = array('recursive' => false, 'conditions' => array('Mensalidade.pessoa_id' => $id),
+			'fields' => array('Mensalidade.id', 'Mensalidade.aluno_id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Formapgto.id', 'Formapgto.nome', 'Aluno.id', 'Aluno.nome', 'Situacao.id', 'Situacao.valor'));
+		$this->Pessoa->Mensalidade->unbindModel(array('belongsTo' => array('Conta', 'User', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
+		$mensalidades = $this->Pessoa->Mensalidade->find('all', $options);
+		$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);
+		$this->set(compact('mensalidades'));
 	}
 
 /**

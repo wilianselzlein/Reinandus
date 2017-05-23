@@ -74,7 +74,7 @@ Mensalidade.desconto, Mensalidade.acrescimo, Mensalidade.liquido, Mensalidade.pa
 Mensalidade.obs, Mensalidade.formapgto_id, Mensalidade.user_id, Mensalidade.bolsa, Mensalidade.documento, 
 Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade.aluno_id, */
 'Mensalidade.*', 'Conta.id', 'Conta.banco', 'Formapgto.id', 'Formapgto.nome', 'User.id', 'User.username',
-'Aluno.id', 'Aluno.nome', 'Situacao.id', 'Situacao.valor'));
+'Aluno.id', 'Aluno.nome', 'Situacao.id', 'Situacao.valor', 'Pessoa.id', 'Pessoa.razaosocial'));
 		$mensalidade = $this->Mensalidade->find('first', $options);
 		$this->set('mensalidade', $mensalidade);
 
@@ -115,9 +115,10 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		}
 		$contas = $this->Mensalidade->Conta->findAsCombo();
 		$alunos = $this->Mensalidade->Aluno->findAsCombo();
+		$pessoas = $this->Mensalidade->Pessoa->findAsCombo();
 		$formapgtos = $this->Mensalidade->Formapgto->findAsCombo('asc', 'tipo <> "I"');
 		$users = $this->Mensalidade->User->findAsCombo();
-		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
+		$this->set(compact('contas', 'formapgtos', 'users', 'alunos', 'pessoas'));
 	}
 
 /**
@@ -153,7 +154,8 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$alunos = $this->Mensalidade->Aluno->findAsCombo();
 		$formapgtos = $this->Mensalidade->Formapgto->findAsCombo('asc', 'tipo <> "I"');
 		$users = $this->Mensalidade->User->findAsCombo();
-		$this->set(compact('contas', 'formapgtos', 'users', 'alunos'));
+		$pessoas = $this->Mensalidade->Pessoa->findAsCombo();
+		$this->set(compact('contas', 'formapgtos', 'users', 'alunos', 'pessoas'));
 	}
 
 
@@ -326,7 +328,14 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$options = array('recursive' => -1, 'conditions' => array('Aluno.' . $this->Mensalidade->Aluno->primaryKey => $mensalidade['Mensalidade']['aluno_id']));
 		$aluno = $this->Mensalidade->Aluno->find('first', $options);
 
-		$options = array('recursive' => -1, 'conditions' => array('Cidade.' . $this->Mensalidade->Aluno->Cidade->primaryKey => $aluno['Aluno']['cidade_id']));
+		$options = array('recursive' => -1, 'conditions' => array('Pessoa.' . $this->Mensalidade->Pessoa->primaryKey => $mensalidade['Mensalidade']['pessoa_id']));
+		$pessoa = $this->Mensalidade->Pessoa->find('first', $options);
+
+		if ($pessoa['Pessoa']['cidade_id'] > 0 )
+			$cidade = $pessoa['Pessoa']['cidade_id'];
+		else
+			$cidade = $aluno['Aluno']['cidade_id'];
+		$options = array('recursive' => -1, 'conditions' => array('Cidade.' . $this->Mensalidade->Aluno->Cidade->primaryKey => $cidade));
 		$cidade = $this->Mensalidade->Aluno->Cidade->find('first', $options);
 
 		$options = array('recursive' => -1, 'conditions' => array('Estado.' . $this->Mensalidade->Aluno->Cidade->Estado->primaryKey => $cidade['Cidade']['estado_id']));
@@ -340,10 +349,16 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$cabecalho = $Cabecalho->find('first');
 		$dados['logo'] = $cabecalho['Cabecalho']['logo'];
 		
-		$dados['sacado'] = $aluno['Aluno']['nome'] . ' ' . $aluno['Aluno']['cpf'];
-		$dados['endereco1'] = $aluno['Aluno']['endereco'] . ' ' . $aluno['Aluno']['numero'] . ' ' . $aluno['Aluno']['bairro'];
-		$dados['endereco2'] = $cidade['Cidade']['nome'] . '/' . $estado['Estado']['sigla'];
-		//$dados['cpf_cnpj'] = $aluno['Aluno']['cpf'];
+		if ($pessoa['Pessoa']['id'] > 0 ){
+			$dados['sacado'] = $pessoa['Pessoa']['razaosocial'] . ' ' . $pessoa['Pessoa']['cnpjcpf'];
+			$dados['endereco1'] = $pessoa['Pessoa']['endereco'] . ' ' . $pessoa['Pessoa']['numero'] . ' ' . $pessoa['Pessoa']['bairro'];
+			$dados['endereco2'] = $cidade['Cidade']['nome'] . '/' . $estado['Estado']['sigla'];
+		} else {
+			$dados['sacado'] = $aluno['Aluno']['nome'] . ' ' . $aluno['Aluno']['cpf'];
+			$dados['endereco1'] = $aluno['Aluno']['endereco'] . ' ' . $aluno['Aluno']['numero'] . ' ' . $aluno['Aluno']['bairro'];
+			$dados['endereco2'] = $cidade['Cidade']['nome'] . '/' . $estado['Estado']['sigla'];
+			//$dados['cpf_cnpj'] = $aluno['Aluno']['cpf'];
+		}
 		
 		$dados['valor_cobrado'] = $mensalidade['Mensalidade']['valor'];
 		$dados['pedido'] = str_pad($mensalidade['Mensalidade']['id'], 8, '0', STR_PAD_LEFT) . '000'; //$aluno['Aluno']['id']; // Usado para gerar o número do documento e o nosso número.

@@ -60,6 +60,10 @@
 <?php } ?>
 <?php if (! $baixa) { ?>
      <div class="form-group">
+     <?php echo $this->Form->input('pessoa_id',
+          array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+     </div><!-- .form-group -->
+     <div class="form-group">
      <?php echo $this->Form->input('obs',
           array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-7">', 'after'=>'</div>')); ?>
      </div><!-- .form-group -->

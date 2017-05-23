@@ -18,6 +18,13 @@
 						</td>
 					</tr>
 					<tr>
+						<td><strong><?php echo __('Responsável'); ?></strong></td>
+						<td>
+							<?php echo $this->Html->link($mensalidade['Pessoa']['razaosocial'], array('controller' => 'pessoas', 'action' => 'view', $mensalidade['Pessoa']['id']), array('class' => '')); ?>
+							&nbsp;
+						</td>
+					</tr>
+					<tr>
 						<td><strong><?php echo __('Situacao'); ?></strong></td>
 						<td>
 							<?php echo $this->Html->link($mensalidade['Situacao']['valor'], array('controller' => 'enumerados', 'action' => 'view', $mensalidade['Situacao']['id']), array('class' => '')); ?>

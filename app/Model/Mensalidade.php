@@ -127,6 +127,13 @@ var $actsAs = array('NumberFormat', 'DateFormat');
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Pessoa' => array(
+			'className' => 'Pessoa',
+			'foreignKey' => 'pessoa_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 }
