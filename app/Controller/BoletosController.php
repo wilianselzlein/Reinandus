@@ -185,6 +185,7 @@ class BoletosController extends AppController {
 			'joins' => $this->JoinsParaConsultarMensalidade(),
 			'fields' => $this->FieldsParaConsultarMensalidade(),
 			'order' => array('Mensalidade.Id')));
+
 		return $mensalidades;
 	}
 
@@ -271,7 +272,7 @@ class BoletosController extends AppController {
  */
 	private function JoinsParaConsultarMensalidade() {
 		return array(
-			array('table' => 'pessoa', 'alias' => 'Responsavel', 'type' => 'LEFT','conditions' => array('Aluno.responsavel_id = Responsavel.id')),
+			array('table' => 'pessoa', 'alias' => 'Responsavel', 'type' => 'LEFT','conditions' => array('Mensalidade.pessoa_id = Responsavel.id')),
 			array('table' => 'cidade', 'alias' => 'Cidade', 'type' => 'LEFT','conditions' => array('coalesce(Aluno.cidade_id, Responsavel.cidade_id, 1) = Cidade.id')),
 			array('table' => 'estado', 'alias' => 'Estado', 'type' => 'LEFT','conditions' => array('Cidade.estado_id = Estado.id')));
 	}
