@@ -13,7 +13,7 @@ $rowHeader
   ->addColumn('Curso', 'col-30')
   ->addColumn('Código', 'col-10 text-centered')
   ->addColumn('Aluno', 'col-20')
-  ->addColumn('Formação', 'col-40')         
+  ->addColumn('Formação - Histórico Escolar', 'col-40')         
   ->close();
 $table->addRow($rowHeader);
 
@@ -26,7 +26,7 @@ for ($index = 0; $index < count($aluno_formacao); $index++) {
       ->addColumn($aluno_formacao[$index]['curso']['curso'], 'col-30')
       ->addColumn($aluno_formacao[$index]['aluno']['codigo'], 'col-10 text-centered')
       ->addColumn($aluno_formacao[$index]['aluno']['aluno'], 'col-20')
-      ->addColumn($aluno_formacao[$index]['detalhe']['hist_escolar'], 'col-40')
+      ->addColumn($aluno_formacao[$index]['aluno']['formacao'] . '<br>' . $aluno_formacao[$index]['detalhe']['hist_escolar'], 'col-40')
       ->close();
     $table->addRow($rowData);
 }

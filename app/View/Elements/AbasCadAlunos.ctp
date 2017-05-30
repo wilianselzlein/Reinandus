@@ -146,7 +146,7 @@ function CursoFim() {
 						         array('class' => 'form-control', 'label'=>array('text' => 'Nota', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
 						</div><!-- .form-group -->
 						<div class="form-group">
-						   <?php echo $this->Form->input('mono_pago',
+						   <?php echo $this->Form->input('mono_paga',
 						         array('type' => 'checkbox', 'class' => 'form-control', 'label'=>array('text' => 'Orientação Paga ao Professor', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
 						</div><!-- .form-group -->
 	                </div>
