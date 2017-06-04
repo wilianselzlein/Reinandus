@@ -25,8 +25,9 @@ var $MONITORAMENTOS = array(
 		17 => 'MensalidadeLancContabilDescontoDiferente',
 		18 => 'MensalidadeComDescontoMaiorQue1000',
 		19 => 'MensalidadeSemLancamentoContabil',
-		20 => 'ProfessorSemCidade'
-		//21 => 'RemessaPorPeriodo'
+		20 => 'ProfessorSemCidade',
+		21 => 'AlunoSemNotaEFrequencia'
+		//22 => 'RemessaPorPeriodo'
 	);
 
 /**
