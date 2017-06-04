@@ -115,8 +115,8 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
     $rowData = new Row('');
     $rowData
       ->addColumn('TRABALHO DE CONCLUSÃO DE CURSO:', 'col-35 line')
-      ->addColumn('', 'col-30 line')
-      ->addColumn('', 'col-10 line')
+      ->addColumn($historico_escolar[$index]['orientador']['orientador'], 'col-30 line')
+      ->addColumn($historico_escolar[$index]['orientador_titulacao']['orientador_titulacao'], 'col-10 line')
       ->addColumn('-', 'col-10 line')
       ->addColumn('-', 'col-10 line')
       ->addColumn($historico_escolar[$index]['aluno']['mono_nota'], 'col-5 line')
