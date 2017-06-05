@@ -330,10 +330,10 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 
 		$options = array('recursive' => -1, 'conditions' => array('Pessoa.' . $this->Mensalidade->Pessoa->primaryKey => $mensalidade['Mensalidade']['pessoa_id']));
 		$pessoa = $this->Mensalidade->Pessoa->find('first', $options);
-
-		if ($pessoa['Pessoa']['cidade_id'] > 0 )
-			$cidade = $pessoa['Pessoa']['cidade_id'];
-		else
+		if (count($pessoa) > 0) {
+			if ($pessoa['Pessoa']['cidade_id'] > 0 )
+				$cidade = $pessoa['Pessoa']['cidade_id'];
+		} else
 			$cidade = $aluno['Aluno']['cidade_id'];
 		$options = array('recursive' => -1, 'conditions' => array('Cidade.' . $this->Mensalidade->Aluno->Cidade->primaryKey => $cidade));
 		$cidade = $this->Mensalidade->Aluno->Cidade->find('first', $options);
@@ -349,7 +349,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$cabecalho = $Cabecalho->find('first');
 		$dados['logo'] = $cabecalho['Cabecalho']['logo'];
 		
-		if ($pessoa['Pessoa']['id'] > 0 ){
+		if ((count($pessoa) > 0) && ($pessoa['Pessoa']['id'] > 0)) {
 			$dados['sacado'] = $pessoa['Pessoa']['razaosocial'] . ' ' . $pessoa['Pessoa']['cnpjcpf'];
 			$dados['endereco1'] = $pessoa['Pessoa']['endereco'] . ' ' . $pessoa['Pessoa']['numero'] . ' ' . $pessoa['Pessoa']['bairro'];
 			$dados['endereco2'] = $cidade['Cidade']['nome'] . '/' . $estado['Estado']['sigla'];
