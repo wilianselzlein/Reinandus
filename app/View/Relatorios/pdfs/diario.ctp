@@ -110,5 +110,31 @@ if (! $branco)
 $table->close();
 $html .= $table;
 
+$html .= '<br><br>';
+
+$tableMail = new Table();
+
+$rowHeaderMail = new Row('header');
+$rowHeaderMail
+  ->addColumn('Emails', 'col-100')
+  ->close();
+$tableMail->addRow($rowHeaderMail);
+
+for ($index = 0; $index < count($diario); $index++) {
+   $even_class = $index % 2 == 0 ? ' highlighted' : '';
+
+   $rowDataMail = new Row(''.$even_class);
+   $rowDataMail
+      ->addColumn(
+        $diario[$index]['aluno']['email'] . ' ' .
+        $diario[$index]['aluno']['emailalt'], 'col-100')
+      ->close();
+    $tableMail->addRow($rowDataMail);
+
+}
+
+$tableMail->close();
+$html .= $tableMail;
+
 $relatorio_pdf->html = $html;
 $relatorio_pdf->Imprimir();
