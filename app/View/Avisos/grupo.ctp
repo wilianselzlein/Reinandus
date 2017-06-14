@@ -15,14 +15,16 @@
 			<?php echo $this->Html->link('<i class="fa fa-plus-circle"></i>', array('controller' => 'aviso_grupos', 'action' => 'add', $aviso_id, 'modal'), array('class' => 'btn btn-default btn-xs','escape'=>false, 'data-toggle'=>'modal', 'data-target'=>'#modal-dialog', 'title'=>__('Add') . __('Grupo'))); ?>
 		</th>
 	</tr>
-	<?php foreach($grupo AS $Grupo): ?>
-	<tr>
-		<td><?php echo h($Grupo['AvisoGrupo']['id']); ?>&nbsp;</td>
+	<?php foreach($grupo AS $Grupo): 
+		$id = $Grupo['AvisoGrupo']['id']; ?>
+	<tr id="grupo<?php echo $id; ?>">
+		<td><?php echo h($id); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($Grupo['Grupo']['nome'], array('controller' => 'grupos', 'action' => 'view', $Grupo['Grupo']['id'])); ?>
+			<?php echo $this->Html->link($Grupo['Grupo']['nome'], array('controller' => 'grupos', 'action' => 'view', $id)); ?>
 		</td>
 		<td>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'aviso_grupos', 'action' => 'delete', $Grupo['AvisoGrupo']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $Grupo['AvisoGrupo']['id'])); ?>
+			<?php echo $this->element('BotaoDeleteAjax', 
+				array("controller" => "aviso_grupos", "nome" => "grupo", "id" => $id)); ?>
 		</td>
 	</tr>
 	<?php endforeach; ?>
