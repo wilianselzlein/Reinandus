@@ -99,9 +99,9 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
     ->addColumn($historico_escolar[$index]['disciplina']['disciplina'], 'col-35 line')
     ->addColumn($historico_escolar[$index]['professor']['professor'], 'col-30 line')
     ->addColumn($historico_escolar[$index]['titulacao']['valor'], 'col-10 line')
-    ->addColumn($historico_escolar[$index]['alunodisc']['horas_aula'], 'col-10 line')
-    ->addColumn($historico_escolar[$index]['alunodisc']['frequencia'], 'col-10 line')
-    ->addColumn($historico_escolar[$index]['alunodisc']['nota'], 'col-5 line')
+    ->addColumn($historico_escolar[$index]['alunodisc']['horas_aula'], 'col-10 line', '', '', 1)
+    ->addColumn($historico_escolar[$index]['alunodisc']['frequencia'], 'col-10 line', '', '', 25)
+    ->addColumn($historico_escolar[$index]['alunodisc']['nota'], 'col-5 line', '', '', 7)
     ->close();
   $table->addRow($rowData);
   

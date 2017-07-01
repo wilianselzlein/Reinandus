@@ -83,9 +83,10 @@ class Row{
       $this->html .= '</tr>';
    }   
 
-   public function addColumn($content='', $class='',$colspan='', $rowspan=''){
+   public function addColumn($content='', $class='',$colspan='', $rowspan='', $condicao_vermelho = 0){
       $addColspan = $colspan ? ' colspan="'.$colspan.'" ' : '';
       $addRowspan = $rowspan ? ' rowspan="'.$rowspan.'" ' : '';
+      $class .= (($condicao_vermelho > 0) && ($content < $condicao_vermelho)) ? ' vermelho ' : '';
 
       $this->html .= '<td class="'.$class.'"'.$addColspan.$addRowspan.'>'.$content.'</td>';
       return $this;
