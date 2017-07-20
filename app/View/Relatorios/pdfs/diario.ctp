@@ -112,7 +112,7 @@ $html .= $table;
 
 $html .= '<br><br>';
 
-$tableMail = new Table();
+/*$tableMail = new Table();
 
 $rowHeaderMail = new Row('header');
 $rowHeaderMail
@@ -134,7 +134,7 @@ for ($index = 0; $index < count($diario); $index++) {
 }
 
 $tableMail->close();
-$html .= $tableMail;
+$html .= $tableMail;*/
 
 $relatorio_pdf->html = $html;
 $relatorio_pdf->Imprimir();
