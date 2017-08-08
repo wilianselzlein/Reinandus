@@ -100,7 +100,7 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
     ->addColumn($historico_escolar[$index]['professor']['professor'], 'col-30 line')
     ->addColumn($historico_escolar[$index]['titulacao']['valor'], 'col-10 line')
     ->addColumn($historico_escolar[$index]['alunodisc']['horas_aula'], 'col-10 line', '', '', 1)
-    ->addColumn($historico_escolar[$index]['alunodisc']['frequencia'], 'col-10 line', '', '', 25)
+    ->addColumn($historico_escolar[$index]['alunodisc']['frequencia'], 'col-10 line', '', '', 75)
     ->addColumn($historico_escolar[$index]['alunodisc']['nota'], 'col-5 line', '', '', 7)
     ->close();
   $table->addRow($rowData);
@@ -130,14 +130,18 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
       ->close();
     $table->addRow($rowData);
 
+    $vermelho = 0;
+    if (strpos($table->__toString(), "vermelho") > 0)
+      $vermelho = 999;
+
     $rowData = new Row('');
     $rowData
       ->addColumn('', 'col-35 line')
       ->addColumn('', 'col-30 line')
       ->addColumn('', 'col-10 line')
-      ->addColumn($ha, 'col-10 line')
-      ->addColumn(round($fr / $count,2), 'col-10 line')
-      ->addColumn(round($nt / $count,2), 'col-5 line')
+      ->addColumn($ha, 'col-10 line', '', '', $vermelho)
+      ->addColumn(round($fr / $count,2), 'col-10 line', '', '', $vermelho)
+      ->addColumn(round($nt / $count,2), 'col-5 line', '', '', $vermelho)
       ->close();
     $table->addRow($rowData);
 
