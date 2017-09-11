@@ -720,3 +720,6 @@ msgstr "Orçamento"
 
 msgid  "Orcamentos"
 msgstr "Orçamentos"
+
+msgid  "Video"
+msgstr "Vídeo"

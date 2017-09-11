@@ -32,6 +32,9 @@
     <li>
         <a href="#Calendario" data-toggle="tab" title="Calendário" data-tt="tooltip"><i class="fa fa-calendar fa-4x"></i>&nbsp;</a>
     </li>
+    <li>
+        <a href="#Videos" data-toggle="tab" title="Vídeos" data-tt="tooltip"><i class="fa fa-video-camera fa-4x"></i>&nbsp;</a>
+    </li>
     <?php if ($pesquisa_ativa) { ?>
         <li>
             <a href="#Pesquisa" data-toggle="tab" title="Pesquisa" data-tt="tooltip"><i class="fa fa-star-half-o fa-4x"></i>&nbsp;</a>
@@ -79,6 +82,9 @@
         </div>
         <div class="tab-pane" id="Calendario">
 <?php echo $this->element('Abas/Calendario'); ?>
+        </div>
+        <div class="tab-pane" id="Videos">
+<?php echo $this->element('Abas/Videos'); ?>
         </div>
         <!--<div class="tab-pane" id="Facebook">
 <?php echo $this->element('Abas/Facebook'); ?>

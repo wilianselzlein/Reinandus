@@ -33,6 +33,7 @@ class PortalController extends AppController {
       $alunos = $this->Portal->query('select * from valuno where aluno_id = ' . $id); 
       $alunos = $alunos[0];
       $vagas = $this->Portal->query('select * from vvagas');
+      $videos = $this->Portal->query('select * from vvideos');
       $convenios = $this->Portal->query('select * from vconvenios');
       $notas = $this->Portal->query('select * from vdisciplinas where aluno_disciplina_aluno_id = ' . $id);
       $mensalidades = $this->Portal->query('select * from vmensalidades where mensalidade_aluno_id = ' . $id . ' order by mensalidade_vencimento');
@@ -43,7 +44,7 @@ class PortalController extends AppController {
       $manual = $this->PegarLinkManualDoAlunoNoParametro();
       $pesquisa_ativa = $this->VerificarSePesquisaEstaAtiva();
 
-      $this->set(compact('alunos', 'grupos', 'materiais', 'notas', 'vagas', 'convenios', 'mensalidades', 'anos', 'manual', 'pesquisa_ativa'));
+      $this->set(compact('alunos', 'grupos', 'materiais', 'notas', 'vagas', 'videos', 'convenios', 'mensalidades', 'anos', 'manual', 'pesquisa_ativa'));
    }
 
    private function PegarLinkManualDoAlunoNoParametro() {

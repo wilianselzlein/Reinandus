@@ -302,7 +302,8 @@ class EnumeradosController extends AppController {
 
     $this->AdicionarEnumeradoSeNaoExistir(85, 'mensalidade', 'situacao_id', 'Aberto');
     $this->AdicionarEnumeradoSeNaoExistir(86, 'mensalidade', 'situacao_id', 'Fechado');
-    
+    $this->AdicionarEnumeradoSeNaoExistir(87, 'aviso', 'tipo_id', 'Vídeo');
+
 	$this->Session->setFlash(__('Os enumerados foram atualizados.'), 'flash/success');
  }
 

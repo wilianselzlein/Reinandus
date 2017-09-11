@@ -6,7 +6,7 @@ class AlunoSemProfessorDisciplina implements InterfaceMonitoramento
 {
 	public function PegarSql(){
 
-        $sql = 'select aluno.id, aluno.nome
+        $sql = 'select aluno_disciplina.id, aluno.nome
                 from aluno aluno
                 join aluno_disciplinas aluno_disciplina 
                 on aluno.id = aluno_disciplina.aluno_id 
@@ -21,9 +21,13 @@ class AlunoSemProfessorDisciplina implements InterfaceMonitoramento
 		return 'Alunos sem professor na disciplina';
 	}
 
-	public function Correcao(){
-
-	}
+    public function Correcao($id = null) { //99 = A DEFINIR
+        $sql = 'update aluno_disciplinas 
+                set professor_id = 99,
+                modified = now()
+                where id = ' . $id;
+        return $sql;
+    }
 
 }
 ?>
