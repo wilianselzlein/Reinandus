@@ -4,7 +4,8 @@ if (isset($videos[0])) {
 foreach ($videos as $video): ?>
   <li class="list-group-item">
     <h4 class="list-group-item-heading"><?php echo date('d/m/Y', strtotime($video['vvideos']['video_data'])); ?></h4>
-	<iframe src="https://www.youtube.com/embed/XGSy3_Czz8k"></iframe>
+    <a><?php echo $video['vvideos']['video_video']; ?></a><br>
+	<iframe src="<?php echo $video['vvideos']['video_video']; ?>"></iframe>
 	</div>
 
   </li>
