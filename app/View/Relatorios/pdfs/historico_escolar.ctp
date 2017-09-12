@@ -50,7 +50,9 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
 
     $rowData
       ->addColumn('Período de Ralização:', 'col-20')
-      ->addColumn($this->Time->i18nFormat($historico_escolar[$index]['aluno']['curso_inicio'], '%d de %B de %Y') . ' a ' . $this->Time->i18nFormat($historico_escolar[$index]['aluno']['curso_fim'], '%d de %B de %Y'), 'col-80')
+      ->addColumn(
+          $relatorio_pdf->DataPorExtenso2($historico_escolar[$index]['aluno']['curso_inicio']) . ' a ' . 
+          $relatorio_pdf->DataPorExtenso2($historico_escolar[$index]['aluno']['curso_fim']), 'col-80')
       ->close();
     $cabecalho->addRow($rowData);
 
@@ -150,9 +152,7 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
 
     $html .= 'Declaramos para os devidos fins que o curso de ' . $tipo . ' em ' . $curso . ' cumpriu todas as disposições da Resolução MEC/CES-CNE nº 1, de 8 de junho de 2007. <br> <div align="center">' . 
       $historico_escolar[$index]['matriz']['matriz'] . ', ' . 
-      $this->Time->i18nFormat(date('m/d/Y'), '%d') . ' de ' . 
-      __($this->Time->i18nFormat(date('m/d/Y'), '%B')) . ' de ' . 
-      $this->Time->i18nFormat(date('m/d/Y'), '%Y') .  '<br><br>' .
+      $relatorio_pdf->DataPorExtenso() .  '<br><br>' .
       $historico_escolar[$index]['pessoa']['razaosocial'] . '<br>Secretaria</div>';
 
     $relatorio_pdf->writeHTML($html, true, false, true, false, 'L');

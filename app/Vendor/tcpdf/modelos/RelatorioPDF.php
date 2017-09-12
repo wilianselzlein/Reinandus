@@ -374,6 +374,16 @@ EOD;
       $data = strtotime($data);
       return date('d',$data) . ' de ' . __(date('F', $data)) . ' de ' . date('Y', $data);
     }
+/*
+      $this->Time->i18nFormat(date('m/d/Y'), '%d') . ' de ' . 
+      __($this->Time->i18nFormat(date('m/d/Y'), '%B')) . ' de ' . 
+      $this->Time->i18nFormat(date('m/d/Y'), '%Y')
+*/
+   public function DataPorExtenso2($data) {
+      $data = strtotime($data);
+      return date('d',$data) . ' de ' . __(date('F', $data)) . ' de ' . date('Y', $data);
+    }
+
 
    public function setFiltros($filtros){
       $this->writeHTML('<h5>'.$filtros.'</h5>', true, false, true, false, 'C');
