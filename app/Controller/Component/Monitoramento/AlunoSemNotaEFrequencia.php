@@ -15,7 +15,7 @@ class AlunoSemNotaEFrequencia implements InterfaceMonitoramento
                 join professor professor on professor.id = aluno_disciplina.professor_id
                 where coalesce(aluno_disciplina.frequencia,0) = 0
                 and coalesce(aluno_disciplina.nota,0) = 0
-                order by aluno.nome, disciplina.nome, professor.nome';
+                order by aluno.nome';
         return $sql;
 
     }
