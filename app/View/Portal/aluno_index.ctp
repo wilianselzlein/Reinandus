@@ -9,7 +9,7 @@
 <h3><?php echo $dados['Curso']['nome']; ?> <small>Período: <?php echo $dados['curso_inicio'] . ' - ' . $dados['curso_fim']; ?></small></h3>
 
 <?php 
-$situacoes = array(7, 8); //ativas
-if (in_array($dados['Situacao']['id'], $situacoes))
+$situacoes = array(9, 10); //DESISTENTES e SUSPENSOS TEMPORARIAMENTE
+if (! in_array($dados['Situacao']['id'], $situacoes))
 	echo $this->element('AbasPortal'); 
 ?>
