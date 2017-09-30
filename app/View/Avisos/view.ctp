@@ -49,6 +49,13 @@
 						</td>
 					</tr>
 					<tr>
+						<td><strong><?php echo __('Vídeo'); ?></strong></td>
+						<td>
+							<?php echo $this->element('YouTube', array('url' => $aviso['Aviso']['video'])); ?>
+							&nbsp;
+						</td>
+					</tr>
+					<tr>
 						<td><strong><?php echo __('Caminho'); ?></strong></td>
 						<td>
 							<?php echo h($aviso['Aviso']['caminho']); ?>

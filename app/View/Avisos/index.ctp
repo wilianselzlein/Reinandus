@@ -13,7 +13,7 @@
 							<th><?php echo $this->Paginator->sort('id'); ?></th>
 							<th><?php echo $this->Paginator->sort('data'); ?></th>
 							<th><?php echo $this->Paginator->sort('user_id'); ?></th>
-							<th><?php echo $this->Paginator->sort('arquivo'); ?></th>
+							<th><?php echo $this->Paginator->sort('arquivo', 'Arquivo'); ?></th>
 							<th><?php echo $this->Paginator->sort('mensagem'); ?></th>
 							<th><?php echo $this->Paginator->sort('tipo_id'); ?></th>
 							<th class="actions text-center" colspan="2"><?php echo __('Actions'); ?></th>
@@ -27,7 +27,16 @@
 		<td>
 			<?php echo $this->Html->link($aviso['User']['username'], array('controller' => 'users', 'action' => 'view', $aviso['User']['id'])); ?>
 		</td>
-        <td><a href="/arqs/<?php echo basename($aviso['Aviso']['caminho']); ?>"><?php echo h($aviso['Aviso']['arquivo']); ?></a>&nbsp;</td>
+        <td>
+        	<?php if ($aviso['Aviso']['video'] != '') {?>
+        		<?php 
+        			$url = $aviso['Aviso']['video'];
+        			echo $this->element('YouTube', array('url' => $url)); ?>
+    			<a href="<?php echo $url; ?>"><?php echo h($url); ?></a>
+        	<?php } else { ?>
+        		<a href="/arqs/<?php echo basename($aviso['Aviso']['caminho']); ?>"><?php echo h($aviso['Aviso']['arquivo']); ?></a>
+        	<?php } ?>&nbsp;
+    	</td>
 		<td><?php echo h($aviso['Aviso']['mensagem']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($aviso['Tipo']['valor'], array('controller' => 'enumerados', 'action' => 'view', $aviso['Tipo']['id'])); ?>
