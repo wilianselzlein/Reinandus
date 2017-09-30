@@ -29,7 +29,10 @@ class RetornoItauComponent extends RetornoBaseComponent {
 		{ 
 			$mensalidade = [];
 			$mensalidade['Mensalidade']['id'] = $mensalidade_id;
-			$mensalidade['Mensalidade']['remessa'] = ($this->PegarCodigoConfirmacao() == CONFIRMADO);
+			if ($this->PegarCodigoConfirmacao() == CONFIRMADO)
+				$mensalidade['Mensalidade']['remessa'] = 1;
+			else
+				$mensalidade['Mensalidade']['remessa'] = 0;
 			$mensalidade['Mensalidade']['documento'] = $this->Arquivo;
 			if (($this->PegarCodigoConfirmacao() == BAIXA_SIMPLES) && ($this->FormaPgto_Id > 0))
 				$mensalidade['Mensalidade']['formapgto_id'] = $this->FormaPgto_Id;

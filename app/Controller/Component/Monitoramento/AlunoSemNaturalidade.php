@@ -20,7 +20,7 @@ class AlunoSemNaturalidade implements InterfaceMonitoramento
 
     public function Correcao($id = null) {
         $sql = 'update aluno 
-                set naturalidade_id = 1,
+                set naturalidade_id = 872,
                 modified = now()
                 where id = ' . $id;
         return $sql;
