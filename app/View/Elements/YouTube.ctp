@@ -4,7 +4,9 @@ preg_match(
         $url,
         $matches
     );
-$id = $matches[1];
+
+if (isset($matches[1])) {
+	$id = $matches[1];
  
 $width = '400';
 $height = '200';
@@ -20,4 +22,5 @@ echo
 			allowfullscreen="true" width="' . $width . '" height="' . $height . '">
 		</embed>
 	</object>';
+}
 ?>
