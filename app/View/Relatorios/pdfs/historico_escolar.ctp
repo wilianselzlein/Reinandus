@@ -141,7 +141,7 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
       ->addColumn('', 'col-35 line')
       ->addColumn('', 'col-30 line')
       ->addColumn('', 'col-10 line')
-      ->addColumn($ha, 'col-10 line', '', '', $vermelho)
+      ->addColumn($ha, 'col-10 line', '', '', 360)
       ->addColumn(round($fr / $count,2), 'col-10 line', '', '', $vermelho)
       ->addColumn(round($nt / $count,2), 'col-5 line', '', '', $vermelho)
       ->close();
