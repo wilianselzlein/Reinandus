@@ -111,6 +111,10 @@
                <?php //echo $this->Form->input('desconto',array('class' => 'form-control currency', 'type'=>'text','label'=>array('style' => 'padding-left: 0px;', 'class'=>'col-sm-1 control-label'), 'wrap'=>false,'div' => array('class' => 'control-group'), 'between'=>'<div class="col-sm-4"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div></div>')); ?>
 
             </div><!-- .form-group -->
+            <div class="form-group">
+               <?php echo $this->Form->input('formapgto_id',
+                     array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+            </div><!-- .form-group -->
 			<?php echo $this->element('AbasCadAlunos', array('novo' => false)); ?>
             <?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
 

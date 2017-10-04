@@ -134,6 +134,13 @@ var $actsAs = array('NumberFormat', 'DateFormat');
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Formapgto' => array(
+			'className' => 'Formapgto',
+			'foreignKey' => 'formapgto_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 

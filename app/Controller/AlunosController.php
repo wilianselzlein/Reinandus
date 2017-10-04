@@ -85,7 +85,7 @@ Aluno.entregou_rg, Aluno.desconto, Aluno.mono_prazo, Aluno.pesquisa, Aluno.respo
 Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
  'Aluno.*', 'Naturalidade.id', 'Naturalidade.nome', 'Situacao.id', 'Situacao.valor', 'EstadoCivil.id', 'EstadoCivil.valor',
  'Indicacao.id', 'Indicacao.valor', 'Curso.id', 'Curso.nome', 'Professor.id', 'Professor.nome', 
- 'Cidade.id', 'Cidade.nome', 'Responsavel.id', 'Responsavel.fantasia', 'Responsavel.razaosocial'));
+ 'Cidade.id', 'Cidade.nome', 'Responsavel.id', 'Responsavel.fantasia', 'Responsavel.razaosocial', 'Formapgto.id', 'Formapgto.nome'));
 		$this->set('aluno', $this->Aluno->find('first', $options));
 
 		$disciplinas = $this->ConsultarDisciplinas($id);
@@ -220,7 +220,9 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 		$detalhes = $this->ConsultarDetalhes($id);
 		$this->set(compact('detalhes'));
 
-		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professores', 'cidades', 'naturalidades', 'responsavels', 'situacaos'));
+		$formapgtos = $this->Aluno->Formapgto->findAsCombo('asc', 'tipo <> "I"');
+
+		$this->set(compact('estadoCivils', 'indicacaos', 'cursos', 'professores', 'cidades', 'naturalidades', 'responsavels', 'situacaos', 'formapgtos'));
 	}
 
 /**

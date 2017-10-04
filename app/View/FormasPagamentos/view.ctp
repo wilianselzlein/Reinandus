@@ -11,7 +11,8 @@
 			<div class="table-responsive">
 				<table class="table table-hover table-condensed">
 					<tbody>
-						<tr>		<td><strong><?php echo __('Id'); ?></strong></td>
+						
+<tr>		<td><strong><?php echo __('Id'); ?></strong></td>
 		<td>
 			<?php echo h($formapgto['Formapgto']['id']); ?>
 			&nbsp;
@@ -26,12 +27,19 @@
 			<?php echo h($formapgto['Formapgto']['tipo']); ?>
 			&nbsp;
 		</td>
-</tr>					</tbody>
+</tr><tr>		<td><strong><?php echo __('Mensagem'); ?></strong></td>
+		<td>
+			<?php echo h($formapgto['Formapgto']['mensagem']); ?>
+			&nbsp;
+		</td>
+</tr>					
+					</tbody>
 				</table><!-- /.table table-striped table-bordered -->
 			</div><!-- /.table-responsive -->
 			
 		</div><!-- /.view -->
 <?php 
+echo $this->element('Relateds/Alunos', array('array' => $alunos));
 echo $this->element('Relateds/Mensalidades', array('array' => $mensalidades));
 echo $this->element('Relateds/ContasPagar', array('array' => $pagar));
 ?>

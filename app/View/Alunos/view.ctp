@@ -72,6 +72,10 @@ else
 	</tr>
 	<?php echo $this->element('LinhaView', array('alias' => 'Início', 'valor' => h($aluno['Aluno']['curso_inicio']))); ?>
 	<?php echo $this->element('LinhaView', array('alias' => 'Fim', 'valor' => h($aluno['Aluno']['curso_fim']))); ?>
+	<tr>
+		<td><strong><?php echo __('Formapgto'); ?></strong></td>
+		<td><?php echo $this->Html->link($aluno['Formapgto']['nome'], array('controller' => 'FormasPagamentos', 'action' => 'view', $aluno['Formapgto']['id']), array('class' => '')); ?>&nbsp;</td>
+	</tr>
 					</tbody>
 				</table><!-- /.table table-striped table-bordered -->
 
