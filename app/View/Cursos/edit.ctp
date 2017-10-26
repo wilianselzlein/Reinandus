@@ -67,7 +67,7 @@
             </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('percentual',
-                                             array('class' => 'form-control percentage calc', 'type'=>'text','label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false,'wrap'=>false, 'between'=>'<div class="col-sm-10"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div></div>')
+                                             array('class' => 'form-control currency calc', 'type'=>'text','label'=>array('class'=>'col-sm-2 control-label'), 'div'=>false,'wrap'=>false, 'between'=>'<div class="col-sm-10"><div class="col-sm-10"><div class="input-group"><span class="input-group-addon">R$</span>', 'after'=>'</div></div></div>')
                                             ); ?>
             </div><!-- .form-group -->
             <div class="form-group">

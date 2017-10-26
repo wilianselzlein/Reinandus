@@ -29,6 +29,7 @@ class GeraContratoComponent extends Component {
         	$Aluno = new ConsultarAlunoComponent($s, $this->Data['aluno_id'], 'aluno'); //new ComponentCollection()
 	        if ($Aluno->PegarValorCampo('id') > 0) {
 				$Curso = new ConsultarCursoComponent($s, $Aluno->PegarValorCampo('curso_id'), 'curso');
+				$Tipo = new CarregarConsultasBaseComponent($s, $Curso->PegarValorCampo('tipo_id'), 'enumerado');
 				$Cidade = new CarregarConsultasBaseComponent($s, $Aluno->PegarValorCampo('cidade_id'), 'cidade');
 				$Estado = new CarregarConsultasBaseComponent($s, $Cidade->PegarValorCampo('estado_id'), 'estado');
 			}
