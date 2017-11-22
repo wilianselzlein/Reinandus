@@ -117,8 +117,12 @@ class RelatoriosController extends AppController {
              $this->set('filtros', $filtros);
           }
 
-          $this->layout = '/pdf/default';
-          $this->render('/Relatorios/pdfs/'.$relatorio['Relatorio']['arquivo']);
+          if ((! isset($this->request['data']['Relatorio']['excel'])) || ($this->request['data']['Relatorio']['excel'] == false)) {
+              $this->layout = '/pdf/default';
+              $this->render('/Relatorios/pdfs/'.$relatorio['Relatorio']['arquivo']);
+          } else {  
+              $this->ExportarExcel($this->request['data'], $queryResult);
+          }
        } else {
            $this->redirect($this->referer());
        }
@@ -136,6 +140,8 @@ class RelatoriosController extends AppController {
       if (isset($this->request->data)) {             
             foreach ($this->request->data as $key => $value){
                $originalValue = $value;
+               if (is_array($value)) 
+                continue;
                $compositeKey = explode(",", $key);
                $compositeValue = explode(",", $value);
 
@@ -387,6 +393,8 @@ class RelatoriosController extends AppController {
       if (isset($this->request->data)) {             
             foreach ($this->request->data as $key => $value){
                $originalValue = $value;
+               if (is_array($value)) 
+                continue;
                $compositeKey = explode(",", $key);
                $compositeValue = explode(",", $value);
                 if (count($compositeKey) == 3) { 
@@ -403,4 +411,14 @@ class RelatoriosController extends AppController {
       return $filtros;
    }
 
+
+    public function ExportarExcel($data, $dados){
+        $this->set(compact('dados'));
+        //debug($dados); die;
+        $this->excel($dados);
+        $this->layout='excel';
+        $this->render('/Relatorios/pdfs/excel');
+    }
+
+             
 }

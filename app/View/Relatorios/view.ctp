@@ -82,11 +82,17 @@
 								<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'RelatorioDatasets', 'action' => 'delete', $dataset['id']), array('class' => 'btn btn-default btn-xs'), __('Are you sure you want to delete # %s?', $dataset['id'])); ?>
 							</td>
 						</tr>
-						<?php if (!empty($dataset['RelatorioFiltro'])): ?>
 						<tr>
 							<td colspan="5">
 								<div class="related">
 									<h3><?php echo __('RelatorioFiltros'); ?></h3>
+									<div class="actions">
+										<?php echo $this->Html->link('<i class="icon-plus icon-white"></i> '.__('New').' '.__('Filtro'), 
+											array('controller' => 'RelatorioFiltros', 'action' => 'add'), array('class' => 'btn btn-primary', 'escape' => false)); ?>
+										<?php echo $this->Html->link('<i class="icon-plus icon-white"></i> '.__('Copiar').' '.__('Filtro'), 
+											array('controller' => 'RelatorioFiltros', 'action' => 'copiar'), array('class' => 'btn btn-primary', 'escape' => false)); ?>
+									</div>
+									<?php if (!empty($dataset['RelatorioFiltro'])): ?>
 									<div class="table-responsive">
 										<table class="table table-striped table-bordered">
 											<thead>
@@ -121,10 +127,6 @@
 										<!-- /.table table-striped table-bordered -->
 									</div>
 									<!-- /.table-responsive -->
-									<div class="actions">
-										<?php echo $this->Html->link('<i class="icon-plus icon-white"></i> '.__('New').' '.__('Filtro'), 
-											array('controller' => 'RelatorioFiltros', 'action' => 'add'), array('class' => 'btn btn-primary', 'escape' => false)); ?>				
-									</div>
 									<!-- /.actions -->
 								</div>
 								<!-- /.related -->

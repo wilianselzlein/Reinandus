@@ -144,9 +144,16 @@
    </div>
 </div>
 
-<button type="submit" class="btn btn-default" formtarget="_blank">
-   <i class="fa fa-eye"></i> Visualizar
-</button>
+<div style="float: left;">
+   <button type="submit" class="btn btn-default" formtarget="_blank">
+      <i class="fa fa-eye"></i> Visualizar
+   </button>
+</div>
+ 
+<?php echo $this->Form->input('excel',
+   array('type' => 'checkbox', 'class' => 'form-control', 
+      'before'=>'<div class="col-sm-6">', 'after'=>'</div>', 'checked'=>false,
+      'label'=>array('text' => 'Exportar para planilha eletrônica? ' . '<i class="fa fa-file-excel-o fa-2x"></i>', 'class'=>'col-sm-6 control-label'))); ?>
 
 <?php echo $this->Form->end(); ?>
 <?php 

@@ -58,8 +58,8 @@ class RelatorioFiltrosController extends AppController {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
 			}
 		}
-        $RelatorioDatasets = ClassRegistry::init('RelatorioDataset');
-        $relatoriodatasets = $RelatorioDatasets->findAsCombo();
+		$RelatorioDatasets = ClassRegistry::init('RelatorioDataset');
+		$relatoriodatasets = $RelatorioDatasets->findAsCombo();
 		
 		$tipos = $this->RelatorioFiltro->Tipo->find('list', array('conditions' => array('Tipo.referencia' => 'tipo_filtro', 'Tipo.nome' => 'relatorios_filtros')));
 		$this->set(compact('relatoriodatasets', 'tipos'));
@@ -118,4 +118,29 @@ class RelatorioFiltrosController extends AppController {
 		$this->Session->setFlash(__('The record was not deleted'), 'flash/error');
 		$this->redirect(array('action' => 'index'));
 	}
+
+
+/**
+ * add method
+ *
+ * @return void
+ */
+	public function copiar($rel_ds_de, $rel_ds_para) {
+		$options = array('conditions' => array('RelatorioFiltro.relatorio_dataset_id' => $rel_ds_de),
+			'recursive' => false);
+		$this->RelatorioFiltro->unbindModel(array('belongsTo' => array('RelatorioDataset', 'Tipo')));
+		$filtros = $this->RelatorioFiltro->find('all', $options);
+	
+		foreach ($filtros as $filtro) {
+			$this->RelatorioFiltro->create();
+			$filtro['RelatorioFiltro']['relatorio_dataset_id'] = $rel_ds_para;
+			//$filtro['RelatorioFiltro']['created'] = '';
+			//$filtro['RelatorioFiltro']['modified'] = '';
+			debug($filtro); //die;
+			$this->RelatorioFiltro->save($filtro['RelatorioFiltro']);
+		}
+		$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+		$this->redirect(array('action' => 'index'));
+	}
+
 }

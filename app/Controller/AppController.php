@@ -349,18 +349,20 @@ class AppController extends Controller {
  * @param void
  * @return file
  */
-  public function excel (){
+  public function excel ($dados = null){
     ini_set("memory_limit", "1G");
     set_time_limit(0);
 
     $this->layout='excel';
-    $this->{$this->modelClass}->recursive = -1;
+    $posts = $dados;
+    if ($posts == null) {
+      $this->{$this->modelClass}->recursive = -1;
 
-    if (count(Self::$fields_excel) > 0 )
-      $posts = $this->{$this->modelClass}->find('all', array('fields' => Self::$fields_excel));
-    else
-      $posts = $this->{$this->modelClass}->find('all');
-
+      if (count(Self::$fields_excel) > 0 )
+        $posts = $this->{$this->modelClass}->find('all', array('fields' => Self::$fields_excel));
+      else
+        $posts = $this->{$this->modelClass}->find('all');
+    }
     $this->set(compact('posts'));
   }
 

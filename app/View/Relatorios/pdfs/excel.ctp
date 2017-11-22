@@ -1,0 +1,1 @@
+<?php echo $this->Excel->Exportar($this->PhpExcel, $dados); ?>
