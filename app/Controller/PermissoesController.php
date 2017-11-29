@@ -141,7 +141,7 @@ class PermissoesController extends AppController {
  */
 	public function adicionar($user_id = null) {
 		//$this->VerificarUsuarioParaPermissao($id);
-		$this->IncluirPermissoesNoUsuario($user_id, true);
+		$this->IncluirPermissoesNoUsuario($user_id, 1);
 		$this->Session->setFlash(__('Permissões adicionadas!'), 'flash/error');
 		$this->redirect(array('controller' => 'usuarios', 'action' => 'view', $user_id));
 	}
@@ -156,7 +156,7 @@ class PermissoesController extends AppController {
  */
 	public function negar($user_id = null) {
 		//$this->VerificarUsuarioParaPermissao($id);
-		$this->IncluirPermissoesNoUsuario($user_id, false);
+		$this->IncluirPermissoesNoUsuario($user_id, 0);
 		$this->Session->setFlash(__('Permissões negadas!'), 'flash/error');
 		$this->redirect(array('controller' => 'usuarios', 'action' => 'view', $user_id));
 	}

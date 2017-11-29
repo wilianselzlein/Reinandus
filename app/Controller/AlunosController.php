@@ -453,7 +453,7 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
  * @param void
  * @return file
  */
-	public function excel (){
+	public function excel ($dados = null){
 		//Self::$fields_excel = array('Aluno.id', 'Aluno.nome', ...);
 		parent::excel();
 	}

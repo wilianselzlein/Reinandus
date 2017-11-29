@@ -19,12 +19,20 @@ class ExcelHelper extends AppHelper {
 		                             ->setCategory("Exportação Reinandus");
 
 		$PhpExcel->getActiveSheet()->setTitle('Reinandus');
-		$model = array_values(array_keys($posts[0]))[0];
-		$columns = array_keys($posts[0][$model]);
+		$modelos = array_values(array_keys($posts[0]));
+		$models = [];
+		foreach ($modelos as $model) 
+			$models[] = $model;
+
+		$columns = [];
+		foreach ($models as $model) 
+			$columns[$model] = array_keys($posts[0][$model]);
 
 		$table = [];
-		foreach ($columns as $column) 
-			$table[] = array('label' => __($column), 'filter' => true);
+		foreach ($columns as $chave => $colunas) {
+			foreach ($colunas as $coluna) 
+			$table[] = array('label' => __($coluna), 'filter' => true);
+		}
 
 		/* $table = array(
 		    array('label' => __('id'), 'filter' => true),
@@ -39,9 +47,10 @@ class ExcelHelper extends AppHelper {
 		foreach ($posts as $d) {
 
 			$table = [];
-			foreach ($columns as $column) 
-				$table[] = $d[$model][$column];
-
+			foreach ($columns as $model => $colunas) {
+				foreach ($colunas as $coluna) 
+					$table[] = $d[$model][$coluna];
+			}
 			$PhpExcel->addTableRow($table);
 
 		    /*$PhpExcel->addTableRow(array(
