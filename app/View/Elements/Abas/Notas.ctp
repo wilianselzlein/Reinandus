@@ -66,6 +66,15 @@ $fr += $nota['vdisciplinas']['aluno_disciplina_frequencia'];
       <td><?php echo round($fr / count($notas), 2);?>&nbsp;</td>
       <td><?php echo round($nt / count($notas), 2);?>&nbsp;</td>
     </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>TCC: &nbsp;</td>
+      <td><?php echo $alunos['valuno']['aluno_mono_nota']; ?>&nbsp;</td>
+    </tr>
   </tbody>
 </table>
 </div>
