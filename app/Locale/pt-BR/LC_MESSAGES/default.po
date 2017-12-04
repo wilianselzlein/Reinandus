@@ -723,3 +723,6 @@ msgstr "Orçamentos"
 
 msgid  "Video"
 msgstr "Vídeo"
+
+msgid  "Alfabetacao"
+msgstr "Alfabetação"

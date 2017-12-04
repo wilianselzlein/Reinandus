@@ -30,6 +30,9 @@ function CursoFim() {
                     <a href="#tabMono" data-toggle="tab"><i class="fa fa-file-text-o"></i>&nbsp;TCC</a>
                 </li>
                 <?php } ?>
+                <li>
+                    <a href="#tabArq" data-toggle="tab"><i class="fa fa-folder"></i>&nbsp;Arquivo</a>
+                </li>
         </ul>
     	<div class="panel panel-default">
 		  <div class="panel-body">
@@ -151,6 +154,20 @@ function CursoFim() {
 						</div><!-- .form-group -->
 	                </div>
 	            <?php } ?>
+					<div class="tab-pane" id="tabArq">
+			            <div class="form-group">
+						   <?php echo $this->Form->input('arquivo_corrente',
+						         array('class' => 'form-control', 'label'=>array('text' => 'Corrente', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+						</div><!-- .form-group -->
+			            <div class="form-group">
+						   <?php echo $this->Form->input('arquivo_intermediario',
+						         array('class' => 'form-control', 'label'=>array('text' => 'Intermediário', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+						</div><!-- .form-group -->
+			            <div class="form-group">
+						   <?php echo $this->Form->input('arquivo_permanente',
+						         array('class' => 'form-control', 'label'=>array('text' => 'Permanente', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+						</div><!-- .form-group -->
+	                </div>
         	</div>
     	  </div>
         </div>
