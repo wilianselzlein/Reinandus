@@ -25,7 +25,8 @@
             </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('alfabetacao',
-                     array('class' => 'form-control', 'autofocus' => 'autofocus', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+                     array('class' => 'form-control', 'autofocus' => 'autofocus', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-8">', 'after'=>'</div>')); ?>
+<?php echo $this->element('Alfabetacao'); ?>
             </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('nome_pai',
