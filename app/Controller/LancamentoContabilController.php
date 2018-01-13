@@ -166,11 +166,11 @@ class LancamentoContabilController extends AppController {
  * @throws FatalErrorException
  * @param void
  * @return file
- */
+ * /
 	public function excel (){
 		//Self::$fields_excel = array('LancamentoContabil.id', 'LancamentoContabil.data', 'LancamentoContabil.debito_id', 'LancamentoContabil.credito_id', ...);
 
 		parent::excel();
 	}
-
+*/
 }

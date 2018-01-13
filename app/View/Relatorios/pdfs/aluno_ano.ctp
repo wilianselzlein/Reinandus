@@ -4,7 +4,10 @@ App::import('Vendor','tcpdf/modelos/RelatorioPDF');
 $relatorio_pdf = new RelatorioPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $relatorio_pdf->setTitulo('Alunos Ativos por Curso e Ano');
 $relatorio_pdf->setFiltros($filtros);
-$ano1 = $aluno_ano[0]['0']['maximo'];
+if (isset($aluno_ano[0]['0']['maximo']))
+	$ano1 = $aluno_ano[0]['0']['maximo'];
+else
+	$ano1 = date('Y');
 $ano2 = $ano1 - 1;
 $ano3 = $ano1 - 2;
 $ano4 = $ano1 - 3;
