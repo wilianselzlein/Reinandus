@@ -68,7 +68,7 @@ class ImportarcsvsController extends AppController {
     		
     		$dados['nacionalidade'] = 'Brasileira';;
     		$dados['emitir_carteirinha'] = 1;
-    		$dados['curso_id'] = 1;
+    		$dados['curso_id'] = -1;
     		$dados['entregou_cpf'] = 0;
     		$dados['entregou_diploma'] = 0;
     		$dados['entregou_rg'] = 0;
