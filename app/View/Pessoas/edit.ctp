@@ -175,12 +175,12 @@
 <script>
    $('#PessoaPessoa').change(function(){
       if($(this).val()=='F'){
-         $('#PessoaCnpjcpf').removeClass('cnpj');
-         $('#PessoaCnpjcpf').addClass('cpf');
+         //$('#PessoaCnpjcpf').removeClass('cnpj');
+         //$('#PessoaCnpjcpf').addClass('cpf');
          $('.pessoa-juridica').addClass('hidden');
       }else{
-         $('#PessoaCnpjcpf').removeClass('cpf');
-         $('#PessoaCnpjcpf').addClass('cnpj');
+         //$('#PessoaCnpjcpf').removeClass('cpf');
+         //$('#PessoaCnpjcpf').addClass('cnpj');
          $('.pessoa-juridica').removeClass('hidden');
       }
    });

@@ -9,7 +9,7 @@
     $file_headers = @get_headers($site);
     if (($site != '') && ($file_headers[0] != 'HTTP/1.1 404 Not Found')) {
         $urlContent = file_get_contents($site, false); 
-        $reg = '/<table class="tabelas".*>(.|\s)+?<\/table>/i';
+        $reg = '/<table.*class="tabelas".*>(.|\s)+?<\/table>/i';
         if (preg_match($reg, $urlContent, $resultado)) {
             $encontrouDiv = true;
             $conteudoDiv = $resultado[0];
