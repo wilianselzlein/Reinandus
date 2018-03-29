@@ -20,9 +20,6 @@
     <li>
         <a href="#Vagas" data-toggle="tab" title="Vagas de Emprego" data-tt="tooltip"><i class="fa fa-suitcase fa-4x"></i>&nbsp;</a>
     </li>
-    <!--<li>
-        <a href="#Tcc" data-toggle="tab" title="Envio de TCC" data-tt="tooltip"></span>Envio <br>de TCC</a>
-    </li>-->
     <li>
         <a href="#Protocolo" data-toggle="tab" title="Protocolo" data-tt="tooltip"><i class="fa fa-envelope-o fa-4x"></i>&nbsp;</a>
     </li>
@@ -34,6 +31,9 @@
     </li>
     <li>
         <a href="#Videos" data-toggle="tab" title="Vídeos" data-tt="tooltip"><i class="fa fa-video-camera fa-4x"></i>&nbsp;</a>
+    </li>
+    <li>
+        <a href="#Tcc" data-toggle="tab" title="TCC" data-tt="tooltip"><i class="fa fa-file fa-4x"></i>&nbsp;</a>
     </li>
     <?php if ($pesquisa_ativa) { ?>
         <li>
@@ -71,9 +71,9 @@
         <div class="tab-pane" id="Protocolo">
 <?php echo $this->element('Abas/Protocolo'); ?>
         </div>
-        <!--<div class="tab-pane" id="Tcc">
+        <div class="tab-pane" id="Tcc">
 <?php echo $this->element('Abas/Tcc'); ?>
-        </div>-->
+        </div>
         <div class="tab-pane" id="Forum">
 <?php echo $this->element('Abas/Forum'); ?>
         </div>

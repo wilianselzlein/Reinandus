@@ -1,5 +1,19 @@
-Nessa seção o aluno postará o arquivo. O professor fará as correções, postada o arquivo com comentários. O aluno terá mais duas opções de enviar e receber feedback.
-No final o professor da o parecer final com a respectiva nota.
+<style>
+   .tab-content{
+      /*]border: 1px solid red;*/
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      padding-top: 25px;
+      height: 0;
+   }
+   .tab-content iframe {
+      /*border: 1px solid blue;*/
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+   }
+</style>
 
-Tem um opção que o professor deve assinalar: liberar para confecção de banner? Se sim terminou. Se não, reprovou.
-
+<iframe id="frametab" name="tab-frame" src="https://goo.gl/forms/8hyJrWTKx4bYpOwe2" frameborder="0"></iframe>
