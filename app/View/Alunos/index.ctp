@@ -11,6 +11,7 @@
 
 	<div class="panel-body">
 		<?php echo $this->element('pesquisa/simples');?>
+		<?php echo $this->element('Paginator'); ?>		
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover table-condensed" >
 				<thead>
