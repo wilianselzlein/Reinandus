@@ -148,6 +148,7 @@ class AppController extends Controller {
             ),
             'Form',
          );
+         $this->Auth->allow('aluno_Boleto');
          $this->Auth->allow('login');
 
       } else {//if ($this->request->prefix == 'phys') {
@@ -170,7 +171,7 @@ class AppController extends Controller {
       /*if($this->name == 'CakeError') {
          $this->layout = null;
       }*/
-      
+
 		$this->MontarMenu();
    }
 
@@ -256,14 +257,14 @@ class AppController extends Controller {
   }
 
 	private function MontarMenu() {
-		
+
       $dados = $this->Session->read('Auth');
       if (isset($dados['User'])) {
          $user_id = $dados['User']['id'];
-           
+
          $Permissoes = new PermissoesController;
          $permissoes = $Permissoes->ConsultarPermissoesParaMontarOMenu($user_id);
-   
+
    		$this->set(compact('permissoes'));
 
       $nome_sistema = $this->NomeDoSistemaVindoDoParametro();
@@ -290,8 +291,8 @@ class AppController extends Controller {
       if (isset($registro[$this->modelClass]['username']))
           $registro[$this->modelClass]['username'] = 'Copiado';
 
-      /*debug($this->name); 
-      debug($this->modelClass); 
+      /*debug($this->name);
+      debug($this->modelClass);
       debug($this->methods);
       debug($this->request->params['pass'][0]);
       debug($registro); die;*/
@@ -302,11 +303,11 @@ class AppController extends Controller {
 
         $this->beforeCopy($id, $novo);
         $this->Session->setFlash(__('The record has been saved'), "flash/success");
-        $this->redirect(array('action' => 'edit', $novo));  
+        $this->redirect(array('action' => 'edit', $novo));
       } else {
         $this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
         $this->redirect(array('action' => 'index'));
-      } 
+      }
 
 
   }
