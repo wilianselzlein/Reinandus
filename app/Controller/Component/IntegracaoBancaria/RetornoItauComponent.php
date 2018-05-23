@@ -5,6 +5,7 @@ App::import('Controller/Component/IntegracaoBancaria', 'RetornoBaseComponent');
 
 const CONFIRMADO = '02';
 const REJEITADO = '03';
+const ALTERADO = '04';
 const BAIXA_SIMPLES = '09';
 const LIQUIDACAO_NORMAL = '06';
 
@@ -21,10 +22,14 @@ class RetornoItauComponent extends RetornoBaseComponent {
 		if (count($mensalidade) == 0) 
 			return;
 
+		if (! $this->PegarCodigoConfirmacao() == ALTERADO)
+			return;
+
 		$mensalidade['Mensalidade']['id'] = $mensalidade_id;
 
 		if (($this->PegarCodigoConfirmacao() == CONFIRMADO) || 
 			($this->PegarCodigoConfirmacao() == REJEITADO) || 
+			($this->PegarCodigoConfirmacao() == ALTERADO) || 
 			($this->PegarCodigoConfirmacao() == BAIXA_SIMPLES) ) 
 		{ 
 			$mensalidade = [];
