@@ -20,6 +20,10 @@
                <td>
                   <?php echo h($curso['Curso']['nome']); ?>
                   &nbsp;
+               </td><tr>		<td><strong><?php echo __('Grande Área'); ?></strong></td>
+               <td>
+                  <?php echo h($curso['Curso']['area']); ?>
+                  &nbsp;
                </td>
                </tr><tr>		<td><strong><?php echo __('Turma'); ?></strong></td>
                <td>
