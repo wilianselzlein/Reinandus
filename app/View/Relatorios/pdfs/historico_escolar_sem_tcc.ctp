@@ -116,7 +116,7 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
   $ultimoregistro = $index == count($historico_escolar) - 1;
   if (($proximo != $atual) || ($ultimoregistro)) {
 
-    $rowData = new Row('');
+    /*$rowData = new Row('');
     $rowData
       ->addColumn('TRABALHO DE CONCLUSÃO DE CURSO:', 'col-35 line')
       ->addColumn($historico_escolar[$index]['orientador']['orientador'], 'col-30 line')
@@ -137,7 +137,8 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
     $vermelho = 0;
     if (strpos($table->__toString(), "vermelho") > 0)
       $vermelho = 999;
-
+*/
+    $vermelho = 0;
     $rowData = new Row('');
     $rowData
       ->addColumn('', 'col-35 line')
