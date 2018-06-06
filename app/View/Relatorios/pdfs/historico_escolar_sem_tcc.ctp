@@ -153,7 +153,7 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
     $table->close();
     $html .= $table;
 
-    $html .= 'Declaramos para os devidos fins que o curso de ' . $tipo . ' em ' . $curso . ' cumpriu todas as disposições da Resolução MEC/CES-CNE nº 1, de 8 de junho de 2007. <br> <div align="center">' . 
+    $html .= 'Declaramos para os devidos fins que o curso de ' . $tipo . ' em ' . $curso . ' cumpriu todas as disposições da Resolução CNE/CES nº 01/2018 no D.O.U, de 09 de abril de 2018 do MEC. <br> <div align="center">' . 
       $historico_escolar[$index]['matriz']['matriz'] . ', ' . 
       $relatorio_pdf->DataPorExtenso() .  '<br><br>' .
       $historico_escolar[$index]['pessoa']['razaosocial'] . '<br>Secretaria</div>';
