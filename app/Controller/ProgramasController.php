@@ -186,9 +186,9 @@ class ProgramasController extends AppController {
  	$this->AdicionarProgramaSeNaoExistir(36, 'Orcamento');
  	$this->AdicionarProgramaSeNaoExistir(37, 'Cobranca');
  	$this->AdicionarProgramaSeNaoExistir(38, 'Monitoramento');
- 	/*$this->AdicionarProgramaSeNaoExistir(39, '');
- 	$this->AdicionarProgramaSeNaoExistir(40, '');
- 	*/
+ 	$this->AdicionarProgramaSeNaoExistir(39, 'Calendario');
+ 	//$this->AdicionarProgramaSeNaoExistir(40, '');
+ 	
 	$this->Session->setFlash(__('Os programas foram atualizados.'), 'flash/success');
  }
 

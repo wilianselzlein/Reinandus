@@ -726,3 +726,6 @@ msgstr "Vídeo"
 
 msgid  "Alfabetacao"
 msgstr "Alfabetação"
+
+msgid  "Area"
+msgstr "Área"
