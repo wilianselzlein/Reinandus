@@ -31,6 +31,16 @@
 			<?php echo $this->Html->link($calendario['Curso']['nome'], array('controller' => 'cursos', 'action' => 'view', $calendario['Curso']['id']), array('class' => '')); ?>
 			&nbsp;
 		</td>
+</tr><tr>		<td><strong><?php echo __('Created'); ?></strong></td>
+		<td>
+			<?php echo h($calendario['Calendario']['created']); ?>
+			&nbsp;
+		</td>
+</tr><tr>		<td><strong><?php echo __('Modified'); ?></strong></td>
+		<td>
+			<?php echo h($calendario['Calendario']['modified']); ?>
+			&nbsp;
+		</td>
 </tr>					</tbody>
 				</table><!-- /.table table-striped table-bordered -->
 			</div><!-- /.table-responsive -->

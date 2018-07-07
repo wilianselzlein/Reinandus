@@ -28,5 +28,6 @@
    <?php echo $this->element('Relateds/Alunos', array('array' => $alunos)); ?>
    <?php echo $this->element('Relateds/Cursos', array('array' => $cursos)); ?>
    <?php echo $this->element('Relateds/Professores', array('array' => $professores)); ?>
-
+   <?php echo $this->element('Relateds/Calendarios', array('array' => $calendarios)); ?>
+	
 </div><!-- /#page-container .row-fluid -->

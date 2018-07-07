@@ -90,4 +90,25 @@ class Disciplina extends AppModel {
 		)
 	);
 
+/**
+ * hasMany associations
+ *
+ * @var array
+ */
+	public $hasMany = array(
+		'Calendario' => array(
+			'className' => 'Calendario',
+			'foreignKey' => 'disciplina_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
+	
 }

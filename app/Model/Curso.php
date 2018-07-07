@@ -174,6 +174,19 @@ var $actsAs = array('NumberFormat', 'DateFormat');
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
+		),
+		'Calendario' => array(
+			'className' => 'Calendario',
+			'foreignKey' => 'curso_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
 		)
 	);
 

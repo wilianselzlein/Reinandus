@@ -84,6 +84,12 @@ class DisciplinasController extends AppController {
 		$professores = $this->Disciplina->Professor->find('all', $options);
 		$professores = $this->TransformarArray->FindInContainable('Professor', $professores);
 		$this->set(compact('professores'));
+		
+		$options = array('recursive' => false, 'conditions' => array('Calendario.disciplina_id' => $id), 'limit' => self::$LIMITE_VIEW,
+		  'fields' => array('Calendario.id', 'Calendario.data', 'Curso.id', 'Curso.nome', 'Disciplina.id', 'Disciplina.nome'));
+		$calendarios = $this->Disciplina->Calendario->find('all', $options);
+		$calendarios = $this->TransformarArray->FindInContainable('Calendario', $calendarios);
+		$this->set(compact('calendarios'));
 	}
 
 /**

@@ -80,6 +80,12 @@ class CursosController extends AppController {
 		$disciplinas = $this->Curso->CursoDisciplina->find('all', $options);
 		$disciplinas = $this->TransformarArray->FindInContainable('CursoDisciplina', $disciplinas);
 		$this->set(compact('disciplinas'));
+		
+		$options = array('recursive' => false, 'conditions' => array('Calendario.curso_id' => $id), 'limit' => self::$LIMITE_VIEW,
+		  'fields' => array('Calendario.id', 'Calendario.data', 'Curso.id', 'Curso.nome', 'Disciplina.id', 'Disciplina.nome'));
+		$calendarios = $this->Curso->Calendario->find('all', $options);
+		$calendarios = $this->TransformarArray->FindInContainable('Calendario', $calendarios);
+		$this->set(compact('calendarios'));
 	}
 
 /**
