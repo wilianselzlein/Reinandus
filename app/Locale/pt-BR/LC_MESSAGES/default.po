@@ -729,3 +729,9 @@ msgstr "Alfabetação"
 
 msgid  "Area"
 msgstr "Área"
+
+msgid  "Calendario"
+msgstr "Calendário"
+
+msgid  "Calendarios"
+msgstr "Calendário"

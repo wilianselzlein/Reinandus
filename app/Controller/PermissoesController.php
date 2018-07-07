@@ -231,6 +231,7 @@ class PermissoesController extends AppController {
 		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Secretaria', 'Contrato Alunos', 23, 'Contratos', 'aluno');
 		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Secretaria', 'Contrato Professores', 23, 'Contratos', 'professor');
 		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Secretaria', 'Notas e Frequências', 30);
+		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Secretaria', 'Calendarios', 39);
 		
 		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Financeiro', 'Mensalidades', 34);
 		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Financeiro', 'Contas a Pagar', 19);

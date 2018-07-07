@@ -33,14 +33,14 @@ var $actsAs = array('DateFormat');
 			'className' => 'Disciplina',
 			'foreignKey' => 'disciplina_id',
 			'conditions' => '',
-			'fields' => '',
+			'fields' => 'id, nome',
 			'order' => ''
 		),
 		'Curso' => array(
 			'className' => 'Curso',
 			'foreignKey' => 'Curso_id',
 			'conditions' => '',
-			'fields' => '',
+			'fields' => 'id, nome',
 			'order' => ''
 		)
 	);
