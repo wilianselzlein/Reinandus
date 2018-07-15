@@ -51,7 +51,7 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
     $rowData = new Row('');
 
     $rowData
-      ->addColumn('Período de Ralização:', 'col-20')
+      ->addColumn('Período de Realização:', 'col-20')
       ->addColumn(
           $relatorio_pdf->DataPorExtenso2($historico_escolar[$index]['aluno']['curso_inicio']) . ' a ' . 
           $relatorio_pdf->DataPorExtenso2($historico_escolar[$index]['aluno']['curso_fim']), 'col-80')
