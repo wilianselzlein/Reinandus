@@ -72,6 +72,44 @@
 	</div>
 	<?php echo $this->element('Paginator'); ?>
 </div>
+
+<div class="panel panel-default">
+
+	<div class="panel-heading">
+		<h3>
+			<span class="fa fa-male"></span> <?php echo __('Alunos'); ?>
+			<small><?php echo __('Pendentes Monografia com disciplinas concluídas.') ?></small>
+			<?php echo $this->ButtonsActionsEnumerados->MakeButtons($this->params['controller'], $this->params['action'],
+			null, array(array('model' => 'Aluno', 'action' => 'emails'), array('model' => 'Aluno', 'action' => 'trocar')), array('indicacao_id', 'estado_civil_id')); ?>
+		</h3>
+	</div>
+
+	<div class="panel-body">
+
+	<div class="table-responsive">
+		<table class="table table-bordered table-hover table-condensed" >
+			<thead>
+				<tr class="active">
+					<th><?php echo 'Id'; ?></th>
+					<th><?php echo 'Nome'; ?></th>
+					<th><?php echo 'Email'; ?></th>
+					<th class="actions text-center" colspan="2"><?php echo __('Actions'); ?></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($pendentes as $pendente): ?>
+					<tr></tr>
+						<td><?php echo h($pendente['a']['id']); ?>&nbsp;</td>
+						<td><?php echo h($pendente['a']['nome']); ?>&nbsp;</td>
+						<td><?php echo h($pendente['a']['email']) . ' ' . h($pendente['a']['emailalt']); ?>&nbsp;</td>
+						<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $pendente, 'model' => 'a')); ?>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div><!-- /.table-responsive -->
+
+</div>
 <?php echo $this->element('Modal'); ?>
 <?php echo $this->element('ShowHide'); ?>
 <?php echo $this->Html->script('cfg-cache-modal');?>

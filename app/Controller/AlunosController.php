@@ -58,7 +58,18 @@ class AlunosController extends AppController {
 //		$this->Aluno->unbindModel(array('belongsTo' => 
 //			array('Naturalidade', 'EstadoCivil', 'Indicacao', 'Professor', 'Situacao', 'Responsavel')));
 		$this->set('alunos', $this->paginate());
-
+		
+		$pendentes = $this->Aluno->query(
+			'select a.id, a.nome, a.email, a.emailalt
+			from aluno a 
+			where a.situacao_id = 8
+			and a.id not in (
+			select ad.aluno_id 
+			from aluno_disciplinas ad 
+			join aluno b on ad.aluno_id = b.id
+			where b.situacao_id = 8
+			and (ad.frequencia = 0 or ad.nota = 0 or ad.horas_aula = 0))');
+		$this->set('pendentes', $pendentes);
 	}
 
 /**

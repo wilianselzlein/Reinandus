@@ -518,8 +518,8 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
         $lancamento['debito_id'] = $forma['Formapgto'][$debito];
         $lancamento['credito_id'] = $forma['Formapgto'][$credito];
         $lancamento['historico_padrao_id'] = $forma['Formapgto'][$historico];
-        $lancamento['documento'] = $mensalidade['Mensalidade']['documento'] . ' ' . $mensalidade['Mensalidade']['id'];
-        $lancamento['complemento'] = $mensalidade['Aluno']['nome'] . '-' . $mensalidade['Mensalidade']['aluno_id'];
+        $lancamento['documento'] = $mensalidade['Mensalidade']['documento'];
+        $lancamento['complemento'] = $mensalidade['Aluno']['nome'] . '-' . $mensalidade['Mensalidade']['aluno_id'] . ' ' . $mensalidade['Mensalidade']['id'];
         if (isset($mensalidade['Mensalidade']['retorno']))
 			$lancamento['valor'] = $mensalidade['Mensalidade'][$valor];
 		else

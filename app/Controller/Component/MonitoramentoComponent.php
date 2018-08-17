@@ -27,7 +27,8 @@ var $MONITORAMENTOS = array(
 		19 => 'MensalidadeSemLancamentoContabil',
 		20 => 'ProfessorSemCidade',
 		21 => 'AlunoSemNotaEFrequencia',
-		22 => 'AlunoSemNaturalidade'
+		22 => 'AlunoSemNaturalidade',
+		23 => 'AlunoNomeDuplicado'
 	);
 
 /**
