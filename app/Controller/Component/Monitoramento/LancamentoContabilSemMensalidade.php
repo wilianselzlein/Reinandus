@@ -18,7 +18,7 @@ class LancamentoContabilSemMensalidade implements InterfaceMonitoramento
         		left join mensalidade mensalidade_valor on LancamentoContabil.id = mensalidade_valor.lancamento_valor_id
         		left join mensalidade mensalidade_desconto on LancamentoContabil.id = mensalidade_desconto.lancamento_desconto_id
         		left join mensalidade mensalidade_juro on LancamentoContabil.id = mensalidade_juro.lancamento_juro_id
-				where LancamentoContabil.data > "2015.01.01") as LancamentoContabil
+				where LancamentoContabil.data > "2018.05.01") as LancamentoContabil
 				where LancamentoContabil.mensalidade_valor_id is null
 				and LancamentoContabil.mensalidade_desconto_id is null
 				and LancamentoContabil.mensalidade_juro_id is null
