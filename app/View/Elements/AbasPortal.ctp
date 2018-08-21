@@ -32,9 +32,9 @@
     <li>
         <a href="#Videos" data-toggle="tab" title="Vídeos" data-tt="tooltip"><i class="fa fa-video-camera fa-4x"></i>&nbsp;</a>
     </li>
-    <li>
+    <!--<li>
         <a href="#Tcc" data-toggle="tab" title="TCC" data-tt="tooltip"><i class="fa fa-file fa-4x"></i>&nbsp;</a>
-    </li>
+    </li>-->
     <?php if ($pesquisa_ativa) { ?>
         <li>
             <a href="#Pesquisa" data-toggle="tab" title="Pesquisa" data-tt="tooltip"><i class="fa fa-star-half-o fa-4x"></i>&nbsp;</a>
@@ -71,9 +71,9 @@
         <div class="tab-pane" id="Protocolo">
 <?php echo $this->element('Abas/Protocolo'); ?>
         </div>
-        <div class="tab-pane" id="Tcc">
-<?php echo $this->element('Abas/Tcc'); ?>
-        </div>
+<!--        <div class="tab-pane" id="Tcc">
+<?php // echo $this->element('Abas/Tcc'); ?>
+        </div> -->
         <div class="tab-pane" id="Forum">
 <?php echo $this->element('Abas/Forum'); ?>
         </div>
