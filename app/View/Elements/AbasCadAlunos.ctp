@@ -33,6 +33,9 @@ function CursoFim() {
                 <li>
                     <a href="#tabArq" data-toggle="tab"><i class="fa fa-folder"></i>&nbsp;Arquivo</a>
                 </li>
+                <li>
+                    <a href="#tabPag" data-toggle="tab"><i class="fa fa-money"></i>&nbsp;Pagamento</a>
+                </li>
         </ul>
     	<div class="panel panel-default">
 		  <div class="panel-body">
@@ -166,6 +169,12 @@ function CursoFim() {
 			            <div class="form-group">
 						   <?php echo $this->Form->input('arquivo_permanente',
 						         array('class' => 'form-control', 'label'=>array('text' => 'Permanente', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+						</div><!-- .form-group -->
+	                </div>
+					<div class="tab-pane" id="tabPag">
+			            <div class="form-group">
+						   <?php echo $this->Form->input('local_pagamento',
+						         array('class' => 'form-control', 'options' => array('B' => 'Boleto', 'A' => 'Banco', 'C' => 'Cheque', 'D' => 'Dinheiro'), 'label'=>array('text' => 'Local Pagamento', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
 						</div><!-- .form-group -->
 	                </div>
         	</div>
