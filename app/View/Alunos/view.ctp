@@ -99,6 +99,7 @@ else
 	<?php echo $this->element('LinhaView', array('alias' => 'Certificado Entregue', 'valor' => h($aluno['Aluno']['cert_entrega']))); ?>
 	<?php echo $this->element('LinhaView', array('alias' => 'Bloqueado', 'valor' => h($aluno['Aluno']['bloqueado']))); ?>
 	<?php echo $this->element('LinhaView', array('alias' => 'Data Bloqueio', 'valor' => h($aluno['Aluno']['bloqueado_data']))); ?>
+	<?php echo $this->element('LinhaView', array('alias' => 'Imprimiu Comprovante', 'valor' => h($aluno['Aluno']['imprimiu_comprovante']))); ?>
 	<tr>
 		<td><strong><?php echo __('Orientador'); ?></strong></td>
 	<td><?php echo $this->Html->link($aluno['Professor']['nome'], array('controller' => 'professores', 'action' => 'view', $aluno['Professor']['id']), array('class' => '')); ?>&nbsp;</td>

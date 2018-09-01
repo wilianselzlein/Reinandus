@@ -28,7 +28,8 @@ var $MONITORAMENTOS = array(
 		20 => 'ProfessorSemCidade',
 		21 => 'AlunoSemNotaEFrequencia',
 		22 => 'AlunoSemNaturalidade',
-		23 => 'AlunoNomeDuplicado'
+		23 => 'AlunoNomeDuplicado',
+		24 => 'AlunoImprimiuComprovante'
 	);
 
 /**

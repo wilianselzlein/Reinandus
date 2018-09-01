@@ -468,5 +468,24 @@ Aluno.cert_entrega, Aluno.created, Aluno.modified, Aluno.formacao, */
 		//Self::$fields_excel = array('Aluno.id', 'Aluno.nome', ...);
 		parent::excel();
 	}
+	
+	/**
+ * ConsultarDetalhes method
+ *
+ * @param int $id
+ * @return void
+ */
+	public function SetarComprovanteComoImpresso($id) {
+		if (!$this->Aluno->exists($id)) {
+			throw new NotFoundException(__('The record could not be found.'));
+		}
+
+		$options = array('recursive' => -1, 'conditions' => array('Aluno.' . $this->Aluno->primaryKey => $id));
+		$aluno = $this->Aluno->find('first', $options);
+		$aluno['Aluno']['imprimiu_comprovante'] = True;
+
+		$this->Aluno->save($aluno);
+
+	}
 
 }

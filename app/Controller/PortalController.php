@@ -8,6 +8,7 @@
 
 App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
+App::import('Controller', 'Alunos');
 App::import('Controller', 'Cursos');
 App::import('Controller', 'Enumerados');
 App::import('Controller', 'Institutos');
@@ -175,6 +176,10 @@ class PortalController extends AppController {
 
     public function aluno_comprovante() {
       $dados = $this->DadosComprovantes();
+      $aluno_id = $dados['Portal']['id'];
+      $Aluno = new AlunosController;
+      $Aluno->SetarComprovanteComoImpresso($aluno_id);
+
       $mensalidades = $this->request->data['Portal']['mensalidades'];
       $mensalidades = unserialize($mensalidades);
       $filtro = $this->request->data['Portal']['ano'];
