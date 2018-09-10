@@ -157,6 +157,10 @@ class PortalController extends AppController {
     }
 
     public function aluno_Boleto($id = null) {
+      if (!is_numeric($id)){
+        $id = $this->__decryptBilletId($id);  
+      }
+
       if (is_null($id)) {
         $this->redirect(array('action' => 'index'));
         return;
@@ -379,6 +383,25 @@ class PortalController extends AppController {
         }
         return false;
     }
+    
+    function __encryptBilletId($id = null) {
+      $str = "reinandus034S-".$id."-DYhG93b0qyJfIxfs2guVoUubWwvniR2G";
 
+      return $this->base64url_encode($str);
+    }
+
+    function __decryptBilletId($encryptedId = null) {
+      $str = $this->base64url_decode($encryptedId);
+      $id = explode("-", $str);
+
+      return $id[1];
+    }
+
+    function base64url_encode($data) { 
+      return rtrim(strtr(base64_encode($data), '+/', '-_'), '='); 
+    } 
+    function base64url_decode($data) { 
+        return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT)); 
+    }
 }
   
