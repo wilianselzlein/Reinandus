@@ -2,7 +2,7 @@
    <div class="panel-heading">
       <h3><?php echo __('Contrato'); ?>
          <small><?php echo __('Gerar') ?></small>
-         <?php echo $this->ButtonsActions->MakeButtons('Mensalidades', 'add'); ?>
+         <?php echo $this->ButtonsActions->MakeButtons('Mensalidades', 'add', null, array(array('model' => 'Contrato', 'action' => 'gerenciar'))); ?>
       </h3>
    </div>
    <div class="panel-body">

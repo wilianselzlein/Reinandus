@@ -99,4 +99,33 @@ class ContratosController extends AppController {
         $this->set(compact('professores', 'disciplinas'));
 	}
 
+/**
+ * gerencias method
+ *
+ * @return void
+ */
+	public function gerenciar() {
+        if ($this->request->is('post')) {
+            
+            $data = $this->request->data;
+            $data = $data['Cabecalho'];
+            $data = $data['arquivo'];
+            /*
+            'name' => 'nome.rtf',
+			'type' => 'application/rtf',
+			'tmp_name' => '/tmp/phpxPOzQ7',
+			'error' => (int) 0,
+			'size' => (int) 62330
+			*/
+    		App::uses('File', 'Utility');
+    		$nome = "contratos/".$data['name'];
+    		$arquivo = new File($data['tmp_name']);
+            $arquivo->copy($nome);
+    		$arquivo->close();
+
+			$this->Session->setFlash(__('The record has been saved') . ' Arquivo: ' . $nome . ' Tamanho: ' . filesize($nome) . 'b .', "flash/success");
+			$this->redirect(array('action' => 'gerenciar'));
+		}
+	}
+
 }

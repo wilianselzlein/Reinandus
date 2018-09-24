@@ -18,6 +18,8 @@ class ContratosHelper extends AppHelper {
 			$diretorio = dir($this->pasta);
 			while(($arquivo = $diretorio->read()) !== false) {
 				if (($arquivo != '.') && ($arquivo != '..')) {
+					if ($tipo == '') 
+						$modelos[$arquivo] = $arquivo;
 					if (($tipo == 'Alunos') && (strpos($arquivo, 'Prof') === False)) 
 						$modelos[$arquivo] = $arquivo;
 					if (($tipo == 'Professor') && (strpos($arquivo, 'Prof') > 0)) 
