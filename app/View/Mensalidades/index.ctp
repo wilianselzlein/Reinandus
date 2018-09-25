@@ -1,3 +1,4 @@
+<?php echo $this->Html->css('icones'); ?>
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h3><span class="fa fa-money"></span> <?php echo __('Mensalidades'); ?>
@@ -5,6 +6,27 @@
 		</h3>
 	</div>
 	<div class="panel-body">
+    	<?php
+			$desabilitado = 1;
+	    	$desabilitado = count($desabilitado) == 0 ? 'disabled' : '';
+    	?>
+ 		<div class="dashboard-icon <?php echo $desabilitado; ?>">
+ 			<?php echo $this->Html->link('<i class="fa fa-recycle fa-4x"></i>', array('controller' => 'Mensalidades', 'action' => 'gerar'), array('escape'=> false)); ?>
+ 			<span><?php echo __('Gerar'); ?></span>
+ 		</div>
+ 		<div class="dashboard-icon <?php echo $desabilitado; ?>">
+ 			<?php echo $this->Html->link('<i class="fa fa-calendar fa-4x"></i>', array('controller' => 'Mensalidades', 'action' => 'vencimento'), array('escape'=> false)); ?>
+ 			<span><?php echo __('Alterar Vencimento'); ?></span>
+ 		</div>
+ 		<div class="dashboard-icon  <?php echo $desabilitado; ?>">
+ 			<?php echo $this->Html->link('<i class="fa fa-square-o fa-4x"></i>', array('controller' => 'Enumerados', 'action' => 'view', 85), array('escape'=> false)); ?>
+ 			<span><?php echo __('Abertos'); ?></span>
+ 		</div>
+ 		<div class="dashboard-icon  <?php echo $desabilitado; ?>">
+ 			<?php echo $this->Html->link('<i class="fa fa-check-square-o fa-4x"></i>', array('controller' => 'Enumerados', 'action' => 'view', 86), array('escape'=> false)); ?>
+ 			<span><?php echo __('Fechados'); ?></span>
+ 		</div>
+
 		<?php echo $this->element('pesquisa/simples');?>
 		<div class="table-responsive">
 			<table class="table table-bordered table-hover table-condensed" >

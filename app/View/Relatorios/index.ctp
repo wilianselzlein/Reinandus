@@ -2,6 +2,7 @@
    .menu { float: left; width: 80%; }
    .conteudo { margin-left: 90%; margin-top: 20px;}
 </style>
+<?php echo $this->Html->css('icones'); ?>
 <div class="panel panel-default">
    <div class="panel-heading">
       <h3>
@@ -15,30 +16,7 @@
    </div>
    <div id="page-container" class="panel-body">
       <style>
-         .dashboard-icon
-         {
-            text-align: center;
-            float:left;
-            margin:15px;
-            width:10%;
-            border:0px solid red;
-            -moz-transition:-moz-transform 0.2s ease-in; 
-            -webkit-transition:-webkit-transform 0.2s ease-in; 
-            -o-transition:-o-transform 0.2s ease-in;           
-         }                
-         .dashboard-icon img, .dashboard-icon span
-         {
-
-            width:100%;
-            text-align: center;
-            display: block;
-         }        
-         .dashboard-icon:hover
-         {
-            -moz-transform:scale(1.3); 
-            -webkit-transform:scale(1.3);
-            -o-transform:scale(1.3);
-         }                 
+        
       </style>
       <div>
          <div>

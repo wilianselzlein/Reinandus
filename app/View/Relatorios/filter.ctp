@@ -1,28 +1,4 @@
 <style>
-   .dashboard-icon
-   {
-      float:left;
-      margin:15px;
-      width:10%;
-      border:0px solid red;
-      -moz-transition:-moz-transform 0.2s ease-in; 
-      -webkit-transition:-webkit-transform 0.2s ease-in; 
-      -o-transition:-o-transform 0.2s ease-in;
-   }
-   .dashboard-icon img, .dashboard-icon span
-   {
-      width:100%;
-      text-align: center;
-      display: block;
-   }
-   .dashboard-icon:hover
-   {
-      -moz-transform:scale(2); 
-      -webkit-transform:scale(2);
-      -o-transform:scale(2);
-   } 
-</style>
-<style>
    #dynamic-list {
       max-width: 100%;
    }
