@@ -1,7 +1,7 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<h3><span class="fa fa-money"></span> <?php echo __('Mensalidades'); ?>
-			<?php echo $this->ButtonsActionsEnumerados->MakeButtons($this->params['controller'], $this->params['action']); ?>
+			<?php echo $this->ButtonsActionsEnumerados->MakeButtons($this->params['controller'], $this->params['action'], null, array(array('model' => 'Mensalidade', 'action' => 'vencimento'))); ?>
 		</h3>
 	</div>
 	<div class="panel-body">

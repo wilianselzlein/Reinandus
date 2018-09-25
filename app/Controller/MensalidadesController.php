@@ -629,4 +629,72 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		$valor = str_replace('.', ',', $valor);
 		return $valor;
 	}
+
+/**
+ * vencimento method
+ *
+ * @return void
+ */
+	public function vencimento($tipo = null) {
+		$this->Mensalidade->recursive = 0;
+	
+		$proximos = $this->Mensalidade->find('list',array(
+		    'fields'=> array('Mensalidade.vencimento','COUNT(Mensalidade.id) as conta'),
+		    'conditions'=> 'Mensalidade.pago is not null',
+		    'recursive'=>0,
+		    'group' => 'Mensalidade.vencimento',
+		    'order' => 'Mensalidade.vencimento',
+		    'limit' => 20
+		));
+		$this->set('proximos', $proximos);
+	}
+
+
+/**
+ * consultar method
+ *
+ * @return void
+ */
+	public function consultar() {
+	    $data = $this->request->data;
+		$vencimento = $data['Mensalidade']['consulta'];
+		$para = $data['Mensalidade']['para'];
+		//debug($id); die;
+		if (($vencimento == '') || ($para == '')) {
+			die;
+		}
+		
+		$options = array('recursive' => false, 'conditions' => array('Mensalidade.vencimento' => $vencimento),
+			'fields' => array('Mensalidade.id', 'Mensalidade.aluno_id', 'Mensalidade.numero', 'Mensalidade.vencimento', 'Mensalidade.liquido', 'Mensalidade.pagamento', 'Formapgto.id', 'Formapgto.nome', 'Aluno.id', 'Aluno.nome', 'Situacao.id', 'Situacao.valor'));
+		$this->Mensalidade->unbindModel(array('belongsTo' => array('Conta', 'User', 'LancamentoContabilValor', 'LancamentoContabilDesconto', 'LancamentoContabilJuro')));
+		$registros = $this->Mensalidade->find('all', $options);
+		//$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);
+	    $this->set('registros', $registros);
+	    
+	    $this->set('para', $para);
+	}
+
+/**
+ * alterar method
+ *
+ * @return void
+ */
+	public function alterar($id, $para) {
+		$this->Mensalidade->id = $id;
+		
+		if (!$this->Mensalidade->exists($id)) {
+			throw new NotFoundException(__('The record could not be found.'));
+		}
+		$mensalidade = [];
+		$mensalidade['id'] = $id;
+		$mensalidade['vencimento'] = $para;
+		if ($this->Mensalidade->save($mensalidade)) {
+			$retorno = 'OK';
+		} else {
+			$retorno = 'Erro';
+		}
+		$this->set('retorno', $retorno);
+	}
+
+
 }
