@@ -1,0 +1,1 @@
+<i class="<?php echo ($retorno == true ? 'glyphicon fa fa-check-square-o' : 'fa fa-square-o'); ?>"></i> &nbsp;

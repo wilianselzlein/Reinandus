@@ -34,12 +34,12 @@
 		<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $registro, 'model' => 'Mensalidade')); ?>
 		<td>
 			<i class="fa fa-refresh fa-spin fa-1x fa-fw indicator" id="<?php echo 'Indicador' . $id; ?>" style="display: none"></i>
-			<div id="AAlterar<?php echo $id; ?>"></div>
+			<div id="update<?php echo $id; ?>"></div>
 			<?php echo $this->Ajax->submit('Alterar', array(
 						'id' => 'Alterar' . $id,
 						'url'=> array('controller'=>'Mensalidades', 'action'=>'alterar', $id, $para), 
 						'class' => 'Alterar',
-						'update' => 'AAlterar'. $id,
+						'update' => 'update'. $id,
 						'indicator' => 'Indicador' . $id,
 						'before' => ' $("#Alterar' . $id . '").remove()' 
 						//$("#Registro' .  $id. '").hide();'; 

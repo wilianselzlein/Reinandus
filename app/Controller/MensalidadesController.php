@@ -671,7 +671,7 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		//$mensalidades = $this->TransformarArray->FindInContainable('Mensalidade', $mensalidades);
 	    $this->set('registros', $registros);
 	    
-	    $this->set('para', $para);
+	    $this->set('para', str_replace('/', '_', $para));
 	}
 
 /**
@@ -687,12 +687,8 @@ Mensalidade.renegociacao, Mensalidade.created, Mensalidade.modified, Mensalidade
 		}
 		$mensalidade = [];
 		$mensalidade['id'] = $id;
-		$mensalidade['vencimento'] = $para;
-		if ($this->Mensalidade->save($mensalidade)) {
-			$retorno = 'OK';
-		} else {
-			$retorno = 'Erro';
-		}
+		$mensalidade['vencimento'] = str_replace('_', '/', $para);
+		$retorno = ($this->Mensalidade->save($mensalidade));
 		$this->set('retorno', $retorno);
 	}
 
