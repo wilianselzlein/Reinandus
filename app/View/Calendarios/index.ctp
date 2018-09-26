@@ -15,7 +15,7 @@ echo $this->html->css('fullcalendar');
 
     $(document).ready(function() {
         $('#calendar').fullCalendar({
-            events: "/Calendarios/feed",
+            events: "/calendarios/feed",
             //theme: true,
             header: {
                     left: 'prev,next today',
@@ -87,7 +87,7 @@ $(document).ready(function(){
             <div class="tab-pane active" id="tab1">
                 <div id="calendar"></div>
                 <br>
-                <div id="eventdata"> </div>
+                <div id="eventdata"></div>
             </div>
             <div class="tab-pane" id="tab2">
 			<?php echo $this->element('pesquisa/simples');?>

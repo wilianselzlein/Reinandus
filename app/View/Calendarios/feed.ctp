@@ -1,13 +1,11 @@
 <?php
-//3. Create the json array
 $rows = array();
 for ($a=0; count($events)> $a; $a++) {
 
-    //Is it an all day event?
-    //$all = ($events[$a]['Visita']['allday'] == 1);
+    $all = true;
     $id = $events[$a]['Calendario']['id'];
     $color = $id == 20 ? 'red' : 'yellow';
-    //Create an event entry
+    $color = 'gray';
 
     $rows[] = array('id' => $id,
         'title' => $events[$a]['Disciplina']['nome'],
@@ -16,11 +14,11 @@ for ($a=0; count($events)> $a; $a++) {
         'url' => 'calendarios/view/' . $id,
         'color' => $color,
         'textColor' => 'black',
-        //'allDay' => $all,
+        'allDay' => $all,
     );
 }
 
-//4. Return as a json array
+
 Configure::write('debug', 0);
 $this->autoRender = false;
 $this->autoLayout = false;
