@@ -135,4 +135,73 @@ class CalendariosController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 
+    /**
+     * move method
+     *
+     * @return void
+     */
+    function move ($id=null,$dayDelta/*,$minDelta,$allDay*/) {
+        if ($id!=null) {            
+            $ev = $this->Calendario->findById($id);
+            /*if ($allDay==true) {
+                $ev['Event']['allday'] = 1;
+            } else {
+                $ev['Event']['allday'] = 0;
+            }
+            $ev['Visita']['end']=date('Y-m-d H:i:s',strtotime($dayDelta.' days '.$minDelta.' minutes',strtotime($ev['Event']['end'])));
+            $ev['Visita']['data']=date('Y-m-d H:i:s',strtotime($dayDelta.' days ',strtotime($ev['Visita']['data'])));*/
+            $ev['Calendario']['data']= date('Y-m-d H:i:s',strtotime(($dayDelta / 1000 / 3600 * 60).' minutes ' , strtotime($ev['Calendario']['data'])));
+            $this->Calendario->save($ev);
+            //$this->redirect(array('controller' => 'events', 'action' => “calendar”,substr($ev['Event']['start'],0,4),substr($ev['Event']['start'],5,2),substr($ev['Event']['start'],8,2)));
+        }
+    }
+
+    /**
+     * feed method
+     *
+     * @return void
+     */
+    function feed() {
+        //1. Transform request parameters to MySQL datetime format.
+        $conditions = '';
+        if ((isset($this->params['url']['start'])) &&  (isset($this->params['url']['end']))) {
+        	$mysqlstart = date('Y-m-d', strtotime($this->params['url']['start'])); //H:i:s
+        	$mysqlend = date('Y-m-d', strtotime($this->params['url']['end'])); //H:i:s
+
+        	//2. Get the events corresponding to the time range
+        	$conditions = array('Calendario.data BETWEEN ? AND ?'  => array($mysqlstart, $mysqlend));
+        }
+        $events = $this->Calendario->find('all',array('conditions' =>$conditions, 
+            'fields' => array('Calendario.id', 'Disciplina.nome', 'AddTime(Calendario.data, "0:0:0") as start', 'AddTime(Calendario.data, "1:0:0") as fim')));
+
+        $this->set('events', $events);
+    }
+
+/**
+ * add2 method
+ *
+ * @return void
+ */
+	public function add2($ano = null, $mes = null, $dia = null, $hora = null, $min = null, $seg = null) {
+		if ($this->request->is('post')) {
+			$this->Calendario->create();
+			if ($this->Calendario->save($this->request->data)) {
+				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
+			}
+		}
+		$disciplinas = $this->Calendario->Disciplina->findAsCombo();
+		$cursos = $this->Calendario->Curso->findAsCombo();
+		$this->set(compact('disciplinas', 'cursos'));
+		
+        $this->layout='';
+        $data = $dia . '/' . $mes . '/' . $ano;
+        if (! $hora == null)
+          $hora = $hora . ':' . $min;
+        $this->set('data', $data);
+        $this->set('hora', $hora);
+	}
+  
 }

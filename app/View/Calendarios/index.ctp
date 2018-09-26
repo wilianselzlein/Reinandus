@@ -1,3 +1,69 @@
+<?php
+echo $this->Javascript->link('ui.core.js');
+echo $this->Javascript->link('ui.resizable.js');
+echo $this->Javascript->link('fullcalendar.min.js');
+echo $this->Javascript->link('ui.draggable.js');
+
+echo $this->Javascript->link('moment.min.js');
+echo $this->Javascript->link('jquery.min.js');
+echo $this->Javascript->link('jquery-ui.custom.min.js');
+echo $this->Javascript->link('fullcalendar.min.js');
+
+echo $this->html->css('fullcalendar');
+?>
+<script type='text/javascript'>// <![CDATA[
+
+    $(document).ready(function() {
+        $('#calendar').fullCalendar({
+            events: "/Calendarios/feed",
+            //theme: true,
+            header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+            },
+            //defaultDate: '2014-06-12',
+            editable: true,
+            eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+                if (dayDelta>=0) {
+                    dayDelta = "+"+dayDelta;
+                }
+                /*if (minuteDelta>=0) {
+                    minuteDelta="+"+minuteDelta;
+                }*/
+                $.post("/calendarios/move/"+event.id+"/"+dayDelta+"/"/*+minuteDelta+"/"*/);
+            },
+            dayClick: function(date, jsEvent, view) {
+                var st = date.format();
+                st = st.replace('T', '/');
+                st = st.replace('-', '/');
+                st = st.replace('-', '/');
+                st = st.replace(':', '/');
+                st = st.replace(':', '/');
+                //alert('Clicked on: ' + st);
+                $("#eventdata").show();
+                //$("#eventdata").load("/Inova/visitas/add2/"+ date.format());
+                $("#eventdata").load("/calendarios/add2/"+ st + "/",
+                function(response, status, xhr){
+                    $("#eventdata").html(response);
+                });
+                //alert('Clicked on: ' + date.format());
+                //alert('Clicked on: ' +$.fullCalendar.formatDate( date, "dd/MM/yyyy/HH/mm"));
+                //window.location="/Inova/visitas/add/"+date.format();
+                $(this).css('background-color', 'silver');
+                document.getElementById('detalhes').focus();
+            }
+        });
+    });
+
+// ]]></script>
+<!-- hide the eventdata div when the page   loads -->
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#eventdata").hide();
+});
+</script>
+
 <div class="panel panel-default">
 
 	<div class="panel-heading">
@@ -8,7 +74,23 @@
 	</div>
 
 <div class="panel-body">
-<?php echo $this->element('pesquisa/simples');?>
+		<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+		        <li class="active">
+		            <a href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-calendar"></span> Calend&aacute;rio</a>
+		        </li>
+		        <li>
+		            <a href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-list"></span> Lista</a>
+		        </li>
+		</ul>
+		<br>
+		<div id="tab_" class="tab-content">
+            <div class="tab-pane active" id="tab1">
+                <div id="calendar"></div>
+                <br>
+                <div id="eventdata"> </div>
+            </div>
+            <div class="tab-pane" id="tab2">
+			<?php echo $this->element('pesquisa/simples');?>
 			<div class="table-responsive">
 				<table class="table table-bordered table-hover table-condensed" >
 				<thead>
@@ -37,7 +119,8 @@
 					</tbody>
 				</table>
 			</div><!-- /.table-responsive -->
+		</div>
+		<?php echo $this->element('Paginator'); ?>
+		</div>
+    </div>
 
-</div>
-<?php echo $this->element('Paginator'); ?>
-</div>
