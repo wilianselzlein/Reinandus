@@ -1,3 +1,14 @@
+<?php 
+if ($ajax) {
+   echo $this->Html->css('datepicker3');
+   //echo $this->Html->css('bootstrap-combobox');
+   echo $this->Html->script('cfg-datepicker');
+?>
+   <script>
+      $(document).ready(function(){ $('.combobox').combobox(); });
+   </script>
+<?php } ?>
+
 <div class="panel panel-default">
    <div class="panel-heading">
       <h3><?php echo __('Calendario'); ?>
@@ -11,7 +22,7 @@
          <fieldset>
             <div class="form-group">
                <?php echo $this->Form->input('data',
-                     array('type' => 'text', 'class' => 'form-control datepicker-start', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+                     array('type' => 'text', 'value' => $data . ' ' . $hora, 'class' => 'form-control datepicker-start', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
             </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('disciplina_id',
@@ -21,7 +32,11 @@
                <?php echo $this->Form->input('curso_id',
                      array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
             </div><!-- .form-group -->
-
+            <?php /*echo '<br/>At: ' . $displayTime;
+           echo $form->input('start', array('type'=>'hidden','value'=>$event['Event']['start']));
+           echo $form->input('end', array('type'=>'hidden','value'=>$event['Event']['end']));
+           echo $form->input('allday', array('type'=>'hidden','value'=>$event['Event']['allday']));
+           echo $form->end(array('label'=>'Save' ,'name' => 'save')); */?>
             <?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
          </fieldset>
          <?php echo $this->Form->end(); ?>

@@ -31,6 +31,7 @@ echo $this->html->css('fullcalendar');
                 /*if (minuteDelta>=0) {
                     minuteDelta="+"+minuteDelta;
                 }*/
+                //alert('Clicked on: ' + dayDelta);
                 $.post("/calendarios/move/"+event.id+"/"+dayDelta+"/"/*+minuteDelta+"/"*/);
             },
             dayClick: function(date, jsEvent, view) {
@@ -43,7 +44,7 @@ echo $this->html->css('fullcalendar');
                 //alert('Clicked on: ' + st);
                 $("#eventdata").show();
                 //$("#eventdata").load("/Inova/visitas/add2/"+ date.format());
-                $("#eventdata").load("/calendarios/add2/"+ st + "/",
+                $("#eventdata").load("/calendarios/add/"+ st + "/",
                 function(response, status, xhr){
                     $("#eventdata").html(response);
                 });
@@ -106,7 +107,7 @@ $(document).ready(function(){
 <?php foreach ($calendarios as $calendario): ?>
 	<tr>
 		<td><?php echo h($calendario['Calendario']['id']); ?>&nbsp;</td>
-		<td><?php echo h($calendario['Calendario']['data']); ?>&nbsp;</td>
+		<td><?php echo h($calendario['Calendario']['data']); ?>&nbsp; </td>
 		<td>
 			<?php echo $this->Html->link($calendario['Disciplina']['nome'], array('controller' => 'disciplinas', 'action' => 'view', $calendario['Disciplina']['id'])); ?>
 		</td>

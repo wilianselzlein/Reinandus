@@ -51,7 +51,7 @@ class CalendariosController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($ano = null, $mes = null, $dia = null, $hora = null, $min = null, $seg = null) {
 		if ($this->request->is('post')) {
 			$this->Calendario->create();
 			if ($this->Calendario->save($this->request->data)) {
@@ -70,6 +70,13 @@ class CalendariosController extends AppController {
 		$disciplinas = $this->Calendario->Disciplina->findAsCombo();
 		$cursos = $this->Calendario->Curso->findAsCombo();
 		$this->set(compact('disciplinas', 'cursos'));
+		
+        $data = $dia . '/' . $mes . '/' . $ano;
+        if (! $hora == null)
+          $hora = $hora . ':' . $min;
+        $this->set('data', $data);
+        $this->set('hora', $hora);
+        $this->set('ajax', $ano != null);
 	}
 
 /**
@@ -141,18 +148,31 @@ class CalendariosController extends AppController {
      * @return void
      */
     function move ($id=null,$dayDelta/*,$minDelta,$allDay*/) {
-        if ($id!=null) {            
+        if ($id != null) {            
             $ev = $this->Calendario->findById($id);
             /*if ($allDay==true) {
-                $ev['Event']['allday'] = 1;
+                $ev['Calendario']['allday'] = 1;
             } else {
-                $ev['Event']['allday'] = 0;
+                $ev['Calendario']['allday'] = 0;
             }
-            $ev['Visita']['end']=date('Y-m-d H:i:s',strtotime($dayDelta.' days '.$minDelta.' minutes',strtotime($ev['Event']['end'])));
-            $ev['Visita']['data']=date('Y-m-d H:i:s',strtotime($dayDelta.' days ',strtotime($ev['Visita']['data'])));*/
-            $ev['Calendario']['data']= date('Y-m-d H:i:s',strtotime(($dayDelta / 1000 / 3600 * 60).' minutes ' , strtotime($ev['Calendario']['data'])));
+            $ev['Calendario']['end']=date('Y-m-d H:i:s',strtotime($dayDelta.' days '.$minDelta.' minutes',strtotime($ev['Event']['end'])));
+            $ev['Calendario']['data']=date('Y-m-d H:i:s',strtotime($dayDelta.' days ',strtotime($ev['Visita']['data'])));*/
+
+			$date = DateTime::createFromFormat('d/m/Y', $ev['Calendario']['data']);
+			$date = $date->format('Y-m-d');
+			$operador = substr(trim($dayDelta), 0, 1);
+			if ($operador != '-')
+				$operador = '+';
+			
+			$dayDelta = str_replace($operador, "", $dayDelta);
+			$tempo = ($dayDelta / 1000 / 3600 / 24);
+			$date = new DateTime($date);
+			$date->modify($operador . $tempo . ' days');
+			
+			$ev['Calendario']['data'] = $date->format('Y-m-d');
+			//$ev['Calendario']['data']= date('Y-m-d H:i:s',strtotime(($dayDelta / 1000 / 3600 * 60).' minutes ' , strtotime($ev['Calendario']['data'])));
             $this->Calendario->save($ev);
-            //$this->redirect(array('controller' => 'events', 'action' => “calendar”,substr($ev['Event']['start'],0,4),substr($ev['Event']['start'],5,2),substr($ev['Event']['start'],8,2)));
+            //$this->redirect(array('controller' => 'Calendario', 'action' => “calendar”,substr($ev['Event']['start'],0,4),substr($ev['Event']['start'],5,2),substr($ev['Event']['start'],8,2)));
         }
     }
 
@@ -177,31 +197,4 @@ class CalendariosController extends AppController {
         $this->set('events', $events);
     }
 
-/**
- * add2 method
- *
- * @return void
- */
-	public function add2($ano = null, $mes = null, $dia = null, $hora = null, $min = null, $seg = null) {
-		if ($this->request->is('post')) {
-			$this->Calendario->create();
-			if ($this->Calendario->save($this->request->data)) {
-				$this->Session->setFlash(__('The record has been saved'), 'flash/success');
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
-			}
-		}
-		$disciplinas = $this->Calendario->Disciplina->findAsCombo();
-		$cursos = $this->Calendario->Curso->findAsCombo();
-		$this->set(compact('disciplinas', 'cursos'));
-		
-        $this->layout='';
-        $data = $dia . '/' . $mes . '/' . $ano;
-        if (! $hora == null)
-          $hora = $hora . ':' . $min;
-        $this->set('data', $data);
-        $this->set('hora', $hora);
-	}
-  
 }
