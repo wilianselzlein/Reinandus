@@ -20,10 +20,33 @@ if ($ajax) {
       <div class="calendarios form">
          <?php echo $this->Form->create('Calendario', array('role' => 'form', 'class'=>'form-horizontal')); ?>
          <fieldset>
+
             <div class="form-group">
                <?php echo $this->Form->input('data',
                      array('type' => 'text', 'value' => $data . ' ' . $hora, 'class' => 'form-control datepicker-start', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
             </div><!-- .form-group -->
+            
+            <table id="mytable" border="0" width="100%">
+               <tr id="data0" style="display:none;">
+                  <td>
+                        <?php echo $this->Form->input('unused.data',
+                                 array('type' => 'text', 'class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+                        <br><br>
+                  </td>
+                  <td>
+                        <?php echo $this->Html->image('minus.png', array('alt' => 'Remover Data')) ?>
+                     
+                  </td>
+               </tr>
+               <tr id="trAdd" >
+                  <td colspan="2">
+                     <div align="center">
+                     <?php echo $this->Form->button('Adicionar Data',array('type'=>'button','title'=>'Adicionar Data','onclick'=>'addData()'));?>
+                     </div>
+                  </td>
+               </tr>
+            </table>
+            <br>
             <div class="form-group">
                <?php echo $this->Form->input('disciplina_id',
                      array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
@@ -43,3 +66,20 @@ if ($ajax) {
       </div><!-- /.form -->
    </div><!-- /#page-content .col-sm-9 -->
 </div><!-- /#page-container .row-fluid -->
+
+ <script type='text/javascript'>
+    var lastRow=0;
+    
+    function addData() {
+        lastRow++;
+        $("#mytable>tbody>tr#data0").clone(true).attr('id','data'+lastRow).removeAttr('style').insertBefore("#mytable>tbody>tr#trAdd");
+        $("#data"+lastRow+" img").attr('onclick','removeData('+lastRow+')');
+        $("#data"+lastRow+" input").attr('name','data[Calendario][dataA]['+lastRow+']').attr('id','Calendario'+lastRow+'data');
+        $("#data"+lastRow+" label").attr('for','Calendario'+lastRow+'data');
+        //$("#data"+lastRow+" li").attr('id','CalendarioData'+lastRow+'Id_chzn_o_1');
+        //$("#data"+lastRow+" div").find('CalendarioData_chzn').attr('style','width: 400px;');
+    }
+    function removeData(x) {
+        $("#data"+x).remove();
+    }
+</script

@@ -55,6 +55,20 @@ class CalendariosController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Calendario->create();
 			if ($this->Calendario->save($this->request->data)) {
+				
+				$calendario_id = $this->Calendario->getLastInsertId();
+				
+				if (isset($this->request->data['Calendario']['dataA'])) 
+				foreach($this->request->data['Calendario']['dataA'] as $data) {
+					$novo = [];
+					$novo['disciplina_id'] = $this->request->data['Calendario']['disciplina_id'];
+					$novo['curso_id'] = $this->request->data['Calendario']['curso_id'];
+					$novo['data'] = $data;
+                	
+                	$this->Calendario->create();
+					$this->Calendario->save($novo);
+                }
+                
 			$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                "link_text" => __('GO_TO'),
                "link_url" => array(                  
