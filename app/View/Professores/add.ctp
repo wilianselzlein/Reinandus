@@ -1,6 +1,4 @@
-<?php include dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'javascript.php'; ?>
-<?php include dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'chosen.html'; ?>
-
+<?php echo $this->Html->css('chosen'); ?>
 <div class="panel panel-default">
 
    <div class="panel-heading">
@@ -145,7 +143,7 @@ echo $this->Form->input('vinculo',
             </div><!-- .form-group -->
 
             <div class="form-group">
-              <?php echo $this->Form->input('Disciplina', array('label' => 'Disciplinas', 'class' => 'chzn-select', 'multiple' => true)); ?>
+              <?php echo $this->Form->input('Disciplina', array('label' => array('class'=>'col-sm-2 control-label', 'text' => 'Disciplinas'), 'class' => 'form-control chzn-select', 'multiple' => true, 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
             </div><!-- .form-group -->
 
             <?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
@@ -160,4 +158,4 @@ echo $this->Form->input('vinculo',
 
 </div><!-- /#page-container .row-fluid -->
 
-<?php include dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'chosenjs.html'; ?>
+<?php echo $this->Html->script('chosen.jquery.js'); ?>
