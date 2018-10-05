@@ -60,6 +60,18 @@ class AvisosController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Aviso->create();
+			/*
+			'Grupo' => array(
+				'Grupo' => array(
+					(int) 0 => '100',
+					(int) 1 => '101'
+				)
+			),
+
+			'Grupo' => array(
+				'Grupo' => ''
+			),
+			*/
 			if ($this->Aviso->save($this->request->data)) {
 				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
                "link_text" => __('GO_TO'),

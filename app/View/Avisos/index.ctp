@@ -10,15 +10,15 @@
 				<table class="table table-bordered table-hover table-condensed" >
                 <thead>
                     <tr class="active">
-							<th><?php echo $this->Paginator->sort('id'); ?></th>
-							<th><?php echo $this->Paginator->sort('data'); ?></th>
-							<th><?php echo $this->Paginator->sort('user_id'); ?></th>
-							<th><?php echo $this->Paginator->sort('arquivo', 'Arquivo'); ?></th>
-							<th><?php echo $this->Paginator->sort('mensagem'); ?></th>
-							<th><?php echo $this->Paginator->sort('tipo_id'); ?></th>
-							<th class="actions text-center" colspan="2"><?php echo __('Actions'); ?></th>
-						</tr>
-					</thead>
+						<th><?php echo $this->Paginator->sort('id'); ?></th>
+						<th><?php echo $this->Paginator->sort('data'); ?></th>
+						<th><?php echo $this->Paginator->sort('user_id'); ?></th>
+						<th><?php echo $this->Paginator->sort('arquivo', 'Arquivo'); ?></th>
+						<th><?php echo $this->Paginator->sort('mensagem'); ?></th>
+						<th><?php echo $this->Paginator->sort('tipo_id'); ?></th>
+						<th class="actions text-center" colspan="2"><?php echo __('Actions'); ?></th>
+					</tr>
+				</thead>
 					<tbody>
 <?php foreach ($avisos as $aviso): ?> 
 	<tr>
@@ -56,7 +56,6 @@
 
 </div>
 <?php echo $this->element('Paginator'); ?>
-	
 </div>
 
 <?php echo $this->element('Modal'); ?>

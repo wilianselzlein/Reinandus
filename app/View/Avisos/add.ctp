@@ -1,3 +1,6 @@
+<?php echo $this->Html->css('chosen'); ?>
+<?php include dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'chosen.html'; ?>
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3><?php echo __('Aviso'); ?>
@@ -47,27 +50,16 @@
                     <?php echo $this->Form->file('arq',
                         array('class' => 'form-control', 
                          'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 
-                         'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+                         'between'=>'<div class="col-sm-8">', 'after'=>'</div>')); ?>
                 </div>
-                <!-- .form-group -->
                 <div class="form-group">
-                    <?php echo $this->Form->input('Grupo',array('multiple' => 'checkbox', 'class' => 'col-sm-10', 
-                        'label'=>array('text' => 'Grupos'), 'div'=>'grupos', 
-                        'before' => '<label for="chkgrupo" class=""><input type="checkbox" id="chkgrupo" text="Todos os grupos">Selecionar todos.</label>'));?>
-                </div>
-                <!-- .form-group -->
-                <?php echo $this->element('MostraEsconde', 
-                    array('mostra' => 'Mostrar cursos', 'esconde' => 'Fechar cursos')); ?>
-                <div id="dados">
-                    <div class="form-group">
-                        <?php echo $this->Form->input('Curso',array('multiple' => 'checkbox', 'class' => 'col-sm-10',
-                            'label'=>array('text' => 'Cursos'), 'div'=>'cursos',
-                            'before' => '<label for="chkcurso" class=""><input type="checkbox" id="chkcurso" text="Todos os cursos">Selecionar todos.</label>'));?>
-                    </div>
-                    <!-- .form-group -->
-                </div>
-                <br/>
-                <br/>
+                  <?php echo $this->Form->input('Grupo', array('label' => array('class'=>'col-sm-2 control-label', 'text' => 'Grupos'), 'class' => 'form-control chzn-select', 'multiple' => true, 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+                </div><!-- .form-group -->
+
+                <div class="form-group">
+                  <?php echo $this->Form->input('Curso', array('label' => array('class'=>'col-sm-2 control-label', 'text' => 'Cursos'), 'class' => 'form-control chzn-select', 'multiple' => true, 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+                </div><!-- .form-group -->
+
                 <?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), 
                     array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
             </fieldset>
@@ -77,21 +69,6 @@
     </div>
     <!-- /#page-content .col-sm-9 -->
 </div>
-<!-- /#page-container .row-fluid -->
-<script>
-    $(document).ready(function(){
-     $('#chkgrupo').click(function () {
-      var checked = $(this).is(':checked');
-      $('.grupos input[type=checkbox]').each(function(){
-        $(this).prop('checked', checked); 
-      });
-    }); 
-    
-     $('#chkcurso').click(function () {
-      var checked = $(this).is(':checked');
-      $('.cursos input[type=checkbox]').each(function(){
-        $(this).prop('checked', checked); 
-      });
-    });
-    })
-</script>
+
+<?php echo $this->Html->script('chosen.jquery.js'); ?>
+<?php include dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'chosenjs.html'; ?>
