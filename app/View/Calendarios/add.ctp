@@ -8,7 +8,6 @@ if ($ajax) {
       $(document).ready(function(){ $('.combobox').combobox(); });
    </script>
 <?php } ?>
-
 <div class="panel panel-default">
    <div class="panel-heading">
       <h3><?php echo __('Calendario'); ?>
@@ -20,7 +19,14 @@ if ($ajax) {
       <div class="calendarios form">
          <?php echo $this->Form->create('Calendario', array('role' => 'form', 'class'=>'form-horizontal')); ?>
          <fieldset>
-
+            <div class="form-group">
+               <?php echo $this->Form->input('curso_id',
+                     array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+            </div><!-- .form-group -->
+            <div class="form-group">
+               <?php echo $this->Form->input('disciplina_id',
+                     array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
+            </div><!-- .form-group -->
             <div class="form-group">
                <?php echo $this->Form->input('data',
                      array('type' => 'text', 'value' => $data . ' ' . $hora, 'class' => 'form-control datepicker-start', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
@@ -46,15 +52,6 @@ if ($ajax) {
                   </td>
                </tr>
             </table>
-            <br>
-            <div class="form-group">
-               <?php echo $this->Form->input('disciplina_id',
-                     array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
-            </div><!-- .form-group -->
-            <div class="form-group">
-               <?php echo $this->Form->input('curso_id',
-                     array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
-            </div><!-- .form-group -->
             <?php /*echo '<br/>At: ' . $displayTime;
            echo $form->input('start', array('type'=>'hidden','value'=>$event['Event']['start']));
            echo $form->input('end', array('type'=>'hidden','value'=>$event['Event']['end']));
@@ -76,8 +73,10 @@ if ($ajax) {
         $("#data"+lastRow+" img").attr('onclick','removeData('+lastRow+')');
         $("#data"+lastRow+" input").attr('name','data[Calendario][dataA]['+lastRow+']').attr('id','Calendario'+lastRow+'data');
         $("#data"+lastRow+" label").attr('for','Calendario'+lastRow+'data');
+        $("#Calendario"+lastRow+"data").mask("99/99/9999"); 
+        $("#Calendario"+lastRow+"data").focus();
         //$("#data"+lastRow+" li").attr('id','CalendarioData'+lastRow+'Id_chzn_o_1');
-        //$("#data"+lastRow+" div").find('CalendarioData_chzn').attr('style','width: 400px;');
+        //$("#Calendario"+lastRow+"data").attr('style','width: 400px;');
     }
     function removeData(x) {
         $("#data"+x).remove();
