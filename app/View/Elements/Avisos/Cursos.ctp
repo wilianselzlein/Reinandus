@@ -28,6 +28,7 @@
 			<tbody>
 				<?php foreach ($array as $avisocurso): ?>
 				<?php $id = $avisocurso['AvisoCurso']['id']; ?>
+				<?php $aviso_id = $avisocurso['AvisoCurso']['aviso_id']; ?>
 				<tr id="curso<?php echo $id; ?>">
 					<td><?php echo $id; ?></td>
 					<td><?php echo $this->Html->link($avisocurso['nome'], array('controller' => 'cursos', 'action' => 'view', $id), array('class' => '')); ?>
@@ -43,6 +44,10 @@
 		</table>
 		<!-- /.table table-striped table-bordered -->
 	</div>
+	<a href="#" onclick="window.open(
+		'<?php echo $this->Html->url(array('controller'=>'avisos','action'=>'popup', $aviso_id )); ?>','popup',
+		'width=550,height=600,scrollbars=yes,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0');
+		return false">Adicionar Curso</a>
 	<!-- /.table-responsive -->
 	<?php endif; ?>
 </div>
