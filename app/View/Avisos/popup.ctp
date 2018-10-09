@@ -1,12 +1,12 @@
 <div class="popup">
 	<table>
 		<tr>
-			<td><h2><?php echo __('Adicionar Curso');?></h2></td>
+			<td><h2><?php echo __('Adicionar ' . $model);?></h2></td>
 			<td><a href="#" onclick=refreshandclose()>Fechar</a></td>
 		</tr>
 	</table>
-	<?php echo $this->Form->create('Curso');?>
-    <fieldset><legend><a href="#" onclick=shownew() id="legend">Novo Curso</a></legend>
+	<?php echo $this->Form->create($model);?>
+    <fieldset><legend><a href="#" onclick=shownew() id="legend">Novo <?php echo $model; ?></a></legend>
 		 <span id="addnew" style="display: inline-block">
 			 <?php
 				echo $this->Form->input('id', array('label' => 'Código'));
@@ -23,12 +23,12 @@
 			<th>Nome</th>
 			<th></th>
 		 </tr>
-		 <?php foreach ($cursos as $curso): ?>
+		 <?php foreach ($registros as $registro): ?>
 		 <tr>
-			<td><?php echo h($curso['Curso']['id']); ?>&nbsp;</td>
-			<td><?php echo h($curso['Curso']['nome']); ?>&nbsp;</td>
+			<td><?php echo h($registro[$model]['id']); ?>&nbsp;</td>
+			<td><?php echo h($registro[$model]['nome']); ?>&nbsp;</td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('Add'), array('action' => 'addcurso', $curso['Curso']['id'], $aviso_id)); ?>
+				<?php echo $this->Html->link(__('Add'), array('action' => 'addpopup', $model, $registro[$model]['id'], $aviso_id)); ?>
 			</td>
 		 </tr>
 	  	 <?php endforeach; ?>
@@ -44,16 +44,19 @@
   }
   $('#header').hide();
   $('#newfunc').hide();
-  <?php if(!isset($retry)) echo '$("#addnew").slideUp(0);' ?>
-  <?php if(isset($return)) echo 'window.onload=refreshandclose();' ?>
-         
+  $(".navbar-header").hide();
+  $(".navbar").hide();
+ 
+  <?php if (! isset($retry)) { echo '$("#addnew").slideUp(0);'; } ?>
+  <?php if (isset($return)) { echo 'window.onload=refreshandclose();'; } ?>
+    
 	$("#AvisoId").change(function(){
 		if($(this).val()==0) {
 			//selecting new institution
 			$('#newfunc').slideDown(100);
 		} else {
 			//using existing
-			$('#FuncaoNome').val('');
+			$('#Nome').val('');
 			$('#newinst').slideUp(100);
 		}
 	} );
