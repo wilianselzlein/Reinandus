@@ -219,38 +219,70 @@ class AvisosController extends AppController {
 
     }
 
-	public function addcurso($curso_id=null, $aviso_id=null) {
-		$this->AvisoCurso->create();
-
-		if ($this->AvisoCurso->save(array('curso_id' => $curso_id, 'aviso_id' => $aviso_id))) {
-			$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", 
-				array("link_text" => __('GO_TO'),
-					"link_url" => array("action" => "view",	$aviso_id)));
-			//$this->redirect(array('action' => 'view'));
+	public function addpopup($model, $curso_id=null, $aviso_id=null) {
+		if ($model == 'Curso') {
+			$this->AvisoCurso->create();
+			if ($this->AvisoCurso->save(array('curso_id' => $curso_id, 'aviso_id' => $aviso_id))) {
+				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", 
+					array("link_text" => __('GO_TO'),
+						"link_url" => array("action" => "view",	$aviso_id)));
+				//$this->redirect(array('action' => 'view'));
+			} else {
+				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
+			}
 		} else {
-			$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
+			$this->AvisoGrupo->create();
+			if ($this->AvisoGrupo->save(array('grupo_id' => $curso_id, 'aviso_id' => $aviso_id))) {
+				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", 
+					array("link_text" => __('GO_TO'),
+						"link_url" => array("action" => "view",	$aviso_id)));
+				//$this->redirect(array('action' => 'view'));
+			} else {
+				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
+			}
 		}
 	}
 
-	public function popup($id=null, $filter=null) {
+	public function popup($model, $id=null, $filter=null) {
 		if ($this->request->is('post')) {
-			$this->AvisoCurso->Curso->create();
-			if ($this->AvisoCurso->Curso->save($this->request->data)) {
-				$this->Session->setFlash(__('Curso salvo'),'default',array('class'=>'success'));
-				$this->addcurso($this->Curso->getLastInsertID(), $id);
-				$this->set('return',true);
+			$data = $this->request->data;
+			if (isset($data['Curso'])) {
+				$this->AvisoCurso->Curso->create();
+				if ($this->AvisoCurso->Curso->save($data)) {
+					$this->Session->setFlash(__('Curso salvo'),'default',array('class'=>'success'));
+					$this->addpopup($model, $this->AvisoCurso->Curso->getLastInsertID(), $id);
+					$this->set('return',true);
+				} else {
+					$this->Session->setFlash(__('Curso não pode ser salvo.'));
+					$this->set('retry',true);
+				}
 			} else {
-				$this->Session->setFlash(__('Curso não pode ser salvo.'));
-				$this->set('retry',true);
+				$this->AvisoGrupo->Grupo->create();
+				if ($this->AvisoGrupo->Grupo->save($data)) {
+					$this->Session->setFlash(__('Grupo salvo'),'default',array('class'=>'success'));
+					$this->addpopup($model, $this->AvisoGrupo->Grupo->getLastInsertID(), $id);
+					$this->set('return',true);
+				} else {
+					$this->Session->setFlash(__('Grupo não pode ser salvo.'));
+					$this->set('retry',true);
+				}
 			}
-		}
+			
+		} 
+		
 		//$this->layout = 'modal';
 		//$this->layout = false;
 		$this->set('aviso_id',$id);
 
-		$options = array('recursive' => 0, 'fields' => array('Curso.id', 'Curso.nome'));
-		$this->set('cursos', $this->Aviso->Curso->find('all', $options));
-
+		if ($model == 'Curso') {
+			$options = array('recursive' => 0, 'fields' => array('Curso.id', 'Curso.nome'));
+			$this->Aviso->Curso->unbindModel(array('belongsTo' => array('Professor', 'Pessoa', 'Grupo', 'Tipo', 'Periodo')));
+			$this->set('registros', $this->Aviso->Curso->find('all', $options));
+		} else {
+			$options = array('recursive' => 0, 'fields' => array('Grupo.id', 'Grupo.nome'));
+			$this->set('registros', $this->Aviso->Grupo->find('all', $options));
+		}
+		$this->set('model', $model);
 		//$this->Aviso->Curso->recursive = -1;
 		//$this->set('cursos', $this->Aviso->Curso->Find('all'));
 	}

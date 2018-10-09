@@ -26,8 +26,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($array as $avisogrupo):
-					$id = $avisogrupo['AvisoGrupo']['id']; ?>
+				<?php foreach ($array as $avisogrupo): ?>
+				<?php $id = $avisogrupo['AvisoGrupo']['id']; ?>
+				<?php $aviso_id = $avisogrupo['AvisoGrupo']['aviso_id']; ?>
 				<tr id="grupo<?php echo $id; ?>">
 					<td><?php echo $id; ?></td>
 					<td><?php echo $this->Html->link($avisogrupo['nome'], array('controller' => 'grupos', 'action' => 'view', $avisogrupo['AvisoGrupo']['grupo_id']), array('class' => '')); ?>
@@ -43,6 +44,10 @@
 		</table>
 		<!-- /.table table-striped table-bordered -->
 	</div>
+	<a href="#" onclick="window.open(
+		'<?php echo $this->Html->url(array('controller'=>'avisos','action'=>'popup', 'Grupo', $aviso_id)); ?>','popup',
+		'width=550,height=600,scrollbars=yes,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0');
+		return false">Adicionar Grupo</a>
 	<!-- /.table-responsive -->
 	<?php endif; ?>
 </div>

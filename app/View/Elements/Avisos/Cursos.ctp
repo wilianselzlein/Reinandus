@@ -45,7 +45,7 @@
 		<!-- /.table table-striped table-bordered -->
 	</div>
 	<a href="#" onclick="window.open(
-		'<?php echo $this->Html->url(array('controller'=>'avisos','action'=>'popup', $aviso_id )); ?>','popup',
+		'<?php echo $this->Html->url(array('controller'=>'avisos','action'=>'popup', 'Curso', $aviso_id)); ?>','popup',
 		'width=550,height=600,scrollbars=yes,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=0,top=0');
 		return false">Adicionar Curso</a>
 	<!-- /.table-responsive -->
