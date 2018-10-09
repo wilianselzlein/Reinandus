@@ -213,8 +213,21 @@ class PermissoesController extends AppController {
 		$joins = array(array('table' => 'programa', 'alias' => 'Programa', 'type' => 'RIGHT',
     				'conditions' => array('Programa.id = Permissao.programa_id and Permissao.user_id = ' . $user_id)));
 
-		$permissoes = $this->Permissao->find('list', array('recursive' => -1, 'fields' => array('Programa.id', 'Permissao.index'), 'joins' => $joins));
-		$programas = $this->Permissao->find('list', array('recursive' => -1, 'fields' => array('Programa.id', 'Programa.nome'), 'joins' => $joins));
+		$variavel = 'MenuPermissoes.' . $user_id;
+		$valor = CakeSession::read($variavel);
+		if ($valor == null) {
+			$valor = $this->Permissao->find('list', array('recursive' => -1, 'fields' => array('Programa.id', 'Permissao.index'), 'joins' => $joins));
+			CakeSession::write($variavel, $valor);
+		}
+		$permissoes = $valor; //$this->Permissao->find('list', array('recursive' => -1, 'fields' => array('Programa.id', 'Permissao.index'), 'joins' => $joins));
+		
+		$variavel = 'MenuProgramas.' . $user_id;
+		$valor = CakeSession::read($variavel);
+		if ($valor == null) {
+			$valor = $this->Permissao->find('list', array('recursive' => -1, 'fields' => array('Programa.id', 'Programa.nome'), 'joins' => $joins));
+			CakeSession::write($variavel, $valor);
+		}
+		$programas = $valor; //$this->Permissao->find('list', array('recursive' => -1, 'fields' => array('Programa.id', 'Programa.nome'), 'joins' => $joins));
 
 		$menu = [];
 		$this->AdicionarMenuSeHabilitado($menu, $permissoes, $programas, 'Cadastro', 'Alunos', 1);
