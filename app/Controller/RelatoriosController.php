@@ -214,7 +214,10 @@ class RelatoriosController extends AppController {
                             $filtros .= " AND (aluno.curso_fim  <= CURDATE()) ";
                         }
                         elseif ($campo == 'aluno_mono_paga') {
-                            $filtros .= " AND aluno.mono_paga = '".$compositeValue[0]."'";
+                            $filtros .= " AND aluno.mono_paga = 1"; //".$compositeValue[0]."
+                        }
+                        elseif ($campo == 'aluno_mono_nao_paga') {
+                            $filtros .= " AND aluno.mono_paga = 0";
                         } else
                             $filtros .= " AND ".str_replace("_",".", $campo, $conta)." = '".$compositeValue[0]."'";
                         break;
@@ -403,7 +406,7 @@ class RelatoriosController extends AppController {
                     //$campo = $compositeKey[2];
                     
                     if ($isFiltro == 'Filtros')
-                        $filtros .= '"' . implode("", $compositeValue) . '"';
+                        $filtros .= ' ' . implode("", $compositeValue) . ' ';
                     //debug($filtros); die;
                 }
             }
