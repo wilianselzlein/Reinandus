@@ -37,7 +37,8 @@
 					</thead>
 					<tbody>
 							<?php foreach ($array['Mensalidade'] as $mensalidade): ?>
-<tr>
+              <?php $idDel = $mensalidade['id']; ?>
+        <tr id="mensalidades<?php echo $idDel; ?>">
               <td><?php echo $mensalidade['id']; ?></td>
               <td><?php echo $mensalidade['numero']; ?></td>
               <td><?php echo $mensalidade['vencimento']; ?></td>
@@ -49,8 +50,8 @@
                 <?php echo $this->Html->link('<i class="fa fa-print"></i>', array('controller' => 'mensalidades', 'action' => 'boleto', $mensalidade['id']), 
                     array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Boleto'), 'data-toggle'=>'tooltip')); ?>
               </td>
-	<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $mensalidade, 'model' => '', 'controller' => 'mensalidades')); ?>
-</tr>
+        	<?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $mensalidade, 'model' => '', 'controller' => 'mensalidades', 'DeleteAjax' => 'true')); ?>
+        </tr>
 <?php endforeach; ?>
 <?php App::import('Vendor', 'PeDF/Table');
 $table = new Table(); ?>

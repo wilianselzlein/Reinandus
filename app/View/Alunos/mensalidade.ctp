@@ -19,7 +19,8 @@
 		</th>
 	</tr>
 	<?php foreach($mensalidade AS $AlunoMensalidade): ?>
-	<tr>
+	<?php $id = $AlunoMensalidade['Mensalidade']['id']; ?>
+	<tr id="Mensalidade<?php echo $id; ?>">
 		<td><?php echo h($AlunoMensalidade['Mensalidade']['numero']); ?>&nbsp;</td>
 		<td><?php echo h($AlunoMensalidade['Mensalidade']['vencimento']); ?>&nbsp;</td>
 		<td><?php echo h($AlunoMensalidade['Mensalidade']['liquido']); ?>&nbsp;</td>
@@ -29,7 +30,8 @@
 			<?php echo $this->Html->link($AlunoMensalidade['Formapgto']['nome'], array('controller' => 'FormasPagamentos', 'action' => 'view', $AlunoMensalidade['Formapgto']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Form->postLink('<i class="fa fa-times"></i>', array('controller' => 'Mensalidades', 'action' => 'delete', $AlunoMensalidade['Mensalidade']['id']), array('class' => 'btn btn-default btn-xs','escape'=>false, 'title'=>__('Delete'), 'data-toggle'=>'tooltip'), __('Are you sure you want to delete # %s?', $AlunoMensalidade['Mensalidade']['id'])); ?>
+			<?php echo $this->element('BotaoDeleteAjax', 
+				array("controller" => "Mensalidades", "nome" => "Mensalidade", "id" => $id)); ?>
 		</td>
 	</tr>
 	<?php endforeach; ?>

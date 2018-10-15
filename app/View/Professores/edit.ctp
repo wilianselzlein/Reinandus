@@ -1,3 +1,5 @@
+<?php echo $this->Html->css('chosen'); ?>
+<?php include dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'chosen.html'; ?>
 <div class="panel panel-default">
 
    <div class="panel-heading">
@@ -148,8 +150,7 @@
             </div><!-- .form-group -->
 
             <div class="form-group">
-               <?php echo $this->Form->input('Disciplina',array('multiple' => 'checkbox', /*'class' => 'form-control',*/ 'label'=>array('text' => 'Disciplinas', 'class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
-                                            );?>
+              <?php echo $this->Form->input('Disciplina', array('label' => array('class'=>'col-sm-2 control-label', 'text' => 'Disciplinas'), 'class' => 'form-control chzn-select', 'multiple' => true, 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
             </div><!-- .form-group -->
 
             <?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
@@ -163,3 +164,6 @@
    </div><!-- /#page-content .col-sm-9 -->
 
 </div><!-- /#page-container .row-fluid -->
+
+<?php echo $this->Html->script('chosen.jquery.js'); ?>
+<?php include dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'chosenjs.html'; ?>

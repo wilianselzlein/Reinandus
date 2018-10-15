@@ -1,4 +1,5 @@
 <?php echo $this->Html->css('chosen'); ?>
+<?php include dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'chosen.html'; ?>
 <div class="panel panel-default">
 
    <div class="panel-heading">
@@ -159,3 +160,4 @@ echo $this->Form->input('vinculo',
 </div><!-- /#page-container .row-fluid -->
 
 <?php echo $this->Html->script('chosen.jquery.js'); ?>
+<?php include dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'chosenjs.html'; ?>
