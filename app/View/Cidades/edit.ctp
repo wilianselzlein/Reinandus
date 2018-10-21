@@ -10,34 +10,23 @@
    <div class="panel-body">
 
       <div class="cidades form">
-
-         <?php echo $this->Form->create('Cidade', array('role' => 'form', 'class'=>'form-horizontal')); ?>
-
+         <?php echo $this->Form->create('Cidade', array('role' => 'form', 'class'=>'form-horizontal', 
+             'inputDefaults' => array( 'label' => array('class'=>'col-sm-2 control-label'), 'div' => true, 'class' => 'form-control', 'after'=>'</div>', 'between'=>'<div class="col-sm-10">'))); ?>
          <fieldset>
-
             <div class="form-group">
-               <?php echo $this->Form->input('id',
-                                             array('class' => 'form-control', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
-                                            ); ?>
-            </div><!-- .form-group -->
+               <?php echo $this->Form->input('id'); ?>
+            </div>
             <div class="form-group">
-               <?php echo $this->Form->input('estado_id',
-                                             array('class' => 'form-control combobox', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
-                                            ); ?>
-            </div><!-- .form-group -->
+               <?php echo $this->Form->input('estado_id', array('class' => 'form-control combobox')); ?>
+            </div>
             <div class="form-group">
-               <?php echo $this->Form->input('nome',
-                                             array('class' => 'form-control', 'autofocus' => 'autofocus', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
-                                            ); ?>
-            </div><!-- .form-group -->
+               <?php echo $this->Form->input('nome', array('autofocus' => 'autofocus')); ?>
+            </div>
             <div class="form-group">
-               <?php echo $this->Form->input('cep',
-                                             array('class' => 'form-control cep', 'label'=>array('class'=>'col-sm-2 control-label'), 'div'=>true, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')
-                                            ); ?>
-            </div><!-- .form-group -->
+               <?php echo $this->Form->input('cep', array('class' => 'form-control cep')); ?>
+            </div>
             <?php echo $this->element('CampoModified'); ?>
             <?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
-
          </fieldset>
 
          <?php echo $this->Form->end(); ?>
