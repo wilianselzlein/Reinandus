@@ -71,6 +71,7 @@ $(document).ready(function() {
       if($(DYNAMIC_CONTENT).children(DYNAMIC_CONTENT_FORM).length > 0) {
 
          if(!isSelectdField()) {
+            //console.log($(DYNAMIC_CONTENT));
             var filtro = new Filter($(DYNAMIC_CONTENT));
             if (filtro.fields[0].label.indexOf("Código") == 0) {
                var valor = filtro.fields[0];
@@ -133,9 +134,11 @@ $(document).ready(function() {
    function Filter(_object) {
       this.id = _object.children(DYNAMIC_CONTENT_FORM).attr(ATTR_FILTER_ID);
       this.type = _object.children(DYNAMIC_CONTENT_FORM).attr(ATTR_FILTER_TYPE);
+
       this.fields = (function() {
          var objects = _object.children(DYNAMIC_CONTENT_FORM).children(selectorAttr(ATTR_FIELD_VALUE));
          var list = [];
+
          for(var i = 0; i < objects.length; i++) list.push(new Field(objects[i]));
          return list;
       }).call();
@@ -246,6 +249,12 @@ $(document).ready(function() {
                }
             case TipoFiltro.BOOLEAN:
                {
+                  /*Object.getOwnPropertyNames(_filter.fields[i]).forEach(function(val, idx, array) {
+                     s = val + ' -> ' + _filter.fields[i][val];
+                     console.log(s);
+                     alert(s);
+                  });*/
+
                   selected_component += _filter.fields[i].label + ": <input type='checkbox' checked='" + _filter.fields[i].value + "'>";
                   selected_component += "<br>";
                   break;

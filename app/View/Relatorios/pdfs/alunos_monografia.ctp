@@ -37,22 +37,22 @@ for ($index = 0; $index < count($aluno); $index++) {
 
    $rowSubheader = new Row('subheader'.$even_class);
    $rowSubheader
-      ->addColumn('', 'col-5')
-      ->addColumn('Orientador', 'col-25')  
+      ->addColumn('Orientador', 'col-20')  
       ->addColumn('TCC', 'col-40')
       ->addColumn('Data', 'col-10')
       ->addColumn('Prazo', 'col-10')
       ->addColumn('Nota', 'col-10')
+      ->addColumn('Pgto', 'col-10')
       ->close();
 
    $rowDataChild = new Row('child last'.$even_class);
    $rowDataChild
-      ->addColumn('', 'col-5')
-      ->addColumn($aluno[$index]['professor']['nome'], 'col-25')
+      ->addColumn($aluno[$index]['professor']['nome'], 'col-20')
       ->addColumn($aluno[$index]['aluno']['mono_titulo'], 'col-40')
       ->addColumn($this->Time->i18nFormat($aluno[$index]['aluno']['mono_data'], $this->Html->__getDatePatternView()), 'col-10 date')
       ->addColumn($this->Time->i18nFormat($aluno[$index]['aluno']['mono_prazo'], $this->Html->__getDatePatternView()), 'col-10 date')
       ->addColumn($aluno[$index]['aluno']['mono_nota'], 'col-10')
+      ->addColumn($this->Time->i18nFormat($aluno[$index]['aluno']['mono_pagamento'], $this->Html->__getDatePatternView()), 'col-10 date')
       ->close();
 
    $table->addRow($rowData);

@@ -22,7 +22,7 @@
          </thead>
          <tbody>
             <?php foreach ($cursos as $curso): ?>
-               <tr>
+               <tr id="<?php echo 'Cursos' . $curso['Curso']['id']; ?>">
                   <td><?php echo h($curso['Curso']['id']); ?>&nbsp;</td>
                   <td><?php echo h($curso['Curso']['sigla']); ?>&nbsp;</td>
                   <td><?php echo h($curso['Curso']['nome']); ?>&nbsp;</td>
@@ -37,7 +37,7 @@
                   <td class="actions text-center">
                      <?php echo $this->element('BotaoAjax', array("controller" => "Cursos", "nome" => "disciplina", "id" => h($curso['Curso']['id']), "icone" => "puzzle-piece")); ?>
                   </td>
-                  <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $curso, 'model' => 'Curso')); ?>
+                  <?php echo $this->element('BotoesDeAcaoDoIndex', array('objeto' => $curso, 'model' => 'Curso', 'controller' => 'Cursos', 'DeleteAjax' => 'true')); ?>
                </tr>
                <?php echo $this->element('LinhaTabelaParaAjax', array("nome" => "disciplina", "id" => h($curso['Curso']['id']), "colspan" => 9)); ?>
             <?php endforeach; ?>

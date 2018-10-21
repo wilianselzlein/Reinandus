@@ -155,6 +155,10 @@ function CursoFim() {
 						   <?php echo $this->Form->input('mono_paga',
 						         array('type' => 'checkbox', 'class' => 'form-control', 'label'=>array('text' => 'Orientação Paga ao Professor', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-10">', 'after'=>'</div>')); ?>
 						</div><!-- .form-group -->
+						<div class="form-group">
+						   <?php echo $this->Form->input('mono_pagamento',
+						         array('type' => 'text', 'class' => 'form-control datepicker-start', 'label'=>array('text' => 'Data', 'class'=>'col-sm-2 control-label'), 'div'=>false, 'between'=>'<div class="col-sm-4">', 'after'=>'</div>')); ?>
+						</div><!-- .form-group -->
 	                </div>
 	            <?php } ?>
 					<div class="tab-pane" id="tabArq">
