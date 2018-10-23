@@ -125,41 +125,53 @@ public function beforeSave($options = array())
         }
     }
 
-    public function afterSave($created,$options = array()){
-		if ($created){;
+public function afterSave($created,$options = array()){
+	if ($created && in_array($this->data['Aviso']['tipo_id'], array(21,22))){
 
-			$alunos = $this->query('SELECT aluno_id from valuno WHERE curso_grupo_id in (select grupo_id from vavisos where aviso_id = '. $this->data['Aviso']['id'] .' and aviso_tipo_id = 21)');
-			if (count($alunos) > 0){
-				$alunos = join(',', $ids = array_map(function ($ar) {return $ar['valuno']['aluno_id'];}, $alunos));
-				$mobilePushTokens = $this->query('SELECT token from push_notification_token WHERE user IN ('.$alunos.')');
+		$alunos = $this->query('SELECT aluno_id from valuno WHERE curso_grupo_id in (select grupo_id from vavisos where aviso_id = '. $this->data['Aviso']['id'] .')');
+		if (count($alunos) > 0){
+			$alunos = join(',', $ids = array_map(function ($ar) {return $ar['valuno']['aluno_id'];}, $alunos));
+			$mobilePushTokens = $this->query('SELECT token from push_notification_token WHERE user IN ('.$alunos.')');
 
-				$pushNotifications = Array();
-				foreach($mobilePushTokens as $pushToken){
-					$pushNotifications[] = array("to" => $pushToken['push_notification_token']['token'], 'body'=> "Novo Aviso Cadastrado", 'sound' => 'default', 'data' => array('navigateTo' => 'WarningScreen'));
-				}
+			$pushData = $this->getPushData($this->data['Aviso']['tipo_id']);
 
-				if (count($pushNotifications) > 0){
-					$jsonData = json_encode($pushNotifications);
-					$ch = curl_init("https://exp.host/--/api/v2/push/send");
-					curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
-					curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);                                                                  
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
-					curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
-					    'Content-Type: application/json',                                                                                
-					    'Content-Length: ' . strlen($jsonData))                                                                       
-					);                                                                                                                                                                                               
-					$result = curl_exec($ch);
-
-					$grupos = $this->query('select grupo_id from vavisos where aviso_id = '. $this->data['Aviso']['id'] .' and aviso_tipo_id = 21');
-					
-					$grupos = join(',', $ids = array_map(function ($ar) {return $ar['vavisos']['grupo_id'];}, $grupos));
-					error_log("Push notification para o(s) grupos(s) ".$grupos.": ".$result);
-				}
-				
+			$pushNotifications = Array();
+			foreach($mobilePushTokens as $pushToken){
+				$pushNotifications[] = array("to" => $pushToken['push_notification_token']['token'], 'body'=> $pushData['body'], 'sound' => 'default', 'data' => array('navigateTo' => $pushData['navigateTo']));
 			}
-		}
 
+			if (count($pushNotifications) > 0){
+				$jsonData = json_encode($pushNotifications);
+				$ch = curl_init("https://exp.host/--/api/v2/push/send");
+				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);                                                                  
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
+				curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
+				    'Content-Type: application/json',                                                                                
+				    'Content-Length: ' . strlen($jsonData))                                                                       
+				);                                                                                                                                                                                               
+				$result = curl_exec($ch);
+
+				$grupos = $this->query('select grupo_id from vavisos where aviso_id = '. $this->data['Aviso']['id']);
+				
+				$grupos = join(',', $ids = array_map(function ($ar) {return $ar['vavisos']['grupo_id'];}, $grupos));
+				error_log("Push notification para o(s) grupos(s) ".$grupos.": ".$result);
+			}
+			
+		}
 	}
+
+}
+
+private function getPushData($tipo){
+	if ($tipo == 21) {
+		return array ("body" => "Novo Aviso Cadastrado", "navigateTo" => "WarningScreen");
+	} elseif ($tipo == 22) {
+		return array ("body" => "Novo Material Cadastrado", "navigateTo" => "MaterialScreen");
+	}		
+
+	return array ("body" => "", "navigateTo" => "");
+}
 
     /**
      * Organiza o upload.
