@@ -1,1 +1,1 @@
-<iframe id="frametab" name="tab-frame" src="http://intranet.iepg.edu.br:8080/Pesquisa/Professor/Pesquisa.jsp?btnlogin=Logar&txtlogin=<?php echo $alunos['Aluno']['id']; ?>" scrolling="true" noresize frameborder="0"></iframe>
+<iframe id="frametab" name="tab-frame" src="" scrolling="true" noresize frameborder="0"></iframe>
