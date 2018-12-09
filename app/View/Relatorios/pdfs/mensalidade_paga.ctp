@@ -28,9 +28,10 @@ for ($index = 0; $index < count($mensalidade_paga); $index++) {
    $rowData = new Row(''.$even_class);
    $remessa = $mensalidade_paga[$index]['mens']['remessa'] == 1 ? ' value="1" checked="checked" ' : '';
    $remessa = '<input type="checkbox" name="rem' . $mensalidade_paga[$index]['mens']['id'] . '"' . $remessa . '/>';
-
+   $cpf = $mensalidade_paga[$index]['aluno']['cpf'];
+   
    $rowData
-      ->addColumn($remessa . $mensalidade_paga[$index]['aluno']['aluno'], 'col-15')
+      ->addColumn($remessa . ' ' . $cpf . ' ' . $mensalidade_paga[$index]['aluno']['aluno'], 'col-15')
       ->addColumn($mensalidade_paga[$index]['curso']['curso'], 'col-15')
       ->addColumn($this->Time->i18nFormat($mensalidade_paga[$index]['mens']['vencimento'], $this->Html->__getDatePatternView()), 'col-10 date text-centered')
       ->addColumn($this->Time->i18nFormat($mensalidade_paga[$index]['mens']['pagamento'], $this->Html->__getDatePatternView()), 'col-10 date text-centered')
