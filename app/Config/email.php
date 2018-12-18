@@ -1,3 +1,4 @@
+
 <?php
 /**
  *
@@ -55,7 +56,7 @@ class EmailConfig {
 		'username' => 'sistemapos@facet.br',
 		'password' => 'agmm36102',
 		'client' => null,
-		'log' => true,
+		'log' => false,
 		//'charset' => 'utf-8',
 		//'headerCharset' => 'utf-8',
 	);
@@ -86,7 +87,7 @@ class EmailConfig {
 		'username' => 'sistemapos@facet.br',
 		'password' => 'agmm36102',
 		'client' => null,
-		'log' => true,
+		'log' => false,
 		//'charset' => 'utf-8',
 		//'headerCharset' => 'utf-8',
 	);
