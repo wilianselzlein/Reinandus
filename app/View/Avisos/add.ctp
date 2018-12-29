@@ -25,6 +25,10 @@ $(document).ready(function() {
     //$(".chzn-select").chosen().change(function (event) {
     //    console.log('change', event, $(event.target).val());
     //});
+    // // Deselect All
+    // $('#my_select_box option:selected').removeAttr('selected');
+    // $('#my_select_box').trigger('liszt:updated');
+    
 });
 </script>
 
