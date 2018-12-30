@@ -19,12 +19,14 @@
           <tr>
             <td>
 <?php
-//if (count($convenio['vconvenios']['logo_logo']) > 0) {
+$logo = $convenio['vconvenios']['logo_logo'];
+if ($logo != '') {
   //echo $this->Html->image(Router::url(array('controller' => 'logos', 'action' => 'logo', convenio['Logo'][0]['id'],)));
-  //echo $convenio['Logo'][0]['imagem'];
-  echo $this->Html->image('logos/thumbs/'.$convenio['vconvenios']['logo_logo'], 
-    array('align'=> 'center', 'height' => '50', 'width' => '50')); 
-//}
+  $img = 'logos/thumbs/'.$logo;
+  //echo $img;
+  if (file_exists('img/' . $img))
+    echo $this->Html->image($img, array('align'=> 'center', 'height' => '50', 'width' => '50')); 
+}
 ?>
             </td>
             <td>
