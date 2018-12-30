@@ -25,8 +25,8 @@ class Logo extends AppModel {
       'logo' => array(
          'required'               => false,
          'directory'           => 'img/logos/',
-         'allowed_mime'        => array('image/jpeg', 'image/pjpeg', 'image/gif', 'image/png'),
-         'allowed_extension'   => array('.jpg', '.jpeg', '.png', '.gif'),
+         'allowed_mime'        => array('image/jpeg', 'image/pjpeg'),
+         'allowed_extension'   => array('.jpg', '.jpeg'),
          'allowed_size'        => 2097152,
          'random_filename'     => true,
          'resize' => array(

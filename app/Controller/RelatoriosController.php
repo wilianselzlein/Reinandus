@@ -346,24 +346,26 @@ class RelatoriosController extends AppController {
         //$Class = ClassRegistry::init('Sigla');
         //$dados = $Class->find('list', array('recursive' => -1, 'order' => array($Class->displayField)));
         //debug($dados); die;
-
+    
         //debug($this->params['data']['model']); die;
         $modelo = $this->params['data']['model'];
         $dados = array();
-        $this->layout = null;
-        if ($modelo == 'EnumeradoSituacaoMen')
-            $Class = ClassRegistry::init('Enumerado');
-        else
-            $Class = ClassRegistry::init($modelo);
-
-        $options = [];
-        if ($modelo == 'Enumerado')
-            $options = array('Enumerado.referencia' => 'situacao_id', 'Enumerado.nome' => 'aluno');
-        if ($modelo == 'EnumeradoSituacaoMen')
-            $options = array('Enumerado.referencia' => 'situacao_id', 'Enumerado.nome' => 'mensalidade');
-        $dados = $Class->find('list', array('recursive' => -1, 'conditions' => $options, 
-            'order' => array($Class->displayField)));
-
+        if ($modelo <> '') {
+            
+            $this->layout = null;
+            if ($modelo == 'EnumeradoSituacaoMen')
+                $Class = ClassRegistry::init('Enumerado');
+            else
+                $Class = ClassRegistry::init($modelo);
+    
+            $options = [];
+            if ($modelo == 'Enumerado')
+                $options = array('Enumerado.referencia' => 'situacao_id', 'Enumerado.nome' => 'aluno');
+            if ($modelo == 'EnumeradoSituacaoMen')
+                $options = array('Enumerado.referencia' => 'situacao_id', 'Enumerado.nome' => 'mensalidade');
+            $dados = $Class->find('list', array('recursive' => -1, 'conditions' => $options, 
+                'order' => array($Class->displayField)));
+        }
         $this->set(compact('dados'));
     }
 
