@@ -9,6 +9,11 @@
 /dist
 /tags
 *.mo
+/app/webroot/arqs
+/app/webroot/img
+/app/webroot/remessa
+/app/webroot/retorno
+/app/webroot/contratos
 
 # IDE and editor specific files #
 #################################
