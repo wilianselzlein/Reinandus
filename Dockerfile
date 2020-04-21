@@ -11,22 +11,13 @@ RUN dpkg-reconfigure --frontend noninteractive tzdata
 RUN apt-get clean -y
 RUN chown -R www-data:www-data /var/www/html
 RUN a2enmod rewrite
-RUN /bin/bash -c "echo -e '<VirtualHost *:80>\n\
-ServerAdmin bruno.gui@gmail.com\n\
-DocumentRoot /var/www/html\n\
-ErrorLog ${APACHE_LOG_DIR}/error.log\n\
-CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
-<Directory /var/www/html>\n\
-        AllowOverride All\n\
-</Directory>\n\
-</VirtualHost>' > /etc/apache2/sites-available/000-default.conf"
 
-RUN /bin/bash -c "echo -e '#!/bin/bash\n\
-source /etc/apache2/envvars\n\
-apache2ctl -D FOREGROUND' > /var/www/apache.sh"
+COPY ./docker-files/sites-available/000-default.conf /etc/apache2/sites-available/
 
-RUN chmod +x /var/www/apache.sh
+COPY ./docker-files/apache-foreground /usr/local/bin/
 
-CMD ["/var/www/apache.sh"]
+RUN chmod +x /usr/local/bin/apache-foreground
+
+ENTRYPOINT ["apache-foreground"]
 
 
