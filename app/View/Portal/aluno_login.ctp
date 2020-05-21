@@ -65,21 +65,21 @@ body {
              </a>
              <a href="https://play.google.com/store/apps/details?id=com.facet.app" target="_blank">
              <img style="margin-left:25px" src="http://facet.br/pos/imagens/topo_google-play.jpg" width="99" height="30" />             </a>
-             <a href="mailto:pos@facet.br" target="_blank">
+             <a href="mailto:secretaria@iepg.edu.br" target="_blank">
              <img style="margin-left:25px" src="http://facet.br/imagens/topo_email.jpg" width="23" height="30" />
              </a>
-             <a href="http://web.whatsapp.com/send?l=pt&pho&phone=5541996246331" target="_blank">
+             <a href="http://web.whatsapp.com/send?l=pt&pho&phone=5541992562500" target="_blank">
              <img style="margin-left:25px" src="http://facet.br/pos/imagens/topo_whatsapp.jpg" width="23" height="30" />
              </a>
-             <a href="https://www.linkedin.com/in/p%C3%B3s-gradua%C3%A7%C3%A3o-facet-16536194" target="_blank">
+             <!-- <a href="https://www.linkedin.com/in/p%C3%B3s-gradua%C3%A7%C3%A3o-facet-16536194" target="_blank">
              <img style="margin-left:25px" src="http://facet.br/pos/imagens/topo_linkedin.jpg" width="23" height="30" />
-             </a>
-             <a href="https://www.facebook.com/PosFACET" target="_blank">
+             </a> -->
+             <a href="https://www.facebook.com/faciencia77" target="_blank">
              <img style="margin-left:25px" src="http://facet.br/pos/imagens/topo_facebook.jpg" width="23" height="30" />
              </a>
-             <a href="https://www.instagram.com/posgraduacaofacet/" target="_blank">
+             <!-- <a href="https://www.instagram.com/posgraduacaofacet/" target="_blank">
              <img style="margin-left:25px" src="http://facet.br/pos/imagens/topo_instagram.jpg" width="23" height="30" />
-             </a>
+             </a> -->
 	</div>
             
 </div>
