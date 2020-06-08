@@ -65,11 +65,32 @@ class PortalController extends AppController {
          //debug($this->Auth->authenticate);
          //debug($this->Auth->redirect());
          //die();
-          if ($this->Auth->login()) {
-              return $this->redirect($this->Auth->redirect());
-          } else {
-              $this->Session->setFlash(__('Invalid username or password, try again'), 'flash/error');
+          
+          try {
+            $parameter = $this->Portal->query("SELECT valor FROM parametro WHERE id = 1 LIMIT 1");
+            $blockBelow = intval($parameter[0]['parametro']['valor']);
+          } catch (Exception $e){
+            $blockBelow = 0;            
           }
+
+          try {
+            $aluno_id = intval($this->request->data["Aluno"]["id"]); 
+          } catch (Exception $e){
+            $aluno_id = 0;
+          }
+          
+          if ($aluno_id >= $blockBelow && $this->Auth->login()) {
+              return $this->redirect($this->Auth->redirect());
+          } 
+            
+          $this->Session->setFlash(__('Invalid username or password, try again'), 'flash/error');
+          
+
+        //   if ($this->Auth->login()) {
+        //     return $this->redirect($this->Auth->redirect());
+        //   } else {
+        //     $this->Session->setFlash(__('Invalid username or password, try again'), 'flash/error');
+        // }
       }
    }
 
