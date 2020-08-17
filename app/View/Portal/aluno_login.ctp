@@ -60,10 +60,10 @@ body {
 <div class="container" style="background-color:black">
              <div style="text-align:right">
              <img src="http://facet.br/pos/imagens/topo_cel.gif" width="26" height="30" /> 
-             <a href="https://itunes.apple.com/br/app/p%C3%B3s-facet/id1349150952?mt=8" target="_blank">
+             <a href="https://apps.apple.com/br/app/faci%C3%AAncia-app/id1527058208" target="_blank">
              <img style="margin-left:25px" src="http://facet.br/pos/imagens/topo_app-store.jpg" width="90" height="30" /> 
              </a>
-             <a href="https://play.google.com/store/apps/details?id=com.facet.app" target="_blank">
+             <a href="https://play.google.com/store/apps/details?id=br.com.faciencia" target="_blank">
              <img style="margin-left:25px" src="http://facet.br/pos/imagens/topo_google-play.jpg" width="99" height="30" />             </a>
              <a href="mailto:secretaria@iepg.edu.br" target="_blank">
              <img style="margin-left:25px" src="http://facet.br/imagens/topo_email.jpg" width="23" height="30" />
