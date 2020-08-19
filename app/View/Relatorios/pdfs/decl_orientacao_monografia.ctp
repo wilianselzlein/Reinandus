@@ -18,7 +18,7 @@ for ($index = 0; $index < count($decl_orientacao_monografia); $index++) {
   $representante = '';
   $professor = $decl_orientacao_monografia[$index]['professor']['orientador'];
 
-  $texto = '    A FACET Faculdade, estabelecida na Rua Mal. Floriano Peixoto, 470, Curitiba, através do seu representante '.$representante.', declara que o(a) Prof(a) '.$professor.' orientou os Trabalhos de Conclusão de Curso dos alunos:';
+  $texto = '    A Faculdade Faciência, estabelecida na Rua Mal. Floriano Peixoto, 470, Curitiba, através do seu representante '.$representante.', declara que o(a) Prof(a) '.$professor.' orientou os Trabalhos de Conclusão de Curso dos alunos:';
 
   $pdf->TextField('Texto' . $index, 170, 30, array('multiline'=>true, 'lineWidth'=>0, 'borderStyle'=>'none'), array('v'=>$texto));
   $pdf->Ln(30);

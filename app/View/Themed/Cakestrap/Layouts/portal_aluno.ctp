@@ -82,7 +82,7 @@ echo $this->fetch('script');
                </li>
                <?php } ?>
                <li class="">
-                  <a href="https://www.facebook.com/PosFACET" title="Facebook" data-toggle="tooltip" data-placement="bottom">
+                  <a href="https://www.facebook.com/faciencia77" title="Facebook" data-toggle="tooltip" data-placement="bottom">
                      <i class="fa fa-facebook fa-2x"></i>
                   </a>
                </li>

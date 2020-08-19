@@ -1,4 +1,3 @@
-
 <?php
 /**
  *
@@ -42,19 +41,19 @@ class EmailConfig {
 
 	public $default = array(
 		'transport' => 'Mail',
-		'from' => 'sistemapos@facet.br',
+		'from' => 'noreply@faciencia.com.br',
 		//'charset' => 'utf-8',
 		//'headerCharset' => 'utf-8',
 	);
 
 	public $smtp = array(
 		'transport' => 'Smtp',
-		'from' => array('sistemapos@facet.br' => 'Portal do Aluno'),
-		'host' => 'ssl://email-ssl.com.br',
-		'port' => 465,
+		'from' => array('noreply@faciencia.com.br' => 'Portal do Aluno'),
+		'host' => 'ssl://smtp.gmail.com',
+		'port' => 587,
 		'timeout' => 30,
-		'username' => 'sistemapos@facet.br',
-		'password' => 'agmm36102',
+		'username' => 'noreply@faciencia.com.br',
+		'password' => '***REMOVED***',
 		'client' => null,
 		'log' => false,
 		//'charset' => 'utf-8',
@@ -62,7 +61,7 @@ class EmailConfig {
 	);
 
 	public $fast = array(
-		'from' => 'sistemapos@facet.br',
+		'from' => 'noreply@faciencia.com.br',
 		'sender' => null,
 		'to' => null,
 		'cc' => null,
@@ -81,11 +80,11 @@ class EmailConfig {
 		'attachments' => null,
 		'emailFormat' => null,
 		'transport' => 'Smtp',
-		'host' => 'email-ssl.com.br',
-		'port' => 465,
+		'host' => 'smtp.gmail.com',
+		'port' => 587,
 		'timeout' => 30,
-		'username' => 'sistemapos@facet.br',
-		'password' => 'agmm36102',
+		'username' => 'noreply@faciencia.com.br',
+		'password' => '***REMOVED***',
 		'client' => null,
 		'log' => false,
 		//'charset' => 'utf-8',

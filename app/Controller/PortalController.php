@@ -106,7 +106,7 @@ class PortalController extends AppController {
 
   private function SendEmail($dados) {
 
-      $emails = array('secretaria@facet.br', 'wilianselzlein@gmail.com');
+      $emails = array('secretaria@faciencia.com.br', 'wilianselzlein@gmail.com');
 
       $Email = new CakeEmail('smtp');
       $Email->emailFormat('html');

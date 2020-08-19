@@ -145,10 +145,10 @@ echo $texto; die;
 	private function PegarTextoEmailVencidas($email) {
 		return 
 			'PREZADO(A) ' . $email['Cobranca']['aluno'] . ', ' . '<br>' .
-			'Constatamos em nossos registros a ausência de pagamento(s) de mensalidade(s) do curso de Pós-Graduação da FACET.' . '<br>' .
+			'Constatamos em nossos registros a ausência de pagamento(s) de mensalidade(s) do curso de Pós-Graduação da FaCiência.' . '<br>' .
 			'Solicitamos, portanto que a V.Sa. compareça na Coordenação da Pós-Graduação, a cargo de negociar prazos e condições de regularização. ' . '<br>' .
 			'Nosso horário de atendimento é de segunda a sexta das 13h30 as 19h. ' . '<br>' .
-			'Por oportuno, pedimos remeter cópia do comprovante do pagamento porventura efetuado, para que possamos dar baixa em nosso sistema para o e-mail: financeiro@facet.br. ' . '<br>' .
+			'Por oportuno, pedimos remeter cópia do comprovante do pagamento porventura efetuado, para que possamos dar baixa em nosso sistema para o e-mail: financeiro@faciencia.com.br. ' . '<br>' .
 			'Obs. conforme contrato: o atraso em 3 mensalidades cancela automaticamente a sua matrícula.' . '<br>' .
 			'O não pagamento implicará no cadastro ao SPC (Serviço de Proteção ao Crédito)' . '<br>' .
 			'Por gentileza regularize o quanto antes.' . '<br>' .
