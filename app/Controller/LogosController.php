@@ -54,14 +54,21 @@ class LogosController extends AppController {
 	public function add($id = null) {
 		if ($this->request->is('post')) {
 			$this->Logo->create();
+			// try {
+			// 	$this->request->data["Logo"]["imagem"] = $this->request->data["Logo"]["logo"]["size"]+" byte(s)";
+			// } catch(Exception $e) {
+			$this->request->data["Logo"]["imagem"] = "";
+			// }
+			
+			// print_r($this->request->data["Logo"]);
 			if ($this->Logo->save($this->request->data)) {
 				$this->Session->setFlash(__('The record has been saved'), "flash/linked/success", array(
-               "link_text" => __('GO_TO'),
-               "link_url" => array(                  
-                  "action" => "view",
-                  $this->Logo->id
-               )
-            ));
+				"link_text" => __('GO_TO'),
+				"link_url" => array(                  
+					"action" => "view",
+					$this->Logo->id
+				)
+			));
 				$this->redirect(array('action' => 'view', $this->Logo->getLastInsertID()));
 			} else {
 				$this->Session->setFlash(__('The record could not be saved. Please, try again.'), 'flash/error');
@@ -69,7 +76,7 @@ class LogosController extends AppController {
 		}
 		$pessoas = $this->Logo->Pessoa->findAsCombo();
 		$pessoa_id = $id;
-		$this->set(compact('pessoas', 'pessoa_id'));
+		$this->set(compact('pessoas', 'pessoa_id'));		
 	}
 
 /**
