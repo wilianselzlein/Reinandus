@@ -365,7 +365,7 @@ EOD;
       $this->Ln(25);
       $secretario = $this->Sessao['User']['Pessoa']['razaosocial'];
       $texto = $secretario . ' 
-        ' . 'Departamento da Pós-Graduação'; 
+        ' . 'Departamento de Pós-Graduação'; 
       $this->MultiCell(170, 15, $texto, 0, 'C', 0, 0, '', '', true);
    }  
 

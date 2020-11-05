@@ -31,6 +31,8 @@ for ($index = 0; $index < count($declaracao_conclusao_curso); $index++) {
   $pdf->MultiCell(170, 5, $texto, 0, 'C', 0, 0, '', '', true);
 
   $pdf->AssinaturaUsuarioLogado();
+  $texto = 'Polo FaCiência'; 
+  $pdf->MultiCell(170, 5, $texto, 0, 'C', 0, 0, '', '', true);
   $pdf->AssinaturaNomePessoaRelacionadaAoUsuario();
 
   $ultimoregistro = $index == count($declaracao_conclusao_curso) - 1;
