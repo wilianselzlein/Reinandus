@@ -13,12 +13,12 @@
 <table border="0" width="100%">
   	<tbody>
   		<tr>
-		    <td width="16%">
+		    <td width="16%" style="vertical-align: top; padding: 5px;">
 <?php echo '<img src="' . '/Reinandus/img/uploads/' . $dados['vcabecalho']['cabecalho_logo'] . '" alt="" height="51" width="147">'; ?>
 		    </td>
-		    <td width="84%"><?php echo $dados['Instituicao']['empresa_razaosocial']; ?><br>
-		      CURSO DE PÓS-GRADUAÇÃO- Reconhecido pela Portaria M.E.C. nº. 1801- D.O.U. 14/07/2003<br>
-		    Mantida pela Sociedade Educacional de Ciências e Tecnologia</td>
+		    <td width="84%">
+          <?php echo $dados['vcabecalho']['cabecalho_cabecalho']; ?>
+        </td>
   		</tr>
 	</tbody>
 </table>
@@ -127,17 +127,7 @@ Departamento de Pós-Graduação</strong></p>
 <br><br>
 <br><br>
 <br><br>
-<p class="style2" align="left">
- <?php echo $dados['Instituto']['empresa_razaosocial']; ?><br>
- <?php echo $dados['Instituto']['empresa_endereco']; ?>&nbsp;
- <?php echo $dados['Instituto']['empresa_numero']; ?>&nbsp;
- <?php echo $dados['Instituto']['empresa_bairro']; ?><br>
- <?php echo $dados['Instituto']['cidade_nome']; ?>&nbsp;
- <?php echo $dados['Instituto']['estado_sigla']; ?>&nbsp;
- <?php echo $dados['Instituto']['empresa_fone']; ?>&nbsp;
- <?php echo $dados['Instituto']['empresa_email']; ?>&nbsp;
- <?php echo $dados['Instituto']['empresa_site']; ?>
- </p>
+<?php echo $dados['vcabecalho']['cabecalho_rodape']; ?>
 <script>window.print();</script>
 </body>
 </html>
