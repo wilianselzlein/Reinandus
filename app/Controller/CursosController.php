@@ -75,7 +75,7 @@ class CursosController extends AppController {
 		$this->set(compact('avisos'));
 
 		$options = array('recursive' => false, 'conditions' => array('CursoDisciplina.curso_id' => $id), 'limit' => self::$LIMITE_VIEW,
-			'fields' => array('CursoDisciplina.id', 'CursoDisciplina.disciplina_id', 'CursoDisciplina.horas_aula', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'));
+			'fields' => array('CursoDisciplina.id', 'CursoDisciplina.disciplina_id', 'CursoDisciplina.horas_aula','CursoDisciplina.periodo_letivo', 'Disciplina.id', 'Disciplina.nome', 'Professor.id', 'Professor.nome'));
 		$this->Curso->CursoDisciplina->unbindModel(array('belongsTo' => array('Curso')));
 		$disciplinas = $this->Curso->CursoDisciplina->find('all', $options);
 		$disciplinas = $this->TransformarArray->FindInContainable('CursoDisciplina', $disciplinas);

@@ -6,10 +6,12 @@ $relatorio_pdf = new RelatorioPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMA
 $ultimo = -999;
 $htmlcss = $relatorio_pdf->html;
 //$relatorio_pdf->writeHTML($html, true, false, true, false, 'L');
+$periodo_letivo_atual = "";
 
 for ($index = 0; $index < count($historico_escolar); $index++) {
   
   $atual = $historico_escolar[$index]['aluno']['id'];
+  $tipo = $historico_escolar[$index]['tipo']['tipo'];
 
   if ($ultimo != $atual) {
     $html = $htmlcss;
@@ -18,8 +20,7 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
     $curso = $historico_escolar[$index]['curso']['curso'];
     $area = $historico_escolar[$index]['curso']['area'];
     $margem = 'style="margin-top: 1px; margin-bottom: 1px;"';
-    $tipo = $historico_escolar[$index]['tipo']['tipo'];
-
+    
     $html .= 
     '<br />'
     .'<div align="center">'
@@ -77,6 +78,46 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
     $html .= $cabecalho . '<br>';
 
     $table = new Table();
+
+    if ( strtolower($tipo) != "graduação" ){
+      $rowHeader = new Row('header');
+      $rowHeader
+        ->addColumn('Disciplina', 'col-35')
+        ->addColumn('Docente Responsável', 'col-30')
+        ->addColumn('Titulação', 'col-10')
+        ->addColumn('Horas Aula', 'col-10')
+        ->addColumn('Frequência', 'col-10')
+        ->addColumn('Nota', 'col-5')
+        ->close();
+      $table->addRow($rowHeader);
+    }
+
+    $ha = 0;
+    $fr = 0;
+    $nt = 0;
+    $count = 0;
+
+  }
+
+  $periodo_letivo = $historico_escolar[$index]['curso_disciplinas']['periodo_letivo'];
+  if (strtolower($tipo) == "graduação" && $periodo_letivo_atual != $periodo_letivo && $periodo_letivo != null){
+    $periodo_letivo_atual = $historico_escolar[$index]['curso_disciplinas']['periodo_letivo'];
+    $rowHeader = new Row('');
+    $rowHeader
+       ->addColumn("", 'col-100')
+       ->close();
+     $table->addRow($rowHeader);
+    $rowHeader = new Row('header');
+    $rowHeader
+       ->addColumn($historico_escolar[$index]['curso_disciplinas']['periodo_letivo'], 'col-35')
+       ->addColumn('', 'col-30')
+       ->addColumn('', 'col-10')
+       ->addColumn('', 'col-10')
+       ->addColumn('', 'col-10')
+       ->addColumn('', 'col-5')
+       ->close();
+     $table->addRow($rowHeader);
+
     $rowHeader = new Row('header');
     $rowHeader
       ->addColumn('Disciplina', 'col-35')
@@ -87,18 +128,12 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
       ->addColumn('Nota', 'col-5')
       ->close();
     $table->addRow($rowHeader);
-
-    $ha = 0;
-    $fr = 0;
-    $nt = 0;
-    $count = 0;
   }
 
  $ha += $historico_escolar[$index]['alunodisc']['horas_aula'];
  $fr += $historico_escolar[$index]['alunodisc']['frequencia'];
  $nt += $historico_escolar[$index]['alunodisc']['nota'];
  $count++;
-
  $rowData = new Row('');
  $rowData
     ->addColumn($historico_escolar[$index]['disciplina']['disciplina'], 'col-35 line')

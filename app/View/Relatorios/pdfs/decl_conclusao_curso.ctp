@@ -6,7 +6,7 @@ $pdf->Sessao = $this->Session->read('Auth');
 
 for ($index = 0; $index < count($declaracao_conclusao_curso); $index++) {
   $pdf->Ln(30);
-  $titulo = 'C E R T I F I C A D O &nbsp; D E &nbsp; C O N C L U S Ã O &nbsp; D E &nbsp; C U R S O';;
+  $titulo = 'C E R T I D Ã O &nbsp; D E &nbsp; C O N C L U S Ã O &nbsp; D E &nbsp; C U R S O';;
   $pdf->writeHTML('<h1>'.$titulo.'</h1>', true, false, true, false, 'C');
   $pdf->Ln(30);
 
