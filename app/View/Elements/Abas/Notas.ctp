@@ -14,13 +14,18 @@
   echo $this->Form->end();
 ?>
 <br/>
-<?php if (count($notas) == 0) { ?> 
+<?php 
+  $periodo_letivo_atual = "";
+  if (count($notas) == 0) { ?> 
   <div class="alert alert-info" role="alert">
     <b>Nenhuma nota lançada.</b>
   </div>
 <?php } else { ?>
 <div class="panel panel-default">
 <table class="table">
+  
+  <?php 
+  if (strtolower($alunos['valuno']['curso_tipo']) != "graduação"){ ?>
   <thead>
     <tr>
       <th>Disciplina</th>
@@ -29,7 +34,7 @@
       <th>Datas</th>
       <th>CH</th>
       <th>Freq. (%)</th>
-      <th>Nota</th>
+      <th>Nota</th>      
     </tr>
   </thead>
   <tbody>
@@ -40,8 +45,9 @@ $fr = 0;
 foreach ($notas as $nota):  
 $ha += $nota['vdisciplinas']['aluno_disciplina_horas_aula'];
 $nt += $nota['vdisciplinas']['aluno_disciplina_nota']; 
-$fr += $nota['vdisciplinas']['aluno_disciplina_frequencia']; 
+$fr += $nota['vdisciplinas']['aluno_disciplina_frequencia'];   
 ?>
+    
     <tr>
       <td><?php echo $nota['vdisciplinas']['disciplina_nome']; ?>&nbsp;</td>
       <td><?php echo $nota['vdisciplinas']['professor_nome']; ?>&nbsp;</td>
@@ -76,6 +82,72 @@ $fr += $nota['vdisciplinas']['aluno_disciplina_frequencia'];
       <td><?php echo $alunos['valuno']['aluno_mono_nota']; ?>&nbsp;</td>
     </tr>
   </tbody>
+  <?php } else { 
+    $ha = 0;
+    $nt = 0;
+    $fr = 0;
+    foreach ($notas as $nota):  
+      $periodo_letivo = $nota['vdisciplinas']['periodo_letivo'];
+      if ($periodo_letivo != $periodo_letivo_atual){        
+        $periodo_letivo_atual = $periodo_letivo
+    ?>
+    <thead style="background-color: #f4f4f4;">
+    <tr>
+        <th colspan="7"><?php echo $periodo_letivo; ?></th>
+    </tr>
+    <tr>
+      <th>Disciplina</th>
+      <th>Professor</th>
+      <th>Titulação</th>
+      <th>Datas</th>
+      <th>CH</th>
+      <th>Freq. (%)</th>
+      <th>Nota</th>      
+    </tr>
+  </thead>
+  <tbody>  
+<?php 
+      }
+$ha += $nota['vdisciplinas']['aluno_disciplina_horas_aula'];
+$nt += $nota['vdisciplinas']['aluno_disciplina_nota']; 
+$fr += $nota['vdisciplinas']['aluno_disciplina_frequencia'];   
+?>
+    
+    <tr>
+      <td><?php echo $nota['vdisciplinas']['disciplina_nome']; ?>&nbsp;</td>
+      <td><?php echo $nota['vdisciplinas']['professor_nome']; ?>&nbsp;</td>
+      <td><?php echo $nota['vdisciplinas']['professor_resumo_titulacao']; ?>&nbsp;</td>
+      <?php 
+        $data = $nota['vdisciplinas']['aluno_disciplina_data'];
+        if ($data != '') 
+          $data = date('d/m/Y', strtotime($nota['vdisciplinas']['aluno_disciplina_data']));
+      ?>
+      <td><?php echo $data; ?>&nbsp;</td>
+      <td><?php echo $nota['vdisciplinas']['aluno_disciplina_horas_aula']; ?>&nbsp;</td>
+      <td><?php echo $nota['vdisciplinas']['aluno_disciplina_frequencia']; ?>&nbsp;</td>
+      <td><?php echo $nota['vdisciplinas']['aluno_disciplina_nota']; ?>&nbsp;</td>
+    </tr>
+<?php endforeach; ?>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><?php echo $ha; ?>&nbsp;</td>
+      <td><?php echo round($fr / count($notas), 2);?>&nbsp;</td>
+      <td><?php echo round($nt / count($notas), 2);?>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>TCC: &nbsp;</td>
+      <td><?php echo $alunos['valuno']['aluno_mono_nota']; ?>&nbsp;</td>
+    </tr>
+  </tbody>
+  <?php } ?>
 </table>
 </div>
 <?php } ?>
