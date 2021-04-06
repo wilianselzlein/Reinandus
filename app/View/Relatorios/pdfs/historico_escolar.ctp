@@ -86,7 +86,7 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
         ->addColumn('Docente Responsável', 'col-30')
         ->addColumn('Titulação', 'col-10')
         ->addColumn('Horas Aula', 'col-10')
-        ->addColumn('Frequência', 'col-10')
+        // ->addColumn('Frequência', 'col-10')
         ->addColumn('Nota', 'col-5')
         ->close();
       $table->addRow($rowHeader);
@@ -120,11 +120,11 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
 
     $rowHeader = new Row('header');
     $rowHeader
-      ->addColumn('Disciplina', 'col-35')
-      ->addColumn('Docente Responsável', 'col-30')
+      ->addColumn('Disciplina', 'col-40')
+      ->addColumn('Docente Responsável', 'col-35')
       ->addColumn('Titulação', 'col-10')
       ->addColumn('Horas Aula', 'col-10')
-      ->addColumn('Frequência', 'col-10')
+      // ->addColumn('Frequência', 'col-10')
       ->addColumn('Nota', 'col-5')
       ->close();
     $table->addRow($rowHeader);
@@ -136,11 +136,11 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
  $count++;
  $rowData = new Row('');
  $rowData
-    ->addColumn($historico_escolar[$index]['disciplina']['disciplina'], 'col-35 line')
-    ->addColumn($historico_escolar[$index]['professor']['professor'], 'col-30 line')
+    ->addColumn($historico_escolar[$index]['disciplina']['disciplina'], 'col-40 line')
+    ->addColumn($historico_escolar[$index]['professor']['professor'], 'col-35 line')
     ->addColumn($historico_escolar[$index]['titulacao']['valor'], 'col-10 line')
     ->addColumn($historico_escolar[$index]['alunodisc']['horas_aula'], 'col-10 line', '', '', 1)
-    ->addColumn($historico_escolar[$index]['alunodisc']['frequencia'], 'col-10 line', '', '', 75)
+    // ->addColumn($historico_escolar[$index]['alunodisc']['frequencia'], 'col-10 line', '', '', 75)
     ->addColumn($historico_escolar[$index]['alunodisc']['nota'], 'col-5 line', '', '', 7)
     ->close();
   $table->addRow($rowData);
@@ -176,11 +176,11 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
 
     $rowData = new Row('');
     $rowData
+      ->addColumn('', 'col-40 line')
       ->addColumn('', 'col-35 line')
-      ->addColumn('', 'col-30 line')
       ->addColumn('', 'col-10 line')
       ->addColumn($ha, 'col-10 line', '', '', 360)
-      ->addColumn(round($fr / $count,2), 'col-10 line', '', '', $vermelho)
+      // ->addColumn(round($fr / $count,2), 'col-10 line', '', '', $vermelho)
       ->addColumn(round($nt / $count,2), 'col-5 line', '', '', $vermelho)
       ->close();
     $table->addRow($rowData);
