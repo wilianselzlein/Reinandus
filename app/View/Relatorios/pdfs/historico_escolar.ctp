@@ -82,8 +82,8 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
     if ( strtolower($tipo) != "graduação" ){
       $rowHeader = new Row('header');
       $rowHeader
-        ->addColumn('Disciplina', 'col-35')
-        ->addColumn('Docente Responsável', 'col-30')
+        ->addColumn('Disciplina', 'col-40')
+        ->addColumn('Docente Responsável', 'col-35')
         ->addColumn('Titulação', 'col-10')
         ->addColumn('Horas Aula', 'col-10')
         // ->addColumn('Frequência', 'col-10')
