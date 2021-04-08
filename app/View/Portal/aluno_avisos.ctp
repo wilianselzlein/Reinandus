@@ -1,6 +1,6 @@
 <ul class="list-group">
 <?php if (count($avisos) == 0) { ?> 
-	<div class="alert alert-info" role="alert">
+	<div class="alert alert-faciencia" role="alert">
 		<b>Nenhum aviso cadastrado.</b>
 	</div>
 <?php } ?>

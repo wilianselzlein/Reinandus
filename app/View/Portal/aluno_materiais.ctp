@@ -1,6 +1,6 @@
 <ul class="list-group">
 <?php if (count($materiais) == 0) { ?> 
-  <div class="alert alert-info" role="alert">
+  <div class="alert alert-faciencia" role="alert">
     <b>Nenhum material cadastrado.</b>
   </div>
 <?php } ?>
