@@ -64,7 +64,7 @@
 							if ($remessa) {
 								echo $this->Html->link('<i class="fa fa-print"></i>', 
 								array('action' => 'boleto', $mensalidade['vmensalidades']['mensalidade_id']), 
-								array('class' => 'btn btn-default btn-xs', 'escape' => false, 'title' => __('Imprimir Boleto'), 'data-toggle' => 'tooltip', 'target' => '_blank'));
+								array('class' => 'btn btn-primary btn-xs', 'escape' => false, 'title' => __('Imprimir Boleto'), 'data-toggle' => 'tooltip', 'target' => '_blank'));
 							}
 						}
 					?>
@@ -93,7 +93,7 @@
 	</table>
 </div>
 <?php } else { ?>
-<div class="alert alert-info" role="alert">
+<div class="alert alert-faciencia" role="alert">
 	<b>Nenhuma mensalidade cadastrada.</b>
 </div>
 <?php } ?>

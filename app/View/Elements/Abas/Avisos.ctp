@@ -1,4 +1,4 @@
-<div class="alert alert-info" role="alert">
+<div class="alert alert-faciencia" role="alert">
     <a href="<?php echo $manual; ?>" title="" data-toggle="tooltip" data-original-title="Manual do Aluno">
         <i class="fa fa-book fa-1x"></i>
         <b>Manual do Aluno</b>

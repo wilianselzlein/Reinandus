@@ -17,7 +17,7 @@
 <?php 
   $periodo_letivo_atual = "";
   if (count($notas) == 0) { ?> 
-  <div class="alert alert-info" role="alert">
+  <div class="alert alert-faciencia" role="alert">
     <b>Nenhuma nota lançada.</b>
   </div>
 <?php } else { ?>

@@ -33,6 +33,7 @@ $usuario_logado = $this->Session->read('Auth.Aluno');
 echo $this->Html->meta('icon');
 echo $this->fetch('meta');
 echo $this->Html->css('bootstrap');
+echo $this->Html->css('custom');
 echo $this->Html->css('sb-admin');
 echo $this->Html->css('user-bar');
 echo $this->Html->css('bootstrap-dialog');
@@ -50,9 +51,9 @@ echo $this->Html->script('libs/fonte');
 echo $this->fetch('script');
       ?>
    </head>
-   <body>
+   <body id="studentPortal">
       <div id="wrappera">
-         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+         <nav class="navbar navbar-purple navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -108,7 +109,7 @@ echo $this->fetch('script');
                               </div>
                               <div class="col-md-7">
                                  <span><?php echo $usuario_logado['nome']; ?></span>
-                                 <p class="text-muted small"><?php echo $usuario_logado['email']; ?></p>
+                                 <p class="small"><?php echo $usuario_logado['email']; ?></p>
                                  <div class="divider"></div>
                                  <?php //echo $this->Html->link(__('Alguma coisa'), array('controller' => 'portal', 	'action' => 'index'), array('class'=>'btn btn-primary btn-sm active'))?>
                                  <div class="divider"></div>

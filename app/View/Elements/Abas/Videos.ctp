@@ -20,7 +20,7 @@ foreach ($videos as $video):
 <?php endforeach; ?>
 </ul>
 <?php } else { ?>
-<div class="alert alert-info" role="alert">
+<div class="alert alert-faciencia" role="alert">
 	<b>Nenhum vídeo cadastrado.</b>
 </div>
 <?php } ?>

@@ -2,7 +2,7 @@
   <h1 style="margin-top: 0px;">Tema do forum <small>Aberto</small></h1>
 </div>
 
-<div class="alert alert-info" role="alert">
+<div class="alert alert-faciencia" role="alert">
 Conteúdo do forum<br/>
 Conteúdo do forum<br/>
 Conteúdo do forum<br/>
