@@ -2,17 +2,25 @@
 
 <style>
 @import url(http://fonts.googleapis.com/css?family=Lancelot);
+@import url(/theme/Cakestrap/css/custom.css);
 
 body {
-  padding-top: 40px;
+  padding-top: 0 !important;
   padding-bottom: 40px;
-  background-color: #eee;
+  background-color: #fff;
+}
+
+body {
+  margin-top: 0 !important;
 }
 
 .form-signin {
-  max-width: 330px;
+  max-width: 500px;
   padding: 15px;
   margin: 0 auto;
+  background-color: #8e558e;
+  padding: 100px;
+  color: #fff;
 }
 .form-signin .form-signin-heading{
     font-family: 'Lancelot';
@@ -57,7 +65,7 @@ body {
       /*background-color: #0B6E01 !important;*/
    }
 </style>
-<div class="container" style="background-color:black">
+<!-- <div class="container" style="background-color:black">
              <div style="text-align:right">
              <img src="https://www.faciencia.com.br/static/img/topo_cel.gif" width="26" height="30" /> 
              <a href="https://apps.apple.com/br/app/faci%C3%AAncia-app/id1527058208" target="_blank">
@@ -71,17 +79,25 @@ body {
              <a href="http://web.whatsapp.com/send?l=pt&pho&phone=5541992562500" target="_blank">
              <img style="margin-left:25px" src="https://www.faciencia.com.br/static/img/topo_whatsapp.jpg" width="23" height="30" />
              </a>
-             <!-- <a href="https://www.linkedin.com/in/p%C3%B3s-gradua%C3%A7%C3%A3o-facet-16536194" target="_blank">
+             <a href="https://www.linkedin.com/in/p%C3%B3s-gradua%C3%A7%C3%A3o-facet-16536194" target="_blank">
              <img style="margin-left:25px" src="https://www.faciencia.com.br/static/img/topo_linkedin.jpg" width="23" height="30" />
-             </a> -->
+             </a>
              <a href="https://www.facebook.com/faciencia77" target="_blank">
              <img style="margin-left:25px" src="https://www.faciencia.com.br/static/img/topo_facebook.jpg" width="23" height="30" />
              </a>
-             <!-- <a href="https://www.instagram.com/posgraduacaofacet/" target="_blank">
+             <a href="https://www.instagram.com/posgraduacaofacet/" target="_blank">
              <img style="margin-left:25px" src="https://www.faciencia.com.br/static/img/topo_instagram.jpg" width="23" height="30" />
-             </a> -->
-	</div>
+             </a>
+	</div> -->
             
+<!-- </div> -->
+<div class="header-main">
+   <div class="container">
+   <a href="https://www.faciencia.com.br" target="_blank">
+      <img style="margin-left:25px" src="https://www.faciencia.com.br/media/upload/config/general/LOGO-1-BRANCO.png" width="250" />
+    </a>
+   
+   </div>
 </div>
 <div id="restrict-area-login">
 
