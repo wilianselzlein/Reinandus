@@ -17,7 +17,7 @@
                <?php echo $this->Form->input('nome', array('autofocus' => 'autofocus')); ?>
             </div>
             <div class="form-group">
-               <?php echo $this->Form->input('cep', array('class' => 'form-control cep')); ?>
+               <?php echo $this->Form->input('cep', array('class' => 'form-control')); ?>
             </div>
             <?php echo $this->Form->button('<i class="fa fa-save"></i>'.' '.__('Submit'), array('class' => 'btn btn-large btn-primary', 'type'=>'submit')); ?>
          </fieldset>
