@@ -18,7 +18,7 @@ body {
   max-width: 500px;
   padding: 15px;
   margin: 0 auto;
-  background-color: #8e558e;
+  background-color: #306;
   padding: 100px;
   color: #fff;
 }

@@ -1,7 +1,8 @@
 
 :root {
-    --color_primary: #8e558e;
-    --color_secondary: #a55ba5;
+    --color_secondary: #306;
+    --color_primary: #306;
+    --color_grey: #d4d4d4   
 }
 
 
@@ -63,6 +64,6 @@
 }
 
 pre, .alert-faciencia {
-    background-color: #fef !important;
+    background-color: var(--color_grey) !important;
     color: var(--color_primary) !important;
 }
