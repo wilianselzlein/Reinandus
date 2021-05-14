@@ -190,7 +190,7 @@ for ($index = 0; $index < count($historico_escolar); $index++) {
 
     $table->close();
     $html .= $table;
-    $html .= '<p style="font-size: 12px;">Declaramos para os devidos fins que o(a) aluno(a) concluiu o Curso ' . $tipo . $curso . ' cumprindo todas as disposições legais e institucionais.</p> <br> <div align="center" style="font-size: 12px;">' . 
+    $html .= '<p style="font-size: 12px;">Declaramos para os devidos fins que o(a) aluno(a) concluiu o Curso ' . $tipo . ' ' . $curso . ' cumprindo todas as disposições legais e institucionais.</p> <br> <div align="center" style="font-size: 12px;">' . 
       $historico_escolar[$index]['matriz']['matriz'] . ', ' . 
       $relatorio_pdf->DataPorExtenso() .  '<br><br>' .
       '<br>Secretaria '.$tipo.'</div>';
