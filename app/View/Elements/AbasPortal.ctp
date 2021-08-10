@@ -14,7 +14,7 @@
     <!--<li>
         <a href="#Manual" data-toggle="tab" title="Manual do Aluno" data-tt="tooltip"><i class="fa fa-book fa-4x"></i>&nbsp;</a>
     </li>-->
-    <li>
+    <li class="hide">
         <a href="#Convenios" data-toggle="tab" title="Convênios e Descontos" data-tt="tooltip"><i class="fa fa-thumbs-o-up fa-4x"></i>&nbsp;</a>
     </li>
     <li>
