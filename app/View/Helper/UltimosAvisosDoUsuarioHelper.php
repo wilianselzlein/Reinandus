@@ -24,7 +24,7 @@ class UltimosAvisosDoUsuarioHelper extends AppHelper {
 			$texto = 
 				'<div class="media">' .
 			      '<span class="pull-left">' .
-			         '<img class="media-object" src="http://placehold.it/50x50" alt="">' .
+			         '<img class="media-object" src="/img/50x50.png" alt="">' .
 			      '</span>' . 
 			      '<div class="media-body">' .
 			         '<h5 class="media-heading"><strong>' . $avisos[$i]['User']['username'] . '</strong>' .

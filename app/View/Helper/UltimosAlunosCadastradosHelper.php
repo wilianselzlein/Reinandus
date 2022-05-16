@@ -28,7 +28,7 @@ class UltimosAlunosCadastradosHelper extends AppHelper {
 			if ((isset($alunos[$i]['Detalhe'][0])) && ($alunos[$i]['Detalhe'][0]['foto'] != ''))
 				$imagem = $this->Html->image('detalhes/thumbs/'.$alunos[$i]['Detalhe'][0]['foto'], array('width'=>'50','height'=>'50')) . ' &nbsp; ';
 			else
-				$imagem = '<img class="media-object" src="http://placehold.it/50x50" alt="">';
+				$imagem = '<img class="media-object" src="/img/50x50.png" alt="">';
 
 			$texto = 
 				'<div class="media">' .
